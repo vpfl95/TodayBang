@@ -1,0 +1,33 @@
+.center_menu>div {
+    border: solid 1px;
+    width: 25%;
+    padding: 10px;
+    height: 343px;
+}
+
+.center_menu_img {
+    width: 100%;
+    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
+    height: 65%;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    background-color: aquamarine;
+}
+
+.popularItem {
+    margin-top: 20px;
+}
+
+.todayDealText {
+    margin-top: 50px;
+}
+
+/**PageNation*/
+.paging {
+    height: 100px;
+    margin-bottom: 2em;
+}
+.pagination {
+    justify-content: center;
+    padding-top: 2em;
+}

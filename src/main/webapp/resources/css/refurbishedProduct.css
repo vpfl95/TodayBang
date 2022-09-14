@@ -1,0 +1,41 @@
+/**left*/
+.right_re {
+    width: 30%;
+    margin: 0px;
+    height: 1000px;
+    border: solid 1px red;
+    display:inline-block;
+}
+
+.right_re1 {
+    width: 90%;
+    height: 300px;
+    margin: 0 auto;
+    padding: 2em 1em;
+}
+
+.c_btn button {
+    padding: 1em 2.3em;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(222, 226, 230, 0.63);
+}
+
+
+.left_re{
+    width: 70%;
+    border: solid 1px blue;
+    height: 1000px;
+    float: left;
+}
+
+
+/**PageNation*/
+.paging {
+    height: 100px;
+    margin-bottom: 2em;
+  }
+  .pagination {
+    justify-content: center;
+    padding-top: 2em;
+  }
