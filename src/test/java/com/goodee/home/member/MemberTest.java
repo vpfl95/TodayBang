@@ -12,7 +12,7 @@ public class MemberTest extends MyAbstractTest{
 	@Autowired
 	MemberDAO memberDAO = new MemberDAO();
 	
-	@Test
+	//@Test
 	public void getLoginTest() throws Exception{
 		
 		MemberDTO memberDTO = new MemberDTO();

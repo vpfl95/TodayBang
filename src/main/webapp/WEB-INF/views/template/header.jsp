@@ -21,11 +21,25 @@
 
         <div class="dropdown text-end ">
         
+        	
+        
+        
 	       	<ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3">
-	          <li><a href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
-	          <li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
-	          <li><a href="/member/join" class="nav-link px-2 link-secondary">회원가입</a></li>
-	        </ul>
+	       	
+	       		<c:if test="${empty member }">
+       			 <!-- 로그인 XXX -->
+	        		<li><a href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
+		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
+		         	<li><a href="/member/join" class="nav-link px-2 link-secondary">회원가입</a></li>
+	        
+        		</c:if>
+        		<c:if test="${not empty member }">
+        		<!-- 로그인 OOO -->
+        			<li><a href="/member/myPage" class="nav-link px-2 link-secondary">마이페이지</a></li>
+		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
+		         	<li><a href="/member/logout" class="nav-link px-2 link-secondary">로그아웃</a></li>
+        		</c:if>
+	          </ul>
         
           <!-- <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
             <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
