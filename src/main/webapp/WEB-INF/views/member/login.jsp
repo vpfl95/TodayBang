@@ -18,14 +18,14 @@
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
 	
-					<form action="login.jsp" method="post">
+					<form action="./login" method="post">
 						<div class="mb-3">
 							<label class="form-label" for="id">아이디</label> 
-							<input class="form-control" type="text" name="id" id="id" />
+							<input class="form-control" type="text" name="id" id="id" value="ID1" />
 						</div>
 						<div class="mb-3">
-							<label class="form-label" for="pwd">비밀번호</label> 
-							<input class="form-control" type="password" name="pwd" id="pwd" />
+							<label class="form-label" for="pw">비밀번호</label> 
+							<input class="form-control" type="password" name="pw" id="pw" value="PW1"/>
 						</div>
 						<button class="btn btn-outline-primary btn-sm" type="submit">로그인</button>
 					</form>
