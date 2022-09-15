@@ -2,16 +2,16 @@
 .right_re {
     width: 30%;
     margin: 0px;
-    height: 1000px;
-    border: solid 1px red;
+    height: 2000px;
     display:inline-block;
 }
 
 .right_re1 {
-    width: 90%;
+    width: 300px;
     height: 300px;
     margin: 0 auto;
     padding: 2em 1em;
+    position: fixed;
 }
 
 .c_btn button {
@@ -24,18 +24,61 @@
 
 .left_re{
     width: 70%;
-    border: solid 1px blue;
-    height: 1000px;
+    height: 2000px;
     float: left;
 }
 
+.refurgif img {
+    max-width: 100%;
+}
+
+.center_menu>div {
+    width: 33%;
+    padding: 10px;
+    height: auto;
+}
+
+.center_menu_img>img {
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0px auto;
+    border-radius: 3px;
+}
+
+
+.brandRecom-brand img {
+    width: 50%;
+}
 
 /**PageNation*/
 .paging {
     height: 100px;
     margin-bottom: 2em;
-  }
-  .pagination {
+    margin-top: 100px;
+}
+.pagination {
     justify-content: center;
     padding-top: 2em;
-  }
+}
+
+/* Product Detail Font*/
+.brand {
+    font-size: 10px;
+    color: gray;
+}
+
+.product {
+    font-size: 14px;
+}
+
+.saleRate {
+    font-size: 19px;
+    display: inline-block;
+    color: #35c5f0;
+}
+
+.price {
+    display: inline-block;
+    font-size: 19px;
+}
