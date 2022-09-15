@@ -25,6 +25,24 @@ public class MemberTest extends MyAbstractTest{
 		assertNotNull(memberDTO);
 		
 	}
+	//@Test
+	public void getJoinTest() throws Exception{
+			
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUserId("ID2");
+		memberDTO.setPassword("PW2");
+		memberDTO.setNickname("nick2");
+		memberDTO.setEmail("email2");
+		memberDTO.setPhone("phone2");
+		memberDTO.setUserName("name2");
+		
+		
+		int result = memberDAO.getJoin(memberDTO);
+		
+		assertEquals(1, result);
+		
+	}
+	
 	
 
 }

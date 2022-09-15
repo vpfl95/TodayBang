@@ -20,8 +20,81 @@
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
 				
-					<h1> main page</h1>
+					
 				
+            <div class="container position-relative">
+                <div class="row justify-content-center">
+                    <div class="col-xl-6" style="height: 500px;">
+                        <div class="text-center">
+                            <!-- Page heading-->
+                            <h1 class="mb-5">오늘의 직방 메인 페이지</h1>
+                            <!-- Signup form-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- * * SB Forms Contact Form * *-->
+                            <!-- * * * * * * * * * * * * * * *-->
+                            <!-- This form is pre-integrated with SB Forms.-->
+                            <!-- To make this form functional, sign up at-->
+                            <!-- https://startbootstrap.com/solution/contact-forms-->
+                            <!-- to get an API token!-->
+                            <form class="form-subscribe" id="contactForm" >
+                                <!-- Email address input-->
+                                <div class="row">
+                                    <div class="col">
+                                        <input class="form-control form-control-lg" id="textSearch" type="text" placeholder="검색" >
+                                        </div>
+                                    <div class="col-auto"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">검색</button></div>
+                                </div>
+                                <!-- Submit success message-->
+                                <!---->
+                                <!-- This is what your users will see when the form-->
+                                <!-- has successfully submitted-->
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        <p>To activate this form, sign up at</p>
+                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                                <!-- Submit error message-->
+                                <!---->
+                                <!-- This is what your users will see when there is-->
+                                <!-- an error submitting the form-->
+                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+       
+            <div class="container features-icons bg-light text-center" style="height: 300px;">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                            <h3>스토어</h3>
+                            <p class="lead mb-0">예시 1</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                            <h3>방구하기</h3>
+                            <p class="lead mb-0">예시 2</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3">
+                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                            <h3>커뮤니티</h3>
+                            <p class="lead mb-0">예시 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        
+        
 				
 				</div>
 			</div>

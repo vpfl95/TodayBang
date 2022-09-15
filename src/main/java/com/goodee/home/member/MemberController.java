@@ -18,13 +18,13 @@ public class MemberController {
 	
 	@GetMapping("login")
 	public void getLogin() throws Exception{
-		System.out.println("로그인 페이지 실행");
+	
 		
 	}
 	
 	@PostMapping("login")
 	public ModelAndView getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
-		System.out.println("로그인 DB 실행");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		
@@ -32,7 +32,7 @@ public class MemberController {
 		
 		if (memberDTO != null) {
 			System.out.println(memberDTO.getEmail());
-			System.out.println("로그인 성공");
+			
 		}
 		
 		session.setAttribute("member", mv);
@@ -47,7 +47,7 @@ public class MemberController {
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session) throws Exception{
-		System.out.println("로그아웃");
+		
 		
 		session.invalidate();
 		
@@ -62,6 +62,21 @@ public class MemberController {
 		
 		
 	}
+	@PostMapping("join")
+	public String getJoin(MemberDTO memberDTO) throws Exception{
+		
+		
+		int result = memberService.getJoin(memberDTO);
+		
+		if(result==1) {
+			System.out.println("회원가입 성공 ㅋㅋ");
+		}
+		
+		return "redirect:../";
+		
+	}
+	
+	
 	
 	
 }
