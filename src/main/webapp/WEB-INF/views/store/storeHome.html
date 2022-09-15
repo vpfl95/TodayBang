@@ -10,10 +10,11 @@
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-    <header class="header" style="background-color:antiquewhite; width: 100%; height: 80px;"></header>
-
+    <header class="header" style="background-color:antiquewhite; width: 100%; height: 80px; position: fixed;"></header>
+    <!-- Carousel -->
     <img src="https://image.ohou.se/i/bucketplace-v2-development/uploads/store/banners/store_home_banners/166261837863536452.png?gif=1&w=2560&q=100" alt="" style="width: 100%; height: 340px;">
     <section class="container">
+        <!-- Carousel 이미지 변경 버튼 -->
         <div class="exhibition">
             <div class="d-flex justify-content-center menu">
                 <div>패브릭 세일</div>
@@ -30,20 +31,31 @@
             </div>       
         </div>
 
+        <!-- 기획전 바로가기 아이콘 -->
         <nav style="width: 100%; height: 140px;">
-            <div class="d-flex justify-content-center menu_img">
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
-                <div></div>
+            <div class="d-flex justify-content-center exhibition-icon">
+                <div><a href="#"><img src="/resources/images/1+1shop.jpg" alt=""></a></div>
+                <div><a href="#"><img src="/resources/images/ogoods.jpg" alt=""></a></div>
+                <div><a href="#"><img src="/resources/images/fastDeli.jpg" alt=""></a></div>
+                <div><a href="#"><img src="/resources/images/premiumIcon.jpg" alt=""></a></div>
+                <div><a href="#"><img src="/resources/images/refurbishedIcon.jpg" alt=""></a></div>
                 <div></div>
                 <div></div>
                 <div></div>
             </div>       
+
+            <div class="d-flex justify-content-center exhibition-icon-text">
+                <div style="margin-left: 15px;">1+1 샵</div>
+                <div style="padding-left: 3px;">오!굿즈</div>
+                <div>빠른배송</div>
+                <div style="margin-left: 35px; margin-right: 25px;">프리미엄</div>
+                <div style="margin-left: 40px; margin-right: 20px;">리퍼마켓</div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
         </nav>
-        
-        
+
         <div style="height: 20px; width: 100%;" class="todayDeal">
             <h5 class="d-inline-flex float-start"><b>👍오늘의 딜</b></h5>
             <a href="#" class="d-inline-flex float-end a_tag">📌더보기</a>
@@ -52,14 +64,53 @@
         <div class="todayDealImg" style="height: 343px;">
             <div class="d-flex justify-content-center center_menu">
                 <div>
-                    <div class="center_menu_img">이미지</div>
+                    <div class="center_menu_img"><img src="/resources/images/test2.jpeg" alt=""></div>
                     <div>
-                        글
+                        <div class="brand">먼데이하우스</div>
+                        <div class="product">오늘의 직방 최다리뷰! 인기 총합 가구 BIG SALE</div>
+                        <div>
+                            <div class="saleRate"><b>61%</b></div>
+                            <div class="price"><b>10300 외</b></div>
+                        </div>
+                        <div>
+                            <div class="grade"><b>4.6</b></div>
+                            <div class="reviewNum">리뷰 187350</div>
+                        </div>
                     </div>
                 </div>
-                <div></div>
-                <div></div>
-                <div></div>
+                <div>
+                    <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
+                    <div>
+                        <div class="brand"></div>
+                        <div class="product"></div>
+                        <div class="saleRate"></div>
+                        <div class="price"></div>
+                        <div class="grade"></div>
+                        <div class="reviewNum"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
+                    <div>
+                        <div class="brand"></div>
+                        <div class="product"></div>
+                        <div class="saleRate"></div>
+                        <div class="price"></div>
+                        <div class="grade"></div>
+                        <div class="reviewNum"></div>
+                    </div>
+                </div>
+                <div>
+                    <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
+                    <div>
+                        <div class="brand"></div>
+                        <div class="product"></div>
+                        <div class="saleRate"></div>
+                        <div class="price"></div>
+                        <div class="grade"></div>
+                        <div class="reviewNum"></div>
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -120,7 +171,12 @@
                     <div>
                         <div class="center_menu_img">이미지</div>
                         <div>
-                            글
+                            <div class="brand"></div>
+                            <div class="product"></div>
+                            <div class="saleRate"></div>
+                            <div class="price"></div>
+                            <div class="grade"></div>
+                            <div class="reviewNum"></div>
                         </div>
                     </div>
                     <div></div>
@@ -134,7 +190,12 @@
                     <div>
                         <div class="center_menu_img">이미지</div>
                         <div>
-                            글
+                            <div class="brand"></div>
+                            <div class="product"></div>
+                            <div class="saleRate"></div>
+                            <div class="price"></div>
+                            <div class="grade"></div>
+                            <div class="reviewNum"></div>
                         </div>
                     </div>
                     <div></div>
@@ -148,7 +209,12 @@
                     <div>
                         <div class="center_menu_img">이미지</div>
                         <div>
-                            글
+                            <div class="brand"></div>
+                            <div class="product"></div>
+                            <div class="saleRate"></div>
+                            <div class="price"></div>
+                            <div class="grade"></div>
+                            <div class="reviewNum"></div>
                         </div>
                     </div>
                     <div></div>

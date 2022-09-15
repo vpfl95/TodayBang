@@ -26,29 +26,35 @@
 }
 /**설희*/
 
-.menu {
-    border: none;
-}
-
 .menu div {
     box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
     padding: 8px 15px;
     margin-bottom: 1em;
 }
 
-.menu_img {
+.exhibition-icon {
     margin-top: 40px;
 }
-.menu_img div {
+.exhibition-icon div {
     border-radius: 15px;
-    border: none;
-    box-shadow: rgba(0, 0, 0, 0.15) 0px 3px 3px 0px;
     margin-left: 2em;
     margin-right: 2em;
     height: 60px;
     width: 60px;
 }
 
+.exhibition-icon img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.exhibition-icon-text div {
+    margin: 10px 2em;
+    width: 60px;
+    font-size: 15px;
+}
 
 /**a태그 css*/
 .a_tag {
@@ -60,30 +66,22 @@
     color: rgba(80, 75, 75, 0.5);
 }
 
-
-
-.center_menu {
-    border: solid 1px;
-}
-
 .center_menu>div {
-    border: solid 1px;
-    width: 25%;
+    width: 20%;
     padding: 10px;
     height: 343px;
 }
 
 .center_menu_img {
-    width: 100%;
-    box-shadow: rgba(0, 0, 0, 0.12) 0px 1px 3px, rgba(0, 0, 0, 0.24) 0px 1px 2px;
     height: 65%;
-    border-radius: 5px;
     margin-bottom: 10px;
-    background-color: aquamarine;
 }
 
-.menu_cate {
-    border: none;
+.center_menu_img>img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0px auto;
 }
 
 .menu_cate>div {
@@ -123,4 +121,36 @@
 .pagination {
     justify-content: center;
     padding-top: 2em;
+}
+
+/* Product Detail Font*/
+.brand {
+    font-size: 10px;
+    color: gray;
+}
+
+.product {
+    font-size: 14px;
+}
+
+.saleRate {
+    font-size: 19px;
+    display: inline-block;
+    color: #35c5f0;
+}
+
+.price {
+    display: inline-block;
+    font-size: 19px;
+}
+
+.grade {
+    font-size: 14px;
+    display: inline-block;
+}
+
+.reviewNum {
+    font-size: 14px;
+    display: inline-block;
+    color: gray;
 }
