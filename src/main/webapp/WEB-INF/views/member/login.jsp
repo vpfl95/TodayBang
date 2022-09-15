@@ -46,6 +46,14 @@
 				        </div>
 				        
 				        
+				        <div id = "SNSLoginPart" class="mx-auto mt-1">
+				        	SNS 간편 로그인
+					        <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+			         	 	<img alt="" src="/resources/images/NaverLogin.png" style="width: 60px;">
+			      			</a>
+				        </div>
+				        
+				        
 				        
 					</form>
 		        
@@ -55,11 +63,7 @@
 					
 						
 					
-				
-			      <!-- 아래와같이 아이디를 꼭 써준다. -->
-			      <a id="naverIdLogin_loginButton" href="javascript:void(0)">
-			          <span>네이버 로그인</span>
-			      </a>
+			      
 				
 			
 	

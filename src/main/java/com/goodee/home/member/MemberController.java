@@ -76,6 +76,13 @@ public class MemberController {
 		
 	}
 	
+	@GetMapping("joinCheck")
+	public void getJoinCheck() throws Exception{
+		
+		
+		
+	}
+	
 	
 	
 	

@@ -29,11 +29,12 @@
 			        		<label for="userId" class=>아이디</label>
 					        <input type="text"  id="userId" name = "userId" class="form-control" placeholder="아이디" required autofocus>
 					        
+					        
 					        <label for="password" class="">비밀번호</label>
 					        <input type="password"  id="password" name = "password" class="form-control" placeholder="비밀번호" required>
 					  
 					  		<label for="pwCheck" class="">비밀번호 확인</label>
-					        <input type="text"  id="pwCheck" name = "pwCheck" class="form-control" placeholder="비밀번호 확인" required>
+					        <input type="password"  id="pwCheck" name = "pwCheck" class="form-control" placeholder="비밀번호 확인" required>
 					        
 					        <label for="nickname" class="">닉네임</label>
 					        <input type="text"  id="nickname" name = "nickname" class="form-control" placeholder="닉네임" required>
@@ -76,7 +77,10 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    
-   
+    <script src="/resources/js/member.js"></script>
+   <script>
+	join();
+
+   </script>
 </body>
 </html>
