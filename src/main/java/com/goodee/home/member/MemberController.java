@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -18,13 +19,13 @@ public class MemberController {
 	
 	@GetMapping("login")
 	public void getLogin() throws Exception{
-		System.out.println("로그인 페이지 실행");
+	
 		
 	}
 	
 	@PostMapping("login")
 	public ModelAndView getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
-		System.out.println("로그인 DB 실행");
+		
 		ModelAndView mv = new ModelAndView();
 		
 		
@@ -32,7 +33,7 @@ public class MemberController {
 		
 		if (memberDTO != null) {
 			System.out.println(memberDTO.getEmail());
-			System.out.println("로그인 성공");
+			
 		}
 		
 		session.setAttribute("member", mv);
@@ -47,7 +48,7 @@ public class MemberController {
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session) throws Exception{
-		System.out.println("로그아웃");
+		
 		
 		session.invalidate();
 		
@@ -58,10 +59,49 @@ public class MemberController {
 	
 	@GetMapping("join")
 	public void getJoin() throws Exception{
-		System.out.println("회원가입 실행");
+		
 		
 		
 	}
+	@PostMapping("join")
+	public String getJoin(MemberDTO memberDTO) throws Exception{
+		
+		
+		int result = memberService.getJoin(memberDTO);
+		
+		if(result==1) {
+			System.out.println("회원가입 성공 ㅋㅋ");
+		}
+		
+		return "redirect:../";
+		
+	}
+	
+	@GetMapping("joinCheck")
+	public void getJoinCheck() throws Exception{
+		
+	}
+	
+	@PostMapping("joinOverlab")
+	@ResponseBody
+	public String getJoinOverlab(MemberDTO memberDTO) throws Exception{
+		
+		memberDTO = memberService.getJoinOverlab(memberDTO);
+		
+		
+		
+		
+		if(memberDTO != null) {
+			// 사용 불가
+			return "0";
+			
+		}
+		
+		
+		// 사용 가능
+		return "1";
+	}
+	
 	
 	
 }

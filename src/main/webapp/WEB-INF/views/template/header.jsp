@@ -30,7 +30,7 @@
        			 <!-- 로그인 XXX -->
 	        		<li><a href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
 		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
-		         	<li><a href="/member/join" class="nav-link px-2 link-secondary">회원가입</a></li>
+		         	<li><a href="/member/joinCheck" class="nav-link px-2 link-secondary">회원가입</a></li>
 	        
         		</c:if>
         		<c:if test="${not empty member }">
