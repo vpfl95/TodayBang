@@ -1,7 +1,7 @@
 
 
 /* join.js */
-#joinInput > input , #emailAt, #phoneFirst{
+#joinInput > input , #emailAt, #phoneFirst, #joinInput > div > input{
 	
 	height: 50px;
 	border-radius: 3px;
@@ -53,14 +53,14 @@ section{
 	
 }
 
-#email,#emailAt{
+#emailFirst,#emailAt{
 	
 	display: inline;
 	width: 45%;
 	
 }
 
-#phoneFirst,#phone,#phoneLast{
+#phoneFirst,#phoneMiddle,#phoneLast{
 	
 	display: inline;
 	width: 28%;

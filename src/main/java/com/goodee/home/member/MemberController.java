@@ -59,7 +59,7 @@ public class MemberController {
 	
 	@GetMapping("join")
 	public void getJoin() throws Exception{
-		System.out.println("회원가입 실행");
+		
 		
 		
 	}

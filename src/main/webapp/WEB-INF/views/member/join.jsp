@@ -42,19 +42,20 @@
 					        <label for="userName" >이름</label>
 					        <input type="text"  id="userName" name = "userName" class="form-control " placeholder="이름" required>
 					        
-					        <div id= "inputPhone">
-						        <label for="010" >핸드폰</label>
+					        <label for="inputPhone" >핸드폰</label>
+					        <div id= "phone">
+					        	<input type="hidden" name = "phone" id="submitPhone">
 						        <br>
-						        <select name="phone" id="phoneFirst" class="form-control nonOverlab" required>
+						        <select name="phone1" id="phoneFirst" class="form-control nonOverlab" required>
 						         	<option value="010"  selected="selected">010</option>
 						         	<option value="011"  >011</option>
 						         	<option value="070"  >070</option>
 						        
 						        </select>
 						        <label for="phone" >-</label>
-						        <input type="text"  id="phone" name = "phone" class="form-control nonOverlab" placeholder="0000" required>
+						        <input type="text"  id="phoneMiddle" maxlength="4" name = "phone1" class="form-control nonOverlab" placeholder="0000" required>
 						        <label for="phoneLast" >-</label>
-						        <input type="text"  id="phoneLast" name = "phone" class="form-control nonOverlab" placeholder="0000" required>
+						        <input type="text"  id="phoneLast" maxlength="4" name = "phone1" class="form-control nonOverlab" placeholder="0000" required>
 					        </div>
 					        
 					        
@@ -62,19 +63,20 @@
 					        
 					        
 					        <label for="email" >이메일</label>
-					        <br>
-					        <input type="text"  id="email" name = "email" class="form-control nonOverlab" placeholder="이메일" required>
-					        <label for="emailAt" >@</label>
-					        <select name="email" id="emailAt" class="form-control nonOverlab" required>
-					         	<option value="0" disabled selected="selected">선택해주세요</option>
-					         	<option value="naver.com">naver.com</option>
-							 	<option value="gmail.com">gmail.com</option>
-							 	<option value="hanmail.net">hanmail.net</option>
-							 	<option value="daum.net">daum.net</option>
-							 	<option value="nate.com">nate.com</option>
-							 	<option value="1">직접입력</option>
-					        </select>
-					        
+					        <div id= "email">
+					        <input type="hidden" name = "email" id="submitEmail">
+						        <input type="text"  id="emailFirst" name = "email1" class="form-control nonOverlab" placeholder="이메일" required>
+						        <label for="emailAt" >@</label>
+						        <select name="email1" id="emailAt" class="form-control nonOverlab" required>
+						         	<option value="0" disabled selected="selected">선택해주세요</option>
+						         	<option value="naver.com">naver.com</option>
+								 	<option value="gmail.com">gmail.com</option>
+								 	<option value="hanmail.net">hanmail.net</option>
+								 	<option value="daum.net">daum.net</option>
+								 	<option value="nate.com">nate.com</option>
+								 	<option value="1">직접입력</option>
+						        </select>
+					        </div>
 					        <div></div>
 					        <div></div>
 					        

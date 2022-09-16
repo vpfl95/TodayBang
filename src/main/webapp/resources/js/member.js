@@ -7,30 +7,21 @@ function join(){
     const pwCheck = document.querySelector("#pwCheck");
     const nickname = document.querySelector("#nickname");
     const userName = document.querySelector("#userName");
+    const phoneM = document.querySelector("#phoneMiddle");
+    const phoneF = document.querySelector("#phoneFirst");
+    const phoneL = document.querySelector("#phoneLast");
+    const emailF = document.querySelector("#emailFirst");
+    const emailAt = document.querySelector("#emailAt");
+    const joinBtn = document.querySelector("#joinBtn");
     const phone = document.querySelector("#phone");
     const email = document.querySelector("#email");
-    const joinBtn = document.querySelector("#joinBtn");
     let message = "";
-    
+    const submitPhone = document.querySelector("#submitPhone");
+    const submitEmail = document.querySelector("#submitEmail");
     const nonOverlab = document.getElementsByClassName("nonOverlab");
 
 
-    userId.addEventListener("keyup",function(){
-
-        
-        if(userId.value.length < 3){
-            
-            message = "ID는 2글자 이상"
-        }else{
-
-            message = ""
-
-        }
-
-
-
-        textmessage(userId,message);;
-    })
+    
 
     password.addEventListener("blur",function(){
 
@@ -58,8 +49,6 @@ function join(){
             message = "비밀번호가 일치 하지 않습니다.";
 
         }else{
-
-            
             message = "";
         }
         textmessage(pwCheck,message);
@@ -71,7 +60,7 @@ function join(){
         let text = document.createElement("p");
         let textArr = document.createAttribute("id");
         textArr.value = input.id + "Text";
-        console.log("tt" + textArr.value);
+        
         if(input.nextSibling.nextSibling.id == textArr.value ){
 
             input.nextSibling.nextSibling.remove();
@@ -117,62 +106,104 @@ function join(){
 
     }
 
-    nonOverlab
+
+    phoneF.addEventListener("change",function(){
+        phoneM.focus();
+        
+        console.log("선택")
+
+    })
+
+    phoneM.addEventListener("keyup",function(){
+
+        if(phoneM.value.length ==4){
+            phoneL.focus();
+        }
+
+    })
 
 
-    for(NOL of nonOverlab){
-        NOL.addEventListener("blur", function(event){
 
-            console.log(event.target.value);
+
+    for(NOL of  nonOverlab){
+        NOL.addEventListener("change", function(event){
+
             
-            if(event.target.value != ""){
-                const xhttp = new XMLHttpRequest();
+            if(event.target.name =="phone1" ){
+                if(phoneM.value== "" || phoneL.value == ""){
+                    console.log(" phone1 나가리")
+                    return;
 
-                xhttp.open("POST","./joinOverlab");
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send(event.target.id +"="+ event.target.value)
+                }else{
+                    let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
+                    submitPhone.value = phoneValue;
+                    
+                    checkOvetlab(phoneValue,phone);
+                }
                 
-                xhttp.onreadystatechange= function(){
+            }
+            else if(event.target.name == "email1"){
 
-                    if(xhttp.readyState == 4 && xhttp.status ==200){
-                        let result = xhttp.responseText.trim();
-                        
-                        if(result == 0){
-                            console.log("사용불가");
-                            message = "이미 사용중인 " +event.target.previousSibling.previousSibling.innerText + "입니다." ;
-                            textmessage(event.target,message);
+                if(emailF.value== "" || emailAt.value == "0"){
+                    console.log(" email 나가리")
+                    return;
 
-
-                        }else if(result == 1){
-                            message = ""
-                            textmessage(event.target,message);
-                            console.log("사용가능");
-
-                        }
-
-                    }
-
+                }else{
+                    let emailValue = emailF.value + "@" + emailAt.value;
+                    submitEmail.value = emailValue;
+                    
+                    checkOvetlab(emailValue,email);
                 }
 
-            }
+
+
+
+            }else if(event.target.name == "userId"){
+
+                if(userId.value.length < 3){
             
+                    message = "ID는 2글자 이상"
+                    textmessage(userId,message);;
+                }else{
+        
+                    checkOvetlab(event.target.value,event.target);
+        
+                }
+                
 
+            }else if(event.target.name == "nickname"){
+                if(nickname.value.length < 3){
+            
+                    message = "닉넴은 2글자 이상"
+                    textmessage(nickname,message);;
+                }else{
+        
+                    checkOvetlab(event.target.value,event.target);
+        
+                }
+
+
+            }
         })
-
     }
 
 
-    function checkOverlab() {
-NOL.addEventListener("blur", function(event){
 
-            console.log(event.target.value);
+    function checkOvetlab(value,inputForm){
+        
+
+            console.log(value);
             
-            if(event.target.value != ""){
+            if(value != ""){
                 const xhttp = new XMLHttpRequest();
 
                 xhttp.open("POST","./joinOverlab");
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                xhttp.send(event.target.id +"="+ event.target.value)
+
+                console.log("ID =" + inputForm.id)
+                console.log("Value =" + value)
+
+                xhttp.send(inputForm.id +"="+ value)
                 
                 xhttp.onreadystatechange= function(){
 
@@ -181,13 +212,13 @@ NOL.addEventListener("blur", function(event){
                         
                         if(result == 0){
                             console.log("사용불가");
-                            message = "이미 사용중인 " +event.target.previousSibling.previousSibling.innerText + "입니다." ;
-                            textmessage(event.target,message);
+                            message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
+                            textmessage(inputForm,message);
 
 
                         }else if(result == 1){
                             message = ""
-                            textmessage(event.target,message);
+                            textmessage(inputForm,message);
                             console.log("사용가능");
 
                         }
@@ -197,9 +228,8 @@ NOL.addEventListener("blur", function(event){
                 }
 
             }
+         
             
-
-        })
 
 
     }
@@ -207,6 +237,12 @@ NOL.addEventListener("blur", function(event){
 
 
     joinBtn.addEventListener("click",function(){
+
+        
+        
+        
+
+
 
 
 
