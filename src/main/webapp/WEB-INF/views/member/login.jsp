@@ -12,6 +12,7 @@
     <link href="/resources/css/member/login.css" rel="stylesheet">
 	<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+
 </head>
 <body>
    
@@ -26,16 +27,16 @@
 		        	<form action="./login" method="post" id = "loginForm" >
 		        		<div id = "loginInput">
 			        		<label for="userId" class="visually-hidden">ID</label>
-					        <input type="text" value="ID1" name = "userId" id="userId" class="form-control" placeholder="아이디" required autofocus>
+					        <input type="text"  name = "userId" id="userId" class="form-control" placeholder="아이디" required autofocus>
 					        
 					        <label for="password" class="visually-hidden">Password</label>
-					        <input type="password" value="PW1"  name = "password" id="password" class="form-control" placeholder="비밀번호" required>
+					        <input type="password"   name = "password" id="password" class="form-control" placeholder="비밀번호" required>
 					  
 		        		</div>
 						
 				        <div class="checkbox mb-3">
 				        	<label>
-		           	 		<input type="checkbox" value="remember-me"> 아이디 저장
+		           	 		<input type="checkbox" value="remember-me" id = "rememberId"> 아이디 저장
 				        	</label>
 				        </div>
 				        <button id="loginBtn" class="w-100 btn btn-lg btn-primary" type="submit">로그인</button>
@@ -71,14 +72,17 @@
 		</div>
 	</section>
 	
-
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+   	<script src="/resources/js/member.js"></script>
+   <script type="text/javascript">
+	
    
-   <script>
-
-var naverLogin = new naver.LoginWithNaverId(
+  
+	/* sns 로그인 */
+	var naverLogin = new naver.LoginWithNaverId(
 		{
 			clientId: "wOUe01Nevp897Ykh0SFb", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
 			callbackUrl: "http://localhost/member/naverLogin" // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
@@ -86,11 +90,74 @@ var naverLogin = new naver.LoginWithNaverId(
 		}
 	);	
 
-naverLogin.init();
+	naverLogin.init();
 
 
 
 
+	/* 아이디 저장 */
+	
+	$(document).ready(function() {
+	    var cookieId = getCookie("cookieId");
+	    var cookieChecked = getCookie("cookieChecked");
+	    
+	    if(cookieChecked == 'Y') {
+	        $("#rememberId").prop("checked", true);
+	    } else {
+	        $("#rememberId").prop("checked", false);
+	    }
+	    
+	    $("#userId").val(cookieId); 
+	    
+	    //로그인 버튼 클릭
+	    $('#loginBtn').click(function() {
+	        if($("#rememberId").is(":checked")){ 
+	            var userInputId = $("#userId").val();
+	            setCookie("cookieId", userInputId, 60); 
+	            setCookie("cookieChecked", "Y", 60);
+	        } else {
+	            deleteCookie("cookieId");
+	            deleteCookie("cookieChecked");
+	        }
+	        
+	        document.loginForm.submit();
+	    });
+	});
+	
+	//쿠키값 Set
+    function setCookie(cookieName, value, exdays){
+        var exdate = new Date();
+        exdate.setDate(exdate.getDate() + exdays);
+        var cookieValue = escape(value) + ((exdays==null) ? "" : "; expires=" + 
+        exdate.toGMTString());
+        document.cookie = cookieName + "=" + cookieValue;
+    }
+
+    //쿠키값 Delete
+    function deleteCookie(cookieName){
+        var expireDate = new Date();
+        expireDate.setDate(expireDate.getDate() - 1);
+        document.cookie = cookieName + "= " + "; expires=" + expireDate.toGMTString();
+    }
+
+    //쿠키값 가져오기
+    function getCookie(cookie_name) {
+        var x, y;
+        var val = document.cookie.split(';');
+        
+        for (var i = 0; i < val.length; i++) {
+            x = val[i].substr(0, val[i].indexOf('='));
+            y = val[i].substr(val[i].indexOf('=') + 1);
+            x = x.replace(/^\s+|\s+$/g, ''); // 앞과 뒤의 공백 제거하기
+            
+            if (x == cookie_name) {
+            return unescape(y); // unescape로 디코딩 후 값 리턴
+            }
+        }
+    }
+	
+	
+	
 
 </script>
    

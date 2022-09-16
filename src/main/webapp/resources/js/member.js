@@ -110,7 +110,7 @@ function join(){
     phoneF.addEventListener("change",function(){
         phoneM.focus();
         
-        console.log("선택")
+        
 
     })
 
@@ -131,7 +131,7 @@ function join(){
             
             if(event.target.name =="phone1" ){
                 if(phoneM.value== "" || phoneL.value == ""){
-                    console.log(" phone1 나가리")
+                    
                     return;
 
                 }else{
@@ -145,7 +145,7 @@ function join(){
             else if(event.target.name == "email1"){
 
                 if(emailF.value== "" || emailAt.value == "0"){
-                    console.log(" email 나가리")
+                    
                     return;
 
                 }else{
@@ -192,7 +192,7 @@ function join(){
     function checkOvetlab(value,inputForm){
         
 
-            console.log(value);
+            
             
             if(value != ""){
                 const xhttp = new XMLHttpRequest();
@@ -200,8 +200,7 @@ function join(){
                 xhttp.open("POST","./joinOverlab");
                 xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-                console.log("ID =" + inputForm.id)
-                console.log("Value =" + value)
+                
 
                 xhttp.send(inputForm.id +"="+ value)
                 
@@ -211,7 +210,7 @@ function join(){
                         let result = xhttp.responseText.trim();
                         
                         if(result == 0){
-                            console.log("사용불가");
+                            
                             message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
                             textmessage(inputForm,message);
 
@@ -219,7 +218,7 @@ function join(){
                         }else if(result == 1){
                             message = ""
                             textmessage(inputForm,message);
-                            console.log("사용가능");
+                            
 
                         }
 

@@ -31,16 +31,25 @@ public class MemberController {
 		
 		memberDTO = memberService.getLogin(memberDTO);
 		
+		
+		System.out.println(memberDTO);
+		
+		
 		if (memberDTO != null) {
-			System.out.println(memberDTO.getEmail());
+			System.out.println("not null");
+			session.setAttribute("member", mv);
+			mv.setViewName("/home");
 			
+		}else {
+			System.out.println("null");
+			mv.setViewName("redirect:./login");
+			// 메세지 띄우기
 		}
 		
-		session.setAttribute("member", mv);
 		
 		
 		
-		mv.setViewName("/home");
+		
 		
 		
 		return mv;
