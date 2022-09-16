@@ -42,6 +42,22 @@ public class MemberTest extends MyAbstractTest{
 		assertEquals(1, result);
 		
 	}
+	@Test
+	public void JoinOverlabTest() throws Exception{
+		
+		MemberDTO memberDTO = new MemberDTO();
+		memberDTO.setUserId("ID2");
+		
+		
+	
+		
+		
+		
+		MemberDTO result = memberDAO.getJoinOverlab(memberDTO);
+		System.out.println("result  ===" + result);
+		assertNotNull(result);
+		
+	}
 	
 	
 

@@ -16,6 +16,8 @@ public class MemberDTO {
 	
 	
 	public String getUserId() {
+		if(userId == null)userId = "";
+		
 		return userId;
 	}
 	public void setUserId(String userId) {
@@ -28,6 +30,7 @@ public class MemberDTO {
 		this.password = password;
 	}
 	public String getNickname() {
+		if(nickname == null)nickname = "";
 		return nickname;
 	}
 	public void setNickname(String nickname) {
@@ -40,12 +43,14 @@ public class MemberDTO {
 		this.userName = userName;
 	}
 	public String getPhone() {
+		if(phone == null)phone = "";
 		return phone;
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
 	public String getEmail() {
+		if(email == null)email = "";
 		return email;
 	}
 	public void setEmail(String email) {

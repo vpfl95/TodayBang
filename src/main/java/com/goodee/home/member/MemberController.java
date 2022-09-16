@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -79,10 +80,27 @@ public class MemberController {
 	@GetMapping("joinCheck")
 	public void getJoinCheck() throws Exception{
 		
-		
-		
 	}
 	
+	@PostMapping("joinOverlab")
+	@ResponseBody
+	public String getJoinOverlab(MemberDTO memberDTO) throws Exception{
+		
+		memberDTO = memberService.getJoinOverlab(memberDTO);
+		
+		
+		
+		
+		if(memberDTO != null) {
+			// 사용 불가
+			return "0";
+			
+		}
+		
+		
+		// 사용 가능
+		return "1";
+	}
 	
 	
 	

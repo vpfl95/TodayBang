@@ -18,46 +18,48 @@
 	
 	<section class="container-fluid container-lg-8">
 		<div class = "row justify-content-center mt-7 " style="overflow: hidden;">
-			<div class = "col-3 mx-auto" style="width: 300px;">
+			<div class = "col-3 mx-auto" style="width: 500px;">
 				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
-		         	<img alt="" src="/resources/images/MainLogo.png" width="230px">
+		         	<img alt="" src="/resources/images/MainLogoFA.png" width="230px">
 		        </a>
 		        <div style="margin-top: 50px;">
-		        <h3 style="margin-bottom: -15px">이용약관</h3>
+		        <h3 style="margin-bottom: -10px">이용약관</h3><hr>
 		        	<form action="./join" method="get" id = "joinCheckForm" >
-		        		 <div>
-		                    	(필수)
-			                    모두 읽고 동의함 <input type="checkbox" class="joinCheck mustCheck" name = "joinCheck">
+	        		<div class="bg-white" style="border: solid 1px #dbdbdb;">
+		        		<div style="width: 500px;">
+		        		 <label for ="joinCheck1" class = "">이용약관 동의(필수)</label>
+                    	 <input type="checkbox" class="joinCheck mustCheck " name = "joinCheck" id = "joinCheck1">
+			             </div>
+			             <div>
+			             <label for ="joinCheck2">개인정보 수집, 이용 동의(필수)</label>
+	                     <input type="checkbox" class="joinCheck mustCheck" name = "joinCheck" id = "joinCheck2">
+			             </div>
+			             <div>
+			             <label for ="joinCheck3">개인정보 이용 동의(필수)</label>
+	                     <input type="checkbox" class="joinCheck mustCheck" name = "joinCheck" id = "joinCheck3">
 			              </div>
-			              <div>
-			                    (필수)
-			                    모두 읽고 동의함 <input type="checkbox" class="joinCheck mustCheck" name = "joinCheck">
-			              </div>
-			              <div>
-			                    광고 수신 동의 ( 선택)
-			                    모두 읽고 동의함 <input type="checkbox" class="joinCheck" name = "joinCheck">
-			              </div>
-			                <hr>
-			              <div>
-			                    전체 동의 <input type="checkbox" id="joinAllCheck" name = "joinCheck">
-			              </div>
-						
+			             <div>
+			             <label for ="joinCheck4">이벤트, 광고 수신 동의(선택)</label> 
+	                     <input type="checkbox" class="joinCheck" name = "joinCheck" id = "joinCheck4">
+			             </div>
+			             
+	                </div>  
+			              
+		            <div>
+		            <hr>
+			              <label for ="joinAllCheck">전체 동의</label>
+	                      <input type="checkbox" id="joinAllCheck" name = "joinCheck">
+		            </div>
+					
 				       
 				        <button id="nextBtn" class="w-100 btn btn-lg btn-primary" type="button">다음</button>
 				        
-				        
-				        
-				        
-				        
+				      
 					</form>
 		        
 		        
 		        
 		        </div>
-					
-						
-					
-	
 			</div>
 		</div>
 	</section>

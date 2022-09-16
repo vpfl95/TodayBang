@@ -20,7 +20,7 @@
 		<div class = "row justify-content-center mt-7 " style="overflow: hidden;">
 			<div class = "col-3 mx-auto" style="width: 300px;">
 				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
-		         	<img alt="" src="/resources/images/MainLogo.png" width="230px">
+		         	<img alt="" src="/resources/images/MainLogoFA.png" width="230px">
 		        </a>
 		        <div style="margin-top: 50px;">
 		        	<form action="./login" method="post" id = "loginForm" >

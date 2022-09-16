@@ -18,36 +18,65 @@
 	
 	<section class="container-fluid container-lg-8">
 		<div class = "row justify-content-center mt-7 " style="overflow: hidden;">
-			<div class = "col-3 mx-auto" style="width: 300px;">
+			<div class = "col-3 mx-auto" style="width: 500px;">
 				<a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
-		         	<img alt="" src="/resources/images/MainLogo.png" width="230px">
+		         	<img alt="" src="/resources/images/MainLogoFA.png" width="230px">
 		        </a>
 		        <div style="margin-top: 50px;">
 		        <h3 style="margin-bottom: -15px">회원가입</h3>
 		        	<form action="./join" method="post" id = "joinForm" >
 		        		<div id = "joinInput">
-			        		<label for="userId" class=>아이디</label>
-					        <input type="text"  id="userId" name = "userId" class="form-control" placeholder="아이디" required autofocus>
+			        		<label for="userId">아이디</label>
+					        <input type="text"  id="userId" name = "userId" class="form-control nonOverlab" placeholder="아이디" required autofocus>
 					        
 					        
-					        <label for="password" class="">비밀번호</label>
+					        <label for="password" >비밀번호</label>
 					        <input type="password"  id="password" name = "password" class="form-control" placeholder="비밀번호" required>
 					  
-					  		<label for="pwCheck" class="">비밀번호 확인</label>
+					  		<label for="pwCheck" >비밀번호 확인</label>
 					        <input type="password"  id="pwCheck" name = "pwCheck" class="form-control" placeholder="비밀번호 확인" required>
 					        
-					        <label for="nickname" class="">닉네임</label>
-					        <input type="text"  id="nickname" name = "nickname" class="form-control" placeholder="닉네임" required>
+					        <label for="nickname" >닉네임</label>
+					        <input type="text"  id="nickname" name = "nickname" class="form-control nonOverlab" placeholder="닉네임" required>
 					        
-					        <label for="userName" class="">이름</label>
-					        <input type="text"  id="userName" name = "userName" class="form-control" placeholder="이름" required>
+					        <label for="userName" >이름</label>
+					        <input type="text"  id="userName" name = "userName" class="form-control " placeholder="이름" required>
+					        
+					        <div id= "inputPhone">
+						        <label for="010" >핸드폰</label>
+						        <br>
+						        <select name="phone" id="phoneFirst" class="form-control nonOverlab" required>
+						         	<option value="010"  selected="selected">010</option>
+						         	<option value="011"  >011</option>
+						         	<option value="070"  >070</option>
+						        
+						        </select>
+						        <label for="phone" >-</label>
+						        <input type="text"  id="phone" name = "phone" class="form-control nonOverlab" placeholder="0000" required>
+						        <label for="phoneLast" >-</label>
+						        <input type="text"  id="phoneLast" name = "phone" class="form-control nonOverlab" placeholder="0000" required>
+					        </div>
 					        
 					        
-					        <label for="phone" class="">핸드폰</label>
-					        <input type="text"  id="phone" name = "phone" class="form-control" placeholder="핸드폰" required>
 					        
-					        <label for="email" class="">이메일</label>
-					        <input type="text"  id="email" name = "email" class="form-control" placeholder="이메일" required>
+					        
+					        
+					        <label for="email" >이메일</label>
+					        <br>
+					        <input type="text"  id="email" name = "email" class="form-control nonOverlab" placeholder="이메일" required>
+					        <label for="emailAt" >@</label>
+					        <select name="email" id="emailAt" class="form-control nonOverlab" required>
+					         	<option value="0" disabled selected="selected">선택해주세요</option>
+					         	<option value="naver.com">naver.com</option>
+							 	<option value="gmail.com">gmail.com</option>
+							 	<option value="hanmail.net">hanmail.net</option>
+							 	<option value="daum.net">daum.net</option>
+							 	<option value="nate.com">nate.com</option>
+							 	<option value="1">직접입력</option>
+					        </select>
+					        
+					        <div></div>
+					        <div></div>
 					        
 		        		</div>
 						

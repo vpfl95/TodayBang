@@ -11,7 +11,10 @@
 				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email})
 			</insert>
 		
-		
+			<select id="getJoinOverlab" parameterType="MemberDTO" resultType="MemberDTO">
+			SELECT * FROM MEMBERS WHERE USERID = #{userId} OR NICKNAME = #{nickname} OR PHONE = #{phone} OR EMAIL = #{email}
+			
+			</select>
 		
 		
 		</mapper>
