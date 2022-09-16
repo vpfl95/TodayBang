@@ -1,8 +1,7 @@
-/**left*/
 .right_re {
     width: 30%;
     margin: 0px;
-    height: 2000px;
+    height: 4000px;
     display:inline-block;
 }
 
@@ -15,7 +14,8 @@
 }
 
 .c_btn button {
-    padding: 1em 2.3em;
+    padding: 15px 10px;
+    width: 45%;
     border-radius: 10px;
     border: none;
     background-color: rgba(222, 226, 230, 0.63);
@@ -23,8 +23,8 @@
 
 
 .left_re{
-    width: 70%;
-    height: 2000px;
+    width: 60%;
+    height: 4000px;
     float: left;
 }
 
@@ -49,6 +49,15 @@
 
 .brandRecom-brand img {
     width: 50%;
+}
+
+.refurDetail {
+    border: solid red 1px;
+}
+
+.refurDetail > div {
+    display: inline-block;
+    font-size: 20px;
 }
 
 /**PageNation*/

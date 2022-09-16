@@ -1,0 +1,44 @@
+.main {
+    height: auto;
+}
+
+.right_re {
+    width: 30%;
+    height: 5000px;
+    margin: 0px;
+    display:inline-block;
+}
+
+.right_re1 {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 2em 1em;
+    position: fixed;
+}
+
+.c_btn button {
+    padding: 15px 10px;
+    width: 45%;
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(222, 226, 230, 0.63);
+}
+
+.left_re{
+    width: 60%;
+    height: 5000xp;
+    float: left;
+}
+
+.fastgif img {
+    max-width: 100%;
+}
+
+.oneThird>img {
+    width: 33%;
+}
+
+.oneHalf img {
+    width: 50%;
+}
