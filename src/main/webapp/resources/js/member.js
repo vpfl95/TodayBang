@@ -324,12 +324,97 @@ function joincheck(){
 }
 
 
-// 로그인 페이지 부분
-function login(){
+// 마이페이지 부분
+function myPage(){
+
+    const myPage1 = document.querySelector("#myPage-1");
+    const myPagelist = document.querySelectorAll(".myPage-list");
+    
+
+    
+    for(category of myPagelist){
+
+        category.addEventListener("click",function(event){
+            
+            let arr ;
+            let url ;
+            console.log("clcicc")
+
+
+            for(ct of myPagelist){
+                ct.style.color = "";
+            }
+            event.target.style.color = "#38b9e0";
+
+            if(event.target.id == "myPage-profile"){
+    
+                 arr = ['프로필 홈', '내정보수정', '배송내역'];
+                 url = ['store/url1', 'store/url2', 'store/url3'];
+        
+                if(arr.length != url.length){
+                    console.log(" arr url 사이즈 다름");
+                    return;
+                }
+            }else if(event.target.id == "myPage-shopping"){
+    
+                 arr = ['쇼핑 홈', 'ㅂㅈㄷ', 'ㄷㄷㅈㄷㅈㄷ'];
+                 url = ['store/url1', 'store/url2', 'store/url3'];
+        
+                if(arr.length != url.length){
+                    console.log(" arr url 사이즈 다름");
+                    return;
+                }
+            }else if(event.target.id == "myPage-write"){
+    
+                 arr = ['프ㅌㅋㅊㅌㅋ로필 홈', 'ㅋㅌㅊ', 'ㅊㅊ'];
+                 url = ['store/url1', 'store/url2', 'store/url3'];
+        
+                if(arr.length != url.length){
+                    console.log(" arr url 사이즈 다름");
+                    return;
+                }
+            }
 
 
 
 
+            profileCategory(event.target , arr , url);
+            
+        })
+
+
+    }
+    
+
+    function profileCategory(cate , arr , url){
+
+        const subMenu = document.querySelector("#myPage-2");
+
+        for(let i = 0 ; i < subMenu.children.length ; ){
+            subMenu.children[i].remove();
+        }
+    
+        
+    
+    
+    
+            for(let i = 0 ; i < arr.length; i ++){
+                let li = document.createElement("li");
+                let liText = document.createTextNode(arr[i]);
+                let liAttri = document.createAttribute("class");
+                liAttri.value = "submenuList";
+                li.setAttributeNode(liAttri);
+                li.appendChild(liText);
+                subMenu.append(li);
+            }
+
+
+
+    }
+
+
+    
 
 
 }
+

@@ -1,0 +1,62 @@
+#myPage-1 > li ,#myPage-2>li{
+
+    cursor: pointer;
+    display: inline;
+    margin: 15px;
+    font-weight: bold;
+}
+#myPage-1{
+    padding-top: 30px;
+    width: 400px;
+    font-size: 20px;
+    
+    margin: 0 auto;
+
+}
+#myPage-2{
+    
+    width: 400px;
+    font-size: 20px;
+    margin: 0 auto;
+
+}
+
+#profile {
+    position: relative;
+
+  
+
+}
+#profile > div{
+    position: absolute;
+
+  
+
+}
+
+
+#profile-id{
+
+    background-color: #fafafa;
+    border: 1px solid;
+    border-radius: 10px;
+    width: 20%;
+    height: 30%;
+    min-height: 300px;
+    margin: 15px;
+    left: 10px;
+    
+
+}
+
+#profile-section{
+    background-color: cornflowerblue;
+    border-radius: 3px;
+    width: 70%;
+    height: 90%;
+    margin: 15px;
+
+
+    right: 50px;
+
+}
