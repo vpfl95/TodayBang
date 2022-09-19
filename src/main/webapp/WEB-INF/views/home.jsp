@@ -19,10 +19,10 @@
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = "row justify-content-center mt-5"> 
                
-			 <div class="col-12 pt-5"  style="height: 500px; background-image: url('/resources/images/Main.png');">
+			 <div class="col-12 pt-5"  style=" margin-top : -35px; height: 500px; background-image: url('/resources/images/Main.png');">
                         <div class="text-center">
                             
-                            <h1 class="mb-5 mt-7">오늘의 직방 메인 페이지</h1>
+                            <h1 class="mb-5 " style="margin-top: 330px;"></h1>
                             
                             <form class="form-subscribe" id="contactForm" >
                                 <!-- Email address input-->
@@ -53,24 +53,30 @@
 				
             
        
-            <div class="container features-icons bg-light text-center" style="height: 300px;">
+            <div class="container features-icons bg-light text-center" style="height: 500px; border: 1px;">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style="background-color: blue;">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" >
                             <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
                             <h3>스토어</h3>
-                            <p class="lead mb-0">예시 1</p>
+                            <div class="container features-icons bg-white text-center col-12" style="height: 400px; ">
+                            
+                            
+                            </div>
                         </div>
                     </div>
                   </div>
             </div>
-             <div class="container features-icons bg-light text-center" style="height: 300px;">
+             <div class="container features-icons bg-light text-center" style="height: 500px;">
                 <div class="row">  
                     <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style="background-color: red;">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" >
                             <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
                             <h3>방구하기</h3>
-                            <p class="lead mb-0">예시 2</p>
+                            <div class="container features-icons bg-white text-center col-12" style="height: 400px; ">
+                            
+                            
+                            </div>
                         </div>
                     </div>
                    </div>
@@ -78,13 +84,16 @@
                     
                     
                     
-             <div class="container features-icons bg-light text-center" style="height: 300px;">
+             <div class="container features-icons bg-light text-center" style="height: 500px;">
                 <div class="row">
                     <div class="col-lg-4">
-                        <div class="features-icons-item mx-auto mb-0 mb-lg-3" style="background-color: black;">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3" >
                             <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
                             <h3>커뮤니티</h3>
-                            <p class="lead mb-0">예시 3</p>
+                            <div class="container features-icons bg-white text-center col-12" style="height: 400px; ">
+                            
+                            
+                            </div>
                         </div>
                     </div>
                 </div>
