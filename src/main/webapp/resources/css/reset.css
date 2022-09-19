@@ -15,8 +15,14 @@ section {
   min-height: 100%;
   
 }
-
-
+#homeCate > li > a{
+	
+  font-weight: bold;
+	color: black;
+	text-decoration: none;
+  	
+  
+}
 
 footer{
 	position: relative;
@@ -38,10 +44,11 @@ footer{
 .hide >li {
   display: inline;
   cursor: pointer;
-  font-size: 19px;
+  font-size: 17px;
   margin-right: 50px;
+  font-weight: 600;
 
-
+  color: #2f3438;
 }
 
 

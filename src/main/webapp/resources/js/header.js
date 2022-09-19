@@ -1,17 +1,21 @@
 const subMenu = document.querySelector("#subMenu");
-const menus = document.querySelectorAll(".menu");
+const menus = document.getElementsByClassName("menu");
 
 
 
 
 
-for(menu of menus){
+for(mn of menus){
 
-    menu.addEventListener("mouseover", function(event){
-
+    mn.addEventListener("mouseover", function(event){
         
+        for(mn of menus){
 
+            mn.style.color = "";
 
+        }
+
+        event.target.style.color = "#38b9e0";
 
 
         if(subMenu.previousElementSibling != null){
@@ -106,5 +110,17 @@ for(menu of menus){
     })
 
 
+    const header = document.querySelector("#header");
+
+    header.addEventListener("mouseleave", function(event){
+
+        for(mn of menus){
+
+            mn.style.color = "";
+
+        }
+
+
+    })
 
 }
