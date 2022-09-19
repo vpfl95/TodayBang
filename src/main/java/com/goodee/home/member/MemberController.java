@@ -31,12 +31,11 @@ public class MemberController {
 
 		
 		if (memberDTO != null) {
-			System.out.println("not null");
-			session.setAttribute("member", mv);
+			
+			session.setAttribute("member", memberDTO);
 			mv.setViewName("/home");
 			
 		}else {
-			System.out.println("null");
 			
 			String url = "./login";
 			String msg = "존재하지 않는 계정 입니다.";
@@ -48,6 +47,25 @@ public class MemberController {
 		
 		return mv;
 	}
+	
+	
+	@GetMapping("naverLogin")
+	public ModelAndView getNaverLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		System.out.println(" Naver login");
+		
+		session.setAttribute("member", mv);
+		
+		mv.setViewName("member/naverLogin");
+		
+		
+		
+		return mv;
+	}
+	
+	
+	
 	
 	@GetMapping("logout")
 	public String getLogout(HttpSession session) throws Exception{
@@ -104,6 +122,20 @@ public class MemberController {
 		// 사용 가능
 		return "1";
 	}
+	
+	@GetMapping("myPage")
+	public ModelAndView getMyPage(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		mv.addObject("memberDTO", memberDTO);
+		mv.setViewName("member/myPage");
+		
+		
+		return mv;
+	}
+	
 	
 	
 	

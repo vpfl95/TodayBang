@@ -62,6 +62,10 @@
                             <p class="lead mb-0">예시 1</p>
                         </div>
                     </div>
+                  </div>
+            </div>
+             <div class="container features-icons bg-light text-center" style="height: 300px;">
+                <div class="row">  
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style="background-color: red;">
                             <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
@@ -69,6 +73,13 @@
                             <p class="lead mb-0">예시 2</p>
                         </div>
                     </div>
+                   </div>
+            </div>
+                    
+                    
+                    
+             <div class="container features-icons bg-light text-center" style="height: 300px;">
+                <div class="row">
                     <div class="col-lg-4">
                         <div class="features-icons-item mx-auto mb-0 mb-lg-3" style="background-color: black;">
                             <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
@@ -79,12 +90,11 @@
                 </div>
             </div>
         
+       </div>
         
         
         
 				
-				</div>
-			</div>
 	</section>
 
 	<c:import url="./template/footer.jsp"></c:import>

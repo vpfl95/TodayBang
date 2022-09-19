@@ -23,3 +23,25 @@ footer{
   
     
 }
+
+.menu{
+  cursor: pointer;
+
+}
+
+.hide {
+  display: none;
+ 
+  width: 1200px;
+  margin: 15px auto 0px auto;
+}
+.hide >li {
+  display: inline;
+  cursor: pointer;
+  font-size: 19px;
+  margin-right: 50px;
+
+
+}
+
+

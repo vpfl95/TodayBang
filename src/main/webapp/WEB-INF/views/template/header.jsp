@@ -8,11 +8,16 @@
          <img alt="" src="/resources/images/MainLogo.png" width="230px">
         </a>
 		<div></div>
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3">
-          <li><a href="#" class="nav-link px-2 link-secondary fs-5">스토어</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark fs-5">방구하기</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark fs-5">커뮤니티</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark fs-5">고객센터</a></li>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3 ">
+          <li><a href="#" class="nav-link px-2 link-secondary fs-5 menu" id= "storeMenu">스토어</a>
+          		
+    		</li>	
+    			
+          <li><a href="#" class="nav-link px-2 link-dark fs-5 menu" id= "roomMenu">방구하기</a>
+          		
+   			</li>
+          <li><a href="#" class="nav-link px-2 link-dark fs-5 menu" id= "comMenu">커뮤니티</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark fs-5 menu" id= "serviceMenu">고객센터</a></li>
         </ul>
 
        <!--  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -54,4 +59,37 @@
         </div>
       </div>
     </div>
+    
+    
+     <div>
+	    	<ul	class = "hide" id = "subMenu">
+	    		
+			    		<!-- 리스트 들어가는 영역 -->
+	    	</ul>
+    
+     	</div>
+     
+    
+    
+    <script src="/resources/js/header.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>    $(document).ready(function(){
+     			var submenu = $(".hide");
+    			
+    	        	$(".menu").mouseover(function(){            
+						submenu.slideDown(150);        
+					})
+					
+					$("header").mouseleave(function(){
+    		                         
+    		            if( submenu.is(":visible") ){
+   			                submenu.slideUp(150);       
+   							$("#hr").remove();     
+    					}     
+    				});    
+   				});
+    
+    </script>
+
+   
   </header>
