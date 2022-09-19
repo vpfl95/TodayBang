@@ -38,32 +38,41 @@
 	                </div>       
 	            </div>
 	
-	            <!-- 기획전 바로가기 아이콘 -->
+	            <!-- 바로가기 아이콘 -->
 	            <nav style="height: auto; overflow-y: hidden; overflow-x: auto;" class="mt-3">
 	                <div class="d-flex justify-content-between exhibition-icon row">
-	                    <div class="col d-sm-6 d-md-4 d-lg-2">
-	                        <div style="margin-left: 30px;"><a href="#"><img src="/resources/images/store/storeHome/1+1shopIcon.jpg" alt=""></a></div>
+	                    <div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/1+1shopIcon.jpg" alt=""></a></div>
 	                        <div class="text">1+1 샵</div>
 	                    </div>
-	                    <div class="col d-sm-6 d-md-4 d-lg-2">
-	                        <div style="margin-left: 30px;"><a href="#"><img src="/resources/images/store/storeHome/ogoodsIcon.jpg" alt=""></a></div>
+	                    <div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/ogoodsIcon.jpg" alt=""></a></div>
 	                        <div class="text">오!굿즈</div>
 	                    </div>
-	                    <div class="col d-sm-6 d-md-4 d-lg-2">
-	                        <div style="margin-left: 30px;"><a href="#"><img src="/resources/images/store/storeHome/fastDeliIcon.jpg" alt=""></a></div>
+	                    <div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/fastDeliIcon.jpg" alt=""></a></div>
 	                        <div class="text">빠른배송</div>
 	                    </div>
-	                    <div class="col d-sm-6 d-md-4 d-lg-2">
-	                        <div style="margin-left: 30px;"><a href="#"><img src="/resources/images/store/storeHome/premiumIcon.jpg" alt=""></a></div>
+	                    <div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/premiumIcon.jpg" alt=""></a></div>
 	                        <div class="text">프리미엄</div>
 	                    </div>
-	                    <div class="col d-sm-6 d-md-4 d-lg-2">
-	                        <div style="margin-left: 30px;"><a href="#"><img src="/resources/images/store/storeHome/refurbishedIcon.jpg" alt=""></a></div>
+	                    <div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/refurbishedIcon.jpg" alt=""></a></div>
 	                        <div class="text">리퍼마켓</div>
 	                    </div>
-	                    <div class="col d-sm-6 d-md-4 d-lg-2">
-	                        <div style="margin-left: 30px;"><a href="#"><img src="/resources/images/store/storeHome/samsungExhibitionIcon.png" alt=""></a></div>
-	                        <div class="text">삼성전자</div>
+	                    <div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/newLine.jpg" alt=""></a></div>
+	                        <div class="text">신상특가</div>
+	                    </div>
+						<!-- 카테고리 이동-->
+						<div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/fallFabric.jpg" alt=""></a></div>
+	                        <div class="text">가을이불</div>
+	                    </div>
+						<div class="col">
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/bestLight.jpg" alt=""></a></div>
+	                        <div class="text">인기조명</div>
 	                    </div>
 	                </div>       
 	            </nav>
