@@ -188,7 +188,7 @@ function join(){
     }
 
 
-
+    // 중복 확인 부분
     function checkOvetlab(value,inputForm){
         
 
@@ -324,3 +324,12 @@ function joincheck(){
 }
 
 
+// 로그인 페이지 부분
+function login(){
+
+
+
+
+
+
+}

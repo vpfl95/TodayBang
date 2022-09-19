@@ -27,13 +27,8 @@ public class MemberController {
 	public ModelAndView getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		
-		
 		memberDTO = memberService.getLogin(memberDTO);
-		
-		
-		System.out.println(memberDTO);
-		
+
 		
 		if (memberDTO != null) {
 			System.out.println("not null");
@@ -42,14 +37,13 @@ public class MemberController {
 			
 		}else {
 			System.out.println("null");
-			mv.setViewName("redirect:./login");
-			// 메세지 띄우기
+			
+			String url = "./login";
+			String msg = "존재하지 않는 계정 입니다.";
+			mv.addObject("msg",msg);
+			mv.addObject("url",url);
+			mv.setViewName("common/message");
 		}
-		
-		
-		
-		
-		
 		
 		
 		return mv;

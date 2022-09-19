@@ -79,6 +79,7 @@
    	<script src="/resources/js/member.js"></script>
    <script type="text/javascript">
 	
+   login();
    
   
 	/* sns 로그인 */
