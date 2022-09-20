@@ -15,11 +15,46 @@ section {
   min-height: 100%;
   
 }
+.selectColor{
 
+  color: #38b9e0 !important;
 
+}
+
+#homeCate > li > a , #subMenu > li > a {
+	
+  font-weight: bold;
+	color: black;
+	text-decoration: none;
+  	
+  
+}
 
 footer{
 	position: relative;
   
     
 }
+
+.menu{
+  cursor: pointer;
+
+}
+
+.hide {
+  display: none;
+ 
+  width: 1200px;
+  margin: 15px auto 0px auto;
+}
+.hide >li{
+  display: inline;
+  cursor: pointer;
+  font-size: 17px;
+  margin-right: 50px;
+  font-weight: 600;
+  
+  color: #2f3438;
+}
+
+
