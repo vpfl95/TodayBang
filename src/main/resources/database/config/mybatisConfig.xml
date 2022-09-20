@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.goodee.home.member.MemberDTO" alias="MemberDTO"/>
+		
 		<typeAlias type="com.goodee.home.store.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.goodee.home.store.product.ProductImageDTO" alias="ProductImageDTO"/>
 		<typeAlias type="com.goodee.home.store.product.Option1DTO" alias="Option1DTO"/>
@@ -12,9 +13,7 @@
 		<typeAlias type="com.goodee.home.store.product.Option3DTO" alias="Option3DTO"/>
 		<typeAlias type="com.goodee.home.store.product.CategoryDTO" alias="CategoryDTO"/>
 		<typeAlias type="com.goodee.home.store.exhibition.ExhibitionDTO" alias="ExhibitionDTO"/>
-		<typeAlias type="com.goodee.home.store.exhibition.Ex-ProductDTO" alias="Ex-ProductDTO"/>
-		
-	
+		<typeAlias type="com.goodee.home.store.exhibition.Ex_ProductDTO" alias="Ex_ProductDTO"/>
 	
 		<typeAlias type="com.goodee.home.realEstate.RealEstateDTO" alias="RealEstateDTO"/>
 		<typeAlias type="com.goodee.home.apt.AptDTO" alias="AptDTO"/>

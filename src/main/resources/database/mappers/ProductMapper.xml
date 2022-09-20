@@ -3,10 +3,12 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.goodee.home.store.product.ProductDAO">
-	<insert id="setProduct" parameterType="">
+	<insert id="setProduct" parameterType="ProductDTO">
 		INSERT INTO PRODUCT VALUES (#{productNum}, #{price}, #{stock}, #{saleRate}, #{brand}, #{regDate},
 		#{deliDate}, #{todayDeal}, #{premium}, #{deliFee}, #{point})
 	</insert>
 	
-	<select id="getCategory"></select>
+	<select id="getCategory" resultType="CategoryDTO">
+		SELECT * FROM CATEGORY
+	</select>
 </mapper>
