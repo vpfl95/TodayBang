@@ -2,7 +2,7 @@ const subMenu = document.querySelector("#subMenu");
 const menus = document.getElementsByClassName("menu");
 const header = document.querySelector("#header");
 
-let defaultSelected ;
+let defaultSelected=null ;
 
 
 for(mn of menus){
@@ -36,43 +36,18 @@ for(mn of menus){
     
     })
 
-    header.addEventListener("mouseover",function(){
-
-        for(mn of menus){
-
-            if(mn.className == "selected"){
-                console.log("defalut 저장");
-                defaultSelected = mn;
-            }
-            
-        }
-
-    })
-   
-
-    header.addEventListener("mouseleave", function(event){
-
-        
-
-        
-
-        for(mn of menus){
-
-            mn.style.color = "";
-            mn.classList.remove("selectColor");
-            
-        }
-
-        
-
-
-
-    })
-
-
 }
 
+header.addEventListener("mouseover",function(){
 
+    
+})
+
+
+header.addEventListener("mouseleave", function(event){
+
+   
+})
 
 function headerCategory(cate){
 
