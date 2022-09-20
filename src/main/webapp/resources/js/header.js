@@ -45,7 +45,18 @@ header.addEventListener("mouseover",function(){
 
 
 header.addEventListener("mouseleave", function(event){
+    
+    for(mn of menus){
+       
+        if(mn.title == "selected"){
 
+            mn.classList.add("selectColor");
+            
+        }else{
+            mn.classList.remove("selectColor");
+        }
+
+    }
    
 })
 
