@@ -1,0 +1,9 @@
+.main {
+    margin-top: 100px;
+}
+
+.category {
+    margin-right: 60px;
+    border: solid blue 1px;
+    height: 100%;
+}

@@ -5,31 +5,88 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
-	<style>
-		.map_wrap {position:relative;width:100%;height:350px;}
-		.title {font-weight:bold;display:block;}
-		.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-		#centerAddr {display:block;margin-top:2px;font-weight: normal;}
-		.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-	</style>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 직방</title>
+    <link href="/resources/css/reset.css" rel="stylesheet">
+   	<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-	<h1>
-		Hello world ㅎㅇ!  
-	</h1>
-	<a href="/apt/map">아파트</a>
-	<a href="/house/map">단독</a>
-	<a href="/villa/map">빌라</a>
-	<a href="/officetel/map">오피스텔</a>
-
-	<div class="map_wrap">
-		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-		<div class="hAddr">
-			<span class="title">지도중심기준 행정동 주소정보</span>
-			<span id="centerAddr"></span>
-		</div>
-	</div>
+	
+    	<c:import url="./template/header.jsp"></c:import>
+	
+	<section class="container-fluid container-lg-8 mt-5">
+			<div class = "row justify-content-center mt-5"> 
+               
+			 <div class="col-12 pt-5"  style="height: 500px; background-image: url('/resources/images/Main.png');">
+                        <div class="text-center">
+                            
+                            <h1 class="mb-5 mt-7">오늘의 직방 메인 페이지</h1>
+                            
+                            <form class="form-subscribe" id="contactForm" >
+                                <!-- Email address input-->
+                                <div class="row justify-content-center">
+                                    <div class="col-5">
+                                        <input class="form-control form-control-lg" id="textSearch" type="text" placeholder="검색" >
+                                        </div>
+                                    <div class="col-auto"><button class="btn btn-primary btn-lg" id="submitButton" type="submit">검색</button></div>
+                                </div>
+                               
+                                <div class="d-none" id="submitSuccessMessage">
+                                    <div class="text-center mb-3">
+                                        <div class="fw-bolder">Form submission successful!</div>
+                                        <p>To activate this form, sign up at</p>
+                                        <a class="text-white" href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
+                                    </div>
+                                </div>
+                             
+                                <div class="d-none" id="submitErrorMessage"><div class="text-center text-danger mb-3">Error sending message!</div></div>
+                            </form>
+                        </div>
+                    </div>
+			 
+			
+				<div class = " col-lg-7 ">
+				
+					
+				
+            
+       
+            <div class="container features-icons bg-light text-center" style="height: 300px;">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style="background-color: blue;">
+                            <div class="features-icons-icon d-flex"><i class="bi-window m-auto text-primary"></i></div>
+                            <h3>스토어</h3>
+                            <p class="lead mb-0">예시 1</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-5 mb-lg-0 mb-lg-3" style="background-color: red;">
+                            <div class="features-icons-icon d-flex"><i class="bi-layers m-auto text-primary"></i></div>
+                            <h3>방구하기</h3>
+                            <p class="lead mb-0">예시 2</p>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="features-icons-item mx-auto mb-0 mb-lg-3" style="background-color: black;">
+                            <div class="features-icons-icon d-flex"><i class="bi-terminal m-auto text-primary"></i></div>
+                            <h3>커뮤니티</h3>
+                            <p class="lead mb-0">예시 3</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        
+        
+        
+				
+				</div>
+			</div>
+	</section>
 
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f734c47d571810dc50360665614e2cd"></script>
 	<script>

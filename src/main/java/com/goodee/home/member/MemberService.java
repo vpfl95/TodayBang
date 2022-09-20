@@ -15,4 +15,17 @@ public class MemberService {
 	}
 	
 	
+	public int getJoin(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.getJoin(memberDTO);
+	}
+	
+	
+	public MemberDTO getJoinOverlab(MemberDTO memberDTO) throws Exception{
+		
+		
+		
+		return memberDAO.getJoinOverlab(memberDTO);
+	}
+	
 }

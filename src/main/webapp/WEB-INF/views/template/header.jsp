@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<header class="p-3 mb-3 border-bottom">
+<header class="p-3 mb-3 border-bottom fixed-top text-bg-white">
     <div class="container mt-2">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
@@ -30,7 +30,7 @@
        			 <!-- 로그인 XXX -->
 	        		<li><a href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
 		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
-		         	<li><a href="/member/join" class="nav-link px-2 link-secondary">회원가입</a></li>
+		         	<li><a href="/member/joinCheck" class="nav-link px-2 link-secondary">회원가입</a></li>
 	        
         		</c:if>
         		<c:if test="${not empty member }">

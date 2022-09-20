@@ -1,0 +1,168 @@
+.todayDealStart {
+    margin-top: 50px;
+    margin-bottom: 20px;
+}
+
+.category {
+    margin-top: 80px;
+    margin-bottom: 14px;
+}
+
+.popularItemText {
+    margin-top: 50px;
+    margin-bottom: 14px;
+}
+
+.popularItem {
+    margin-bottom: 20px;
+}
+
+.filter {
+    margin-bottom: 15px;
+}
+
+.page {
+    margin-bottom: 20px;
+}
+/**설희*/
+
+.menu div {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 8px 10px;
+    margin-bottom: 1em;
+    font-size: 12px;
+    display: inline-block;
+}
+
+.exhibition-icon {
+    margin-top: 40px;
+    width: 100%;
+}
+
+.exhibition-icon div {
+    min-width: 50px;
+}
+
+ .exhibition-icon img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 15px;
+}
+
+.exhibition-icon .text {
+    margin-top: 10px;
+    width: 100%;
+    font-size: 15px;
+    text-align: center;
+}
+
+/**a태그 css*/
+.a_tag {
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(231, 22, 22);
+}
+.a_tag:hover {
+    color: rgba(80, 75, 75, 0.5);
+}
+
+.center_menu>div {
+    width: 25%;
+    padding: 10px;
+    height: auto;
+}
+@media screen and (max-width:1200px) {
+    .center_menu>div {
+        width: 50%;
+    }
+}
+
+.center_menu_img {
+    width: 100%;
+    height: 65%;
+    margin-bottom: 10px;
+}
+
+.center_menu_img>img {
+    max-width: 100%;
+    height: 100%;
+    display: block;
+    margin: 0px auto;
+    border-radius: 3px;
+}
+
+.menu_cate>div {
+    width: 9%;
+    margin: 10px 0px;
+    height: 122px;
+}
+
+.menu_cate img {
+    max-width: 100%;
+}
+
+.menu_cate_bottom {
+    height: 40px;
+    margin-top: 10px;
+}
+.menu_cate_bottom>div{
+    width: 9%;
+    height: 40px;
+    text-align: center;
+    font-size: 17px;
+}
+
+
+.order {
+    padding-top: 5px;
+}
+.select {
+    border: none;
+    color: gray;
+    margin: 5px;
+}
+
+
+
+/**PageNation*/
+.paging {
+    height: 100px;
+    margin-bottom: 2em;
+}
+.pagination {
+    justify-content: center;
+    padding-top: 2em;
+}
+
+/* Product Detail Font*/
+.brand {
+    font-size: 10px;
+    color: gray;
+}
+
+.product {
+    font-size: 14px;
+}
+
+.saleRate {
+    font-size: 19px;
+    display: inline-block;
+    color: #35c5f0;
+}
+
+.price {
+    display: inline-block;
+    font-size: 19px;
+}
+
+.grade {
+    font-size: 14px;
+    display: inline-block;
+}
+
+.reviewNum {
+    font-size: 14px;
+    display: inline-block;
+    color: gray;
+}
