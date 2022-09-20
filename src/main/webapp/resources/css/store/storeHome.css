@@ -36,11 +36,11 @@
 
 .exhibition-icon {
     margin-top: 40px;
-    width: 1004.4px;
+    width: 100%;
 }
 
 .exhibition-icon div {
-    width: 90px;
+    min-width: 50px;
 }
 
  .exhibition-icon img {

@@ -1,0 +1,43 @@
+.exhibitions-item-wrap {
+    width: 100%;
+    margin-bottom: 50px
+}
+
+.exhibitions-item-product {
+    border-radius: 10%;
+}
+
+.exhibitions-item-title {
+    position: relative;
+}
+
+.exhibitions-item-title > img {
+    max-width: 100%;
+}
+
+.exhibitions-item-text {
+	position: absolute;
+    color: white;
+    text-shadow: 0 0 4px rgb(0 0 0 / 54%);
+	bottom: 30px;
+    left: 12px;
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.exhibitions-item-subText {
+    position: absolute;
+    color: white;
+    margin-bottom: 8px;
+    text-shadow: 0 0 4px rgb(0 0 0 / 54%);
+    bottom: 0px;
+    left: 12px;
+}
+
+.exhibitions-item-list {
+    width: 100%;
+}
+
+.exhibitions-item-list > img {
+    width: 25%;
+}
