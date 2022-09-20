@@ -23,21 +23,24 @@
 				<form action="add">
                     <div class="categoryWrap" style="border: solid red 1px; height: 150px;">
                         <div class="text"><b>Category 설정</b></div>
-                        <div class="category">
+                        <div class="category" id="category">
                             <span>대분류</span>
-                            <select name="category-1" id="">
+                            <select name="category_1" id="cate1">       
                             </select>
                             <span>중분류</span>
-                            <select name="category-2" id="">
+                            <select name="category_2" id="cate2">
+                        
                             </select>
                             <span>소분류</span>
-                            <select name="category-3" id="">
+                            <select name="category_3" id="cate3">
                             </select>
                         </div>
                         <br>
                         <div class="exhibition">
                             <span>기획전</span>
-                            <select name="exhibition" id=""></select>
+                            <select name="exhibition" id="exhibition">
+                                <option value="0">해당사항 없음</option>
+                            </select>
                         </div>  
                     </div>
                     <div class="productDetail" style="border: solid red 1px; height: auto;">
@@ -125,7 +128,14 @@
 	
 
 	<c:import url="../../template/footer.jsp"></c:import>
+    <script src="/resources/js/store/addProduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script>
+        getCategory1();
+        getCategory2();
+        getCategory3();
+        getExhibition();
+    </script>
 </body>
 </html>

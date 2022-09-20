@@ -4,7 +4,14 @@ public class ExhibitionDTO {
 	private Long exhibitionCode;
 	private Long totalScrap;
 	private Long totalShare;
+	private String exName;
 	
+	public String getExName() {
+		return exName;
+	}
+	public void setExName(String exName) {
+		this.exName = exName;
+	}
 	public Long getExhibitionCode() {
 		return exhibitionCode;
 	}
