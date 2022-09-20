@@ -23,7 +23,7 @@
 
 #profile {
     position: relative;
-    height: 650px;
+    min-height: 800px;
     
 
 }
@@ -54,7 +54,7 @@
     border: 1px solid #dadce0;
     border-radius: 3px;
     width: 70%;
-    height: 90%;
+    min-height: 90%;
     margin: 15px;
 
 
@@ -91,3 +91,88 @@
     padding-top: 15px;
     
 }
+
+
+.pf-section{
+    width: 80%;
+    margin: 15px auto;
+
+
+}
+
+/* profile */
+
+#joinInput > input , #emailAt, #phoneFirst, #joinInput > div > input{
+	
+	height: 50px;
+	border-radius: 3px;
+	
+}
+
+#joinInput{
+	
+	margin-bottom: 10px;
+}
+
+#joinBtn,#nextBtn{
+	margin-top : 30px;
+	background-color: rgb(56, 185, 224);
+	border: rgb(56, 185, 224);
+	height: 60px;
+	margin-bottom: 13px;
+	border-radius: 3px;
+	
+}
+#joinPart{
+	margin-left : 10px;
+	width: 260px;
+	
+}
+#joinPart>a{
+	margin-left : 0 10px;
+	text-decoration: none;
+	color : rgb(90, 104, 119);
+	
+}
+
+
+#joinForm{
+	overflow : hidden;
+	width: 500px;
+	
+}
+
+
+#joinInput > label{
+	
+	margin-top : 30px;
+	margin-bottom: 5px;
+	
+}
+
+#emailFirst,#emailAt{
+	
+	display: inline;
+	width: 45%;
+	
+}
+
+#phoneFirst,#phoneMiddle,#phoneLast{
+	
+	display: inline;
+	width: 28%;
+	
+}
+
+select {
+  
+  
+  font-family: inherit;  /* 폰트 상속 */
+  background: url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg) no-repeat 95% 50%; /* 네이티브 화살표 대체 */  
+  border: 1px solid #999; 
+  border-radius: 0px; /* iOS 둥근모서리 제거 */
+  -webkit-appearance: none; /* 네이티브 외형 감추기 */
+  -moz-appearance: none;
+  appearance: none;
+}
+

@@ -23,7 +23,7 @@
 		<div class="container-fluid container-lg-8 pt-4">
 		<!-- 카테고리 1  --> 
 			<ul id = "myPage-1">
-				<li class = "myPage-list" id = "myPage-profile"> 프로필 </li>
+				<li class = "myPage-list" id = "myPage-profile" > 프로필 </li>
 				<li class = "myPage-list" id = "myPage-shopping"> 나의 쇼핑</li>
 				<li class = "myPage-list" id = "myPage-write"> 나의 글</li>
 				
@@ -57,29 +57,11 @@
 						<h4>장바구니</h4>
 					</div>
 
-
 				</div>
 				
 				<div id = "profile-section" class= "">
-			
-					${memberDTO.userId }
-					${memberDTO.password }
-					${memberDTO.nickname }
-					${memberDTO.userName }
-					${memberDTO.phone }
-					${memberDTO.email }
-
-
+					<!-- 프로필 내용이 채워짐 -->
 				</div>
-				
-
-
-
-					
-					
-										
-					
-	
 			</div>
 		</div>
 	</section>
@@ -90,7 +72,24 @@
     <script src="/resources/js/member.js"></script>
     <script type="text/javascript">
     	myPage();
-    	$('#myPage-profile').click();
+    	
+    	 $(document).ready(function(){
+    		
+    		$("#myPage-profile").trigger("click");
+    	});
+    	
+    	
+    	$("#profile-section").load("/member/profile");
+    	
+    	
+    	$(document).on("click",".submenuList",function(){
+    		$("#profile-section").load(this.getAttribute('data-a'));
+    	});
+    	
+    	
+    	
+    	
+    	
     </script>
    
 </body>

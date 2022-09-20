@@ -330,7 +330,6 @@ function myPage(){
     const myPage1 = document.querySelector("#myPage-1");
     const myPagelist = document.querySelectorAll(".myPage-list");
     
-
     
     for(category of myPagelist){
 
@@ -349,7 +348,7 @@ function myPage(){
             if(event.target.id == "myPage-profile"){
     
                  arr = ['정보수정', '멤버등급', '배송지정보'];
-                 url = ['store/url1', 'store/url2', 'store/url3'];
+                 url = ['/member/profile', '/member/rank', '/member/delivery'];
         
                 
             }else if(event.target.id == "myPage-shopping"){
@@ -361,7 +360,7 @@ function myPage(){
             }else if(event.target.id == "myPage-write"){
     
                  arr = ['내 문의', '내 상품리뷰', '내 방리뷰', '내 게시글', '내 댓글'];
-                 url = ['store/url1', 'store/url2', 'store/url3','store/url4','store/url5'];
+                 url = ['/member/myQna', '/member/myPReview', '/member/myPReview','store/url4','store/url5'];
         
                
             }
@@ -392,15 +391,24 @@ function myPage(){
     
     
     
-            for(let i = 0 ; i < arr.length; i ++){
-                let li = document.createElement("li");
-                let liText = document.createTextNode(arr[i]);
-                let liAttri = document.createAttribute("class");
-                liAttri.value = "submenuList";
-                li.setAttributeNode(liAttri);
-                li.appendChild(liText);
-                subMenu.append(li);
-            }
+        for(let i = 0 ; i < arr.length; i ++){
+            let li = document.createElement("li");
+            let liText = document.createTextNode(arr[i]);
+            
+
+            
+            let aAttri = document.createAttribute("data-a");
+            aAttri.value = url[i];
+            li.setAttributeNode(aAttri);
+
+
+            aAttri = document.createAttribute("class");
+            aAttri.value = "submenuList";
+            li.setAttributeNode(aAttri);
+            
+            li.appendChild(liText);
+            subMenu.append(li);
+        }
 
 
 
@@ -412,3 +420,31 @@ function myPage(){
 
 }
 
+// 프로필 부분
+function profile() {
+
+    const emailF = document.querySelector("#emailFirst");
+    const emailAt = document.querySelector("#emailAt");
+    const submitEmail = document.querySelector("#submitEmail");
+
+    let splitEmail =  submitEmail.value.split("@");
+    
+    emailF.value = splitEmail[0];
+    emailAt.value = splitEmail[1];
+
+
+    
+
+    const phoneFirst = document.querySelector("#phoneFirst");
+    const phoneMiddle = document.querySelector("#phoneMiddle");
+    const phoneLast = document.querySelector("#phoneLast");
+    const submitPhone = document.querySelector("#submitPhone");
+
+
+    let splitPhone =  submitPhone.value.split("-");
+    
+    phoneFirst.value = splitPhone[0];
+    phoneMiddle.value = splitPhone[1];
+    phoneLast.value = splitPhone[2];
+
+}

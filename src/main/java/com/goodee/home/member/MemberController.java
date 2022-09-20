@@ -137,6 +137,27 @@ public class MemberController {
 	}
 	
 	
+	@GetMapping("profile")
+	public void getProfile(HttpSession session) throws Exception{
+		
+		
+		
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("member");
+		
+		
+	}
+	@GetMapping("rank")
+	public void getRank() throws Exception{
+		
+		
+		
+	}
+	@GetMapping("delivery")
+	public void getDelivery() throws Exception{
+		
+		
+		
+	}
 	
 	
 }
