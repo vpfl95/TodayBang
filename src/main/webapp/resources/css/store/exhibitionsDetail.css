@@ -32,10 +32,14 @@
     max-width: 100%;
 }
 
-.oneQuarter {
+.oneQuarter, .oneHalf {
     max-width: 100%;
 }
 
 .oneQuarter img {
     width: 25%;
+}
+
+.oneHalf img {
+    width: 50%;
 }

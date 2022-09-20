@@ -36,9 +36,6 @@
                 <div class="left_re mt-5" style="margin-left: 70px;">
                     <img src="/resources/images/store/exhibitions/ex2689/mainPage.png" alt="">
                     <img src="/resources/images/store/exhibitions/ex2689/main2.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/event.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/event2.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/tuto.jpg" alt="">
                     <img src="/resources/images/store/exhibitions/ex2689/main3.jpg" alt="">
 
                     <div class="oneQuarter d-flex justify-content-center">
@@ -61,6 +58,49 @@
                         <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
                     </div>
                     <img src="/resources/images/store/exhibitions/ex2689/livMain.jpg" alt="">
+
+                    <div class="oneHalf d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt="">
+                    </div>
+                    <div class="oneHalf d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt="">
+                    </div>
+                    <img src="/resources/images/store/exhibitions/ex2689/livMore.jpg" alt="">
+                    <div class="oneQuarter d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/kitFocus.png" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+                    </div>
+                    <img src="/resources/images/store/exhibitions/ex2689/kitMain.jpg" alt="">
+                    <div class="oneHalf d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt="">
+                    </div>
+                    <div class="oneHalf d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt="">
+                    </div>
+                    <img src="/resources/images/store/exhibitions/ex2689/kitMore.jpg" alt="">
+                    <div class="oneQuarter d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/dressFocus.png" alt="">
+                    </div>
+                    <img src="/resources/images/store/exhibitions/ex2689/dressMain.jpg" alt="">
+                    <div class="oneHalf d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt="">
+                    </div>
+                    <div class="oneHalf d-flex justify-content-center">
+                        <img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt="">
+                        <img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt="">
+                    </div>
+                    <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
+
                 </div>
 			</div>
 		</div>
