@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.goodee.home.region.RegionDAO">
+	<select id="getSido" parameterType="RegionDTO" resultType="RegionDTO">
+		SELECT SIDO, LAT, LON 
+		FROM REGION 
+		WHERE LAT BETWEEN #{swLat} AND #{neLat} 
+			  AND LON BETWEEN #{swLon} AND #{neLon}
+			  AND  SIGUNGU IS NULL AND EMD IS NULL
+	</select>
+	
+	<select id="getSigungu" parameterType="RegionDTO" resultType="RegionDTO">
+		SELECT SIGUNGU, LAT, LON 
+		FROM REGION 
+		WHERE LAT BETWEEN #{swLat} AND #{neLat} 
+			  AND LON BETWEEN #{swLon} AND #{neLon}
+			  AND  SIDO IS NULL AND EMD IS NULL
+	</select>
+	
+	<select id="getEmd" parameterType="RegionDTO" resultType="RegionDTO">
+		SELECT EMD, LAT, LON 
+		FROM REGION 
+		WHERE LAT BETWEEN #{swLat} AND #{neLat} 
+			  AND LON BETWEEN #{swLon} AND #{neLon}
+			  AND  SIDO IS NULL AND SIGUNGU IS NULL
+	</select>
+
+</mapper>
