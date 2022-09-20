@@ -2,4 +2,17 @@
 <!DOCTYPE configuration
 				  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 				  "http://mybatis.org/dtd/mybatis-3-config.dtd"> 
-<configuration></configuration>
+<configuration>
+	<typeAliases>
+		<typeAlias type="com.goodee.home.realEstate.RealEstateDTO" alias="RealEstateDTO"/>
+		<typeAlias type="com.goodee.home.apt.AptDTO" alias="AptDTO"/>
+		<typeAlias type="com.goodee.home.villa.VillaDTO" alias="VillaDTO"/>
+		<typeAlias type="com.goodee.home.house.HouseDTO" alias="HouseDTO"/>
+		<typeAlias type="com.goodee.home.officetel.OfficetelDTO" alias="OfficetelDTO"/>
+		<typeAlias type="com.goodee.home.region.RegionDTO" alias="RegionDTO"/>
+		
+		<typeAlias type="java.lang.String" alias="String"/>
+		<typeAlias type="java.lang.Long" alias="Long"/>
+		<typeAlias type="java.util.List" alias="List"/>
+	</typeAliases>
+</configuration>

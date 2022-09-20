@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.goodee.home.apt.AptDAO">
+	<select id="getAptRoadName" parameterType="AptDTO" resultType="AptDTO">
+		SELECT BUILDINGNM,ROADNAME,SIGUNGU, AVG(DEAL) AVG
+		FROM (SELECT DISTINCT ROADNAME, BUILDINGNM, SIGUNGU, DEAL  
+		        FROM REALESTATE 
+		        WHERE SIGUNGU LIKE '%'||#{sigungu}||'%')
+		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU
+	</select>
+
+
+</mapper>
