@@ -15,6 +15,12 @@ section {
   min-height: 100%;
   
 }
+.selectColor{
+
+  color: #38b9e0 !important;
+
+}
+
 #homeCate > li > a , #subMenu > li > a {
 	
   font-weight: bold;

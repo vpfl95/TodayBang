@@ -8,9 +8,7 @@ const header = document.querySelector("#header");
 for(mn of menus){
 
     mn.addEventListener("mouseover", function(event){
-        let arr;
-        let url;
-
+       
 
         for(mn of menus){
 
@@ -32,31 +30,8 @@ for(mn of menus){
         li.setAttributeNode(liAttri);
         subMenu.before(li);
 
-        if(event.target.id == "storeMenu"){
-
-             arr = ['스토어 홈', '카테고리', '오늘의딜'];
-             url = ['store/url1', 'store/url2', 'store/url3'];
-
-        }else if(event.target.id == "roomMenu"){
-
-             arr = ['직방 홈', '아파트', '빌라'];
-             url = ['store/url1', 'store/url2', 'store/url3'];
-
-        }else if(event.target.id == "comMenu"){
-
-             arr = ['커뮤니티 홈', '이달의 회원', '내 게시글 보기','사진','집들이','노하우'];
-             url = ['store/url1', 'store/url2', 'store/url3', 'store/url4', 'store/url5', 'store/url6'];
-
-
-        }else if(event.target.id == "serviceMenu"){
-
-             arr = ['공지사항', 'QnA'];
-             url = ['/service/notice', '/service/qna'];
-
-
-
-        }
-        headerCategory(event.target , arr , url)
+        
+        headerCategory(event.target.id);
     
     })
 
@@ -64,6 +39,8 @@ for(mn of menus){
    
 
     header.addEventListener("mouseleave", function(event){
+
+        
 
         for(mn of menus){
 
@@ -74,11 +51,41 @@ for(mn of menus){
 
     })
 
+
 }
 
 
 
-function headerCategory(cate , arr , url){
+function headerCategory(cate){
+
+    let arr = null;
+    let url = null;
+
+    
+    if(cate == "storeMenu"){
+        
+        arr = ['스토어 홈', '카테고리', '오늘의딜'];
+        url = ['store/url1', 'store/url2', 'store/url3'];
+    
+    } else if(cate == "roomMenu"){
+
+        arr = ['직방 홈', '아파트', '빌라'];
+        url = ['store/url1', 'store/url2', 'store/url3'];
+
+   }else if(cate == "comMenu"){
+
+        arr = ['커뮤니티 홈', '이달의 회원', '내 게시글 보기','사진','집들이','노하우'];
+        url = ['store/url1', 'store/url2', 'store/url3', 'store/url4', 'store/url5', 'store/url6'];
+
+
+   }else if(cate == "serviceMenu"){
+
+        arr = ['공지사항', 'QnA'];
+        url = ['/service/notice', '/service/qna'];
+
+
+
+   } 
 
 
 
@@ -142,3 +149,13 @@ subMenu.addEventListener("mouseover",function(event){
 
 
 })
+
+
+
+
+
+// 마우스 스크롤 이벤트
+
+
+
+
