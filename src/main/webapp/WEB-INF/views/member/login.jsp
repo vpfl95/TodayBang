@@ -12,7 +12,7 @@
     <link href="/resources/css/member/login.css" rel="stylesheet">
 	<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-
+	
 </head>
 <body>
    
@@ -47,13 +47,12 @@
 				        </div>
 				        
 				        
-				        <div id = "SNSLoginPart" class="mx-auto mt-1">
-				        	SNS 간편 로그인
-					        <a id="naverIdLogin_loginButton" href="javascript:void(0)">
-			         	 	<img alt="" src="/resources/images/NaverLogin.png" style="width: 60px;">
-			      			</a>
-				        </div>
-				        
+				         <div id="naver_id_login"></div>
+						    <!-- //네이버 로그인 버튼 노출 영역 -->
+						   
+				        <a id="naverIdLogin_loginButton" href="javascript:void(0)">
+			         	 	<img alt="" src="http://static.nid.naver.com/oauth/small_g_in.PNG" style="width: 170px;">
+			      		</a>
 				        
 				        
 					</form>
@@ -72,25 +71,36 @@
 		</div>
 	</section>
 	
+	
+
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <script src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.2.js" charset="utf-8"></script>
+    
    	<script src="/resources/js/member.js"></script>
    <script type="text/javascript">
 	
+  
    
   
 	/* sns 로그인 */
+	/* naver */
+	
 	var naverLogin = new naver.LoginWithNaverId(
-		{
-			clientId: "wOUe01Nevp897Ykh0SFb", //내 애플리케이션 정보에 cliendId를 입력해줍니다.
-			callbackUrl: "http://localhost/member/naverLogin" // 내 애플리케이션 API설정의 Callback URL 을 입력해줍니다.
-			
-		}
-	);	
-
-	naverLogin.init();
+			{
+				clientId: "wOUe01Nevp897Ykh0SFb",
+				callbackUrl: "http://localhost/member/naverLogin",
+				isPopup: false, /* 팝업을 통한 연동처리 여부 */
+				loginButton: {color: "green", type: 3, height: 60} /* 로그인 버튼의 타입을 지정 */
+			}
+		);
+		
+		/* 설정정보를 초기화하고 연동을 준비 */
+		naverLogin.init();
+   
+	 
+	
+	
 
 
 

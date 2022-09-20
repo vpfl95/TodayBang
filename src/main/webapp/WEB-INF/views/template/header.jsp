@@ -1,18 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
-<header class="p-3 mb-3 border-bottom fixed-top text-bg-white">
+<header class="p-3 mb-3 border-bottom fixed-top text-bg-white" id = "header">
     <div class="container mt-2">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
         <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
          <img alt="" src="/resources/images/MainLogo.png" width="230px">
         </a>
 		<div></div>
-        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3">
-          <li><a href="#" class="nav-link px-2 link-secondary fs-5">스토어</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark fs-5">방구하기</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark fs-5">커뮤니티</a></li>
-          <li><a href="#" class="nav-link px-2 link-dark fs-5">고객센터</a></li>
+        <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3 " id="homeCate">
+          <li><a href="/store" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a>
+    		</li>	
+    			
+          <li><a href="/room" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
+   			</li>
+          <li><a href="/community/home" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
+          <li><a href="/service/notice" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
         </ul>
 
        <!--  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
@@ -54,4 +57,124 @@
         </div>
       </div>
     </div>
+    
+    
+     <div>
+	    	<ul	class = "hide" id = "subMenu">
+	    		
+			    		<!-- 리스트 들어가는 영역 -->
+	    	</ul>
+    
+     	</div>
+     
+    
+    
+    <script src="/resources/js/header.js"></script>
+	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>    $(document).ready(function(){
+     				var submenu = $(".hide");
+    			
+    	        	$(".menu").mouseover(function(){            
+						submenu.slideDown(150);        
+					})
+					
+					$("header").mouseleave(function(){
+    		                         
+    		            if( submenu.is(":visible") ){
+   			                submenu.slideUp(150);       
+   							$("#hr").remove();     
+    					}     
+    				});    
+    				
+    				
+    				
+    				
+    				
+    				
+    				$(".menu").each (function(index,me){
+    					
+    					if(location.href ==  me.href){
+    						
+    						
+    						$(this).addClass('selectColor');
+    						
+    						
+    						let title = document.createAttribute("title");
+    				        title.value = "selected";
+    				        me.setAttributeNode(title);
+    				        
+    				        
+    					}
+    					
+    					
+    					
+    				});
+    				
+    				
+   				});
+    
+    /* header scroll down  */
+    	window.addEventListener('wheel', (e) => { 
+    		var submenu = $(".hide");
+    		var linkArr =  document.location.href.split("/");
+    		var storeMenu = $("#storeMenu");
+    		
+        if(e.deltaY < 0){
+
+        	if(linkArr[4] != "myPage"){
+        		
+                const hr = document.querySelector("#hr");
+
+                        if(hr){
+                            hr.remove();
+                        }
+
+
+               let li = document.createElement("hr");
+               let liAttri = document.createAttribute("id");
+               liAttri.value = "hr";
+               li.setAttributeNode(liAttri);
+               subMenu.before(li);
+               
+               if(linkArr[3] == ""){
+            	   headerCategory("storeMenu");
+               }else{
+            	   
+            	   $(".menu").each (function(index,me){
+   					if(me.title ==  "selected"){
+   						
+   						
+   						headerCategory(me.id);
+   				        
+   					}
+   					
+   					
+   					
+   					});
+            	   
+               }
+               
+               
+               
+               
+               
+               submenu.slideDown(150); 
+              
+            }
+        		
+
+       }else{
+        	 if( submenu.is(":visible") ){
+    			  submenu.slideUp(150);       
+    			$("#hr").remove();     
+     		} 
+        	
+        	
+        }
+
+
+      });
+    </script>
+
+   
   </header>

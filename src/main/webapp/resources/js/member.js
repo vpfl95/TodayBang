@@ -188,7 +188,7 @@ function join(){
     }
 
 
-
+    // 중복 확인 부분
     function checkOvetlab(value,inputForm){
         
 
@@ -323,4 +323,92 @@ function joincheck(){
 
 }
 
+
+// 마이페이지 부분
+function myPage(){
+
+    const myPage1 = document.querySelector("#myPage-1");
+    const myPagelist = document.querySelectorAll(".myPage-list");
+    
+
+    
+    for(category of myPagelist){
+
+        category.addEventListener("click",function(event){
+            
+            let arr ;
+            let url ;
+            console.log("clcicc")
+
+
+            for(ct of myPagelist){
+                ct.style.color = "";
+            }
+            event.target.style.color = "#38b9e0";
+
+            if(event.target.id == "myPage-profile"){
+    
+                 arr = ['정보수정', '멤버등급', '배송지정보'];
+                 url = ['store/url1', 'store/url2', 'store/url3'];
+        
+                
+            }else if(event.target.id == "myPage-shopping"){
+    
+                 arr = ['장바구니', '배송내역', '구매내역','관심매물'];
+                 url = ['store/url1', 'store/url2', 'store/url3' , 'store/url4'];
+        
+                
+            }else if(event.target.id == "myPage-write"){
+    
+                 arr = ['내 문의', '내 상품리뷰', '내 방리뷰', '내 게시글', '내 댓글'];
+                 url = ['store/url1', 'store/url2', 'store/url3','store/url4','store/url5'];
+        
+               
+            }
+
+
+
+
+            profileCategory(event.target , arr , url);
+            
+        })
+
+
+    }
+    
+
+    function profileCategory(cate , arr , url){
+
+        const subMenu = document.querySelector("#myPage-2");
+
+        for(let i = 0 ; i < subMenu.children.length ; ){
+            subMenu.children[i].remove();
+        }
+    
+        if(arr.length != url.length){
+            console.log(" arr url 사이즈 다름");
+            return;
+        }
+    
+    
+    
+            for(let i = 0 ; i < arr.length; i ++){
+                let li = document.createElement("li");
+                let liText = document.createTextNode(arr[i]);
+                let liAttri = document.createAttribute("class");
+                liAttri.value = "submenuList";
+                li.setAttributeNode(liAttri);
+                li.appendChild(liText);
+                subMenu.append(li);
+            }
+
+
+
+    }
+
+
+    
+
+
+}
 
