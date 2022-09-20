@@ -18,6 +18,9 @@ public class ExhibitionController {
 	public ModelAndView getDetail(ExhibitionDTO exhibitionDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		
+		if(exhibitionDTO.getExhibitionCode() == 2689) {
+			mv.setViewName("/store/exhibitions/exhibitions2689");
+		}
 		return mv;
 	}
 }

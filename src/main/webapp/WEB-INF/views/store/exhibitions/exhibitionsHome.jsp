@@ -10,7 +10,7 @@
     <title>인기상품 할인/단독 기획전 | 오늘의 직방 스토어</title>
     <link href="/resources/css/reset.css" rel="stylesheet">
 	<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
-    <link rel="stylesheet" href="/resources/css/store/exhibitions.css">
+    <link rel="stylesheet" href="/resources/css/store/exhibitionsHome.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -19,9 +19,9 @@
 
     <section class="container-fluid container-lg-8 mt-5">
 		<div class = "row justify-content-center mt-5">
-			<div class = "col-lg-7 row d-flex justify-content-between exhibitions-item-wrap">
+			<div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
-                    <a href="detail?exhibitionsCode=2689">
+                    <a href="detail?exhibitionCode=2689">
                         <div class="exhibitions-item-title">
                             <img src="/resources/images/store/exhibitions/exhibitionsHome/Samsung_6.jpg" alt="">
                             <div>
@@ -55,7 +55,7 @@
                 </div>
 			</div>
 
-            <div class = "col-lg-7 row d-flex justify-content-between exhibitions-item-wrap">
+            <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
                     <div class="exhibitions-item-title">
                         <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_1.jpg" alt="">
@@ -89,7 +89,7 @@
                 </div>
 			</div>
 
-            <div class = "col-lg-7 row d-flex justify-content-between exhibitions-item-wrap">
+            <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
                     <div class="exhibitions-item-title">
                         <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_1.jpg" alt="">
@@ -123,7 +123,7 @@
                 </div>
 			</div>
 
-            <div class = "col-lg-7 row d-flex justify-content-between exhibitions-item-wrap">
+            <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
                     <div class="exhibitions-item-title">
                         <img src="/resources/images/store/exhibitions/exhibitionsHome/just_1.jpg" alt="">
