@@ -41,20 +41,21 @@
 		<hr>
 		</div>
 		<div class = "row justify-content-center mt-5">
-			<div class = " col-lg-10 " id = "profile" style="height: 650px;" >
+			<div class = " col-lg-10 " id = "profile"  >
 				
 
 				<div id = "profile-id" class = "" >
-					<div>
-						<img alt="#" src="#">
+					<div id = "pf-img-box">
+						<img id = "pf-img" alt="#" src="/resources/images/NoProfile.png">
+					</div>
+					<div id = "pf-userName">
+						<h2>${memberDTO.userName }</h2>
 					</div>
 					
-					<h2>${memberDTO.userName }</h2>
 					<hr>
-					
-					<h3>장바구니</h3>
-					<h3>스크랩</h3>
-					<h3>등등</h3>
+					<div id = "pf-userAct">
+						<h4>장바구니</h4>
+					</div>
 
 
 				</div>

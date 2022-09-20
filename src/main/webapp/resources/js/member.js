@@ -348,31 +348,22 @@ function myPage(){
 
             if(event.target.id == "myPage-profile"){
     
-                 arr = ['프로필 홈', '내정보수정', '배송내역'];
+                 arr = ['정보수정', '멤버등급', '배송지정보'];
                  url = ['store/url1', 'store/url2', 'store/url3'];
         
-                if(arr.length != url.length){
-                    console.log(" arr url 사이즈 다름");
-                    return;
-                }
+                
             }else if(event.target.id == "myPage-shopping"){
     
-                 arr = ['쇼핑 홈', 'ㅂㅈㄷ', 'ㄷㄷㅈㄷㅈㄷ'];
-                 url = ['store/url1', 'store/url2', 'store/url3'];
+                 arr = ['장바구니', '배송내역', '구매내역','관심매물'];
+                 url = ['store/url1', 'store/url2', 'store/url3' , 'store/url4'];
         
-                if(arr.length != url.length){
-                    console.log(" arr url 사이즈 다름");
-                    return;
-                }
+                
             }else if(event.target.id == "myPage-write"){
     
-                 arr = ['프ㅌㅋㅊㅌㅋ로필 홈', 'ㅋㅌㅊ', 'ㅊㅊ'];
-                 url = ['store/url1', 'store/url2', 'store/url3'];
+                 arr = ['내 문의', '내 상품리뷰', '내 방리뷰', '내 게시글', '내 댓글'];
+                 url = ['store/url1', 'store/url2', 'store/url3','store/url4','store/url5'];
         
-                if(arr.length != url.length){
-                    console.log(" arr url 사이즈 다름");
-                    return;
-                }
+               
             }
 
 
@@ -394,7 +385,10 @@ function myPage(){
             subMenu.children[i].remove();
         }
     
-        
+        if(arr.length != url.length){
+            console.log(" arr url 사이즈 다름");
+            return;
+        }
     
     
     

@@ -15,7 +15,7 @@ section {
   min-height: 100%;
   
 }
-#homeCate > li > a{
+#homeCate > li > a , #subMenu > li > a {
 	
   font-weight: bold;
 	color: black;
@@ -41,13 +41,13 @@ footer{
   width: 1200px;
   margin: 15px auto 0px auto;
 }
-.hide >li {
+.hide >li{
   display: inline;
   cursor: pointer;
   font-size: 17px;
   margin-right: 50px;
   font-weight: 600;
-
+  
   color: #2f3438;
 }
 

@@ -9,13 +9,13 @@
         </a>
 		<div></div>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3 " id="homeCate">
-          <li class = ""><a href="#" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a>
+          <li><a href="#" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a>
     		</li>	
     			
-          <li class = ""><a href="#" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
+          <li><a href="#" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
    			</li>
-          <li class = ""><a href="#" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
-          <li class = ""><a href="#" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
+          <li><a href="#" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
+          <li><a href="#" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
         </ul>
 
        <!--  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
