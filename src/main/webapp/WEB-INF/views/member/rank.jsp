@@ -12,6 +12,10 @@
  <div class="pf-section">
  	<h1> hi</h1>
  	${member.roleDTOs[0].roleName }
+ 	
+ 	${member.userId }
+ 	${member.password }
+ 	${member.email}
  </div>
 
 

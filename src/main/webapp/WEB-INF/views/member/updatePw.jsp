@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -27,7 +28,7 @@
 		<form action="./updatePw" id = "pwUpdateForm" method="POST">
 			
 		    <input type="hidden" value ="${member.userId}" id="userId" name = "userId">
-		    
+		    <input type="hidden" value ="${member.password}" id="defaultPw" name = "defaultPw">
 		    <label for="newPassword" >새 비밀번호</label>
 		    <input type="password" id="newPassword" name = "password" class="form-control nonOverlab" placeholder="새 비밀번호" required>
 			
@@ -41,9 +42,10 @@
 </div>
 	
 	
-	<script type="text/javascript">
-		updatePW(${member.userId},${member.password});
-	</script>
+	
+<script type="text/javascript">
+	updatePw();
+</script>
 	
 	
 	

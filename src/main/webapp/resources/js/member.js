@@ -599,7 +599,7 @@ updateBtn.addEventListener("click",function(){
 
 
 // 비밀번호 변경 페이지 부분
-function updatePW(userId,userPw) {
+function updatePw() {
 
     const pwCheckBtn = document.querySelector("#pwCheckBtn");
     const password = document.querySelector("#password");
@@ -609,12 +609,17 @@ function updatePW(userId,userPw) {
     const pwUpdateForm = document.querySelector("#pwUpdateForm");
     const newPassword = document.querySelector("#newPassword");
     const newPasswordCheck = document.querySelector("#newPasswordCheck");
+    const defaultPw = document.querySelector("#defaultPw");
+    const Pvalue = defaultPw.value;
+    defaultPw.remove();
+
+
+
 
     pwCheckBtn.addEventListener("click",function(){
-
-       
-        if( password.value == userPw){
-            // 일치하면 유저 아이디를 jsp 로 넘겨줘서 세션과 일치하는지 확인해서 보여준다
+        
+        if( password.value == Pvalue){
+    
             pwCheckDiv.classList.toggle("pf-hidden");
             pwUpdateDiv.classList.toggle("pf-hidden");
 
