@@ -14,12 +14,19 @@ public class RealEstateDTO {
 	private Date dealDay;
 	private Long deal;
 	private Long deposit;
+	private Long wdeposit;
 	private Long monthly;
 	private Long floor;
 	private Long buildYear;
 	private String roadName;
 	private Long avg;
 	
+	public Long getWdeposit() {
+		return wdeposit;
+	}
+	public void setWdeposit(Long wdeposit) {
+		this.wdeposit = wdeposit;
+	}
 	public Long getAvg() {
 		return avg;
 	}

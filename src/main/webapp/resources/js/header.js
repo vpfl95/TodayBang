@@ -88,7 +88,7 @@ function headerCategory(cate){
     } else if(cate == "roomMenu"){
 
         arr = ['직방 홈', '아파트', '빌라'];
-        url = ['store/url1', 'store/url2', 'store/url3'];
+        url = ['store/url1', 'apt/map', 'villa/map'];
 
    }else if(cate == "comMenu"){
 
