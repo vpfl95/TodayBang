@@ -31,7 +31,12 @@ public class MemberController {
 
 		
 		if (memberDTO != null) {
-			
+			System.out.println("1"+ memberDTO.getUserId());
+			System.out.println("1"+ memberDTO.getPassword());
+			System.out.println("1"+ memberDTO.getEmail());
+			System.out.println("1"+ memberDTO.getRoleDTOs());
+			System.out.println("1");
+			System.out.println("1");
 			session.setAttribute("member", memberDTO);
 			mv.setViewName("/home");
 			

@@ -7,6 +7,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>rank</h1>
+
+
+ <div class="pf-section">
+ 	<h1> hi</h1>
+ 	${member.roleDTOs[0].roleName }
+ </div>
+
+
 </body>
 </html>

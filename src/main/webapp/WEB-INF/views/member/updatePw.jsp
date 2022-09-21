@@ -26,7 +26,7 @@
 	<div id="pwUpdateDiv" class =  "pf-hidden">
 		<form action="./updatePw" id = "pwUpdateForm" method="POST">
 			
-		    <input type="hidden" value ="${member.userId }" id="userId" name = "userId">
+		    <input type="hidden" value ="${member.userId}" id="userId" name = "userId">
 		    
 		    <label for="newPassword" >새 비밀번호</label>
 		    <input type="password" id="newPassword" name = "password" class="form-control nonOverlab" placeholder="새 비밀번호" required>

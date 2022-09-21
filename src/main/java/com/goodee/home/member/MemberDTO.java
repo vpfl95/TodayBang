@@ -1,9 +1,11 @@
 package com.goodee.home.member;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 
-@Component
+
 public class MemberDTO {
 
 	private String userId;
@@ -12,9 +14,15 @@ public class MemberDTO {
 	private String userName;
 	private String phone;
 	private String email;
-
+	private List<RoleDTO> roleDTOs;
 	
 	
+	public List<RoleDTO> getRoleDTOs() {
+		return roleDTOs;
+	}
+	public void setRoleDTOs(List<RoleDTO> roleDTOs) {
+		this.roleDTOs = roleDTOs;
+	}
 	public String getUserId() {
 		if(userId == null)userId = "";
 		

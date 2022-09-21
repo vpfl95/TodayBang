@@ -1,5 +1,7 @@
 package com.goodee.home.member;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,9 +25,16 @@ public class MemberDAO {
 	public int getJoin(MemberDTO memberDTO) throws Exception{
 		
 		
-		
 		return sqlSession.insert(NAMESPACE + "getJoin", memberDTO);
 	}
+	
+	public int setJoinRole(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.insert(NAMESPACE + "setJoinRole", memberDTO);
+	}
+	
+	
+	
 	
 	public MemberDTO getJoinOverlab(MemberDTO memberDTO) throws Exception{
 		
@@ -44,6 +53,8 @@ public class MemberDAO {
 		
 		return sqlSession.update(NAMESPACE+"setUpdatePw", memberDTO);
 	}
+	
+
 	
 	
 	

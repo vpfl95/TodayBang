@@ -2,6 +2,8 @@ package com.goodee.home.member;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -60,7 +62,7 @@ public class MemberTest extends MyAbstractTest{
 	}
 	
 	
-	@Test
+	//@Test
 		public void setUpdate() throws Exception{
 				
 			MemberDTO memberDTO = new MemberDTO();
@@ -77,6 +79,11 @@ public class MemberTest extends MyAbstractTest{
 			assertEquals(1, result);
 			
 		}
-	
+		
+		//@Test
+		public void getRoleTest() throws Exception{
+			
+		}
+		
 
 }
