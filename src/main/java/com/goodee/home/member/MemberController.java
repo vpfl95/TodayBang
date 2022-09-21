@@ -177,19 +177,30 @@ public class MemberController {
 	@PostMapping("update")
 	public String setUpdate(MemberDTO memberDTO,HttpSession session) throws Exception{
 		
-		
 		memberService.setUpdate(memberDTO);
 		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
 		memberDTO.setPassword(memberDTO2.getPassword());
 		session.setAttribute("member",memberDTO);
 		
-		
-		
-		
-		
 		return "redirect:./myPage";
 	}
 	
+	@GetMapping("updatePw")
+	public void getUpdatePw() throws Exception{
+			
+	}
+	
+	@PostMapping("updatePw")
+	public String setUpdatePw(MemberDTO memberDTO,HttpSession session) throws Exception{
+		
+		memberService.setUpdatePw(memberDTO);
+		
+		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
+		memberDTO2.setPassword(memberDTO.getPassword());
+		session.setAttribute("member",memberDTO2);
+		
+		return "redirect:./myPage";
+	}
 	
 	
 }

@@ -40,5 +40,11 @@ public class MemberDAO {
 	}
 	
 	
+	public int setUpdatePw(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE+"setUpdatePw", memberDTO);
+	}
+	
+	
 	
 }

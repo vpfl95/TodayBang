@@ -344,8 +344,8 @@ function myPage(){
 
             if(event.target.id == "myPage-profile"){
     
-                 arr = ['정보수정', '멤버등급', '배송지정보'];
-                 url = ['/member/profile', '/member/rank', '/member/delivery'];
+                 arr = ['정보수정', '비밀번호변경','멤버등급', '배송지정보'];
+                 url = ['/member/profile','/member/updatePw' ,'/member/rank', '/member/delivery'];
         
                 
             }else if(event.target.id == "myPage-shopping"){
@@ -564,7 +564,7 @@ function textmessage(input,message) {
 }
 
 
-// 회원가입 제출
+// 수정 제출
 updateBtn.addEventListener("click",function(){
 
     let redCheck = updateInput.getElementsByTagName('p');
@@ -590,9 +590,60 @@ updateBtn.addEventListener("click",function(){
 
     }else{
 
-        alert(" 회원 가입 조건을 만족해 주세요 ! ");
+        alert(" 프로필 수정 조건을 만족해 주세요 ! ");
 
     }
 
 })
+}
+
+
+// 비밀번호 변경 페이지 부분
+function updatePW(userId,userPw) {
+
+    const pwCheckBtn = document.querySelector("#pwCheckBtn");
+    const password = document.querySelector("#password");
+    const pwCheckDiv = document.querySelector("#pwCheckDiv");
+    const pwUpdateDiv = document.querySelector("#pwUpdateDiv");
+    const pwUpdateBtn = document.querySelector("#pwUpdateBtn");
+    const pwUpdateForm = document.querySelector("#pwUpdateForm");
+    const newPassword = document.querySelector("#newPassword");
+    const newPasswordCheck = document.querySelector("#newPasswordCheck");
+
+    pwCheckBtn.addEventListener("click",function(){
+
+       
+        if( password.value == userPw){
+            // 일치하면 유저 아이디를 jsp 로 넘겨줘서 세션과 일치하는지 확인해서 보여준다
+            pwCheckDiv.classList.toggle("pf-hidden");
+            pwUpdateDiv.classList.toggle("pf-hidden");
+
+        }else{
+
+            alert(" 비밀번호가 일치하지 않습니다. ");
+
+        }
+
+        
+
+
+
+    })
+
+
+    pwUpdateBtn.addEventListener("click",function(){
+
+        if( newPassword.value == newPasswordCheck.value){
+            pwUpdateForm.submit();
+
+        }else{
+
+            alert(" 비밀번호가 일치하지 않습니다. ");
+
+        }
+
+
+    })
+
+
 }

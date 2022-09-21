@@ -33,5 +33,8 @@ public class MemberService {
 		return memberDAO.setUpdate(memberDTO);
 	}
 	
-	
+	public int setUpdatePw(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.setUpdatePw(memberDTO);
+	}
 }

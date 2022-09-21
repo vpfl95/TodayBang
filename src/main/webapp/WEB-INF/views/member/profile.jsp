@@ -15,10 +15,6 @@
 	<div>
 	
 	
-	
-	
-	
-
 				<form action="./update" method="post" id = "updateForm" >
 		        		<div id = "updateInput">
 			        		<label for="userId">아이디</label>
