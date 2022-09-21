@@ -109,16 +109,31 @@ public class MemberController {
 		
 		memberDTO = memberService.getJoinOverlab(memberDTO);
 		
-		
-		
-		
 		if(memberDTO != null) {
 			// 사용 불가
 			return "0";
 			
 		}
+		// 사용 가능
+		return "1";
+	}
+	
+	@PostMapping("updateOverlab")
+	@ResponseBody
+	public String getUpdateOverlab(MemberDTO memberDTO,HttpSession session) throws Exception{
 		
 		
+		
+		memberDTO = memberService.getJoinOverlab(memberDTO);
+		MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
+		
+		
+		if(memberDTO != null && !memberDTO.getNickname().equals(memberDTO2.getNickname()) ) {
+			// 사용 불가
+		
+			return "0";
+			
+		}
 		// 사용 가능
 		return "1";
 	}
@@ -160,15 +175,19 @@ public class MemberController {
 	}
 	
 	@PostMapping("update")
-	public int setUpdate(MemberDTO memberDTO) throws Exception{
+	public String setUpdate(MemberDTO memberDTO,HttpSession session) throws Exception{
 		
 		
-		int result = memberService.setUpdate(memberDTO);
-		System.out.println("update 성공");
+		memberService.setUpdate(memberDTO);
+		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
+		memberDTO.setPassword(memberDTO2.getPassword());
+		session.setAttribute("member",memberDTO);
 		
 		
 		
-		return result;
+		
+		
+		return "redirect:./myPage";
 	}
 	
 	

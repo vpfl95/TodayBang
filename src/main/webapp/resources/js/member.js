@@ -494,7 +494,7 @@ function checkOvetlab(value,inputForm){
     if(value != ""){
         const xhttp = new XMLHttpRequest();
 
-        xhttp.open("POST","./joinOverlab");
+        xhttp.open("POST","./updateOverlab");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
         xhttp.send(inputForm.id +"="+ value)
         xhttp.onreadystatechange= function(){
@@ -563,4 +563,36 @@ function textmessage(input,message) {
     }
 }
 
+
+// 회원가입 제출
+updateBtn.addEventListener("click",function(){
+
+    let redCheck = updateInput.getElementsByTagName('p');
+    let nullCheck = updateInput.getElementsByTagName('input');
+    let result = 0;
+    for(nu of nullCheck){
+
+        if(nu.value == ""){
+            result += 1;
+        }
+
+    }
+
+    console.log(result);
+
+
+
+
+    if(redCheck.length == 0 && result == 0){
+        updateForm.submit();
+    }else if(result !=0){
+        alert(" 입력되지 않은 란이 있습니다 ! ");
+
+    }else{
+
+        alert(" 회원 가입 조건을 만족해 주세요 ! ");
+
+    }
+
+})
 }

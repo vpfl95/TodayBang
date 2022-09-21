@@ -22,7 +22,7 @@
 				<form action="./update" method="post" id = "updateForm" >
 		        		<div id = "updateInput">
 			        		<label for="userId">아이디</label>
-					        <input type="text" value ="${member.userId }" disabled="disabled" id="userId" name = "userId" class="form-control nonOverlab" placeholder="아이디" required autofocus>
+					        <input type="text" value ="${member.userId }" readonly="readonly" id="userId" name = "userId" class="form-control nonOverlab" placeholder="아이디" required autofocus>
 					        
 					        <label for="nickname" >닉네임</label>
 					        <input type="text" value ="${member.nickname }" id="nickname" name = "nickname" class="form-control nonOverlab" placeholder="닉네임" required>
@@ -71,7 +71,7 @@
 		        		</div>
 						
 				       
-				        <button id="updateBtn" class="w-100 btn btn-lg btn-primary" type="submit">수정</button>
+				        <button id="updateBtn" class="w-100 btn btn-lg btn-primary" type="button">수정</button>
 				        
 				        
 					</form>
