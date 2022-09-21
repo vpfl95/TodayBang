@@ -42,7 +42,7 @@ public class MemberTest extends MyAbstractTest{
 		assertEquals(1, result);
 		
 	}
-	@Test
+	//@Test
 	public void JoinOverlabTest() throws Exception{
 		
 		MemberDTO memberDTO = new MemberDTO();
@@ -59,6 +59,24 @@ public class MemberTest extends MyAbstractTest{
 		
 	}
 	
+	
+	@Test
+		public void setUpdate() throws Exception{
+				
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setUserId("4444");
+			
+			memberDTO.setNickname("nick44");
+			memberDTO.setEmail("email44");
+			memberDTO.setPhone("phone44");
+			memberDTO.setUserName("name44");
+			
+			
+			int result = memberDAO.setUpdate(memberDTO);
+			
+			assertEquals(1, result);
+			
+		}
 	
 
 }

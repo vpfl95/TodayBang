@@ -159,5 +159,18 @@ public class MemberController {
 		
 	}
 	
+	@PostMapping("update")
+	public int setUpdate(MemberDTO memberDTO) throws Exception{
+		
+		
+		int result = memberService.setUpdate(memberDTO);
+		System.out.println("update 성공");
+		
+		
+		
+		return result;
+	}
+	
+	
 	
 }

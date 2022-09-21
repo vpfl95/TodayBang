@@ -136,14 +136,14 @@
 }
 
 
-#joinForm{
+#updateForm{
 	overflow : hidden;
 	width: 500px;
 	
 }
 
 
-#joinInput > label{
+#updateInput > label{
 	
 	margin-top : 30px;
 	margin-bottom: 5px;

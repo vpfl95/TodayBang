@@ -28,4 +28,10 @@ public class MemberService {
 		return memberDAO.getJoinOverlab(memberDTO);
 	}
 	
+	public int setUpdate(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.setUpdate(memberDTO);
+	}
+	
+	
 }

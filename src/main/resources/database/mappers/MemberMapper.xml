@@ -17,4 +17,8 @@
 			</select>
 		
 		
+			<update id="setUpdate" parameterType="MemberDTO">
+			UPDATE MEMBERS SET NICKNAME = #{nickname}, PHONE = #{phone} , EMAIL =#{email} ,USERNAME = #{userName} WHERE USERID = #{userId}
+			</update>
+		
 		</mapper>

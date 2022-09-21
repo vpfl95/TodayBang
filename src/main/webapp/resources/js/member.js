@@ -79,16 +79,23 @@ function join(){
 
             
             input.previousSibling.previousSibling.style.color='red';
-            input.style.borderColor = 'red';
             input.nextSibling.style.color = 'red';
 
-            if(input == pwCheck){
+            if(input == email || input == phone){
+                let inputlist = input.getElementsByClassName("nonOverlab");
+                
+                for(inl of inputlist){
+                    inl.style.borderColor = 'red';
+                }
+
+
+            }else if(input == pwCheck){
                 password.previousSibling.previousSibling.style.color='red';
                 password.style.borderColor = 'red';
 
+            }else{
+                input.style.borderColor = 'red';
             }
-
-
 
         }else{
             
@@ -100,18 +107,22 @@ function join(){
                 password.previousSibling.previousSibling.style.color='';
                 password.style.borderColor = '';
 
+            }else if(input == email || input == phone){
+                let inputlist = input.getElementsByClassName("nonOverlab");
+                
+                for(inl of inputlist){
+                    inl.style.borderColor = '';
+                }
+
+
             }
         }
-           
-
     }
 
 
     phoneF.addEventListener("change",function(){
         phoneM.focus();
         
-        
-
     })
 
     phoneM.addEventListener("keyup",function(){
@@ -122,9 +133,7 @@ function join(){
 
     })
 
-
-
-
+    // 중복 확인 부분
     for(NOL of  nonOverlab){
         NOL.addEventListener("change", function(event){
 
@@ -145,7 +154,6 @@ function join(){
             else if(event.target.name == "email1"){
 
                 if(emailF.value== "" || emailAt.value == "0"){
-                    
                     return;
 
                 }else{
@@ -154,100 +162,63 @@ function join(){
                     
                     checkOvetlab(emailValue,email);
                 }
-
-
-
-
             }else if(event.target.name == "userId"){
 
                 if(userId.value.length < 3){
-            
                     message = "ID는 2글자 이상"
                     textmessage(userId,message);;
                 }else{
-        
                     checkOvetlab(event.target.value,event.target);
-        
                 }
                 
 
             }else if(event.target.name == "nickname"){
                 if(nickname.value.length < 3){
-            
                     message = "닉넴은 2글자 이상"
                     textmessage(nickname,message);;
                 }else{
-        
                     checkOvetlab(event.target.value,event.target);
         
                 }
-
-
             }
         })
     }
 
-
-    // 중복 확인 부분
+// 중복 확인 Ajax
     function checkOvetlab(value,inputForm){
-        
 
-            
-            
-            if(value != ""){
-                const xhttp = new XMLHttpRequest();
+        if(value != ""){
+            const xhttp = new XMLHttpRequest();
 
-                xhttp.open("POST","./joinOverlab");
-                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.open("POST","./joinOverlab");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send(inputForm.id +"="+ value)
+            xhttp.onreadystatechange= function(){
 
-                
+                if(xhttp.readyState == 4 && xhttp.status ==200){
+                    let result = xhttp.responseText.trim();
+                    
+                    if(result == 0){
+                        message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
+                        textmessage(inputForm,message);
 
-                xhttp.send(inputForm.id +"="+ value)
-                
-                xhttp.onreadystatechange= function(){
-
-                    if(xhttp.readyState == 4 && xhttp.status ==200){
-                        let result = xhttp.responseText.trim();
+                    }else if(result == 1){
+                        message = ""
+                        textmessage(inputForm,message);
                         
-                        if(result == 0){
-                            
-                            message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
-                            textmessage(inputForm,message);
-
-
-                        }else if(result == 1){
-                            message = ""
-                            textmessage(inputForm,message);
-                            
-
-                        }
-
                     }
-
                 }
-
             }
-         
-            
-
-
+        }
     }
+    
 
 
 
     joinBtn.addEventListener("click",function(){
 
         
-        
-        
-
-
-
-
-
     })
-    
-
 }
 
 
@@ -420,7 +391,7 @@ function myPage(){
 
 }
 
-// 프로필 부분
+// 마이페이지 - 프로필 부분
 function profile() {
 
     const emailF = document.querySelector("#emailFirst");
@@ -432,19 +403,139 @@ function profile() {
     emailF.value = splitEmail[0];
     emailAt.value = splitEmail[1];
 
-
-    
-
-    const phoneFirst = document.querySelector("#phoneFirst");
-    const phoneMiddle = document.querySelector("#phoneMiddle");
-    const phoneLast = document.querySelector("#phoneLast");
+    const phoneF = document.querySelector("#phoneFirst");
+    const phoneM = document.querySelector("#phoneMiddle");
+    const phoneL = document.querySelector("#phoneLast");
     const submitPhone = document.querySelector("#submitPhone");
 
 
     let splitPhone =  submitPhone.value.split("-");
     
-    phoneFirst.value = splitPhone[0];
-    phoneMiddle.value = splitPhone[1];
-    phoneLast.value = splitPhone[2];
+    phoneF.value = splitPhone[0];
+    phoneM.value = splitPhone[1];
+    phoneL.value = splitPhone[2];
+
+
+
+
+    const nonOverlab = document.getElementsByClassName("nonOverlab");
+    const phone = document.querySelector("#phone");
+    const email = document.querySelector("#email");
+
+ // 중복 확인 부분
+ for(NOL of  nonOverlab){
+    NOL.addEventListener("change", function(event){
+
+        
+        if(event.target.name =="phone1" ){
+            if(phoneM.value== "" || phoneL.value == ""){
+                
+                return;
+
+            }else{
+                let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
+                submitPhone.value = phoneValue;
+                
+                checkOvetlab(phoneValue,phone);
+            }
+            
+        }
+        else if(event.target.name == "email1"){
+
+            if(emailF.value== "" || emailAt.value == "0"){
+                return;
+
+            }else{
+                let emailValue = emailF.value + "@" + emailAt.value;
+                submitEmail.value = emailValue;
+                
+                checkOvetlab(emailValue,email);
+            }
+        }else if(event.target.name == "nickname"){
+            if(nickname.value.length < 3){
+                message = "닉넴은 2글자 이상"
+                textmessage(nickname,message);;
+            }else{
+                checkOvetlab(event.target.value,event.target);
+    
+            }
+        }
+    })
+}
+
+// 중복 확인 Ajax
+function checkOvetlab(value,inputForm){
+
+    if(value != ""){
+        const xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST","./joinOverlab");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send(inputForm.id +"="+ value)
+        xhttp.onreadystatechange= function(){
+
+            if(xhttp.readyState == 4 && xhttp.status ==200){
+                let result = xhttp.responseText.trim();
+                
+                if(result == 0){
+                    message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
+                    textmessage(inputForm,message);
+
+                }else if(result == 1){
+                    message = ""
+                    textmessage(inputForm,message);
+                    
+                }
+            }
+        }
+    }
+}
+
+function textmessage(input,message) {
+    let text = document.createElement("p");
+    let textArr = document.createAttribute("id");
+    textArr.value = input.id + "Text";
+    
+    if(input.nextSibling.nextSibling.id == textArr.value ){
+
+        input.nextSibling.nextSibling.remove();
+        
+    }else if(input.nextSibling.id == textArr.value){
+
+        input.nextSibling.remove();
+        
+
+    }
+    if(message != ""){
+        
+        input.after(text);
+        text.innerText= message;
+        text.setAttributeNode(textArr);
+
+        
+        input.previousSibling.previousSibling.style.color='red';
+        input.style.borderColor = 'red';
+        input.nextSibling.style.color = 'red';
+
+        if(input == email || input == phone){
+            let inputlist = input.getElementsByClassName("nonOverlab");
+            
+            for(inl of inputlist){
+                inl.style.borderColor = 'red';
+            }
+        }
+    }else{
+        
+        input.previousSibling.previousSibling.style.color='';
+        input.style.borderColor = '';
+        if(input == email || input == phone){
+            let inputlist = input.getElementsByClassName("nonOverlab");
+            
+            for(inl of inputlist){
+                inl.style.borderColor = '';
+            }
+        }
+    }
+}
 
 }
