@@ -214,10 +214,36 @@ function join(){
     
 
 
-
+    // 회원가입 제출
     joinBtn.addEventListener("click",function(){
 
-        
+        let redCheck = joinInput.getElementsByTagName('p');
+        let nullCheck = joinInput.getElementsByTagName('input');
+        let result = 0;
+        for(nu of nullCheck){
+
+            if(nu.value == ""){
+                result += 1;
+            }
+
+        }
+
+        console.log(result);
+
+
+
+
+        if(redCheck.length == 0 && result == 0){
+            joinForm.submit();
+        }else if(result !=0){
+            alert(" 입력되지 않은 란이 있습니다 ! ");
+
+        }else{
+
+            alert(" 회원 가입 조건을 만족해 주세요 ! ");
+
+        }
+
     })
 }
 
@@ -367,7 +393,6 @@ function myPage(){
             let liText = document.createTextNode(arr[i]);
             
 
-            
             let aAttri = document.createAttribute("data-a");
             aAttri.value = url[i];
             li.setAttributeNode(aAttri);
