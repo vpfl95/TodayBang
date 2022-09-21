@@ -4,7 +4,7 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.goodee.home.store.product.ProductDAO">
 	<insert id="setProduct" parameterType="ProductDTO">
-		INSERT INTO PRODUCT VALUES (#{productNum}, #{price}, #{stock}, #{saleRate}, #{brand}, #{regDate},
+		INSERT INTO PRODUCT VALUES (#{productNum}, #{price}, #{stock}, #{saleRate}, #{brand}, SYSDATE,
 		#{deliDate}, #{todayDeal}, #{premium}, #{deliFee}, #{point})
 	</insert>
 	
@@ -12,4 +12,19 @@
 		SELECT * FROM CATEGORY
 	</select>
 	
+	<insert id="setCategory" parameterType="Cate_ProductDTO">
+		INSERT INTO "CATE-PRODUCT" VALUES (CATE_SEQ.NEXTVAL, #{categoryNum}, #{productNum})
+	</insert>
+	
+	<insert id="setOption1" parameterType="OptionDTO">
+		INSERT INTO OPTION1 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
+	</insert>
+	
+	<insert id="setOption2" parameterType="OptionDTO">
+		INSERT INTO OPTION2 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
+	</insert>
+	
+	<insert id="setOption3" parameterType="OptionDTO">
+		INSERT INTO OPTION3 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
+	</insert>
 </mapper>

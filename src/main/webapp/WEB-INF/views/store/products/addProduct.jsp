@@ -48,11 +48,15 @@
                         <div class="inputWrap">
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon1">상품코드</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="productNum">
+                                <input type="text" class="form-control" aria-describedby="basic-addon1" name="productNum" value="1111">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon2">단가</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon2" name="price">
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text" id="basic-addon2">매물</span>
+                                <input type="text" class="form-control" aria-describedby="basic-addon2" name="stock">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon3">할인율</span>
@@ -64,11 +68,11 @@
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon5">배송예정일</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon5" name="deliDate">
+                                <input type="date" class="form-control" aria-describedby="basic-addon5" name="deliDate">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon6">오늘의딜</span>
-                                <input type="text" class="form-control" aria-describedby="basic-addon6" name="todayDeal">
+                                <input type="date" class="form-control" aria-describedby="basic-addon6" name="todayDeal">
                             </div>
                             <div class="input-group mb-3">
                                 <span class="input-group-text" id="basic-addon7">배송비</span>
@@ -80,7 +84,8 @@
                             </div>
                             <div class="input-group mb-3">
                                 <div class="input-group-text">
-                                  <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input">
+                                  <input type="hidden" name="premium" id="premium" value=0>
+                                  <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input" id="cbxPremium">
                                   <span class="ms-3">프리미엄 여부</span>
                                 </div>
                             </div>
@@ -93,8 +98,38 @@
                                 <h4>Option1</h4>
                                 <div class="input-group">
                                     <span class="input-group-text" style="width: 35%;">Name and Price</span>
-                                    <input type="text" class="form-control" name="optionName" style="width: 50%;">
-                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;">
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName" style="width: 50%;" value="aaaa">
+                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;" value="1234">
                                 </div>
                             </div>
 
@@ -105,10 +140,70 @@
                                     <input type="text" class="form-control" name="optionName2" style="width: 50%;">
                                     <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
                                 </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName2" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName2" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName2" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName2" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName2" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName2" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice2" style="width: 15%;">
+                                </div>
                             </div>
 
                             <div class="op3 option">
                                 <h4>Option3</h4>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName3" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice3" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName3" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice3" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName3" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice3" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName3" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice3" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName3" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice3" style="width: 15%;">
+                                </div>
+                                <div class="input-group">
+                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
+                                    <input type="text" class="form-control" name="optionName3" style="width: 50%;">
+                                    <input type="text" class="form-control" name="optionPrice3" style="width: 15%;">
+                                </div>
                                 <div class="input-group">
                                     <span class="input-group-text" style="width: 35%;">Name and Price</span>
                                     <input type="text" class="form-control" name="optionName3" style="width: 50%;">

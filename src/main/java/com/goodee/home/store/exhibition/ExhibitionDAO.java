@@ -16,4 +16,8 @@ public class ExhibitionDAO {
 	public List<ExhibitionDTO> getExhibition() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getExhibition");
 	}
+	
+	public int setExhibition(Ex_ProductDTO ex_ProductDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setExhibition", ex_ProductDTO);
+	}
 }

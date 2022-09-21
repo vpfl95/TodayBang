@@ -2,6 +2,8 @@ const category = document.querySelector("#category");
 const cate1 = document.querySelector("#cate1");
 const cate2 = document.querySelector("#cate2");
 const cate3 = document.querySelector("#cate3");
+const premium = document.querySelector("#premium");
+const cbxPremium = document.querySelector("#cbxPremium");
 const exhibition = document.querySelector("#exhibition");
 const btnAddProduct = document.querySelector("#btnAddProduct");
 let jsonCategory; 
@@ -107,8 +109,10 @@ function getExhibition() {
     }
 }
 
-// btnAddProduct.onclick=function() {
-//     console.log('cate1 = ',cate1.value);
-//     console.log('cate2 = ',cate2.value);
-//     console.log('cate3 = ',cate3.value);
-// }
+cbxPremium.onchange=function(){
+    if(cbxPremium.checked) {
+        premium.value=1;
+    } else {
+        premium.value=0;
+    }
+}

@@ -6,4 +6,8 @@
 	<select id="getExhibition" resultType="ExhibitionDTO">
 		SELECT * FROM EXHIBITION
 	</select>
+	
+	<insert id="setExhibition" parameterType="Ex_ProductDTO">
+		INSERT INTO "EX-PRODUCT" VALUES (CATE_SEQ.NEXTVAL, #{exhibitionCode}, #{productNum})
+	</insert>
 </mapper>

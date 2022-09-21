@@ -25,11 +25,20 @@ public class ProductController {
 	}
 	
 	@PostMapping("add")
-	public String setProduct(Cate_ProductDTO cate_ProductDTO, Ex_ProductDTO ex_ProductDTO,
-			String[] optionName, String[] optionName1, String[] optionName2,
-			String[] optionPrice, String[] optionPrice1, String[] optionPrice2,
+	public String setProduct(ProductDTO productDTO, Cate_ProductDTO cate_ProductDTO, Ex_ProductDTO ex_ProductDTO,
+			String[] optionName, String[] optionName2, String[] optionName3,
+			Long[] optionPrice, Long[] optionPrice2, Long[] optionPrice3,
 			MultipartFile[] productDetail, MultipartFile[] productImage) throws Exception {
-		System.out.println("test");
+		
+//		productService.setProduct(productDTO);
+//		productService.setCategory(cate_ProductDTO);
+		
+		productService.setOption(optionName, optionPrice, productDTO.getProductNum(), 1);
+		productService.setOption(optionName2, optionPrice2, productDTO.getProductNum(), 2);
+		productService.setOption(optionName3, optionPrice3, productDTO.getProductNum(), 3);
+		productService.setExhibition(ex_ProductDTO);
+		
+		
 		return "redirect:./add";
 	}
 	
