@@ -58,7 +58,7 @@
 				      <td><div id= "phone">
 					        	<input type="hidden" name = "phone" id="submitPhone" value ="${delivery[num].phone }">
 						       
-						        <select name="phone1" id="phoneFirst" class="form-control nonOverlab" required>
+						        <select name="phone1" id="phoneFirst" class="form-control " required>
 						         	<option value="010"  selected="selected">010</option>
 						         	<option value="011"  >011</option>
 						         	<option value="070"  >070</option>

@@ -232,8 +232,10 @@ public class MemberController {
 		
 	}
 	@PostMapping("addDelivery")
-	public String setDelivery(DeliveryDTO deliveryDTO) throws Exception{
+	public String setDelivery(DeliveryDTO deliveryDTO,HttpSession session) throws Exception{
 		
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
+		deliveryDTO.setUserId(memberDTO.getUserId());
 		int result = memberService.setDelivey(deliveryDTO);
 		
 		return "redirect:./myPage";

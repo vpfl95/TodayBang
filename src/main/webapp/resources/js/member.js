@@ -679,13 +679,52 @@ function delivery(){
 
     const delUpdateBtn = document.querySelector("#delUpdateBtn");
     const deliveryForm = document.querySelector("#deliveryForm");
-   
+    const deliveryHead = document.querySelector("#deliveryHead");
+    const phoneF = document.querySelector("#phoneFirst");
+    const phoneM = document.querySelector("#phoneMiddle");
+    const phoneL = document.querySelector("#phoneLast");
+    const submitPhone = document.querySelector("#submitPhone");
+
+
+    let splitPhone =  submitPhone.value.split("-");
+    
+    phoneF.value = splitPhone[0];
+    phoneM.value = splitPhone[1];
+    phoneL.value = splitPhone[2];
+
+
     delUpdateBtn.addEventListener("click",function(){
 
 
+       
+    let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
+    submitPhone.value = phoneValue;
+               
 
 
-        deliveryForm.submit();
+
+
+
+
+
+
+        if(deliveryHead.title == 3){
+
+           console.log(deliveryForm.action);
+           deliveryForm.action="./addDelivery";
+           console.log(deliveryForm.action);
+           deliveryForm.submit();
+
+        }else{
+
+            deliveryForm.submit();
+
+
+
+        }
+
+
+        
 
     })
   
