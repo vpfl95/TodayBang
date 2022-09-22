@@ -11,16 +11,24 @@
 
 
  <div class="pf-section">
- 	<h1> hi</h1>
+ 	<h1> 회원 등급</h1>
  	
  	<c:forEach items="${member.roleDTOs }" var="dto">
- 		<c:if test="${dto.roleNum < 10 }"  >
- 			관리자 등급 ${dto.roleName }
- 			
- 		</c:if>
- 		<c:if test="${dto.roleNum > 9 }"  >
- 			회원 등급 ${dto.roleName }
- 		</c:if>
+ 		<c:choose>
+ 			<c:when test="${dto.roleNum eq 10}">
+ 				<img alt="" src="/resources/images/rank/Diamond.png">
+ 			</c:when>
+ 			<c:when test="${dto.roleNum eq 11}">
+ 				<img alt="" src="/resources/images/rank/Gold.png">
+ 			</c:when>
+ 			<c:when test="${dto.roleNum eq 12}">
+ 				<img alt="" src="/resources/images/rank/Silver.png">
+ 			</c:when>
+ 			<c:when test="${dto.roleNum eq 13}">
+ 				<img alt="" src="/resources/images/rank/White.png">
+ 			</c:when>
+ 		
+ 		</c:choose>
  	</c:forEach>
  	
  	

@@ -345,7 +345,7 @@ function myPage(){
             if(event.target.id == "myPage-profile"){
     
                  arr = ['정보수정', '비밀번호변경','멤버등급', '배송지정보'];
-                 url = ['/member/profile','/member/updatePw' ,'/member/rank', '/member/delivery'];
+                 url = ['/member/profile','/member/updatePw' ,'/member/rank', '/member/delivery?num=0'];
         
                 
             }else if(event.target.id == "myPage-shopping"){
@@ -653,7 +653,7 @@ function updatePw() {
 
 }
 
-function delivery(){
+function addDelivery(){
     const deliveryBtn = document.querySelector("#deliveryBtn");
     const deliveryForm = document.querySelector("#deliveryForm");
 
@@ -670,4 +670,10 @@ function delivery(){
     })
 
 
+
+
 }
+
+
+
+

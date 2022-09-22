@@ -201,16 +201,17 @@ public class MemberController {
 	
 	
 	@GetMapping("delivery")
-	public ModelAndView getDelivery(HttpSession session) throws Exception{
+	public ModelAndView getDelivery(HttpSession session,int num) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<DeliveryDTO> ar =memberService.getDelivey(memberDTO);
-	
+		
 		if(ar.size() != 0) {
 			
 			mv.addObject("check", true);
 			mv.addObject("delivery", ar);
+			mv.addObject("num", num);
 			
 		}else {
 			mv.addObject("check", false);

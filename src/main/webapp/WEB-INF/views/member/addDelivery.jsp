@@ -44,7 +44,7 @@
 
 <script type="text/javascript">
 
-	delivery();
+	addDelivery();
 </script>
 
 </body>
