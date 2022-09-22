@@ -14,11 +14,11 @@
 		.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 		#centerAddr {display:block;margin-top:2px;font-weight: normal;}
 		.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
-		.fPDpqH{display: flex;flex: 1 1 0%;-webkit-box-pack: center;justify-content: center;pointer-events: none;flex-direction: column;line-height: 1.2;background-size: 100%;text-align: center;user-select: none;}
-		.huWuZn {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);overflow: hidden;text-overflow: ellipsis;}
-		.hrGsUf {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: white;}
-		.fXZOVD {position: relative;pointer-events: none;background-size: 100%;background-repeat: no-repeat;text-align: center;user-select: none;}
-		.ljqnne{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: white;}
+		.custom{display: flex;flex: 1 1 0%;-webkit-box-pack: center;justify-content: center;pointer-events: none;flex-direction: column;line-height: 1.2;background-size: 100%;text-align: center;user-select: none;}
+		.building {position: relative;cursor: pointer;background-size: 100%;background-repeat: no-repeat;text-align: center;user-select: none;}
+		.building-top{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: white;}
+		.building-bot {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: white;}
+		.building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);overflow: hidden;text-overflow: ellipsis;}
 	</style>
 </head>
 <body>
@@ -33,9 +33,6 @@
 		</div>
 	</div>
 	
-	<!-- <div class="sc-jNMcJZ fPDpqH" style="width: 85px; height: 53px; background-image: url(/resources/images/local.png);"> -->
-	
-	</div>
 
 	<c:forEach items="${list}" var="dto">
 		<div class="dto">${dto.roadName} ${dto.sigungu} ${dto.buildingNm}</div>

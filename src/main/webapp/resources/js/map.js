@@ -16,6 +16,7 @@ let getRegion_result;
 var markers = []
 var marker_overlays = []
 
+
 getCurPosition();
 // 현재 지도 중심좌표로 주소를 검색해서 지도 좌측 상단에 표시합니다
 BAddrFromCoords(map.getCenter(), displayCenterInfo);
@@ -28,7 +29,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
     HAddrFromCoords(map.getCenter(), displayCenterInfo);
     
     setCustomOverlays(null, overlays);
-    // setCustomOverlays(null, marker_overlays);
+    setCustomOverlays(null, marker_overlays);
     // hideMarkers(null);
 
     getRegionName();
@@ -46,7 +47,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
             }else{
                 addCustomOverlay(getRegion_result[i].emd, getRegion_result[i].lat, getRegion_result[i].lon);   
             }
-        },20);
+        },10);
     }
 
 
@@ -94,7 +95,7 @@ function addCustomOverlay(name,lat,long){
     // 커스텀 오버레이에 표시할 내용입니다     
     // HTML 문자열 또는 Dom Element 입니다
     var content = '<div style="position: absolute; cursor: pointer; white-space: nowrap;">' + 
-                    '<div class="sc-jNMcJZ fPDpqH" style="width: 85px; height: 53px; background-image: url(/resources/images/local.png);">' +
+                    '<div class="sc-jNMcJZ custom" style="width: 85px; height: 53px; background-image: url(/resources/images/local.png);">' +
                        ' <div class="sc-dOSRxR jbhFAf" style="color: rgb(254, 254, 254);">' + name + '</div>' +
                     '</div>' + 
                 '</div>';
@@ -151,11 +152,11 @@ function getRegionName(){
 
 
 //-------------------------매물 주소를 좌표로 변경해 마커 찍고 클러스터러 처리----------------------------
-var marker
+//var marker
 
 //매물 마커 생성 함수
 function addMarker(address_result){
-
+    
     var imageSrc = '/resources/images/apartment.png', // 마커이미지의 주소입니다    
     imageSize = new kakao.maps.Size(56, 70), // 마커이미지의 크기입니다
     imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
@@ -168,6 +169,31 @@ function addMarker(address_result){
         setTimeout(function(){
             let unit
             var content
+            var building_top
+            var building_bot
+            var building_name
+
+            content = document.createElement("div")
+            content.className = "building"
+            content.style = "width: 56px; height: 70px;background-image: url('/resources/images/apartment.png')"
+            content.setAttribute("data-roadName",address_result[i].roadName);
+            
+            
+            building_top = document.createElement("div")
+            building_top.className = "sc-cBNeex building-top"
+            building_top.innerText = "매매"
+            content.appendChild(building_top)
+
+            building_bot = document.createElement("div")
+            building_bot.className = "sc-gWHigU building-bot"
+            building_bot.innerText = address_result[i].avg + unit
+            content.appendChild(building_bot)
+
+            building_name = document.createElement("div")
+            building_name.className = "sc-citxvW building-name"
+            building_name.innerText = address_result[i].buildingNm
+            content.appendChild(building_name)
+
             if(address_result[i].avg!=null){
                 if(address_result[i].avg.toString().length<5){
                     unit = "만"
@@ -176,11 +202,14 @@ function addMarker(address_result){
                     address_result[i].avg = address_result[i].avg.toFixed(1)
                     unit="억"
                 }
-                content = '<div class="sc-hiSbEG fXZOVD" style="width: 56px; height: 70px;">'+  
-                                '<div class="sc-cBNeex ljqnne">' + '매매' + '</div>'+
-                                '<div class="sc-gWHigU hrGsUf">'+ address_result[i].avg + unit + '</div>' +
-                                '<div class="sc-citxvW huWuZn">' + address_result[i].buildingNm + '</div>'+
-                            '</div>'
+        
+                building_top.innerText = "매매"
+                building_bot.innerText = address_result[i].avg + unit
+                // content = '<div class="sc-hiSbEG building" style="width: 56px; height: 70px;">'+  
+                //                 '<div class="sc-cBNeex building-top">' + '매매' + '</div>'+
+                //                 '<div class="sc-gWHigU building-bot">'+ address_result[i].avg + unit + '</div>' +
+                //                 '<div class="sc-citxvW building-name">' + address_result[i].buildingNm + '</div>'+
+                //             '</div>'
             }else if(address_result[i].monthly!=null && address_result[i].deposit==null){
                 if(address_result[i].wdeposit.toString().length<5){
                     unit = "만"
@@ -189,11 +218,8 @@ function addMarker(address_result){
                     address_result[i].wdeposit = address_result[i].wdeposit.toFixed(1)
                     unit="억"
                 }
-                content = '<div class="sc-hiSbEG fXZOVD" style="width: 56px; height: 70px;">'+  
-                            '<div class="sc-cBNeex ljqnne">' + '월세' + '</div>'+
-                            '<div class="sc-gWHigU hrGsUf">'+ address_result[i].wdeposit + unit + '/' + address_result[i].monthly + '</div>' +
-                            '<div class="sc-citxvW huWuZn">' + address_result[i].buildingNm + '</div>'+
-                        '</div>'
+                building_top.innerText = "월세"
+                building_bot.innerText = address_result[i].wdeposit + unit + '/' + address_result[i].monthly
             }else if(address_result[i].monthly==null && address_result[i].deposit!=null){
                 if(address_result[i].deposit.toString().length<5){
                     unit = "만"
@@ -202,11 +228,9 @@ function addMarker(address_result){
                     address_result[i].deposit = address_result[i].deposit.toFixed(1)
                     unit="억"
                 }
-                content = '<div class="sc-hiSbEG fXZOVD" style="width: 56px; height: 70px;">'+  
-                            '<div class="sc-cBNeex ljqnne">' + '전세' + '</div>'+
-                            '<div class="sc-gWHigU hrGsUf">'+ address_result[i].deposit + unit+ '</div>' +
-                            '<div class="sc-citxvW huWuZn">' + address_result[i].buildingNm + '</div>'+
-                        '</div>'
+
+                building_top.innerText = "전세"
+                building_bot.innerText = address_result[i].deposit + unit
             }else{
                 if(address_result[i].wdeposit.toString().length<5){
                     unit = "만"
@@ -224,11 +248,9 @@ function addMarker(address_result){
                     address_result[i].deposit = address_result[i].deposit.toFixed(1)
                     unit="억"
                 }
-                content = '<div class="sc-hiSbEG fXZOVD" style="width: 56px; height: 70px;">'+  
-                            '<div class="sc-cBNeex ljqnne">' + '월세' + address_result[i].wdeposit + wunit+ '</div>'+
-                            '<div class="sc-gWHigU hrGsUf">'+ '전세' + address_result[i].deposit + unit+ '</div>' +
-                            '<div class="sc-citxvW huWuZn">' + address_result[i].buildingNm + '</div>'+
-                        '</div>'
+
+                building_top.innerText = '월세' + address_result[i].wdeposit + wunit
+                building_bot.innerText = '전세' + address_result[i].deposit + unit
             }
 
            
@@ -239,25 +261,37 @@ function addMarker(address_result){
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
                     // 결과값으로 받은 위치를 마커로 표시합니다
-                    marker = new kakao.maps.Marker({
-                        map: map,
+                    var marker = new kakao.maps.Marker({
+                        //map: map,
                         position: coords,
-                        image: markerImage
+                        image: markerImage,
+                        clickable: true
+                      
                     });
                     
                     // 아파트명 커스텀 오버레이를 생성합니다
                     var customOverlay = new kakao.maps.CustomOverlay({
-                        map: map,
+                        //map: map,
                         position: coords,
                         content: content,
-                        yAnchor: 1 
+                        clickable: true,
+                        yAnchor: 1
                     });
+                    
+                    //marker.setMap(map)
+                    customOverlay.setMap(map);
+
+        
+                    // kakao.maps.event.addListener(marker, 'click', function() {
+                    //     console.log("마커 클릭")
+                    // });
+                    
 
                     if(markers.includes(marker)){   //*******************************마커가 배열에 이미 들어있는지 확인이 안됨**************************
                         console.log(markers.includes(marker))
                         return
                     }else{
-                        markers.push(marker);
+                        //markers.push(marker);
                     }
 
                     if(marker_overlays.includes(customOverlay)){ //***************************커스텀오버레이가 배열에 이미 들어있는지 확인이 안됨**********************
@@ -266,18 +300,37 @@ function addMarker(address_result){
 
                         marker_overlays.push(customOverlay);
                     }
+
+                    addEventHandle(content,'click')
+                    // const building = document.querySelectorAll('.building');
+                    // console.log(building)
+                    // console.log(mar)
+                    // for (var i = 0; i < building.length; i++) {
+                    //     console.log("asdfasdfsda")
+                    //     building[i].addEventListener('click',function(){
+                    //         console.log("오버레이마커클릭")
+                    //     },false)
+                    // }
                     
-                   
-                    // 인포윈도우로 장소에 대한 설명을 표시합니다
-                    // var infowindow = new kakao.maps.InfoWindow({
-                    //     content: '<div style="width:150px;text-align:center;padding:6px 0;">우리회사</div>'
-                    // });
-                    // infowindow.open(map, marker); 
                 } 
             });     
-        }, 20);   
+        }, 10);   
+        
     }
 }
+
+function addEventHandle(target, type) {
+    if (target.addEventListener) {
+        target.addEventListener(type, function(e){
+            var roadName = e.target.getAttribute("data-roadName");
+
+            console.log(roadName);
+        });
+    } else {
+        target.attachEvent('on' + type, callback);
+    }
+}
+
 
 // 마커에 건물명, 시세 정보 가져오기
 function getBuildingInfo(result, status){
@@ -297,12 +350,6 @@ function getBuildingInfo(result, status){
                     buildingInfoResult = JSON.parse(this.responseText.trim());
                     console.log(buildingInfoResult)
                     addMarker(buildingInfoResult);
-                    // if(map.getLevel()<=4){
-                    //     addMarker(buildingInfoResult);      //지도레벨 4이하 일때 법정동명으로 DB에서 가져와서 마커 찍기
-                    // }else{
-                    //     hideMarkers(null);              //마커 삭제
-                    //     setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제 
-                    // }
                 }
             })
         }
@@ -314,6 +361,7 @@ function getBuildingInfo(result, status){
 function setMarkers(map) {
     for (var i = 0; i < markers.length; i++) {
         markers[i].setMap(map);
+        
     }            
 }
 //마커 제거함수
@@ -336,11 +384,6 @@ function BAddrFromCoords(coords, callback) {
 
 // 지도 좌측상단에 지도 중심좌표에 대한 주소정보를 표출하는 함수입니다
 function displayCenterInfo(result, status) {
-    // let buildingInfoResult
-    // let xhttp = new XMLHttpRequest();
-    // xhttp.open("POST","./map");
-    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
-
     if (status === kakao.maps.services.Status.OK) {
        
         var B = document.getElementById('B');
@@ -365,28 +408,38 @@ function displayCenterInfo(result, status) {
     }    
 }
 
-var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
-    infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+// var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+//     infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
-// 지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-    BAddrFromCoords(mouseEvent.latLng, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+//지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+// kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+//     BAddrFromCoords(mouseEvent.latLng, function(result, status) {
+//         if (status === kakao.maps.services.Status.OK) {
+//             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+//             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             
-            var content = '<div class="bAddr">' +
-                            '<span class="title">법정동 주소정보</span>' + 
-                            detailAddr + 
-                        '</div>';
+//             var content = '<div class="bAddr">' +
+//                             '<span class="title">법정동 주소정보</span>' + 
+//                             detailAddr + 
+//                         '</div>';
 
-            // 마커를 클릭한 위치에 표시합니다 
-            addressmarker.setPosition(mouseEvent.latLng);
-            addressmarker.setMap(map);
+//             // 마커를 클릭한 위치에 표시합니다 
+//             addressmarker.setPosition(mouseEvent.latLng);
+//             addressmarker.setMap(map);
 
-            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-            infowindow.setContent(content);
-            infowindow.open(map, addressmarker);
-        }   
-    });
-});
+//             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+//             infowindow.setContent(content);
+//             infowindow.open(map, addressmarker);
+//         }   
+//     });
+// });
+
+
+
+
+
+
+// // 마커에 클릭이벤트를 등록합니다
+// kakao.maps.event.addListener(marker, 'click', function() {
+//     console.log("마커 클릭")
+// });
