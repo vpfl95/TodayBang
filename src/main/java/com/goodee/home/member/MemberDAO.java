@@ -54,8 +54,16 @@ public class MemberDAO {
 		return sqlSession.update(NAMESPACE+"setUpdatePw", memberDTO);
 	}
 	
-
-	
+	public List<DeliveryDTO> getDelivery(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+"getDelivery", memberDTO);
+	}
+	public int setDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		
+		return sqlSession.insert(NAMESPACE+"setDelivery", deliveryDTO);
+	}
 	
 	
 }

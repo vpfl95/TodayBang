@@ -1,5 +1,7 @@
 package com.goodee.home.member;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -40,4 +42,16 @@ public class MemberService {
 		
 		return memberDAO.setUpdatePw(memberDTO);
 	}
+	
+	public List<DeliveryDTO> getDelivey(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.getDelivery(memberDTO);
+	}
+	
+	public int setDelivey(DeliveryDTO deliveryDTO) throws Exception{
+		
+		return memberDAO.setDelivery(deliveryDTO);
+	}
+	
+	
 }

@@ -85,5 +85,36 @@ public class MemberTest extends MyAbstractTest{
 			
 		}
 		
+		//@Test
+		public void getDeliveryTest() throws Exception{
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setUserId("qqqqw");
+			
+			
+			
+			List<DeliveryDTO> result = memberDAO.getDelivery(memberDTO);
+			
+			assertNotNull(result);
+			
+		}
+		
+		@Test
+		public void setDeliveryTest() throws Exception{
+			
+			DeliveryDTO dto = new DeliveryDTO();
+			dto.setUserId("qqqqw");
+			dto.setAddress("addt");
+			dto.setDeliveryName("delnamet");
+			dto.setName("namet");
+			dto.setNote("note");
+			dto.setPhone("phonet");
+			
+			
+			int result = memberDAO.setDelivery(dto);
+			
+			assertEquals(result,1);
+			
+		}
 
 }

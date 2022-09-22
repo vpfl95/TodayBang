@@ -1,5 +1,7 @@
 package com.goodee.home.member;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -167,12 +169,7 @@ public class MemberController {
 		
 		
 	}
-	@GetMapping("delivery")
-	public void getDelivery() throws Exception{
-		
-		
-		
-	}
+	
 	
 	@PostMapping("update")
 	public String setUpdate(MemberDTO memberDTO,HttpSession session) throws Exception{
@@ -201,6 +198,44 @@ public class MemberController {
 		
 		return "redirect:./myPage";
 	}
+	
+	
+	@GetMapping("delivery")
+	public ModelAndView getDelivery(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<DeliveryDTO> ar =memberService.getDelivey(memberDTO);
+	
+		if(ar.size() != 0) {
+			
+			mv.addObject("check", true);
+			mv.addObject("delivery", ar);
+			
+		}else {
+			mv.addObject("check", false);
+			
+		}
+		
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("addDelivery")
+	public void setDelivery() throws Exception{
+		
+		
+		
+	}
+	@PostMapping("addDelivery")
+	public String setDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		int result = memberService.setDelivey(deliveryDTO);
+		
+		return "redirect:./myPage";
+	}
+	
 	
 	
 }

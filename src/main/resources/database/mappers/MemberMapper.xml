@@ -49,6 +49,11 @@
 			</resultMap>
 			
 			
-			
+			<select id="getDelivery" parameterType="MemberDTO" resultType="DeliveryDTO">
+				SELECT * FROM DELIVERY WHERE USERID = #{userId}
+			</select>
+			<select id="setDelivery" parameterType="DeliveryDTO" >
+				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL ,#{address}, #{phone}, #{name}, #{note}, #{deliveryName},#{userId})
+			</select>
 			
 		</mapper>

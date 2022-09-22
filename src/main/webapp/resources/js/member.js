@@ -652,3 +652,22 @@ function updatePw() {
 
 
 }
+
+function delivery(){
+    const deliveryBtn = document.querySelector("#deliveryBtn");
+    const deliveryForm = document.querySelector("#deliveryForm");
+
+    deliveryBtn.addEventListener("click",function(){
+
+        // check
+
+
+        //submit
+        deliveryForm.submit();
+
+
+
+    })
+
+
+}

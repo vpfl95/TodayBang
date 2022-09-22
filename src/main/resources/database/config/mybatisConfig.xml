@@ -6,7 +6,7 @@
 	<typeAliases>
 		<typeAlias type="com.goodee.home.member.MemberDTO" alias="MemberDTO"/>
 		<typeAlias type="com.goodee.home.member.RoleDTO" alias="RoleDTO"/>
-		
+		<typeAlias type="com.goodee.home.member.DeliveryDTO" alias="DeliveryDTO"/>
 		
 		<typeAlias type="com.goodee.home.store.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.goodee.home.store.product.ProductImageDTO" alias="ProductImageDTO"/>
