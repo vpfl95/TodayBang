@@ -35,15 +35,22 @@
 	
 	<!-- 몸통 -->
 		
-			
+	<form action="./updateDelivery" method="POST" id="deliveryForm">
+		<input type="hidden" value ="${delivery[num].addressNum}"  name = "addressNum" class="form-control ">
 		<table class="table">
 				  <thead>
 				    
 				  </thead>
 				  <tbody>
+				  	<tr>
+				      	<th scope="row">배송지 별칭</th>
+				      	
+				   		<td><input type="text" value ="${delivery[num].deliveryName }"  name = "deliveryName" class="form-control "  required autofocus ></td>
+					        
+				    </tr>
 				    <tr>
 				      	<th scope="row">수령인</th>
-				   		<td><input type="text" value ="${delivery[num].name }"   class="form-control nonOverlab" placeholder="" required autofocus ></td>
+				   		<td><input type="text" value ="${delivery[num].name }" name = "name"  class="form-control " required  ></td>
 					        
 				    </tr>
 				    <tr>
@@ -58,28 +65,28 @@
 						        
 						        </select>
 						        <label for="phone" class = "nolabel">-</label>
-						        <input type="text"  id="phoneMiddle" maxlength="4" name = "phone1" class="form-control nonOverlab" placeholder="0000" required>
+						        <input type="text"  id="phoneMiddle" maxlength="4" name = "phone1" class="form-control " placeholder="0000" required>
 						        <label for="phoneLast" class = "nolabel">-</label>
-						        <input type="text"  id="phoneLast" maxlength="4" name = "phone1" class="form-control nonOverlab" placeholder="0000" required>
+						        <input type="text"  id="phoneLast" maxlength="4" name = "phone1" class="form-control " placeholder="0000" required>
 					        </div>
 				        </td>
 				    </tr>
 				    <tr>
 				      <th scope="row">주소</th>
-				      <td><input type="text" value ="${delivery[num].address }"   class="form-control nonOverlab" placeholder="" required autofocus ></td>
+				      <td><input type="text" value ="${delivery[num].address }"  name = "address" class="form-control" required autofocus ></td>
 					     
 				    </tr>
 				    <tr>
 				      <th scope="row">요청사항</th>
-				      <td><input type="text" value ="${delivery[num].note }"   class="form-control nonOverlab" placeholder="" required autofocus ></td>
+				      <td><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  autofocus ></td>
 					     
 				    </tr>
 				    
 				   
 				  </tbody>
 				</table>
-			
-		
+			  <button id="delUpdateBtn" class="w-100 btn btn-lg btn-primary" type="button">저장</button>
+		</form>
 	</div>
 		
 	
@@ -98,7 +105,7 @@
 
 <script type="text/javascript">
 
-	
+delivery();
 
 	$(document).on("click","#addDeliveryBtn",function(){
 		$("#profile-section").load(this.getAttribute('data-a'));

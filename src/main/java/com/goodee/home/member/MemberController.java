@@ -239,6 +239,12 @@ public class MemberController {
 		return "redirect:./myPage";
 	}
 	
-	
+	@PostMapping("updateDelivery")
+	public String updateDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		int result = memberService.updateDelivey(deliveryDTO);
+		
+		return "redirect:./myPage";
+	}
 	
 }

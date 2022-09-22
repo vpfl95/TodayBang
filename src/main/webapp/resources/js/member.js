@@ -675,3 +675,18 @@ function addDelivery(){
 }
 
 
+function delivery(){
+
+    const delUpdateBtn = document.querySelector("#delUpdateBtn");
+    const deliveryForm = document.querySelector("#deliveryForm");
+   
+    delUpdateBtn.addEventListener("click",function(){
+
+
+
+
+        deliveryForm.submit();
+
+    })
+  
+}

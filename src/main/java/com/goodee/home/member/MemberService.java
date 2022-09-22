@@ -53,5 +53,8 @@ public class MemberService {
 		return memberDAO.setDelivery(deliveryDTO);
 	}
 	
-	
+	public int updateDelivey(DeliveryDTO deliveryDTO) throws Exception{
+		
+		return memberDAO.updateDelivery(deliveryDTO);
+	}
 }

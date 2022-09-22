@@ -55,5 +55,11 @@
 			<select id="setDelivery" parameterType="DeliveryDTO" >
 				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL ,#{address}, #{phone}, #{name}, #{note}, #{deliveryName},#{userId})
 			</select>
+			<update id="updateDelivery" parameterType="DeliveryDTO">
+				UPDATE DELIVERY SET ADDRESS = #{address}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName} WHERE ADDRESSNUM = #{addressNum}
+			</update>
+			
+			
+			
 			
 		</mapper>
