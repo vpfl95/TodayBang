@@ -675,5 +675,3 @@ function addDelivery(){
 }
 
 
-
-

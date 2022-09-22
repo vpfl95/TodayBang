@@ -17,18 +17,26 @@
 	
 	<c:if test="${check}">
 	
-	<div id = "deliveryHead">
+	<div id = "deliveryHead" title=${num }>
+		<ul>
 		<c:forEach items="${delivery }" var="del" varStatus="index">
-			<span  class = "deliveryList" data-a = "/member/delivery?num=${index.index }">${del.deliveryName }</span>
+			<li class = "deliveryList" data-a = "/member/delivery?num=${index.index }">${del.deliveryName }</li>
 		</c:forEach>
-			<span title= "3" class = "deliveryList" data-a = "/member/delivery?num=3">추가하기</span>
+		<c:if test="${length<3 }">
+			<li title= "3" class = "deliveryList" data-a = "/member/delivery?num=3">추가하기</li>
+		
+		</c:if>
+			
+		
+		</ul>
+		
 	</div>
 	<div id = "deliveryBody">
-	<hr>
+	
 	<!-- 몸통 -->
 		
 			
-			<table class="table">
+		<table class="table">
 				  <thead>
 				    
 				  </thead>
@@ -100,7 +108,12 @@
 	$("#deliveryHead").on("click",".deliveryList",function(){
 		
 		$("#profile-section").load(this.getAttribute('data-a'));
+		
+		
+		
 	});
+	
+	
 	
 	
 	

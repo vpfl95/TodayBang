@@ -211,7 +211,9 @@ public class MemberController {
 			
 			mv.addObject("check", true);
 			mv.addObject("delivery", ar);
+			mv.addObject("length", ar.size());
 			mv.addObject("num", num);
+			
 			
 		}else {
 			mv.addObject("check", false);

@@ -185,4 +185,28 @@ select {
 th{
     min-width: 120px;
     width: 10%;
+    padding-top: 30px;
+}
+
+#deliveryBody{
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    min-height: 400px;
+}
+
+.deliveryList{
+   
+    cursor: pointer;
+    display: inline;
+    margin: 15px;
+    font-weight: bold;
+
+
+}
+
+.deSelect{
+
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+
 }
