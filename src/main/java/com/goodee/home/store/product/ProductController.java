@@ -2,6 +2,8 @@ package com.goodee.home.store.product;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,16 +30,16 @@ public class ProductController {
 	public String setProduct(ProductDTO productDTO, Cate_ProductDTO cate_ProductDTO, Ex_ProductDTO ex_ProductDTO,
 			String[] optionName, String[] optionName2, String[] optionName3,
 			Long[] optionPrice, Long[] optionPrice2, Long[] optionPrice3,
-			MultipartFile[] productDetail, MultipartFile[] productImage) throws Exception {
+			MultipartFile[] productDetail, MultipartFile[] productImage, HttpSession httpSession) throws Exception {
 		
-//		productService.setProduct(productDTO);
-//		productService.setCategory(cate_ProductDTO);
-		
+		productService.setProduct(productDTO);
+		productService.setCategory(cate_ProductDTO);
 		productService.setOption(optionName, optionPrice, productDTO.getProductNum(), 1);
 		productService.setOption(optionName2, optionPrice2, productDTO.getProductNum(), 2);
 		productService.setOption(optionName3, optionPrice3, productDTO.getProductNum(), 3);
 		productService.setExhibition(ex_ProductDTO);
-		
+		productService.setProductImage(productImage, httpSession.getServletContext(), productDTO.getProductNum(), 0);
+		productService.setProductImage(productDetail, httpSession.getServletContext(), productDTO.getProductNum(), 1);
 		
 		return "redirect:./add";
 	}

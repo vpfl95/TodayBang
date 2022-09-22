@@ -27,6 +27,8 @@ public class ExhibitionController {
 		
 		if(exhibitionDTO.getExhibitionCode() == 2689) {
 			mv.setViewName("/store/exhibitions/exhibitions2689");
+		} else if(exhibitionDTO.getExhibitionCode() == 1433) {
+			mv.setViewName("/store/exhibitions/exhibitions1433");
 		}
 		return mv;
 	}

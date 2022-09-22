@@ -73,19 +73,21 @@
                 </div>
 
                 <div class="col-6">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">빠른 품절! 리퍼마켓 ~85%</h4>
-                            <p class="exhibitions-item-subText">전시, 반품, 스크래치 득템의 기회!</p>
+                    <a href="detail?exhibitionCode=1433">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">빠른 품절! 리퍼마켓 ~85%</h4>
+                                <p class="exhibitions-item-subText">전시, 반품, 스크래치 득템의 기회!</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_3.jpeg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_5.jpg" alt="">
-                    </div>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_3.jpeg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/refur_5.jpg" alt="">
+                        </div>
+                    </a>
                 </div>
 			</div>
 

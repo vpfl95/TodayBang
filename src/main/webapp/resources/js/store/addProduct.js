@@ -2,6 +2,8 @@ const category = document.querySelector("#category");
 const cate1 = document.querySelector("#cate1");
 const cate2 = document.querySelector("#cate2");
 const cate3 = document.querySelector("#cate3");
+const frmAddProduct = document.querySelector("#frmAddProduct");
+const categoryNum = document.querySelector("#categoryNum");
 const premium = document.querySelector("#premium");
 const cbxPremium = document.querySelector("#cbxPremium");
 const exhibition = document.querySelector("#exhibition");
@@ -115,4 +117,13 @@ cbxPremium.onchange=function(){
     } else {
         premium.value=0;
     }
+}
+
+btnAddProduct.onclick=function(){
+    if(cate3.value=='') {
+        categoryNum.value=cate2.value;
+    } else {
+        categoryNum.value = cate3.value;
+    }
+    frmAddProduct.submit();
 }

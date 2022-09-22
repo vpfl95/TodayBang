@@ -4,22 +4,28 @@ import java.sql.Date;
 
 public class ProductDTO {
 	private Long productNum;
+	private String productName;
 	private Long price;
 	private Long stock;
 	private Double saleRate;
 	private String brand;
 	private Date regDate;
-	private Date deliDate;
-	private Date todayDeal;
+	private Integer deliDate;
+	private Integer todayDeal;
 	private Long premium;
 	private Long deliFee;
-	private Double point;
 	
 	public Long getProductNum() {
 		return productNum;
 	}
 	public void setProductNum(Long productNum) {
 		this.productNum = productNum;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
 	}
 	public Long getPrice() {
 		return price;
@@ -51,17 +57,11 @@ public class ProductDTO {
 	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-	public Date getDeliDate() {
+	public Integer getDeliDate() {
 		return deliDate;
 	}
-	public void setDeliDate(Date deliDate) {
+	public void setDeliDate(Integer deliDate) {
 		this.deliDate = deliDate;
-	}
-	public Date getTodayDeal() {
-		return todayDeal;
-	}
-	public void setTodayDeal(Date todayDeal) {
-		this.todayDeal = todayDeal;
 	}
 	public Long getPremium() {
 		return premium;
@@ -75,10 +75,10 @@ public class ProductDTO {
 	public void setDeliFee(Long deliFee) {
 		this.deliFee = deliFee;
 	}
-	public Double getPoint() {
-		return point;
+	public Integer getTodayDeal() {
+		return todayDeal;
 	}
-	public void setPoint(Double point) {
-		this.point = point;
+	public void setTodayDeal(Integer todayDeal) {
+		this.todayDeal = todayDeal;
 	}
 }

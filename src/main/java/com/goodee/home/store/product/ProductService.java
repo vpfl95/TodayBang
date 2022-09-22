@@ -1,9 +1,14 @@
 package com.goodee.home.store.product;
 
+import java.io.File;
 import java.util.List;
+import java.util.UUID;
+
+import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDAO;
@@ -49,6 +54,31 @@ public class ProductService {
 		if(ex_ProductDTO.getExhibitionCode() != 0) {
 			result = exhibitionDAO.setExhibition(ex_ProductDTO);
 		}
+		return result;
+	}
+	
+	public int setProductImage(MultipartFile[] files, ServletContext servletContext, Long productNum, long num) throws Exception {
+		int result=0;
+		String realPath = servletContext.getRealPath("resources/upload/store/product");
+		System.out.println(realPath);
+		for(MultipartFile photo : files) {
+			if(!photo.isEmpty()) {
+				File file = new File(realPath);
+				if(!file.exists()) file.mkdirs();
+				String fileName = UUID.randomUUID().toString();
+				fileName += photo.getOriginalFilename();
+				file = new File(file, fileName);
+				photo.transferTo(file);
+				
+				ProductImageDTO productImageDTO = new ProductImageDTO();
+				productImageDTO.setProductNum(productNum);
+				productImageDTO.setFileName(fileName);
+				productImageDTO.setOriName(photo.getOriginalFilename());
+				productImageDTO.setDetail(num);
+				result += productDAO.setProductImage(productImageDTO);
+			}
+		}
+		
 		return result;
 	}
 }

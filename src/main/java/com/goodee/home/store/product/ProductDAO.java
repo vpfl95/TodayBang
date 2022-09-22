@@ -30,4 +30,8 @@ public class ProductDAO {
 	public int setOption(OptionDTO optionDTO, int num) {
 		return sqlSession.insert(NAMESPACE+"setOption"+num, optionDTO);
 	}
+	
+	public int setProductImage(ProductImageDTO productImageDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setProductImage", productImageDTO);
+	}
 }
