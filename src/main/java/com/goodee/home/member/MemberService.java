@@ -43,18 +43,23 @@ public class MemberService {
 		return memberDAO.setUpdatePw(memberDTO);
 	}
 	
-	public List<DeliveryDTO> getDelivey(MemberDTO memberDTO) throws Exception{
+	public List<DeliveryDTO> getDelivery(MemberDTO memberDTO) throws Exception{
 		
 		return memberDAO.getDelivery(memberDTO);
 	}
 	
-	public int setDelivey(DeliveryDTO deliveryDTO) throws Exception{
+	public int setDelivery(DeliveryDTO deliveryDTO) throws Exception{
 		
 		return memberDAO.setDelivery(deliveryDTO);
 	}
 	
-	public int updateDelivey(DeliveryDTO deliveryDTO) throws Exception{
+	public int updateDelivery(DeliveryDTO deliveryDTO) throws Exception{
 		
 		return memberDAO.updateDelivery(deliveryDTO);
+	}
+	
+	public int deleteDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		return memberDAO.deleteDelivery(deliveryDTO);
 	}
 }

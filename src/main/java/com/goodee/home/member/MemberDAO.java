@@ -68,8 +68,15 @@ public class MemberDAO {
 	public int updateDelivery(DeliveryDTO deliveryDTO)throws Exception{
 		
 		
-		return sqlSession.insert(NAMESPACE+"updateDelivery", deliveryDTO);
+		return sqlSession.update(NAMESPACE+"updateDelivery", deliveryDTO);
 	}
+	
+	public int deleteDelivery(DeliveryDTO deliveryDTO)throws Exception{
+		
+		
+		return sqlSession.delete(NAMESPACE+"deleteDelivery", deliveryDTO);
+	}
+	
 	
 	
 }

@@ -205,7 +205,7 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
-		List<DeliveryDTO> ar =memberService.getDelivey(memberDTO);
+		List<DeliveryDTO> ar =memberService.getDelivery(memberDTO);
 		
 		if(ar.size() != 0) {
 			
@@ -236,7 +236,7 @@ public class MemberController {
 		
 		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
 		deliveryDTO.setUserId(memberDTO.getUserId());
-		int result = memberService.setDelivey(deliveryDTO);
+		int result = memberService.setDelivery(deliveryDTO);
 		
 		return "redirect:./myPage";
 	}
@@ -244,8 +244,16 @@ public class MemberController {
 	@PostMapping("updateDelivery")
 	public String updateDelivery(DeliveryDTO deliveryDTO) throws Exception{
 		
-		int result = memberService.updateDelivey(deliveryDTO);
+		int result = memberService.updateDelivery(deliveryDTO);
 		
+		return "redirect:./myPage";
+	}
+	
+	@PostMapping("deleteDelivery")
+	public String deleteDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		
+		int result = memberService.deleteDelivery(deliveryDTO);
 		return "redirect:./myPage";
 	}
 	

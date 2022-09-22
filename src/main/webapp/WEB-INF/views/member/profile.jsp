@@ -66,7 +66,6 @@
 					        
 		        		</div>
 						
-				       
 				        <button id="updateBtn" class="w-100 btn btn-lg " type="button">수정</button>
 				        
 				        

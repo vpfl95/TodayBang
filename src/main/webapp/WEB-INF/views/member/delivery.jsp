@@ -85,6 +85,7 @@
 				   
 				  </tbody>
 				</table>
+				<button id="delDeleteBtn" class="w-100 btn btn-lg " type="button">삭제</button>
 			  <button id="delUpdateBtn" class="w-100 btn btn-lg btn-primary" type="button">저장</button>
 		</form>
 	</div>

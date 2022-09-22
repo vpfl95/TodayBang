@@ -435,11 +435,11 @@ function profile() {
 
 
     let splitPhone =  submitPhone.value.split("-");
-    
-    phoneF.value = splitPhone[0];
-    phoneM.value = splitPhone[1];
-    phoneL.value = splitPhone[2];
-
+    if(splitPhone != ""){
+        phoneF.value = splitPhone[0];
+        phoneM.value = splitPhone[1];
+        phoneL.value = splitPhone[2];
+    }
 
 
 
@@ -684,13 +684,20 @@ function delivery(){
     const phoneM = document.querySelector("#phoneMiddle");
     const phoneL = document.querySelector("#phoneLast");
     const submitPhone = document.querySelector("#submitPhone");
-
+    const deleteBtn = document.querySelector("#delDeleteBtn");
 
     let splitPhone =  submitPhone.value.split("-");
+
+    if(splitPhone != ""){
+        phoneF.value = splitPhone[0];
+        phoneM.value = splitPhone[1];
+        phoneL.value = splitPhone[2];
+
+    }
+
     
-    phoneF.value = splitPhone[0];
-    phoneM.value = splitPhone[1];
-    phoneL.value = splitPhone[2];
+
+    
 
 
     delUpdateBtn.addEventListener("click",function(){
@@ -725,6 +732,14 @@ function delivery(){
 
 
         
+
+    })
+
+    deleteBtn.addEventListener("click", function(){
+
+        deliveryForm.action="./deleteDelivery";
+        deliveryForm.submit();
+
 
     })
   
