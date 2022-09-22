@@ -207,19 +207,12 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<DeliveryDTO> ar =memberService.getDelivery(memberDTO);
 		
-		if(ar.size() != 0) {
-			
-			mv.addObject("check", true);
+		
 			mv.addObject("delivery", ar);
 			mv.addObject("length", ar.size());
 			mv.addObject("num", num);
 			
 			
-		}else {
-			mv.addObject("check", false);
-			
-		}
-		
 		
 		return mv;
 		

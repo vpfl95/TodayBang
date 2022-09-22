@@ -11,17 +11,27 @@
 <body>
 
 <div class = "pf-section">
-	<h1>배송지 정보</h1>
-	<h1>${check }</h1>
+	<h3>배송지 정보</h3>
+	
 	<hr>
 	
-	<c:if test="${check}">
+	<c:choose>
+		<c:when test="${length eq 0 }">
+			<div id = "deliveryHead" title="3">
+		</c:when>
+		<c:otherwise>
+			<div id = "deliveryHead" title=${num }>
+		</c:otherwise>
 	
-	<div id = "deliveryHead" title=${num }>
+	</c:choose>
+		
+	
+	
+	
 		<ul>
-		<c:forEach items="${delivery }" var="del" varStatus="index">
-			<li class = "deliveryList" data-a = "/member/delivery?num=${index.index }">${del.deliveryName }</li>
-		</c:forEach>
+			<c:forEach items="${delivery }" var="del" varStatus="index">
+				<li class = "deliveryList" data-a = "/member/delivery?num=${index.index }">${del.deliveryName }</li>
+			</c:forEach>
 		<c:if test="${length<3 }">
 			<li title= "3" class = "deliveryList" data-a = "/member/delivery?num=3">추가하기</li>
 		
@@ -91,26 +101,21 @@
 	</div>
 		
 	
-	</c:if>
 	
 	
 	
 	
 	
-	<c:if test="${!check}">
-		<h3>배송지가 없습니다 설정해보세요 ! </h3>
-		<button id="addDeliveryBtn" class="w-100 btn btn-lg btn-primary" type="button" data-a= "/member/addDelivery">추가하기</button>
-	</c:if>
+	
+	
 
 </div>
 
 <script type="text/javascript">
 
-delivery();
+	delivery();
 
-	$(document).on("click","#addDeliveryBtn",function(){
-		$("#profile-section").load(this.getAttribute('data-a'));
-	});
+	
 	
 	
 	$("#deliveryHead").on("click",".deliveryList",function(){
