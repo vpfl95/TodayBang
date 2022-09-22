@@ -23,13 +23,14 @@ BAddrFromCoords(map.getCenter(), displayCenterInfo);
 HAddrFromCoords(map.getCenter(), displayCenterInfo);
 
 
-//지도 중심좌표 or 확대,축소 이벤트
+//------------------------지도 중심좌표 or 확대,축소 이벤트-------------------------------------------
 kakao.maps.event.addListener(map, 'idle', function() {
     BAddrFromCoords(map.getCenter(), displayCenterInfo);
     HAddrFromCoords(map.getCenter(), displayCenterInfo);
-    
     setCustomOverlays(null, overlays);
     setCustomOverlays(null, marker_overlays);
+    
+
     // hideMarkers(null);
 
     getRegionName();
@@ -152,7 +153,7 @@ function getRegionName(){
 
 
 //-------------------------매물 주소를 좌표로 변경해 마커 찍고 클러스터러 처리----------------------------
-//var marker
+
 
 //매물 마커 생성 함수
 function addMarker(address_result){
@@ -180,11 +181,13 @@ function addMarker(address_result){
             
             
             building_top = document.createElement("div")
+            building_top.setAttribute("data-roadName",address_result[i].roadName);
             building_top.className = "sc-cBNeex building-top"
             building_top.innerText = "매매"
             content.appendChild(building_top)
 
             building_bot = document.createElement("div")
+            building_bot.setAttribute("data-roadName",address_result[i].roadName);
             building_bot.className = "sc-gWHigU building-bot"
             building_bot.innerText = address_result[i].avg + unit
             content.appendChild(building_bot)
@@ -302,15 +305,6 @@ function addMarker(address_result){
                     }
 
                     addEventHandle(content,'click')
-                    // const building = document.querySelectorAll('.building');
-                    // console.log(building)
-                    // console.log(mar)
-                    // for (var i = 0; i < building.length; i++) {
-                    //     console.log("asdfasdfsda")
-                    //     building[i].addEventListener('click',function(){
-                    //         console.log("오버레이마커클릭")
-                    //     },false)
-                    // }
                     
                 } 
             });     
@@ -319,17 +313,30 @@ function addMarker(address_result){
     }
 }
 
+const realEstateList = document.getElementById("realEstateList")
+//마커 클릭 이벤트 리스트 얻어오기
 function addEventHandle(target, type) {
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
             var roadName = e.target.getAttribute("data-roadName");
-
             console.log(roadName);
+            
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("GET","./getList?roadName="+roadName);
+            //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
+            xhttp.send();
+            xhttp.addEventListener("readystatechange", function(){
+                if(xhttp.status==200 && xhttp.readyState==4){
+                    realEstateList.innerHTML = xhttp.responseText.trim();
+                }
+            })
+
         });
     } else {
         target.attachEvent('on' + type, callback);
     }
 }
+
 
 
 // 마커에 건물명, 시세 정보 가져오기

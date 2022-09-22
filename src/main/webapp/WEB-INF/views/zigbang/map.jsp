@@ -19,21 +19,25 @@
 		.building-top{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: white;}
 		.building-bot {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: white;}
 		.building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);overflow: hidden;text-overflow: ellipsis;}
+		.maemulList{position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 	</style>
 </head>
 <body>
 	<h1>${zigbang} 페이지</h1>
 	
 	<div class="map_wrap">
-		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+		<div id="map" style="width:100%;height:800px;position:relative;overflow:hidden;"></div>
 		<div class="hAddr">
 			<span class="title">지도중심기준 법정동, 행정동 주소정보</span>
 			법정동:<span id="B"></span><br>
 			행정동:<span id="H"></span>
 		</div>
+		<div class="maemulList">
+			<table id="realEstateList" border="1">
+			</table>
+		</div>
 	</div>
 	
-
 	<c:forEach items="${list}" var="dto">
 		<div class="dto">${dto.roadName} ${dto.sigungu} ${dto.buildingNm}</div>
 	</c:forEach>

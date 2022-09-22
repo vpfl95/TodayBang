@@ -16,4 +16,8 @@ public class AptService {
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO) throws Exception{
 		return aptDAO.getAptRoadName(aptDTO); 
 	}
+	
+	public List<AptDTO> getList(AptDTO aptDTO)throws Exception{
+		return aptDAO.getList(aptDTO);
+	}
 }

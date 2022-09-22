@@ -76,4 +76,17 @@ public class AptController {
 		return arr;
 	}
 	
+	@GetMapping("getList")
+	@ResponseBody
+	public ModelAndView getList(AptDTO aptDTO) throws Exception{
+		System.out.println(aptDTO.getRoadName());
+		ModelAndView mv = new ModelAndView();
+		
+		List<AptDTO> list = aptService.getList(aptDTO);
+		
+		mv.addObject("list",list);
+		mv.setViewName("common/realEstateList");
+		return mv;
+	}
+	
 }

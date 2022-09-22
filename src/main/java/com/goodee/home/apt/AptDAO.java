@@ -17,4 +17,9 @@ public class AptDAO {
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO)throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getAptRoadName",aptDTO);
 	}
+	
+	public List<AptDTO> getList(AptDTO aptDTO)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getList", aptDTO);
+	}
+	
 }
