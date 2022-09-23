@@ -7,7 +7,10 @@
 			<insert id="setProfileImg" parameterType="MemberFileDTO">
 				INSERT INTO MEMBERFILE VALUES (TODAY_SEQ.NEXTVAL,#{fileName} ,#{oriName} ,#{userId})
 			</insert>
+			<update id="updateProfileImg" parameterType="MemberFileDTO">
 			
+				UPDATE MEMBERFILE SET FILENAME = #{fileName}, ORINAME = #{oriName} WHERE USERID=#{userId}
+			</update>
 		
 			<insert id="getJoin" parameterType="MemberDTO">
 				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email})
@@ -30,12 +33,14 @@
 			
 			
 			<select id="getLogin" parameterType="MemberDTO" resultMap="getRoleResult">
-				SELECT MB.*,RL.ROLENUM,RL.ROLENAME
+				SELECT MB.*, RL.ROLENUM, RL.ROLENAME, MF.FILENUM, MF.FILENAME
 				FROM MEMBERS MB
 				    INNER JOIN "MEMBER-ROLE" MR
 				    ON MB.USERID = MR.USERID
 				    INNER JOIN "ROLE" RL
 				    ON MR.ROLENUM = RL.ROLENUM
+				    LEFT JOIN MEMBERFILE MF
+                    ON MB.USERID = MF.USERID
 				WHERE MB.USERID = #{userId}  AND MB.PASSWORD = #{password}
 				ORDER BY MR.ROLENUM ASC
 			</select>
@@ -46,6 +51,14 @@
 				<result column="USERNAME" property="userName"/>
 				<result column="PHONE" property="phone"/>
 				<result column="email" property="email"/>
+				
+				<association property="memberFileDTO" javaType="MemberFileDTO">
+					<id column="FILENUM" property="fileNum"/>
+					<result column="FILENAME" property="fileName"/>
+				
+				</association>
+				
+				
 				<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
 					<id column="ROLENUM" property="roleNum"/>
 					<result column="ROLENAME" property="roleName"/>

@@ -60,6 +60,33 @@ public class MemberService {
 			
 			
 			
+			memberDAO.updateProfileImg(memberFileDTO);
+			
+		
+		}
+		
+		
+		
+		return result;
+	}
+	
+	public int setInsert(MemberDTO memberDTO,ServletContext servletContext,MultipartFile profileImg) throws Exception{
+		
+		int result = memberDAO.setUpdate(memberDTO);
+		
+		
+		String path = "resources/upload/member";
+		
+		if(!profileImg.isEmpty()) {
+			
+			String fileName = fileManger.saveFile(path, servletContext, profileImg);
+			MemberFileDTO memberFileDTO = new MemberFileDTO();
+			memberFileDTO.setFileName(fileName);
+			memberFileDTO.setOriName(profileImg.getOriginalFilename());
+			memberFileDTO.setUserId(memberDTO.getUserId());
+			
+			
+			
 			memberDAO.setProfileImg(memberFileDTO);
 			
 		

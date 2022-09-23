@@ -34,6 +34,7 @@ public class MemberController {
 		memberDTO = memberService.getLogin(memberDTO);
 
 		
+		
 		if (memberDTO != null) {
 			
 			session.setAttribute("member", memberDTO);
@@ -179,12 +180,24 @@ public class MemberController {
 		System.out.println("컨트롤러 진입");
 		
 		
+		
+		
 		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
 		memberDTO.setPassword(memberDTO2.getPassword());
+		
+		
+		if(memberDTO2.getMemberFileDTO() == null) { // 세션을 불러와야댐 
+			System.out.println("insert profile");
+			memberService.setInsert(memberDTO,session.getServletContext(),profileImg);
+			
+		}else {
+			System.out.println("update profile");
+			memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
+			
+		}
+		
 		session.setAttribute("member",memberDTO);
 		
-		
-		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
 		
 		
 		return "redirect:./myPage";

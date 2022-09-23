@@ -64,10 +64,10 @@
 					        <div></div>
 					        <div></div>
 					        
-					        
+					        ${member.memberFileDTO.fileName }
 					        
 					        <label for="profileImg" >프로필사진</label>
-					        <input type="file" id="profileImg" name = "profileImg" class="form-control ">
+					        <input type="file" value = "${member.memberFileDTO.fileName }" id="profileImg" name = "profileImg" class="form-control ">
 					        
 					        
 					        
