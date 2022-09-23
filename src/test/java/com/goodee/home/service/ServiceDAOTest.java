@@ -19,7 +19,7 @@ public class ServiceDAOTest extends MyAbstractTest {
 	//@Test
 	public void getNoticeTest() throws Exception{
 		
-		List<NoticeDTO> ar = dao.getNotice();
+	
 		
 		assertNotNull(ar);
 		

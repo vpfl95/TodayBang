@@ -14,19 +14,19 @@ public class ServiceDAO {
 	private String NAMESPACE = "com.goodee.home.service.ServiceDAO.";
 	
 	
-	public List<NoticeDTO> getNotice() throws Exception{
+	public List<BoardDTO> getList(String board) throws Exception{
 		
 		
 		
-		return sqlSession.selectList(NAMESPACE + "getNotice");
+		return sqlSession.selectList(NAMESPACE + "getList",board);
 	}
 	
 	
-	public NoticeDTO getNoticeDetail(NoticeDTO noticeDTO) throws Exception{
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
 		
 		
 		
-		return sqlSession.selectOne(NAMESPACE + "getNoticeDetail",noticeDTO);
+		return sqlSession.selectOne(NAMESPACE + "getDetail",boardDTO);
 	}
 	
 	

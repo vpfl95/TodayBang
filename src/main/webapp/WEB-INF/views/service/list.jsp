@@ -20,7 +20,7 @@
 				<div class = " col-lg-7 ">
 	
 					
-					<h1>공지사항 페이지</h1>
+					<h1>${board } 페이지</h1>
 					
 					<table class="table">
 				  <thead>
@@ -34,10 +34,11 @@
 				  </thead>
 				  <tbody>
 				  
-				  	<c:forEach items="${notice }" var="dto">
+				  	<c:forEach items="${boardList }" var="dto">
+				  		
 				  		<tr>
 						  	<th scope="row">${dto.boardNum}</th>
-						  	<td>${dto.title }</td>
+						  	<td><a href="./detail?boardNum=${dto.boardNum }">${dto.title }</a></td>
 					        <td>${dto.userId }</td>
 					        <td>${dto.regDate }</td>
 			        	</tr>

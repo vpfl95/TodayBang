@@ -85,7 +85,7 @@ function headerCategory(cate){
    }else if(cate == "serviceMenu"){
 
         arr = ['공지사항', 'QnA'];
-        url = ['/service/notice', '/service/qna'];
+        url = ['/service/notice/list', '/service/qna/list'];
 
 
 

@@ -10,9 +10,17 @@ public class BoardDTO {
 	private String contents;
 	private String regDate;
 	private String userId;
+	private String board;
 	
 	
 	
+	
+	public String getBoard() {
+		return board;
+	}
+	public void setBoard(String board) {
+		this.board = board;
+	}
 	public Long getBoardNum() {
 		return boardNum;
 	}

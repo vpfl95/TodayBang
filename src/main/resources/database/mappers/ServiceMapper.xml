@@ -4,12 +4,21 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 		<mapper namespace="com.goodee.home.service.ServiceDAO">
+			
+			<sql id="getBoard">
+				<choose>
+					<when test="board == 'NOTICE'">NOTICE</when>
+					<otherwise>QNA</otherwise>
+				</choose>
+			</sql>
 		
-			<select id="getNotice" resultType="NoticeDTO">
-				SELECT * FROM NOTICE
+		
+			<select id="getList" parameterType="String" resultType="BoardDTO">
+				SELECT * FROM <include refid="getBoard"></include>
+					
 			</select>
-			<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
-				SELECT * FROM NOTICE WHERE BOARDNUM = #{boardNum}
+			<select id="getDetail" parameterType="BoardDTO" resultType="BoardDTO">
+				SELECT * FROM <include refid="getBoard"></include> WHERE BOARDNUM = #{boardNum}
 			</select>
 		
 		

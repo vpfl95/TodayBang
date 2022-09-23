@@ -1,55 +1,74 @@
 package com.goodee.home.service;
 
+import java.util.ArrayList;
 import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
-@RequestMapping("/service/*")
+@RequestMapping(value = { "/service/notice/*", "/service/qna/*"})
 public class ServiceController {
 
 	@Autowired
 	private ServiceService service;
 	
+	@Autowired
+	private HttpServletRequest request;
 	
-	@GetMapping("notice")
-	public ModelAndView getNotice() throws Exception{
+	@ModelAttribute("board")
+	public String getBoardName() throws Exception{
+		
+		
+		String [] spList = request.getServletPath().split("/");
+		if(spList[2].equals("notice")) {
+			return "NOTICE";
+		}else {
+			return "QNA";
+		}
+	}
+	
+	
+	
+	
+	@GetMapping("list")
+	public ModelAndView getBoard() throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		List<NoticeDTO> ar = service.getNotice();
 		
 		
+		List<BoardDTO> ar = null;
 		
-		mv.addObject("notice",ar);
-		mv.setViewName("service/notice");
+		ar = service.getList(getBoardName());
+		
+		mv.addObject("boardList",ar);
+		mv.setViewName("/service/list");
 		
 		return mv;
 	}
 	
-	@GetMapping("noticeDetail")
-	public ModelAndView getNoticeDetail(NoticeDTO noticeDTO) throws Exception{
+	@GetMapping("detail")
+	public ModelAndView getDetail(BoardDTO boardDTO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		noticeDTO  = service.getNoticeDetail(noticeDTO);
+		
+		boardDTO.setBoard(getBoardName());
+		boardDTO  = service.getDetail(boardDTO);
 		
 		
-		mv.addObject("notice",noticeDTO);
-		mv.setViewName("service/noticeDetail");
+		mv.addObject("boardList",boardDTO);
+		mv.setViewName("/service/detail");
 		
 		return mv;
 	}
 	
 	
-	
-	@GetMapping("qna")
-	public void getQna() throws Exception{
-		
-		
-	}
 	
 	
 }

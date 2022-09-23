@@ -12,13 +12,13 @@ public class ServiceService {
 	@Autowired
 	private ServiceDAO serviceDAO;
 	
-	public List<NoticeDTO> getNotice() throws Exception{
+	public List<BoardDTO> getList(String board) throws Exception{
 		
-		return serviceDAO.getNotice();
+		return serviceDAO.getList(board);
 	}
-	public NoticeDTO getNoticeDetail(NoticeDTO noticeDTO) throws Exception{
+	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
 		
-		return serviceDAO.getNoticeDetail(noticeDTO);
+		return serviceDAO.getDetail(boardDTO);
 	}
 	
 }
