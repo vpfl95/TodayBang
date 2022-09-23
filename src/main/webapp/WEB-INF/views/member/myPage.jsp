@@ -12,6 +12,7 @@
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<link href= "/resources/css/member/myPage.css" rel="stylesheet">
+	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
 <body>
     <c:import url="../template/header.jsp"></c:import>
@@ -23,7 +24,7 @@
 		<div class="container-fluid container-lg-8 pt-4">
 		<!-- 카테고리 1  --> 
 			<ul id = "myPage-1">
-				<li class = "myPage-list" id = "myPage-profile"> 프로필 </li>
+				<li class = "myPage-list" id = "myPage-profile" > 프로필 </li>
 				<li class = "myPage-list" id = "myPage-shopping"> 나의 쇼핑</li>
 				<li class = "myPage-list" id = "myPage-write"> 나의 글</li>
 				
@@ -57,29 +58,11 @@
 						<h4>장바구니</h4>
 					</div>
 
-
 				</div>
 				
 				<div id = "profile-section" class= "">
-			
-					${memberDTO.userId }
-					${memberDTO.password }
-					${memberDTO.nickname }
-					${memberDTO.userName }
-					${memberDTO.phone }
-					${memberDTO.email }
-
-
+					<!-- 프로필 내용이 채워짐 -->
 				</div>
-				
-
-
-
-					
-					
-										
-					
-	
 			</div>
 		</div>
 	</section>
@@ -90,7 +73,24 @@
     <script src="/resources/js/member.js"></script>
     <script type="text/javascript">
     	myPage();
-    	$('#myPage-profile').click();
+    	
+    	 $(document).ready(function(){
+    		
+    		$("#myPage-profile").trigger("click");
+    	});
+    	
+    	
+    	$("#profile-section").load("/member/profile");
+    	
+    	
+    	$(document).on("click",".submenuList",function(){
+    		$("#profile-section").load(this.getAttribute('data-a'));
+    	});
+    	
+    	
+    	
+    	
+    	
     </script>
    
 </body>

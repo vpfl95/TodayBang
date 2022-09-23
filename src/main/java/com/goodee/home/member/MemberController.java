@@ -1,5 +1,8 @@
 package com.goodee.home.member;
 
+import java.util.List;
+
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -29,6 +33,7 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getLogin(memberDTO);
 
+		
 		
 		if (memberDTO != null) {
 			
@@ -109,16 +114,31 @@ public class MemberController {
 		
 		memberDTO = memberService.getJoinOverlab(memberDTO);
 		
-		
-		
-		
 		if(memberDTO != null) {
 			// 사용 불가
 			return "0";
 			
 		}
+		// 사용 가능
+		return "1";
+	}
+	
+	@PostMapping("updateOverlab")
+	@ResponseBody
+	public String getUpdateOverlab(MemberDTO memberDTO,HttpSession session) throws Exception{
 		
 		
+		
+		memberDTO = memberService.getJoinOverlab(memberDTO);
+		MemberDTO memberDTO2 = (MemberDTO) session.getAttribute("member");
+		
+		
+		if(memberDTO != null && !memberDTO.getNickname().equals(memberDTO2.getNickname()) ) {
+			// 사용 불가
+		
+			return "0";
+			
+		}
 		// 사용 가능
 		return "1";
 	}
@@ -137,6 +157,118 @@ public class MemberController {
 	}
 	
 	
+	@GetMapping("profile")
+	public void getProfile(HttpSession session) throws Exception{
+		
+		
+		
+		MemberDTO memberDTO =(MemberDTO) session.getAttribute("member");
+		
+		
+	}
+	@GetMapping("rank")
+	public void getRank() throws Exception{
+		
+		
+		
+	}
 	
+	
+	@PostMapping("update")
+	public String setUpdate(MemberDTO memberDTO,HttpSession session,MultipartFile profileImg) throws Exception{
+		
+		System.out.println("컨트롤러 진입");
+		
+		
+		
+		
+		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
+		memberDTO.setPassword(memberDTO2.getPassword());
+		
+		
+		if(memberDTO2.getMemberFileDTO() == null) { // 세션을 불러와야댐 
+			System.out.println("insert profile");
+			memberService.setInsert(memberDTO,session.getServletContext(),profileImg);
+			
+		}else {
+			System.out.println("update profile");
+			memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
+			
+		}
+		
+		session.setAttribute("member",memberDTO);
+		
+		
+		
+		return "redirect:./myPage";
+	}
+	
+	@GetMapping("updatePw")
+	public void getUpdatePw() throws Exception{
+			
+	}
+	
+	@PostMapping("updatePw")
+	public String setUpdatePw(MemberDTO memberDTO,HttpSession session) throws Exception{
+		
+		memberService.setUpdatePw(memberDTO);
+		
+		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
+		memberDTO2.setPassword(memberDTO.getPassword());
+		session.setAttribute("member",memberDTO2);
+		
+		return "redirect:./myPage";
+	}
+	
+	
+	@GetMapping("delivery")
+	public ModelAndView getDelivery(HttpSession session,int num) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
+		List<DeliveryDTO> ar =memberService.getDelivery(memberDTO);
+		
+		
+			mv.addObject("delivery", ar);
+			mv.addObject("length", ar.size());
+			mv.addObject("num", num);
+			
+			
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("addDelivery")
+	public void setDelivery() throws Exception{
+		
+		
+		
+	}
+	@PostMapping("addDelivery")
+	public String setDelivery(DeliveryDTO deliveryDTO,HttpSession session) throws Exception{
+		
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
+		deliveryDTO.setUserId(memberDTO.getUserId());
+		int result = memberService.setDelivery(deliveryDTO);
+		
+		return "redirect:./myPage";
+	}
+	
+	@PostMapping("updateDelivery")
+	public String updateDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		int result = memberService.updateDelivery(deliveryDTO);
+		
+		return "redirect:./myPage";
+	}
+	
+	@PostMapping("deleteDelivery")
+	public String deleteDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		
+		
+		int result = memberService.deleteDelivery(deliveryDTO);
+		return "redirect:./myPage";
+	}
 	
 }

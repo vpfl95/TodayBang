@@ -3,18 +3,83 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 		<mapper namespace="com.goodee.home.member.MemberDAO">
-			<select id="getLogin" parameterType="MemberDTO" resultType="MemberDTO">
-				SELECT * FROM MEMBERS WHERE USERID = #{userId} AND PASSWORD = #{password}
-			</select>
+			
+			<insert id="setProfileImg" parameterType="MemberFileDTO">
+				INSERT INTO MEMBERFILE VALUES (TODAY_SEQ.NEXTVAL,#{fileName} ,#{oriName} ,#{userId})
+			</insert>
+			<update id="updateProfileImg" parameterType="MemberFileDTO">
+			
+				UPDATE MEMBERFILE SET FILENAME = #{fileName}, ORINAME = #{oriName} WHERE USERID=#{userId}
+			</update>
 		
 			<insert id="getJoin" parameterType="MemberDTO">
 				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email})
 			</insert>
-		
+			<insert id="setJoinRole" parameterType="MemberDTO">
+				INSERT INTO "MEMBER-ROLE" VALUES(TODAY_SEQ.NEXTVAL,13,#{userId})
+			</insert>
 			<select id="getJoinOverlab" parameterType="MemberDTO" resultType="MemberDTO">
 			SELECT * FROM MEMBERS WHERE USERID = #{userId} OR NICKNAME = #{nickname} OR PHONE = #{phone} OR EMAIL = #{email}
 			
 			</select>
 		
 		
+			<update id="setUpdate" parameterType="MemberDTO">
+			UPDATE MEMBERS SET NICKNAME = #{nickname}, PHONE = #{phone} , EMAIL =#{email} ,USERNAME = #{userName} WHERE USERID = #{userId}
+			</update>
+			<update id="setUpdatePw" parameterType="MemberDTO">
+			UPDATE MEMBERS SET PASSWORD = #{password} WHERE USERID = #{userId}
+			</update>
+			
+			
+			<select id="getLogin" parameterType="MemberDTO" resultMap="getRoleResult">
+				SELECT MB.*, RL.ROLENUM, RL.ROLENAME, MF.FILENUM, MF.FILENAME
+				FROM MEMBERS MB
+				    INNER JOIN "MEMBER-ROLE" MR
+				    ON MB.USERID = MR.USERID
+				    INNER JOIN "ROLE" RL
+				    ON MR.ROLENUM = RL.ROLENUM
+				    LEFT JOIN MEMBERFILE MF
+                    ON MB.USERID = MF.USERID
+				WHERE MB.USERID = #{userId}  AND MB.PASSWORD = #{password}
+				ORDER BY MR.ROLENUM ASC
+			</select>
+			<resultMap type="MemberDTO" id="getRoleResult">
+				<id column="USERID" property="userId"/>
+				<result column="PASSWORD" property="password"/>
+				<result column="NICKNAME" property="nickname"/>
+				<result column="USERNAME" property="userName"/>
+				<result column="PHONE" property="phone"/>
+				<result column="email" property="email"/>
+				
+				<association property="memberFileDTO" javaType="MemberFileDTO">
+					<id column="FILENUM" property="fileNum"/>
+					<result column="FILENAME" property="fileName"/>
+				
+				</association>
+				
+				
+				<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
+					<id column="ROLENUM" property="roleNum"/>
+					<result column="ROLENAME" property="roleName"/>
+				</collection>
+			</resultMap>
+			
+			
+			<select id="getDelivery" parameterType="MemberDTO" resultType="DeliveryDTO">
+				SELECT * FROM DELIVERY WHERE USERID = #{userId}
+			</select>
+			<select id="setDelivery" parameterType="DeliveryDTO" >
+				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL ,#{address}, #{phone}, #{name}, #{note}, #{deliveryName},#{userId})
+			</select>
+			<update id="updateDelivery" parameterType="DeliveryDTO">
+				UPDATE DELIVERY SET ADDRESS = #{address}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName} WHERE ADDRESSNUM = #{addressNum}
+			</update>
+			<delete id="deleteDelivery" parameterType="DeliveryDTO">
+				DELETE FROM DELIVERY WHERE ADDRESSNUM = #{addressNum}
+			
+			</delete>
+			
+			
+			
 		</mapper>

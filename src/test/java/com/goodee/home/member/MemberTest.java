@@ -2,6 +2,8 @@ package com.goodee.home.member;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -42,7 +44,7 @@ public class MemberTest extends MyAbstractTest{
 		assertEquals(1, result);
 		
 	}
-	@Test
+	//@Test
 	public void JoinOverlabTest() throws Exception{
 		
 		MemberDTO memberDTO = new MemberDTO();
@@ -60,5 +62,59 @@ public class MemberTest extends MyAbstractTest{
 	}
 	
 	
+	//@Test
+		public void setUpdate() throws Exception{
+				
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setUserId("4444");
+			
+			memberDTO.setNickname("nick44");
+			memberDTO.setEmail("email44");
+			memberDTO.setPhone("phone44");
+			memberDTO.setUserName("name44");
+			
+			
+			int result = memberDAO.setUpdate(memberDTO);
+			
+			assertEquals(1, result);
+			
+		}
+		
+		//@Test
+		public void getRoleTest() throws Exception{
+			
+		}
+		
+		//@Test
+		public void getDeliveryTest() throws Exception{
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setUserId("qqqqw");
+			
+			
+			
+			List<DeliveryDTO> result = memberDAO.getDelivery(memberDTO);
+			
+			assertNotNull(result);
+			
+		}
+		
+		@Test
+		public void setDeliveryTest() throws Exception{
+			
+			DeliveryDTO dto = new DeliveryDTO();
+			dto.setUserId("qqqqw");
+			dto.setAddress("addt");
+			dto.setDeliveryName("delnamet");
+			dto.setName("namet");
+			dto.setNote("note");
+			dto.setPhone("phonet");
+			
+			
+			int result = memberDAO.setDelivery(dto);
+			
+			assertEquals(result,1);
+			
+		}
 
 }
