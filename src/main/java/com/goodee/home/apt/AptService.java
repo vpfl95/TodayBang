@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.goodee.home.realEstate.RealEstateDAO;
 import com.goodee.home.realEstate.RealEstateDTO;
-import com.goodee.home.util.MaemulPager;
+
 
 @Service
 public class AptService {
@@ -18,12 +18,8 @@ public class AptService {
 		return aptDAO.getAptRoadName(aptDTO); 
 	}
 	
-	public List<AptDTO> getList(MaemulPager maemulPager)throws Exception{
-		maemulPager.getRowNum();
-		Long totalCount = aptDAO.getCount(maemulPager);
-		maemulPager.getNum(totalCount);
-		
-		return aptDAO.getList(maemulPager);
+	public List<AptDTO> getList(AptDTO aptDTO)throws Exception{
+		return aptDAO.getList(aptDTO);
 	}
 	
 }

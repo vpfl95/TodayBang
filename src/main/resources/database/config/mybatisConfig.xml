@@ -22,8 +22,6 @@
 		<typeAlias type="com.goodee.home.house.HouseDTO" alias="HouseDTO"/>
 		<typeAlias type="com.goodee.home.officetel.OfficetelDTO" alias="OfficetelDTO"/>
 		<typeAlias type="com.goodee.home.region.RegionDTO" alias="RegionDTO"/>
-		<typeAlias type="com.goodee.home.util.Pager" alias="Pager"/>
-		<typeAlias type="com.goodee.home.util.MaemulPager" alias="MaemulPager"/>
 		
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>

@@ -1,6 +1,5 @@
 const dto = document.getElementsByClassName("dto"); //도로명, 시군구, 건물명
 const more = document.getElementsByName("more");
-let page =1; //처음 페이지 번호
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -285,7 +284,7 @@ function addMarker(address_result){
                         marker_overlays.push(customOverlay);
                     }
 
-                    addEventHandle(content,page,'click')
+                    addEventHandle(content,'click')
                     
                 } 
             });     
@@ -299,7 +298,7 @@ var selectedMarker = "";
 
 const realEstateList = document.getElementById("realEstateList")
 //마커 클릭 이벤트 리스트 얻어오기
-function addEventHandle(target,p, type) {
+function addEventHandle(target, type) {
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
@@ -329,7 +328,10 @@ function addEventHandle(target,p, type) {
             // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
             selectedMarker = target;
 
-         
+            // console.log(target.firstChild.nextSibling)
+            // target.classList.toggle("building-select")
+            // target.firstChild.classList.toggle("building-top-select")
+            // target.firstChild.nextSibling.classList.toggle("building-bot-select")
 
             var roadName = e.target.getAttribute("data-roadName");
             console.log(roadName);
@@ -351,9 +353,7 @@ function addEventHandle(target,p, type) {
 }
 
 more.addEventListener("click", function(){
-    page++;
     
-
 });
 
 

@@ -14,18 +14,8 @@
 		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU	
 	</select>
 	
-	<select id="getList" parameterType="MaemulPager" resultType="AptDTO">
-		SELECT * 
-		FROM (SELECT ROWNUM R, A.*
-			  FROM (SELECT * 
-			  		FROM REALESTATE 
-			  		WHERE ROADNAME=#{roadName} 
-			  		ORDER BY DEALDAY) A)
-		WHERE R BETWEEN #{startRow} AND #{lastRow};
-	</select>
-
-	<select id="getCount" parameterType="MaemulPager" resultType="Long">
-		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName}
+	<select id="getList" parameterType="AptDTO" resultType="AptDTO">
+		SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName}
 	</select>
 
 </mapper>
