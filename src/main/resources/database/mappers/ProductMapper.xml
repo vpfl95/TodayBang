@@ -60,4 +60,51 @@
 			<result column="ORINAME" property="oriName"/>
 		</association>
 	</resultMap>
+	
+	<select id="getProductDetail" parameterType="ProductDTO"
+		resultMap="getProductDetailResult">
+		SELECT P.*, I.FILENAME, I.FILENUM, I.ORINAME, o1.NUM NUM1, o1.OPTIONNAME OPTIONNAME1, o1.OPTIONPRICE OPTIONORICE1,
+        o2.NUM NUM2, o2.OPTIONNAME OPTIONNAME2, o2.OPTIONPRICE OPTIONORICE2,o3.NUM NUM3, o3.OPTIONNAME OPTIONNAME3, o3.OPTIONPRICE OPTIONORICE3
+        FROM "EX-PRODUCT" E
+		JOIN PRODUCT P 
+		ON P.PRODUCTNUM = E.PRODUCTNUM
+		JOIN PRODUCTIMAGE I
+		ON P.PRODUCTNUM = I.PRODUCTNUM
+        LEFT JOIN OPTION1 o1
+        ON P.PRODUCTNUM = o1.PRODUCTNUM
+        LEFT JOIN OPTION2 o2
+        ON P.PRODUCTNUM = o2.PRODUCTNUM
+        LEFT JOIN OPTION3 o3
+        ON P.PRODUCTNUM = o3.PRODUCTNUM
+		WHERE P.PRODUCTNUM=#{productNum}
+	</select>
+	
+	<resultMap type="ProductDTO" id="getProductDetailResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<collection property="option1DTOs" javaType="List" ofType="Option1DTO">
+			<id column="NUM1" property="num"/>
+			<result column="OPTIONNAME1" property="optionName"/>
+			<result column="OPTIONPRICE1" property="optionPrice"/>
+		</collection>
+		<collection property="option2DTOs" javaType="List" ofType="Option2DTO">
+			<id column="NUM2" property="num"/>
+			<result column="OPTIONNAME2" property="optionName"/>
+			<result column="OPTIONPRICE2" property="optionPrice"/>
+		</collection>
+		<collection property="option3DTOs" javaType="List" ofType="Option3DTO">
+			<id column="NUM3" property="num"/>
+			<result column="OPTIONNAME3" property="optionName"/>
+			<result column="OPTIONPRICE3" property="optionPrice"/>
+		</collection>
+	</resultMap>
 </mapper>

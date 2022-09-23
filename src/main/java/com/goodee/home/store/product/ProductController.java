@@ -62,7 +62,8 @@ public class ProductController {
 	@GetMapping("detail")
 	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("productDTO", productDTO);
+		List<ProductDTO> ar = productService.getProductDetail(productDTO);
+		mv.addObject("list", ar);
 		mv.setViewName("store/products/detailProduct");
 		return mv;
 	}
