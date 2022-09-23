@@ -16,6 +16,7 @@ public class MemberDAO {
 	private String NAMESPACE = "com.goodee.home.member.MemberDAO.";
 	
 	
+	
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		
 		
@@ -77,6 +78,11 @@ public class MemberDAO {
 		return sqlSession.delete(NAMESPACE+"deleteDelivery", deliveryDTO);
 	}
 	
+	public int setProfileImg(MemberFileDTO memberFileDTO) throws Exception{
+		
+		
+		return sqlSession.insert(NAMESPACE+ "setProfileImg",memberFileDTO);
+	}
 	
 	
 }

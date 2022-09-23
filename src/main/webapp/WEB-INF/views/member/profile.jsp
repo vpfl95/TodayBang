@@ -15,7 +15,7 @@
 	<div>
 	
 	
-				<form action="./update" method="post" id = "updateForm" >
+				<form action="./update" method="post" id = "updateForm" enctype="multipart/form-data" >
 		        		<div id = "updateInput">
 			        		<label for="userId">아이디</label>
 					        <input type="text" value ="${member.userId }" readonly="readonly" id="userId" name = "userId" class="form-control nonOverlab" placeholder="아이디" required autofocus style="background-color: #dcddde">
@@ -63,6 +63,13 @@
 					        </div>
 					        <div></div>
 					        <div></div>
+					        
+					        
+					        
+					        <label for="profileImg" >프로필사진</label>
+					        <input type="file" id="profileImg" name = "profileImg" class="form-control ">
+					        
+					        
 					        
 		        		</div>
 						

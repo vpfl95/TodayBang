@@ -4,6 +4,10 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 		<mapper namespace="com.goodee.home.member.MemberDAO">
 			
+			<insert id="setProfileImg" parameterType="MemberFileDTO">
+				INSERT INTO MEMBERFILE VALUES (TODAY_SEQ.NEXTVAL,#{fileName} ,#{oriName} ,#{userId})
+			</insert>
+			
 		
 			<insert id="getJoin" parameterType="MemberDTO">
 				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email})

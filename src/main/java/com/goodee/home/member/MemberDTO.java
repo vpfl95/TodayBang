@@ -15,8 +15,21 @@ public class MemberDTO {
 	private String phone;
 	private String email;
 	private List<RoleDTO> roleDTOs;
+	private MemberFileDTO memberFileDTO;
 	
 	
+	
+	
+	
+	
+	
+	
+	public MemberFileDTO getMemberFileDTO() {
+		return memberFileDTO;
+	}
+	public void setMemberFileDTO(MemberFileDTO memberFileDTO) {
+		this.memberFileDTO = memberFileDTO;
+	}
 	public List<RoleDTO> getRoleDTOs() {
 		return roleDTOs;
 	}

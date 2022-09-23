@@ -2,14 +2,24 @@ package com.goodee.home.member;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.goodee.home.util.FileManger;
 
 @Service
 public class MemberService {
 
 	@Autowired
 	MemberDAO memberDAO = new MemberDAO();
+	
+	@Autowired
+	FileManger fileManger = new FileManger();
+	
+	
 	
 	public MemberDTO getLogin(MemberDTO memberDTO) throws Exception{
 		
@@ -33,9 +43,31 @@ public class MemberService {
 		return memberDAO.getJoinOverlab(memberDTO);
 	}
 	
-	public int setUpdate(MemberDTO memberDTO) throws Exception{
+	public int setUpdate(MemberDTO memberDTO,ServletContext servletContext,MultipartFile profileImg) throws Exception{
 		
-		return memberDAO.setUpdate(memberDTO);
+		int result = memberDAO.setUpdate(memberDTO);
+		
+		
+		String path = "resources/upload/member";
+		
+		if(!profileImg.isEmpty()) {
+			
+			String fileName = fileManger.saveFile(path, servletContext, profileImg);
+			MemberFileDTO memberFileDTO = new MemberFileDTO();
+			memberFileDTO.setFileName(fileName);
+			memberFileDTO.setOriName(profileImg.getOriginalFilename());
+			memberFileDTO.setUserId(memberDTO.getUserId());
+			
+			
+			
+			memberDAO.setProfileImg(memberFileDTO);
+			
+		
+		}
+		
+		
+		
+		return result;
 	}
 	
 	public int setUpdatePw(MemberDTO memberDTO) throws Exception{

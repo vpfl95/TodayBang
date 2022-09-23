@@ -569,10 +569,11 @@ updateBtn.addEventListener("click",function(){
 
     let redCheck = updateInput.getElementsByTagName('p');
     let nullCheck = updateInput.getElementsByTagName('input');
+    let profileImg = document.querySelector("#profileImg");
     let result = 0;
     for(nu of nullCheck){
 
-        if(nu.value == ""){
+        if(nu.value == "" && profileImg.id != nu.id ){
             result += 1;
         }
 

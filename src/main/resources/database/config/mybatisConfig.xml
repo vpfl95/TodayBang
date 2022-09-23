@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.goodee.home.member.MemberDTO" alias="MemberDTO"/>
+		<typeAlias type="com.goodee.home.member.MemberFileDTO" alias="MemberFileDTO"/>
 		<typeAlias type="com.goodee.home.member.RoleDTO" alias="RoleDTO"/>
 		<typeAlias type="com.goodee.home.member.DeliveryDTO" alias="DeliveryDTO"/>
 		<typeAlias type="com.goodee.home.service.NoticeDTO" alias="NoticeDTO"/>

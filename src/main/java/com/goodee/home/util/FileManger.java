@@ -23,7 +23,7 @@ public class FileManger {
 		
 		File file = new File(realPath);
 		if(!file.exists()) {
-			file.mkdir();
+			file.mkdirs();
 		}
 		
 		String fileName = UUID.randomUUID().toString() + "_" + multipartFile.getOriginalFilename();
@@ -33,12 +33,7 @@ public class FileManger {
 		
 		
 		return fileName;
-		
-		
-		
-		
-		
-		
+			
 		
 		
 	}

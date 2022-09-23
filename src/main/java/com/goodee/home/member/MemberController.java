@@ -2,6 +2,7 @@ package com.goodee.home.member;
 
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -172,12 +174,18 @@ public class MemberController {
 	
 	
 	@PostMapping("update")
-	public String setUpdate(MemberDTO memberDTO,HttpSession session) throws Exception{
+	public String setUpdate(MemberDTO memberDTO,HttpSession session,MultipartFile profileImg) throws Exception{
 		
-		memberService.setUpdate(memberDTO);
+		System.out.println("컨트롤러 진입");
+		
+		
 		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
 		memberDTO.setPassword(memberDTO2.getPassword());
 		session.setAttribute("member",memberDTO);
+		
+		
+		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
+		
 		
 		return "redirect:./myPage";
 	}
