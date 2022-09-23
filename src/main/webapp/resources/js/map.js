@@ -1,4 +1,6 @@
-const dto = document.getElementsByClassName("dto"); //도로명, 시군구, 건물명 
+const dto = document.getElementsByClassName("dto"); //도로명, 시군구, 건물명
+const more = document.getElementsByName("more");
+let page =1; //처음 페이지 번호
 
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
@@ -158,12 +160,12 @@ function getRegionName(){
 //매물 마커 생성 함수
 function addMarker(address_result){
     
-    var imageSrc = '/resources/images/apartment.png', // 마커이미지의 주소입니다    
-    imageSize = new kakao.maps.Size(56, 70), // 마커이미지의 크기입니다
-    imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
+    // var imageSrc = '/resources/images/apartment.png', // 마커이미지의 주소입니다    
+    // imageSize = new kakao.maps.Size(56, 70), // 마커이미지의 크기입니다
+    // imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
       
-    // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
+    // // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
+    // var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
 
    
     for(let i=0; i<address_result.length; i++){
@@ -176,7 +178,7 @@ function addMarker(address_result){
 
             content = document.createElement("div")
             content.className = "building"
-            content.style = "width: 56px; height: 70px;background-image: url('/resources/images/apartment.png')"
+            content.style = "position: relative;z-index:0;width: 56px; height: 70px;"
             content.setAttribute("data-roadName",address_result[i].roadName);
             
             
@@ -263,15 +265,6 @@ function addMarker(address_result){
                 if (status === kakao.maps.services.Status.OK) {
                     var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
 
-                    // 결과값으로 받은 위치를 마커로 표시합니다
-                    var marker = new kakao.maps.Marker({
-                        //map: map,
-                        position: coords,
-                        image: markerImage,
-                        clickable: true
-                      
-                    });
-                    
                     // 아파트명 커스텀 오버레이를 생성합니다
                     var customOverlay = new kakao.maps.CustomOverlay({
                         //map: map,
@@ -281,21 +274,9 @@ function addMarker(address_result){
                         yAnchor: 1
                     });
                     
-                    //marker.setMap(map)
                     customOverlay.setMap(map);
 
-        
-                    // kakao.maps.event.addListener(marker, 'click', function() {
-                    //     console.log("마커 클릭")
-                    // });
-                    
-
-                    if(markers.includes(marker)){   //*******************************마커가 배열에 이미 들어있는지 확인이 안됨**************************
-                        console.log(markers.includes(marker))
-                        return
-                    }else{
-                        //markers.push(marker);
-                    }
+                
 
                     if(marker_overlays.includes(customOverlay)){ //***************************커스텀오버레이가 배열에 이미 들어있는지 확인이 안됨**********************
                         return
@@ -304,25 +285,57 @@ function addMarker(address_result){
                         marker_overlays.push(customOverlay);
                     }
 
-                    addEventHandle(content,'click')
+                    addEventHandle(content,page,'click')
                     
                 } 
             });     
-        }, 10);   
+        }, 20);   
         
     }
 }
 
+var selectedMarker = "";
+
+
 const realEstateList = document.getElementById("realEstateList")
 //마커 클릭 이벤트 리스트 얻어오기
-function addEventHandle(target, type) {
+function addEventHandle(target,p, type) {
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
+            // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
+            // 마커의 이미지를 클릭 이미지로 변경합니다
+            if (!selectedMarker || selectedMarker !== target) {
+
+                // 클릭된 마커 객체가 null이 아니면
+                // 클릭된 마커의 이미지를 기본 이미지로 변경하고
+                console.log(selectedMarker) 
+                selectedMarker.className="building";
+                if(selectedMarker){
+                    selectedMarker.parentNode.style.zIndex=0
+                }
+               
+                // console.log(selectedMarker.firstChild);
+                // selectedMarker.firstChild.className="building-top"
+                // selectedMarker.firstChild.nextSibling.className="building-bot"
+
+                // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
+                target.className="building-select"
+                target.firstChild.className="building-top-select"
+                target.firstChild.nextSibling.className="building-bot-select"
+                target.parentNode.style.zIndex=10
+                console.log(target)
+            }
+
+            // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
+            selectedMarker = target;
+
+         
+
             var roadName = e.target.getAttribute("data-roadName");
             console.log(roadName);
             
             let xhttp = new XMLHttpRequest();
-            xhttp.open("GET","./getList?roadName="+roadName);
+            xhttp.open("GET","./getList?page="+ p +"&roadName="+roadName);
             //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
             xhttp.send();
             xhttp.addEventListener("readystatechange", function(){
@@ -336,6 +349,12 @@ function addEventHandle(target, type) {
         target.attachEvent('on' + type, callback);
     }
 }
+
+more.addEventListener("click", function(){
+    page++;
+    
+
+});
 
 
 

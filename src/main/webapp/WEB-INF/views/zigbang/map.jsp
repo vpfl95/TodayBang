@@ -14,10 +14,15 @@
 		.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 		#centerAddr {display:block;margin-top:2px;font-weight: normal;}
 		.bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
+
 		.custom{display: flex;flex: 1 1 0%;-webkit-box-pack: center;justify-content: center;pointer-events: none;flex-direction: column;line-height: 1.2;background-size: 100%;text-align: center;user-select: none;}
-		.building {position: relative;cursor: pointer;background-size: 100%;background-repeat: no-repeat;text-align: center;user-select: none;}
-		.building-top{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: white;}
-		.building-bot {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: white;}
+		.building {position: relative;z-Index:0;cursor: pointer;background-size: 100%;background-repeat: no-repeat;text-align: center;user-select: none;background-image: url('/resources/images/apartment.png')}
+		.building-top{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: black;}
+		.building-bot {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: black;}
+
+		.building-select {position: relative; z-index:10; cursor: pointer;background-size: 100%;background-repeat: no-repeat;text-align: center;user-select: none;background-image: url('/resources/images/apartment_select.png')}
+		.building-top-select{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: black;}
+		.building-bot-select {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: black;}
 		.building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);overflow: hidden;text-overflow: ellipsis;}
 		.maemulList{position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 	</style>
@@ -35,6 +40,7 @@
 		<div class="maemulList">
 			<table id="realEstateList" border="1">
 			</table>
+			<button id="more">더보기</button>
 		</div>
 	</div>
 	

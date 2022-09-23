@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.goodee.home.realEstate.RealEstateDTO;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
+import com.goodee.home.util.MaemulPager;
 
 @Controller
 @RequestMapping("/apt/*")
@@ -78,11 +79,11 @@ public class AptController {
 	
 	@GetMapping("getList")
 	@ResponseBody
-	public ModelAndView getList(AptDTO aptDTO) throws Exception{
-		System.out.println(aptDTO.getRoadName());
+	public ModelAndView getList(MaemulPager maemulPager) throws Exception{
+		System.out.println(maemulPager.getRoadName());
 		ModelAndView mv = new ModelAndView();
 		
-		List<AptDTO> list = aptService.getList(aptDTO);
+		List<AptDTO> list = aptService.getList(maemulPager);
 		
 		mv.addObject("list",list);
 		mv.setViewName("common/realEstateList");
