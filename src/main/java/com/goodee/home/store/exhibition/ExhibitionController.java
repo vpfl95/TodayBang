@@ -24,10 +24,12 @@ public class ExhibitionController {
 	@GetMapping("detail")
 	public ModelAndView getDetail(ExhibitionDTO exhibitionDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		mv.addObject("exhibitionDTO", exhibitionDTO);
+		long code = exhibitionDTO.getExhibitionCode();
 		
-		if(exhibitionDTO.getExhibitionCode() == 2689) {
+		if(code == 2689) {
 			mv.setViewName("/store/exhibitions/exhibitions2689");
-		} else if(exhibitionDTO.getExhibitionCode() == 1433) {
+		} else if(code == 1433) {
 			mv.setViewName("/store/exhibitions/exhibitions1433");
 		}
 		return mv;

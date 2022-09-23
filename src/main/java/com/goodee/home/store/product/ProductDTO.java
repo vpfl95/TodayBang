@@ -1,6 +1,7 @@
 package com.goodee.home.store.product;
 
 import java.sql.Date;
+import java.util.List;
 
 public class ProductDTO {
 	private Long productNum;
@@ -14,7 +15,21 @@ public class ProductDTO {
 	private Integer todayDeal;
 	private Long premium;
 	private Long deliFee;
+	private List<ProductImageDTO> productImageDTOs;
+	private ProductImageDTO productImageDTO;
 	
+	public ProductImageDTO getProductImageDTO() {
+		return productImageDTO;
+	}
+	public void setProductImageDTO(ProductImageDTO productImageDTO) {
+		this.productImageDTO = productImageDTO;
+	}
+	public List<ProductImageDTO> getProductImageDTOs() {
+		return productImageDTOs;
+	}
+	public void setProductImageDTOs(List<ProductImageDTO> productImageDTOs) {
+		this.productImageDTOs = productImageDTOs;
+	}
 	public Long getProductNum() {
 		return productNum;
 	}

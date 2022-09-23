@@ -31,4 +31,33 @@
 	<insert id="setProductImage" parameterType="ProductImageDTO">
 		INSERT INTO PRODUCTIMAGE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{productNum}, #{detail})
 	</insert>
+	
+	<select id="getExProductList" parameterType="ExhibitionDTO"
+		resultMap="getExProductResult">
+		SELECT P.*, I.FILENAME, I.FILENUM, I.ORINAME FROM "EX-PRODUCT" E
+		JOIN PRODUCT P 
+		ON P.PRODUCTNUM = E.PRODUCTNUM
+		JOIN PRODUCTIMAGE I
+		ON P.PRODUCTNUM = I.PRODUCTNUM
+		WHERE E.EXHIBITIONCODE = #{exhibitionCode} AND I.ORINAME LIKE '01%'
+	</select>
+	
+	<resultMap type="ProductDTO" id="getExProductResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<association property="productImageDTO" javaType="ProductImageDTO">
+			<id column="FILENUM" property="fileName"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+	</resultMap>
 </mapper>

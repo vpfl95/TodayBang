@@ -18,7 +18,7 @@
     <!-- 삼성 -->
     <c:import url="../../template/header.jsp"></c:import>
 
-	<section class="container-fluid container-lg-8 mt-5">
+	<section class="container-fluid contents-wrap container-lg-8 mt-5">
 		<div class = "row justify-content-center mt-5">
 			<div class = "col-lg-9">
                 <div class="right_re mt-5">
@@ -101,6 +101,22 @@
                     </div>
                     <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
 
+                    <div class="refurDetail">
+                        <div><b>전체</b></div>
+                        <div><b>빠른배송</b></div>
+                        <div><b>냉장고/김치냉장고</b></div>
+                        <div><b>세탁기/건조기</b></div>
+                        <div><b>에어드레서/슈드레서</b></div>
+                        <div><b>TV/사운드바</b></div>
+                        <div><b>청소기</b></div>
+                        <div><b>공기청정기</b></div>
+                        <div><b>식기세척기</b></div>
+                        <div><b>주방가전</b></div>
+                        <div><b>비데</b></div>
+                    </div>
+                    <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
+                        <!-- 상품 리스트 자리-->
+                    </div>
                 </div>
 			</div>
 		</div>
@@ -110,5 +126,9 @@
 	<c:import url="../../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="/resources/js/store/exhibitionsDetail.js"></script>
+    <script>
+        getList();
+    </script>
 </body>
 </html>

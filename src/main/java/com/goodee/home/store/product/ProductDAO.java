@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.goodee.home.store.exhibition.ExhibitionDTO;
 import com.goodee.home.store.impl.OptionDTO;
 
 @Repository
@@ -33,5 +34,9 @@ public class ProductDAO {
 	
 	public int setProductImage(ProductImageDTO productImageDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setProductImage", productImageDTO);
+	}
+	
+	public List<ProductDTO> getExProductList(ExhibitionDTO exhibitionDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getExProductList", exhibitionDTO);
 	}
 }

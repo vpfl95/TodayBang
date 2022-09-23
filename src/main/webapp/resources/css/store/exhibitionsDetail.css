@@ -1,3 +1,4 @@
+
 .right_re {
     width: 30%;
     margin: 0px;
@@ -46,4 +47,59 @@
 
 .oneThird img {
     width: 33%;
+}
+
+.imageList {
+    max-width: 100%;
+}
+
+.imageList img {
+    width: 100%;
+}
+
+.imageList>div {
+    width: 33%;
+    padding: 10px;
+}
+
+/* Product Detail Font*/
+.brand {
+    font-size: 10px;
+    color: gray;
+}
+
+.productName {
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.saleRate {
+    font-size: 19px;
+    display: inline-block;
+    color: #35c5f0;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price {
+    display: inline-block;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.grade {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.reviewNum {
+    font-size: 14px;
+    display: inline-block;
+    color: gray;
+}
+
+.productDetail {
+    max-width: 100%;
 }

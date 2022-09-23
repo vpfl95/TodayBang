@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
+import com.goodee.home.store.exhibition.ExhibitionDTO;
 
 @Controller
 @RequestMapping("/product/*")
@@ -48,5 +50,12 @@ public class ProductController {
 	@ResponseBody
 	public List<CategoryDTO> getCategory() throws Exception {
 		return productService.getCategory();
+	}
+	
+	@GetMapping("list")
+	@ResponseBody
+	public List<ProductDTO> getExProductList(ExhibitionDTO exhibitionDTO) throws Exception {
+		List<ProductDTO> ar = productService.getExProductList(exhibitionDTO);
+		return ar;
 	}
 }

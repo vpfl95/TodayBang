@@ -12,6 +12,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDAO;
+import com.goodee.home.store.exhibition.ExhibitionDTO;
 import com.goodee.home.store.impl.OptionDTO;
 
 @Service
@@ -80,5 +81,9 @@ public class ProductService {
 		}
 		
 		return result;
+	}
+	
+	public List<ProductDTO> getExProductList(ExhibitionDTO exhibitionDTO) throws Exception {
+		return productDAO.getExProductList(exhibitionDTO);
 	}
 }
