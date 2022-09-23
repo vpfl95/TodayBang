@@ -45,16 +45,16 @@
 					        <label for="inputPhone" >핸드폰</label>
 					        <div id= "phone">
 					        	<input type="hidden" name = "phone" id="submitPhone">
-						        <br>
+						     
 						        <select name="phone1" id="phoneFirst" class="form-control nonOverlab" required>
 						         	<option value="010"  selected="selected">010</option>
 						         	<option value="011"  >011</option>
 						         	<option value="070"  >070</option>
 						        
 						        </select>
-						        <label for="phone" >-</label>
+						        <label for="phone" class="nolabel">-</label>
 						        <input type="text"  id="phoneMiddle" maxlength="4" name = "phone1" class="form-control nonOverlab" placeholder="0000" required>
-						        <label for="phoneLast" >-</label>
+						        <label for="phoneLast" class="nolabel">-</label>
 						        <input type="text"  id="phoneLast" maxlength="4" name = "phone1" class="form-control nonOverlab" placeholder="0000" required>
 					        </div>
 					        
@@ -66,7 +66,7 @@
 					        <div id= "email">
 					        <input type="hidden" name = "email" id="submitEmail">
 						        <input type="text"  id="emailFirst" name = "email1" class="form-control nonOverlab" placeholder="이메일" required>
-						        <label for="emailAt" >@</label>
+						        <label for="emailAt" class="nolabel">@</label>
 						        <select name="email1" id="emailAt" class="form-control nonOverlab" required>
 						         	<option value="0" disabled selected="selected">선택해주세요</option>
 						         	<option value="naver.com">naver.com</option>
@@ -83,7 +83,7 @@
 		        		</div>
 						
 				       
-				        <button id="joinBtn" class="w-100 btn btn-lg btn-primary" type="submit">회원가입</button>
+				        <button id="joinBtn" class="w-100 btn btn-lg btn-primary" type="button">회원가입</button>
 				        
 				        <div id = "joinPart" class="mx-auto">
 					        이미 아이디가 있으신가요?

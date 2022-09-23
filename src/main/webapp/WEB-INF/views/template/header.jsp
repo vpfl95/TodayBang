@@ -37,6 +37,13 @@
 	        
         		</c:if>
         		<c:if test="${not empty member }">
+        		
+        			<c:if test="${member.roleDTOs[0].roleNum eq 1 }">
+        			<li><a href="/admin/main" class="nav-link px-2 link-secondary">관리자 페이지</a></li>
+        			<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
+		         	
+        			
+        			</c:if>
         		<!-- 로그인 OOO -->
         			<li><a href="/member/myPage" class="nav-link px-2 link-secondary">마이페이지</a></li>
 		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>

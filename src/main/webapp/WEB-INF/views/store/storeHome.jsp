@@ -87,7 +87,7 @@
 	                    <div class="center_menu_img"><img src="/resources/images/test2.jpeg" alt=""></div>
 	                    <div>
 	                        <div class="brand">먼데이하우스</div>
-	                        <div class="product">오늘의 직방 최다리뷰! 인기 총합 가구 BIG SALE</div>
+	                        <div class="productName">오늘의 직방 최다리뷰! 인기 총합 가구 BIG SALE</div>
 	                        <div>
 	                            <div class="saleRate"><b>61%</b></div>
 	                            <div class="price"><b>10300 외</b></div>

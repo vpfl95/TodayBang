@@ -20,7 +20,37 @@
 				<div class = " col-lg-7 ">
 	
 					
-					<h1>공지사항 페이지</h1>
+					<h1>${board } 페이지</h1>
+					
+					<table class="table">
+				  <thead>
+				    <tr>
+				      <th scope="col">글 번호</th>
+				      <th scope="col">글 제목</th>
+				      
+				      <th scope="col">작성자</th>
+				      <th scope="col">게시일</th>
+				    </tr>
+				  </thead>
+				  <tbody>
+				  
+				  	<c:forEach items="${boardList }" var="dto">
+				  		
+				  		<tr>
+						  	<th scope="row">${dto.boardNum}</th>
+						  	<td><a href="./detail?boardNum=${dto.boardNum }">${dto.title }</a></td>
+					        <td>${dto.userId }</td>
+					        <td>${dto.regDate }</td>
+			        	</tr>
+				  	</c:forEach>
+				  
+				    
+				      
+				      
+				    
+				  
+				  </tbody>
+				</table>
 			</div>
 		</div>
 	</section>
