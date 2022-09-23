@@ -5,7 +5,12 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 		<mapper namespace="com.goodee.home.service.ServiceDAO">
 		
-		
+			<select id="getNotice" resultType="NoticeDTO">
+				SELECT * FROM NOTICE
+			</select>
+			<select id="getNoticeDetail" parameterType="NoticeDTO" resultType="NoticeDTO">
+				SELECT * FROM NOTICE WHERE BOARDNUM = #{boardNum}
+			</select>
 		
 		
 		

@@ -27,28 +27,27 @@
 				    <tr>
 				      <th scope="col">글 번호</th>
 				      <th scope="col">글 제목</th>
+				      
 				      <th scope="col">작성자</th>
 				      <th scope="col">게시일</th>
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr>
-				      <th scope="row">1</th>
-				      <td>Mark</td>
-				      <td>Otto</td>
-				      <td>@mdo</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td>Jacob</td>
-				      <td>Thornton</td>
-				      <td>@fat</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td colspan="2">Larry the Bird</td>
-				      <td>@twitter</td>
-				    </tr>
+				  
+				  	<c:forEach items="${notice }" var="dto">
+				  		<tr>
+						  	<th scope="row">${dto.boardNum}</th>
+						  	<td>${dto.title }</td>
+					        <td>${dto.userId }</td>
+					        <td>${dto.regDate }</td>
+			        	</tr>
+				  	</c:forEach>
+				  
+				    
+				      
+				      
+				    
+				  
 				  </tbody>
 				</table>
 			</div>
