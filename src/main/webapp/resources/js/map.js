@@ -337,7 +337,7 @@ function addEventHandle(target, type) {
             console.log(roadName);
             
             let xhttp = new XMLHttpRequest();
-            xhttp.open("GET","./getList?page="+ p +"&roadName="+roadName);
+            xhttp.open("GET","./getList?roadName="+roadName);
             //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
             xhttp.send();
             xhttp.addEventListener("readystatechange", function(){
