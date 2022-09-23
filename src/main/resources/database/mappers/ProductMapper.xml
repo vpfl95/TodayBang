@@ -11,4 +11,5 @@
 	<select id="getCategory" resultType="CategoryDTO">
 		SELECT * FROM CATEGORY
 	</select>
+	
 </mapper>

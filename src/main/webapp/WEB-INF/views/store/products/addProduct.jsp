@@ -20,24 +20,27 @@
 	<section class="container-fluid container-lg-8 mt-5">
 		<div class = "row justify-content-center mt-5">
 			<div class = "col-lg-7">
-				<form action="add">
+				<form action="add" enctype="multipart/form-data" method="post">
                     <div class="categoryWrap" style="border: solid red 1px; height: 150px;">
                         <div class="text"><b>Category 설정</b></div>
-                        <div class="category">
+                        <div class="category" id="category">
                             <span>대분류</span>
-                            <select name="category-1" id="">
+                            <select name="category_1" id="cate1">       
                             </select>
                             <span>중분류</span>
-                            <select name="category-2" id="">
+                            <select name="category_2" id="cate2">
+                        
                             </select>
                             <span>소분류</span>
-                            <select name="category-3" id="">
+                            <select name="categoryNum" id="cate3">
                             </select>
                         </div>
                         <br>
                         <div class="exhibition">
                             <span>기획전</span>
-                            <select name="exhibition" id=""></select>
+                            <select name="exhibitionCode" id="exhibition">
+                                <option value="0">해당사항 없음</option>
+                            </select>
                         </div>  
                     </div>
                     <div class="productDetail" style="border: solid red 1px; height: auto;">
@@ -114,10 +117,68 @@
                             </div>
                         </div>
                     </div>
-                    <div class="images" style="border: solid red 1px; height: 300px;">
-                        <div class="text"><b>이미지 추가</b></div>
-                        <div class="inputWrap"></div>
+                    <div class="images productImage" style="border: solid red 1px; height: auto;">
+                        <div class="text"><b>상품이미지 추가</b></div>
+                        <div class="inputWrap">
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productImage">
+                            </div>  
+                        </div>
                     </div>
+                    <div class="images productDetail" style="border: solid red 1px; height: auto;">
+                        <div class="text"><b>상품 디테일 추가</b></div>
+                        <div class="inputWrap">
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                            <div class="input-group mb-3">
+                                <input type="file" class="form-control" name="productDetail">
+                            </div>
+                        </div>
+                    </div>
+                    <button id="btnAddProduct" type="submit">제출</button>
                 </form>
 			</div>
 		</div>
@@ -125,7 +186,12 @@
 	
 
 	<c:import url="../../template/footer.jsp"></c:import>
+    <script src="/resources/js/store/addProduct.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script>
+        getCategory();
+        getExhibition();
+    </script>
 </body>
 </html>
