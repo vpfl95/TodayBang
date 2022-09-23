@@ -58,4 +58,12 @@ public class ProductController {
 		List<ProductDTO> ar = productService.getExProductList(exhibitionDTO);
 		return ar;
 	}
+	
+	@GetMapping("detail")
+	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("productDTO", productDTO);
+		mv.setViewName("store/products/detailProduct");
+		return mv;
+	}
 }
