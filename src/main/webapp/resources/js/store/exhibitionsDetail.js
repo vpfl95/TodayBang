@@ -20,7 +20,10 @@ function getList() {
                         continue;
                     }
                     let divProduct = document.createElement("div");
-                    
+                    let divProduct_class = document.createAttribute("class");
+                    divProduct_class.value = 'product';
+                    divProduct.setAttributeNode(divProduct_class);
+
                     let thumbnail = document.createElement("img");
                     let thumbnail_src = document.createAttribute("src");
                     thumbnail_src.value="../../resources/upload/store/product/"+jsonList[j].productImageDTO.fileName;
@@ -88,9 +91,23 @@ function getList() {
                     divReviewNum.appendChild(divReviewNum_text);
                     divGradeWrap.appendChild(divReviewNum);
                     divProductDetail.appendChild(divGradeWrap);
+
+                    // a태그 추가
+                    let subA = document.createElement("a");
+                    let href = document.createAttribute("href");
+                    href.value="../product/detail?productNum="+jsonList[j].productNum;
+                    subA.setAttributeNode(href)
+                    let subA_class = document.createAttribute("class");
+                    subA_class.value='subA';
+                    subA.setAttributeNode(subA_class);
+                    let subA_data = document.createAttribute("data-product-productnum");
+                    subA_data.value=jsonList[j].productNum;
+                    subA.setAttributeNode(subA_data);
                     
                     divProduct.appendChild(divProductDetail);
+                    divProduct.appendChild(subA);
                     divWrap.appendChild(divProduct);
+
                     j++;
                 }
                 productList.append(divWrap);
