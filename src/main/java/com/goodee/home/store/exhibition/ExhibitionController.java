@@ -31,6 +31,8 @@ public class ExhibitionController {
 			mv.setViewName("/store/exhibitions/exhibitions2689");
 		} else if(code == 1433) {
 			mv.setViewName("/store/exhibitions/exhibitions1433");
+		} else if(code == 2181) {
+			mv.setViewName("/store/exhibitions/exhibitions2181");
 		}
 		return mv;
 	}

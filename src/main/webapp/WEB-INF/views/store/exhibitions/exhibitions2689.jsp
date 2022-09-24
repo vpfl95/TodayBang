@@ -18,107 +18,103 @@
     <!-- 삼성 -->
     <c:import url="../../template/header.jsp"></c:import>
 
-	<section class="container-fluid contents-wrap container-lg-8 mt-5">
-		<div class = "row justify-content-center mt-5">
-			<div class = "col-lg-9">
-                <div class="right_re mt-5">
-                    <div class="right_re1">
-                        <p>비스포크 인기가전 한정 특가!</p>
-                        <h5><b>삼성전자 슈퍼세일</b></h5>
-                        <hr>
-                        <div class="d-flex justify-content-between c_btn"><button>📌0</button><button>💡2</button></div>
-                        <div class="d-grid gap-2 col-12 mx-auto mt-4">
-                            <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
-                        </div>
-                    </div>
+	<section class="container mt-5">
+        <div class="right_re mt-5">
+            <div class="right_re1">
+                <p>비스포크 인기가전 한정 특가!</p>
+                <h5><b>삼성전자 슈퍼세일</b></h5>
+                <hr>
+                <div class="d-flex justify-content-between c_btn"><button>📌0</button><button>💡2</button></div>
+                <div class="d-grid gap-2 col-12 mx-auto mt-4">
+                    <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
+            </div>
+        </div>
 
-                <div class="left_re mt-5" style="margin-left: 70px;">
-                    <img src="/resources/images/store/exhibitions/ex2689/mainPage.png" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/main2.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/main3.jpg" alt="">
+        <div class="left_re mt-5" style="margin-left: 70px;">
+            <img src="/resources/images/store/exhibitions/ex2689/mainPage.png" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/main2.jpg" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/main3.jpg" alt="">
 
-                    <div class="oneQuarter d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/hotDealFocus.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
-                    </div>
+            <div class="oneQuarter d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/hotDealFocus.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+            </div>
 
-                    <img src="/resources/images/store/exhibitions/ex2689/hotDealMain.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/samsungItem1.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/samsungItem2.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/samsungItem3.jpg" alt="">
-                    <img src="/resources/images/store/exhibitions/ex2689/samsungItem4.jpg" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/hotDealMain.jpg" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/samsungItem1.jpg" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/samsungItem2.jpg" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/samsungItem3.jpg" alt="">
+            <img src="/resources/images/store/exhibitions/ex2689/samsungItem4.jpg" alt="">
 
-                    <div class="oneQuarter d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/livFocus.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
-                    </div>
-                    <img src="/resources/images/store/exhibitions/ex2689/livMain.jpg" alt="">
+            <div class="oneQuarter d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/livFocus.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+            </div>
+            <img src="/resources/images/store/exhibitions/ex2689/livMain.jpg" alt="">
 
-                    <div class="oneHalf d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt="">
-                    </div>
-                    <div class="oneHalf d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt="">
-                    </div>
-                    <img src="/resources/images/store/exhibitions/ex2689/livMore.jpg" alt="">
-                    <div class="oneQuarter d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/kitFocus.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
-                    </div>
-                    <img src="/resources/images/store/exhibitions/ex2689/kitMain.jpg" alt="">
-                    <div class="oneHalf d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt="">
-                    </div>
-                    <div class="oneHalf d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt="">
-                    </div>
-                    <img src="/resources/images/store/exhibitions/ex2689/kitMore.jpg" alt="">
-                    <div class="oneQuarter d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/dressFocus.png" alt="">
-                    </div>
-                    <img src="/resources/images/store/exhibitions/ex2689/dressMain.jpg" alt="">
-                    <div class="oneHalf d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt="">
-                    </div>
-                    <div class="oneHalf d-flex justify-content-center">
-                        <img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt="">
-                    </div>
-                    <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
+            <div class="oneHalf d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt="">
+            </div>
+            <div class="oneHalf d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt="">
+            </div>
+            <img src="/resources/images/store/exhibitions/ex2689/livMore.jpg" alt="">
+            <div class="oneQuarter d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/kitFocus.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+            </div>
+            <img src="/resources/images/store/exhibitions/ex2689/kitMain.jpg" alt="">
+            <div class="oneHalf d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt="">
+            </div>
+            <div class="oneHalf d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt="">
+            </div>
+            <img src="/resources/images/store/exhibitions/ex2689/kitMore.jpg" alt="">
+            <div class="oneQuarter d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/dressFocus.png" alt="">
+            </div>
+            <img src="/resources/images/store/exhibitions/ex2689/dressMain.jpg" alt="">
+            <div class="oneHalf d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt="">
+            </div>
+            <div class="oneHalf d-flex justify-content-center">
+                <img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt="">
+                <img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt="">
+            </div>
+            <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
 
-                    <div class="refurDetail">
-                        <div><b>전체</b></div>
-                        <div><b>빠른배송</b></div>
-                        <div><b>냉장고/김치냉장고</b></div>
-                        <div><b>세탁기/건조기</b></div>
-                        <div><b>에어드레서/슈드레서</b></div>
-                        <div><b>TV/사운드바</b></div>
-                        <div><b>청소기</b></div>
-                        <div><b>공기청정기</b></div>
-                        <div><b>식기세척기</b></div>
-                        <div><b>주방가전</b></div>
-                        <div><b>비데</b></div>
-                    </div>
-                    <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
-                        <!-- 상품 리스트 자리-->
-                    </div>
-                </div>
-			</div>
+            <div class="refurDetail">
+                <div><b>전체</b></div>
+                <div><b>빠른배송</b></div>
+                <div><b>냉장고/김치냉장고</b></div>
+                <div><b>세탁기/건조기</b></div>
+                <div><b>에어드레서/슈드레서</b></div>
+                <div><b>TV/사운드바</b></div>
+                <div><b>청소기</b></div>
+                <div><b>공기청정기</b></div>
+                <div><b>식기세척기</b></div>
+                <div><b>주방가전</b></div>
+                <div><b>비데</b></div>
+            </div>
+            <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
+                <!-- 상품 리스트 자리-->
+            </div>
 		</div>
 	</section>
 	
