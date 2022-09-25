@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘의 직방</title>
+    <title>오직 여기서만, O!Goods 특별 기획전 | 예쁜 템들 모여사는 오늘의 직방 스토어</title>
     <link href="/resources/css/reset.css" rel="stylesheet">
     <link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="/resources/css/store/exhibitionsDetail.css">
@@ -15,7 +15,7 @@
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-    <!-- 삼성 -->
+    <!-- 오굿즈 -->
     <c:import url="../../template/header.jsp"></c:import>
 
 	<section class="container mt-5">
@@ -62,7 +62,7 @@
             <img src="/resources/images/store/exhibitions/ex2181/colorItem3.png" alt="">
             <img src="/resources/images/store/exhibitions/ex2181/colorItem4.png" alt="">
 
-            <div class="refurDetail">
+            <div class="exDetail">
                 <div><b>전체</b></div>
                 <div><b>가구</b></div>
                 <div><b>패브릭</b></div>

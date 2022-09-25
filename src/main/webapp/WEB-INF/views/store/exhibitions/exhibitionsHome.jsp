@@ -60,19 +60,21 @@
 
             <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">가구&가전 빠른배송 ~89%</h4>
-                            <p class="exhibitions-item-subText">오늘 주문하면, 내일 도착</p>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_5.jpg" alt="">
-                    </div>
+                	<a href="detail?exhibitionCode=1763">
+	                	<div class="exhibitions-item-title">
+	                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_1.jpg" alt="">
+	                        <div>
+	                            <h4 class="exhibitions-item-text">가구&가전 빠른배송 ~89%</h4>
+	                            <p class="exhibitions-item-subText">오늘 주문하면, 내일 도착</p>
+	                        </div>
+	                    </div>
+	                    <div class="d-flex justify-content-center exhibitions-item-list">
+	                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_2.jpg" alt="">
+	                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_3.jpg" alt="">
+	                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_4.jpg" alt="">
+	                        <img src="/resources/images/store/exhibitions/exhibitionsHome/fastDeli_5.jpg" alt="">
+	                    </div>
+                	</a>
                 </div>
 
                 <div class="col-6">
@@ -96,6 +98,44 @@
 
             <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
+                    <a href="detail?exhibitionCode=2394">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/just_1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">[빠른배송] 저스트슬립 ~49%</h4>
+                                <p class="exhibitions-item-subText">완벽한 숙면을 위한 매트리스</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/just_2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/just_3.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/just_4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/just_5.jpg" alt="">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-6">
+                    <a href="detail?exhibitionCode=2393">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">[빠른배송] 오트밀하우스 ~82%</h4>
+                                <p class="exhibitions-item-subText">일상에 영감을 주는 가구</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_3.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_5.jpg" alt="">
+                        </div>
+                    </a>
+                </div>
+			</div>
+
+            <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
+                <div class="col-6 exhibitions-item-product">
                     <div class="exhibitions-item-title">
                         <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_1.jpg" alt="">
                         <div>
@@ -111,54 +151,22 @@
                     </div>
                 </div>
 
-                <div class="col-6">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/1+1shop_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">선착순 한정수량, 1+1 SHOP!</h4>
-                            <p class="exhibitions-item-subText">하나사면 하나 더! 전품목 특가세일</p>
+                <div class="col-6"> 
+                    <a href="detail?exhibitionCode=1958">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/light1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">한번 바꾸면 최소 3년! 우리집 조명 LED로 바꾸기</h4>
+                                <p class="exhibitions-item-subText">지금 사면 반짝! 추가 할인</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/1+1shop_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/1+1shop_3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/1+1shop_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/1+1shop_5.jpg" alt="">
-                    </div>
-                </div>
-			</div>
-
-            <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
-                <div class="col-6 exhibitions-item-product">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/just_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">[빠른배송] 저스트슬립 ~49%</h4>
-                            <p class="exhibitions-item-subText">완벽한 숙면을 위한 매트리스</p>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/light2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/light3.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/light4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/light5.png" alt="">
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/just_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/just_3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/just_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/just_5.jpg" alt="">
-                    </div>
-                </div>
-
-                <div class="col-6">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">[빠른배송] 오트밀하우스 ~82%</h4>
-                            <p class="exhibitions-item-subText">일상에 영감을 주는 가구</p>
-                        </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/oat_5.jpg" alt="">
-                    </div>
+                    </a>
                 </div>
 			</div>
 

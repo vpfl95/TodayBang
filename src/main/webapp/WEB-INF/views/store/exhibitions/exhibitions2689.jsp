@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>오늘의 직방</title>
+    <title>삼성전자 슈퍼세일 특별 기획전 | 예쁜 템들 모여사는 오늘의 직방 스토어</title>
     <link href="/resources/css/reset.css" rel="stylesheet">
     <link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link rel="stylesheet" href="/resources/css/store/exhibitionsDetail.css">
@@ -99,7 +99,7 @@
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
 
-            <div class="refurDetail">
+            <div class="exDetail">
                 <div><b>전체</b></div>
                 <div><b>빠른배송</b></div>
                 <div><b>냉장고/김치냉장고</b></div>
