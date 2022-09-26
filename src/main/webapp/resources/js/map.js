@@ -1,6 +1,13 @@
 const dto = document.getElementsByClassName("dto"); //도로명, 시군구, 건물명
-const more = document.getElementsByName("more");
+const more = document.getElementById("more");
+const maemulList = document.getElementById("maemulList");
+const buildingName = document.getElementById("buildingName")
+const buildingWrap = document.getElementById("buildingWrap")
 
+let page =1;
+
+
+buildingWrap.style.display="none"
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -32,8 +39,8 @@ kakao.maps.event.addListener(map, 'idle', function() {
     setCustomOverlays(null, marker_overlays);
     
 
-    // hideMarkers(null);
-
+    page=1  //매물정보창 리스트 페이지1로 리셋
+    buildingWrap.style.display="none" //매물정보창 안보이기
     getRegionName();
     
     console.log("마커",markers)
@@ -275,21 +282,16 @@ function addMarker(address_result){
                     
                     customOverlay.setMap(map);
 
-                
-
                     if(marker_overlays.includes(customOverlay)){ //***************************커스텀오버레이가 배열에 이미 들어있는지 확인이 안됨**********************
                         return
                     }else{
-
                         marker_overlays.push(customOverlay);
                     }
 
-                    addEventHandle(content,'click')
-                    
+                    addEventHandle(content,page,'click')
                 } 
             });     
         }, 20);   
-        
     }
 }
 
@@ -298,7 +300,7 @@ var selectedMarker = "";
 
 const realEstateList = document.getElementById("realEstateList")
 //마커 클릭 이벤트 리스트 얻어오기
-function addEventHandle(target, type) {
+function addEventHandle(target,p, type) {
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
@@ -307,44 +309,49 @@ function addEventHandle(target, type) {
 
                 // 클릭된 마커 객체가 null이 아니면
                 // 클릭된 마커의 이미지를 기본 이미지로 변경하고
-                console.log(selectedMarker) 
+                
                 selectedMarker.className="building";
                 if(selectedMarker){
                     selectedMarker.parentNode.style.zIndex=0
                 }
                
-                // console.log(selectedMarker.firstChild);
-                // selectedMarker.firstChild.className="building-top"
-                // selectedMarker.firstChild.nextSibling.className="building-bot"
 
                 // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
                 target.className="building-select"
                 target.firstChild.className="building-top-select"
                 target.firstChild.nextSibling.className="building-bot-select"
                 target.parentNode.style.zIndex=10
-                console.log(target)
+                
             }
 
             // 클릭된 마커를 현재 클릭된 마커 객체로 설정합니다
             selectedMarker = target;
 
-            // console.log(target.firstChild.nextSibling)
-            // target.classList.toggle("building-select")
-            // target.firstChild.classList.toggle("building-top-select")
-            // target.firstChild.nextSibling.classList.toggle("building-bot-select")
-
             var roadName = e.target.getAttribute("data-roadName");
             console.log(roadName);
-            
-            let xhttp = new XMLHttpRequest();
-            xhttp.open("GET","./getList?roadName="+roadName);
-            //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
-            xhttp.send();
-            xhttp.addEventListener("readystatechange", function(){
-                if(xhttp.status==200 && xhttp.readyState==4){
-                    realEstateList.innerHTML = xhttp.responseText.trim();
-                }
-            })
+
+            realEstateList.innerHTML='' //매물리스트 초기화
+            //매물리스트 헤더
+            let tr = document.createElement("tr")
+            let th = document.createElement("th")
+            let thText = document.createTextNode("계약일")
+            th.appendChild(thText)
+            tr.appendChild(th)
+            th = document.createElement("th")
+            thText = document.createTextNode("거래가격")
+            th.appendChild(thText)
+            tr.appendChild(th)
+            th = document.createElement("th")
+            thText = document.createTextNode("면적")
+            th.appendChild(thText)
+            tr.appendChild(th)
+            th = document.createElement("th")
+            thText = document.createTextNode("층수")
+            th.appendChild(thText)
+            tr.appendChild(th)
+            realEstateList.append(tr)
+            page=1;
+            getMaemulList(roadName,page) //매물리스트 호출
 
         });
     } else {
@@ -352,8 +359,114 @@ function addEventHandle(target, type) {
     }
 }
 
-more.addEventListener("click", function(){
+function getMaemulList(roadName,p){
+    console.log("겟매물리스트")
+    buildingWrap.style.display="block"
     
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET","./getList?roadName="+roadName+"&page="+p);
+    //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
+    xhttp.send();
+    xhttp.addEventListener("readystatechange", function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            
+            var result = JSON.parse(xhttp.responseText.trim());
+
+            let list= result.list
+            let pager=result.maemulPager
+
+            //매물 리스트 생성
+            // let tr = document.createElement("tr")
+            // let th = document.createElement("th")
+            // let thText = document.createTextNode("계약일")
+            // th.appendChild(thText)
+            // tr.appendChild(th)
+            // th = document.createElement("th")
+            // thText = document.createTextNode("거래가격")
+            // th.appendChild(thText)
+            // tr.appendChild(th)
+            // th = document.createElement("th")
+            // thText = document.createTextNode("면적")
+            // th.appendChild(thText)
+            // tr.appendChild(th)
+            // th = document.createElement("th")
+            // thText = document.createTextNode("층수")
+            // th.appendChild(thText)
+            // tr.appendChild(th)
+            // realEstateList.append(tr)
+
+            for(let i=0; i<list.length; i++){
+                let tr = document.createElement("tr")
+                tr.className = "tr"
+                let td = document.createElement("td")
+                let tdText = document.createTextNode(list[i].dealDay)
+                td.appendChild(tdText)
+                tr.appendChild(td)
+
+                td = document.createElement("td")
+                if(list[i].dealType=="매매"){
+                    if(list[i].deal.toString().length>=5){
+                        let million = parseInt(list[i].deal /10000); 
+                        let remain = list[i].deal %10000 ==0 ? '': list[i].deal %10000
+                        tdText = document.createTextNode(list[i].dealType + million + "억" + remain)
+                    }else{
+                        tdText = document.createTextNode(list[i].dealType + list[i].deal)
+                    }
+                }else if(list[i].dealType=="전세"){
+                    if(list[i].deposit.toString().length>=5){
+                        let million = parseInt(list[i].deposit /10000); 
+                        let remain = list[i].deposit %10000 ==0 ? '': list[i].deposit %10000 
+                        tdText = document.createTextNode(list[i].dealType + million + "억" + remain)
+                    }else{
+                        tdText = document.createTextNode(list[i].dealType + list[i].deposit)
+                    }
+                }else{
+                    if(list[i].wdeposit.toString().length>=5){
+                        let million = parseInt(list[i].wdeposit /10000); 
+                        let remain = list[i].wdeposit %10000 ==0 ? '': list[i].wdeposit %10000 
+                        tdText = document.createTextNode(list[i].dealType + million + "억" + remain + '/' + list[i].monthly)
+                    }else{
+                        tdText = document.createTextNode(list[i].dealType + list[i].wdeposit + '/'+ list[i].monthly )
+                    }
+                } 
+                
+                td.appendChild(tdText)
+                tr.appendChild(td)
+
+                td = document.createElement("td")
+                tdText = document.createTextNode(list[i].area)
+                td.appendChild(tdText)
+                tr.appendChild(td)
+
+                td = document.createElement("td")
+                tdText = document.createTextNode(list[i].floor)
+                td.appendChild(tdText)
+                tr.appendChild(td)
+                
+                realEstateList.append(tr)
+
+                //페이지 없으면 버튼 비활성화
+                if(page >= pager.totalPage){
+                    more.disabled= true;
+                }else{
+                    more.disabled= false;
+                }
+               
+                more.setAttribute("data-name",list[i].roadName)
+                buildingName.innerText=list[i].buildingNm
+
+                
+            }
+        }
+    })
+
+}
+
+more.addEventListener("click", function(){
+    page++
+    let roadName = more.getAttribute("data-name");
+    getMaemulList(roadName,page)
+
 });
 
 

@@ -1,7 +1,9 @@
 package com.goodee.home.apt;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,6 +17,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.goodee.home.realEstate.RealEstateDTO;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
+import com.goodee.home.util.MaemulPager;
 
 
 @Controller
@@ -79,15 +82,19 @@ public class AptController {
 	
 	@GetMapping("getList")
 	@ResponseBody
-	public ModelAndView getList(AptDTO aptDTO) throws Exception{
-		System.out.println(aptDTO.getRoadName());
+	public Map<String, Object> getList(MaemulPager maemulPager) throws Exception{
+		System.out.println(maemulPager.getRoadName());
 		ModelAndView mv = new ModelAndView();
 		
-		List<AptDTO> list = aptService.getList(aptDTO);
+		List<AptDTO> list = aptService.getList(maemulPager);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("maemulPager", maemulPager);
 		
-		mv.addObject("list",list);
-		mv.setViewName("common/realEstateList");
-		return mv;
+//		mv.addObject("list_pager",map);
+//		mv.setViewName("common/realEstateList");
+//		return mv;
+		return map;
 	}
 	
 }

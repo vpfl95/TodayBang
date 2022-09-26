@@ -24,4 +24,7 @@ public class AptDAO {
 		return sqlSession.selectList(NAMESPACE+"getList", maemulPager);
 	}
 	
+	public Long getTotalCount(MaemulPager maemulPager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", maemulPager);
+	}
 }

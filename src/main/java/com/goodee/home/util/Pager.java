@@ -4,8 +4,8 @@ public class Pager {
 	private Long page;
 	private Long startNum;
 	private Long lastNum;
-	private Long startRow;
-	private Long lastRow;
+	protected Long startRow;
+	protected Long lastRow;
 	private Long perPage;
 	private Long perBlock;
 	
@@ -90,7 +90,7 @@ public class Pager {
 	}
 	public Long getPerPage() {
 		if(this.perPage==null || this.perPage<1L) {
-			this.perPage=5L;
+			this.perPage=10L;
 		}
 		return perPage;
 	}

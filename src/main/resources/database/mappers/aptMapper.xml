@@ -11,19 +11,18 @@
 		        		FROM REALESTATE 
 		        		WHERE SIGUNGU LIKE '%'||#{sigungu}||'%')
 					GROUP BY BUILDINGNM,ROADNAME,SIGUNGU,DEALTYPE)     
-		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU	
+		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU
 	</select>
 	
 	<select id="getList" parameterType="MaemulPager" resultType="AptDTO">
-		SELECT *
-		FROM (SELECT ROWNUM R, A.*
-			  FROM (SELECT * 
-			  		FROM REALESTATE 
-			  		WHERE ROADNAME=${roadName}
-			  		ORDER BY DEALDAY) A)
+		SELECT * FROM
+		(SELECT ROWNUM R, A.*
+		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} ORDER BY DEALDAY) A)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select>
 	
-		<!-- SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} -->
+	<select id="getTotalCount" parameterType="MaemulPager" resultType="Long">
+		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName}
 	</select>
 
 </mapper>

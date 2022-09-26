@@ -20,6 +20,12 @@ public class AptService {
 	}
 	
 	public List<AptDTO> getList(MaemulPager maemulPager)throws Exception{
+		maemulPager.getRowNum();
+
+		Long totalCount = aptDAO.getTotalCount(maemulPager);
+		
+		maemulPager.makePage(totalCount);
+		
 		return aptDAO.getList(maemulPager);
 	}
 	

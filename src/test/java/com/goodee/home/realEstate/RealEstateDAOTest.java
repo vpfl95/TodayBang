@@ -12,6 +12,7 @@ import com.goodee.home.apt.AptDAO;
 import com.goodee.home.apt.AptDTO;
 import com.goodee.home.region.RegionDAO;
 import com.goodee.home.region.RegionDTO;
+import com.goodee.home.util.MaemulPager;
 
 
 public class RealEstateDAOTest extends MyAbstractTest {
@@ -35,15 +36,21 @@ public class RealEstateDAOTest extends MyAbstractTest {
 //		
 //	}
 	
-//	@Test
-//	public void getList() throws Exception{
-//		AptDTO aptDTO = new AptDTO();
-//		aptDTO.setRoadName("남부순환로 1266");
-//		
-//		List<AptDTO> arr = (List<AptDTO>)aptDAO.getList(aptDTO);
-//		
-//		assertEquals(2, arr.size());
-//		
-//	}
+	@Test
+	public void getList() throws Exception{
+		MaemulPager maemulPager = new MaemulPager();
+		maemulPager.getRowNum();
+		maemulPager.setRoadName("남부순환로 1266");
+
+		long totalCount = aptDAO.getTotalCount(maemulPager);
+		maemulPager.makePage(totalCount);
+		
+		List<AptDTO> arr = (List<AptDTO>)aptDAO.getList(maemulPager);
+		
+		assertEquals(2,arr.size());
+		
+	}
+	
+	
 	
 }
