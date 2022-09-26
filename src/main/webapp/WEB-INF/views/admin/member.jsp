@@ -18,12 +18,24 @@
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
+					<h1>회원 관리</h1>
+					<table>
+						
+							<c:forEach items="${memberList}" var="list">
+								<tr>
+									<td>${list.userId }</td>
+									<td>${list.nickname }</td>
+									<td>${list.roleDTOs[0].roleName }</td>
+								
+								
+								</tr>
+							</c:forEach>
+						
+					</table>
+					
 	
-					<h1> 관리자 페이지</h1>
-					<hr>
-					<h1><a href="./member">회원 관리</a> </h1>
-					<h1> 운영진 관리</h1>
-					<h1> 벤 리스트 관리</h1>
+	
+	
 			</div>
 		</div>
 	</section>

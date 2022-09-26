@@ -18,8 +18,6 @@ public class AdminDAO {
 	
 	public List<MemberDTO> getMember() throws Exception{
 		
-		
-		
 		return sqlSession.selectList(NAMESPACE+"getMember");
 	}
 	
