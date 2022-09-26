@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDTO;
 
@@ -62,7 +63,11 @@ public class ProductController {
 	@GetMapping("detail")
 	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		mv.addObject("productDTO", productDTO);
+		List<ProductDTO> ar = productService.getProductDetail(productDTO);
+		ObjectMapper mapper = new ObjectMapper();
+		String jsonList = mapper.writeValueAsString(ar);
+		System.out.println(jsonList);
+//		mv.addObject("list", jsonList);
 		mv.setViewName("store/products/detailProduct");
 		return mv;
 	}

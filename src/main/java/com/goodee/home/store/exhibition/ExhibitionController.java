@@ -27,10 +27,20 @@ public class ExhibitionController {
 		mv.addObject("exhibitionDTO", exhibitionDTO);
 		long code = exhibitionDTO.getExhibitionCode();
 		
-		if(code == 2689) {
+		if(code == 2689) { // 삼성전자 슈퍼세일
 			mv.setViewName("/store/exhibitions/exhibitions2689");
-		} else if(code == 1433) {
+		} else if(code == 1433) { // 리퍼마켓
 			mv.setViewName("/store/exhibitions/exhibitions1433");
+		} else if(code == 2181) { // 오!굿즈
+			mv.setViewName("/store/exhibitions/exhibitions2181");
+		} else if(code == 1763) { // 빠른배송
+			mv.setViewName("/store/exhibitions/exhibitions1763");
+		} else if(code == 2394) { // 저스트슬립
+			mv.setViewName("/store/exhibitions/exhibitions2394");
+		} else if(code == 2393) { // 오트밀하우스
+			mv.setViewName("/store/exhibitions/exhibitions2393");
+		} else if(code == 1958) { // 조명
+			mv.setViewName("/store/exhibitions/exhibitions1958");
 		}
 		return mv;
 	}

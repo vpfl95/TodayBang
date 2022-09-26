@@ -46,7 +46,7 @@
 	                        <div class="text">1+1 샵</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/ogoodsIcon.jpg" alt=""></a></div>
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/ogoodsIcon2.jpg" alt=""></a></div>
 	                        <div class="text">오!굿즈</div>
 	                    </div>
 	                    <div class="col">

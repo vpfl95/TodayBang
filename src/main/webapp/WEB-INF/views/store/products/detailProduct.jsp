@@ -19,13 +19,14 @@
 	<section class="container-fluid container-lg-8 mt-5">
 		<div class = "row justify-content-center mt-5">
 			<div class = "col-lg-7 mt-5">
-				<h1 style="margin-top: 60px;">상품코드 ${productDTO.productNum}</h1>
+				<h1 style="margin-top: 60px;" data-ar="${list}" id="data">데이터</h1>
 			</div>
 		</div>
 	</section>
 	
 
 	<c:import url="../../template/footer.jsp"></c:import>
+    <script src="/resources/js/store/productDetail.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
 </body>

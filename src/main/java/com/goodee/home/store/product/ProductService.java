@@ -86,4 +86,8 @@ public class ProductService {
 	public List<ProductDTO> getExProductList(ExhibitionDTO exhibitionDTO) throws Exception {
 		return productDAO.getExProductList(exhibitionDTO);
 	}
+	
+	public List<ProductDTO> getProductDetail(ProductDTO productDTO) throws Exception {
+		return productDAO.getProductDetail(productDTO);
+	}
 }
