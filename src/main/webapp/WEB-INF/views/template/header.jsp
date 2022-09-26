@@ -15,7 +15,7 @@
           <li><a href="/room" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
    			</li>
           <li><a href="/community/home" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
-          <li><a href="/service/notice" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
+          <li><a href="/service/notice/list" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
         </ul>
 
        <!--  <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">

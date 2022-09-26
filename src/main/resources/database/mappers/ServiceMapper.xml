@@ -13,15 +13,25 @@
 			</sql>
 		
 		
-			<select id="getList" parameterType="String" resultType="BoardDTO">
+			<!-- <select id="getList" parameterType="String" resultType="BoardDTO">
 				SELECT * FROM <include refid="getBoard"></include>
 					
-			</select>
+			</select> -->
 			<select id="getDetail" parameterType="BoardDTO" resultType="BoardDTO">
 				SELECT * FROM <include refid="getBoard"></include> WHERE BOARDNUM = #{boardNum}
 			</select>
 		
+			<select id="getCount" resultType="Long">
+				SELECT COUNT(*) FROM NOTICE
+			</select>
 		
-		
+		    
+	    	<select id="getList" parameterType="Pager" resultType="BoardDTO" >
+		    	SELECT * FROM
+				( SELECT ROWNUM R,N.*
+				 FROM (SELECT * FROM NOTICE 
+				 ORDER BY BOARDNUM DESC) N)
+				 WHERE R BETWEEN #{startRow} AND #{lastRow}
+	    	</select>
 		
 		</mapper>

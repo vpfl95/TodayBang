@@ -5,6 +5,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.goodee.home.util.Pager;
+
 
 @Service
 public class ServiceService {
@@ -12,13 +14,23 @@ public class ServiceService {
 	@Autowired
 	private ServiceDAO serviceDAO;
 	
-	public List<BoardDTO> getList(String board) throws Exception{
+	public List<BoardDTO> getList(Pager pager) throws Exception{
 		
-		return serviceDAO.getList(board);
+		Long totalCount = serviceDAO.getCount();
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		
+		return serviceDAO.getList(pager);
 	}
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
 		
 		return serviceDAO.getDetail(boardDTO);
+	}
+	
+	public Long getCount() throws Exception{
+		
+		return serviceDAO.getCount();
 	}
 	
 }

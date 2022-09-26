@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.util.Pager;
+
 @Controller
 @RequestMapping(value = { "/service/notice/*", "/service/qna/*"})
 public class ServiceController {
@@ -38,14 +40,16 @@ public class ServiceController {
 	
 	
 	@GetMapping("list")
-	public ModelAndView getBoard() throws Exception{
+	public ModelAndView getBoard(Pager pager) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		
 		
 		List<BoardDTO> ar = null;
+		// getBoardName()
 		
-		ar = service.getList(getBoardName());
+		
+		ar = service.getList(pager);
 		
 		mv.addObject("boardList",ar);
 		mv.setViewName("/service/list");
