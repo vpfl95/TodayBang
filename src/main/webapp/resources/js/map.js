@@ -315,7 +315,7 @@ function addEventHandle(target,p, type) {
                     selectedMarker.parentNode.style.zIndex=0
                 }
                
-
+                //
                 // 현재 클릭된 마커의 이미지는 클릭 이미지로 변경합니다
                 target.className="building-select"
                 target.firstChild.className="building-top-select"
