@@ -38,4 +38,10 @@ public class ServiceDAO {
 		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
 	}
 	
+	public int addBoard(BoardDTO boardDTO) throws Exception{
+		
+		
+		return sqlSession.insert(NAMESPACE+"addBoard",boardDTO);
+	}
+	
 }

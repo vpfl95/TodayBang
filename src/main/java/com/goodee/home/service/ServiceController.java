@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -72,7 +73,23 @@ public class ServiceController {
 		return mv;
 	}
 	
-	
-	
-	
+	@GetMapping("add")
+	public ModelAndView addBoard() throws Exception{
+		
+		
+		ModelAndView mv = new ModelAndView();
+		
+		mv.setViewName("/service/add");
+		return mv;
+	}
+	@PostMapping("add")
+	public String addBoard(BoardDTO boardDTO) throws Exception{
+		System.out.println("게시글 작성");
+		
+		
+		
+		service.addBoard(boardDTO);
+		
+		return "redirect:./list";
+	}
 }

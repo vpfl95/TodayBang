@@ -28,6 +28,9 @@ public class ServiceService {
 		return serviceDAO.getDetail(boardDTO);
 	}
 	
-	
+	public int addBoard(BoardDTO boardDTO) throws Exception{	
+		
+		return serviceDAO.addBoard(boardDTO);
+	}
 	
 }

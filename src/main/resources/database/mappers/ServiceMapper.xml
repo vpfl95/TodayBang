@@ -33,5 +33,11 @@
 				 ORDER BY BOARDNUM DESC) N)
 				 WHERE R BETWEEN #{startRow} AND #{lastRow}
 	    	</select>
+	    	
+	    	<insert id="addBoard" parameterType="BoardDTO">
+	    		INSERT INTO NOTICE VALUES (notice_seq.nextval,#{title},#{contents},SYSDATE,'0',#{userId})
+	    	
+	    	</insert>
+	    	
 		
 		</mapper>

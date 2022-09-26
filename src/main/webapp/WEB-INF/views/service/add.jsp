@@ -18,16 +18,44 @@
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
-	
-					<h1> 관리자 페이지</h1>
+		
+		
+					<h3> 공지사항 게시  </h3>
 					<hr>
-					<h1><a href="./member">회원 관리</a> </h1>
-					<h1> 운영진 관리</h1>
-					<h1> 벤 리스트 관리</h1>
-					<h1> 신고 관리 </h1>
-					<h1> <a href="../service/notice/add">공지사항 추가하기 </a> </h1>
-					<h1> 팝업 광고 추가하기 </h1>
-					<h1> 답변 안 된 QNA </h1>
+					<form action="./add" method="post" id = "boardForm" >
+					<table class = "table">
+						<thead>
+						</thead>
+						
+						<tbody>
+							<tr>
+								<th>제목</th>
+								<td>
+						        	<input type="text"  id="title" name="title" class="form-control" placeholder="제목" required>
+						        </td>
+							</tr>
+							<tr>
+								<th>작성자</th>
+								<td><input type="text" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required></td>
+							</tr>
+							<tr>
+								<th>내용</th>
+								<td><input type="text"  id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
+							</tr>
+							<tr>
+								<th>파일첨부</th>
+								<td></td>
+							</tr>
+							<tr>
+							<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button">게시</button></td>
+							</tr>
+							
+						</tbody>
+							
+								
+						
+					</table>
+				</form>
 			</div>
 		</div>
 	</section>
@@ -35,7 +63,13 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    
+    <script src="/resources/js/board.js"></script>
+   
+   	<script type="text/javascript">
+   	
+   		board();
+   	
+   	</script>
    
 </body>
 </html>

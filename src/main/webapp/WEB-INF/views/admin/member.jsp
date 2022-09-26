@@ -26,8 +26,7 @@
 									<td>${list.userId }</td>
 									<td>${list.nickname }</td>
 									<td>${list.roleDTOs[0].roleName }</td>
-								
-								
+							
 								</tr>
 							</c:forEach>
 						
