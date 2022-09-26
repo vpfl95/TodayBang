@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import com.goodee.home.util.Pager;
 
@@ -48,6 +49,15 @@ public class ServiceDAO {
 		
 		
 		return sqlSession.delete(NAMESPACE+"deleteBoard",boardDTO);
+	}
+	
+	
+	
+	public int addQnaAnswer(BoardDTO boardDTO) throws Exception{
+		
+		
+		
+		return sqlSession.insert(NAMESPACE+"addQnaAnswer",boardDTO);
 	}
 	
 }

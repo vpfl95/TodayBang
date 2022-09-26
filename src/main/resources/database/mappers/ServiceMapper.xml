@@ -50,5 +50,10 @@
 	    		DELETE FROM <include refid="getBoard"></include> WHERE BOARDNUM = #{boardNum}
 	    	</delete>
 	    	
-		
+			
+			<insert id="addQnaAnswer" parameterType="BoardDTO">
+				INSERT INTO QNAANSWER VALUES (TODAY_SEQ.NEXTVAL, #{title},#{contents},SYSDATE,#{nickname},#{boardNum});
+			</insert>
+			
+			
 		</mapper>

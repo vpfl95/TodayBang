@@ -59,8 +59,58 @@
 						  </tbody>
 						</table>
 							
-	
-	
+					
+					
+					<c:if test="${board eq 'QNA' }">
+						<c:if test="${member.roleDTOs[0].roleNum<3 }">
+							    	<form action="./answer" method="post" id = "boardForm" >
+							    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
+							    	
+											<table class = "table">
+												<thead>
+												</thead>
+												
+												<tbody>
+													<tr>
+														<th>제목</th>
+														<td>
+												        	<input type="text" value = "${boardList.title }의 답변" id="title" name="title" class="form-control" placeholder="제목" required>
+												        </td>
+													</tr>
+													<tr>
+														<th>작성자</th>
+														<td><input type="text" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required></td>
+													</tr>
+													<tr>
+														<th>내용</th>
+														<td><input type="text"  id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
+													</tr>
+													<tr>
+														<th>파일첨부</th>
+														<td></td>
+													</tr>
+													<tr>
+													<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="submit">게시</button></td>
+													</tr>
+													
+												</tbody>
+													
+														
+												
+											</table>
+										</form>
+							    	
+							    	
+							    	
+							    	
+							    	
+							    	
+							    	
+							    	
+							    	
+							    	
+				    	</c:if>
+					</c:if>
 	
 			</div>
 		</div>

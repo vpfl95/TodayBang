@@ -38,4 +38,10 @@ public class ServiceService {
 		return serviceDAO.deleteBoard(boardDTO);
 	}
 	
+	public int addQnaAnswer(BoardDTO boardDTO) throws Exception{	
+		
+		return serviceDAO.addQnaAnswer(boardDTO);
+	}
+	
+	
 }

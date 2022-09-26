@@ -44,13 +44,13 @@
 			        	</tr>
 				  	</c:forEach>
 				  
-				    
+				    <c:if test="${board=='QNA' }">
 				      <tr>
 				      	<td>
-				      		<c:if test="${board=='QNA' }"> <a href="/service/qna/add">글 쓰기</a></c:if>
+				      		 <a href="/service/qna/add">글 쓰기</a>
 				      	</td>
 				      </tr>
-			      
+			      	</c:if>
 				  </tbody>
 				</table>
 				

@@ -15,6 +15,8 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.util.Pager;
 
+import oracle.jdbc.proxy.annotation.Post;
+
 @Controller
 @RequestMapping(value = { "/service/notice/*", "/service/qna/*"})
 public class ServiceController {
@@ -102,4 +104,21 @@ public class ServiceController {
 		
 		return "redirect:./list";
 	}
+	
+	@PostMapping("answer")
+	public String addQnaAnswer(BoardDTO boardDTO) throws Exception{
+		
+		service.addQnaAnswer(boardDTO);
+		
+		
+		
+		//일단 리스트로 해놈
+		return "redirect:./list";
+	}
+	
+	
+	
+	
+	
+	
 }
