@@ -80,15 +80,18 @@ public class MemberDAO {
 	
 	public int setProfileImg(MemberFileDTO memberFileDTO) throws Exception{
 		
-	System.out.println(" insert img ");
-		
 		return sqlSession.insert(NAMESPACE+ "setProfileImg",memberFileDTO);
 	}
 	
 	public int updateProfileImg(MemberFileDTO memberFileDTO) throws Exception{
 		
-		System.out.println("update img ");
 		return sqlSession.update(NAMESPACE+ "updateProfileImg",memberFileDTO);
+	}
+	
+	
+	public int deleteProfileImg(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.delete(NAMESPACE+ "deleteProfileImg",memberDTO);
 	}
 	
 	

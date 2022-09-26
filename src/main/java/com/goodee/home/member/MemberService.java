@@ -43,20 +43,21 @@ public class MemberService {
 		return memberDAO.getJoinOverlab(memberDTO);
 	}
 	
-	public int setUpdate(MemberDTO memberDTO,ServletContext servletContext,MultipartFile profileImg) throws Exception{
+	public MemberFileDTO setUpdate(MemberDTO memberDTO,ServletContext servletContext,MultipartFile profileImg) throws Exception{
 		
 		int result = memberDAO.setUpdate(memberDTO);
 		
 		
 		String path = "resources/upload/member";
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
 		
 		if(!profileImg.isEmpty()) {
-			
+			System.out.println(" update 진행 ");
 			String fileName = fileManger.saveFile(path, servletContext, profileImg);
-			MemberFileDTO memberFileDTO = new MemberFileDTO();
+			memberFileDTO.setUserId(memberDTO.getUserId());
 			memberFileDTO.setFileName(fileName);
 			memberFileDTO.setOriName(profileImg.getOriginalFilename());
-			memberFileDTO.setUserId(memberDTO.getUserId());
+			
 			
 			
 			
@@ -67,35 +68,47 @@ public class MemberService {
 		
 		
 		
-		return result;
+		
+		return memberFileDTO;
 	}
 	
-	public int setInsert(MemberDTO memberDTO,ServletContext servletContext,MultipartFile profileImg) throws Exception{
+	public MemberFileDTO setInsert(MemberDTO memberDTO,ServletContext servletContext,MultipartFile profileImg) throws Exception{
 		
 		int result = memberDAO.setUpdate(memberDTO);
 		
 		
 		String path = "resources/upload/member";
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
 		
 		if(!profileImg.isEmpty()) {
 			
 			String fileName = fileManger.saveFile(path, servletContext, profileImg);
-			MemberFileDTO memberFileDTO = new MemberFileDTO();
+			
+			memberFileDTO.setUserId(memberDTO.getUserId());
 			memberFileDTO.setFileName(fileName);
 			memberFileDTO.setOriName(profileImg.getOriginalFilename());
-			memberFileDTO.setUserId(memberDTO.getUserId());
+			
 			
 			
 			
 			memberDAO.setProfileImg(memberFileDTO);
 			
-		
+			
 		}
 		
 		
 		
+		return memberFileDTO;
+	}
+	
+	public int setDeleteProfile(MemberDTO memberDTO) throws Exception{
+		
+		int result = memberDAO.deleteProfileImg(memberDTO);	
+		
 		return result;
 	}
+	
+	
 	
 	public int setUpdatePw(MemberDTO memberDTO) throws Exception{
 		

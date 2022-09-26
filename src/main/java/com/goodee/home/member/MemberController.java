@@ -180,15 +180,26 @@ public class MemberController {
 		
 		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
 		memberDTO.setPassword(memberDTO2.getPassword());
-		
-		
-		if(memberDTO2.getMemberFileDTO() == null) { // 세션을 불러와야댐 
+		memberDTO.setMemberFileDTO(memberDTO2.getMemberFileDTO());
+		MemberFileDTO memberFileDTO = new MemberFileDTO();
+		if(memberDTO2.getMemberFileDTO()== null && !profileImg.isEmpty()) { // 세션이 없고 , 사진이 있다.
 			System.out.println("insert profile");
-			memberService.setInsert(memberDTO,session.getServletContext(),profileImg);
+			 memberFileDTO = memberService.setInsert(memberDTO,session.getServletContext(),profileImg);
+			 memberDTO.setMemberFileDTO(memberFileDTO);
 			
-		}else {
-			System.out.println("update profile");
+	
+		}else if (memberDTO2.getMemberFileDTO()!= null && !profileImg.isEmpty()) {	// 세션이 있고 , 사진이 있다.
+			System.out.println("update profile"); 
+			 memberFileDTO = memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
+			 memberDTO.setMemberFileDTO(memberFileDTO);
+			
+		}else if(memberDTO2.getMemberFileDTO()!= null && profileImg.isEmpty()){  // 세션 o 사진 x // 내용만 수정하는 경우
+			System.out.println("수정 x" + memberDTO2.getMemberFileDTO());
 			memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
+		
+		}else {  // 세션 x 사진 x , 
+			// 삭제를 누르면 사진이 사라진다
+			
 			
 		}
 		
@@ -197,6 +208,19 @@ public class MemberController {
 		
 		
 		return "redirect:./myPage";
+	}
+	
+	
+	@PostMapping("delete")
+	public String setDeleteProfile(MemberDTO memberDTO,HttpSession session,MultipartFile profileImg) throws Exception{
+		System.out.println("delete profile");
+		
+		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
+		memberService.setDeleteProfile(memberDTO);
+		session.setAttribute("member", memberDTO);
+		
+		return "redirect:./myPage";
+		
 	}
 	
 	@GetMapping("updatePw")

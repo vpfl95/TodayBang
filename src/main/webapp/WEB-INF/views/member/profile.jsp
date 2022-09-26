@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+       <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -67,8 +68,26 @@
 					        ${member.memberFileDTO.fileName }
 					        
 					        <label for="profileImg" >프로필사진</label>
-					        <input type="file" value = "${member.memberFileDTO.fileName }" id="profileImg" name = "profileImg" class="form-control ">
-					        
+					          
+					         <div id="image_container">
+					         <c:choose>
+					         	<c:when test="${empty member.memberFileDTO }">
+						         	
+						         		<img id = "previewProfile"alt="" src="/resources/images/NoProfile.png" >
+						         	
+					         	</c:when>
+					         	<c:when test="${not empty member.memberFileDTO }">
+						         	
+						         		<img id = "previewProfile"alt="" src="../resources/upload/member/${member.memberFileDTO.fileName }">
+						         	
+					         	</c:when>
+					         </c:choose>
+					         </div>
+					         <input type="file"  id="profileImg" name = "profileImg" class="form-control " onchange="setThumbnail(event);" multiple/>
+					        <button id="deleteBtn" class="w-100 btn btn-lg " type="button">프로필사진 삭제</button>
+					         
+					         
+					          
 					        
 					        
 		        		</div>
@@ -87,7 +106,18 @@
 
 	profile();
 	
-	
+	function setThumbnail(event) {
+		 for (var image of event.target.files) {
+	          var reader = new FileReader();
+
+	          reader.onload = function(event) {
+	         
+	           	$("#previewProfile").attr('src',event.target.result);
+	          };
+
+	          reader.readAsDataURL(image);
+        }
+      }
 </script>
 
 

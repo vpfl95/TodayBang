@@ -4,6 +4,12 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 		<mapper namespace="com.goodee.home.member.MemberDAO">
 			
+			<delete id="deleteProfileImg" parameterType="MemberDTO">
+				
+				DELETE MEMBERFILE WHERE USERID = #{userId}
+			</delete>
+			
+			
 			<insert id="setProfileImg" parameterType="MemberFileDTO">
 				INSERT INTO MEMBERFILE VALUES (TODAY_SEQ.NEXTVAL,#{fileName} ,#{oriName} ,#{userId})
 			</insert>

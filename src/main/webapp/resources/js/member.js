@@ -448,155 +448,184 @@ function profile() {
     const email = document.querySelector("#email");
 
  // 중복 확인 부분
- for(NOL of  nonOverlab){
-    NOL.addEventListener("change", function(event){
+    for(NOL of  nonOverlab){
+        NOL.addEventListener("change", function(event){
 
-        
-        if(event.target.name =="phone1" ){
-            if(phoneM.value== "" || phoneL.value == ""){
-                
-                return;
-
-            }else{
-                let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
-                submitPhone.value = phoneValue;
-                
-                checkOvetlab(phoneValue,phone);
-            }
             
-        }
-        else if(event.target.name == "email1"){
-
-            if(emailF.value== "" || emailAt.value == "0"){
-                return;
-
-            }else{
-                let emailValue = emailF.value + "@" + emailAt.value;
-                submitEmail.value = emailValue;
-                
-                checkOvetlab(emailValue,email);
-            }
-        }else if(event.target.name == "nickname"){
-            if(nickname.value.length < 3){
-                message = "닉넴은 2글자 이상"
-                textmessage(nickname,message);;
-            }else{
-                checkOvetlab(event.target.value,event.target);
-    
-            }
-        }
-    })
-}
-
-// 중복 확인 Ajax
-function checkOvetlab(value,inputForm){
-
-    if(value != ""){
-        const xhttp = new XMLHttpRequest();
-
-        xhttp.open("POST","./updateOverlab");
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send(inputForm.id +"="+ value)
-        xhttp.onreadystatechange= function(){
-
-            if(xhttp.readyState == 4 && xhttp.status ==200){
-                let result = xhttp.responseText.trim();
-                
-                if(result == 0){
-                    message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
-                    textmessage(inputForm,message);
-
-                }else if(result == 1){
-                    message = ""
-                    textmessage(inputForm,message);
+            if(event.target.name =="phone1" ){
+                if(phoneM.value== "" || phoneL.value == ""){
                     
+                    return;
+
+                }else{
+                    let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
+                    submitPhone.value = phoneValue;
+                    
+                    checkOvetlab(phoneValue,phone);
+                }
+                
+            }
+            else if(event.target.name == "email1"){
+
+                if(emailF.value== "" || emailAt.value == "0"){
+                    return;
+
+                }else{
+                    let emailValue = emailF.value + "@" + emailAt.value;
+                    submitEmail.value = emailValue;
+                    
+                    checkOvetlab(emailValue,email);
+                }
+            }else if(event.target.name == "nickname"){
+                if(nickname.value.length < 3){
+                    message = "닉넴은 2글자 이상"
+                    textmessage(nickname,message);;
+                }else{
+                    checkOvetlab(event.target.value,event.target);
+        
+                }
+            }
+        })
+    }
+
+    // 중복 확인 Ajax
+    function checkOvetlab(value,inputForm){
+
+        if(value != ""){
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("POST","./updateOverlab");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send(inputForm.id +"="+ value)
+            xhttp.onreadystatechange= function(){
+
+                if(xhttp.readyState == 4 && xhttp.status ==200){
+                    let result = xhttp.responseText.trim();
+                    
+                    if(result == 0){
+                        message = "이미 사용중인 " +inputForm.previousSibling.previousSibling.innerText + "입니다." ;
+                        textmessage(inputForm,message);
+
+                    }else if(result == 1){
+                        message = ""
+                        textmessage(inputForm,message);
+                        
+                    }
                 }
             }
         }
     }
-}
 
-function textmessage(input,message) {
-    let text = document.createElement("p");
-    let textArr = document.createAttribute("id");
-    textArr.value = input.id + "Text";
-    
-    if(input.nextSibling.nextSibling.id == textArr.value ){
-
-        input.nextSibling.nextSibling.remove();
+    function textmessage(input,message) {
+        let text = document.createElement("p");
+        let textArr = document.createAttribute("id");
+        textArr.value = input.id + "Text";
         
-    }else if(input.nextSibling.id == textArr.value){
+        if(input.nextSibling.nextSibling.id == textArr.value ){
 
-        input.nextSibling.remove();
-        
-
-    }
-    if(message != ""){
-        
-        input.after(text);
-        text.innerText= message;
-        text.setAttributeNode(textArr);
-
-        
-        input.previousSibling.previousSibling.style.color='red';
-        input.style.borderColor = 'red';
-        input.nextSibling.style.color = 'red';
-
-        if(input == email || input == phone){
-            let inputlist = input.getElementsByClassName("nonOverlab");
+            input.nextSibling.nextSibling.remove();
             
-            for(inl of inputlist){
-                inl.style.borderColor = 'red';
+        }else if(input.nextSibling.id == textArr.value){
+
+            input.nextSibling.remove();
+            
+
+        }
+        if(message != ""){
+            
+            input.after(text);
+            text.innerText= message;
+            text.setAttributeNode(textArr);
+
+            
+            input.previousSibling.previousSibling.style.color='red';
+            input.style.borderColor = 'red';
+            input.nextSibling.style.color = 'red';
+
+            if(input == email || input == phone){
+                let inputlist = input.getElementsByClassName("nonOverlab");
+                
+                for(inl of inputlist){
+                    inl.style.borderColor = 'red';
+                }
+            }
+        }else{
+            
+            input.previousSibling.previousSibling.style.color='';
+            input.style.borderColor = '';
+            if(input == email || input == phone){
+                let inputlist = input.getElementsByClassName("nonOverlab");
+                
+                for(inl of inputlist){
+                    inl.style.borderColor = '';
+                }
             }
         }
-    }else{
-        
-        input.previousSibling.previousSibling.style.color='';
-        input.style.borderColor = '';
-        if(input == email || input == phone){
-            let inputlist = input.getElementsByClassName("nonOverlab");
-            
-            for(inl of inputlist){
-                inl.style.borderColor = '';
+    }
+
+
+    // 수정 제출
+    updateBtn.addEventListener("click",function(){
+
+        let redCheck = updateInput.getElementsByTagName('p');
+        let nullCheck = updateInput.getElementsByTagName('input');
+        const profileImg = document.querySelector("#profileImg");
+        let result = 0;
+        const previewProfile = document.querySelector("#previewProfile");
+
+
+        for(nu of nullCheck){
+
+            if(nu.value == "" && profileImg.id != nu.id ){
+                result += 1;
             }
+
         }
-    }
+
+        console.log(result);
+
+
+
+
+        if(redCheck.length == 0 && result == 0 && previewProfile.title !=  "NoProfile"){
+            updateForm.submit();
+
+
+        }else if(redCheck.length == 0 && result == 0 && previewProfile.title ==  "NoProfile"){
+            updateForm.setAttribute("action","./delete");
+            updateForm.submit();
+            
+        }else if(result !=0){
+            alert(" 입력되지 않은 란이 있습니다 ! ");
+
+        }else{
+
+            alert(" 프로필 수정 조건을 만족해 주세요 ! ");
+
+        }
+
+    })
+
+    const deleteBtn = document.querySelector("#deleteBtn");
+    // 프로필 삭제 버튼 클릭 시
+    deleteBtn.addEventListener("click",function(){
+        previewProfile.setAttribute("src","/resources/images/NoProfile.png");
+        previewProfile.setAttribute("title","NoProfile");
+       
+    })
+
+
+
+
+
+
 }
 
 
-// 수정 제출
-updateBtn.addEventListener("click",function(){
-
-    let redCheck = updateInput.getElementsByTagName('p');
-    let nullCheck = updateInput.getElementsByTagName('input');
-    let profileImg = document.querySelector("#profileImg");
-    let result = 0;
-    for(nu of nullCheck){
-
-        if(nu.value == "" && profileImg.id != nu.id ){
-            result += 1;
-        }
-
-    }
-
-    console.log(result);
 
 
 
 
-    if(redCheck.length == 0 && result == 0){
-        updateForm.submit();
-    }else if(result !=0){
-        alert(" 입력되지 않은 란이 있습니다 ! ");
-
-    }else{
-
-        alert(" 프로필 수정 조건을 만족해 주세요 ! ");
-
-    }
-
-})
-}
 
 
 // 비밀번호 변경 페이지 부분

@@ -72,7 +72,16 @@
 
 }
 
-#pf-img{
+#image_container{
+
+    width: 150px;
+    height: 150px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin: 15px;
+}
+
+#pf-img,#previewProfile{
 
     width: 100%;
     height: 100%;

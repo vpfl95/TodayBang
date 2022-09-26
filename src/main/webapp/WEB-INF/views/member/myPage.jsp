@@ -47,7 +47,22 @@
 
 				<div id = "profile-id" class = "" >
 					<div id = "pf-img-box">
-						<img id = "pf-img" alt="#" src="/resources/images/NoProfile.png">
+					
+					
+						<c:choose>
+					         	<c:when test="${empty member.memberFileDTO }">
+						         	
+						         		<img id = "pf-img"alt="" src="/resources/images/NoProfile.png">
+						         	
+					         	</c:when>
+					         	<c:when test="${not empty member.memberFileDTO }">
+						         	
+						         		<img id = "pf-img"alt="" src="../resources/upload/member/${member.memberFileDTO.fileName }">
+						         	
+					         	</c:when>
+					         </c:choose>
+						
+						
 					</div>
 					<div id = "pf-userName">
 						<h2>${memberDTO.userName }</h2>
