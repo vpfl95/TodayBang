@@ -96,7 +96,7 @@ public class MemberController {
 		int result = memberService.getJoin(memberDTO);
 		
 		if(result==1) {
-			System.out.println("회원가입 성공 ㅋㅋ");
+			
 		}
 		
 		return "redirect:../";
@@ -176,10 +176,6 @@ public class MemberController {
 	
 	@PostMapping("update")
 	public String setUpdate(MemberDTO memberDTO,HttpSession session,MultipartFile profileImg) throws Exception{
-		
-		System.out.println("컨트롤러 진입");
-		
-		
 		
 		
 		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");

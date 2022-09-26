@@ -21,7 +21,7 @@ public class ServiceDAOTest extends MyAbstractTest {
 		
 	
 		
-		assertNotNull(ar);
+	
 		
 		
 	}
