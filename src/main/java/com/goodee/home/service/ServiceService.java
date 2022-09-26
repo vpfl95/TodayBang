@@ -33,4 +33,9 @@ public class ServiceService {
 		return serviceDAO.addBoard(boardDTO);
 	}
 	
+	public int deleteBoard(BoardDTO boardDTO) throws Exception{	
+	
+		return serviceDAO.deleteBoard(boardDTO);
+	}
+	
 }

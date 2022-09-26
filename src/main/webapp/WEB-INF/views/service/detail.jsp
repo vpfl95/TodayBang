@@ -44,6 +44,18 @@
 						      <td >${boardList.contents }</td>
 						
 						    </tr>
+						    
+						    <tr>
+						    
+						    	<c:if test="${boardList.userId eq member.userId }">
+						    	
+						    	<td><a href="./delete?boardNum=${boardList.boardNum }">삭제</a></td>
+						    	</c:if>
+						    	
+						    	
+						    	
+						    </tr>
+						    
 						  </tbody>
 						</table>
 							

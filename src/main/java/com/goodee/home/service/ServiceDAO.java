@@ -44,4 +44,10 @@ public class ServiceDAO {
 		return sqlSession.insert(NAMESPACE+"addBoard",boardDTO);
 	}
 	
+	public int deleteBoard(BoardDTO boardDTO) throws Exception{
+		
+		
+		return sqlSession.delete(NAMESPACE+"deleteBoard",boardDTO);
+	}
+	
 }

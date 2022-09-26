@@ -84,11 +84,21 @@ public class ServiceController {
 	}
 	@PostMapping("add")
 	public String addBoard(BoardDTO boardDTO) throws Exception{
-		System.out.println("게시글 작성");
-		
+	
 		
 		boardDTO.setBoard(getBoardName());
 		service.addBoard(boardDTO);
+		
+		return "redirect:./list";
+	}
+	
+	
+	
+	@GetMapping("delete")
+	public String deleteBoard(BoardDTO boardDTO) throws Exception{
+		
+		boardDTO.setBoard(getBoardName());
+		service.deleteBoard(boardDTO);
 		
 		return "redirect:./list";
 	}
