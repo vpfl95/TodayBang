@@ -13,7 +13,7 @@
  <div class="pf-section">
  	<h1> 회원 등급</h1>
  	
- 	<c:forEach items="${member.roleDTOs }" var="dto">
+ 	<c:forEach items="${role }" var="dto">
  		<c:choose>
  			<c:when test="${dto.roleNum eq 10}">
  				<img alt="" src="/resources/images/rank/Diamond.png">

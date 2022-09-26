@@ -38,6 +38,8 @@ public class MemberController {
 		if (memberDTO != null) {
 			
 			session.setAttribute("member", memberDTO);
+			session.setAttribute("role", memberDTO.getRoleDTOs());
+			session.setAttribute("profile", memberDTO.getMemberFileDTO());
 			mv.setViewName("/home");
 			
 		}else {
@@ -179,6 +181,8 @@ public class MemberController {
 		
 		
 		MemberDTO memberDTO2 =  (MemberDTO) session.getAttribute("member");
+		
+		
 		memberDTO.setPassword(memberDTO2.getPassword());
 		memberDTO.setMemberFileDTO(memberDTO2.getMemberFileDTO());
 		MemberFileDTO memberFileDTO = new MemberFileDTO();
@@ -204,6 +208,7 @@ public class MemberController {
 		}
 		
 		session.setAttribute("member",memberDTO);
+		session.setAttribute("profile", memberDTO.getMemberFileDTO());
 		
 		
 		
@@ -218,6 +223,7 @@ public class MemberController {
 		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
 		memberService.setDeleteProfile(memberDTO);
 		session.setAttribute("member", memberDTO);
+		session.setAttribute("profile", memberDTO.getMemberFileDTO());
 		
 		return "redirect:./myPage";
 		

@@ -65,20 +65,20 @@
 					        <div></div>
 					        <div></div>
 					        
-					        ${member.memberFileDTO.fileName }
+					        ${profile.fileName }
 					        
 					        <label for="profileImg" >프로필사진</label>
 					          
 					         <div id="image_container">
 					         <c:choose>
-					         	<c:when test="${empty member.memberFileDTO }">
+					         	<c:when test="${empty profile }">
 						         	
 						         		<img id = "previewProfile"alt="" src="/resources/images/NoProfile.png" >
 						         	
 					         	</c:when>
-					         	<c:when test="${not empty member.memberFileDTO }">
+					         	<c:when test="${not empty profile }">
 						         	
-						         		<img id = "previewProfile"alt="" src="../resources/upload/member/${member.memberFileDTO.fileName }">
+						         		<img id = "previewProfile"alt="" src="../resources/upload/member/${profile.fileName }">
 						         	
 					         	</c:when>
 					         </c:choose>
