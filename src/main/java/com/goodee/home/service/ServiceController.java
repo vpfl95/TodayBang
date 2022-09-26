@@ -87,7 +87,7 @@ public class ServiceController {
 		System.out.println("게시글 작성");
 		
 		
-		
+		boardDTO.setBoard(getBoardName());
 		service.addBoard(boardDTO);
 		
 		return "redirect:./list";

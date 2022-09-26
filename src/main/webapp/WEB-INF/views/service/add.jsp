@@ -20,7 +20,7 @@
 				<div class = " col-lg-7 ">
 		
 		
-					<h3> 공지사항 게시  </h3>
+					<h3> ${board } 게시  </h3>
 					<hr>
 					<form action="./add" method="post" id = "boardForm" >
 					<table class = "table">

@@ -45,10 +45,17 @@
 				  	</c:forEach>
 				  
 				    
-				      
+				      <tr>
+				      	<td>
+				      		<c:if test="${board=='QNA' }"> <a href="/service/qna/add">글 쓰기</a></c:if>
+				      	</td>
+				      </tr>
 			      
 				  </tbody>
 				</table>
+				
+				
+				
 				
 				<nav aria-label="Page navigation example">
 				  <ul class="pagination justify-content-center">

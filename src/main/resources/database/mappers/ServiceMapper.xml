@@ -11,7 +11,12 @@
 					<otherwise>QNA</otherwise>
 				</choose>
 			</sql>
-		
+			<sql id="getBoardSeq">
+				<choose>
+					<when test="board == 'NOTICE'">NOTICE_SEQ</when>
+					<otherwise>QNA_SEQ</otherwise>
+				</choose>
+			</sql>
 		
 			<!-- <select id="getList" parameterType="String" resultType="BoardDTO">
 				SELECT * FROM <include refid="getBoard"></include>
@@ -35,7 +40,8 @@
 	    	</select>
 	    	
 	    	<insert id="addBoard" parameterType="BoardDTO">
-	    		INSERT INTO NOTICE VALUES (notice_seq.nextval,#{title},#{contents},SYSDATE,'0',#{userId})
+	    	
+	    		INSERT INTO <include refid="getBoard"></include>  VALUES (<include refid="getBoardSeq"></include>.NEXTVAL,#{title},#{contents},SYSDATE,'0',#{userId})
 	    	
 	    	</insert>
 	    	
