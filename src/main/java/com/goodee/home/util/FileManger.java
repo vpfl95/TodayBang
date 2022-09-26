@@ -10,6 +10,8 @@ import org.springframework.http.server.ServerHttpRequest;
 import org.springframework.stereotype.Component;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goodee.home.member.MemberDTO;
+
 
 @Component
 public class FileManger {
@@ -37,6 +39,16 @@ public class FileManger {
 		
 		
 	}
+	
+	//delete
+    public boolean deleteFile(MemberDTO memberDTO,ServletContext servletContext,String path) throws Exception{
+       String realPath = servletContext.getRealPath(path);
+       System.out.println(realPath);
+       
+       File file = new File(realPath, memberDTO.getMemberFileDTO().getFileName());
+       
+       return file.delete();
+    }
 	
 	
 }

@@ -48,7 +48,7 @@ public class ServiceController {
 		List<BoardDTO> ar = null;
 		// getBoardName()
 		
-		
+		pager.setBoard(getBoardName());
 		ar = service.getList(pager);
 		
 		mv.addObject("boardList",ar);

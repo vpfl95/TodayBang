@@ -32,10 +32,10 @@ public class ServiceDAO {
 	}
 	
 	
-	public Long getCount() throws Exception{
+	public Long getCount(Pager pager) throws Exception{
 		
 		
-		return sqlSession.selectOne(NAMESPACE+"getCount");
+		return sqlSession.selectOne(NAMESPACE+"getCount",pager);
 	}
 	
 }

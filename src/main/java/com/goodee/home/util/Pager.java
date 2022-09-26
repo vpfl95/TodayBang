@@ -13,13 +13,27 @@ public class Pager {
 	private boolean pre;
 	//다음블럭의 유무-다음블럭이 있으면 true, 없으면 false
 	private boolean next;
-	
+	private String board;
 	
 	//검색 컬럼의 종류
 	private String kind;
 	//검색어 
 	private String search;
 	
+	
+	
+	
+	
+	
+	
+	public String getBoard() {
+		return board;
+	}
+
+	public void setBoard(String board) {
+		this.board = board;
+	}
+
 	public Pager() {
 		this.perPage=10L;
 		this.perBlock=5L;

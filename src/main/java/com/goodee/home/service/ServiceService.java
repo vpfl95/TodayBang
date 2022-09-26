@@ -16,7 +16,7 @@ public class ServiceService {
 	
 	public List<BoardDTO> getList(Pager pager) throws Exception{
 		
-		Long totalCount = serviceDAO.getCount();
+		Long totalCount = serviceDAO.getCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
@@ -28,9 +28,6 @@ public class ServiceService {
 		return serviceDAO.getDetail(boardDTO);
 	}
 	
-	public Long getCount() throws Exception{
-		
-		return serviceDAO.getCount();
-	}
+	
 	
 }

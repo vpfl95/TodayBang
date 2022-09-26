@@ -21,15 +21,15 @@
 				SELECT * FROM <include refid="getBoard"></include> WHERE BOARDNUM = #{boardNum}
 			</select>
 		
-			<select id="getCount" resultType="Long">
-				SELECT COUNT(*) FROM NOTICE
+			<select id="getCount" parameterType="Pager"  resultType="Long">
+				SELECT COUNT(*) FROM <include refid="getBoard"></include>
 			</select>
 		
 		    
 	    	<select id="getList" parameterType="Pager" resultType="BoardDTO" >
 		    	SELECT * FROM
 				( SELECT ROWNUM R,N.*
-				 FROM (SELECT * FROM NOTICE 
+				 FROM (SELECT * FROM <include refid="getBoard"></include> 
 				 ORDER BY BOARDNUM DESC) N)
 				 WHERE R BETWEEN #{startRow} AND #{lastRow}
 	    	</select>

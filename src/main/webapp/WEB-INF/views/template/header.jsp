@@ -128,7 +128,8 @@
     		
         if(e.deltaY < 0){
 
-        	if(linkArr[4] != "myPage"){
+        	if(linkArr[4] != "myPage" && linkArr[3] != "admin" ){
+        		console.log("ll " +  linkArr[3]);
         		
                 const hr = document.querySelector("#hr");
 

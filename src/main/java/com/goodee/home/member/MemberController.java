@@ -220,8 +220,10 @@ public class MemberController {
 	public String setDeleteProfile(MemberDTO memberDTO,HttpSession session,MultipartFile profileImg) throws Exception{
 		System.out.println("delete profile");
 		
+		MemberDTO memberDTO2= (MemberDTO) session.getAttribute("member");
+		
 		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
-		memberService.setDeleteProfile(memberDTO);
+		memberService.setDeleteProfile(memberDTO2,session.getServletContext());
 		session.setAttribute("member", memberDTO);
 		session.setAttribute("profile", memberDTO.getMemberFileDTO());
 		

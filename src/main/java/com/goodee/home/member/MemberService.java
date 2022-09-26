@@ -101,9 +101,11 @@ public class MemberService {
 		return memberFileDTO;
 	}
 	
-	public int setDeleteProfile(MemberDTO memberDTO) throws Exception{
-		
+	public int setDeleteProfile(MemberDTO memberDTO,ServletContext servletContext) throws Exception{
+		String path = "resources/upload/member";
 		int result = memberDAO.deleteProfileImg(memberDTO);	
+		fileManger.deleteFile(memberDTO, servletContext,path);
+		
 		
 		return result;
 	}
