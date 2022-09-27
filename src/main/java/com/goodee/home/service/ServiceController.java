@@ -115,16 +115,7 @@ public class ServiceController {
 		return "redirect:./list";
 	}
 	
-	@PostMapping("answer")
-	public String addQnaAnswer(BoardDTO boardDTO) throws Exception{
-		
-		service.addQnaAnswer(boardDTO);
-		
-		
-		
-		//일단 리스트로 해놈
-		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
-	}
+	
 	
 	@GetMapping("update")
 	public ModelAndView updateBoard(BoardDTO boardDTO,ModelAndView mv) throws Exception{
@@ -152,6 +143,53 @@ public class ServiceController {
 	}
 	
 	
+	@PostMapping("answer")
+	public String addQnaAnswer(BoardDTO boardDTO) throws Exception{
+		
+		service.addQnaAnswer(boardDTO);
+		
+		
+		
+		//일단 리스트로 해놈
+		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
+	}
 	
+	@GetMapping("deleteAnswer")
+	public String deleteAnswer(BoardDTO boardDTO) throws Exception{
+		
+		
+		service.deleteAnswer(boardDTO);
+		
+		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
+	}
+	
+	
+	@GetMapping("updateAnswer")
+	public ModelAndView updateAnswer(BoardDTO boardDTO,ModelAndView mv ) throws Exception{
+		
+		
+		boardDTO.setBoard("QNAANSWER");
+		boardDTO = service.getDetail(boardDTO);
+		
+		mv.addObject("update",boardDTO);
+		
+		
+		boardDTO.setBoard(getBoardName());
+		boardDTO = service.getDetail(boardDTO);
+		
+		mv.addObject("boardList",boardDTO);
+		mv.setViewName("/service/detail");
+		
+		return mv;
+	}
+	@PostMapping("updateAnswer")
+	public String updateAnswer(BoardDTO boardDTO) throws Exception{
+		
+		boardDTO.setBoard("QNAANSWER");
+		service.updateBoard(boardDTO);
+		
+		
+		return "redirect:./list";
+	}
 	
 }

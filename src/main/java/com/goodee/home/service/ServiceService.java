@@ -48,5 +48,14 @@ public class ServiceService {
 		return serviceDAO.updateBoard(boardDTO);
 	}
 	
+	public int deleteAnswer(BoardDTO boardDTO) throws Exception{
+		
+		return serviceDAO.deleteAnswer(boardDTO);
+	}
+	
+	public int updateAnswer(BoardDTO boardDTO) throws Exception{
+		
+		return serviceDAO.updateAnswer(boardDTO);
+	}
 	
 }

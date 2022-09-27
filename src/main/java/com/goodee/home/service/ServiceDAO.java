@@ -68,4 +68,17 @@ public class ServiceDAO {
 	}
 	
 	
+	public int deleteAnswer(BoardDTO boardDTO) throws Exception{
+		
+		return sqlSession.delete(NAMESPACE+"deleteAnswer",boardDTO);
+	}
+	
+	public int updateAnswer(BoardDTO boardDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE+"updateAnswer",boardDTO);
+	}
+	
+	
+	
+	
 }

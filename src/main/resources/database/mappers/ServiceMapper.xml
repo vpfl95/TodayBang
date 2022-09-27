@@ -62,5 +62,14 @@
 			
 			</update>
 			
+			<delete id="deleteAnswer" parameterType="BoardDTO">
+	    		DELETE FROM QNAANSWER WHERE BOARDNUM = #{boardNum}
+	    	</delete>
+			<update id="updateAnswer" parameterType="BoardDTO">
+				UPDATE QNAANSWER SET TITLE = #{title} , CONTENTS = #{contents} WHERE BOARDNUM = #{boardNum}
+			</update>
+			
+			
+			
 			
 		</mapper>

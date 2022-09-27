@@ -88,7 +88,13 @@
 								    </tr>
 								    
 								    <tr>
-								    	
+								    	<c:if test="${boardList.userId eq member.userId }">
+													
+								    		<td><a href="./deleteAnswer?boardNum=${boardList.boardNum }">답변 삭제</a></td>
+								    		<td><a href="./updateAnswer?boardNum=${boardList.boardNum }">답변 수정</a></td>
+
+							    		
+								    	</c:if>
 								    </tr>
 								  </tbody>
 								</table>
@@ -120,15 +126,25 @@
 													</tr>
 													<tr>
 														<th>내용</th>
-														<td><input type="text"  id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
+														<td><input type="text" value="${update.contents }" id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
 													</tr>
 													<tr>
 														<th>파일첨부</th>
 														<td></td>
 													</tr>
 													<tr>
-													<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="submit">게시</button></td>
+													<c:choose>
+														<c:when test="${empty update }">
+															<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
+														</c:when>
+														<c:otherwise>
+															<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
+														</c:otherwise>
+													
+													</c:choose>
 													</tr>
+													
+													
 													
 												</tbody>
 											</table>
@@ -146,7 +162,11 @@
 
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="/resources/js/board.js"></script>
     
+    <script type="text/javascript">
+    answer();
+    </script>
    
 </body>
 </html>
