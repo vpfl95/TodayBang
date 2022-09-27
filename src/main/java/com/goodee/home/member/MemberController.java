@@ -189,18 +189,18 @@ public class MemberController {
 		memberDTO.setMemberFileDTO(memberDTO2.getMemberFileDTO());
 		MemberFileDTO memberFileDTO = new MemberFileDTO();
 		if(memberDTO2.getMemberFileDTO()== null && !profileImg.isEmpty()) { // 세션이 없고 , 사진이 있다.
-			System.out.println("insert profile");
+			
 			 memberFileDTO = memberService.setInsert(memberDTO,session.getServletContext(),profileImg);
 			 memberDTO.setMemberFileDTO(memberFileDTO);
 			
 	
 		}else if (memberDTO2.getMemberFileDTO()!= null && !profileImg.isEmpty()) {	// 세션이 있고 , 사진이 있다.
-			System.out.println("update profile"); 
+			 
 			 memberFileDTO = memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
 			 memberDTO.setMemberFileDTO(memberFileDTO);
 			
 		}else if(memberDTO2.getMemberFileDTO()!= null && profileImg.isEmpty()){  // 세션 o 사진 x // 내용만 수정하는 경우
-			System.out.println("수정 x" + memberDTO2.getMemberFileDTO());
+			
 			memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
 		
 		}else {  // 세션 x 사진 x , 
@@ -220,7 +220,7 @@ public class MemberController {
 	
 	@PostMapping("delete")
 	public String setDeleteProfile(MemberDTO memberDTO,HttpSession session,MultipartFile profileImg) throws Exception{
-		System.out.println("delete profile");
+		
 		
 		MemberDTO memberDTO2= (MemberDTO) session.getAttribute("member");
 		

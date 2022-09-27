@@ -36,31 +36,52 @@ public class ServiceService {
 		return serviceDAO.getDetail(boardDTO);
 	}
 	
-	public int addBoard(BoardDTO boardDTO,MultipartFile file,ServletContext servletContext) throws Exception{	
+	public int addBoard(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception{	
 		
 		int result = serviceDAO.addBoard(boardDTO);
 		
 		
 		String path = "resources/upload/" +boardDTO.getBoard();
-		if(!file.isEmpty()) {
-			
-			
-			String fileName = fileManger.saveFile(path, servletContext, file);
-			BoardFileDTO boardFileDTO = new BoardFileDTO();
-			boardFileDTO.setBoardNum(boardDTO.getBoardNum());
-			boardFileDTO.setFileName(fileName);
-			boardFileDTO.setOriName(file.getOriginalFilename());
-			boardFileDTO.setBoard(boardDTO.getBoard());
-			serviceDAO.addBoardFile(boardFileDTO);
-			
+		
+		if(files.length !=0) {
+			for(MultipartFile file : files) {
+				
+				if(!file.isEmpty()) {
+					
+					
+					String fileName = fileManger.saveFile(path, servletContext, file);
+					BoardFileDTO boardFileDTO = new BoardFileDTO();
+					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+					boardFileDTO.setFileName(fileName);
+					boardFileDTO.setOriName(file.getOriginalFilename());
+					boardFileDTO.setBoard(boardDTO.getBoard());
+					serviceDAO.addBoardFile(boardFileDTO);
+					
+				}
+				
+				
+				
+			}
 		}
+		
+		
 		
 	
 		return result;
 	}
 	
-	public int deleteBoard(BoardDTO boardDTO) throws Exception{	
+	public int deleteBoard(BoardDTO boardDTO,ServletContext servletContext) throws Exception{	
 	
+		String path = "resources/upload/"+boardDTO.getBoard();
+		if(boardDTO.getBoardFileDTOs() != null) {
+			for(BoardFileDTO boardFileDTO : boardDTO.getBoardFileDTOs()) {
+				
+				fileManger.deleteFile(boardFileDTO.getFileName(), servletContext, path);
+				serviceDAO.deleteBoardFile(boardDTO);
+			}
+		}
+		
+		
 		return serviceDAO.deleteBoard(boardDTO);
 	}
 	

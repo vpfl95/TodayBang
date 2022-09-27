@@ -1,5 +1,7 @@
 package com.goodee.home.service;
 
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 @Component
@@ -11,18 +13,19 @@ public class BoardDTO {
 	private String regDate;
 	private String userId;
 	private String board;
-	private BoardFileDTO boardFileDTO;
+	
+	private List<BoardFileDTO> boardFileDTOs;
 	
 	
 	
 	
 	
 	
-	public BoardFileDTO getBoardFileDTO() {
-		return boardFileDTO;
+	public List<BoardFileDTO> getBoardFileDTOs() {
+		return boardFileDTOs;
 	}
-	public void setBoardFileDTO(BoardFileDTO boardFileDTO) {
-		this.boardFileDTO = boardFileDTO;
+	public void setBoardFileDTOs(List<BoardFileDTO> boardFileDTOs) {
+		this.boardFileDTOs = boardFileDTOs;
 	}
 	public String getBoard() {
 		return board;

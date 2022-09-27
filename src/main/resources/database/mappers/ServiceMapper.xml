@@ -45,13 +45,13 @@
 				<result column="CONTENTS" property="contents"/>
 				<result column="REGDATE" property="regDate"/>
 				<result column="USERID" property="userId"/>
-				<association property="boardFileDTO">
+				<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 					<id column="FILENUM" property="fileNum"/>
 					<result column="FILENAME" property="fileName"/>
 					<result column="ORINAME" property="oriName"/>
 					
 				
-				</association>
+				</collection>
 			
 			
 			
@@ -109,6 +109,11 @@
 			<insert id="addBoardFile" parameterType="BoardFileDTO">
 			INSERT INTO <include refid="getBoardFile"></include> VALUES (TODAY_SEQ.NEXTVAL,#{fileName},#{oriName},#{boardNum})
 			</insert>
+			<delete id="deleteBoardFile" parameterType="BoardDTO">
+			DELETE FROM <include refid="getBoardFile"></include> WHERE BOARDNUM =#{boardNum}
+			</delete>
+			
+			
 			
 			
 		</mapper>

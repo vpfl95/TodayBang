@@ -41,11 +41,11 @@ public class FileManger {
 	}
 	
 	//delete
-    public boolean deleteFile(MemberDTO memberDTO,ServletContext servletContext,String path) throws Exception{
+    public boolean deleteFile(String fileName,ServletContext servletContext,String path) throws Exception{
        String realPath = servletContext.getRealPath(path);
        System.out.println(realPath);
        
-       File file = new File(realPath, memberDTO.getMemberFileDTO().getFileName());
+       File file = new File(realPath, fileName);
        
        return file.delete();
     }

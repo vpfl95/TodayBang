@@ -71,8 +71,6 @@ public class ServiceController {
 		boardDTO.setBoard(getBoardName());
 		boardDTO  = service.getDetail(boardDTO);
 		mv.addObject("boardList",boardDTO);
-		System.out.println(boardDTO.getContents());
-		System.out.println(boardDTO.getBoardFileDTO());
 		if(getBoardName() == "QNA") {
 			
 			boardDTO.setBoard("QNAANSWER");
@@ -98,7 +96,7 @@ public class ServiceController {
 		return mv;
 	}
 	@PostMapping("add")
-	public String addBoard(BoardDTO boardDTO,MultipartFile file,HttpSession session) throws Exception{
+	public String addBoard(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception{
 	
 		
 		boardDTO.setBoard(getBoardName());
@@ -115,10 +113,12 @@ public class ServiceController {
 	
 	
 	@GetMapping("delete")
-	public String deleteBoard(BoardDTO boardDTO) throws Exception{
+	public String deleteBoard(BoardDTO boardDTO,HttpSession session) throws Exception{
 		
 		boardDTO.setBoard(getBoardName());
-		service.deleteBoard(boardDTO);
+		boardDTO = service.getDetail(boardDTO);
+		boardDTO.setBoard(getBoardName());
+		service.deleteBoard(boardDTO,session.getServletContext());
 		
 		return "redirect:./list";
 	}

@@ -45,11 +45,17 @@
 								<th>내용</th>
 								<td><input type="text"  value="${update.contents }" id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
 							</tr>
+							
 							<tr>
-								<th>파일첨부</th>
+								<td><p id = "addFileBtn">파일추가</p></td>
+							
+								
 								<td>
-									<input type="file"  id="file"  name="file"  class="form-control">
+									<div id = "fileInputDiv">
+									<!-- 파일선택 input -->
+									</div>
 								</td>
+								
 							</tr>
 							<tr>
 							

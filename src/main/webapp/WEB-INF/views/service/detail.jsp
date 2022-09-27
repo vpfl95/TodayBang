@@ -42,9 +42,12 @@
 						    <tr>
 						      <th scope="row">파일</th>
 						      
-						      <c:if test="${not empty boardList.boardFileDTO }">
+						      <c:if test="${not empty boardList.boardFileDTOs }">
+							      <c:forEach items="${boardList.boardFileDTOs }" var="file">
+							      	<td >${file.oriName }</td>
 							      
-							      	<td >${boardList.boardFileDTO.oriName }</td>
+							      </c:forEach>
+							      	
 							      
 						      </c:if>
 						      
@@ -160,7 +163,9 @@
 													
 													
 												</tbody>
+												
 											</table>
+											
 										</form>
 				    			</c:if>
 							</c:otherwise>
@@ -176,10 +181,17 @@
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/js/board.js"></script>
-    
     <script type="text/javascript">
-    answer();
+    
+    if (${board eq 'QNA' && empty qnaAnswer}){
+    	answer();
+    	
+    }
+    	
+    	
+    	
     </script>
+    
    
 </body>
 </html>
