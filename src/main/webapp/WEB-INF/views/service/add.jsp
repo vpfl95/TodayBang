@@ -23,6 +23,9 @@
 					<h3> ${board } 게시  </h3>
 					<hr>
 					<form action="./add" method="post" id = "boardForm" >
+					<input type="hidden" value="${update.boardNum }"  id="boardNum" name="boardNum" class="form-control" >
+						        
+					
 					<table class = "table">
 						<thead>
 						</thead>
@@ -31,7 +34,7 @@
 							<tr>
 								<th>제목</th>
 								<td>
-						        	<input type="text"  id="title" name="title" class="form-control" placeholder="제목" required>
+						        	<input type="text" value="${update.title }"  id="title" name="title" class="form-control" placeholder="제목" required>
 						        </td>
 							</tr>
 							<tr>
@@ -40,14 +43,26 @@
 							</tr>
 							<tr>
 								<th>내용</th>
-								<td><input type="text"  id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
+								<td><input type="text"  value="${update.contents }" id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
 							</tr>
 							<tr>
 								<th>파일첨부</th>
 								<td></td>
 							</tr>
 							<tr>
-							<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button">게시</button></td>
+							
+							<c:choose>
+								<c:when test="${empty update }">
+									<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
+								</c:when>
+								<c:otherwise>
+									<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
+								</c:otherwise>
+								
+							</c:choose>
+							
+							
+							
 							</tr>
 							
 						</tbody>

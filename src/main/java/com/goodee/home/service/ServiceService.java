@@ -43,5 +43,10 @@ public class ServiceService {
 		return serviceDAO.addQnaAnswer(boardDTO);
 	}
 	
+	public int updateBoard(BoardDTO boardDTO) throws Exception{	
+		
+		return serviceDAO.updateBoard(boardDTO);
+	}
+	
 	
 }

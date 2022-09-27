@@ -8,7 +8,8 @@
 			<sql id="getBoard">
 				<choose>
 					<when test="board == 'NOTICE'">NOTICE</when>
-					<otherwise>QNA</otherwise>
+					<when test="board == 'QNA'">QNA</when>
+					<otherwise>QNAANSWER</otherwise>
 				</choose>
 			</sql>
 			<sql id="getBoardSeq">
@@ -52,8 +53,14 @@
 	    	
 			
 			<insert id="addQnaAnswer" parameterType="BoardDTO">
-				INSERT INTO QNAANSWER VALUES (TODAY_SEQ.NEXTVAL, #{title},#{contents},SYSDATE,#{nickname},#{boardNum});
+				INSERT INTO QNAANSWER VALUES (#{boardNum}, #{title},#{contents},SYSDATE,#{userId})
 			</insert>
+			
+			
+			<update id="updateBoard" parameterType="BoardDTO">
+				UPDATE <include refid="getBoard"></include> SET TITLE = #{title} , CONTENTS = #{contents} WHERE BOARDNUM = #{boardNum}
+			
+			</update>
 			
 			
 		</mapper>

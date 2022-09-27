@@ -20,49 +20,86 @@
 				<div class = " col-lg-7 ">
 						<table class="table">
 						  <thead>
-						   
 						  </thead>
 						  <tbody>
 						    <tr>
 						      <th scope="row">제목</th>
 						      <td>${boardList.title }</td>
-						    
 						    </tr>
 						    <tr>
 						      <th scope="row">작성자</th>
 						      <td>${boardList.userId }</td>
-						 
 						    </tr>
 						    <tr>
 						      <th scope="row">작성일</th>
 						      <td >${boardList.regDate }</td>
-						      
 							</tr>
 						    <tr>
-						      
 						      <th scope="row">내용</th>
 						      <td >${boardList.contents }</td>
-						
 						    </tr>
 						    
 						    <tr>
-						    
 						    	<c:if test="${boardList.userId eq member.userId }">
-						    	
-						    	<td><a href="./delete?boardNum=${boardList.boardNum }">삭제</a></td>
+						    		<td><a href="./delete?boardNum=${boardList.boardNum }">삭제</a></td>
+						    		<c:if test="${empty qnaAnswer }">
+						    			<td><a href="./update?boardNum=${boardList.boardNum }">수정</a></td>
+						    		</c:if>
+						    		
 						    	</c:if>
 						    	
 						    	
 						    	
+						    	
+						    	
 						    </tr>
-						    
 						  </tbody>
 						</table>
-							
+					
+					
+					
+					<!-- QNA 추가 페이지 -->
 					
 					
 					<c:if test="${board eq 'QNA' }">
-						<c:if test="${member.roleDTOs[0].roleNum<3 }">
+						<c:choose>
+							<c:when test="${not empty qnaAnswer}">
+							
+							
+							<table class="table">
+								  <thead>
+								  </thead>
+								  <tbody>
+								    <tr>
+								      <th scope="row">제목</th>
+								      <td>${qnaAnswer.title }</td>
+								    </tr>
+								    <tr>
+								      <th scope="row">작성자</th>
+								      <td>${qnaAnswer.userId }</td>
+								    </tr>
+								    <tr>
+								      <th scope="row">작성일</th>
+								      <td >${qnaAnswer.regDate }</td>
+									</tr>
+								    <tr>
+								      <th scope="row">내용</th>
+								      <td >${qnaAnswer.contents }</td>
+								    </tr>
+								    
+								    <tr>
+								    	
+								    </tr>
+								  </tbody>
+								</table>
+							
+							
+							
+							</c:when>
+							
+							<c:otherwise>
+							
+							<c:if test="${member.roleDTOs[0].roleNum<3 }">
 							    	<form action="./answer" method="post" id = "boardForm" >
 							    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
 							    	
@@ -94,22 +131,12 @@
 													</tr>
 													
 												</tbody>
-													
-														
-												
 											</table>
 										</form>
-							    	
-							    	
-							    	
-							    	
-							    	
-							    	
-							    	
-							    	
-							    	
-							    	
-				    	</c:if>
+				    			</c:if>
+							</c:otherwise>
+						</c:choose>
+						
 					</c:if>
 	
 			</div>

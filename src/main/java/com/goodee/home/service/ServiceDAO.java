@@ -60,4 +60,12 @@ public class ServiceDAO {
 		return sqlSession.insert(NAMESPACE+"addQnaAnswer",boardDTO);
 	}
 	
+	
+	public int updateBoard(BoardDTO boardDTO) throws Exception{
+		
+		System.out.println("update" + boardDTO.getBoard());
+		return sqlSession.update(NAMESPACE+"updateBoard",boardDTO);
+	}
+	
+	
 }

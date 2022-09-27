@@ -67,9 +67,19 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		boardDTO  = service.getDetail(boardDTO);
-		
-		
 		mv.addObject("boardList",boardDTO);
+		
+		
+		if(getBoardName() == "QNA") {
+			System.out.println("답변 소환");
+			boardDTO.setBoard("QNAANSWER");
+			boardDTO  = service.getDetail(boardDTO);
+			if(boardDTO != null)
+				mv.addObject("qnaAnswer",boardDTO);
+			
+		}
+		
+		
 		mv.setViewName("/service/detail");
 		
 		return mv;
@@ -116,7 +126,30 @@ public class ServiceController {
 		return "redirect:./list";
 	}
 	
+	@GetMapping("update")
+	public ModelAndView updateBoard(BoardDTO boardDTO,ModelAndView mv) throws Exception{
+		
+		
+		
+		boardDTO.setBoard(getBoardName());
+		boardDTO = service.getDetail(boardDTO);
+		
+		
+		mv.addObject("update", boardDTO);
+		mv.setViewName("/service/add");
+		
+		return mv;
+	}
 	
+	@PostMapping("update")
+	public String updateBoard(BoardDTO boardDTO) throws Exception{
+		
+		boardDTO.setBoard(getBoardName());
+		service.updateBoard(boardDTO);
+		
+		
+		return "redirect:./list";
+	}
 	
 	
 	
