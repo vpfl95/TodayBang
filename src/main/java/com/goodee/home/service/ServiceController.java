@@ -123,7 +123,7 @@ public class ServiceController {
 		
 		
 		//일단 리스트로 해놈
-		return "redirect:./list";
+		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
 	
 	@GetMapping("update")
