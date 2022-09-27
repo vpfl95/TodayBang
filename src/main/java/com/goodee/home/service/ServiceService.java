@@ -85,9 +85,36 @@ public class ServiceService {
 		return serviceDAO.deleteBoard(boardDTO);
 	}
 	
-	public int addQnaAnswer(BoardDTO boardDTO) throws Exception{	
+	public int addQnaAnswer(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext) throws Exception{	
 		
-		return serviceDAO.addQnaAnswer(boardDTO);
+		
+			int result = serviceDAO.addQnaAnswer(boardDTO);
+		
+		String path = "resources/upload/" +boardDTO.getBoard();
+		
+		if(files.length !=0) {
+			for(MultipartFile file : files) {
+				
+				if(!file.isEmpty()) {
+					
+					
+					String fileName = fileManger.saveFile(path, servletContext, file);
+					BoardFileDTO boardFileDTO = new BoardFileDTO();
+					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+					boardFileDTO.setFileName(fileName);
+					boardFileDTO.setOriName(file.getOriginalFilename());
+					boardFileDTO.setBoard(boardDTO.getBoard());
+					serviceDAO.addBoardFile(boardFileDTO);
+					
+				}
+				
+				
+				
+			}
+		}
+		
+		
+		return result;
 	}
 	
 	public int updateBoard(BoardDTO boardDTO) throws Exception{	
@@ -95,8 +122,17 @@ public class ServiceService {
 		return serviceDAO.updateBoard(boardDTO);
 	}
 	
-	public int deleteAnswer(BoardDTO boardDTO) throws Exception{
+	public int deleteAnswer(BoardDTO boardDTO,ServletContext servletContext) throws Exception{
 		
+		
+		String path = "resources/upload/"+boardDTO.getBoard();
+		if(boardDTO.getBoardFileDTOs() != null) {
+			for(BoardFileDTO boardFileDTO : boardDTO.getBoardFileDTOs()) {
+				
+				fileManger.deleteFile(boardFileDTO.getFileName(), servletContext, path);
+				serviceDAO.deleteBoardFile(boardDTO);
+			}
+		}
 		return serviceDAO.deleteAnswer(boardDTO);
 	}
 	

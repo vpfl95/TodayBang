@@ -102,9 +102,19 @@
 								      <th scope="row">내용</th>
 								      <td >${qnaAnswer.contents }</td>
 								    </tr>
-								    
 								    <tr>
-								    	<c:if test="${boardList.userId eq member.userId }">
+								    <th scope="row">파일</th>
+								     <c:if test="${not empty qnaAnswer.boardFileDTOs }">
+									      <c:forEach items="${qnaAnswer.boardFileDTOs }" var="file">
+									      		<td >${file.oriName }</td>
+									      
+									      </c:forEach>
+							      	
+							      
+						    		  </c:if>
+								    </tr>
+								    <tr>
+								    	<c:if test="${qnaAnswer.userId eq member.userId }">
 													
 								    		<td><a href="./deleteAnswer?boardNum=${boardList.boardNum }">답변 삭제</a></td>
 								    		<td><a href="./updateAnswer?boardNum=${boardList.boardNum }">답변 수정</a></td>
@@ -122,7 +132,7 @@
 							<c:otherwise>
 							
 							<c:if test="${member.roleDTOs[0].roleNum<3 }">
-							    	<form action="./answer" method="post" id = "boardForm" >
+							    	<form action="./answer" method="post" id = "boardForm" enctype="multipart/form-data" >
 							    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
 							    	
 											<table class = "table">
@@ -145,7 +155,12 @@
 														<td><input type="text" value="${update.contents }" id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
 													</tr>
 													<tr>
-														<th>파일첨부</th>
+															<td><p id = "addFileBtn">파일추가</p></td>
+															<td>
+																<div id = "fileInputDiv">
+																<!-- 파일선택 input -->
+																</div>
+															</td>
 														<td></td>
 													</tr>
 													<tr>

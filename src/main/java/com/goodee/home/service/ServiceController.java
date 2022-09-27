@@ -152,9 +152,9 @@ public class ServiceController {
 	
 	
 	@PostMapping("answer")
-	public String addQnaAnswer(BoardDTO boardDTO) throws Exception{
-		
-		service.addQnaAnswer(boardDTO);
+	public String addQnaAnswer(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception{
+		boardDTO.setBoard("QNAANSWER");
+		service.addQnaAnswer(boardDTO,file,session.getServletContext());
 		
 		
 		
@@ -163,10 +163,15 @@ public class ServiceController {
 	}
 	
 	@GetMapping("deleteAnswer")
-	public String deleteAnswer(BoardDTO boardDTO) throws Exception{
+	public String deleteAnswer(BoardDTO boardDTO,HttpSession session) throws Exception{
 		
 		
-		service.deleteAnswer(boardDTO);
+		
+		
+		boardDTO.setBoard("QNAANSWER");
+		boardDTO = service.getDetail(boardDTO);
+		boardDTO.setBoard("QNAANSWER");
+		service.deleteAnswer(boardDTO,session.getServletContext());
 		
 		return "redirect:./detail?boardNum="+boardDTO.getBoardNum();
 	}
