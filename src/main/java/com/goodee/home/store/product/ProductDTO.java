@@ -13,14 +13,20 @@ public class ProductDTO {
 	private Date regDate;
 	private Integer deliDate;
 	private Integer todayDeal;
-	private Long premium;
 	private Long deliFee;
 	private ProductImageDTO productImageDTO;
+	private CategoryDTO categoryDTO;
 	private List<ProductImageDTO> productImageDTOs;
 	private List<Option1DTO> option1DTOs;
 	private List<Option2DTO> option2DTOs;
 	private List<Option3DTO> option3DTOs;
 	
+	public CategoryDTO getCategoryDTO() {
+		return categoryDTO;
+	}
+	public void setCategoryDTO(CategoryDTO categoryDTO) {
+		this.categoryDTO = categoryDTO;
+	}
 	public List<Option1DTO> getOption1DTOs() {
 		return option1DTOs;
 	}
@@ -98,12 +104,6 @@ public class ProductDTO {
 	}
 	public void setDeliDate(Integer deliDate) {
 		this.deliDate = deliDate;
-	}
-	public Long getPremium() {
-		return premium;
-	}
-	public void setPremium(Long premium) {
-		this.premium = premium;
 	}
 	public Long getDeliFee() {
 		return deliFee;
