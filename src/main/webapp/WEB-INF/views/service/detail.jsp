@@ -44,8 +44,9 @@
 						      
 						      <c:if test="${not empty boardList.boardFileDTOs }">
 							      <c:forEach items="${boardList.boardFileDTOs }" var="file">
-							      	<td >${file.oriName }</td>
-							      
+							      	
+							      <td><a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a></td>
+									      
 							      </c:forEach>
 							      	
 							      
@@ -106,7 +107,7 @@
 								    <th scope="row">파일</th>
 								     <c:if test="${not empty qnaAnswer.boardFileDTOs }">
 									      <c:forEach items="${qnaAnswer.boardFileDTOs }" var="file">
-									      		<td >${file.oriName }</td>
+									      		<td><a href="/resources/upload/QNAANSWER/${file.fileName }">${file.oriName }</a></td>
 									      
 									      </c:forEach>
 							      	
@@ -200,7 +201,7 @@
     
     if (${board eq 'QNA' && empty qnaAnswer}){
     	answer();
-    	
+    	fileJs();
     }
     	
     	

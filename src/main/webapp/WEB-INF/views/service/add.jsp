@@ -47,14 +47,14 @@
 							</tr>
 							
 							<tr>
-								<td><p id = "addFileBtn">파일추가</p></td>
-							
+								<th>파일</th>
 								
 								<td>
 									<div id = "fileInputDiv">
 									<!-- 파일선택 input -->
 									</div>
 								</td>
+								<td><p id = "addFileBtn">파일추가</p></td>
 								
 							</tr>
 							<tr>
@@ -91,7 +91,7 @@
    	<script type="text/javascript">
    	
    		board();
-   	
+   		fileJs();
    	</script>
    
 </body>
