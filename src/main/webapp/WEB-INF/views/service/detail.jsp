@@ -40,6 +40,19 @@
 						    </tr>
 						    
 						    <tr>
+						      <th scope="row">파일</th>
+						      
+						      <c:if test="${not empty boardList.boardFileDTO }">
+							      
+							      	<td >${boardList.boardFileDTO.oriName }</td>
+							      
+						      </c:if>
+						      
+						      
+						     
+						    </tr>
+						    
+						    <tr>
 						    	<c:if test="${boardList.userId eq member.userId }">
 						    		<td><a href="./delete?boardNum=${boardList.boardNum }">삭제</a></td>
 						    		<c:if test="${empty qnaAnswer }">

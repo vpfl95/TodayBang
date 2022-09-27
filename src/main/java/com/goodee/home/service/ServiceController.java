@@ -1,9 +1,11 @@
 package com.goodee.home.service;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.util.Pager;
@@ -68,10 +71,10 @@ public class ServiceController {
 		boardDTO.setBoard(getBoardName());
 		boardDTO  = service.getDetail(boardDTO);
 		mv.addObject("boardList",boardDTO);
-		
-		
+		System.out.println(boardDTO.getContents());
+		System.out.println(boardDTO.getBoardFileDTO());
 		if(getBoardName() == "QNA") {
-			System.out.println("답변 소환");
+			
 			boardDTO.setBoard("QNAANSWER");
 			boardDTO  = service.getDetail(boardDTO);
 			if(boardDTO != null)
@@ -95,11 +98,16 @@ public class ServiceController {
 		return mv;
 	}
 	@PostMapping("add")
-	public String addBoard(BoardDTO boardDTO) throws Exception{
+	public String addBoard(BoardDTO boardDTO,MultipartFile file,HttpSession session) throws Exception{
 	
 		
 		boardDTO.setBoard(getBoardName());
-		service.addBoard(boardDTO);
+		service.addBoard(boardDTO,file,session.getServletContext());
+	
+		
+		
+		
+		
 		
 		return "redirect:./list";
 	}

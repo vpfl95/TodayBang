@@ -10,8 +10,10 @@
 <body>
 
 	<script type="text/javascript">
+		if (${not empty msg}) {
+			alert("${msg}");
+		}
 		
-		alert("${msg}");
 		location.href= "${url}";
 	
 	

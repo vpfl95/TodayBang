@@ -18,14 +18,45 @@
 					<otherwise>QNA_SEQ</otherwise>
 				</choose>
 			</sql>
+			<sql id="getBoardFile">
+				<choose>
+					<when test="board == 'NOTICE'">NOTICEFILE</when>
+					<when test="board == 'QNA'">QNAFILE</when>
+					<otherwise>QNAANSWERFILE</otherwise>
+				</choose>
+			</sql>
 		
 			<!-- <select id="getList" parameterType="String" resultType="BoardDTO">
 				SELECT * FROM <include refid="getBoard"></include>
 					
 			</select> -->
-			<select id="getDetail" parameterType="BoardDTO" resultType="BoardDTO">
-				SELECT * FROM <include refid="getBoard"></include> WHERE BOARDNUM = #{boardNum}
+			<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
+				SELECT BO.* , BF.FILENUM , BF.FILENAME , BF.ORINAME
+				FROM <include refid="getBoard"></include> BO
+					LEFT JOIN <include refid="getBoardFile"></include> BF
+    				ON BO.BOARDNUM = BF.BOARDNUM
+				WHERE BO.BOARDNUM = #{boardNum}
+				
+				
 			</select>
+			<resultMap type="BoardDTO" id="getDetailResult">
+				<id column="BOARDNUM" property="boardNum"/>
+				<result column="TITLE" property="title"/>
+				<result column="CONTENTS" property="contents"/>
+				<result column="REGDATE" property="regDate"/>
+				<result column="USERID" property="userId"/>
+				<association property="boardFileDTO">
+					<id column="FILENUM" property="fileNum"/>
+					<result column="FILENAME" property="fileName"/>
+					<result column="ORINAME" property="oriName"/>
+					
+				
+				</association>
+			
+			
+			
+			</resultMap>
+			
 		
 			<select id="getCount" parameterType="Pager"  resultType="Long">
 				SELECT COUNT(*) FROM <include refid="getBoard"></include>
@@ -42,7 +73,10 @@
 	    	
 	    	<insert id="addBoard" parameterType="BoardDTO">
 	    	
-	    		INSERT INTO <include refid="getBoard"></include>  VALUES (<include refid="getBoardSeq"></include>.NEXTVAL,#{title},#{contents},SYSDATE,'0',#{userId})
+	    		<selectKey order="BEFORE" keyProperty="boardNum" resultType="Long">
+                  	SELECT <include refid="getBoardSeq"></include>.NEXTVAL FROM DUAL
+             	 	 </selectKey>
+	    		INSERT INTO <include refid="getBoard"></include>  VALUES (#{boardNum},#{title},#{contents},SYSDATE,'0',#{userId})
 	    	
 	    	</insert>
 	    	
@@ -70,6 +104,11 @@
 			</update>
 			
 			
+			
+			
+			<insert id="addBoardFile" parameterType="BoardFileDTO">
+			INSERT INTO <include refid="getBoardFile"></include> VALUES (TODAY_SEQ.NEXTVAL,#{fileName},#{oriName},#{boardNum})
+			</insert>
 			
 			
 		</mapper>

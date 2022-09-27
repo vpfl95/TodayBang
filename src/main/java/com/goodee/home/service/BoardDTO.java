@@ -11,10 +11,19 @@ public class BoardDTO {
 	private String regDate;
 	private String userId;
 	private String board;
+	private BoardFileDTO boardFileDTO;
 	
 	
 	
 	
+	
+	
+	public BoardFileDTO getBoardFileDTO() {
+		return boardFileDTO;
+	}
+	public void setBoardFileDTO(BoardFileDTO boardFileDTO) {
+		this.boardFileDTO = boardFileDTO;
+	}
 	public String getBoard() {
 		return board;
 	}

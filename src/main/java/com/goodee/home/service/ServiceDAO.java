@@ -45,6 +45,14 @@ public class ServiceDAO {
 		return sqlSession.insert(NAMESPACE+"addBoard",boardDTO);
 	}
 	
+	public int addBoardFile(BoardFileDTO boardFileDTO) throws Exception{
+		
+		
+		return sqlSession.insert(NAMESPACE+"addBoardFile",boardFileDTO);
+	}
+	
+	
+	
 	public int deleteBoard(BoardDTO boardDTO) throws Exception{
 		
 		
@@ -63,7 +71,6 @@ public class ServiceDAO {
 	
 	public int updateBoard(BoardDTO boardDTO) throws Exception{
 		
-		System.out.println("update" + boardDTO.getBoard());
 		return sqlSession.update(NAMESPACE+"updateBoard",boardDTO);
 	}
 	

@@ -40,7 +40,9 @@ public class MemberController {
 			session.setAttribute("member", memberDTO);
 			session.setAttribute("role", memberDTO.getRoleDTOs());
 			session.setAttribute("profile", memberDTO.getMemberFileDTO());
-			mv.setViewName("/home");
+			String url = "../";
+			mv.addObject("url",url);
+			mv.setViewName("common/message");
 			
 		}else {
 			

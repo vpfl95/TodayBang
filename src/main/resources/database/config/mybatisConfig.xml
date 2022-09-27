@@ -10,6 +10,7 @@
 		<typeAlias type="com.goodee.home.member.DeliveryDTO" alias="DeliveryDTO"/>
 		<typeAlias type="com.goodee.home.service.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardDTO" alias="BoardDTO"/>
+		<typeAlias type="com.goodee.home.service.BoardFileDTO" alias="BoardFileDTO"/>
 		<typeAlias type="com.goodee.home.service.QnaDTO" alias="QnaDTO"/>
 		
 		

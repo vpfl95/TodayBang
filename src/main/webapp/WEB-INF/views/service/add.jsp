@@ -22,7 +22,7 @@
 		
 					<h3> ${board } 게시  </h3>
 					<hr>
-					<form action="./add" method="post" id = "boardForm" >
+					<form action="./add" method="post" id = "boardForm"  enctype="multipart/form-data">
 					<input type="hidden" value="${update.boardNum }"  id="boardNum" name="boardNum" class="form-control" >
 						        
 					
@@ -47,7 +47,9 @@
 							</tr>
 							<tr>
 								<th>파일첨부</th>
-								<td></td>
+								<td>
+									<input type="file"  id="file"  name="file"  class="form-control">
+								</td>
 							</tr>
 							<tr>
 							
