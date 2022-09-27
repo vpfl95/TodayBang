@@ -80,7 +80,7 @@ function fileJs() {
             input.setAttributeNode(inputArr);
     
             inputArr = document.createAttribute("class");
-            inputArr.value = "form-control boardFile";
+            inputArr.value = "form-control boardFile hideBoardFile";
             input.setAttributeNode(inputArr);
     
             
@@ -147,7 +147,8 @@ function fileJs() {
 
             BF.addEventListener("change",function(event){
                               
-                event.target.previousElementSibling.innerText = event.target.value;
+                let fileValue = event.target.value.split('\\');
+                event.target.previousElementSibling.innerText = fileValue[2];
 
             })
 
