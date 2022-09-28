@@ -107,10 +107,12 @@ public class ServiceService {
 	
 	public int updateBoard(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext,Integer number) throws Exception{	
 		
-		
+		String board = boardDTO.getBoard();
 		int result = serviceDAO.updateBoard(boardDTO);
+		boardDTO = getDetail(boardDTO);
 		
-		String path = "resources/upload/" +boardDTO.getBoard();
+		System.out.println("결과 : " + result);
+		String path = "resources/upload/" +board;
 		// boardDTO.getBoardFileDTOs() 기존 파일
 		// files < 새롭게 추가된 파일
 		//boardDTO.getBoardFileDTOs().size() >> title 총 수
@@ -123,20 +125,11 @@ public class ServiceService {
 				
 				System.out.println("삭제 num = " + num);
 				BoardFileDTO boardFileDTO = boardDTO.getBoardFileDTOs().get(i-1);
-				boardFileDTO.setBoard(boardDTO.getBoard());
+				boardFileDTO.setBoard(board);
 				serviceDAO.deleteFile(boardFileDTO);
-			
+				fileManger.deleteFile(boardFileDTO.getFileName(), servletContext, path);
 			}
-			
-			
-			
 		}
-		
-		
-		
-		
-		
-		
 		
 		if(files.length !=0) {
 			for(MultipartFile file : files) {
@@ -149,7 +142,7 @@ public class ServiceService {
 					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
 					boardFileDTO.setFileName(fileName);
 					boardFileDTO.setOriName(file.getOriginalFilename());
-					boardFileDTO.setBoard(boardDTO.getBoard());
+					boardFileDTO.setBoard(board);
 					serviceDAO.addBoardFile(boardFileDTO);
 					
 				}
@@ -173,10 +166,7 @@ public class ServiceService {
 		return serviceDAO.deleteAnswer(boardDTO);
 	}
 	
-	public int updateAnswer(BoardDTO boardDTO) throws Exception{
-		
-		return serviceDAO.updateAnswer(boardDTO);
-	}
+
 	
 	public int addBoardFile(BoardFileDTO boardFileDTO) throws Exception{
 		

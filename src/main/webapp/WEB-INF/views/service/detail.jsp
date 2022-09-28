@@ -159,9 +159,15 @@
 													<tr>
 															<td><p id = "addFileBtn">파일추가</p></td>
 															<td>
-																<div id = "fileInputDiv">
-																<!-- 파일선택 input -->
-																</div>
+																<div id = "fileInputDiv" title = "${updateSize }">
+																	<!-- 파일선택 input -->
+																		<c:forEach items="${update.boardFileDTOs }" var="file" varStatus="status">
+																			<label for="file${status.count }">${file.fileName }</label>
+																			<input type="file" id="file${status.count }" value="${file}" name="file" class="form-control boardFile hideBoardFile" title="${status.count }">
+																			<button class="boardFileDelete" title="${status.count }">파일삭제</button>
+																		</c:forEach>
+																	
+																	</div>
 															</td>
 														<td></td>
 													</tr>

@@ -157,10 +157,10 @@ public class ServiceController {
 	public String updateBoard(BoardDTO boardDTO,MultipartFile [] file,HttpSession session , Integer number) throws Exception{
 		
 		
-		System.out.println("==" + number);
 		
-		boardDTO.setBoard(getBoardName());
-		boardDTO = service.getDetail(boardDTO);
+//		boardDTO.setBoard(getBoardName());
+//		BoardDTO boardDTO2 = service.getDetail(boardDTO);
+		
 		boardDTO.setBoard(getBoardName());
 		service.updateBoard(boardDTO,file,session.getServletContext(),number);
 		
@@ -207,17 +207,23 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		boardDTO = service.getDetail(boardDTO);
-		
 		mv.addObject("boardList",boardDTO);
+		
+		boardDTO.setBoard("QNAANSWER");
+		boardDTO = service.getDetail(boardDTO);
+		mv.addObject("updateSize",boardDTO.getBoardFileDTOs().size());
+		
 		mv.setViewName("/service/detail");
 		
 		return mv;
 	}
 	@PostMapping("updateAnswer")
-	public String updateAnswer(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception{
+	public String updateAnswer(BoardDTO boardDTO,MultipartFile [] file,HttpSession session,Integer number) throws Exception{
+		
+		
 		
 		boardDTO.setBoard("QNAANSWER");
-		service.updateBoard(boardDTO,file,session.getServletContext(),0);
+		service.updateBoard(boardDTO,file,session.getServletContext(),number);
 		
 		
 		return "redirect:./list";
