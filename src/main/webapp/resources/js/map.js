@@ -1,4 +1,3 @@
-const dto = document.getElementsByClassName("dto"); //도로명, 시군구, 건물명
 const more = document.getElementById("more");
 const maemulList = document.getElementById("maemulList");
 const buildingName = document.getElementById("buildingName")
@@ -41,9 +40,9 @@ kakao.maps.event.addListener(map, 'idle', function() {
 
     page=1  //매물정보창 리스트 페이지1로 리셋
     buildingWrap.style.display="none" //매물정보창 안보이기
+
     getRegionName();
     
-    console.log("마커",markers)
     console.log("마커오버레이",marker_overlays)
 
     //시,군,동, 지역 이름 커스텀 오버레이 출력
@@ -63,7 +62,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
     if(map.getLevel()<=4){
         HAddrFromCoords(map.getCenter(), getBuildingInfo);
     }else{
-        hideMarkers(null);              //마커 삭제
+        //hideMarkers(null);              //마커 삭제
         setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제 
     }
 
@@ -95,7 +94,7 @@ function getCurPosition(){
 }
 
 
-//-------------------------------------시,군,구,읍,면,동 커스텀 오버레이-----------------------------
+//-------------------------------------시,군,구,읍,면,동 지명커스텀 오버레이-----------------------------
 
 var overlays = [];
 
@@ -117,8 +116,8 @@ function addCustomOverlay(name,lat,long){
         position: position,
         content: content   
     });       
-    customOverlay.setMap(map);
     overlays.push(customOverlay);
+    customOverlay.setMap(map);
 }
 
 //오버레이 화면에 표시 or 재거
@@ -131,7 +130,6 @@ function setCustomOverlays(map, overlays) {
 
 //현재 지도 영역 지명 얻는 함수(커스텀오버레이)
 function getRegionName(){
-    //let result
     // 지도의 현재 영역을 얻어옵니다 
     var bounds = map.getBounds();
     // 영역의 남서쪽 좌표를 얻어옵니다 
@@ -162,18 +160,34 @@ function getRegionName(){
 
 //-------------------------매물 주소를 좌표로 변경해 마커 찍고 클러스터러 처리----------------------------
 
+// 마커에 건물명, 시세 정보 가져오기
+function getBuildingInfo(result, status){
+    let buildingInfoResult;
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST","getAptRoadName");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
+   
+    //행정동
+    if (status === kakao.maps.services.Status.OK) {
+        for(var i = 0; i < result.length; i++) {
+            console.log(result[i].address_name)
+
+            xhttp.send("sigungu="+result[i].address_name);
+            xhttp.addEventListener("readystatechange", function(){
+                if(xhttp.status==200 && xhttp.readyState==4){
+                    buildingInfoResult = JSON.parse(this.responseText.trim());
+                    console.log(buildingInfoResult)
+                    addMarker(buildingInfoResult);
+                }
+            })
+        }
+    }
+}
+
 
 //매물 마커 생성 함수
 function addMarker(address_result){
     
-    // var imageSrc = '/resources/images/apartment.png', // 마커이미지의 주소입니다    
-    // imageSize = new kakao.maps.Size(56, 70), // 마커이미지의 크기입니다
-    // imageOption = {offset: new kakao.maps.Point(27, 69)}; // 마커이미지의 옵션입니다. 마커의 좌표와 일치시킬 이미지 안에서의 좌표를 설정합니다.
-      
-    // // 마커의 이미지정보를 가지고 있는 마커이미지를 생성합니다
-    // var markerImage = new kakao.maps.MarkerImage(imageSrc, imageSize, imageOption);
-
-   
     for(let i=0; i<address_result.length; i++){
         setTimeout(function(){
             let unit
@@ -288,7 +302,7 @@ function addMarker(address_result){
                         marker_overlays.push(customOverlay);
                     }
 
-                    addEventHandle(content,page,'click')
+                    addEventHandle(content,page,coords,'click')
                 } 
             });     
         }, 20);   
@@ -300,9 +314,13 @@ var selectedMarker = "";
 
 const realEstateList = document.getElementById("realEstateList")
 //마커 클릭 이벤트 리스트 얻어오기
-function addEventHandle(target,p, type) {
+function addEventHandle(target,p,coords, type) {
+
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
+
+            //map.setCenter(coords)
+            
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
             // 마커의 이미지를 클릭 이미지로 변경합니다
             if (!selectedMarker || selectedMarker !== target) {
@@ -331,7 +349,7 @@ function addEventHandle(target,p, type) {
             console.log(roadName);
 
             realEstateList.innerHTML='' //매물리스트 초기화
-            //매물리스트 헤더
+            //매물리스트 테이블헤더
             let tr = document.createElement("tr")
             let th = document.createElement("th")
             let thText = document.createTextNode("계약일")
@@ -350,6 +368,7 @@ function addEventHandle(target,p, type) {
             th.appendChild(thText)
             tr.appendChild(th)
             realEstateList.append(tr)
+
             page=1;
             getMaemulList(roadName,page) //매물리스트 호출
 
@@ -360,12 +379,10 @@ function addEventHandle(target,p, type) {
 }
 
 function getMaemulList(roadName,p){
-    console.log("겟매물리스트")
     buildingWrap.style.display="block"
     
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getList?roadName="+roadName+"&page="+p);
-    //xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
     xhttp.send();
     xhttp.addEventListener("readystatechange", function(){
         if(xhttp.status==200 && xhttp.readyState==4){
@@ -374,26 +391,6 @@ function getMaemulList(roadName,p){
 
             let list= result.list
             let pager=result.maemulPager
-
-            //매물 리스트 생성
-            // let tr = document.createElement("tr")
-            // let th = document.createElement("th")
-            // let thText = document.createTextNode("계약일")
-            // th.appendChild(thText)
-            // tr.appendChild(th)
-            // th = document.createElement("th")
-            // thText = document.createTextNode("거래가격")
-            // th.appendChild(thText)
-            // tr.appendChild(th)
-            // th = document.createElement("th")
-            // thText = document.createTextNode("면적")
-            // th.appendChild(thText)
-            // tr.appendChild(th)
-            // th = document.createElement("th")
-            // thText = document.createTextNode("층수")
-            // th.appendChild(thText)
-            // tr.appendChild(th)
-            // realEstateList.append(tr)
 
             for(let i=0; i<list.length; i++){
                 let tr = document.createElement("tr")
@@ -454,59 +451,33 @@ function getMaemulList(roadName,p){
                
                 more.setAttribute("data-name",list[i].roadName)
                 buildingName.innerText=list[i].buildingNm
-
                 
             }
         }
     })
-
 }
 
+//매물리스트 더보기 클릭 이벤트
 more.addEventListener("click", function(){
     page++
     let roadName = more.getAttribute("data-name");
     getMaemulList(roadName,page)
-
 });
 
 
 
-// 마커에 건물명, 시세 정보 가져오기
-function getBuildingInfo(result, status){
-    let buildingInfoResult;
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("POST","./map");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
-   
-    //행정동
-    if (status === kakao.maps.services.Status.OK) {
-        for(var i = 0; i < result.length; i++) {
-            console.log(result[i].address_name)
 
-            xhttp.send("sigungu="+result[i].address_name);
-            xhttp.addEventListener("readystatechange", function(){
-                if(xhttp.status==200 && xhttp.readyState==4){
-                    buildingInfoResult = JSON.parse(this.responseText.trim());
-                    console.log(buildingInfoResult)
-                    addMarker(buildingInfoResult);
-                }
-            })
-        }
-    }
-    //return buildingInfoResult;
-}
-
-//마커 화면에 생성 or 제거 함수
-function setMarkers(map) {
-    for (var i = 0; i < markers.length; i++) {
-        markers[i].setMap(map);
+// //마커 화면에 생성 or 제거 함수
+// function setMarkers(map) {
+//     for (var i = 0; i < markers.length; i++) {
+//         markers[i].setMap(map);
         
-    }            
-}
-//마커 제거함수
-function hideMarkers(){
-    setMarkers(null);
-}
+//     }            
+// }
+// //마커 제거함수
+// function hideMarkers(){
+//     setMarkers(null);
+// }
 
 
 //--------------------------왼쪽 상단 현재 지도영역 중심의 주소이름------------------------
@@ -547,10 +518,152 @@ function displayCenterInfo(result, status) {
     }    
 }
 
+//---------------------------------------Search--------------------------------------------
+
+var ps= new kakao.maps.services.Places();
+
+// // 키워드로 장소를 검색합니다
+// searchPlaces();
+
+// 키워드 검색을 요청하는 함수입니다
+function searchPlaces() {
+
+    var keyword = document.getElementById('keyword').value;
+
+    if (!keyword.replace(/^\s+|\s+$/g, '')) {
+        alert('키워드를 입력해주세요!');
+        return false;
+    }
+
+    // 장소검색 객체를 통해 키워드로 장소검색을 요청합니다
+    ps.keywordSearch( keyword, placesSearchCB); 
+}
+
+// 장소검색이 완료됐을 때 호출되는 콜백함수 입니다
+function placesSearchCB(data, status, pagination) {
+    if (status === kakao.maps.services.Status.OK) {
+
+    
+        var bounds = new kakao.maps.LatLngBounds(), 
+        listStr = '';
+        
+        for ( var i=0; i<data.length; i++ ) {
+
+            // 마커를 생성하고 지도에 표시합니다
+            var placePosition = new kakao.maps.LatLng(data[i].y, data[i].x),
+                marker = addMarker(placePosition, i)
+             
+
+            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+            // LatLngBounds 객체에 좌표를 추가합니다
+            bounds.extend(placePosition);
+
+
+        }
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
+        map.setBounds(bounds);
+        getRegionName();
+    
+    } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
+
+        alert('검색 결과가 존재하지 않습니다.');
+        return;
+
+    } else if (status === kakao.maps.services.Status.ERROR) {
+
+        alert('검색 결과 중 오류가 발생했습니다.');
+        return;
+
+    }
+}
+
+//연관검색어
+const sugguestList = document.getElementById("sugguestList")
+searchSuggest();
+function searchSuggest(){
+    const keyword = document.getElementById("keyword")
+    
+    keyword.addEventListener("keydown", function(){
+        const items = document.querySelectorAll(".selectItem")
+        if(keyword.value==''){
+            sugguestList.style.display="none"
+        }else{
+            sugguestList.style.display="block"
+        }
+        
+        //연관검색어 초기화
+        items.forEach(function(data){
+            console.log("삭제",data)
+            data.remove()
+        })
+        
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST","getSearchList");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if(keyword.value!=''){
+
+            xhttp.send("search="+keyword.value);
+        }
+        xhttp.addEventListener("readystatechange",function(){
+            if(xhttp.readyState==4 && xhttp.status==200){
+                var result = JSON.parse(xhttp.responseText.trim());
+                
+                let apt = result.apt;
+                let address = result.address;
+ 
+                if(keyword.value==''){
+                    sugguestList.style.display="none"
+                }else if(result.length>0){
+                    sugguestList.style.display="block"
+                }
+
+                for(let i=0; i<address.length; i++){
+                    let selectItem = document.createElement("div")
+                    let selectItemWrap = document.createElement("div")
+                    let aptDiv = document.createElement("div")
+                    let addressDiv = document.createElement("div")
+                    aptDiv.innerText=address[i].sigungu
+                    addressDiv.innerText = address[i].sigungu
+                    selectItem.className="selectItem"
+                    addressDiv.className="addressDIV"
+                    selectItemWrap.appendChild(aptDiv)
+                    selectItemWrap.appendChild(addressDiv)
+                    selectItem.appendChild(selectItemWrap)
+                    sugguestList.appendChild(selectItem)
+                }
+
+                for(let i=0; i<apt.length; i++){
+                    console.log(apt[i])
+                    let selectItem = document.createElement("div")
+                    let selectItemWrap = document.createElement("div")
+                    let aptDiv = document.createElement("div")
+                    let addressDiv = document.createElement("div")
+                    aptDiv.innerText=apt[i].buildingNm
+                    addressDiv.innerText = apt[i].sigungu
+                    selectItem.className="selectItem"
+                    addressDiv.className="addressDIV"
+                    selectItemWrap.appendChild(aptDiv)
+                    selectItemWrap.appendChild(addressDiv)
+                    selectItem.appendChild(selectItemWrap)
+                    sugguestList.appendChild(selectItem)
+                }
+
+            }
+        });
+
+
+    })
+}
+
+
+
+
+
+
 // var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
 //     infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
-//지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+// //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
 // kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
 //     BAddrFromCoords(mouseEvent.latLng, function(result, status) {
 //         if (status === kakao.maps.services.Status.OK) {
@@ -578,7 +691,3 @@ function displayCenterInfo(result, status) {
 
 
 
-// // 마커에 클릭이벤트를 등록합니다
-// kakao.maps.event.addListener(marker, 'click', function() {
-//     console.log("마커 클릭")
-// });

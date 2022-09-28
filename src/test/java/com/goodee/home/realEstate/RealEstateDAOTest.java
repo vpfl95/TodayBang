@@ -36,21 +36,29 @@ public class RealEstateDAOTest extends MyAbstractTest {
 //		
 //	}
 	
+//	@Test
+//	public void getList() throws Exception{
+//		MaemulPager maemulPager = new MaemulPager();
+//		maemulPager.getRowNum();
+//		maemulPager.setRoadName("남부순환로 1266");
+//
+//		long totalCount = aptDAO.getTotalCount(maemulPager);
+//		maemulPager.makePage(totalCount);
+//		
+//		List<AptDTO> arr = (List<AptDTO>)aptDAO.getList(maemulPager);
+//		
+//		assertEquals(2,arr.size());
+//		
+//	}
+	
 	@Test
-	public void getList() throws Exception{
-		MaemulPager maemulPager = new MaemulPager();
-		maemulPager.getRowNum();
-		maemulPager.setRoadName("남부순환로 1266");
-
-		long totalCount = aptDAO.getTotalCount(maemulPager);
-		maemulPager.makePage(totalCount);
+	public void getSearchList() throws Exception{
 		
-		List<AptDTO> arr = (List<AptDTO>)aptDAO.getList(maemulPager);
+		List<AptDTO> arr = (List<AptDTO>)aptDAO.getSearchList("은마");
 		
-		assertEquals(2,arr.size());
+		assertEquals(9,arr.size());
 		
 	}
-	
 	
 	
 }

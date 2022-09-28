@@ -27,4 +27,12 @@ public class AptDAO {
 	public Long getTotalCount(MaemulPager maemulPager)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount", maemulPager);
 	}
+	
+	public List<AptDTO> getSearchAddressList(String search)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getSearchAddressList", search);
+	}
+	
+	public List<AptDTO> getSearchAptList(String search)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getSearchAptList", search);
+	}
 }

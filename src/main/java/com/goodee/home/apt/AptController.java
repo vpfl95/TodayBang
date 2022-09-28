@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -44,12 +45,24 @@ public class AptController {
 		return mv;
 	}
 	
-	@PostMapping("map")
+	@PostMapping("getSearchList")
+	@ResponseBody
+	public Map<String, Object> getSearchList(String search)throws Exception{
+		System.out.println(search);
+		List<AptDTO> address = aptService.getSearchAddressList(search);
+		List<AptDTO> apt = aptService.getSearchAptList(search);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("address",address);
+		map.put("apt",apt);
+		
+		return map;
+	}
+	
+	@PostMapping("getAptRoadName")
 	@ResponseBody
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println(aptDTO.getSigungu());
-		System.out.println(aptDTO.getAvg());
 		
 		List<RealEstateDTO> arr = aptService.getAptRoadName(aptDTO);
 		
@@ -61,11 +74,11 @@ public class AptController {
 	@ResponseBody
 	public List<RegionDTO> getRegion(RegionDTO sigunguDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println("swLat:" +sigunguDTO.getSwLat());
-		System.out.println("swLon:" +sigunguDTO.getSwLon());
-		System.out.println("neLat:" +sigunguDTO.getNeLat());
-		System.out.println("neLon:" +sigunguDTO.getNeLon());
-		System.out.println("mapLevel:" +sigunguDTO.getMapLevel());
+//		System.out.println("swLat:" +sigunguDTO.getSwLat());
+//		System.out.println("swLon:" +sigunguDTO.getSwLon());
+//		System.out.println("neLat:" +sigunguDTO.getNeLat());
+//		System.out.println("neLon:" +sigunguDTO.getNeLon());
+//		System.out.println("mapLevel:" +sigunguDTO.getMapLevel());
 		List<RegionDTO> arr = new ArrayList<RegionDTO>();
 		if(sigunguDTO.getMapLevel()<5) {
 			
@@ -83,7 +96,7 @@ public class AptController {
 	@GetMapping("getList")
 	@ResponseBody
 	public Map<String, Object> getList(MaemulPager maemulPager) throws Exception{
-		System.out.println(maemulPager.getRoadName());
+		System.out.println("getList"+maemulPager.getRoadName());
 		ModelAndView mv = new ModelAndView();
 		
 		List<AptDTO> list = aptService.getList(maemulPager);

@@ -29,4 +29,11 @@ public class AptService {
 		return aptDAO.getList(maemulPager);
 	}
 	
+	public List<AptDTO> getSearchAddressList(String search)throws Exception{
+		return aptDAO.getSearchAddressList(search);
+	}
+	
+	public List<AptDTO> getSearchAptList(String search)throws Exception{
+		return aptDAO.getSearchAptList(search);
+	}
 }
