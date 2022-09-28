@@ -22,8 +22,9 @@
 }
 
 .selling-nav {
-    width: 50%;
-    margin: 50px 0;
+    width: 100%;
+    margin: 10px 0;
+    background-color: gainsboro;
 }
 
 .selling-nav>div {
@@ -41,7 +42,41 @@
     height: auto;
     padding-left: 10px;
     position: sticky;
+    margin-top: 10px;
     top: 150px;
+}
+
+/* Modal Setting*/
+
+.modal-product {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.modal-product img {
+    width: 100%;
+    margin-right: 10px;
+}
+
+.modal-section {
+    margin-bottom: 10px;
+}
+
+.modal-section-title {
+    font-weight: bold;
+}
+
+.modal-product-contents-brand {
+    font-size: 8px;
+}
+
+.modal-section-subTitle {
+    font-size: 8px;
+    margin-bottom: 10px;
+}
+
+#thumbnail img {
+    width: 100%;
 }
 
 #categoryLink {
@@ -52,6 +87,16 @@
 #categoryLink div {
     width: auto;
     margin-left: 5px;
+}
+
+#writer {
+    color: #35c5f0;
+    transition: opacity .1s;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
 }
 
 /*Product Info*/
@@ -95,4 +140,43 @@
 
 .totalPrice, .price3 {
     font-weight: bold;
+}
+
+/* 이모지 평점 */
+.field fieldset{
+    display: inline-block; /* 하위 별점 이미지들이 있는 영역만 자리를 차지함.*/
+    direction: rtl; /* 이모지 순서 반전 */
+    border: 0; /* 필드셋 테두리 제거 */
+    width: 50%;
+    text-align: center;
+}
+
+.field fieldset legend{
+    text-align: left;
+}
+
+.field input[type=radio]{
+    display: none; /* 라디오박스 감춤 */
+}
+
+.field label{
+    font-size: 15px; /* 이모지 크기 */
+    color: transparent; /* 기존 이모지 컬러 제거 */
+    text-shadow: 0 0 0 #f0f0f0; /* 새 이모지 색상 부여 */
+}
+
+.field label:hover{
+    text-shadow: 0 0 0 rgb(56, 185, 224); /* 마우스 호버 */
+}
+
+.field label:hover ~ label{
+    text-shadow: 0 0 0 rgb(56, 185, 224); /* 마우스 호버 뒤에오는 이모지들 */
+}
+
+.field input[type=radio]:checked ~ label{
+    text-shadow: 0 0 0 rgb(56, 185, 224); /* 마우스 클릭 체크 */
+}
+
+.field-text {
+    font-size: 15px;
 }

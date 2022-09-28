@@ -15,6 +15,9 @@ const price1 = document.querySelector('#price1');
 const price2 = document.querySelector('#price2');
 const price3 = document.querySelectorAll('.price3');
 const totalPrice = document.querySelectorAll('.totalPrice');
+const modal_brand = document.querySelectorAll('.modal-product-contents-brand');
+const modal_productName = document.querySelectorAll('.modal-product-contents-productName');
+const modal_image = document.querySelectorAll('.modal-product-image');
 const point = document.querySelector('#point');
 const delivery = document.querySelector('#delivery');
 const option1 = document.querySelector('#option1');
@@ -23,6 +26,16 @@ const option3 = document.querySelector('#option3');
 const cate1 = document.querySelector('#cate1');
 const cate2 = document.querySelector('#cate2');
 const cate3 = document.querySelector('#cate3');
+const radio = document.querySelectorAll('.radio');
+const radio1 = document.querySelectorAll('.radio1');
+const radio2 = document.querySelectorAll('.radio2');
+const radio3 = document.querySelectorAll('.radio3');
+const radio4 = document.querySelectorAll('.radio4');
+const btnWrite = document.querySelector('#btnWrite');
+const writer = document.querySelector('#writer');
+const userId = document.querySelector('#userId');
+const contents = document.querySelector('#contents');
+const reviewImage = document.querySelector('#reviewImage');
 let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
@@ -206,7 +219,7 @@ option1.onchange=function() {
 
     // } else if(jsonList[0].option1DTOs[0].optionPrice == -2) {
         
-    // } else {
+    // } else {          
     // }
 }
 
@@ -240,4 +253,83 @@ section.onchange=function(event) {
         fixed_select.parentNode.nextSibling.nextSibling.innerHTML=realPrice*event.target.value+'원';
         wrap_select.parentNode.nextSibling.nextSibling.innerHTML=realPrice*event.target.value+'원';
     }
+}
+
+function setModal() {
+    modal_brand[0].innerHTML=jsonList[0].brand;
+    modal_productName[0].innerHTML=jsonList[0].productName;
+    modal_image[0].setAttribute('src', '../../resources/upload/store/product/'+jsonList[0].productImageDTOs[0].fileName);
+}
+
+// 리뷰 쓰기 버튼 클릭 시 체크된 라디오버튼 모두 해제
+writer.onclick=function() {
+    for(r of radio) {
+        r.checked = false;
+    }
+    document.querySelector('#thumbnail').innerHTML='';
+    reviewImage.value='';
+    contents.value='';
+}
+
+// modal 입력 버튼
+btnWrite.onclick=function() {
+    let durStar;
+    let priceStar;
+    let designStar;
+    let deliveryStar;
+    
+    for(r of radio1) {
+        if(r.checked) {
+            durStar = r.value;
+        }
+    }
+    for(r of radio2) {
+        if(r.checked) {
+            priceStar = r.value;
+        }
+    }
+    for(r of radio3) {
+        if(r.checked) {
+            designStar = r.value;
+        }
+    }
+    for(r of radio4) {
+        if(r.checked) {
+            deliveryStar = r.value;
+        }
+    }
+    let form = $('#frmUpload')[0];
+    let formData = new FormData(form);
+    formData.append("fileObj", $("#reviewImage")[0].files[0]);
+    formData.append("durStar", durStar);
+    formData.append("priceStar", priceStar);
+    formData.append("designStar", designStar);
+    formData.append("deliveryStar", deliveryStar);
+    formData.append("userId", userId.value);
+    formData.append("contents", contents.value);
+    formData.append("productNum", jsonList[0].productNum);
+
+
+    $.ajax({
+        url: '/review/add',
+        processData: false,
+        contentType: false,
+        data: formData,
+        type: 'POST',
+        success: function(result) {
+            alert('업로드 성공!');
+        }
+    });
+}
+
+// 업로드 이미지 미리보기
+function setThumbnail(event) {
+    let reader = new FileReader();
+    reader.onload = function(event) {
+        document.querySelector('#thumbnail').innerHTML='';
+        let img = document.createElement('img');
+        img.setAttribute('src',event.target.result);
+        document.querySelector('#thumbnail').append(img);
+    }
+    reader.readAsDataURL(event.target.files[0]);
 }

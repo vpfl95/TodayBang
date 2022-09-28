@@ -89,23 +89,106 @@
                 </div>
             </div>
         </div>
-        <div class="d-flex justify-content-center selling-nav">
-            <div><a href="#productDetailList">상품정보</a></div>
-            <div><a href="#review">리뷰</a></div>
-            <div>문의</div>
-        </div>
-        <a name="productDetailList"></a>
         <div class="d-flex justify-content-center">
-            <div class="productDetailList" style="width: 70%;"></div>
+            <div style="width: 70%;">
+                <a name="productDetailList"></a>
+                <div class="d-flex justify-content-center selling-nav">
+                    <div><a href="#productDetailList">상품정보</a></div>
+                    <div><a href="#review">리뷰</a></div>
+                    <div>문의</div>
+                </div>
+                <div class="productDetailList"></div>
+                <a name="review"></a>
+                <div class="d-flex justify-content-center selling-nav">
+                    <div><a href="#productDetailList">상품정보</a></div>
+                    <div><a href="#review">리뷰</a></div>
+                    <div>문의</div>
+                </div>
+        
+                <div class="d-flex justify-content-between">
+                    <div id="review"><b>리뷰</b></div>
+                    <!-- Button trigger modal -->
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="writer"><b>리뷰쓰기</b></button>
+                </div>
+            </div>
             <div style="width: 30%;">
                 <div class="fixInfo"></div>
             </div>
         </div>
-        <a name="review"></a>
-        <div class="d-flex justify-content-center selling-nav">
-            <div><a href="#productDetailList">상품정보</a></div>
-            <div><a href="#review">리뷰</a></div>
-            <div>문의</div>
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 100%;">
+                    <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">리뷰 쓰기</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form method="post" enctype="multipart/form-data" id="frmUpload">
+                            <div class="modal-product d-flex">
+                                <img src="" alt="" style="width: 20%;" class="modal-product-image">
+                                <div class="modal-product-contents" style="width: 80%;">
+                                    <div class="modal-product-contents-brand"></div>
+                                    <div class="modal-product-contents-productName"></div>
+                                </div>
+                            </div>
+                            <div class="modal-section">
+                                <div class="modal-section-title">별점 평가</div>
+                                <div class="field d-flex justify-content-center">
+                                <fieldset>
+                                    <input class="radio radio1" type="radio" name="rating1" value="5" id="rate1"><label for="rate1">⭐</label>
+                                    <input class="radio radio1" type="radio" name="rating1" value="4" id="rate2"><label for="rate2">⭐</label>
+                                    <input class="radio radio1" type="radio" name="rating1" value="3" id="rate3"><label for="rate3">⭐</label>
+                                    <input class="radio radio1" type="radio" name="rating1" value="2" id="rate4"><label for="rate4">⭐</label>
+                                    <input class="radio radio1" type="radio" name="rating1" value="1" id="rate5"><label for="rate5">⭐</label>
+                                    <span class="field-text">내구성</span>
+                                </fieldset>
+                                <fieldset>
+                                    <input class="radio radio2" type="radio" name="rating2" value="5" id="rate6"><label for="rate6">⭐</label>
+                                    <input class="radio radio2" type="radio" name="rating2" value="4" id="rate7"><label for="rate7">⭐</label>
+                                    <input class="radio radio2" type="radio" name="rating2" value="3" id="rate8"><label for="rate8">⭐</label>
+                                    <input class="radio radio2" type="radio" name="rating2" value="2" id="rate9"><label for="rate9">⭐</label>
+                                    <input class="radio radio2" type="radio" name="rating2" value="1" id="rate10"><label for="rate10">⭐</label>
+                                    <span class="field-text">가격</span>
+                                </fieldset>
+                            </div>
+                            <div class="field d-flex justify-content-center">
+                                <fieldset>
+                                    <input class="radio radio3" type="radio" name="rating3" value="5" id="rate11"><label for="rate11">⭐</label>
+                                    <input class="radio radio3" type="radio" name="rating3" value="4" id="rate12"><label for="rate12">⭐</label>
+                                    <input class="radio radio3" type="radio" name="rating3" value="3" id="rate13"><label for="rate13">⭐</label>
+                                    <input class="radio radio3" type="radio" name="rating3" value="2" id="rate14"><label for="rate14">⭐</label>
+                                    <input class="radio radio3" type="radio" name="rating3" value="1" id="rate15"><label for="rate15">⭐</label>
+                                    <span class="field-text">디자인</span>
+                                </fieldset>
+                                <fieldset>
+                                    <input class="radio radio4" type="radio" name="rating4" value="5" id="rate16"><label for="rate16">⭐</label>
+                                    <input class="radio radio4" type="radio" name="rating4" value="4" id="rate17"><label for="rate17">⭐</label>
+                                    <input class="radio radio4" type="radio" name="rating4" value="3" id="rate18"><label for="rate18">⭐</label>
+                                    <input class="radio radio4" type="radio" name="rating4" value="2" id="rate19"><label for="rate19">⭐</label>
+                                    <input class="radio radio4" type="radio" name="rating4" value="1" id="rate20"><label for="rate20">⭐</label>
+                                    <span class="field-text">배송</span>
+                                </fieldset>
+                            </div>
+                        </form>
+                        </div>
+                        <div class="modal-section">
+                            <input type="hidden" value="${member.userId}" id="userId" name="userId">
+                            <div id="thumbnail" style="width: 100%;"></div>
+                            <div class="modal-section-title">사진 첨부(선택)</div>
+                            <div class="modal-section-subTitle">사진을 첨부해주세요.(최대 1장)</div>
+                            <input type="file" class="form-control" name="reviewImage" onchange="setThumbnail(event);" id="reviewImage">
+                        </div>
+                        <div class="modal-section">
+                            <div class="modal-section-title">리뷰 작성</div>
+                            <textarea name="contents" id="contents" cols="60" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" style="width: 100%;" id="btnWrite">완료</button>
+                    </div>
+                </div>
+            </div>
         </div>
 	</section>
 	
@@ -114,6 +197,7 @@
     <script src="/resources/js/store/productDetail.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>
         getProductImageCount();
         setProductImage();
@@ -121,6 +205,7 @@
         setOption();
         getCategory();
         setItem();
+        setModal();
     </script>
 </body>
 </html>
