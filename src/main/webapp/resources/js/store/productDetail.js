@@ -31,6 +31,7 @@ const radio1 = document.querySelectorAll('.radio1');
 const radio2 = document.querySelectorAll('.radio2');
 const radio3 = document.querySelectorAll('.radio3');
 const radio4 = document.querySelectorAll('.radio4');
+const reviewList = document.querySelectorAll('.reviewList');
 const btnWrite = document.querySelector('#btnWrite');
 const writer = document.querySelector('#writer');
 const userId = document.querySelector('#userId');
@@ -255,13 +256,14 @@ section.onchange=function(event) {
     }
 }
 
+// modal Setting
 function setModal() {
     modal_brand[0].innerHTML=jsonList[0].brand;
     modal_productName[0].innerHTML=jsonList[0].productName;
     modal_image[0].setAttribute('src', '../../resources/upload/store/product/'+jsonList[0].productImageDTOs[0].fileName);
 }
 
-// 리뷰 쓰기 버튼 클릭 시 체크된 라디오버튼 모두 해제
+// 리뷰 쓰기 버튼 클릭 시 입력된 정보들 초기화
 writer.onclick=function() {
     for(r of radio) {
         r.checked = false;
@@ -332,4 +334,30 @@ function setThumbnail(event) {
         document.querySelector('#thumbnail').append(img);
     }
     reader.readAsDataURL(event.target.files[0]);
+}
+
+function getReviewList() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum);
+    xhttp.send();
+    xhttp.onreadystatechange=function() {
+        if(this.readyState==4 && this.status==200) {
+            reviewList[0].innerHTML=this.responseText.trim();
+        }
+    }
+}
+
+reviewList[0].onclick=function(event) {
+    if(event.target.classList[0] == 'update') {
+        // console.log(event.target.dataset.updateRevnum);
+    }
+
+    if(event.target.classList[0] == 'delete') {
+        // console.log(event.target.dataset.deleteRevnum);
+    }
+
+    if(event.target.classList[0] == 'btnHelp') {
+        // console.log(event.target.dataset.deleteRevnum);
+        console.log('test');
+    }
 }

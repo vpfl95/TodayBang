@@ -7,4 +7,13 @@
 		INSERT INTO PRODUCTREVIEW VALUES (REV_SEQ.NEXTVAL, #{durStar}, #{designStar}, #{priceStar}, #{deliveryStar},
 		SYSDATE, #{fileName}, 0, #{contents}, #{productNum}, #{userId})
 	</insert>
+	
+	<select id="getReview" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">
+		SELECT * FROM PRODUCTREVIEW WHERE PRODUCTNUM = #{productNum}
+	</select>
+	
+	<select id="getGrade" resultType="Long" parameterType="ProductReviewDTO">
+		SELECT ROUND((DURSTAR + DESIGNSTAR + PRICESTAR + DELIVERYSTAR)/4) as AVGSTAR FROM PRODUCTREVIEW
+		WHERE PRODUCTNUM = #{productNum}
+	</select>
 </mapper>

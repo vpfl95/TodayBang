@@ -105,11 +105,12 @@
                     <div>문의</div>
                 </div>
         
-                <div class="d-flex justify-content-between">
+                <div class="d-flex justify-content-between mb-2">
                     <div id="review"><b>리뷰</b></div>
                     <!-- Button trigger modal -->
                     <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="writer"><b>리뷰쓰기</b></button>
                 </div>
+                <div class="reviewList"></div>
             </div>
             <div style="width: 30%;">
                 <div class="fixInfo"></div>
@@ -206,6 +207,7 @@
         getCategory();
         setItem();
         setModal();
+        getReviewList();
     </script>
 </body>
 </html>

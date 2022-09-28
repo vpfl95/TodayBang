@@ -1,5 +1,8 @@
 package com.goodee.home.store.review;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContext;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,5 +25,34 @@ public class ProductReviewService {
 		productReviewDTO.setFileName(fileName);
 		
 		return productReviewDAO.addReview(productReviewDTO);
+	}
+	
+	public List<ProductReviewDTO> getReview(ProductReviewDTO productReviewDTO) throws Exception {
+		return productReviewDAO.getReview(productReviewDTO);
+	}
+	
+	public List<Long> getGrade(ProductReviewDTO productReviewDTO) throws Exception {
+		List<Long> result = productReviewDAO.getGrade(productReviewDTO);
+		List<Long> grade = new ArrayList<Long>();
+		for(int i=0; i<5; i++) {
+			grade.add(i, (long) 0);
+		}
+		long total = 0;
+		for(long i : result) {
+			total++;
+			if(i == 1) {
+				grade.set((int) (i-1), grade.get((int) (i-1))+1);
+			} else if(i == 2) {
+				grade.set((int) (i-1), grade.get((int) (i-1))+1);
+			} else if(i == 3) {
+				grade.set((int) (i-1), grade.get((int) (i-1))+1);
+			} else if(i == 4) {
+				grade.set((int) (i-1), grade.get((int) (i-1))+1);
+			} else {
+				grade.set((int) (i-1), grade.get((int) (i-1))+1);
+			}
+		}
+		grade.add(total);
+		return grade;
 	}
 }
