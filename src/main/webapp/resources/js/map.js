@@ -302,7 +302,7 @@ function addMarker(address_result){
                         marker_overlays.push(customOverlay);
                     }
 
-                    addEventHandle(content,page,coords,'click')
+                    addEventHandle(content,coords,'click')
                 } 
             });     
         }, 20);   
@@ -314,7 +314,7 @@ var selectedMarker = "";
 
 const realEstateList = document.getElementById("realEstateList")
 //마커 클릭 이벤트 리스트 얻어오기
-function addEventHandle(target,p,coords, type) {
+function addEventHandle(target,coords, type) {
 
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
@@ -546,20 +546,19 @@ function placesSearchCB(data, status, pagination) {
     
         var bounds = new kakao.maps.LatLngBounds(), 
         listStr = '';
-        
-        for ( var i=0; i<data.length; i++ ) {
 
+  
+        for ( var i=0; i<2; i++ ) {
             // 마커를 생성하고 지도에 표시합니다
-            var placePosition = new kakao.maps.LatLng(data[i].y, data[i].x),
-                marker = addMarker(placePosition, i)
-             
+            var placePosition = new kakao.maps.LatLng(data[0].y, data[0].x)
 
-            // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
-            // LatLngBounds 객체에 좌표를 추가합니다
-            bounds.extend(placePosition);
-
-
+    
         }
+         
+
+        // 검색된 장소 위치를 기준으로 지도 범위를 재설정하기위해
+        // LatLngBounds 객체에 좌표를 추가합니다
+        bounds.extend(placePosition);
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
         getRegionName();
@@ -583,7 +582,7 @@ searchSuggest();
 function searchSuggest(){
     const keyword = document.getElementById("keyword")
     
-    keyword.addEventListener("keydown", function(){
+    keyword.addEventListener("keyup", function(){
         const items = document.querySelectorAll(".selectItem")
         if(keyword.value==''){
             sugguestList.style.display="none"
@@ -596,7 +595,7 @@ function searchSuggest(){
             console.log("삭제",data)
             data.remove()
         })
-        
+ 
         let xhttp = new XMLHttpRequest();
         xhttp.open("POST","getSearchList");
         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -616,42 +615,54 @@ function searchSuggest(){
                 }else if(result.length>0){
                     sugguestList.style.display="block"
                 }
-
+              
                 for(let i=0; i<address.length; i++){
                     let selectItem = document.createElement("div")
                     let selectItemWrap = document.createElement("div")
                     let aptDiv = document.createElement("div")
                     let addressDiv = document.createElement("div")
+                   
                     aptDiv.innerText=address[i].sigungu
                     addressDiv.innerText = address[i].sigungu
                     selectItem.className="selectItem"
                     addressDiv.className="addressDIV"
+                    selectItem.setAttribute("data-address",address[i].sigungu)
                     selectItemWrap.appendChild(aptDiv)
                     selectItemWrap.appendChild(addressDiv)
                     selectItem.appendChild(selectItemWrap)
                     sugguestList.appendChild(selectItem)
+                    
+                    selectItem.addEventListener("click",function(){
+                        console.log(selectItem.getAttribute("data-address"))
+                        keyword.value=selectItem.firstChild.firstChild.innerText
+                        searchPlaces();
+                    })
                 }
 
                 for(let i=0; i<apt.length; i++){
-                    console.log(apt[i])
                     let selectItem = document.createElement("div")
                     let selectItemWrap = document.createElement("div")
                     let aptDiv = document.createElement("div")
                     let addressDiv = document.createElement("div")
+                   
                     aptDiv.innerText=apt[i].buildingNm
                     addressDiv.innerText = apt[i].sigungu
                     selectItem.className="selectItem"
                     addressDiv.className="addressDIV"
+                    selectItem.setAttribute("data-address",apt[i].roadName)
                     selectItemWrap.appendChild(aptDiv)
                     selectItemWrap.appendChild(addressDiv)
                     selectItem.appendChild(selectItemWrap)
                     sugguestList.appendChild(selectItem)
-                }
 
+                    selectItem.addEventListener("click",function(){
+                        console.log(selectItem.getAttribute("data-address"))
+                        keyword.value=selectItem.firstChild.firstChild.innerText
+                        searchPlaces();
+                    })
+                }
             }
         });
-
-
     })
 }
 
