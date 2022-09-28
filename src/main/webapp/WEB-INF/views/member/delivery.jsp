@@ -11,7 +11,7 @@
 <body>
 
 <div class = "pf-section">
-	<h3>배송지 정보</h3>
+	<div class = "pf-title">배송지 정보</div>
 	
 	<hr>
 	
@@ -27,18 +27,17 @@
 		
 	
 	
-	
-		<ul>
-			<c:forEach items="${delivery }" var="del" varStatus="index">
-				<li class = "deliveryList" data-a = "/member/delivery?num=${index.index }">${del.deliveryName }</li>
-			</c:forEach>
-		<c:if test="${length<3 }">
-			<li title= "3" class = "deliveryList" data-a = "/member/delivery?num=3">추가하기</li>
-		
-		</c:if>
+		<div class = "de-ListDiv">
 			
+				<c:forEach items="${delivery }" var="del" varStatus="index">
+					<div class = "de-ListItem" data-a = "/member/delivery?num=${index.index }">${del.deliveryName }</div> 
+				</c:forEach>
+			<c:if test="${length<3 }">
+				<div title= "3" class = "de-ListItem" data-a = "/member/delivery?num=3">추가하기</div>
+			</c:if>
+			
+		</div>
 		
-		</ul>
 		
 	</div>
 	<div id = "deliveryBody">
@@ -47,7 +46,7 @@
 		
 	<form action="./updateDelivery" method="POST" id="deliveryForm">
 		<input type="hidden" value ="${delivery[num].addressNum}"  name = "addressNum" class="form-control ">
-		<table class="table">
+		<table class="table" id="de-table">
 				  <thead>
 				    
 				  </thead>
@@ -95,9 +94,13 @@
 				   
 				  </tbody>
 				</table>
-				<button id="delDeleteBtn" class="w-100 btn btn-lg " type="button">삭제</button>
-			  <button id="delUpdateBtn" class="w-100 btn btn-lg btn-primary" type="button">저장</button>
-		</form>
+				
+				<div class = "btnDiv">
+					<button id="delDeleteBtn" class="de-Btn" type="button">삭제</button>
+				  	<button id="delUpdateBtn" class="de-Btn" type="button">저장</button>
+		
+				</div>
+				</form>
 	</div>
 		
 	

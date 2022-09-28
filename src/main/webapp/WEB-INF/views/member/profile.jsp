@@ -12,7 +12,7 @@
 
 
 <div class = "pf-section">
-		<h1>내 정보 수정하기</h1>
+		<div class="pf-title">내 정보 수정하기</div>
 	<div>
 	
 	
@@ -65,25 +65,26 @@
 					        <div></div>
 					        <div></div>
 					        
-					        ${profile.fileName }
+					        <label for="image_container" >프로필 사진</label>
 					        
-					        <label for="profileImg" >프로필사진</label>
+					        
 					          
-					         <div id="image_container">
+					         <div id="image_container" class="pf-img-box">
 					         <c:choose>
 					         	<c:when test="${empty profile }">
-						         	
+						         	 <label for="profileImg" >
 						         		<img id = "previewProfile"alt="" src="/resources/images/NoProfile.png" >
-						         	
+						         	</label>
 					         	</c:when>
 					         	<c:when test="${not empty profile }">
-						         	
+						         	 <label for="profileImg" >
 						         		<img id = "previewProfile"alt="" src="../resources/upload/member/${profile.fileName }">
-						         	
+						         	</label>
 					         	</c:when>
 					         </c:choose>
 					         </div>
-					         <input type="file"  id="profileImg" name = "profileImg" class="form-control " onchange="setThumbnail(event);" multiple/>
+					         <label for="profileImg" >${profile.oriName }</label>
+					         <input type="file"  id="profileImg" name = "profileImg"  class="form-control display-none" onchange="setThumbnail(event);" multiple/>
 					        <button id="deleteBtn" class="w-100 btn btn-lg " type="button">프로필사진 삭제</button>
 					         
 					         

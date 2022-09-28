@@ -9,7 +9,6 @@
     padding-top: 30px;
     width: 400px;
     font-size: 20px;
-    
     margin: 0 auto;
 
 }
@@ -22,64 +21,81 @@
 }
 
 #profile {
-    position: relative;
-    min-height: 800px;
     
-
+    min-height: 800px;
+    display: inline-flex;
+	justify-content: space-between;
 }
-#profile > div{
-    position: absolute;
 
-  
-
-}
 
 
 #profile-id{
-
-    background-color: #fafafa;
+	display: flex;
+	flex-direction: column;
+	box-shadow: rgb(63 71 77 / 6%) 0px 2px 4px 0px;
+	
+	
+	
+    background-color: #ffffff;
     border: 1px solid #dadce0;
     border-radius: 10px;
     width: 20%;
     height: 30%;
     min-height: 450px;
     margin: 15px;
-    left: 10px;
+    top: 15px;
     
+}
 
+.pf-title{
+	font-size: 30px;
+	font-weight: bold;
+
+}
+
+#pf-betweenSpace{
+	min-width: 20px;
+	min-height: 90%;
+	margin: 5px 5px;
+	
+}
+
+#phone,#email{
+	
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: baseline;
 }
 
 #profile-section{
-    background-color: #fafafa;
+	display: flex;
+	flex-direction: column;
+	
+    background-color: #ffffff;
     border: 1px solid #dadce0;
     border-radius: 3px;
     width: 70%;
-    min-height: 90%;
     margin: 15px;
+}
 
-
-    right: 50px;
+.display-none{
+	display: none;
 
 }
 
-#pf-img-box{
+.pf-img-box{
 
     width: 150px;
     height: 150px; 
     border-radius: 70%;
+    border : 1px solid #c8c9ca;
     overflow: hidden;
-    margin: 30px auto;
+   margin: 30px auto;
 
 }
 
-#image_container{
 
-    width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-    margin: 15px;
-}
 
 #pf-img,#previewProfile{
 
@@ -203,16 +219,39 @@ th{
     min-height: 400px;
 }
 
-.deliveryList{
+.de-ListItem{
    
     cursor: pointer;
-    display: inline;
-    margin: 15px;
+    
+    margin: 12px;
     font-weight: bold;
-
+	font-size: 18px;
 
 }
+.de-ListDiv{
+	
+	display: inline-flex;
+	justify-content: flex-start;
+	
+}
 
+tr,th{
+	
+	padding-top: 20px !important;
+	margin : 20px 15px;
+}
+
+.btnDiv{
+	width : 90%;
+	display: inline-flex;
+	justify-content: space-around;
+	
+	
+}
+.de-Btn{
+	width: 40%;
+	
+}
 .deSelect{
 
     background-color: #ffffff;

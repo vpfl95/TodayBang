@@ -11,7 +11,7 @@
 
 
  <div class="pf-section">
- 	<h1> 회원 등급</h1>
+ 	<div class =  "pf-title">회원 등급</div>
  	
  	<c:forEach items="${role }" var="dto">
  		<c:choose>

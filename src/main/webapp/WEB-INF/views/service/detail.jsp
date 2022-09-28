@@ -17,27 +17,31 @@
     <c:import url="../template/header.jsp"></c:import>
 
 	<section class="container-fluid container-lg-8 mt-5">
-			<div class = "row justify-content-center mt-5">
-				<div class = " col-lg-7 ">
-						<table class="table ">
+			<div class = "row justify-content-center mt-5" >
+				<div class = " col-lg-7 " id="boardSection">
+						<table class="table " id="mainTable">
 						  <thead>
 						  </thead>
 						  <tbody>
+						  	<tr>
+						      <th scope="row">글번호</th>
+						      <td colspan="3">${boardList.boardNum }</td>
+						    </tr>
 						    <tr>
 						      <th scope="row">제목</th>
-						      <td>${boardList.title }</td>
+						      <td colspan="3">${boardList.title }</td>
 						    </tr>
 						    <tr>
 						      <th scope="row">작성자</th>
-						      <td>${boardList.userId }</td>
+						      <td colspan="3">${boardList.userId }</td>
 						    </tr>
 						    <tr>
 						      <th scope="row">작성일</th>
-						      <td >${boardList.regDate }</td>
+						      <td  colspan="3">${boardList.regDate }</td>
 							</tr>
 						    <tr>
 						      <th scope="row">내용</th>
-						      <td >${boardList.contents }</td>
+						      <td  colspan="3">${boardList.contents }</td>
 						    </tr>
 						    
 						    <tr>

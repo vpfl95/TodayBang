@@ -12,8 +12,8 @@
 	
 	
 <div class = "pf-section">
-		<h1>비밀번호 변경</h1>
-	<div id="pwCheckDiv" class =  "">
+	<div class =  "pf-title">비밀번호 변경</div>
+	<div id="pwCheckDiv" >
 		<form action="./updatePw" id = "pwCheckForm" method="POST">
 		    
 		    <label for="password" >현재 비밀번호 확인</label>

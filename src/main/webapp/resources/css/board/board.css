@@ -12,3 +12,23 @@
 
 }
 
+section{
+	
+	background-color: #f7f9fa;
+	
+}
+
+#boardSection{
+	border : 1px solid #dfe2e6;
+	min-width : 400px;
+	min-height : 800px;
+	background-color: white;
+	margin: auto;
+}
+#mainTable{
+	
+	width : 90%;
+	margin: 15px auto;
+
+}
+
