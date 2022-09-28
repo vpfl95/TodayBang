@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>오늘의 직방</title>
 		<link href="/resources/css/reset.css" rel="stylesheet">
+		<link href="/resources/css/board/board.css" rel="stylesheet">
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -49,9 +50,16 @@
 							<tr>
 								<th>파일</th>
 								
+								
 								<td>
 									<div id = "fileInputDiv">
 									<!-- 파일선택 input -->
+									
+									<c:forEach items="${update.boardFileDTOs }" var="file" varStatus="status">
+										<label for="file${status.count }">${file.fileName }</label>
+										<input type="file" id="file${status.count }" value="${file.fileName }" name="file" class="form-control boardFile hideBoardFile">
+										<button class="boardFileDelete" title="${status.count }">파일삭제</button>
+									</c:forEach>
 									</div>
 								</td>
 								<td><p id = "addFileBtn">파일추가</p></td>
@@ -92,6 +100,9 @@
    	
    		board();
    		fileJs();
+   		
+   		
+   		
    	</script>
    
 </body>

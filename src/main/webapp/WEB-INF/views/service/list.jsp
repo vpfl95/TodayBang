@@ -20,9 +20,9 @@
 				<div class = " col-lg-7 ">
 	
 					
-					<h1>${board } 페이지</h1>
+					<h1>${board }</h1>
 					
-					<table class="table">
+					<table class="table table-hover">
 				  <thead>
 				    <tr>
 				      <th scope="col">글 번호</th>

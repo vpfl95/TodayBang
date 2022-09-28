@@ -19,7 +19,7 @@
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
-						<table class="table">
+						<table class="table ">
 						  <thead>
 						  </thead>
 						  <tbody>

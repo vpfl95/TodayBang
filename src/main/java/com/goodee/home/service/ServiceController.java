@@ -132,7 +132,7 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		boardDTO = service.getDetail(boardDTO);
-		
+		System.out.println("file" + boardDTO.getBoardFileDTOs().get(0).getFileName());
 		
 		mv.addObject("update", boardDTO);
 		mv.setViewName("/service/add");

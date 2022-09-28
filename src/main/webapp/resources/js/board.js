@@ -44,10 +44,10 @@ function answer(){
 function fileJs() {
     const addFileBtn = document.querySelector("#addFileBtn");
     const fileInputDiv = document.querySelector("#fileInputDiv");
-
-
-    let countFile = 0;
-    let title = 0;
+    
+    
+    let countFile = fileInputDiv.getElementsByTagName("input").length;
+    let title  = fileInputDiv.getElementsByTagName("input").length;
     addFileBtn.addEventListener("click",function(){
         
 
@@ -116,16 +116,14 @@ function fileJs() {
     fileInputDiv.addEventListener("click",function(event){
 
         if(event.target.className == "boardFileDelete"){
-            console.log("click" + countFile)
-            console.log("click" + event.target.className)
+            
             if(countFile >0){
                 countFile--;
-                console.log("파일 삭제"+event.target.title)
+               
            
                 for(ch of fileInputDiv.children){
                     if(ch.id == "file"+event.target.title){
-                       
-                        event.target.previousElementSibling.previousElementSibling.remove();
+                         event.target.previousElementSibling.previousElementSibling.remove();
                         ch.remove();
                         event.target.remove();
                         
