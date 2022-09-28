@@ -7,15 +7,63 @@ function board() {
 
     const boardBtn = document.querySelector("#boardBtn");
     const boardForm = document.querySelector("#boardForm");
-    
+    const fileInputDiv = document.querySelector("#fileInputDiv");
+
+
     boardBtn.addEventListener("click",function(){
+
 
         if(boardBtn.title == "update"){
 
             boardForm.action = "./update";
 
+            const boardFile = document.getElementsByClassName("boardFile");
+            const boardNum = document.querySelector("#boardNum");
+           
+            let noNumber = "";
+
+            console.log("title = " +fileInputDiv.title);
+            console.log("title = " +boardFile.length);
+            for(let i = 1 ; i <= fileInputDiv.title ; i ++ ){
+                let check = false;
+                for(boF of boardFile){
+                    if(boF.title == i){
+                        check = true;
+                        // 있다.
+                        break;
+                    }else{
+                        // i 가 없는 번호
+                       
+                        
+                       
+
+                        
+                    }
+                }
+
+                if(!check){
+                    noNumber += i;
+                }
+                
+                console.log("noNum" + noNumber);
+
+            }
+            
+            let input = document.createElement("input");
+            let inputArr = document.createAttribute("type");
+            inputArr.value = "text";
+            input.setAttributeNode(inputArr);
+            inputArr = document.createAttribute("name");
+            inputArr.value = "number";
+            input.setAttributeNode(inputArr);
+
+            inputArr = document.createAttribute("value");
+            inputArr.value = noNumber;
+            input.setAttributeNode(inputArr);
+            fileInputDiv.append(input);
+
         }
-        boardForm.submit();
+       boardForm.submit();
 
     })
 
@@ -157,6 +205,10 @@ function fileJs() {
        
 
     })
+
+
+    
+
 
 
 }

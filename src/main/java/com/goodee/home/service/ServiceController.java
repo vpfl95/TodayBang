@@ -1,19 +1,30 @@
 package com.goodee.home.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.util.Pager;
@@ -130,10 +141,12 @@ public class ServiceController {
 		
 		
 		
+		
+		
 		boardDTO.setBoard(getBoardName());
 		boardDTO = service.getDetail(boardDTO);
-		System.out.println("file" + boardDTO.getBoardFileDTOs().get(0).getFileName());
 		
+		mv.addObject("updateSize",boardDTO.getBoardFileDTOs().size());
 		mv.addObject("update", boardDTO);
 		mv.setViewName("/service/add");
 		
@@ -141,10 +154,15 @@ public class ServiceController {
 	}
 	
 	@PostMapping("update")
-	public String updateBoard(BoardDTO boardDTO) throws Exception{
+	public String updateBoard(BoardDTO boardDTO,MultipartFile [] file,HttpSession session , Integer number) throws Exception{
+		
+		
+		System.out.println("==" + number);
 		
 		boardDTO.setBoard(getBoardName());
-		service.updateBoard(boardDTO);
+		boardDTO = service.getDetail(boardDTO);
+		boardDTO.setBoard(getBoardName());
+		service.updateBoard(boardDTO,file,session.getServletContext(),number);
 		
 		
 		return "redirect:./list";
@@ -196,13 +214,17 @@ public class ServiceController {
 		return mv;
 	}
 	@PostMapping("updateAnswer")
-	public String updateAnswer(BoardDTO boardDTO) throws Exception{
+	public String updateAnswer(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception{
 		
 		boardDTO.setBoard("QNAANSWER");
-		service.updateBoard(boardDTO);
+		service.updateBoard(boardDTO,file,session.getServletContext(),0);
 		
 		
 		return "redirect:./list";
 	}
+	
+	
+	
+	
 	
 }

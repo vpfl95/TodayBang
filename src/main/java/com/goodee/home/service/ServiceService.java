@@ -58,15 +58,9 @@ public class ServiceService {
 					serviceDAO.addBoardFile(boardFileDTO);
 					
 				}
-				
-				
-				
 			}
 		}
 		
-		
-		
-	
 		return result;
 	}
 	
@@ -97,7 +91,6 @@ public class ServiceService {
 				
 				if(!file.isEmpty()) {
 					
-					
 					String fileName = fileManger.saveFile(path, servletContext, file);
 					BoardFileDTO boardFileDTO = new BoardFileDTO();
 					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
@@ -107,19 +100,63 @@ public class ServiceService {
 					serviceDAO.addBoardFile(boardFileDTO);
 					
 				}
-				
-				
-				
 			}
 		}
-		
-		
 		return result;
 	}
 	
-	public int updateBoard(BoardDTO boardDTO) throws Exception{	
+	public int updateBoard(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext,Integer number) throws Exception{	
 		
-		return serviceDAO.updateBoard(boardDTO);
+		
+		int result = serviceDAO.updateBoard(boardDTO);
+		
+		String path = "resources/upload/" +boardDTO.getBoard();
+		// boardDTO.getBoardFileDTOs() 기존 파일
+		// files < 새롭게 추가된 파일
+		//boardDTO.getBoardFileDTOs().size() >> title 총 수
+		
+		if(number != null) {
+			String[] ar = number.toString().split("");
+		
+			for(String num : ar) {
+				int i = Integer.parseInt(num);
+				
+				System.out.println("삭제 num = " + num);
+				BoardFileDTO boardFileDTO = boardDTO.getBoardFileDTOs().get(i-1);
+				boardFileDTO.setBoard(boardDTO.getBoard());
+				serviceDAO.deleteFile(boardFileDTO);
+			
+			}
+			
+			
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		if(files.length !=0) {
+			for(MultipartFile file : files) {
+				
+				
+				if(!file.isEmpty()) {
+					System.out.println("새 파일 추가");
+					String fileName = fileManger.saveFile(path, servletContext, file);
+					BoardFileDTO boardFileDTO = new BoardFileDTO();
+					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+					boardFileDTO.setFileName(fileName);
+					boardFileDTO.setOriName(file.getOriginalFilename());
+					boardFileDTO.setBoard(boardDTO.getBoard());
+					serviceDAO.addBoardFile(boardFileDTO);
+					
+				}
+			}
+		}
+		return result;
+		 
 	}
 	
 	public int deleteAnswer(BoardDTO boardDTO,ServletContext servletContext) throws Exception{
@@ -144,5 +181,11 @@ public class ServiceService {
 	public int addBoardFile(BoardFileDTO boardFileDTO) throws Exception{
 		
 		return serviceDAO.addBoardFile(boardFileDTO);
+	}
+	
+	public int deleteFile(BoardFileDTO boardFileDTO) throws Exception{
+		
+		
+		return serviceDAO.deleteFile(boardFileDTO);
 	}
 }

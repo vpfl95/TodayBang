@@ -113,6 +113,10 @@
 			DELETE FROM <include refid="getBoardFile"></include> WHERE BOARDNUM =#{boardNum}
 			</delete>
 			
+			<delete id="deleteFile" parameterType="BoardFileDTO">
+			DELETE FROM <include refid="getBoardFile"></include> WHERE FILENUM =#{fileNum}
+			</delete>
+			
 			
 			
 			

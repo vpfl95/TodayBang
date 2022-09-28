@@ -92,4 +92,12 @@ public class ServiceDAO {
 	}
 	
 	
+	public int deleteFile(BoardFileDTO boardFileDTO) throws Exception{
+		
+		
+		return sqlSession.delete(NAMESPACE+"deleteFile",boardFileDTO);
+	}
+	
+	
+	
 }
