@@ -11,7 +11,6 @@ public class ProductReviewDTO {
 	private Double deliveryStar;
 	private Date regDate;
 	private String fileName;
-	private Long help;
 	private String contents;
 	private Long productNum;
 	private String userId;
@@ -57,12 +56,6 @@ public class ProductReviewDTO {
 	}
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
-	}
-	public Long getHelp() {
-		return help;
-	}
-	public void setHelp(Long help) {
-		this.help = help;
 	}
 	public String getContents() {
 		return contents;

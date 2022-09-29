@@ -55,4 +55,20 @@ public class ProductReviewService {
 		grade.add(total);
 		return grade;
 	}
+	
+	public HelpDTO getHelp(HelpDTO helpDTO) throws Exception {
+		return productReviewDAO.getHelp(helpDTO);
+	}
+	
+	public int setHelp(HelpDTO helpDTO) throws Exception {
+		return productReviewDAO.setHelp(helpDTO);
+	}
+	
+	public int deleteHelp(HelpDTO helpDTO) throws Exception {
+		return productReviewDAO.deleteHelp(helpDTO);
+	}
+	
+	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
+		return productReviewDAO.getHelpCount(helpDTO);
+	}
 }

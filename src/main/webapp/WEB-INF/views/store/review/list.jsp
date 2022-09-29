@@ -7,6 +7,24 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.star-LargeRating {
+		width: 140px;
+		margin-top: 30px;
+	}
+	
+	.star-LargeRating, .star-LargeRating span {
+		display: inline-block;
+		height: 26px;
+		overflow: hidden;
+		background: url(/resources/images/store/review/starLarge.png)no-repeat;
+	}
+
+	.star-LargeRating span {
+		background-position: left bottom;
+		line-height: 0;
+		vertical-align: top;
+	}
+
 	.star-rating {
 		width: 100px;
 		margin-right: 10px;
@@ -76,13 +94,21 @@
 		z-index: 2;
 		border-radius: 5px;
 	}
+	
+	.totalGrade {
+		font-weight: 900;
+		font-size: 50px;
+		text-align: center;
+	}
 </style>
 </head>
 <body>
 	<div class="review-header d-flex">
-		<div style="width: 50%;" class="d-flex justify-content-center">
-			<div style="width: 67%; border: solid blue 1px;"></div>
-			<div style="width: 33%;"></div>
+		<div style="width: 50%; padding-top: 30px;" class="d-flex justify-content-center">
+			<div class="d-flex justify-content-center" style="width: 66%;">
+				<div class="star-LargeRating"><span style="width:${((grade[0]+(grade[1]*2)+(grade[2]*3)+(grade[3]*4)+(grade[4]*5))/grade[5])*20}%"></span></div>
+			</div>
+			<div class="totalGrade" style="width: 33%; margin-top: 7px; padding-right: 30px;">${(grade[0]+(grade[1]*2)+(grade[2]*3)+(grade[3]*4)+(grade[4]*5))/grade[5]}</div>
 		</div>
 		<div style="width: 50%;">
 			<div class="d-flex justify-content-center mt-3">
@@ -118,7 +144,7 @@
 		<button class="btnSort">🖼사진리뷰</button>
 	</div>
 	<hr>
-	<c:forEach items="${list}" var="dto">
+	<c:forEach items="${list}" var="dto" varStatus="i">
 		<div class="mt-3">
 			<div class="d-flex">
 				<div style="width: 10%; margin-right: 10px;">
@@ -158,8 +184,29 @@
 			<div class="mt-3">${dto.contents}</div>
 			<div class="d-flex justify-content-between mt-3">
 				<div class="d-flex">
-					<button class="btnHelp">도움이 돼요</button>
-					<div style="margin-top: 4px;">${dto.help}명에게 도움이 되었습니다.</div>
+					<c:choose>
+						<c:when test="${chkHelp ne null}">
+							<c:choose>
+								<c:when test="${chkHelp[i.index] eq null}">
+									<button class="btnHelp" data-help-revnum="${dto.revNum}">도움이 돼요</button>
+								</c:when>
+								<c:otherwise>
+									<button class="btnHelp" data-help-revnum="${dto.revNum}" style="background-color: #35c5f0; color: white;">✔ 도움됨</button>						
+								</c:otherwise>
+							</c:choose>
+						</c:when>
+						<c:otherwise>
+							<button class="btnHelp" data-help-revnum="${dto.revNum}">도움이 돼요</button>
+						</c:otherwise>
+					</c:choose>
+					<c:choose>
+						<c:when test="${totalCount[i.index] eq null}">
+							<div class="divHelp" style="margin-top: 4px;"></div>
+						</c:when>
+						<c:otherwise>		
+							<div class="divHelp" style="margin-top: 4px;">${totalCount[i.index]}명에게 도움이 되었습니다.</div>			
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<div class="d-flex">
 					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}">수정</button>

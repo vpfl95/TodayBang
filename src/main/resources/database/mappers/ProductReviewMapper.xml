@@ -16,4 +16,20 @@
 		SELECT ROUND((DURSTAR + DESIGNSTAR + PRICESTAR + DELIVERYSTAR)/4) as AVGSTAR FROM PRODUCTREVIEW
 		WHERE PRODUCTNUM = #{productNum}
 	</select>
+	
+	<select id="getHelp" parameterType="HelpDTO" resultType="HelpDTO">
+		SELECT * FROM HELP WHERE USERID = #{userId} AND REVNUM = #{revNum}
+	</select>
+	
+	<insert id="setHelp" parameterType="HelpDTO">
+		INSERT INTO HELP VALUES (TODAY_SEQ.NEXTVAL, #{revNum}, #{userId})
+	</insert>
+	
+	<delete id="deleteHelp" parameterType="HelpDTO">
+		DELETE HELP WHERE USERID = #{userId} AND REVNUM = #{revNum}
+	</delete>
+	
+	<select id="getHelpCount" parameterType="HelpDTO" resultType="Long">
+		SELECT COUNT(REVNUM), REVNUM FROM HELP WHERE REVNUM=#{revNum} GROUP BY REVNUM
+	</select>
 </mapper>

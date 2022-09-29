@@ -24,6 +24,7 @@
 		<typeAlias type="com.goodee.home.store.product.Option3DTO" alias="Option3DTO"/>
 		<typeAlias type="com.goodee.home.store.product.CategoryDTO" alias="CategoryDTO"/>
 		<typeAlias type="com.goodee.home.store.review.ProductReviewDTO" alias="ProductReviewDTO"/>
+		<typeAlias type="com.goodee.home.store.review.HelpDTO" alias="HelpDTO"/>
 		<typeAlias type="com.goodee.home.store.product.Cate_ProductDTO" alias="Cate_ProductDTO"/>
 		<typeAlias type="com.goodee.home.store.exhibition.ExhibitionDTO" alias="ExhibitionDTO"/>
 		<typeAlias type="com.goodee.home.store.exhibition.Ex_ProductDTO" alias="Ex_ProductDTO"/>

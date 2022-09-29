@@ -279,6 +279,7 @@ btnWrite.onclick=function() {
     let priceStar;
     let designStar;
     let deliveryStar;
+    let btnClose = document.querySelectorAll('.btn-close');
     
     for(r of radio1) {
         if(r.checked) {
@@ -320,6 +321,7 @@ btnWrite.onclick=function() {
         type: 'POST',
         success: function(result) {
             alert('업로드 성공!');
+            btnClose[0].click();
         }
     });
 }
@@ -336,6 +338,7 @@ function setThumbnail(event) {
     reader.readAsDataURL(event.target.files[0]);
 }
 
+// 리뷰 리스트
 function getReviewList() {
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum);
@@ -357,7 +360,37 @@ reviewList[0].onclick=function(event) {
     }
 
     if(event.target.classList[0] == 'btnHelp') {
-        // console.log(event.target.dataset.deleteRevnum);
-        console.log('test');
+        const xhttp = new XMLHttpRequest();
+        xhttp.open('POST', '/review/help');
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("userId="+userId.value+'&revNum='+event.target.dataset.helpRevnum);
+
+        let divHelp = event.target.nextSibling.nextSibling;
+        let regex = /[^0-9]/g;
+        let helpCount = divHelp.innerHTML.replace(regex,"");
+
+        xhttp.onreadystatechange=function() {
+            if(this.readyState==4 && this.status==200) {
+                let result = this.responseText.trim();
+                if(result == 1) {
+                    if(helpCount == '') {
+                        helpCount = 1;
+                    } else {
+                        helpCount++;
+                    }
+                    divHelp.innerHTML=helpCount+'명에게 도움이 되었습니다.'
+                    event.target.innerHTML='✔ 도움됨'
+                    event.target.setAttribute('style', 'background-color: #35c5f0; color: white;')
+                } else {
+                    if(helpCount == 1) {
+                        divHelp.innerHTML='';
+                    } else {
+                        divHelp.innerHTML=(helpCount--)+'명에게 도움이 되었습니다.';
+                    }
+                    event.target.innerHTML='도움이 돼요';
+                    event.target.setAttribute('style', '');
+                }
+            }
+        }
     }
 }
