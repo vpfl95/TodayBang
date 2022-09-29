@@ -575,112 +575,148 @@ function placesSearchCB(data, status, pagination) {
 
     }
 }
-searchSuggest();
 
-async function getSuggest(){
-    const keyword = document.getElementById("keyword")
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("POST","getSearchList");
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    if(keyword.value!=''){
 
-        xhttp.send("search="+keyword.value);
-    }
-    xhttp.addEventListener("readystatechange",function(){
-        if(xhttp.readyState==4 && xhttp.status==200){
-            var result = JSON.parse(xhttp.responseText.trim());
-            console.log(result)
-            return result
-        }
-    })
-}
+
 
 //연관검색어
+function delay(fn, ms) {
+    let timer = 0
+    return function(...args) {
+      clearTimeout(timer)
+      timer = setTimeout(fn.bind(this, ...args), ms || 0)
+    }
+}
 
 const sugguestList = document.getElementById("sugguestList")
+searchSuggest();
 
 function searchSuggest(){
-    
-    keyword.addEventListener("keyup", async e =>{
+    const keyword = document.getElementById("keyword")
+        
+
+    $('#keyword').keyup(delay(function (e) {
+        console.log('Time elapsed!', this.value);
+
         const items = document.querySelectorAll(".selectItem")
+
         if(keyword.value==''){
             sugguestList.style.display="none"
         }else{
             sugguestList.style.display="block"
         }
-        
-        //연관검색어 초기화
-        items.forEach(function(data){
-            console.log("삭제",data)
-            data.remove()
-        })
 
-        console.log("asdfasdf")
-        let result = await getSuggest();
-        console.log(result)
+  
+        
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST","getSearchList");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        if(keyword.value!='' && e.key!=="ArrowUp" && e.key!=="ArrowDown"){
+            
+            xhttp.send("search="+keyword.value);
+        }
+        xhttp.addEventListener("readystatechange",function(){
+            if(xhttp.readyState==4 && xhttp.status==200){
+                //연관검색어 초기화
+                items.forEach(function(data){
+                //console.log("삭제",data)
+                data.remove()
+                })
                 
-        let apt = result.apt;
-        let address = result.address;
+                    
+                var result = JSON.parse(xhttp.responseText.trim());
+                
+                let apt = result.apt;
+                let address = result.address;
 
+                if(keyword.value==''){
+                    sugguestList.style.display="none"
+                }else if(result.length>0){
+                    sugguestList.style.display="block"
+                }
+            
+                for(let i=0; i<address.length; i++){
+                    let selectItem = document.createElement("div")
+                    let selectItemWrap = document.createElement("div")
+                    let aptDiv = document.createElement("div")
+                    let addressDiv = document.createElement("div")
+                    
+                    aptDiv.innerText=address[i].sigungu
+                    addressDiv.innerText = address[i].sigungu
+                    selectItem.className="selectItem"
+                    addressDiv.className="addressDIV"
+                    selectItem.setAttribute("data-address",address[i].sigungu)
+                    selectItemWrap.appendChild(aptDiv)
+                    selectItemWrap.appendChild(addressDiv)
+                    selectItem.appendChild(selectItemWrap)
+                    sugguestList.appendChild(selectItem)
+                    
+                    selectItem.addEventListener("click",function(){
+                        console.log(selectItem.getAttribute("data-address"))
+                        keyword.value=selectItem.firstChild.firstChild.innerText
+                        searchPlaces();
+                    })
+                }
+
+                for(let i=0; i<apt.length; i++){
+                    let selectItem = document.createElement("div")
+                    let selectItemWrap = document.createElement("div")
+                    let aptDiv = document.createElement("div")
+                    let addressDiv = document.createElement("div")
+                    
+                    aptDiv.innerText=apt[i].buildingNm
+                    addressDiv.innerText = apt[i].sigungu
+                    selectItem.className="selectItem"
+                    addressDiv.className="addressDIV"
+                    selectItem.setAttribute("data-address",apt[i].roadName)
+                    selectItemWrap.appendChild(aptDiv)
+                    selectItemWrap.appendChild(addressDiv)
+                    selectItem.appendChild(selectItemWrap)
+                    sugguestList.appendChild(selectItem)
+
+                    selectItem.addEventListener("click",function(){
+                        console.log(selectItem.getAttribute("data-address"))
+                        keyword.value=selectItem.firstChild.firstChild.innerText
+                        searchPlaces();
+                    })
+                }
+            }
+        });
+   
         
-        if(keyword.value==''){
-            sugguestList.style.display="none"
-        }else if(result.length>0){
-            sugguestList.style.display="block"
-        }
         
-        for(let i=0; i<address.length; i++){
-            let selectItem = document.createElement("div")
-            let selectItemWrap = document.createElement("div")
-            let aptDiv = document.createElement("div")
-            let addressDiv = document.createElement("div")
+        if((e.key==="ArrowUp" || e.key==="ArrowDown") && sugguestList.style.display==="block"){
+            const selectedItem = sugguestList.querySelector("div.selectItem.selected")
             
-            aptDiv.innerText=address[i].sigungu
-            addressDiv.innerText = address[i].sigungu
-            selectItem.className="selectItem"
-            addressDiv.className="addressDIV"
-            selectItem.setAttribute("data-address",address[i].sigungu)
-            selectItemWrap.appendChild(aptDiv)
-            selectItemWrap.appendChild(addressDiv)
-            selectItem.appendChild(selectItemWrap)
-            sugguestList.appendChild(selectItem)
-            
-            selectItem.addEventListener("click",function(){
-                console.log(selectItem.getAttribute("data-address"))
-                keyword.value=selectItem.firstChild.firstChild.innerText
-                searchPlaces();
-            })
+            let target
+
+            const initIndex = e.key==="ArrowUp" ? items.length-1 : 0;
+            const adjacentSibling = selectedItem && (e.key === "ArrowUp" ? selectedItem.previousElementSibling : selectedItem.nextElementSibling)
+
+            if(adjacentSibling){
+                target = adjacentSibling
+            }else{
+                target = items.item(initIndex)
+            } 
+  
+            selectedItem && selectedItem.classList.remove("selected")
+            target.classList.add("selected")
+           
+            keyword.value = target.firstChild.firstChild.textContent
+   
+
         }
 
-        for(let i=0; i<apt.length; i++){
-            let selectItem = document.createElement("div")
-            let selectItemWrap = document.createElement("div")
-            let aptDiv = document.createElement("div")
-            let addressDiv = document.createElement("div")
-            
-            aptDiv.innerText=apt[i].buildingNm
-            addressDiv.innerText = apt[i].sigungu
-            selectItem.className="selectItem"
-            addressDiv.className="addressDIV"
-            selectItem.setAttribute("data-address",apt[i].roadName)
-            selectItemWrap.appendChild(aptDiv)
-            selectItemWrap.appendChild(addressDiv)
-            selectItem.appendChild(selectItemWrap)
-            sugguestList.appendChild(selectItem)
-
-            selectItem.addEventListener("click",function(){
-                console.log(selectItem.getAttribute("data-address"))
-                keyword.value=selectItem.firstChild.firstChild.innerText
-                searchPlaces();
-            })
+        if(e.key==="Escape"){
+            closeSuggestList();
         }
-            
-    });
-    
+
+    }, 300));
 }
 
-
-
+function closeSuggestList(){
+    sugguestList.style.display="none"
+}
 
 
 
