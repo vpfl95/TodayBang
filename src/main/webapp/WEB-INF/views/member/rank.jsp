@@ -11,25 +11,53 @@
 
 
  <div class="pf-section">
- 	<div class =  "pf-title">회원 등급</div>
  	
- 	<c:forEach items="${role }" var="dto">
+ 	
+ 	<c:if test="${not empty ManagerRole }">
+ 		<div class =  "pf-title">관리자 등급</div>
  		<c:choose>
- 			<c:when test="${dto.roleNum eq 10}">
+ 			<c:when test="${ManagerRole.roleNum eq 1}">
+ 				<p>관리자</p>
+ 				
+ 			</c:when>
+ 			<c:when test="${ManagerRole.roleNum eq 2}">
+ 				<p>매니저</p>
+ 				
+ 			</c:when>
+ 			<c:when test="${ManagerRole.roleNum eq 3}">
+ 				<p>스토어 파트너</p>
+ 				
+ 			</c:when>
+ 			<c:when test="${ManagerRole.roleNum eq 4}">
+ 				<p>직방 파트너</p>
+ 				
+ 			</c:when>
+ 		
+ 		</c:choose>
+ 	
+ 	
+ 	
+ 	
+ 	</c:if>
+ 	
+ 	<c:if test="${not empty MemberRole }">
+ 	<div class =  "pf-title">회원 등급</div>
+ 		<c:choose>
+ 			<c:when test="${MemberRole.roleNum eq 10}">
  				<img alt="" src="/resources/images/rank/Diamond.png">
  			</c:when>
- 			<c:when test="${dto.roleNum eq 11}">
+ 			<c:when test="${MemberRole.roleNum eq 11}">
  				<img alt="" src="/resources/images/rank/Gold.png">
  			</c:when>
- 			<c:when test="${dto.roleNum eq 12}">
+ 			<c:when test="${MemberRole.roleNum eq 12}">
  				<img alt="" src="/resources/images/rank/Silver.png">
  			</c:when>
- 			<c:when test="${dto.roleNum eq 13}">
+ 			<c:when test="${MemberRole.roleNum eq 13}">
  				<img alt="" src="/resources/images/rank/White.png">
  			</c:when>
  		
  		</c:choose>
- 	</c:forEach>
+ 	</c:if>
  	
  	
  	

@@ -3,13 +3,35 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 		<mapper namespace="com.goodee.home.admin.AdminDAO">
-			<select id="getMember" resultMap="getMemberResult">
-				SELECT MB.USERID , MB.NICKNAME , MR.ROLENUM , RL.ROLENAME
-				FROM MEMBERS MB
-				    INNER JOIN "MEMBER-ROLE" MR
-				    ON MB.USERID = MR.USERID
-				    INNER JOIN "ROLE" RL
-					ON MR.ROLENUM = RL.ROLENUM
+			
+			<sql id="getFilter">
+				<if test="memberFilter != null and memberFilter != ''">
+					WHERE RL.ROLENUM IN
+					<!-- memberFilter -->
+					
+					<foreach item="item" index="index" collection="memberFilter" open="(" close=")" separator=",">
+						#{item}
+					</foreach>
+				</if>
+				
+			</sql>
+			
+			
+			<select id="getMember" parameterType="Pager" resultMap="getMemberResult">
+				SELECT * 
+				FROM (SELECT ROWNUM R,N.*
+				      FROM  (SELECT MB.USERID , MB.NICKNAME , MR.ROLENUM , RL.ROLENAME
+				        FROM MEMBERS MB
+				            INNER JOIN "MEMBER-ROLE" MR
+				            ON MB.USERID = MR.USERID
+				            INNER JOIN "ROLE" RL
+				            ON MR.ROLENUM = RL.ROLENUM
+				        <include refid="getFilter"></include>
+				         )N)
+				WHERE R BETWEEN #{startRow} AND #{lastRow}
+					
+					
+					
 			</select>
 			
 			<resultMap type="MemberDTO" id="getMemberResult">
@@ -25,7 +47,9 @@
 			
 			</resultMap>
 			
-			
+			<select id="getMemberCount" resultType="Long">
+			SELECT COUNT(*) FROM MEMBERS
+			</select>
 		
 		
 		</mapper>

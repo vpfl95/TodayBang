@@ -64,7 +64,7 @@ public class ServiceController {
 		
 		List<BoardDTO> ar = null;
 		// getBoardName()
-		
+		pager.setUrl("list");
 		pager.setBoard(getBoardName());
 		ar = service.getList(pager);
 		

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.goodee.home.member.MemberDTO;
+import com.goodee.home.util.Pager;
 
 @Service
 public class AdminSerivece {
@@ -14,11 +15,20 @@ public class AdminSerivece {
 	private AdminDAO adminDAO;
 	
 	
-	public List<MemberDTO> getMember() throws Exception{
+	public Long getMemberCount() throws Exception{
+		
+		return adminDAO.getMemberCount();
+	}
+	
+	
+	
+	public List<MemberDTO> getMember(Pager pager) throws Exception{
+		
+		pager.getNum(getMemberCount());
+		pager.getRowNum();
 		
 		
-		
-		return adminDAO.getMember();
+		return adminDAO.getMember(pager);
 	}
 	
 }

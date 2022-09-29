@@ -19,6 +19,10 @@ public class Pager {
 	private String kind;
 	//검색어 
 	private String search;
+	// nav import url
+	private String url;
+	// admin/member 멤버필터
+	private String [] memberFilter;
 	
 	
 	
@@ -26,6 +30,23 @@ public class Pager {
 	
 	
 	
+	public String[] getMemberFilter() {
+		
+		return memberFilter;
+	}
+
+	public void setMemberFilter(String[] memberFilter) {
+		this.memberFilter = memberFilter;
+	}
+
+	public String getUrl() {
+		return url;
+	}
+
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 	public String getBoard() {
 		return board;
 	}

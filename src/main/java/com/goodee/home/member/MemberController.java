@@ -38,7 +38,23 @@ public class MemberController {
 		if (memberDTO != null) {
 			
 			session.setAttribute("member", memberDTO);
-			session.setAttribute("role", memberDTO.getRoleDTOs());
+			
+			for(RoleDTO role : memberDTO.getRoleDTOs()) {
+				
+				if(role.getRoleNum()<10) {
+					session.setAttribute("ManagerRole", role);
+					
+				}else if(role.getRoleNum()<20 && role.getRoleNum()>9) {
+					
+					session.setAttribute("MemeberRole", role);
+				}
+				
+				
+			}
+			
+			
+			
+			
 			session.setAttribute("profile", memberDTO.getMemberFileDTO());
 			String url = "../";
 			mv.addObject("url",url);

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.goodee.home.member.MemberDTO;
+import com.goodee.home.util.Pager;
 
 @Repository
 public class AdminDAO {
@@ -16,9 +17,15 @@ public class AdminDAO {
 	
 	private String NAMESPACE = "com.goodee.home.admin.AdminDAO.";
 	
-	public List<MemberDTO> getMember() throws Exception{
+	public List<MemberDTO> getMember(Pager pager) throws Exception{
 		
-		return sqlSession.selectList(NAMESPACE+"getMember");
+		return sqlSession.selectList(NAMESPACE+"getMember",pager);
+	}
+	
+	public Long getMemberCount() throws Exception{
+		
+		
+		return sqlSession.selectOne(NAMESPACE+"getMemberCount");
 	}
 	
 	
