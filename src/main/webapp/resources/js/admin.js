@@ -2,15 +2,30 @@ function getParam() {
     
     let param;
     
-    var regex = /[^0-9^=]/g;	
+    var regex = /[^0-9^=^p]/g;	
 
     let results = location.search.replaceAll(regex,"");
     param = results.split("=");
-            
-    
+            //?page=2&kind=&search=?memberFilter=1&memberFilter=2
+            // 
+    console.log(results);
+    console.log(param);
     const checkbox = document.getElementsByTagName("input");
+    let pass = false;
+    for(par of param){ // p 2 10 1
+        if(par == "p"){
+            pass=true;
+            continue;
 
-    for(par of param){
+        }
+        if(pass==true){
+            pass = false;
+            continue;
+        }
+
+        console.log("비교 pa" + par);
+
+
         for(ch of checkbox){
 
             if(ch.value == par){

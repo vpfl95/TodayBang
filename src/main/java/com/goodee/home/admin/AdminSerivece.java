@@ -31,4 +31,18 @@ public class AdminSerivece {
 		return adminDAO.getMember(pager);
 	}
 	
+	
+	public int updateMemberRank(MemberDTO memberDTO) throws Exception{
+		
+		
+		return adminDAO.updateMemberRank(memberDTO);
+	}
+	
+	
+	public int addMemberRank(MemberDTO memberDTO) throws Exception{
+		
+		
+		return adminDAO.addMemberRank(memberDTO);
+	}
+	
 }

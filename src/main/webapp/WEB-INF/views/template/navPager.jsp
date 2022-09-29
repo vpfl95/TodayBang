@@ -16,7 +16,7 @@
 				  	</c:choose>
 				  	
 				  		<c:forEach begin="${pager.startNum }" end="${pager.lastNum }" var="i">
-						  			<li class="page-item"><a class="page-link" href="./${pager.url }?page=${i}&kind=${pager.kind}&search=${pager.search}">${i}</a></li>
+						  			<li class="page-item"><a class="page-link" href="./${pager.url }?page=${i}${pager.param}">${i}</a></li>
 					  	</c:forEach>
 				   	 	<c:choose>
 				  		<c:when test="${pager.lastNum - pager.startNum < 4}">

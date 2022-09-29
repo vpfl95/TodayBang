@@ -28,7 +28,13 @@ public class AdminDAO {
 		return sqlSession.selectOne(NAMESPACE+"getMemberCount");
 	}
 	
+	public int updateMemberRank(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.update(NAMESPACE+"updateMemberRank",memberDTO);
+	}
 	
-	
-	
+	public int addMemberRank(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.insert(NAMESPACE+"addMemberRank",memberDTO);
+	}
 }

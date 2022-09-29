@@ -52,4 +52,14 @@
 			</select>
 		
 		
+			<update id="updateMemberRank" parameterType="MemberDTO">
+			
+				UPDATE "MEMBER-ROLE" SET ROLENUM = #{roleDTOs[0].roleNum} WHERE USERID = #{userId}
+			</update>
+		
+			<insert id="addMemberRank" parameterType="MemberDTO">
+				INSERT INTO "MEMBER-ROLE" VALUES (TODAY_SEQ.NEXTVAL,#{roleDTOs[0].roleNum},#{userId})
+			</insert>
+		
+		
 		</mapper>

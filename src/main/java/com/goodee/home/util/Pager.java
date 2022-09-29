@@ -23,13 +23,32 @@ public class Pager {
 	private String url;
 	// admin/member 멤버필터
 	private String [] memberFilter;
+	// Pager 파라미터 부분
+	private String param="";
 	
 	
 	
 	
 	
-	
-	
+	public String getParam() {
+		
+		if(memberFilter != null && param=="") {
+			for(String me : memberFilter) {
+				System.out.println(me);
+				this.param += "&memberFilter="+me;
+				
+			}
+			
+		}
+		
+		
+		return param;
+	}
+
+	public void setParam(String param) {
+		this.param = param;
+	}
+
 	public String[] getMemberFilter() {
 		
 		return memberFilter;
