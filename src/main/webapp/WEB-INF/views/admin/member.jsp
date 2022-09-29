@@ -22,20 +22,21 @@
 					<h3>필터</h3>
 					<form action="./member" method="get">
 					
-						<div>
-							<label for="admin"><input id= "admin" type="checkbox" name= "memberFilter" value="1">관리자</label>
-							<label for="manager"><input id= "manager" type="checkbox" name= "memberFilter" value="2">매니저</label>
-							<label for="member"><input id= "member" type="checkbox" name= "memberFilter" value="5">회원</label>
+						<div id = "operatorDiv">
+							<label for="operator"><input id= "operator" type="checkbox" name= "memberFilter" value="0">운영진</label>
+							<label for="admin"><input id= "admin" class = "operatorClass" type="checkbox" name= "memberFilter" value="1">관리자</label>
+							<label for="manager"><input id= "manager" class = "operatorClass" type="checkbox" name= "memberFilter" value="2">매니저</label>
 							
-							<label for="storePartner"><input id= "storePartner" type="checkbox" name= "memberFilter" value="3">스토어 파트너</label>
-							<label for="zicbangPartner"><input id= "zicbangPartner" type="checkbox" name= "memberFilter" value="4">직방 파트너</label>
+							<label for="storePartner"><input id= "storePartner" class = "operatorClass" type="checkbox" name= "memberFilter" value="3">스토어 파트너</label>
+							<label for="zicbangPartner"><input id= "zicbangPartner" class = "operatorClass" type="checkbox" name= "memberFilter" value="4">직방 파트너</label>
 						</div>
-						<div>
-							<label for="diamond"><input id= "diamond" type="checkbox" name= "memberFilter" value="10">Diamond</label>
-							<label for="gold"><input id= "gold" type="checkbox" name= "memberFilter" value="11">Gold</label>
+						<div id = "memberDiv">
+							<label for="member"><input id= "member"  type="checkbox" name= "memberFilter" value="5">회원</label>
+							<label for="diamond"><input id= "diamond" class = "memberClass" type="checkbox" name= "memberFilter" value="10">Diamond</label>
+							<label for="gold"><input id= "gold" class = "memberClass" type="checkbox" name= "memberFilter" value="11">Gold</label>
 							
-							<label for="silver"><input id= "silver" type="checkbox" name= "memberFilter" value="12">Silver</label>
-							<label for="white"><input id= "white" type="checkbox" name= "memberFilter" value="13">White</label>
+							<label for="silver"><input id= "silver" class = "memberClass" type="checkbox" name= "memberFilter" value="12">Silver</label>
+							<label for="white"><input id= "white" class = "memberClass" type="checkbox" name= "memberFilter" value="13">White</label>
 						</div>
 						<div>
 							<label for="ban"><input id= "ban" type="checkbox" name= "memberFilter" value="20">Ban</label>
@@ -99,6 +100,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
    <script src="/resources/js/admin.js"></script>
 	<script type="text/javascript">
+	getParam();
 	member();
 	</script>
    
