@@ -17,6 +17,8 @@ public class MemberDTO {
 	private List<RoleDTO> roleDTOs;
 	private MemberFileDTO memberFileDTO;
 	
+	private RoleDTO roleDTO;
+	private Long newRoleNum;
 	
 	
 	
@@ -24,6 +26,21 @@ public class MemberDTO {
 	
 	
 	
+	
+	
+	
+	public RoleDTO getRoleDTO() {
+		return roleDTO;
+	}
+	public void setRoleDTO(RoleDTO roleDTO) {
+		this.roleDTO = roleDTO;
+	}
+	public Long getNewRoleNum() {
+		return newRoleNum;
+	}
+	public void setNewRoleNum(Long newRoleNum) {
+		this.newRoleNum = newRoleNum;
+	}
 	public MemberFileDTO getMemberFileDTO() {
 		return memberFileDTO;
 	}

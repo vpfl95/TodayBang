@@ -43,6 +43,7 @@ public class AdminController {
 		
 		List<MemberDTO> ar = adminSerivece.getMember(pager);
 		mv.addObject("pager",pager);
+		
 		mv.addObject("memberList",ar);
 		return mv;
 		
@@ -50,22 +51,16 @@ public class AdminController {
 	
 	
 	@GetMapping("updateRank")
-	public String updateMemberRank(MemberDTO memberDTO,RoleDTO roleDTO,Pager page) throws Exception{
+	public String updateMemberRank(MemberDTO memberDTO,Pager page,String action) throws Exception{
 		
-		List<RoleDTO> lr = new ArrayList<RoleDTO>();
-		lr.add(roleDTO);
-		memberDTO.setRoleDTOs(lr);
-		
-		if(roleDTO.getRoleNum()>=10 && roleDTO.getRoleNum()<=13) {
-			adminSerivece.updateMemberRank(memberDTO);
-		}else if(roleDTO.getRoleNum()==20) {
-			
-			int result = adminSerivece.addMemberRank(memberDTO);
-			
-		}
+		//newRoleNum 	20/벤   21/벤해제
 		
 		
 		
+		adminSerivece.updateMemberRank(memberDTO,action);
+		
+	
+
 		
 		String url = "";
 		

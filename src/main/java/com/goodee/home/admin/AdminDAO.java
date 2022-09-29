@@ -37,4 +37,9 @@ public class AdminDAO {
 		
 		return sqlSession.insert(NAMESPACE+"addMemberRank",memberDTO);
 	}
+	
+	public MemberDTO getDetailMember(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+"getDetailMember",memberDTO);
+	}
 }

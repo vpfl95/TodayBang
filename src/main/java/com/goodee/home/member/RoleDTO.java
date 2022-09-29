@@ -8,6 +8,12 @@ public class RoleDTO {
 	
 	
 	
+	
+	
+	
+	
+	
+
 	public Long getRoleNum() {
 		return roleNum;
 	}

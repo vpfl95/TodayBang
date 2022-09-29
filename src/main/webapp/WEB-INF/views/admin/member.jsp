@@ -1,3 +1,6 @@
+<%@page import="java.util.List"%>
+<%@page import="com.goodee.home.member.MemberDTO"%>
+<%@page import="org.springframework.context.annotation.Import"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -23,6 +26,7 @@
      	
      	
      	
+     	
      %>
 <!DOCTYPE html>
 <html >
@@ -32,6 +36,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>오늘의 직방</title>
 		<link href="/resources/css/reset.css" rel="stylesheet">
+		<link href="/resources/css/admin/admin.css" rel="stylesheet">
+		
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -107,25 +113,54 @@
 						
 						</tbody>
 							<c:forEach items="${memberList}" var="list">
-								<tr>
+								<c:set var="ban" value="false"/>
+								<c:forEach items="${list.roleDTOs }" var="role">
+									<c:if test="${role.roleNum eq 20 }">
+										<c:set var="ban" value="true"/>
+									</c:if>
+								</c:forEach>
+							
+								<c:if test="${ban}">
+									<tr class = "ban">
+								</c:if>
+								<c:if test="${!ban}">
+									<tr>
+								</c:if>
+								
+								
 									<td>${list.userId }</td>
 									<td>${list.nickname }</td>
-									
-										<c:if test="${list.roleDTOs[0].roleNum < 10 }">
-												<td>${list.roleDTOs[0].roleName }</td>
-											<td>
-												<c:if test="${list.roleDTOs[1].roleNum >= 10 }">${list.roleDTOs[1].roleName }</c:if>
-											</td>
+									<c:set var="done" value="false"/>
+									<td>
+										<c:if test="${list.roleDTOs[0].roleNum < 10}">
+											${list.roleDTOs[0].roleName}
+										<c:set var="done" value="true"/>
 										</c:if>
-										<c:if test="${list.roleDTOs[0].roleNum >= 10 }">
-											<td></td>
-											<td>${list.roleDTOs[0].roleName }</td>
+									</td>
+									
+									<td>
+										<c:if test="${list.roleDTOs[0].roleNum >9}">
+											<c:if test="${done }">
+												${list.roleDTOs[1].roleName}
+											</c:if>
+											<c:if test="${!done }">
+												${list.roleDTOs[0].roleName}
+											</c:if>
 										</c:if>
+									</td>
 									
-									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>roleNum=${list.roleDTOs[0].roleNum-1}&userId=${list.userId}">등급업</a></td>
-									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>roleNum=${list.roleDTOs[0].roleNum+1}&userId=${list.userId}">등급다운</a></td>
-									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>roleNum=20&userId=${list.userId}">벤</a></td>
 									
+										
+									
+									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=up">등급업</a></td>
+									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=down">등급다운</a></td>
+									
+									<c:if test="${ban}">
+										<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=noBan">벤해제</a></td>
+									</c:if>
+									<c:if test="${!ban}">
+										<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=ban">벤</a></td>
+									</c:if>
 							
 								</tr>
 							</c:forEach>
