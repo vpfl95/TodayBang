@@ -41,8 +41,8 @@ kakao.maps.event.addListener(map, 'idle', function() {
     page=1  //매물정보창 리스트 페이지1로 리셋
     buildingWrap.style.display="none" //매물정보창 안보이기
 
-    getRegionName();
-    
+    getRegionName();    //지역명 커스텀 오버레이
+    closeSuggestList(); //검색어 추천리스트 닫기
     console.log("마커오버레이",marker_overlays)
 
     //시,군,동, 지역 이름 커스텀 오버레이 출력
@@ -58,9 +58,14 @@ kakao.maps.event.addListener(map, 'idle', function() {
         },10);
     }
 
-
+    
     if(map.getLevel()<=4){
+        
+        var wsCoords = new kakao.maps.LatLng(map.getBounds().qa, map.getBounds().ha);
+        var neCoords = new kakao.maps.LatLng(map.getBounds().pa, map.getBounds().oa);
         HAddrFromCoords(map.getCenter(), getBuildingInfo);
+        HAddrFromCoords(wsCoords, getBuildingInfo);
+        HAddrFromCoords(neCoords, getBuildingInfo);
     }else{
         //hideMarkers(null);              //마커 삭제
         setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제 
@@ -166,7 +171,12 @@ function getBuildingInfo(result, status){
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST","getAptRoadName");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
-   
+    // console.log(map.getBounds())
+    // console.log(map.getBounds().ha)
+    // var coords = new kakao.maps.LatLng(map.getBounds().ha, map.getBounds().qa);
+    // console.log(coords)
+
+
     //행정동
     if (status === kakao.maps.services.Status.OK) {
         for(var i = 0; i < result.length; i++) {
@@ -483,7 +493,7 @@ more.addEventListener("click", function(){
 //--------------------------왼쪽 상단 현재 지도영역 중심의 주소이름------------------------
 function HAddrFromCoords(coords, callback) {
     // 좌표로 행정동 주소 정보를 요청합니다
-    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);         
+    geocoder.coord2RegionCode(coords.getLng(), coords.getLat(), callback);      
 }
 
 function BAddrFromCoords(coords, callback) {
@@ -522,12 +532,10 @@ function displayCenterInfo(result, status) {
 
 var ps= new kakao.maps.services.Places();
 
-// // 키워드로 장소를 검색합니다
-// searchPlaces();
 
 // 키워드 검색을 요청하는 함수입니다
 function searchPlaces() {
-
+ 
     var keyword = document.getElementById('keyword').value;
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
@@ -547,7 +555,7 @@ function placesSearchCB(data, status, pagination) {
         var bounds = new kakao.maps.LatLngBounds(), 
         listStr = '';
 
-  
+        console.log(data)
         for ( var i=0; i<2; i++ ) {
             // 마커를 생성하고 지도에 표시합니다
             var placePosition = new kakao.maps.LatLng(data[0].y, data[0].x)
@@ -562,7 +570,7 @@ function placesSearchCB(data, status, pagination) {
         // 검색된 장소 위치를 기준으로 지도 범위를 재설정합니다
         map.setBounds(bounds);
         getRegionName();
-    
+       
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
         alert('검색 결과가 존재하지 않습니다.');
@@ -625,7 +633,7 @@ function searchSuggest(){
                 
                     
                 var result = JSON.parse(xhttp.responseText.trim());
-                
+                console.log(result)
                 let apt = result.apt;
                 let address = result.address;
 
@@ -634,57 +642,64 @@ function searchSuggest(){
                 }else if(result.length>0){
                     sugguestList.style.display="block"
                 }
-            
-                for(let i=0; i<address.length; i++){
+
+                if(result.apt.length==0 && result.address.length==0){
                     let selectItem = document.createElement("div")
-                    let selectItemWrap = document.createElement("div")
-                    let aptDiv = document.createElement("div")
-                    let addressDiv = document.createElement("div")
-                    
-                    aptDiv.innerText=address[i].sigungu
-                    addressDiv.innerText = address[i].sigungu
-                    selectItem.className="selectItem"
-                    addressDiv.className="addressDIV"
-                    selectItem.setAttribute("data-address",address[i].sigungu)
-                    selectItemWrap.appendChild(aptDiv)
-                    selectItemWrap.appendChild(addressDiv)
-                    selectItem.appendChild(selectItemWrap)
-                    sugguestList.appendChild(selectItem)
-                    
-                    selectItem.addEventListener("click",function(){
-                        console.log(selectItem.getAttribute("data-address"))
-                        keyword.value=selectItem.firstChild.firstChild.innerText
-                        searchPlaces();
-                    })
+                    // selectItem.innerText="검색결과가 없습니다."
+                    // selectItem.className="selectItem"
+                    // sugguestList.appendChild(selectItem)
+                }else{
+                    for(let i=0; i<address.length; i++){
+                        let selectItem = document.createElement("div")
+                        let selectItemWrap = document.createElement("div")
+                        let aptDiv = document.createElement("div")
+                        let addressDiv = document.createElement("div")
+                        
+                        aptDiv.innerText=address[i].sigungu
+                        addressDiv.innerText = address[i].sigungu
+                        selectItem.className="selectItem"
+                        addressDiv.className="addressDIV"
+                        selectItem.setAttribute("data-address",address[i].sigungu)
+                        selectItemWrap.appendChild(aptDiv)
+                        selectItemWrap.appendChild(addressDiv)
+                        selectItem.appendChild(selectItemWrap)
+                        sugguestList.appendChild(selectItem)
+                        
+                        selectItem.addEventListener("click",function(){
+                            console.log(selectItem.getAttribute("data-address"))
+                            keyword.value=selectItem.firstChild.firstChild.innerText
+                            searchPlaces(selectItem.getAttribute("data-address"));
+                        })
+                    }
+    
+                    for(let i=0; i<apt.length; i++){
+                        let selectItem = document.createElement("div")
+                        let selectItemWrap = document.createElement("div")
+                        let aptDiv = document.createElement("div")
+                        let addressDiv = document.createElement("div")
+                        
+                        aptDiv.innerText=apt[i].buildingNm
+                        addressDiv.innerText = apt[i].sigungu
+                        selectItem.className="selectItem"
+                        addressDiv.className="addressDIV"
+                        selectItem.setAttribute("data-address",apt[i].roadName)
+                        selectItemWrap.appendChild(aptDiv)
+                        selectItemWrap.appendChild(addressDiv)
+                        selectItem.appendChild(selectItemWrap)
+                        sugguestList.appendChild(selectItem)
+    
+                        selectItem.addEventListener("click",function(){
+                            console.log(selectItem.getAttribute("data-address"))
+                            keyword.value=selectItem.firstChild.firstChild.innerText
+                            searchPlaces(selectItem.getAttribute("data-address"));
+                        })
+                    }
                 }
 
-                for(let i=0; i<apt.length; i++){
-                    let selectItem = document.createElement("div")
-                    let selectItemWrap = document.createElement("div")
-                    let aptDiv = document.createElement("div")
-                    let addressDiv = document.createElement("div")
-                    
-                    aptDiv.innerText=apt[i].buildingNm
-                    addressDiv.innerText = apt[i].sigungu
-                    selectItem.className="selectItem"
-                    addressDiv.className="addressDIV"
-                    selectItem.setAttribute("data-address",apt[i].roadName)
-                    selectItemWrap.appendChild(aptDiv)
-                    selectItemWrap.appendChild(addressDiv)
-                    selectItem.appendChild(selectItemWrap)
-                    sugguestList.appendChild(selectItem)
-
-                    selectItem.addEventListener("click",function(){
-                        console.log(selectItem.getAttribute("data-address"))
-                        keyword.value=selectItem.firstChild.firstChild.innerText
-                        searchPlaces();
-                    })
-                }
             }
         });
    
-        
-        
+         
         if((e.key==="ArrowUp" || e.key==="ArrowDown") && sugguestList.style.display==="block"){
             const selectedItem = sugguestList.querySelector("div.selectItem.selected")
             
@@ -703,15 +718,15 @@ function searchSuggest(){
             target.classList.add("selected")
            
             keyword.value = target.firstChild.firstChild.textContent
-   
-
         }
 
         if(e.key==="Escape"){
             closeSuggestList();
         }
-
-    }, 300));
+        if(e.key==="Enter"){
+            closeSuggestList();
+        }
+    }, 200));
 }
 
 function closeSuggestList(){
