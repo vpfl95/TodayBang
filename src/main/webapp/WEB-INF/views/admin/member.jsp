@@ -70,13 +70,13 @@
 						<tr id = "memberDiv">
 							<th><label for="member"><input id= "member"  type="checkbox" name= "memberFilter" value="5">회원</label>
 							<td><label for="diamond"><input id= "diamond" class = "memberClass" type="checkbox" name= "memberFilter" value="10">Diamond</label>
-							<td><label for="gold"><input id= "gold" class = "memberClass" type="checkbox" name= "memberFilter" value="11">Gold</label>
+							<td><label for="gold"><input id= "gold" class = "memberClass" type="checkbox" name= "memberFilter" value="20">Gold</label>
 							
-							<td><label for="silver"><input id= "silver" class = "memberClass" type="checkbox" name= "memberFilter" value="12">Silver</label>
-							<td><label for="white"><input id= "white" class = "memberClass" type="checkbox" name= "memberFilter" value="13">White</label>
+							<td><label for="silver"><input id= "silver" class = "memberClass" type="checkbox" name= "memberFilter" value="30">Silver</label>
+							<td><label for="white"><input id= "white" class = "memberClass" type="checkbox" name= "memberFilter" value="40">White</label>
 						</tr>
 						<tr>
-							<td><label for="ban"><input id= "ban" type="checkbox" name= "memberFilter" value="20">Ban</label>
+							<td><label for="ban"><input id= "ban" type="checkbox" name= "memberFilter" value="100">Ban</label>
 							
 						</tr>
 						<tr>
@@ -114,11 +114,11 @@
 						</tbody>
 							<c:forEach items="${memberList}" var="list">
 								<c:set var="ban" value="false"/>
-								<c:forEach items="${list.roleDTOs }" var="role">
-									<c:if test="${role.roleNum eq 20 }">
-										<c:set var="ban" value="true"/>
-									</c:if>
-								</c:forEach>
+								
+								<c:if test="${list.newRoleNum /100 >= 1 }">
+									<c:set var="ban" value="true"/>
+								</c:if>
+								
 							
 								<c:if test="${ban}">
 									<tr class = "ban">
@@ -127,25 +127,35 @@
 									<tr>
 								</c:if>
 								
-								
+									
 									<td>${list.userId }</td>
 									<td>${list.nickname }</td>
-									<c:set var="done" value="false"/>
+									
 									<td>
-										<c:if test="${list.roleDTOs[0].roleNum < 10}">
-											${list.roleDTOs[0].roleName}
-										<c:set var="done" value="true"/>
+										<c:if test="${(list.newRoleNum % 100) % 10 >0}">
+											<c:forEach items="${roleList }" var="role">
+												<c:if test="${role.roleNum eq list.newRoleNum % 10}">
+													${role.roleName }
+												</c:if>
+											
+											
+											</c:forEach>
+											
+											
+											
 										</c:if>
 									</td>
 									
 									<td>
-										<c:if test="${list.roleDTOs[0].roleNum >9}">
-											<c:if test="${done }">
-												${list.roleDTOs[1].roleName}
-											</c:if>
-											<c:if test="${!done }">
-												${list.roleDTOs[0].roleName}
-											</c:if>
+										<c:if test="${(list.newRoleNum % 100)  >=10}">
+												
+												<c:forEach items="${roleList }" var="role">
+												<c:if test="${role.roleNum eq (list.newRoleNum % 100)-(list.newRoleNum % 10)}">
+													${role.roleName }
+												</c:if>
+											
+											
+											</c:forEach>
 										</c:if>
 									</td>
 									

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.goodee.home.member.MemberDTO;
+import com.goodee.home.member.RoleDTO;
 import com.goodee.home.util.Pager;
 
 @Repository
@@ -38,8 +39,18 @@ public class AdminDAO {
 		return sqlSession.insert(NAMESPACE+"addMemberRank",memberDTO);
 	}
 	
+	public int deleteMemberRank(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.delete(NAMESPACE+"deleteMemberRank",memberDTO);
+	}
+	
 	public MemberDTO getDetailMember(MemberDTO memberDTO) throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE+"getDetailMember",memberDTO);
 	}
+	
+	public List<RoleDTO> getRole() throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getRole");
+	}
+	
 }

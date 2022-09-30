@@ -38,12 +38,13 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		
 		pager.setUrl("member");
-		
-		
-		
 		List<MemberDTO> ar = adminSerivece.getMember(pager);
-		mv.addObject("pager",pager);
+		List<RoleDTO> rr = adminSerivece.getRole();
 		
+		
+		
+		mv.addObject("pager",pager);
+		mv.addObject("roleList",rr);
 		mv.addObject("memberList",ar);
 		return mv;
 		
@@ -52,9 +53,6 @@ public class AdminController {
 	
 	@GetMapping("updateRank")
 	public String updateMemberRank(MemberDTO memberDTO,Pager page,String action) throws Exception{
-		
-		//newRoleNum 	20/벤   21/벤해제
-		
 		
 		
 		adminSerivece.updateMemberRank(memberDTO,action);

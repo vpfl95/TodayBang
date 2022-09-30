@@ -17,24 +17,24 @@
 			</sql>
 			
 			
-			<select id="getMember" parameterType="Pager" resultMap="getMemberResult">
+			<select id="getMember" parameterType="Pager" resultType="MemberDTO">
 				SELECT * 
 				FROM (SELECT ROWNUM R,N.*
-				      FROM  (SELECT MB.USERID , MB.NICKNAME , MR.ROLENUM , RL.ROLENAME
+				      FROM  (SELECT MB.USERID , MB.NICKNAME , SUM(MR.ROLENUM) newRoleNum
 				        FROM MEMBERS MB
 				            INNER JOIN "MEMBER-ROLE" MR
 				            ON MB.USERID = MR.USERID
 				            INNER JOIN "ROLE" RL
 				            ON MR.ROLENUM = RL.ROLENUM
 				        <include refid="getFilter"></include>
-				         )N)
+				         GROUP BY MB.USERID, MB.NICKNAME )N)
 				WHERE R BETWEEN #{startRow} AND #{lastRow}
 					
 					
 					
 			</select>
 			
-			<resultMap type="MemberDTO" id="getMemberResult">
+			<!-- <resultMap type="MemberDTO" id="getMemberResult">
 				<id column="USERID" property="userId"/>
 				<result column="NICKNAME" property="nickname"/>
 				<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
@@ -45,7 +45,7 @@
 			
 			
 			
-			</resultMap>
+			</resultMap> -->
 			
 			<select id="getMemberCount" resultType="Long">
 			SELECT COUNT(*) FROM MEMBERS
@@ -62,7 +62,7 @@
 			</insert>
 		
 			<delete id="deleteMemberRank" parameterType="MemberDTO">
-				DELETE "MEMBER-ROLE" WHERE ROLENUM=20 AND USERID=#{userId};
+				DELETE "MEMBER-ROLE" WHERE ROLENUM=100 AND USERID=#{userId}
 			</delete>
 		
 		
@@ -91,5 +91,10 @@
 					<result column="ROLENAME" property="roleName"/>
 				</collection>
 			</resultMap>
+		
+			<select id="getRole" resultType="RoleDTO">
+				SELECT * FROM ROLE
+			
+			</select>
 		
 		</mapper>

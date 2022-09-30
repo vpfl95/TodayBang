@@ -41,13 +41,13 @@ public class AdminSerivece {
 		
 		
 		if(action.equals("ban")) {
-			newRoleNum = 20L;
+			newRoleNum = 100L;
 			memberDTO.setNewRoleNum(newRoleNum);
 			adminDAO.addMemberRank(memberDTO);
 			
 		}else if (action.equals("noBan")) {
 			
-			//adminDAO.deleteMemberRank();
+			adminDAO.deleteMemberRank(memberDTO);
 		}
 		
 		
@@ -55,17 +55,17 @@ public class AdminSerivece {
 		
 		if(action.equals("up")||action.equals("down")) {
 			for(RoleDTO role : memberDTO.getRoleDTOs()) {
-				if(role.getRoleNum()>9 && role.getRoleNum()<20) {
+				if(role.getRoleNum()>9 && role.getRoleNum()<100) {
 				memberDTO.setRoleDTO(role);
 				if(action.equals("up")) {
-					newRoleNum = role.getRoleNum() - 1;
+					newRoleNum = role.getRoleNum() - 10;
 					memberDTO.setNewRoleNum(newRoleNum);
 				}else if(action.equals("down")) {
-					newRoleNum = role.getRoleNum() + 1;
+					newRoleNum = role.getRoleNum() + 10;
 					memberDTO.setNewRoleNum(newRoleNum);
 				}
 				
-				if(newRoleNum >9 && newRoleNum<14) {
+				if(newRoleNum >9 && newRoleNum<100) {
 					adminDAO.updateMemberRank(memberDTO);
 				}
 				
@@ -83,6 +83,10 @@ public class AdminSerivece {
 		
 		
 		return adminDAO.addMemberRank(memberDTO);
+	}
+	
+	public List<RoleDTO> getRole() throws Exception{
+		return adminDAO.getRole();
 	}
 	
 }
