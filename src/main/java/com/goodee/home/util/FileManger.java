@@ -33,18 +33,4 @@ public class FileManger {
 		
 		return fileName;
 	}
-	
-	public boolean deleteFile(String path, ServletContext servletContext, FileDTO fileDTO) throws Exception {
-		String realPath = servletContext.getRealPath(path);
-		File file = new File(realPath, fileDTO.getFileName());
-		
-		return file.delete();
-	}
-	
-	public boolean deleteFile(String path, ServletContext servletContext, String fileName) throws Exception {
-		String realPath = servletContext.getRealPath(path);
-		File file = new File(realPath, fileName);
-		
-		return file.delete();
-	}
 }
