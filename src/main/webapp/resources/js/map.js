@@ -46,32 +46,48 @@ kakao.maps.event.addListener(map, 'idle', function() {
     console.log("마커오버레이",marker_overlays)
 
     //시,군,동, 지역 이름 커스텀 오버레이 출력
-    for(let i in getRegion_result){
-        setTimeout(function(){
-            if(getRegion_result[i].sido!=null){
-                addCustomOverlay(getRegion_result[i].sido, getRegion_result[i].lat, getRegion_result[i].lon);   
-            }else if(getRegion_result[i].sigungu!=null){
-                addCustomOverlay(getRegion_result[i].sigungu, getRegion_result[i].lat, getRegion_result[i].lon);   
-            }else{
-                addCustomOverlay(getRegion_result[i].emd, getRegion_result[i].lat, getRegion_result[i].lon);   
-            }
-        },10);
-    }
 
-    
     if(map.getLevel()<=4){
-        
-        var wsCoords = new kakao.maps.LatLng(map.getBounds().qa, map.getBounds().ha);
+        var swCoords = new kakao.maps.LatLng(map.getBounds().qa, map.getBounds().ha);
         var neCoords = new kakao.maps.LatLng(map.getBounds().pa, map.getBounds().oa);
+        var nwCoords = new kakao.maps.LatLng(map.getBounds().pa, map.getBounds().ha);
+        var seCoords = new kakao.maps.LatLng(map.getBounds().qa, map.getBounds().oa);
         HAddrFromCoords(map.getCenter(), getBuildingInfo);
-        HAddrFromCoords(wsCoords, getBuildingInfo);
+        HAddrFromCoords(swCoords, getBuildingInfo);
         HAddrFromCoords(neCoords, getBuildingInfo);
-    }else{
-        //hideMarkers(null);              //마커 삭제
-        setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제 
+        HAddrFromCoords(nwCoords, getBuildingInfo);
+        HAddrFromCoords(seCoords, getBuildingInfo);
+    }else if(map.getLevel()>=5 && map.getLevel()<7){
+        setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제
+        for(let i in getRegion_result){
+            setTimeout(function(){
+                if(getRegion_result[i].sido==null && getRegion_result[i].sigungu==null){
+                    addCustomOverlay(getRegion_result[i].emd, getRegion_result[i].lat, getRegion_result[i].lon);  
+                }
+            },10);
+        }
+    }else if(map.getLevel()>=7 && map.getLevel()<11){
+        setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제
+        for(let i in getRegion_result){
+            setTimeout(function(){
+    
+                if(getRegion_result[i].sigungu!=null){
+                    addCustomOverlay(getRegion_result[i].sigungu, getRegion_result[i].lat, getRegion_result[i].lon);
+                } 
+            },10);
+        }
+    }else if(map.getLevel()>=11){
+        setCustomOverlays(null, marker_overlays);  //건물명오버레이도 삭제
+        for(let i in getRegion_result){
+            setTimeout(function(){
+    
+                if(getRegion_result[i].sido!=null){
+                    addCustomOverlay(getRegion_result[i].sido, getRegion_result[i].lat, getRegion_result[i].lon);   
+                }
+            },10);
+        }
     }
-
-   
+  
 });
 
 
@@ -304,6 +320,7 @@ function addMarker(address_result){
                         yAnchor: 1
                     });
                     
+                    //console.log(customOverlay.getContent())
                     customOverlay.setMap(map);
 
                     if(marker_overlays.includes(customOverlay)){ //***************************커스텀오버레이가 배열에 이미 들어있는지 확인이 안됨**********************
