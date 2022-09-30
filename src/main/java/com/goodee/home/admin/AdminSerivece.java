@@ -24,12 +24,17 @@ public class AdminSerivece {
 	
 	
 	public List<MemberDTO> getMember(Pager pager) throws Exception{
+		Long totalCount = getMemberCount(pager);
 		
-		pager.getNum(getMemberCount(pager));
-		pager.getRowNum();
-		
-		
-		return adminDAO.getMember(pager);
+		if(totalCount !=null) {
+			pager.getNum(totalCount);
+			pager.getRowNum();
+			return adminDAO.getMember(pager);
+		}else {
+			pager.getNum(1L);
+			pager.getRowNum();
+			return adminDAO.getMember(pager);
+		}	
 	}
 	
 	

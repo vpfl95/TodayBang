@@ -101,6 +101,11 @@ public class Pager {
 	
 	public void getNum(Long totalCount)throws Exception{
 		//2.totalcount로 totalPage 구하기(총 페이지 개수)
+		
+			
+			
+		
+		
 		this. totalPage = totalCount % this.getPerPage()==0 ? totalCount/this.getPerPage() : totalCount/this.getPerPage()+1;
 		//3.totalPage를 이용해 totalBlock 구하기
 		Long totalBlock =  totalPage % this.getPerBlock() == 0 ? totalPage/this.getPerBlock() : totalPage/this.getPerBlock()+1;
@@ -121,6 +126,8 @@ public class Pager {
 		if(curBlock<totalBlock) {
 			next=true;
 		}
+		
+		
 	}
 	
 	public Long getPage() {
