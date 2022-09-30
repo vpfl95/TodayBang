@@ -2,51 +2,44 @@ function getParam() {
     
     let param;
     
-    var regex = /[^0-9^=^p^s]/g;	
+    var regex = /[^0-9^=^F^s^p]/g;	
 
     let results = location.search.replaceAll(regex,"");
-    param = results.split("=");
+    param = results.split("F=");
             //?page=2&kind=&search=?memberFilter=1&memberFilter=2
-            // =5=10=20=40 s=11
+            // p=1s=1=5=10=20=40 
     console.log(results);
     console.log(param);
     const checkbox = document.getElementsByTagName("input");
     let pass = false;
-    let search = false;
+    
     const searchIn = document.querySelector("#search");
-    for(par of param){ // p 2 s 3 10 1
-        if(par == "p"){
-            pass=true;
-            continue;
 
-        }
-        if(par == "s"){
+    let param1 = param[0].split("s=");
+    
+    // p = 2 s = 2 // s = 3
+    console.log("search = " + param1);
+    searchIn.value = param1[1];
+   
 
-            search=true;
-            continue;
 
-        }
 
-        if(pass==true){
-            pass = false;
-            continue;
-        }else if(search == true){
-            searchIn.value = par;
-            search=false;
-            continue;
-        }
-
+    for(par of param){ // p 2s 3 10 1
+        
         console.log("비교 pa" + par);
 
 
         for(ch of checkbox){
+            if(ch.name == "memberFilter"){
+                if(ch.value == par){
 
-            if(ch.value == par){
+                   ch.checked = true;
 
-                ch.checked = true;
 
+                }
 
             }
+            
         }
     }
 }
