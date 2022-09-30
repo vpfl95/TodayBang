@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.goodee.home.realEstate.RealEstateDTO;
+import com.goodee.home.util.MaemulPager;
 
 
 @Repository
@@ -19,8 +20,19 @@ public class AptDAO {
 		return sqlSession.selectList(NAMESPACE+"getAptRoadName",aptDTO);
 	}
 	
-	public List<AptDTO> getList(AptDTO aptDTO)throws Exception{
-		return sqlSession.selectList(NAMESPACE+"getList", aptDTO);
+	public List<AptDTO> getList(MaemulPager maemulPager)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getList", maemulPager);
 	}
 	
+	public Long getTotalCount(MaemulPager maemulPager)throws Exception{
+		return sqlSession.selectOne(NAMESPACE+"getTotalCount", maemulPager);
+	}
+	
+	public List<AptDTO> getSearchAddressList(String search)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getSearchAddressList", search);
+	}
+	
+	public List<AptDTO> getSearchAptList(String search)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getSearchAptList", search);
+	}
 }
