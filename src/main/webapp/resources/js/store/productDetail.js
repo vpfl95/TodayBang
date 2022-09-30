@@ -33,7 +33,7 @@ const radio3 = document.querySelectorAll('.radio3');
 const radio4 = document.querySelectorAll('.radio4');
 const reviewList = document.querySelectorAll('.reviewList');
 const btnWrite = document.querySelector('#btnWrite');
-const writer = document.querySelector('#writer');
+const reviewWriter = document.querySelector('#reviewWriter');
 const userId = document.querySelector('#userId');
 const contents = document.querySelector('#contents');
 const reviewImage = document.querySelector('#reviewImage');
@@ -264,7 +264,7 @@ function setModal() {
 }
 
 // 리뷰 쓰기 버튼 클릭 시 입력된 정보들 초기화
-writer.onclick=function() {
+reviewWriter.onclick=function() {
     for(r of radio) {
         r.checked = false;
     }

@@ -221,7 +221,7 @@
 					</c:choose>
 				</div>
 				<div class="d-flex">
-					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
+					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}" data-bs-toggle="modal" data-bs-target="#reviewModal">수정</button>
 				</div>
 			</div>
 		</div>

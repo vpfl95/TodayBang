@@ -47,10 +47,10 @@ public class ProductReviewController {
 			HelpDTO helpDTO = new HelpDTO();
 			helpDTO.setRevNum(dto.getRevNum());
 			Long count = productReviewService.getHelpCount(helpDTO);
+			totalCount.add(count);
 			if(memberDTO != null) {
 				helpDTO.setUserId(memberDTO.getUserId());
 				helpDTO = productReviewService.getHelp(helpDTO);
-				totalCount.add(count);
 				chkHelp.add(helpDTO);
 			} else {
 				chkHelp = null;
@@ -92,7 +92,6 @@ public class ProductReviewController {
 	@ResponseBody
 	public boolean deleteReview(ProductReviewDTO productReviewDTO, HttpSession session) throws Exception {
 		productReviewDTO = productReviewService.getReviewDetail(productReviewDTO);
-		System.out.println(productReviewDTO.getFileName());
 		int result = productReviewService.deleteReview(productReviewDTO);
 		if(result == 1 && productReviewDTO.getFileName() != null) {
 			return fileManger.deleteFile("/resources/upload/store/review", session.getServletContext(), productReviewDTO.getFileName());

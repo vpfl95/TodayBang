@@ -95,29 +95,46 @@
                 <div class="d-flex justify-content-center selling-nav">
                     <div><a href="#productDetailList">상품정보</a></div>
                     <div><a href="#review">리뷰</a></div>
-                    <div>문의</div>
+                    <div><a href="#inquiry">문의</a></div>
                 </div>
                 <div class="productDetailList"></div>
+
+                <!-- 리뷰 페이지 -->
                 <a name="review"></a>
                 <div class="d-flex justify-content-center selling-nav">
                     <div><a href="#productDetailList">상품정보</a></div>
                     <div><a href="#review">리뷰</a></div>
-                    <div>문의</div>
+                    <div><a href="#inquiry">문의</a></div>
                 </div>
         
                 <div class="d-flex justify-content-between mb-2">
                     <div id="review"><b>리뷰</b></div>
                     <!-- Button trigger modal -->
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" id="writer"><b>리뷰쓰기</b></button>
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#reviewModal" id="reviewWriter"><b>리뷰쓰기</b></button>
                 </div>
                 <div class="reviewList"></div>
+
+                <!-- 문의 페이지-->
+                <a name="inquiry"></a>
+                <div class="d-flex justify-content-center selling-nav mt-5">
+                    <div><a href="#productDetailList">상품정보</a></div>
+                    <div><a href="#review">리뷰</a></div>
+                    <div><a href="#inquiry">문의</a></div>
+                </div>
+
+                <div class="d-flex justify-content-between mb-2 mt-3">
+                    <div id="inquiry"><b>문의</b></div>
+                    <!-- Button trigger modal -->
+                    <button type="button" data-bs-toggle="modal" data-bs-target="#inquiryModal" id="inqueryWriter"><b>문의하기</b></button>
+                </div>
+                <div class="inqueryList"></div>
             </div>
             <div style="width: 30%;">
                 <div class="fixInfo"></div>
             </div>
         </div>
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <!-- Review Modal -->
+        <div class="modal fade" id="reviewModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog">
                 <div class="modal-content" style="width: 100%;">
                     <div class="modal-header">
@@ -186,7 +203,38 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" style="width: 100%;" id="btnWrite">완료</button>
+                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnWrite">완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inquery Modal -->
+        <div class="modal fade" id="inquiryModal" tabindex="-1" aria-labelledby="inquiryModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 100%;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inquiryModalLabel">상품 문의하기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-section d-flex justify-content-center" style="text-align: center;">
+                            <div style="width: 33%;">상품</div>
+                            <div style="width: 33%;">배송</div>
+                            <div style="width: 33%;">기타</div>
+                        </div>
+                        <div class="modal-section">
+                            <div class="modal-section-title">문의내용</div>
+                            <textarea name="contents" id="contents" cols="60" rows="5"></textarea>
+                        </div>
+                        <div class="modal-section">
+                            <p>- 문의내용에 대한 답변은 ‘마이페이지 > 나의 쇼핑 > 나의 문의내역’ 또는 ‘상품 상세페이지’에서 확인 가능합니다.</p>
+                            <p>- 배송,결제,교환/반품 문의는 고객센터로 문의 바랍니다.</p>
+                            <p>- 상품과 관련 없거나 부적합한 내용을 기재하시는 경우, 사전 고지 없이 삭제 또는 차단될 수 있습니다.</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnWrite">완료</button>
                     </div>
                 </div>
             </div>
