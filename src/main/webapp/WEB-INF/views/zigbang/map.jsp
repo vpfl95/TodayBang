@@ -25,15 +25,18 @@
 		.building-bot-select {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: black;}
 		.building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);overflow: hidden;text-overflow: ellipsis;}
 		
-		#maemulList{position:absolute;right:10px;top:50px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-		#buildingName{position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-		#buildingWrap{position:absolute;right:10px;top:40px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-		
 		#searchWrap{position:absolute; right:10px;top:10px;border-radius: 2px;z-index:10;padding:5px; height: 30%;}
 		#sugguestList{overflow: auto; height: 100%; display: none;}
 		.selectItem{background: white;font-size: 12px;font-weight: bold;color: rgb(68, 68, 68);box-sizing: border-box;cursor: pointer;padding: 13px 10px 0px;line-height: 18px;border:1px solid gray}
 		.addressDIV{color: rgb(68, 68, 68);font-size: 10px;font-weight: normal;}
 		.selected{background-color: lightskyblue; color: white;}
+
+		#buildingInfo{position:absolute;right:10px;top:40px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+
+		#buildingWrap{position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+		#buildingName{position:absolute;right:10px;top:0px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+		#maemulList{position:absolute;right:10px;top:50px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+		
 
 		#review{position:absolute;right:10px;top:363px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 		
@@ -59,24 +62,30 @@
 			<div class="slClass" id="sugguestList"></div>
 		</form>
 
-		<div id="buildingWrap" style="height: 40%;width: 30%;overflow:auto;">
-			
-			<div id="buildingName"></div>
-	
-			<div id="maemulList">
-				<table id="realEstateList" border="1">
-					<tr>
-						<th>계약일</th>
-						<th>거래가격</th>
-						<th>면적</th>
-						<th>층수</th>
-					</tr>
-				</table>
-				<button id="more">더보기</button>
+		<div id="buildingInfo"style="height: 95%;width: 30%;overflow:auto;">
+
+			<div id="buildingWrap" style="height: 40%;width: 95%;overflow:auto;">
+				
+				<div id="buildingName"></div>
+		
+				<div id="maemulList">
+					<table id="realEstateList" border="1">
+						<tr>
+							<th>계약일</th>
+							<th>거래가격</th>
+							<th>면적</th>
+							<th>층수</th>
+						</tr>
+					</table>
+					<button id="more">더보기</button>
+				</div>
 			</div>
-		</div>
-		<div id="review" style="height: 40%;width: 30%;overflow:auto;">
-			<div>거주민 리뷰</div>
+
+			<div id="review" style="height: 40%;width: 95%;overflow:auto;">
+				<div>거주민 리뷰</div>
+				<button>리뷰작성하기</button>
+			</div>
+
 		</div>
 
 	</div>

@@ -2,11 +2,11 @@ const more = document.getElementById("more");
 const maemulList = document.getElementById("maemulList");
 const buildingName = document.getElementById("buildingName")
 const buildingWrap = document.getElementById("buildingWrap")
-
+const buildingInfo = document.getElementById("buildingInfo")
 let page =1;
 
 
-buildingWrap.style.display="none"
+buildingInfo.style.display="none"
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
     mapOption = { 
         center: new kakao.maps.LatLng(33.450701, 126.570667), // 지도의 중심좌표
@@ -39,7 +39,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
     
 
     page=1  //매물정보창 리스트 페이지1로 리셋
-    buildingWrap.style.display="none" //매물정보창 안보이기
+    buildingInfo.style.display="none" //매물정보창 안보이기
 
     getRegionName();    //지역명 커스텀 오버레이
     closeSuggestList(); //검색어 추천리스트 닫기
@@ -406,7 +406,7 @@ function addEventHandle(target,coords, type) {
 }
 
 function getMaemulList(roadName,p){
-    buildingWrap.style.display="block"
+    buildingInfo.style.display="block"
     
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getList?roadName="+roadName+"&page="+p);
