@@ -66,8 +66,7 @@ public class ProductController {
 		List<ProductDTO> ar = productService.getProductDetail(productDTO);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonList = mapper.writeValueAsString(ar);
-		System.out.println(jsonList);
-//		mv.addObject("list", jsonList);
+		mv.addObject("jsonList", jsonList);
 		mv.setViewName("store/products/detailProduct");
 		return mv;
 	}

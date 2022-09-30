@@ -41,6 +41,10 @@ public class ExhibitionController {
 			mv.setViewName("/store/exhibitions/exhibitions2393");
 		} else if(code == 1958) { // 조명
 			mv.setViewName("/store/exhibitions/exhibitions1958");
+		} else if(code == 1552) { // 수납
+			mv.setViewName("/store/exhibitions/exhibitions1552");
+		} else if(code == 2415) { // 프리미엄
+			mv.setViewName("/store/exhibitions/exhibitions2415");
 		}
 		return mv;
 	}

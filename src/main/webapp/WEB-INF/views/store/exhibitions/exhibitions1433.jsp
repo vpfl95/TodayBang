@@ -18,7 +18,7 @@
   <!-- 리퍼마켓 -->
   <c:import url="../../template/header.jsp"></c:import>
 
-    <section class="container mt-5" style="text-align: center;">
+    <section class="container mt-5">
 
         <div class="right_re mt-5">
             <div class="right_re1">

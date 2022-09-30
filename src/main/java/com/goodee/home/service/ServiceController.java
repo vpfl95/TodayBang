@@ -35,22 +35,23 @@ import oracle.jdbc.proxy.annotation.Post;
 @RequestMapping(value = { "/service/notice/*", "/service/qna/*"})
 public class ServiceController {
 
-	@Autowired
-	private ServiceService service;
-	
-	@Autowired
-	private HttpServletRequest request;
+//	@Autowired
+//	private ServiceService service;
+//	
+//	@Autowired
+//	private HttpServletRequest request;
 	
 	@ModelAttribute("board")
 	public String getBoardName() throws Exception{
 		
 		
-		String [] spList = request.getServletPath().split("/");
-		if(spList[2].equals("notice")) {
-			return "NOTICE";
-		}else {
-			return "QNA";
-		}
+//		String [] spList = request.getServletPath().split("/");
+//		if(spList[2].equals("notice")) {
+//			return "NOTICE";
+//		}else {
+//			return "QNA";
+//		}
+		return "QNA";
 	}
 	
 	
