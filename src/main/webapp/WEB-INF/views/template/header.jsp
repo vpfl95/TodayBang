@@ -12,7 +12,7 @@
           <li><a href="/store" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a>
     		</li>	
     			
-          <li><a href="/room" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
+          <li><a href="/apt/map" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
    			</li>
           <li><a href="/community/home" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
           <li><a href="/service/notice/list" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
@@ -80,7 +80,7 @@
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>    $(document).ready(function(){
      				var submenu = $(".hide");
-    			
+    				var url = location.href.split("/");
     	        	$(".menu").mouseover(function(){            
 						submenu.slideDown(150);        
 					})
@@ -91,33 +91,28 @@
    			                submenu.slideUp(150);       
    							$("#hr").remove();     
     					}     
-    				});    
-    				
-    				
-    				
-    				
-    				
+    				});   
     				
     				$(".menu").each (function(index,me){
     					
-    					if(location.href ==  me.href){
-    						
-    						
+    					var tag = me.href;
+    					tag = tag.split("/",4);
+    					
+    					
+    					if(url[3] ==  tag[3]){
     						$(this).addClass('selectColor');
-    						
-    						
     						let title = document.createAttribute("title");
     				        title.value = "selected";
     				        me.setAttributeNode(title);
-    				        
-    				        
+    					}else if(url[3] == "exhibitions" && index == 0){
+    						$(this).addClass('selectColor');
+    						let title = document.createAttribute("title");
+    				        title.value = "selected";
+    				        me.setAttributeNode(title);
+    						
+    						
     					}
-    					
-    					
-    					
     				});
-    				
-    				
    				});
     
     /* header scroll down  */
@@ -147,25 +142,14 @@
                if(linkArr[3] == ""){
             	   headerCategory("storeMenu");
                }else{
-            	   
             	   $(".menu").each (function(index,me){
    					if(me.title ==  "selected"){
-   						
-   						
    						headerCategory(me.id);
    				        
    					}
-   					
-   					
-   					
    					});
             	   
                }
-               
-               
-               
-               
-               
                submenu.slideDown(150); 
               
             }

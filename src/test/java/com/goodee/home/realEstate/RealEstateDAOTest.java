@@ -51,12 +51,12 @@ public class RealEstateDAOTest extends MyAbstractTest {
 //		
 //	}
 	
-	@Test
+//	@Test
 	public void getSearchList() throws Exception{
 		
-		List<AptDTO> arr = (List<AptDTO>)aptDAO.getSearchList("은마");
+//		List<AptDTO> arr = (List<AptDTO>)aptDAO.getSearchList("은마");
 		
-		assertEquals(9,arr.size());
+//		assertEquals(9,arr.size());
 		
 	}
 	
