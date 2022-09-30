@@ -27,21 +27,27 @@ public class MemberTest extends MyAbstractTest{
 		assertNotNull(memberDTO);
 		
 	}
-	//@Test
+	@Test
 	public void getJoinTest() throws Exception{
+		
+		
+		for(int i=0; i<10;i++) {
 			
-		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setUserId("ID2");
-		memberDTO.setPassword("PW2");
-		memberDTO.setNickname("nick2");
-		memberDTO.setEmail("email2");
-		memberDTO.setPhone("phone2");
-		memberDTO.setUserName("name2");
+			MemberDTO memberDTO = new MemberDTO();
+			
+			
+			memberDTO.setUserId("ID2" +i);
+			memberDTO.setPassword("PW2");
+			memberDTO.setNickname("nick2" +i);
+			memberDTO.setEmail("email2" +i +"@naver.com");
+			memberDTO.setPhone("010-" +i+"12-"+i+"43" );
+			memberDTO.setUserName("name2" +i);
+			
+			int result = memberDAO.getJoin(memberDTO);
+			memberDAO.setJoinRole(memberDTO);
+		}
 		
 		
-		int result = memberDAO.getJoin(memberDTO);
-		
-		assertEquals(1, result);
 		
 	}
 	//@Test
@@ -99,7 +105,7 @@ public class MemberTest extends MyAbstractTest{
 			
 		}
 		
-		@Test
+		//@Test
 		public void setDeliveryTest() throws Exception{
 			
 			DeliveryDTO dto = new DeliveryDTO();

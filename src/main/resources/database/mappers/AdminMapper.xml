@@ -65,8 +65,27 @@
 			
 			</resultMap> -->
 			
-			<select id="getMemberCount" resultType="Long">
-			SELECT COUNT(*) FROM MEMBERS
+			<select id="getMemberCount" parameterType="Pager" resultType="Long">
+			SELECT MAX(R)
+               FROM (SELECT ROWNUM R, S.*
+				FROM (SELECT N.USERID , N.NICKNAME, MAX(N.NEWROLENUM) roleNum
+				      FROM  (SELECT MB.USERID , MB.NICKNAME ,SUM(MR.ROLENUM) newRoleNum
+				        FROM MEMBERS MB
+				            INNER JOIN "MEMBER-ROLE" MR
+				            ON MB.USERID = MR.USERID
+				            INNER JOIN "ROLE" RL
+				            ON MR.ROLENUM = RL.ROLENUM
+                            <include refid="search"></include>
+                            GROUP BY MB.USERID, MB.NICKNAME 
+				         ) N
+                         INNER JOIN "MEMBER-ROLE" MR2
+                         ON N.USERID = MR2.USERID
+                        <include refid="getFilter"></include>  
+                        
+                        GROUP BY N.USERID , N.NICKNAME
+                        ) S)
+                       
+				
 			</select>
 		
 		

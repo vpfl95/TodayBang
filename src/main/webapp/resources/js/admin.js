@@ -19,7 +19,11 @@ function getParam() {
     
     // p = 2 s = 2 // s = 3
     console.log("search = " + param1);
-    searchIn.value = param1[1];
+    if(param1[1] != undefined){
+        searchIn.value = param1[1];
+
+    }
+    
    
 
 

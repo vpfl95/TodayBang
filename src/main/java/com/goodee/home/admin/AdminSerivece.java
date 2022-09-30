@@ -16,16 +16,16 @@ public class AdminSerivece {
 	private AdminDAO adminDAO;
 	
 	
-	public Long getMemberCount() throws Exception{
+	public Long getMemberCount(Pager pager) throws Exception{
 		
-		return adminDAO.getMemberCount();
+		return adminDAO.getMemberCount(pager);
 	}
 	
 	
 	
 	public List<MemberDTO> getMember(Pager pager) throws Exception{
 		
-		pager.getNum(getMemberCount());
+		pager.getNum(getMemberCount(pager));
 		pager.getRowNum();
 		
 		

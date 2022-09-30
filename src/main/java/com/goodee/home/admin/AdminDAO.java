@@ -23,10 +23,10 @@ public class AdminDAO {
 		return sqlSession.selectList(NAMESPACE+"getMember",pager);
 	}
 	
-	public Long getMemberCount() throws Exception{
+	public Long getMemberCount(Pager pager) throws Exception{
 		
 		
-		return sqlSession.selectOne(NAMESPACE+"getMemberCount");
+		return sqlSession.selectOne(NAMESPACE+"getMemberCount",pager);
 	}
 	
 	public int updateMemberRank(MemberDTO memberDTO) throws Exception{

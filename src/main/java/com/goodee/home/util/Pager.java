@@ -6,8 +6,8 @@ public class Pager {
 	private Long lastNum;
 	private Long startRow;
 	private Long lastRow;
-	private Long perPage;
-	private Long perBlock;
+	private Long perPage; // 한번에 보여줄 글 개수
+	private Long perBlock; // 한 번에 보여줄 PAGER 갯수
 	
 	//이전블럭의 유무-이전블럭이 있으면 true, 없으면 false
 	private boolean pre;
@@ -26,22 +26,36 @@ public class Pager {
 	// Pager 파라미터 부분
 	private String param="";
 	
+	private Long totalPage;
 	
 	
 	
 	
+	
+	
+	
+	public Long getTotalPage() {
+		return totalPage;
+	}
+
+	public void setTotalPage(Long totalPage) {
+		this.totalPage = totalPage;
+	}
+
 	public String getParam() {
 		
-		if(memberFilter != null && param=="") {
-			for(String me : memberFilter) {
-				System.out.println(me);
-				this.param += "&memberFilter="+me;
-				
-			}
+		if(param=="") {
 			
+			System.out.println("파라미터 호출");
+			
+			this.param += "&search="+this.getSearch();
+			
+			if(memberFilter != null) {
+				for(String me : memberFilter) {
+				this.param += "&memberFilter="+me;
+				}
+			}
 		}
-		
-		
 		return param;
 	}
 
@@ -87,7 +101,7 @@ public class Pager {
 	
 	public void getNum(Long totalCount)throws Exception{
 		//2.totalcount로 totalPage 구하기(총 페이지 개수)
-		Long totalPage = totalCount % this.getPerPage()==0 ? totalCount/this.getPerPage() : totalCount/this.getPerPage()+1;
+		this. totalPage = totalCount % this.getPerPage()==0 ? totalCount/this.getPerPage() : totalCount/this.getPerPage()+1;
 		//3.totalPage를 이용해 totalBlock 구하기
 		Long totalBlock =  totalPage % this.getPerBlock() == 0 ? totalPage/this.getPerBlock() : totalPage/this.getPerBlock()+1;
 		//4. page로 curBlock 찾기
