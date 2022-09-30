@@ -13,11 +13,38 @@ public class ProductDTO {
 	private Date regDate;
 	private Integer deliDate;
 	private Integer todayDeal;
-	private Long premium;
 	private Long deliFee;
-	private List<ProductImageDTO> productImageDTOs;
 	private ProductImageDTO productImageDTO;
+	private CategoryDTO categoryDTO;
+	private List<ProductImageDTO> productImageDTOs;
+	private List<Option1DTO> option1DTOs;
+	private List<Option2DTO> option2DTOs;
+	private List<Option3DTO> option3DTOs;
 	
+	public CategoryDTO getCategoryDTO() {
+		return categoryDTO;
+	}
+	public void setCategoryDTO(CategoryDTO categoryDTO) {
+		this.categoryDTO = categoryDTO;
+	}
+	public List<Option1DTO> getOption1DTOs() {
+		return option1DTOs;
+	}
+	public void setOption1DTOs(List<Option1DTO> option1dtOs) {
+		option1DTOs = option1dtOs;
+	}
+	public List<Option2DTO> getOption2DTOs() {
+		return option2DTOs;
+	}
+	public void setOption2DTOs(List<Option2DTO> option2dtOs) {
+		option2DTOs = option2dtOs;
+	}
+	public List<Option3DTO> getOption3DTOs() {
+		return option3DTOs;
+	}
+	public void setOption3DTOs(List<Option3DTO> option3dtOs) {
+		option3DTOs = option3dtOs;
+	}
 	public ProductImageDTO getProductImageDTO() {
 		return productImageDTO;
 	}
@@ -77,12 +104,6 @@ public class ProductDTO {
 	}
 	public void setDeliDate(Integer deliDate) {
 		this.deliDate = deliDate;
-	}
-	public Long getPremium() {
-		return premium;
-	}
-	public void setPremium(Long premium) {
-		this.premium = premium;
 	}
 	public Long getDeliFee() {
 		return deliFee;

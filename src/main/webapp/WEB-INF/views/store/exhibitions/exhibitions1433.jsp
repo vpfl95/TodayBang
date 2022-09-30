@@ -15,9 +15,10 @@
     integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
+  <!-- 리퍼마켓 -->
   <c:import url="../../template/header.jsp"></c:import>
 
-    <section class="container mt-5" style="text-align: center;">
+    <section class="container mt-5">
 
         <div class="right_re mt-5">
             <div class="right_re1">
@@ -75,7 +76,7 @@
 
           <img src="/resources/images/store/exhibitions/ex1433/refurOgoods.jpg" alt="" class="mt-3">
 
-          <div class="refurDetail d-flex justify-content-between">
+          <div class="exDetail d-flex justify-content-between">
             <div><b>전체</b></div>
             <div><b>가전</b></div>
             <div><b>침실</b></div>
