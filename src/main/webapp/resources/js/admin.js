@@ -2,24 +2,37 @@ function getParam() {
     
     let param;
     
-    var regex = /[^0-9^=^p]/g;	
+    var regex = /[^0-9^=^p^s]/g;	
 
     let results = location.search.replaceAll(regex,"");
     param = results.split("=");
             //?page=2&kind=&search=?memberFilter=1&memberFilter=2
-            // 
+            // =5=10=20=40 s=11
     console.log(results);
     console.log(param);
     const checkbox = document.getElementsByTagName("input");
     let pass = false;
-    for(par of param){ // p 2 10 1
+    let search = false;
+    const searchIn = document.querySelector("#search");
+    for(par of param){ // p 2 s 3 10 1
         if(par == "p"){
             pass=true;
             continue;
 
         }
+        if(par == "s"){
+
+            search=true;
+            continue;
+
+        }
+
         if(pass==true){
             pass = false;
+            continue;
+        }else if(search == true){
+            searchIn.value = par;
+            search=false;
             continue;
         }
 

@@ -176,6 +176,9 @@ public class Pager {
 		this.kind = kind;
 	}
 	public String getSearch() {
+		if(search ==null) {
+			search = "";
+		}
 		return search;
 	}
 	public void setSearch(String search) {

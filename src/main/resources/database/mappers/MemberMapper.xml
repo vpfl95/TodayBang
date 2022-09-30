@@ -22,7 +22,7 @@
 				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email})
 			</insert>
 			<insert id="setJoinRole" parameterType="MemberDTO">
-				INSERT INTO "MEMBER-ROLE" VALUES(TODAY_SEQ.NEXTVAL,13,#{userId})
+				INSERT INTO "MEMBER-ROLE" VALUES(TODAY_SEQ.NEXTVAL,40,#{userId})
 			</insert>
 			<select id="getJoinOverlab" parameterType="MemberDTO" resultType="MemberDTO">
 			SELECT * FROM MEMBERS WHERE USERID = #{userId} OR NICKNAME = #{nickname} OR PHONE = #{phone} OR EMAIL = #{email}

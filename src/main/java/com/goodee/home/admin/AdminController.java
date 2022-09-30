@@ -42,7 +42,7 @@ public class AdminController {
 		List<RoleDTO> rr = adminSerivece.getRole();
 		
 		
-		
+		mv.addObject("search",pager.getSearch());
 		mv.addObject("pager",pager);
 		mv.addObject("roleList",rr);
 		mv.addObject("memberList",ar);
@@ -57,9 +57,6 @@ public class AdminController {
 		
 		adminSerivece.updateMemberRank(memberDTO,action);
 		
-	
-
-		
 		String url = "";
 		
 		if(page.getPage() != null ) {
@@ -69,7 +66,13 @@ public class AdminController {
 			
 		}
 		
+		if(page.getSearch() != null) {
+			
+			url += "search=";
+			url += page.getSearch();
+			url += "&";
 		
+	}
 		if(page.getMemberFilter() != null) {
 			for (String i : page.getMemberFilter()) {
 				url += "memberFilter=";

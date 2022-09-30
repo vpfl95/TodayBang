@@ -15,6 +15,15 @@
 				
 			</sql>
 			
+			<sql id="search">
+				
+				
+				
+		 			WHERE
+		    		MB.USERID LIKE '%'||#{search}||'%' 	
+				 	OR MB.NICKNAME LIKE '%'||#{search}||'%'
+			</sql>
+			
 			
 			<select id="getMember" parameterType="Pager" resultType="MemberDTO">
 			 SELECT * 
@@ -26,12 +35,13 @@
 				            ON MB.USERID = MR.USERID
 				            INNER JOIN "ROLE" RL
 				            ON MR.ROLENUM = RL.ROLENUM
-                            
+                            <include refid="search"></include>
                             GROUP BY MB.USERID, MB.NICKNAME 
 				         ) N
                          INNER JOIN "MEMBER-ROLE" MR2
                          ON N.USERID = MR2.USERID
                         <include refid="getFilter"></include>  
+                        
                         GROUP BY N.USERID , N.NICKNAME
                         ) S)
                        

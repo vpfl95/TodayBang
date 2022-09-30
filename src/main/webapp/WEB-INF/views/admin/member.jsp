@@ -5,6 +5,8 @@
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
      <% 
+     
+     	String url = "";
      	String param = request.getParameter("page"); 
      
      	if(param == null) param = "1";
@@ -22,8 +24,9 @@
          	}
      		
      	}
+     	String param3 = request.getParameter("search"); 
      	
-     	
+     	url="page="+param+"&search="+param3+"&"+param2;
      	
      	
      	
@@ -51,6 +54,7 @@
 					<h3>필터</h3>
 					<hr>
 					<form action="./member" method="get">
+					<input type="text" id = "search"  name="search" placeholder="검색" >
 					<table class = "table">
 						<thead>
 						</thead>
@@ -78,6 +82,11 @@
 						<tr>
 							<td><label for="ban"><input id= "ban" type="checkbox" name= "memberFilter" value="100">Ban</label>
 							
+							<td></td>
+							<td></td>
+							<td></td>
+							<td colspan="1"></td>
+							
 						</tr>
 						<tr>
 							<td><button type="submit" id="memberFilterBtn" class="btn btn-primary"> 적용 </button>
@@ -89,10 +98,10 @@
 					
 					
 					</table>
-						
-						
-						
-						
+					
+					
+					
+					
 					</form>
 					
 					<table class = "table table-hover">
@@ -101,7 +110,7 @@
 								<th>ID</th>
 								<th>NICKNAME</th>
 								<th>관리자 등급</th>
-								<th>회원 등급</th>
+								<th>회원 등급 </th>
 							</tr>
 						
 						
@@ -162,14 +171,14 @@
 									
 										
 									
-									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=up">등급업</a></td>
-									<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=down">등급다운</a></td>
+									<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=up">등급업</a></td>
+									<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=down">등급다운</a></td>
 									
 									<c:if test="${ban}">
-										<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=noBan">벤해제</a></td>
+										<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=noBan">벤해제</a></td>
 									</c:if>
 									<c:if test="${!ban}">
-										<td><a href="./updateRank?page=<%=param %>&<%=param2 %>&userId=${list.userId}&action=ban">벤</a></td>
+										<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=ban">벤</a></td>
 									</c:if>
 							
 								</tr>
