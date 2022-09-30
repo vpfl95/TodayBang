@@ -6,9 +6,8 @@
 			
 			<sql id="getFilter">
 				<if test="memberFilter != null and memberFilter != ''">
-					WHERE RL.ROLENUM IN
+					WHERE MR2.ROLENUM IN
 					<!-- memberFilter -->
-					
 					<foreach item="item" index="index" collection="memberFilter" open="(" close=")" separator=",">
 						#{item}
 					</foreach>
@@ -18,16 +17,25 @@
 			
 			
 			<select id="getMember" parameterType="Pager" resultType="MemberDTO">
-				SELECT * 
-				FROM (SELECT ROWNUM R,N.*
-				      FROM  (SELECT MB.USERID , MB.NICKNAME , SUM(MR.ROLENUM) newRoleNum
+			 SELECT * 
+               FROM (SELECT ROWNUM R, S.*
+				FROM (SELECT N.USERID , N.NICKNAME, MAX(N.NEWROLENUM) roleNum
+				      FROM  (SELECT MB.USERID , MB.NICKNAME ,SUM(MR.ROLENUM) newRoleNum
 				        FROM MEMBERS MB
 				            INNER JOIN "MEMBER-ROLE" MR
 				            ON MB.USERID = MR.USERID
 				            INNER JOIN "ROLE" RL
 				            ON MR.ROLENUM = RL.ROLENUM
-				        <include refid="getFilter"></include>
-				         GROUP BY MB.USERID, MB.NICKNAME )N)
+                            
+                            GROUP BY MB.USERID, MB.NICKNAME 
+				         ) N
+                         INNER JOIN "MEMBER-ROLE" MR2
+                         ON N.USERID = MR2.USERID
+                        <include refid="getFilter"></include>  
+                        GROUP BY N.USERID , N.NICKNAME
+                        ) S)
+                       
+				       
 				WHERE R BETWEEN #{startRow} AND #{lastRow}
 					
 					
@@ -54,11 +62,11 @@
 		
 			<update id="updateMemberRank" parameterType="MemberDTO">
 			
-				UPDATE "MEMBER-ROLE" SET ROLENUM = #{newRoleNum} WHERE USERID=#{userId} AND ROLENUM = #{roleDTO.roleNum}
+				UPDATE "MEMBER-ROLE" SET ROLENUM = #{roleNum} WHERE USERID=#{userId} AND ROLENUM = #{roleDTO.roleNum}
 			</update>
 		
 			<insert id="addMemberRank" parameterType="MemberDTO">
-				INSERT INTO "MEMBER-ROLE" VALUES (TODAY_SEQ.NEXTVAL,#{newRoleNum},#{userId})
+				INSERT INTO "MEMBER-ROLE" VALUES (TODAY_SEQ.NEXTVAL,#{roleNum},#{userId})
 			</insert>
 		
 			<delete id="deleteMemberRank" parameterType="MemberDTO">

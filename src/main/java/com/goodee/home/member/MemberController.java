@@ -44,9 +44,9 @@ public class MemberController {
 				if(role.getRoleNum()<10) {
 					session.setAttribute("ManagerRole", role);
 					
-				}else if(role.getRoleNum()<20 && role.getRoleNum()>9) {
-					
-					session.setAttribute("MemeberRole", role);
+				}else if(role.getRoleNum()<100 && role.getRoleNum()>9) {
+					System.out.println("memberrole =" +role.getRoleNum());
+					session.setAttribute("MemberRole", role);
 				}
 				
 				

@@ -115,7 +115,7 @@
 							<c:forEach items="${memberList}" var="list">
 								<c:set var="ban" value="false"/>
 								
-								<c:if test="${list.newRoleNum /100 >= 1 }">
+								<c:if test="${list.roleNum /100 >= 1 }">
 									<c:set var="ban" value="true"/>
 								</c:if>
 								
@@ -132,9 +132,9 @@
 									<td>${list.nickname }</td>
 									
 									<td>
-										<c:if test="${(list.newRoleNum % 100) % 10 >0}">
+										<c:if test="${(list.roleNum % 100) % 10 >0}">
 											<c:forEach items="${roleList }" var="role">
-												<c:if test="${role.roleNum eq list.newRoleNum % 10}">
+												<c:if test="${role.roleNum eq list.roleNum % 10}">
 													${role.roleName }
 												</c:if>
 											
@@ -147,10 +147,10 @@
 									</td>
 									
 									<td>
-										<c:if test="${(list.newRoleNum % 100)  >=10}">
-												
+										<c:if test="${(list.roleNum % 100)  >=10}">
+												${list.roleNum}
 												<c:forEach items="${roleList }" var="role">
-												<c:if test="${role.roleNum eq (list.newRoleNum % 100)-(list.newRoleNum % 10)}">
+												<c:if test="${role.roleNum eq (list.roleNum % 100)-(list.roleNum % 10)}">
 													${role.roleName }
 												</c:if>
 											

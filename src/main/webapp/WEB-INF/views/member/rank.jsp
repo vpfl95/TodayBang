@@ -46,13 +46,13 @@
  			<c:when test="${MemberRole.roleNum eq 10}">
  				<img alt="" src="/resources/images/rank/Diamond.png">
  			</c:when>
- 			<c:when test="${MemberRole.roleNum eq 11}">
+ 			<c:when test="${MemberRole.roleNum eq 20}">
  				<img alt="" src="/resources/images/rank/Gold.png">
  			</c:when>
- 			<c:when test="${MemberRole.roleNum eq 12}">
+ 			<c:when test="${MemberRole.roleNum eq 30}">
  				<img alt="" src="/resources/images/rank/Silver.png">
  			</c:when>
- 			<c:when test="${MemberRole.roleNum eq 13}">
+ 			<c:when test="${MemberRole.roleNum eq 40}">
  				<img alt="" src="/resources/images/rank/White.png">
  			</c:when>
  		

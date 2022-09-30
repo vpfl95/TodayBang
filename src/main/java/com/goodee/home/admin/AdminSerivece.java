@@ -42,7 +42,7 @@ public class AdminSerivece {
 		
 		if(action.equals("ban")) {
 			newRoleNum = 100L;
-			memberDTO.setNewRoleNum(newRoleNum);
+			memberDTO.setRoleNum(newRoleNum);
 			adminDAO.addMemberRank(memberDTO);
 			
 		}else if (action.equals("noBan")) {
@@ -59,10 +59,10 @@ public class AdminSerivece {
 				memberDTO.setRoleDTO(role);
 				if(action.equals("up")) {
 					newRoleNum = role.getRoleNum() - 10;
-					memberDTO.setNewRoleNum(newRoleNum);
+					memberDTO.setRoleNum(newRoleNum);
 				}else if(action.equals("down")) {
 					newRoleNum = role.getRoleNum() + 10;
-					memberDTO.setNewRoleNum(newRoleNum);
+					memberDTO.setRoleNum(newRoleNum);
 				}
 				
 				if(newRoleNum >9 && newRoleNum<100) {
