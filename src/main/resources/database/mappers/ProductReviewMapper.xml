@@ -5,7 +5,7 @@
 <mapper namespace="com.goodee.home.store.review.ProductReviewDAO">
 	<insert id="addReview" parameterType="ProductReviewDTO">
 		INSERT INTO PRODUCTREVIEW VALUES (REV_SEQ.NEXTVAL, #{durStar}, #{designStar}, #{priceStar}, #{deliveryStar},
-		SYSDATE, #{fileName}, 0, #{contents}, #{productNum}, #{userId})
+		SYSDATE, #{fileName}, #{contents}, #{productNum}, #{userId})
 	</insert>
 	
 	<select id="getReview" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">
@@ -32,4 +32,12 @@
 	<select id="getHelpCount" parameterType="HelpDTO" resultType="Long">
 		SELECT COUNT(REVNUM), REVNUM FROM HELP WHERE REVNUM=#{revNum} GROUP BY REVNUM
 	</select>
+	
+	<select id="getReviewDetail" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">
+		SELECT * FROM PRODUCTREVIEW WHERE REVNUM = #{revNum}
+	</select>
+	
+	<delete id="deleteReview" parameterType="ProductReviewDTO">
+		DELETE PRODUCTREVIEW WHERE REVNUM = #{revNum}
+	</delete>
 </mapper>

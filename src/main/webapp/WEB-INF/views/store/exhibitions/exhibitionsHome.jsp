@@ -172,20 +172,40 @@
 
             <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">럭셔리 가구, 조명도 오늘의 직방 프리미엄!</h4>
-                            <p class="exhibitions-item-subText">최대 ~74% 할인중</p>
+                    <a href="detail?exhibitionCode=2415">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">럭셔리 가구, 조명도 오늘의 직방 프리미엄!</h4>
+                                <p class="exhibitions-item-subText">최대 ~74% 할인중</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_5.jpg" alt="">
-    
-                    </div>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_3.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/premium_5.jpg" alt="">
+                        </div>
+                    </a>
+                </div>
+
+                <div class="col-6">
+                    <a href="detail?exhibitionCode=1552">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/case1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">[1+1 행사중] 수납&생활용품</h4>
+                                <p class="exhibitions-item-subText">옷 정리, 욕실 청소까지 맡겨주세요!</p>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/case2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/case3.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/case4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/case5.jpg" alt="">
+        
+                        </div>
+                    </a>
                 </div>
             </div>
 		</div>

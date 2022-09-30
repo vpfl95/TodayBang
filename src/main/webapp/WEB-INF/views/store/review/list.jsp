@@ -100,15 +100,20 @@
 		font-size: 50px;
 		text-align: center;
 	}
+
+	.delete {
+		cursor: pointer;
+		margin-right: 10px;
+	}
 </style>
 </head>
 <body>
 	<div class="review-header d-flex">
 		<div style="width: 50%; padding-top: 30px;" class="d-flex justify-content-center">
 			<div class="d-flex justify-content-center" style="width: 66%;">
-				<div class="star-LargeRating"><span style="width:${((grade[0]+(grade[1]*2)+(grade[2]*3)+(grade[3]*4)+(grade[4]*5))/grade[5])*20}%"></span></div>
+				<div class="star-LargeRating"><span style="width:${totalGrade*20}%"></span></div>
 			</div>
-			<div class="totalGrade" style="width: 33%; margin-top: 7px; padding-right: 30px;">${(grade[0]+(grade[1]*2)+(grade[2]*3)+(grade[3]*4)+(grade[4]*5))/grade[5]}</div>
+			<div class="totalGrade" style="width: 33%; margin-top: 7px; padding-right: 30px;">${totalGrade}</div>
 		</div>
 		<div style="width: 50%;">
 			<div class="d-flex justify-content-center mt-3">
@@ -146,24 +151,29 @@
 	<hr>
 	<c:forEach items="${list}" var="dto" varStatus="i">
 		<div class="mt-3">
-			<div class="d-flex">
-				<div style="width: 10%; margin-right: 10px;">
-					<img src="../../resources/upload/store/review/${dto.fileName}" 
-					alt="..." style="width: 100%;">
-				</div>
-				<div style="width:50%;">
-					<div>${dto.userId}</div>
-					<div class="d-flex" style="width: 100%;">
-						<div class='star-rating'>
-							<span style="width:${(dto.durStar 
-								+ dto.designStar 
-								+ dto.priceStar 
-								+ dto.deliveryStar)/4*20}%">
-							</span>
+			<div class="d-flex justify-content-between">
+				<div class="d-flex">
+					<div style="width: 20%; margin-right: 10px;">
+						<c:if test="${not empty dto.fileName}">						
+							<img src="../../resources/upload/store/review/${dto.fileName}" 
+							alt="..." style="width: 100%;">
+						</c:if>
+					</div>
+					<div style="width:60%;">
+						<div>${dto.userId}</div>
+						<div class="d-flex" style="width: 100%;">
+							<div class='star-rating'>
+								<span style="width:${(dto.durStar 
+									+ dto.designStar 
+									+ dto.priceStar 
+									+ dto.deliveryStar)/4*20}%">
+								</span>
+							</div>
+							<div style="margin-bottom: 10px;">${dto.regDate}</div>
 						</div>
-						<div style="margin-bottom: 10px;">${dto.regDate}</div>
 					</div>
 				</div>
+				<div class="delete" data-delete-revnum="${dto.revNum}">❌</div>
 			</div>
 			<div class="d-flex">
 				<label for="dur" style="margin-right: 5px">내구성</label>
@@ -178,8 +188,10 @@
 				<div id="delivery" class="star-detailRating"><span style="width:${dto.deliveryStar*20}%"></span></div>
 			</div>
 			<div style="width: 20%;">
-				<img src="../../resources/upload/store/review/${dto.fileName}" 
-				style="width: 100%;">
+				<c:if test="${not empty dto.fileName}">						
+					<img src="../../resources/upload/store/review/${dto.fileName}" 
+					alt="..." style="width: 100%;">
+				</c:if>
 			</div>
 			<div class="mt-3">${dto.contents}</div>
 			<div class="d-flex justify-content-between mt-3">
@@ -209,8 +221,7 @@
 					</c:choose>
 				</div>
 				<div class="d-flex">
-					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}">수정</button>
-					<button class="delete btn btn-danger" data-delete-revnum="${dto.revNum}">삭제</button>
+					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}" data-bs-toggle="modal" data-bs-target="#exampleModal">수정</button>
 				</div>
 			</div>
 		</div>

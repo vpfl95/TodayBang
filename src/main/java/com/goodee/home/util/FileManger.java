@@ -18,7 +18,7 @@ public class FileManger {
 	public String saveFile(String path,ServletContext servletContext,MultipartFile multipartFile) throws Exception{
 		
 		String realPath = servletContext.getRealPath(path);
-		System.out.println("realePath:" + realPath);
+		System.out.println("realPath:" + realPath);
 		
 		
 		File file = new File(realPath);
@@ -31,12 +31,20 @@ public class FileManger {
 		file = new File(file,fileName);
 		multipartFile.transferTo(file);
 		
-		
 		return fileName;
-			
-		
-		
 	}
 	
+	public boolean deleteFile(String path, ServletContext servletContext, FileDTO fileDTO) throws Exception {
+		String realPath = servletContext.getRealPath(path);
+		File file = new File(realPath, fileDTO.getFileName());
+		
+		return file.delete();
+	}
 	
+	public boolean deleteFile(String path, ServletContext servletContext, String fileName) throws Exception {
+		String realPath = servletContext.getRealPath(path);
+		File file = new File(realPath, fileName);
+		
+		return file.delete();
+	}
 }

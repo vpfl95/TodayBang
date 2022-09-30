@@ -40,4 +40,12 @@ public class ProductReviewDAO {
 	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getHelpCount", helpDTO);
 	}
+	
+	public ProductReviewDTO getReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getReviewDetail", productReviewDTO);
+	}
+	
+	public int deleteReview(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteReview", productReviewDTO);
+	}
 }

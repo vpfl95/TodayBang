@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.member.MemberDTO;
+import com.goodee.home.util.FileManger;
 
 @Controller
 @RequestMapping("/review/*")
@@ -24,9 +25,12 @@ public class ProductReviewController {
 	@Autowired
 	private ProductReviewService productReviewService;
 	
+	@Autowired
+	private FileManger fileManger;
+	
 	@PostMapping("add")
 	@ResponseBody
-	public int addReview(@RequestParam("fileObj") MultipartFile file, ProductReviewDTO productReviewDTO, HttpSession httpSession) throws Exception {
+	public int addReview(@RequestParam(value="fileObj", required = false) MultipartFile file, ProductReviewDTO productReviewDTO, HttpSession httpSession) throws Exception {
 		return productReviewService.addReview(productReviewDTO, file, httpSession.getServletContext());
 	}
 	
@@ -52,11 +56,14 @@ public class ProductReviewController {
 				chkHelp = null;
 			}
 		}
+		double totalGrade = (grade.get(0)+(grade.get(1)*2)+(grade.get(2)*3)+(grade.get(3)*4)+(grade.get(4)*5))/(double) grade.get(5);
+		totalGrade = (int) (totalGrade*10);
+		totalGrade = totalGrade/10;
 		mv.addObject("list", ar);
 		mv.addObject("grade", grade);
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("chkHelp", chkHelp);
-		
+		mv.addObject("totalGrade", totalGrade);
 		mv.setViewName("store/review/list");
 		return mv;
 	}
@@ -73,5 +80,23 @@ public class ProductReviewController {
 			productReviewService.deleteHelp(helpDTO);
 		}
 		return result;
+	}
+	
+	@GetMapping("detail")
+	@ResponseBody
+	public ProductReviewDTO getDetail(ProductReviewDTO productReviewDTO) throws Exception {
+		return productReviewService.getReviewDetail(productReviewDTO);
+	}
+	
+	@PostMapping("delete")
+	@ResponseBody
+	public boolean deleteReview(ProductReviewDTO productReviewDTO, HttpSession session) throws Exception {
+		productReviewDTO = productReviewService.getReviewDetail(productReviewDTO);
+		System.out.println(productReviewDTO.getFileName());
+		int result = productReviewService.deleteReview(productReviewDTO);
+		if(result == 1 && productReviewDTO.getFileName() != null) {
+			return fileManger.deleteFile("/resources/upload/store/review", session.getServletContext(), productReviewDTO.getFileName());
+		}
+		return false;
 	}
 }

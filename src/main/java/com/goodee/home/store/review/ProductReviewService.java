@@ -21,8 +21,12 @@ public class ProductReviewService {
 	
 	public int addReview(ProductReviewDTO productReviewDTO, MultipartFile file, ServletContext servletContext) throws Exception {
 		
-		String fileName = fileManger.saveFile("resources/upload/store/review", servletContext, file);
-		productReviewDTO.setFileName(fileName);
+		if(file == null) {
+			productReviewDTO.setFileName("");
+		} else {			
+			String fileName = fileManger.saveFile("resources/upload/store/review", servletContext, file);
+			productReviewDTO.setFileName(fileName);			
+		}
 		
 		return productReviewDAO.addReview(productReviewDTO);
 	}
@@ -70,5 +74,13 @@ public class ProductReviewService {
 	
 	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
 		return productReviewDAO.getHelpCount(helpDTO);
+	}
+	
+	public ProductReviewDTO getReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {
+		return productReviewDAO.getReviewDetail(productReviewDTO);
+	}
+	
+	public int deleteReview(ProductReviewDTO productReviewDTO) throws Exception {
+		return productReviewDAO.deleteReview(productReviewDTO);
 	}
 }

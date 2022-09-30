@@ -322,6 +322,7 @@ btnWrite.onclick=function() {
         success: function(result) {
             alert('업로드 성공!');
             btnClose[0].click();
+            getReviewList();
         }
     });
 }
@@ -352,11 +353,41 @@ function getReviewList() {
 
 reviewList[0].onclick=function(event) {
     if(event.target.classList[0] == 'update') {
-        // console.log(event.target.dataset.updateRevnum);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/review/detail?revNum="+event.target.dataset.updateRevnum);
+        xhttp.send();
+        xhttp.onreadystatechange=function() {
+            if(this.readyState == 4 && this.status == 200) {
+                document.querySelector('#thumbnail').innerHTML='';
+                let result = JSON.parse(this.responseText.trim());
+                contents.value = result.contents;
+                $("input:radio[name='rating1']:radio[value="+result.durStar+"]").prop('checked', true); 
+                $("input:radio[name='rating2']:radio[value="+result.priceStar+"]").prop('checked', true); 
+                $("input:radio[name='rating3']:radio[value="+result.designStar+"]").prop('checked', true); 
+                $("input:radio[name='rating4']:radio[value="+result.deliveryStar+"]").prop('checked', true); 
+            
+                let img = document.createElement('img');
+                if(result.fileName != null) {
+                    img.setAttribute('src','../../resources/upload/store/review/'+result.fileName);
+                }
+                document.querySelector('#thumbnail').append(img);
+            }
+        }
     }
 
     if(event.target.classList[0] == 'delete') {
-        // console.log(event.target.dataset.deleteRevnum);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/review/delete");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("revNum="+event.target.dataset.deleteRevnum);
+        xhttp.onreadystatechange=function() {
+            if(this.readyState==4 && this.status==200) {
+                if(this.responseText.trim()) {
+                    alert('삭제 성공');
+                    getReviewList();
+                }
+            }
+        }
     }
 
     if(event.target.classList[0] == 'btnHelp') {
