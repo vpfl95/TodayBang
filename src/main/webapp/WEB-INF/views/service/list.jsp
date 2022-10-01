@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    
+     
 <!DOCTYPE html>
 <html >
 <head>
@@ -30,6 +32,11 @@
 				      
 				      <th scope="col">작성자</th>
 				      <th scope="col">게시일</th>
+				      <c:if test="${board=='QNA' }">
+				      		<th scope="col">답변상태</th>
+			      	  </c:if>
+				      
+				      
 				    </tr>
 				  </thead>
 				  <tbody>
@@ -40,7 +47,21 @@
 						  	<th scope="row">${dto.boardNum}</th>
 						  	<td><a href="./detail?boardNum=${dto.boardNum }">${dto.title }</a></td>
 					        <td>${dto.userId }</td>
-					        <td>${dto.regDate }</td>
+					         
+    						 <td>${dto.regDate }</td>
+    						 
+    						<c:if test="${board=='QNA' }">
+    							<c:choose>
+    								<c:when test="${dto.checkAnswer}">
+    									<td>답변 완료</td>
+    								</c:when>
+    								<c:otherwise>
+    									<td>답변 중</td>
+    								</c:otherwise>
+    							
+    							</c:choose>
+    						
+			      	  		</c:if>
 			        	</tr>
 				  	</c:forEach>
 				  

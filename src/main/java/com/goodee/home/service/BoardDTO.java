@@ -1,5 +1,6 @@
 package com.goodee.home.service;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.stereotype.Component;
@@ -10,7 +11,7 @@ public class BoardDTO {
 	private Long boardNum;
 	private String title;
 	private String contents;
-	private String regDate;
+	private Date regDate;
 	private String userId;
 	private String board;
 	
@@ -51,10 +52,10 @@ public class BoardDTO {
 	public void setContents(String contents) {
 		this.contents = contents;
 	}
-	public String getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
-	public void setRegDate(String regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
 	public String getUserId() {

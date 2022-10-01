@@ -22,14 +22,35 @@ public class ServiceService {
 	private FileManger fileManger;
 	
 	
-	public List<BoardDTO> getList(Pager pager) throws Exception{
+	public List<QnaDTO> getList(Pager pager) throws Exception{
 		
 		Long totalCount = serviceDAO.getCount(pager);
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
+		List<QnaDTO> ar = serviceDAO.getList(pager);
 		
-		return serviceDAO.getList(pager);
+		if(pager.getBoard() == "QNA") {
+			for(QnaDTO dto : ar) {
+				
+				
+				Long boardNum = dto.getBoardNum();
+				boardNum = serviceDAO.getCheckAnswer(boardNum);
+				if(boardNum == 1) {
+					System.out.println(" 답변 있음"+ boardNum);
+					dto.setCheckAnswer(true);
+					
+				}else {
+					System.out.println(" 답변 없음" + boardNum);
+					dto.setCheckAnswer(false);
+				}
+					
+				
+			}
+		}
+		
+		
+		return ar;
 	}
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
 		
@@ -178,4 +199,6 @@ public class ServiceService {
 		
 		return serviceDAO.deleteFile(boardFileDTO);
 	}
+	
+	
 }

@@ -63,7 +63,7 @@
 			</select>
 		
 		    
-	    	<select id="getList" parameterType="Pager" resultType="BoardDTO" >
+	    	<select id="getList" parameterType="Pager" resultType="QnaDTO" >
 		    	SELECT * FROM
 				( SELECT ROWNUM R,N.*
 				 FROM (SELECT * FROM <include refid="getBoard"></include> 
@@ -117,6 +117,11 @@
 			DELETE FROM <include refid="getBoardFile"></include> WHERE FILENUM =#{fileNum}
 			</delete>
 			
+			<select id="getCheckAnswer" parameterType="Long" resultType="Long">
+				 SELECT COUNT(BOARDNUM)
+				 FROM QNAANSWER
+				 WHERE BOARDNUM = #{boardNum}
+			</select>
 			
 			
 			

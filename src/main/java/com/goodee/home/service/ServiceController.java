@@ -63,11 +63,15 @@ public class ServiceController {
 		ModelAndView mv = new ModelAndView();
 		
 		
-		List<BoardDTO> ar = null;
+		List<QnaDTO> ar = null;
 		// getBoardName()
 		pager.setUrl("list");
 		pager.setBoard(getBoardName());
 		ar = service.getList(pager);
+		
+		
+		
+		
 		
 		mv.addObject("boardList",ar);
 		mv.setViewName("/service/list");

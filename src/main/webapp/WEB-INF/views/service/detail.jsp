@@ -115,8 +115,6 @@
 									      		<td><a href="/resources/upload/QNAANSWER/${file.fileName }">${file.oriName }</a></td>
 									      
 									      </c:forEach>
-							      	
-							      
 						    		  </c:if>
 								    </tr>
 								    <tr>
