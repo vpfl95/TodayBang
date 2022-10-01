@@ -241,7 +241,11 @@ public class MemberController {
 		MemberDTO memberDTO2= (MemberDTO) session.getAttribute("member");
 		
 		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
-		memberService.setDeleteProfile(memberDTO2,session.getServletContext());
+		
+		if(memberDTO2.getMemberFileDTO() != null) {
+			memberService.setDeleteProfile(memberDTO2,session.getServletContext());
+			
+		}
 		session.setAttribute("member", memberDTO);
 		session.setAttribute("profile", memberDTO.getMemberFileDTO());
 		
