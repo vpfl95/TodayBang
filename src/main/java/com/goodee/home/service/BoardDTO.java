@@ -14,13 +14,19 @@ public class BoardDTO {
 	private Date regDate;
 	private String userId;
 	private String board;
+	private Long hit;
 	
 	private List<BoardFileDTO> boardFileDTOs;
 	
 	
 	
 	
-	
+	public Long getHit() {
+		return hit;
+	}
+	public void setHit(Long hit) {
+		this.hit = hit;
+	}
 	
 	public List<BoardFileDTO> getBoardFileDTOs() {
 		return boardFileDTOs;

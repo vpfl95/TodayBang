@@ -28,6 +28,10 @@
 						      <td colspan="3">${boardList.boardNum }</td>
 						    </tr>
 						    <tr>
+						      <th scope="row">조회수</th>
+						      <td colspan="3">${boardList.hit }</td>
+						    </tr>
+						    <tr>
 						      <th scope="row">제목</th>
 						      <td colspan="3">${boardList.title }</td>
 						    </tr>

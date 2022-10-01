@@ -37,11 +37,9 @@ public class ServiceService {
 				Long boardNum = dto.getBoardNum();
 				boardNum = serviceDAO.getCheckAnswer(boardNum);
 				if(boardNum == 1) {
-					System.out.println(" 답변 있음"+ boardNum);
 					dto.setCheckAnswer(true);
 					
 				}else {
-					System.out.println(" 답변 없음" + boardNum);
 					dto.setCheckAnswer(false);
 				}
 					
@@ -53,6 +51,12 @@ public class ServiceService {
 		return ar;
 	}
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
+		
+		
+		if(boardDTO.getBoard() != "QNAANSWER") {
+			serviceDAO.hitBoard(boardDTO);
+			
+		}
 		
 		return serviceDAO.getDetail(boardDTO);
 	}
@@ -132,7 +136,6 @@ public class ServiceService {
 		int result = serviceDAO.updateBoard(boardDTO);
 		boardDTO = getDetail(boardDTO);
 		
-		System.out.println("결과 : " + result);
 		String path = "resources/upload/" +board;
 		// boardDTO.getBoardFileDTOs() 기존 파일
 		// files < 새롭게 추가된 파일
@@ -144,7 +147,7 @@ public class ServiceService {
 			for(String num : ar) {
 				int i = Integer.parseInt(num);
 				
-				System.out.println("삭제 num = " + num);
+				
 				BoardFileDTO boardFileDTO = boardDTO.getBoardFileDTOs().get(i-1);
 				boardFileDTO.setBoard(board);
 				serviceDAO.deleteFile(boardFileDTO);
@@ -157,7 +160,7 @@ public class ServiceService {
 				
 				
 				if(!file.isEmpty()) {
-					System.out.println("새 파일 추가");
+					
 					String fileName = fileManger.saveFile(path, servletContext, file);
 					BoardFileDTO boardFileDTO = new BoardFileDTO();
 					boardFileDTO.setBoardNum(boardDTO.getBoardNum());

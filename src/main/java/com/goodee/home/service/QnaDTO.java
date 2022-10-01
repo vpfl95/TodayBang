@@ -6,11 +6,8 @@ import org.springframework.stereotype.Component;
 public class QnaDTO extends BoardDTO {
 
 	
-	private Long hit;
+	
 	private Boolean checkAnswer;
-	
-	
-	
 	
 	
 	
@@ -20,12 +17,7 @@ public class QnaDTO extends BoardDTO {
 	public void setCheckAnswer(Boolean checkAnswer) {
 		this.checkAnswer = checkAnswer;
 	}
-	public Long getHit() {
-		return hit;
-	}
-	public void setHit(Long hit) {
-		this.hit = hit;
-	}
+	
 	
 
 	

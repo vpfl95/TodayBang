@@ -45,6 +45,7 @@
 				<result column="CONTENTS" property="contents"/>
 				<result column="REGDATE" property="regDate"/>
 				<result column="USERID" property="userId"/>
+				<result column="HIT" property="hit"/>
 				<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 					<id column="FILENUM" property="fileNum"/>
 					<result column="FILENAME" property="fileName"/>
@@ -123,6 +124,9 @@
 				 WHERE BOARDNUM = #{boardNum}
 			</select>
 			
+			<update id="hitBoard" parameterType="BoardDTO">
+				UPDATE <include refid="getBoard"></include> SET HIT = HIT +1 WHERE BOARDNUM = #{boardNum}     
+			</update>
 			
 			
 		</mapper>

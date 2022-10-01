@@ -104,6 +104,12 @@ public class ServiceDAO {
 		return sqlSession.selectOne(NAMESPACE+"getCheckAnswer",boardNum);
 	}
 	
+	public int hitBoard(BoardDTO boardDTO) throws Exception{
+		
+	
+		return sqlSession.update(NAMESPACE+"hitBoard",boardDTO);
+	}
+	
 	
 	
 }

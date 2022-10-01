@@ -18,19 +18,19 @@
  		<c:choose>
  			<c:when test="${ManagerRole.roleNum eq 1}">
  				<p>관리자</p>
- 				
+ 				<img alt="" src="/resources/images/rank/Admin.png">
  			</c:when>
  			<c:when test="${ManagerRole.roleNum eq 2}">
  				<p>매니저</p>
- 				
+ 				<img alt="" src="/resources/images/rank/Manager.png">
  			</c:when>
  			<c:when test="${ManagerRole.roleNum eq 3}">
  				<p>스토어 파트너</p>
- 				
+ 				<img alt="" src="/resources/images/rank/StorePartner.png">
  			</c:when>
  			<c:when test="${ManagerRole.roleNum eq 4}">
  				<p>직방 파트너</p>
- 				
+ 				<img alt="" src="/resources/images/rank/ZicbangPartner.png">
  			</c:when>
  		
  		</c:choose>
