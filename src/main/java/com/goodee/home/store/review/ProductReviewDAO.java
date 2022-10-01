@@ -25,20 +25,20 @@ public class ProductReviewDAO {
 		return sqlSession.selectList(NAMESPACE+"getGrade", productReviewDTO);
 	}
 	
-	public HelpDTO getHelp(HelpDTO helpDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getHelp", helpDTO);
+	public ReviewLikeDTO getHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getHelp", reviewLikeDTO);
 	}
 	
-	public int setHelp(HelpDTO helpDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setHelp", helpDTO);
+	public int setHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setHelp", reviewLikeDTO);
 	}
 	
-	public int deleteHelp(HelpDTO helpDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"deleteHelp", helpDTO);
+	public int deleteHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteHelp", reviewLikeDTO);
 	}
 	
-	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getHelpCount", helpDTO);
+	public Long getHelpCount(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getHelpCount", reviewLikeDTO);
 	}
 	
 	public ProductReviewDTO getReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {

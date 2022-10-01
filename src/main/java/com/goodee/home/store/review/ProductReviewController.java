@@ -39,19 +39,19 @@ public class ProductReviewController {
 	public ModelAndView getList(ProductReviewDTO productReviewDTO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<ProductReviewDTO> ar = productReviewService.getReview(productReviewDTO);
-		List<HelpDTO> chkHelp = new ArrayList<HelpDTO>();
+		List<ReviewLikeDTO> chkHelp = new ArrayList<ReviewLikeDTO>();
 		List<Long> grade = productReviewService.getGrade(productReviewDTO);
 		List<Long> totalCount = new ArrayList<Long>();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		for(ProductReviewDTO dto : ar) {
-			HelpDTO helpDTO = new HelpDTO();
-			helpDTO.setRevNum(dto.getRevNum());
-			Long count = productReviewService.getHelpCount(helpDTO);
+			ReviewLikeDTO reviewLikeDTO = new ReviewLikeDTO();
+			reviewLikeDTO.setRevNum(dto.getRevNum());
+			Long count = productReviewService.getHelpCount(reviewLikeDTO);
 			totalCount.add(count);
 			if(memberDTO != null) {
-				helpDTO.setUserId(memberDTO.getUserId());
-				helpDTO = productReviewService.getHelp(helpDTO);
-				chkHelp.add(helpDTO);
+				reviewLikeDTO.setUserId(memberDTO.getUserId());
+				reviewLikeDTO = productReviewService.getHelp(reviewLikeDTO);
+				chkHelp.add(reviewLikeDTO);
 			} else {
 				chkHelp = null;
 			}
@@ -70,14 +70,14 @@ public class ProductReviewController {
 	
 	@PostMapping("help")
 	@ResponseBody
-	public int setHelp(HelpDTO helpDTO) throws Exception {
+	public int setHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
 		int result = 0;
-		HelpDTO dto = productReviewService.getHelp(helpDTO);
+		ReviewLikeDTO dto = productReviewService.getHelp(reviewLikeDTO);
 		if(dto == null) {
 			result = 1;
-			productReviewService.setHelp(helpDTO);
+			productReviewService.setHelp(reviewLikeDTO);
 		} else {
-			productReviewService.deleteHelp(helpDTO);
+			productReviewService.deleteHelp(reviewLikeDTO);
 		}
 		return result;
 	}

@@ -17,20 +17,20 @@
 		WHERE PRODUCTNUM = #{productNum}
 	</select>
 	
-	<select id="getHelp" parameterType="HelpDTO" resultType="HelpDTO">
-		SELECT * FROM HELP WHERE USERID = #{userId} AND REVNUM = #{revNum}
+	<select id="getHelp" parameterType="ReviewLikeDTO" resultType="ReviewLikeDTO">
+		SELECT * FROM REVIEWLIKE WHERE USERID = #{userId} AND REVNUM = #{revNum}
 	</select>
 	
-	<insert id="setHelp" parameterType="HelpDTO">
-		INSERT INTO HELP VALUES (TODAY_SEQ.NEXTVAL, #{revNum}, #{userId})
+	<insert id="setHelp" parameterType="ReviewLikeDTO">
+		INSERT INTO REVIEWLIKE VALUES (TODAY_SEQ.NEXTVAL, #{revNum}, #{userId})
 	</insert>
 	
-	<delete id="deleteHelp" parameterType="HelpDTO">
-		DELETE HELP WHERE USERID = #{userId} AND REVNUM = #{revNum}
+	<delete id="deleteHelp" parameterType="ReviewLikeDTO">
+		DELETE REVIEWLIKE WHERE USERID = #{userId} AND REVNUM = #{revNum}
 	</delete>
 	
-	<select id="getHelpCount" parameterType="HelpDTO" resultType="Long">
-		SELECT COUNT(REVNUM), REVNUM FROM HELP WHERE REVNUM=#{revNum} GROUP BY REVNUM
+	<select id="getHelpCount" parameterType="ReviewLikeDTO" resultType="Long">
+		SELECT COUNT(REVNUM), REVNUM FROM REVIEWLIKE WHERE REVNUM=#{revNum} GROUP BY REVNUM
 	</select>
 	
 	<select id="getReviewDetail" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">

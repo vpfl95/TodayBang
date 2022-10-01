@@ -60,20 +60,20 @@ public class ProductReviewService {
 		return grade;
 	}
 	
-	public HelpDTO getHelp(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.getHelp(helpDTO);
+	public ReviewLikeDTO getHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.getHelp(reviewLikeDTO);
 	}
 	
-	public int setHelp(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.setHelp(helpDTO);
+	public int setHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.setHelp(reviewLikeDTO);
 	}
 	
-	public int deleteHelp(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.deleteHelp(helpDTO);
+	public int deleteHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.deleteHelp(reviewLikeDTO);
 	}
 	
-	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.getHelpCount(helpDTO);
+	public Long getHelpCount(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.getHelpCount(reviewLikeDTO);
 	}
 	
 	public ProductReviewDTO getReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {

@@ -1,16 +1,16 @@
 package com.goodee.home.store.review;
 
-public class HelpDTO {
+public class ReviewLikeDTO {
 
-	private Long helpNum;
+	private Long likeNum;
 	private Long revNum;
 	private String userId;
 	
-	public Long getHelpNum() {
-		return helpNum;
+	public Long getLikeNum() {
+		return likeNum;
 	}
-	public void setHelpNum(Long helpNum) {
-		this.helpNum = helpNum;
+	public void setLikeNum(Long likeNum) {
+		this.likeNum = likeNum;
 	}
 	public Long getRevNum() {
 		return revNum;
