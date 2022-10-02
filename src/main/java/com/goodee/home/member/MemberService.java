@@ -137,4 +137,10 @@ public class MemberService {
 		
 		return memberDAO.deleteDelivery(deliveryDTO);
 	}
+	
+	public int dropMember(MemberDTO memberDTO)throws Exception{
+		
+		System.out.println("drop memevber ");
+		return memberDAO.dropMember(memberDTO);
+	}
 }

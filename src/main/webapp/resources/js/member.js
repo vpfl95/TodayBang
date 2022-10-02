@@ -615,7 +615,52 @@ function profile() {
     })
 
 
+    const dropId = document.querySelector("#dropId");
 
+    dropId.addEventListener("click",function(){
+        
+            Swal.fire({
+              title: '정말로 회원탈퇴 하시겠습니까?',
+              text: "다시 되돌릴 수 없습니다. ",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '승인',
+              cancelButtonText: '취소',
+              reverseButtons: true, // 버튼 순서 거꾸로
+              
+            }).then((result) => {
+              if (result.isConfirmed) {
+                
+                
+
+
+
+                Swal.fire(
+                    
+                  '회원탈퇴가 완료되었습니다.',
+                  '언젠가 다시 만나요',
+                  'success'
+                ).then((result) => {
+                    updateForm.action = "./dropMember";
+                    updateForm.submit();
+                })
+
+                setTimeout(() => {
+                    updateForm.action = "./dropMember";
+                    updateForm.submit();
+                }, 3000)
+    
+                
+              }
+            })
+          
+     
+
+
+
+    });
 
 
 

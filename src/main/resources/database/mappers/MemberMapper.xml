@@ -86,6 +86,11 @@
 			
 			</delete>
 			
-			
+			<delete id="dropMember" parameterType="MemberDTO">
+				DELETE MEMBERS WHERE USERID = #{userId}
+			</delete>
+			<delete id="dropMemberRank" parameterType="MemberDTO">
+				DELETE "MEMBER-ROLE" WHERE USERID = #{userId}
+			</delete>
 			
 		</mapper>

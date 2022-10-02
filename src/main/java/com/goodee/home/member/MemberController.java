@@ -321,4 +321,17 @@ public class MemberController {
 		return "redirect:./myPage";
 	}
 	
+	@PostMapping("dropMember")
+	public String dropMember(MemberDTO memberDTO) throws Exception{
+		
+		
+		
+		
+		int result = memberService.dropMember(memberDTO);
+		System.out.println("result =" +result);
+		
+		
+		return "redirect:/";
+	}
+	
 }

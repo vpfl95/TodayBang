@@ -94,5 +94,11 @@ public class MemberDAO {
 		return sqlSession.delete(NAMESPACE+ "deleteProfileImg",memberDTO);
 	}
 	
+	public int dropMember(MemberDTO memberDTO)throws Exception{
+		
+		
+		sqlSession.delete(NAMESPACE+"dropMemberRank",memberDTO);
+		return sqlSession.delete(NAMESPACE+ "dropMember",memberDTO);
+	}
 	
 }
