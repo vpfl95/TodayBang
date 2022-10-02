@@ -69,7 +69,12 @@ public class ServiceController {
 		pager.setBoard(getBoardName());
 		ar = service.getList(pager);
 		
-		
+		if(getBoardName() == "QNA") {
+			
+			List<QnaDTO> oftenAr = service.getOftenQna();
+			
+			mv.addObject("oftenQna",oftenAr);
+		}
 		
 		
 		

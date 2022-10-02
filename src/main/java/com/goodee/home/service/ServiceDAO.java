@@ -110,6 +110,14 @@ public class ServiceDAO {
 		return sqlSession.update(NAMESPACE+"hitBoard",boardDTO);
 	}
 	
+	public List<QnaDTO> getOftenQna() throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE+"getOftenQna");
+	}
+
+
+
+	
 	
 	
 }

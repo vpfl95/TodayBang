@@ -21,6 +21,27 @@
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
 	
+					<c:if test="${board=='QNA'}">
+						<h1> 자주 묻는 질문 </h1>
+						
+							<table class = "table table-hover">
+								<c:forEach items="${oftenQna }" var="often">
+									<tr>
+										<td>${often.boardNum }</td>
+										<td><a href="./detail?boardNum=${often.boardNum }">${often.title }</a></td>
+										<td>${often.userId }</td>
+										<td>${often.regDate }</td>
+										
+									</tr>
+								</c:forEach>
+							</table>
+						
+					</c:if>
+	
+	
+	
+	
+	
 					
 					<h1>${board }</h1>
 					

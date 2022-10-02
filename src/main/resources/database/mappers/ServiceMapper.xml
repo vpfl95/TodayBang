@@ -129,4 +129,14 @@
 			</update>
 			
 			
+			<select id="getOftenQna" resultType="QnaDTO">
+				SELECT *  
+				 FROM (SELECT ROWNUM R,N.*
+				    FROM (SELECT * 
+				        FROM QNA
+				        ORDER BY HIT DESC) N)
+				    WHERE R BETWEEN 1 AND 5
+			</select>
+			
+			
 		</mapper>

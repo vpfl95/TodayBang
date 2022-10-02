@@ -45,6 +45,8 @@ public class ServiceService {
 					
 				
 			}
+			
+			
 		}
 		
 		
@@ -201,6 +203,12 @@ public class ServiceService {
 		
 		
 		return serviceDAO.deleteFile(boardFileDTO);
+	}
+	
+	public List<QnaDTO> getOftenQna() throws Exception{
+		
+		
+		return serviceDAO.getOftenQna();
 	}
 	
 	
