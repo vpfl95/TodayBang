@@ -803,25 +803,11 @@ function delivery(){
 
     }
 
-    
-
-    
-
-
     delUpdateBtn.addEventListener("click",function(){
 
-
-       
     let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
     submitPhone.value = phoneValue;
                
-
-
-
-
-
-
-
 
         if(deliveryHead.title == 3){
 
@@ -833,13 +819,8 @@ function delivery(){
         }else{
 
             deliveryForm.submit();
-
-
-
         }
 
-
-        
 
     })
 
