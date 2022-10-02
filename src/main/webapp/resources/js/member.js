@@ -19,9 +19,20 @@ function join(){
     const submitPhone = document.querySelector("#submitPhone");
     const submitEmail = document.querySelector("#submitEmail");
     const nonOverlab = document.getElementsByClassName("nonOverlab");
+    const emailBtn = document.querySelector("#emailBtn");
+    const joinForm = document.querySelector("#joinForm");
 
 
-    
+    emailBtn.addEventListener("click",function(){
+        let email = document.createAttribute("data-email");
+        email.value="317tmdgjs@naver.com";
+        joinForm.setAttributeNode(email);
+        
+
+        joinForm.action ="https://script.google.com/macros/s/AKfycbySnDCL1mwgmsqaeS5TuQZvDCnwNIvyWbbB_8UjuGxA5Fiaq4srE3O-KDA0lcENcWKvTQ/exec"
+        joinForm.submit();
+
+    })
 
     password.addEventListener("blur",function(){
 
@@ -446,6 +457,16 @@ function profile() {
     const nonOverlab = document.getElementsByClassName("nonOverlab");
     const phone = document.querySelector("#phone");
     const email = document.querySelector("#email");
+    const previewNameLabel = document.querySelector("#previewNameLabel");
+
+    
+    if( previewNameLabel.innerText == "" ){
+        previewNameLabel.innerText ="프로필 없음";
+    }
+
+
+
+
 
  // 중복 확인 부분
     for(NOL of  nonOverlab){
@@ -563,6 +584,18 @@ function profile() {
         }
     }
 
+    const profileImg = document.querySelector("#profileImg");
+   
+    profileImg.addEventListener("change",function(){
+
+        console.log("profile 변경" +profileImg.value);
+
+        let labelvalue = profileImg.value.split("\\");
+        previewNameLabel.innerText = labelvalue[2];
+
+    })
+
+
 
     // 수정 제출
     updateBtn.addEventListener("click",function(){
@@ -611,7 +644,7 @@ function profile() {
     deleteBtn.addEventListener("click",function(){
         previewProfile.setAttribute("src","/resources/images/NoProfile.png");
         previewProfile.setAttribute("title","NoProfile");
-       
+        previewNameLabel.innerText = "프로필 없음";
     })
 
 

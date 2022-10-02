@@ -24,7 +24,7 @@
 		        </a>
 		        <div style="margin-top: 50px;">
 		        <h3 style="margin-bottom: -15px">회원가입</h3>
-		        	<form action="./join" method="post" id = "joinForm" >
+		        	<form action="./join" class = "gform" method="post" id = "joinForm" >
 		        		<div id = "joinInput">
 			        		<label for="userId">아이디</label>
 					        <input type="text"  id="userId" name = "userId" class="form-control nonOverlab" placeholder="아이디" required autofocus>
@@ -81,7 +81,7 @@
 					        <div></div>
 					        
 		        		</div>
-						
+						<button id="emailBtn" class="w-100 btn btn-lg btn-primary" type="button">이메일 확인</button>
 				       
 				        <button id="joinBtn" class="w-100 btn btn-lg btn-primary" type="button">회원가입</button>
 				        

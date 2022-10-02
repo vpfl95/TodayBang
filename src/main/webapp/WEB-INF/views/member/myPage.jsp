@@ -42,37 +42,10 @@
 		<hr>
 		</div>
 		<div class = "row justify-content-center mt-5">
-			<div class = " col-lg-10 " id = "profile"  >
+			<div class = " col-lg-10 d-flex justify-content-center" id = "profile"  >
 				
 
-				<div id = "profile-id" class = "" >
-					<div id = "pf-img-box" class="pf-img-box">
-						<c:choose>
-					         	<c:when test="${empty member.memberFileDTO }">
-						         		<img id = "pf-img"alt="" src="/resources/images/NoProfile.png">
-					         	</c:when>
-					         	<c:when test="${not empty member.memberFileDTO }">
-						         		<img id = "pf-img"alt="" src="../resources/upload/member/${member.memberFileDTO.fileName }">
-					         	</c:when>
-					         </c:choose>
-					</div>
-					<div id = "pf-userName" class = "column">
-						<h2>${memberDTO.userName }</h2>
-					</div>
-					
-					<hr>
-					<div id = "pf-userAct" class = "column">
-						<h4>장바구니</h4>
-					</div>
 
-				</div>
-				
-				<div id="pf-betweenSpace"></div>
-				
-				
-				<div id = "profile-section" class= "">
-					<!-- 프로필 내용이 채워짐 -->
-				</div>
 			</div>
 		</div>
 	</section>
@@ -90,11 +63,11 @@
     	});
     	
     	
-    	$("#profile-section").load("/member/profile");
+    	$("#profile").load("/member/profile");
     	
     	
     	$(document).on("click",".submenuList",function(){
-    		$("#profile-section").load(this.getAttribute('data-a'));
+    		$("#profile").load(this.getAttribute('data-a'));
     	});
     	
     	

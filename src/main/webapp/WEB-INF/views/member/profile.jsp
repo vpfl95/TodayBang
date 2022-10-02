@@ -11,12 +11,42 @@
 </head>
 <body>
 
-<div class = "pf-section">
-		<div class="pf-title">내 정보 수정하기</div>
-		<div id= "dropId" >탈퇴하기</div>
-	<div>
-	
-	
+
+
+
+			<div id = "profile-id" class = "" >
+					<div id = "pf-img-box" class="pf-img-box">
+						<c:choose>
+					         	<c:when test="${empty member.memberFileDTO }">
+						         		<img class= "pf-img"alt="" src="/resources/images/NoProfile.png">
+					         	</c:when>
+					         	<c:when test="${not empty member.memberFileDTO }">
+						         		<img class = "pf-img"alt="" src="../resources/upload/member/${member.memberFileDTO.fileName }">
+					         	</c:when>
+					         </c:choose>
+					</div>
+					<div id = "pf-userName" class = "column">
+						<h2>${member.userName }</h2>
+					</div>
+					
+					<hr>
+					<div id = "pf-userAct" class = "column">
+						<h4>장바구니</h4>
+					</div>
+
+				</div>
+
+<div id="pf-betweenSpace"></div>
+
+<div  class="pf-section">
+
+	<div class = "pf-body">
+		<div class = "pf-pf-title">
+			<div class="pf-title">내 정보 수정하기</div>
+			<div id= "dropId" class= "">탈퇴하기</div>
+		</div>
+			
+		<div>
 				<form action="./update" method="post" id = "updateForm" enctype="multipart/form-data" >
 		        		<div id = "updateInput">
 			        		<label for="userId">아이디</label>
@@ -65,28 +95,37 @@
 					        </div>
 					        <div></div>
 					        <div></div>
-					        
+					        <div id= "pf-previewTitle">
 					        <label for="image_container" >프로필 사진</label>
-					        
-					        
-					          
-					         <div id="image_container" class="pf-img-box">
-					         <c:choose>
-					         	<c:when test="${empty profile }">
-						         	 <label for="profileImg" >
-						         		<img id = "previewProfile"alt="" src="/resources/images/NoProfile.png" >
-						         	</label>
-					         	</c:when>
-					         	<c:when test="${not empty profile }">
-						         	 <label for="profileImg" >
-						         		<img id = "previewProfile"alt="" src="../resources/upload/member/${profile.fileName }">
-						         	</label>
-					         	</c:when>
-					         </c:choose>
+					        <div id="deleteBtn" class="">프로필사진 삭제</div>
 					         </div>
-					         <label for="profileImg" >${profile.oriName }</label>
+					        
+					          <div id="pf-previewBox">
+						         
+						         <c:choose>
+						         	<c:when test="${empty profile }">
+						         	<div  class="pf-img-box">
+							         	 <label for="profileImg" class="nolabel" >
+							         		<img id="previewProfile" alt="" src="/resources/images/NoProfile.png" class = "pf-img">
+							         	</label>
+						         	</div>
+							         	
+						         	</c:when>
+						         	<c:when test="${not empty profile }">
+						         	<div  class="pf-img-box">
+							         	 <label for="profileImg" class="nolabel" >
+							         		<img id="previewProfile" alt="" src="../resources/upload/member/${profile.fileName }" class = "pf-img">
+							         	</label>
+						         	</div>
+						         	</c:when>
+						         </c:choose>
+						         <div id="previewNameDiv" class="d-flex justify-content-center">
+					         		<label for="profileImg" class="nolabel previewName" id="previewNameLabel">${profile.oriName }</label>
+						          </div>
+					         </div>
+					         
 					         <input type="file"  id="profileImg" name = "profileImg"  class="form-control display-none" onchange="setThumbnail(event);" multiple/>
-					        <button id="deleteBtn" class="w-100 btn btn-lg " type="button">프로필사진 삭제</button>
+					        
 					         
 					         
 					          
@@ -98,8 +137,8 @@
 				        
 				        
 					</form>
+		</div>
 	</div>
-
 
 
 </div>

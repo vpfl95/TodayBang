@@ -14,12 +14,19 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.service.ServiceService;
+
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService = new MemberService();
+	
+	@Autowired
+	ServiceService serviceService = new ServiceService();
+	
+	
 	
 	@GetMapping("login")
 	public void getLogin() throws Exception{
@@ -327,8 +334,12 @@ public class MemberController {
 		
 		
 		
-		int result = memberService.dropMember(memberDTO);
-		System.out.println("result =" +result);
+		
+		// member & rank delete
+		//int result = memberService.dropMember(memberDTO);
+		
+		
+		//System.out.println("result =" +result);
 		
 		
 		return "redirect:/";

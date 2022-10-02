@@ -140,7 +140,7 @@ public class MemberService {
 	
 	public int dropMember(MemberDTO memberDTO)throws Exception{
 		
-		System.out.println("drop memevber ");
+		
 		return memberDAO.dropMember(memberDTO);
 	}
 }
