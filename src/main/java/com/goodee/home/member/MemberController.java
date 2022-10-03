@@ -264,7 +264,7 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<DeliveryDTO> ar =memberService.getDelivery(memberDTO);
 	
-		if(num == null) {
+		if(num == null ) {
 				num =0;
 		}
 		

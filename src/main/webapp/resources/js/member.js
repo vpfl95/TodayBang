@@ -997,16 +997,18 @@ function delivery(){
     submitPhone.value = phoneValue;
     var regex = /[^0-9]/g;	
     let results = location.search.replaceAll(regex,"");
-
-
-        if(results == '3'){
-           deliveryForm.action="./addDelivery";
+    const addressinput = document.querySelector("#addressinput");
+        
+    console.log("addressinput.value" +addressinput.value);
+        if(results == '3'||addressinput.value==""){
+           
 
            Swal.fire({
             title: "배송지 저장 성공",
             icon: "success"
 
         } ).then((result) => {
+            deliveryForm.action="./addDelivery";
             deliveryForm.submit();
         })
            
@@ -1026,7 +1028,7 @@ function delivery(){
 
     deleteBtn.addEventListener("click", function(){
 
-        deliveryForm.action="./deleteDelivery";
+        
 
         Swal.fire({
             title: "정말로 삭제하시겠습니까?",
@@ -1039,7 +1041,7 @@ function delivery(){
             reverseButtons: true
         } ).then((result) => {
             if (result.isConfirmed) {
-
+                deliveryForm.action="./deleteDelivery";
                 deliveryForm.submit();
             }
            

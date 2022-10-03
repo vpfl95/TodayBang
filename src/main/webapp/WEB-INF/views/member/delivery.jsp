@@ -51,7 +51,7 @@
 			<!-- 몸통 -->
 				
 			<form action="./updateDelivery" method="POST" id="deliveryForm">
-				<input type="hidden" value ="${delivery[num].addressNum}"  name = "addressNum" class="form-control ">
+				<input type="hidden" value ="${delivery[num].addressNum}" id="addressinput" name = "addressNum" class="form-control ">
 				<table class="table" id="de-table">
 						  <thead>
 						    <tr>
