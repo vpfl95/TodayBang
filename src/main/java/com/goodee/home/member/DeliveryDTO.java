@@ -4,14 +4,41 @@ public class DeliveryDTO {
 
 	
 	private Long addressNum;
-	private String address;
+	
 	private String phone;
 	private String name;
 	private String note;
 	private String deliveryName;
 	private String userId;
 	
+	private Integer postcode;
+	private String address;
+	private String detailAddress;
+	private String extraAddress;
 	
+	
+	
+	
+	
+	
+	public Integer getPostcode() {
+		return postcode;
+	}
+	public void setPostcode(Integer postcode) {
+		this.postcode = postcode;
+	}
+	public String getDetailAddress() {
+		return detailAddress;
+	}
+	public void setDetailAddress(String detailAddress) {
+		this.detailAddress = detailAddress;
+	}
+	public String getExtraAddress() {
+		return extraAddress;
+	}
+	public void setExtraAddress(String extraAddress) {
+		this.extraAddress = extraAddress;
+	}
 	public Long getAddressNum() {
 		return addressNum;
 	}

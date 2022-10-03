@@ -100,7 +100,17 @@
 	justify-content: space-between;
 	align-items: baseline;
 }
+.de-section{
+    background-color: #ffffff;
+    border: 1px solid #dadce0;
+    border-radius: 3px;
+    width: 70%;
+    min-width: 900px;
+    height: auto;
 
+
+
+}
 .pf-section{
 	
 	
@@ -272,12 +282,7 @@ th{
 	font-size: 18px;
 
 }
-.de-ListDiv{
-	
-	display: inline-flex;
-	justify-content: flex-start;
-	
-}
+
 
 tr,th{
 	

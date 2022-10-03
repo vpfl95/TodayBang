@@ -76,10 +76,9 @@
 				SELECT * FROM DELIVERY WHERE USERID = #{userId}
 			</select>
 			<select id="setDelivery" parameterType="DeliveryDTO" >
-				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL ,#{address}, #{phone}, #{name}, #{note}, #{deliveryName},#{userId})
-			</select>
+				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL,#{phone}, #{name}, #{note}, #{deliveryName},#{userId},#{address},#{postcode},#{detailAddress},#{extraAddress})</select>
 			<update id="updateDelivery" parameterType="DeliveryDTO">
-				UPDATE DELIVERY SET ADDRESS = #{address}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName} WHERE ADDRESSNUM = #{addressNum}
+				UPDATE DELIVERY SET ADDRESS = #{address},POSTCODE =#{postcode} ,DETAILADDRESS=#{detailAddress} ,EXTRAADDRESS=#{extraAddress}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName} WHERE ADDRESSNUM = #{addressNum}
 			</update>
 			<delete id="deleteDelivery" parameterType="DeliveryDTO">
 				DELETE FROM DELIVERY WHERE ADDRESSNUM = #{addressNum}

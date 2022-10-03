@@ -63,6 +63,9 @@
     		
     		
     		$("#profileDiv").load("/member/profile");
+
+			
+
     		if(${not empty page}){
     			$("#${page}").trigger("click");
     		}

@@ -280,19 +280,21 @@ public class MemberController {
 	
 	
 	@GetMapping("delivery")
-	public ModelAndView getDelivery(HttpSession session) throws Exception{
+	public ModelAndView getDelivery(HttpSession session,Integer num) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<DeliveryDTO> ar =memberService.getDelivery(memberDTO);
+	
+		if(num == null) {
+				num =0;
+		}
 		
 		
-			mv.addObject("delivery", ar);
-			mv.addObject("length", ar.size());
-			//mv.addObject("num", num);
-			mv.addObject("test", "3");
+		mv.addObject("delivery", ar);
+		mv.addObject("length", ar.size());
+		mv.addObject("num", num);
 			
-		
 		return mv;
 		
 	}
@@ -303,6 +305,7 @@ public class MemberController {
 		
 		
 	}
+	
 	@PostMapping("addDelivery")
 	public String setDelivery(DeliveryDTO deliveryDTO,HttpSession session) throws Exception{
 		

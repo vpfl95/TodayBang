@@ -239,7 +239,6 @@ function join(){
 
         }
 
-        console.log(result);
 
 
 
@@ -345,7 +344,6 @@ function myPage(){
             
             let arr ;
             let url ;
-            console.log("clcicc")
 
 
             for(ct of myPagelist){
@@ -393,7 +391,6 @@ function myPage(){
         }
     
         if(arr.length != url.length){
-            console.log(" arr url 사이즈 다름");
             return;
         }
     
@@ -426,11 +423,10 @@ function myPage(){
                     
                     let locate = location.href.split("/")
                     locate = locate[4].split("?")
-                    console.log("locate =" + locate);
+                    
 
                     if(locate[0] != "myPage"){
 
-                        console.log("is this a Tag/delivery");
 
                         let li = document.createElement("li");
                         let liText = document.createTextNode(arr[i]);
@@ -445,7 +441,7 @@ function myPage(){
                         subMenu.append(li);
                         continue;
                     }else{
-                        console.log("is this myPage");
+                       
                         let li = document.createElement("li");
                         let liText = document.createTextNode(arr[i]);
                         
@@ -649,7 +645,6 @@ function profile() {
    
     profileImg.addEventListener("change",function(){
 
-        console.log("profile 변경" +profileImg.value);
 
         let labelvalue = profileImg.value.split("\\");
         previewNameLabel.innerText = labelvalue[2];
@@ -676,7 +671,6 @@ function profile() {
 
         }
 
-        console.log(result);
 
 
 
@@ -868,18 +862,17 @@ function delivery(){
 
     let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
     submitPhone.value = phoneValue;
-               
+    var regex = /[^0-9]/g;	
+    let results = location.search.replaceAll(regex,"");
+    console.log("result ==" +results)
 
-        if(deliveryHead.title == 3){
 
-           console.log(deliveryForm.action);
+        if(results == '3'){
            deliveryForm.action="./addDelivery";
-           console.log(deliveryForm.action);
            deliveryForm.submit();
-
         }else{
 
-            deliveryForm.submit();
+           deliveryForm.submit();
         }
 
 
