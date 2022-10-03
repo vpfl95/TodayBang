@@ -25,6 +25,9 @@
 			    <input type="password" id="password" name = "password" class="form-control nonOverlab" placeholder="현재 비밀번호" required>
 				<button id="pwCheckBtn" class="w-50 btn btn-lg btn-primary" type="button">확인</button>
 			</form>
+			
+			
+			
 		</div>	
 		
 		

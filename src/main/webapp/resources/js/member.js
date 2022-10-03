@@ -356,7 +356,7 @@ function myPage(){
             if(event.target.id == "myPage-profile"){
     
                  arr = ['정보수정', '비밀번호변경','멤버등급', '배송지정보'];
-                 url = ['/member/profile','/member/updatePw' ,'/member/rank', '/member/delivery?num=0'];
+                 url = ['profile','updatePw' ,'rank', 'delivery'];
         
                 
             }else if(event.target.id == "myPage-shopping"){
@@ -397,24 +397,85 @@ function myPage(){
             return;
         }
     
-    
+        
+
+
+
     
         for(let i = 0 ; i < arr.length; i ++){
-            let li = document.createElement("li");
-            let liText = document.createTextNode(arr[i]);
+
+            if(cate.id == "myPage-profile"){
+                if(url[i] == "delivery"){
+                    let li = document.createElement("li");
+                    let liText = document.createTextNode(arr[i]);
+                    
+        
+                    let aTag = document.createElement("a");
+                    let aAttri = document.createAttribute("href");
+                    aAttri.value = "/member/"+url[i];
+                    aTag.setAttributeNode(aAttri);
+        
+        
+                    li.appendChild(aTag);
+                    aTag.appendChild(liText);
+                    subMenu.append(li);
+    
+    
+                    continue;
+                }else{
+                    
+                    let locate = location.href.split("/")
+                    locate = locate[4].split("?")
+                    console.log("locate =" + locate);
+
+                    if(locate[0] != "myPage"){
+
+                        console.log("is this a Tag/delivery");
+
+                        let li = document.createElement("li");
+                        let liText = document.createTextNode(arr[i]);
+                        
+                        let aTag = document.createElement("a");
+                        let aAttri = document.createAttribute("href");
+                        aAttri.value = "/member/myPage?page="+url[i];
+                        aTag.setAttributeNode(aAttri);
+            
+                        li.appendChild(aTag);
+                        aTag.appendChild(liText);
+                        subMenu.append(li);
+                        continue;
+                    }else{
+                        console.log("is this myPage");
+                        let li = document.createElement("li");
+                        let liText = document.createTextNode(arr[i]);
+                        
+            
+                        let aAttri = document.createAttribute("data-a");
+                        aAttri.value = "/member/"+ url[i];
+                        li.setAttributeNode(aAttri);
             
 
-            let aAttri = document.createAttribute("data-a");
-            aAttri.value = url[i];
-            li.setAttributeNode(aAttri);
-
-
-            aAttri = document.createAttribute("class");
-            aAttri.value = "submenuList";
-            li.setAttributeNode(aAttri);
+                        aAttri = document.createAttribute("id");
+                        aAttri.value = url[i];
+                        li.setAttributeNode(aAttri);
             
-            li.appendChild(liText);
-            subMenu.append(li);
+                        aAttri = document.createAttribute("class");
+                        aAttri.value = "submenuList";
+                        li.setAttributeNode(aAttri);
+                        
+                        li.appendChild(liText);
+                        subMenu.append(li);
+
+                        continue;
+                    }
+
+
+                }
+            }
+
+
+
+           
         }
 
 

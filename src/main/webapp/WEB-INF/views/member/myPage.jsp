@@ -42,7 +42,7 @@
 		<hr>
 		</div>
 		<div class = "row justify-content-center mt-5">
-			<div class = " col-lg-10 d-flex justify-content-center" id = "profile"  >
+			<div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
 				
 
 
@@ -60,14 +60,26 @@
     	 $(document).ready(function(){
     		
     		$("#myPage-profile").trigger("click");
+    		
+    		
+    		$("#profileDiv").load("/member/profile");
+    		if(${not empty page}){
+    			$("#${page}").trigger("click");
+    		}
+    		
     	});
     	
     	
-    	$("#profile").load("/member/profile");
+    	
+    	
+    	
+    	
+    	
+    	
     	
     	
     	$(document).on("click",".submenuList",function(){
-    		$("#profile").load(this.getAttribute('data-a'));
+    		$("#profileDiv").load(this.getAttribute('data-a'));
     	});
     	
     	

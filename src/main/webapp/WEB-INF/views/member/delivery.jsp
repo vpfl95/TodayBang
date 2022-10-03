@@ -1,14 +1,43 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib uri="http://java.sun.com/jsp/jstl/core"  prefix="c"%>
-    
+     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html>
+<html >
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>오늘의 직방</title>
+		<link href="/resources/css/reset.css" rel="stylesheet">
+		<link href= "/resources/css/member/myPage.css" rel="stylesheet">
+		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
+
+ <c:import url="../template/header.jsp"></c:import>
+<section class="container-fluid container-lg-8 mt-4">
+	<div class="container-fluid container-lg-8 pt-4">
+		<!-- 카테고리 1  --> 
+			<ul id = "myPage-1">
+				<li class = "myPage-list" id = "myPage-profile" > 프로필 </li>
+				<li class = "myPage-list" id = "myPage-shopping"> 나의 쇼핑</li>
+				<li class = "myPage-list" id = "myPage-write"> 나의 글</li>
+				
+			</ul>
+		<hr>
+		</div>
+		
+		<div class="container-fluid container-lg-8 mt-4 ">
+		<!-- 카테고리 2 -->
+			<ul id = "myPage-2">
+				
+			
+				
+			</ul>
+		<hr>
+</div>
+
 
 <div class = "pf-section">
 	<div class = "pf-body">
@@ -81,18 +110,24 @@
 					    </tr>
 					    <tr>
 					      <th scope="row">주소</th>
-					      <td><input type="text" value ="${delivery[num].address }"  name = "address" class="form-control" required autofocus ></td>
-						     
+					      <td><input type="text" value ="${delivery[num].address }" id="address_kakao" name = "address" class="form-control" required autofocus ></td>
+						   							     
 					    </tr>
 					    <tr>
 					      <th scope="row">요청사항</th>
-					      <td><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  autofocus ></td>
+					      <td><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  ></td>
 						     
 					    </tr>
 					    
 					   
 					  </tbody>
 					</table>
+					${member.userId }
+					
+					
+					
+					
+					
 					
 					<div class = "btnDiv">
 						<button id="delDeleteBtn" class="de-Btn" type="button">삭제</button>
@@ -103,12 +138,29 @@
 		</div>
 	</div>
 </div>
+</section>
 
+<c:import url="../template/footer.jsp"></c:import>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+   
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+							<script>
+							    new daum.Postcode({
+							        oncomplete: function(data) {
+							            // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분입니다.
+							            // 예제를 참고하여 다양한 활용법을 확인해 보세요.
+							        }
+							    }).open();
+</script>
+<script src="/resources/js/member.js"></script>
 <script type="text/javascript">
-
+	myPage();
 	delivery();
 
-	
+	 $(document).ready(function(){
+		
+		$("#myPage-profile").trigger("click");
+	});
 	
 	
 	$("#deliveryHead").on("click",".de-ListItem",function(){
@@ -124,6 +176,7 @@
 	
 
 </script>
-
+ 
+   
 </body>
 </html>

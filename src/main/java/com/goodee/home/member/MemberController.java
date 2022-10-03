@@ -171,12 +171,13 @@ public class MemberController {
 	}
 	
 	@GetMapping("myPage")
-	public ModelAndView getMyPage(HttpSession session) throws Exception{
+	public ModelAndView getMyPage(HttpSession session,String page) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
 		mv.addObject("memberDTO", memberDTO);
+		mv.addObject("page",page);
 		mv.setViewName("member/myPage");
 		
 		
@@ -279,7 +280,7 @@ public class MemberController {
 	
 	
 	@GetMapping("delivery")
-	public ModelAndView getDelivery(HttpSession session,int num) throws Exception{
+	public ModelAndView getDelivery(HttpSession session) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
@@ -288,8 +289,8 @@ public class MemberController {
 		
 			mv.addObject("delivery", ar);
 			mv.addObject("length", ar.size());
-			mv.addObject("num", num);
-			
+			//mv.addObject("num", num);
+			mv.addObject("test", "3");
 			
 		
 		return mv;
