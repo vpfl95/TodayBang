@@ -1,4 +1,54 @@
 
+// 로그인 부분
+function login() {
+
+    const loginBtn =  document.querySelector("#loginBtn");
+    const userId = document.querySelector("#userId");
+    const password = document.querySelector("#password");
+    loginBtn.addEventListener("click",function(){
+
+        xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST","./login");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("userId="+userId.value+"&password="+password.value);
+        xhttp.onreadystatechange= function(){
+
+            if(xhttp.readyState == 4 && xhttp.status ==200){
+                let result = xhttp.responseText.trim();
+                
+                if(result == 1){
+                    swal({
+                        
+                        icon: "success",
+                        button : false
+                    } )
+
+                    setTimeout(() => {
+                        location.href = "/"
+                    }, 700)
+        
+                }else if(result == 0){
+                    swal({
+                        title: "로그인 실패",
+                        text : "존재하지 않는 계정입니다.",
+                        icon: "error"
+        
+                    } ).then((result) => {
+                        
+                    })
+                    
+                }
+            }
+        }
+    })
+
+}
+
+
+
+
+
 //회원가입 부분
 function join(){
 
@@ -244,13 +294,32 @@ function join(){
 
 
         if(redCheck.length == 0 && result == 0){
-            joinForm.submit();
+
+            swal({
+                title: "회원가입 성공",
+                icon: "success"
+
+            } ).then((result) => {
+                joinForm.submit();
+            })
         }else if(result !=0){
-            alert(" 입력되지 않은 란이 있습니다 ! ");
+          
+            swal({
+                title: "회원가입 실패",
+                text: "입력되지 않은 란이 있습니다.",
+                icon: "error"
+
+            } )
+            
 
         }else{
 
-            alert(" 회원 가입 조건을 만족해 주세요 ! ");
+            swal({
+                title: "회원가입 실패",
+                text: "가입 조건을 맞추어 주세요.",
+                icon: "error"
+
+            } )
 
         }
 
@@ -676,19 +745,46 @@ function profile() {
 
 
         if(redCheck.length == 0 && result == 0 && previewProfile.title !=  "NoProfile"){
-            updateForm.submit();
+
+
+            Swal.fire({
+                title: "프로필 수정 성공",
+                icon: "success"
+
+            } ).then((result) => {
+                updateForm.submit();
+            })
+
+            
 
 
         }else if(redCheck.length == 0 && result == 0 && previewProfile.title ==  "NoProfile"){
             updateForm.setAttribute("action","./delete");
-            updateForm.submit();
+            Swal.fire({
+                title: "프로필 수정 성공",
+                icon: "success"
+
+            } ).then((result) => {
+                updateForm.submit();
+            })
             
         }else if(result !=0){
-            alert(" 입력되지 않은 란이 있습니다 ! ");
+            Swal.fire({
+                title: "프로필 수정 실패",
+                text : "입력되지 않은 란이 있습니다.",
+                icon: "error"
+
+            } )
+
 
         }else{
 
-            alert(" 프로필 수정 조건을 만족해 주세요 ! ");
+            Swal.fire({
+                title: "프로필 수정 실패",
+                text : "수정 조건을 만족해 주세요!",
+                icon: "error"
+
+            } )
 
         }
 
@@ -788,7 +884,12 @@ function updatePw() {
 
         }else{
 
-            alert(" 비밀번호가 일치하지 않습니다. ");
+            Swal.fire({
+                title: "비밀번호가 일치하지 않습니다.",
+                
+                icon: "error"
+
+            } )
 
         }
 
@@ -802,13 +903,45 @@ function updatePw() {
     pwUpdateBtn.addEventListener("click",function(){
 
         if( newPassword.value == newPasswordCheck.value){
-            pwUpdateForm.submit();
+            Swal.fire({
+                title: '비밀번호를 변경하시겠습니까?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '승인',
+                cancelButtonText: '취소',
+                reverseButtons: true, // 버튼 순서 거꾸로
+                
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: "비밀번호 변경이 완료되었습니다.",
+                    icon: "success"
 
+                } ).then((result) => {
+                    pwUpdateForm.submit();
+                  })
+  
+                }
+              }
+              
+              )
         }else{
+                Swal.fire({
+                    title: "비밀번호가 일치하지 않습니다.",
+                    
+                    icon: "error"
 
-            alert(" 비밀번호가 일치하지 않습니다. ");
-
+                } )
         }
+
+            
+          
+          
+     
+
 
 
     })
@@ -864,15 +997,28 @@ function delivery(){
     submitPhone.value = phoneValue;
     var regex = /[^0-9]/g;	
     let results = location.search.replaceAll(regex,"");
-    console.log("result ==" +results)
 
 
         if(results == '3'){
            deliveryForm.action="./addDelivery";
-           deliveryForm.submit();
+
+           Swal.fire({
+            title: "배송지 저장 성공",
+            icon: "success"
+
+        } ).then((result) => {
+            deliveryForm.submit();
+        })
+           
         }else{
 
-           deliveryForm.submit();
+            Swal.fire({
+                title: "배송지 수정 성공",
+                icon: "success"
+    
+            } ).then((result) => {
+                deliveryForm.submit();
+            })
         }
 
 
@@ -881,7 +1027,25 @@ function delivery(){
     deleteBtn.addEventListener("click", function(){
 
         deliveryForm.action="./deleteDelivery";
-        deliveryForm.submit();
+
+        Swal.fire({
+            title: "정말로 삭제하시겠습니까?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '승인',
+            cancelButtonText: '취소',
+            reverseButtons: true
+        } ).then((result) => {
+            if (result.isConfirmed) {
+
+                deliveryForm.submit();
+            }
+           
+        })
+
+        
 
 
     })

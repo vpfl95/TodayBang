@@ -35,49 +35,32 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public ModelAndView getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
+	@ResponseBody
+	public int getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
 		
-		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getLogin(memberDTO);
 
-		
-		
 		if (memberDTO != null) {
-			
 			session.setAttribute("member", memberDTO);
-			
 			for(RoleDTO role : memberDTO.getRoleDTOs()) {
-				
 				if(role.getRoleNum()<10) {
 					session.setAttribute("ManagerRole", role);
-					
 				}else if(role.getRoleNum()<100 && role.getRoleNum()>9) {
-					System.out.println("memberrole =" +role.getRoleNum());
 					session.setAttribute("MemberRole", role);
-				}
-				
-				
+				}	
 			}
-			
-			
-			
-			
 			session.setAttribute("profile", memberDTO.getMemberFileDTO());
-			String url = "../";
-			mv.addObject("url",url);
-			mv.setViewName("common/message");
 			
+			
+			
+			return 1;
 		}else {
 			
-			String url = "./login";
-			String msg = "존재하지 않는 계정 입니다.";
-			mv.addObject("msg",msg);
-			mv.addObject("url",url);
-			mv.setViewName("common/message");
+			return 0;
 		}
 		
 		
-		return mv;
+		
 	}
 	
 	
@@ -85,14 +68,9 @@ public class MemberController {
 	public ModelAndView getNaverLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		System.out.println(" Naver login");
 		
 		session.setAttribute("member", mv);
-		
 		mv.setViewName("member/naverLogin");
-		
-		
-		
 		return mv;
 	}
 	
@@ -313,7 +291,7 @@ public class MemberController {
 		deliveryDTO.setUserId(memberDTO.getUserId());
 		int result = memberService.setDelivery(deliveryDTO);
 		
-		return "redirect:./myPage";
+		return "redirect:./delivery";
 	}
 	
 	@PostMapping("updateDelivery")
@@ -321,7 +299,7 @@ public class MemberController {
 		
 		int result = memberService.updateDelivery(deliveryDTO);
 		
-		return "redirect:./myPage";
+		return "redirect:./delivery";
 	}
 	
 	@PostMapping("deleteDelivery")
@@ -329,7 +307,7 @@ public class MemberController {
 		
 		
 		int result = memberService.deleteDelivery(deliveryDTO);
-		return "redirect:./myPage";
+		return "redirect:./delivery";
 	}
 	
 	@PostMapping("dropMember")

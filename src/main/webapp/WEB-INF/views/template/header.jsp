@@ -120,11 +120,13 @@
     	window.addEventListener('wheel', (e) => { 
     		var submenu = $(".hide");
     		var linkArr =  document.location.href.split("/");
+    		var linkArr2 = linkArr[4].split("?");
+    		
     		var storeMenu = $("#storeMenu");
     		
         if(e.deltaY < 0){
 
-        	if(linkArr[4] != "myPage" && linkArr[3] != "admin" ){
+        	if(linkArr2[0] != "myPage" && linkArr[3] != "admin" && linkArr2[0] != "delivery"){
         		console.log("ll " +  linkArr[3]);
         		
                 const hr = document.querySelector("#hr");

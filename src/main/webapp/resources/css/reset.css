@@ -20,6 +20,11 @@ section {
   color: #38b9e0 !important;
 
 }
+.swal-modal{
+
+  min-height: 200px;
+
+}
 
 #homeCate > li > a , #subMenu > li > a {
 	
