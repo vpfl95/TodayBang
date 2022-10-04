@@ -42,57 +42,102 @@
 		
 		/* #sugguestList{position:absolute; right:25px;top:40px;border-radius: 2px;background:rgba(255,255,255,0.8);z-index:10;padding:5px; height: 30%; overflow: auto; height: 30%;}  */
 	</style>
+	 <link href="/resources/css/reset.css" rel="stylesheet">
+	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
-	<h1>${zigbang} 페이지</h1>
-	
-	<div class="map_wrap">
-		<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
-		<div class="hAddr">
-			<span class="title">지도중심기준 법정동, 행정동 주소정보</span>
-			법정동:<span id="B"></span><br>
-			행정동:<span id="H"></span>
-		</div>
+	<c:import url="../template/header.jsp"></c:import>
+	<section class="container-fluid container-lg-8 mt-5">
+
+		<h1>${zigbang} 페이지</h1>
 		
-		<form action="" onsubmit="searchPlaces(); return false;" id="searchWrap" style="width: 30%;">
-			<div id="search">
-				<input type="text" id="keyword" autocomplete="off" style="width: 80%;">
-				<button type="submit">검색</button>
+		<div class="map_wrap">
+			<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
+			<div class="hAddr">
+				<span class="title">지도중심기준 법정동, 행정동 주소정보</span>
+				법정동:<span id="B"></span><br>
+				행정동:<span id="H"></span>
 			</div>
-			<div class="slClass" id="sugguestList"></div>
-		</form>
-
-		<div id="buildingInfo"style="height: 95%;width: 30%;overflow:auto;">
-
-			<div id="buildingWrap" style="height: 40%;width: 95%;overflow:auto;">
-				
-				<div id="buildingName"></div>
-		
-				<div id="maemulList">
-					<table id="realEstateList" border="1">
-						<tr>
-							<th>계약일</th>
-							<th>거래가격</th>
-							<th>면적</th>
-							<th>층수</th>
-						</tr>
-					</table>
-					<button id="more">더보기</button>
+			
+			<form action="" onsubmit="searchPlaces(); return false;" id="searchWrap" style="width: 30%;">
+				<div id="search">
+					<input type="text" id="keyword" autocomplete="off" style="width: 80%;">
+					<button type="submit">검색</button>
 				</div>
+				<div class="slClass" id="sugguestList"></div>
+			</form>
+	
+			<div id="buildingInfo"style="height: 95%;width: 30%;overflow:auto;">
+	
+				<div id="buildingWrap" style="height: 40%;width: 95%;overflow:auto;">
+					
+					<div id="buildingName"></div>
+			
+					<div id="maemulList">
+						<table id="realEstateList" border="1">
+							<tr>
+								<th>계약일</th>
+								<th>거래가격</th>
+								<th>면적</th>
+								<th>층수</th>
+							</tr>
+						</table>
+						<button id="more">더보기</button>
+					</div>
+				</div>
+	
+				<div id="review" style="height: 40%;width: 95%;overflow:auto;">
+					<div>거주민 리뷰</div>
+					<div id="houseReviewList"></div>
+					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
+					
+					
+				</div>
+				
 			</div>
-
-			<div id="review" style="height: 40%;width: 95%;overflow:auto;">
-				<div>거주민 리뷰</div>
-				<button>리뷰작성하기</button>
+			
+		</div>
+		
+		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog">
+			  <div class="modal-content">
+				<div class="modal-header">
+				  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div>
+				<div class="modal-body">
+				  <form>
+					<div class="mb-3">
+						<label for="message-text" class="col-form-label">추천점수:</label>
+						<textarea class="form-control" id="grade-text"></textarea>
+					  </div>
+					<div class="mb-3">
+					  <label for="message-text" class="col-form-label">교통여건:</label>
+					  <textarea class="form-control" id="traffic-text"></textarea>
+					</div>
+					<div class="mb-3">
+						<label for="message-text" class="col-form-label">주변환경:</label>
+						<textarea class="form-control" id="environment-text"></textarea>
+					  </div>
+					  <div class="mb-3">
+						<label for="message-text" class="col-form-label">거주환경:</label>
+						<textarea class="form-control" id="residential-text"></textarea>
+					  </div>
+				  </form>
+				</div>
+				<div class="modal-footer">
+				  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+				  <button type="button" class="btn btn-primary">Send message</button>
+				</div>
+			  </div>
 			</div>
-
 		</div>
 
-	</div>
+	</section>
 	
-
-
+	<c:import url="../template/footer.jsp"></c:import>
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f734c47d571810dc50360665614e2cd&libraries=services,clusterer,drawing"></script>
 	<script src="/resources/js/map.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>

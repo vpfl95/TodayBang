@@ -18,6 +18,8 @@ import org.springframework.web.servlet.ModelAndView;
 import com.goodee.home.realEstate.RealEstateDTO;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
+import com.goodee.home.review.HouseReviewDTO;
+import com.goodee.home.review.HouseReviewService;
 import com.goodee.home.util.MaemulPager;
 
 
@@ -29,6 +31,8 @@ public class AptController {
 	private AptService aptService;
 	@Autowired
 	private RegionService sigunguService;
+	@Autowired
+	private HouseReviewService houseReviewService;
 	
 	@ModelAttribute("zigbang")
 	public String getBuilding() {
@@ -107,6 +111,20 @@ public class AptController {
 //		mv.addObject("list_pager",map);
 //		mv.setViewName("common/realEstateList");
 //		return mv;
+		return map;
+	}
+	
+	@GetMapping("getHouseReview")
+	@ResponseBody
+	public Map<String, Object>  getHouseReview(MaemulPager maemulPager)throws Exception{
+		System.out.println("getHouseReview" + maemulPager.getRoadName());
+		ModelAndView mv = new ModelAndView();
+		
+		List<HouseReviewDTO> list = houseReviewService.getHouseReview(maemulPager);
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("list", list);
+		map.put("maemulPager", maemulPager);
+		
 		return map;
 	}
 	

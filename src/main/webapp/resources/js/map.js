@@ -3,8 +3,9 @@ const maemulList = document.getElementById("maemulList");
 const buildingName = document.getElementById("buildingName")
 const buildingWrap = document.getElementById("buildingWrap")
 const buildingInfo = document.getElementById("buildingInfo")
+const houseReviewList = document.getElementById("houseReviewList")
 let page =1;
-
+let reviewPage = 1;
 
 buildingInfo.style.display="none"
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -397,13 +398,64 @@ function addEventHandle(target,coords, type) {
             realEstateList.append(tr)
 
             page=1;
+            reviewPage=1;
             getMaemulList(roadName,page) //매물리스트 호출
+            getReviewList(roadName,reviewPage)
 
         });
     } else {
         target.attachEvent('on' + type, callback);
     }
 }
+
+function getReviewList(roadName,p){
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET","./getHouseReview?roadName="+roadName);
+    xhttp.send();
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            var result = JSON.parse(xhttp.responseText.trim());
+            console.log(result)
+            let list= result.list
+            let pager=result.maemulPager
+            for(let i=0; i<list.length; i++){
+                let revDiv = document.createElement("div")
+
+                let gradeDiv = document.createElement("div")
+                gradeDiv.innerText = "추천점수" + list[i].grade
+                let contents = document.createElement("div")
+                contents.innerText = list[i].contents
+                revDiv.appendChild(gradeDiv)
+                revDiv.appendChild(contents)
+
+                let trfDiv = document.createElement("div")
+                trfDiv.innerText="교통여건"+list[i].trfGrade
+                let trfContents = document.createElement("div")
+                trfContents.innerText = list[i].trfContents
+                revDiv.appendChild(trfDiv)
+                revDiv.appendChild(trfContents)
+
+                let envDiv = document.createElement("div")
+                envDiv.innerText="주변환경"+list[i].envGrade
+                let envContents = document.createElement("div")
+                envContents.innerText = list[i].envContents
+                revDiv.appendChild(envDiv)
+                revDiv.appendChild(envContents)
+
+                let resDiv = document.createElement("div")
+                resDiv.innerText="거주환경"+list[i].resGrade
+                let resContents = document.createElement("div")
+                resContents.innerText = list[i].resContents
+                revDiv.appendChild(resDiv)
+                revDiv.appendChild(resContents)
+
+                houseReviewList.appendChild(revDiv)
+            }
+        }
+    });
+}
+
+
 
 function getMaemulList(roadName,p){
     buildingInfo.style.display="block"

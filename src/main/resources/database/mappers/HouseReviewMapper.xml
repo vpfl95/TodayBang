@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.goodee.home.review.HouseReviewDAO">
+	
+	<select id="getHouseReview" parameterType="MaemulPager" resultType="HouseReviewDTO">
+		SELECT H.*,R.ROADNAME
+		FROM HOUSEREVIEW H
+		     INNER JOIN 
+		     REALESTATE R
+		     ON H.NUM=R.NUM
+		WHERE R.ROADNAME=#{roadName}
+	</select>
+	<!-- <resultMap type="HouseReviewDTO" id="getHouseReviewResult">
+		<id column="reviewNum" property="reviewNum"/>
+		<result column="grade" property="grade"/>
+		<result column="date" property="date"/>
+		<result column="help" property="help"/>
+		<result column="contents" property="contents"/>
+		<result column="userId" property="userId"/>
+		<result column="num" property="num"/>
+		<result column="trfContents" property="trfContents"/>
+		<result column="envContents" property="envContents"/>
+		<result column="resContents" property="resContents"/>
+		<result column="trfGrade" property="trfGrade"/>
+		<result column="envGrade" property="envGrade"/>
+		<result column="resGrade" property="resGrade"/>
+		<association property="realEstateDTO" javaType="realEstateDTO">
+			<result column="ROADENAME" property="roadName"/>
+		</association>
+	</resultMap> -->
+	
+	<select id="getTotalCount" parameterType="MaemulPager" resultType="Long" >
+		SELECT COUNT(H.REVIEWNUM)
+		FROM HOUSEREVIEW H
+		     INNER JOIN 
+		     REALESTATE R
+		     ON H.NUM=R.NUM
+		WHERE R.ROADNAME=#{roadName}
+	</select>
+
+</mapper>
