@@ -33,10 +33,14 @@ const radio3 = document.querySelectorAll('.radio3');
 const radio4 = document.querySelectorAll('.radio4');
 const reviewList = document.querySelectorAll('.reviewList');
 const btnWrite = document.querySelector('#btnWrite');
+const btnInquiry = document.querySelector('#btnInquiry');
 const reviewWriter = document.querySelector('#reviewWriter');
 const userId = document.querySelector('#userId');
 const contents = document.querySelector('#contents');
+const inqueryContents = document.querySelector('#inqueryContents');
+const chkInquiry = document.querySelector('#chkInquiry');
 const reviewImage = document.querySelector('#reviewImage');
+const exampleModalLabel = document.querySelector('#exampleModalLabel');
 let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
@@ -265,6 +269,7 @@ function setModal() {
 
 // 리뷰 쓰기 버튼 클릭 시 입력된 정보들 초기화
 reviewWriter.onclick=function() {
+    exampleModalLabel.innerHTML = '리뷰 쓰기';
     for(r of radio) {
         r.checked = false;
     }
@@ -304,6 +309,7 @@ btnWrite.onclick=function() {
     let form = $('#frmUpload')[0];
     let formData = new FormData(form);
     formData.append("fileObj", $("#reviewImage")[0].files[0]);
+    
     formData.append("durStar", durStar);
     formData.append("priceStar", priceStar);
     formData.append("designStar", designStar);
@@ -311,20 +317,53 @@ btnWrite.onclick=function() {
     formData.append("userId", userId.value);
     formData.append("contents", contents.value);
     formData.append("productNum", jsonList[0].productNum);
+    if(exampleModalLabel.innerHTML == '리뷰 수정') {
+        formData.append("revNum", revNum);
+        $.ajax({
+            url: '/review/update',
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: 'POST',
+            success: function(result) {
+                alert('수정 성공!');
+                btnClose[0].click();
+                getReviewList(0);
+            }
+        });
+    } else {
+        $.ajax({
+            url: '/review/add',
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: 'POST',
+            success: function(result) {
+                alert('작성 성공!');
+                btnClose[0].click();
+                getReviewList(0);
+            }
+        });
+    }
+}
 
+btnInquiry.onclick=function() {
+    let priStatus;
+    if(chkInquiry.checked) {
+        priStatus=1;
+    } else {
+        priStatus=0;
+    }
 
-    $.ajax({
-        url: '/review/add',
-        processData: false,
-        contentType: false,
-        data: formData,
-        type: 'POST',
-        success: function(result) {
-            alert('업로드 성공!');
-            btnClose[0].click();
-            getReviewList();
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/inquiry/add');
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send('contents='+inqueryContents.value+'&priStatus='+priStatus+'&productNum='+jsonList[0].productNum+'&userId='+userId.value);
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200) {
+            console.log(this.responseText.trim());
         }
-    });
+    }
 }
 
 // 업로드 이미지 미리보기
@@ -340,9 +379,9 @@ function setThumbnail(event) {
 }
 
 // 리뷰 리스트
-function getReviewList() {
+function getReviewList(type) {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum);
+    xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum+"&type="+type);
     xhttp.send();
     xhttp.onreadystatechange=function() {
         if(this.readyState==4 && this.status==200) {
@@ -351,8 +390,13 @@ function getReviewList() {
     }
 }
 
+let revNum;
+// review/list.jsp 안 클릭 리스너
 reviewList[0].onclick=function(event) {
     if(event.target.classList[0] == 'update') {
+        revNum = event.target.getAttribute("data-update-revnum");
+        exampleModalLabel.innerHTML = '리뷰 수정';
+        reviewImage.value='';
         const xhttp = new XMLHttpRequest();
         xhttp.open("GET", "/review/detail?revNum="+event.target.dataset.updateRevnum);
         xhttp.send();
@@ -367,6 +411,9 @@ reviewList[0].onclick=function(event) {
                 $("input:radio[name='rating4']:radio[value="+result.deliveryStar+"]").prop('checked', true); 
             
                 let img = document.createElement('img');
+                let img_revNum = document.createAttribute('data-revNum');
+                img_revNum.value=event.target.dataset.updateRevnum;
+                img.setAttributeNode(img_revNum);
                 if(result.fileName != null) {
                     img.setAttribute('src','../../resources/upload/store/review/'+result.fileName);
                 }
@@ -384,7 +431,7 @@ reviewList[0].onclick=function(event) {
             if(this.readyState==4 && this.status==200) {
                 if(this.responseText.trim()) {
                     alert('삭제 성공');
-                    getReviewList();
+                    getReviewList(0);
                 }
             }
         }
@@ -422,6 +469,28 @@ reviewList[0].onclick=function(event) {
                     event.target.setAttribute('style', '');
                 }
             }
+        }
+    }
+
+    if(event.target.classList[1] == 'sortList') {
+        let type = event.target.parentNode.dataset.sortType;
+        if(type == 2 || type == 3) {
+            getReviewList(event.target.dataset.sort+2);
+        } else {
+            getReviewList(event.target.dataset.sort);
+        }
+    }
+
+    if(event.target.classList[1] == 'picCheck') {
+        let type = event.target.parentNode.dataset.sortType;
+        if(type == 0) {
+            getReviewList(2);
+        } else if(type == 1) {
+            getReviewList(3);
+        } else if(type == 2) {
+            getReviewList(0);
+        } else {
+            getReviewList(1);
         }
     }
 }

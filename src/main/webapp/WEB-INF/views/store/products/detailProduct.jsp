@@ -218,15 +218,16 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="modal-section d-flex justify-content-center" style="text-align: center;">
-                            <div style="width: 33%;">상품</div>
-                            <div style="width: 33%;">배송</div>
-                            <div style="width: 33%;">기타</div>
-                        </div>
                         <div class="modal-section">
                             <div class="modal-section-title">문의내용</div>
-                            <textarea name="contents" id="contents" cols="60" rows="5"></textarea>
+                            <textarea name="contents" id="inqueryContents" cols="60" rows="5"></textarea>
                         </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-text">
+                              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" id="chkInquiry">
+                              <span style="margin-left: 5px;">비밀글로 문의하기</span>
+                            </div>
+                          </div>
                         <div class="modal-section">
                             <p>- 문의내용에 대한 답변은 ‘마이페이지 > 나의 쇼핑 > 나의 문의내역’ 또는 ‘상품 상세페이지’에서 확인 가능합니다.</p>
                             <p>- 배송,결제,교환/반품 문의는 고객센터로 문의 바랍니다.</p>
@@ -234,7 +235,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnWrite">완료</button>
+                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnInquiry">완료</button>
                     </div>
                 </div>
             </div>
@@ -255,7 +256,7 @@
         getCategory();
         setItem();
         setModal();
-        getReviewList();
+        getReviewList(0);
     </script>
 </body>
 </html>

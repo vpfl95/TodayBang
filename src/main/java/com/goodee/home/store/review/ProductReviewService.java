@@ -32,7 +32,11 @@ public class ProductReviewService {
 	}
 	
 	public List<ProductReviewDTO> getReview(ProductReviewDTO productReviewDTO) throws Exception {
-		return productReviewDAO.getReview(productReviewDTO);
+		if(productReviewDTO.getType() % 2 == 1) {
+			return productReviewDAO.getReviewNew(productReviewDTO);			
+		} else {
+			return productReviewDAO.getReviewBest(productReviewDTO);						
+		}
 	}
 	
 	public List<Long> getGrade(ProductReviewDTO productReviewDTO) throws Exception {
@@ -82,5 +86,27 @@ public class ProductReviewService {
 	
 	public int deleteReview(ProductReviewDTO productReviewDTO) throws Exception {
 		return productReviewDAO.deleteReview(productReviewDTO);
+	}
+	
+	public int deleteHelpAll(ProductReviewDTO productReviewDTO) throws Exception {
+		return productReviewDAO.deleteHelpAll(productReviewDTO);
+	}
+	
+	public int updateReview(ProductReviewDTO productReviewDTO, MultipartFile file, ServletContext servletContext) throws Exception {
+		ProductReviewDTO dto = productReviewDAO.getReviewDetail(productReviewDTO);
+		if(file == null) {
+			if(dto.getFileName() == null) {				
+				productReviewDTO.setFileName("");
+			} else {
+				productReviewDTO.setFileName(dto.getFileName());
+			}
+		} else {
+			if(dto.getFileName() != null) {				
+				fileManger.deleteFile(dto.getFileName(), servletContext, "resources/upload/store/review");
+			}
+			String fileName = fileManger.saveFile("resources/upload/store/review", servletContext, file);
+			productReviewDTO.setFileName(fileName);			
+		}
+		return productReviewDAO.updateReview(productReviewDTO);
 	}
 }

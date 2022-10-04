@@ -8,8 +8,23 @@
 		SYSDATE, #{fileName}, #{contents}, #{productNum}, #{userId})
 	</insert>
 	
-	<select id="getReview" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">
+	<select id="getReviewBest" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">
+		SELECT ((DURSTAR+DESIGNSTAR+PRICESTAR+DELIVERYSTAR)/4)AS AVGSTAR,P.* 
+		FROM PRODUCTREVIEW P WHERE PRODUCTNUM = #{productNum}
+		<choose>
+			<when test="type == 0"></when>
+			<otherwise>AND NOT FILENAME IS NULL</otherwise>
+		</choose>
+		ORDER BY AVGSTAR DESC
+	</select>
+	
+	<select id="getReviewNew" parameterType="ProductReviewDTO" resultType="ProductReviewDTO">
 		SELECT * FROM PRODUCTREVIEW WHERE PRODUCTNUM = #{productNum}
+		<choose>
+			<when test="type == 1"></when>
+			<otherwise>AND NOT FILENAME IS NULL</otherwise>
+		</choose>
+		ORDER BY REVNUM DESC
 	</select>
 	
 	<select id="getGrade" resultType="Long" parameterType="ProductReviewDTO">
@@ -40,4 +55,14 @@
 	<delete id="deleteReview" parameterType="ProductReviewDTO">
 		DELETE PRODUCTREVIEW WHERE REVNUM = #{revNum}
 	</delete>
+	
+	<delete id="deleteHelpAll" parameterType="ProductReviewDTO">
+		DELETE REVIEWLIKE WHERE REVNUM = #{revNum}
+	</delete>
+
+	<update id="updateReview" parameterType="ProductReviewDTO">
+		UPDATE PRODUCTREVIEW SET DURSTAR = #{durStar}, DESIGNSTAR=#{designStar}, 
+		PRICESTAR=#{priceStar}, DELIVERYSTAR=#{deliveryStar}, FILENAME=#{fileName}, CONTENTS=#{contents}
+		WHERE REVNUM = #{revNum}
+	</update>
 </mapper>

@@ -14,7 +14,17 @@ public class ProductReviewDTO {
 	private String contents;
 	private Long productNum;
 	private String userId;
+	private Long type;
 	
+	public Long getType() {
+		if(type == null) {
+			type = 0L;
+		}
+		return type;
+	}
+	public void setType(Long type) {
+		this.type = type;
+	}
 	public Long getRevNum() {
 		return revNum;
 	}

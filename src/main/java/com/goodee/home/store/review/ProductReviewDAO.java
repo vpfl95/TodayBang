@@ -17,8 +17,12 @@ public class ProductReviewDAO {
 		return sqlSession.insert(NAMESPACE+"addReview", productReviewDTO);
 	}
 	
-	public List<ProductReviewDTO> getReview(ProductReviewDTO productReviewDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getReview", productReviewDTO);
+	public List<ProductReviewDTO> getReviewBest(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getReviewBest", productReviewDTO);
+	}
+	
+	public List<ProductReviewDTO> getReviewNew(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getReviewNew", productReviewDTO);
 	}
 	
 	public List<Long> getGrade(ProductReviewDTO productReviewDTO) throws Exception {
@@ -47,5 +51,13 @@ public class ProductReviewDAO {
 	
 	public int deleteReview(ProductReviewDTO productReviewDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"deleteReview", productReviewDTO);
+	}
+	
+	public int deleteHelpAll(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteHelpAll", productReviewDTO);
+	}
+	
+	public int updateReview(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"updateReview", productReviewDTO);
 	}
 }
