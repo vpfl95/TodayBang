@@ -55,8 +55,11 @@
 						      <c:if test="${not empty boardList.boardFileDTOs }">
 							      <c:forEach items="${boardList.boardFileDTOs }" var="file">
 							      	
-							      <td><a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a></td>
-									      
+							      	<c:if test="${not file.sort}">
+							      		<td><a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a></td>
+									
+							      	</c:if>
+							            
 							      </c:forEach>
 							      	
 							      

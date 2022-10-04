@@ -20,7 +20,7 @@ function board() {
             const boardFile = document.getElementsByClassName("boardFile");
             const boardNum = document.querySelector("#boardNum");
            
-            let noNumber = "";
+            let noNumber = 0;
 
             console.log("title = " +fileInputDiv.title);
             console.log("title = " +boardFile.length);
@@ -38,7 +38,7 @@ function board() {
                 }
 
                 if(!check){
-                    noNumber += i;
+                    noNumber += 1;
                 }
                 
                 console.log("noNum" + noNumber);

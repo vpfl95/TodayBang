@@ -128,13 +128,12 @@ public class ServiceController {
 	
 		
 		boardDTO.setBoard(getBoardName());
-		service.saveTempFIle(boardDTO,session.getServletContext());
 		
 		String contents = boardDTO.getContents();
 		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
 		
 		service.addBoard(boardDTO,file,session.getServletContext());
-		
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		
 		
 		return "redirect:./list";
@@ -179,11 +178,11 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		
-		service.saveTempFIle(boardDTO,session.getServletContext());
+		
 		
 		String contents = boardDTO.getContents();
 		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
-		
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		service.updateBoard(boardDTO,file,session.getServletContext(),number);
 		
 		
@@ -263,23 +262,27 @@ public class ServiceController {
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		
-		String path = "resources/upload/temp/"+memberDTO.getUserId();
 		
-		FileManger fileManger = new FileManger();
-		String fileName=null;
-		try {
-			System.out.println("파일저장");
-			String FileName = fileManger.saveFile(path, session.getServletContext(), multipartFile);
-			fileName = FileName;
-			jsonObject.addProperty("url", "/"+path+"/"+FileName); // contextroot + resources + 저장할 내부 폴더명
-			jsonObject.addProperty("responseCode", "success");
+			String path = "resources/upload/temp/"+memberDTO.getUserId();
+			FileManger fileManger = new FileManger();
+			String fileName=null;
+			try {
+				System.out.println("파일저장");
+				String FileName = fileManger.saveFile(path, session.getServletContext(), multipartFile);
+				fileName = FileName;
+				jsonObject.addProperty("url", "/"+path+"/"+FileName); // contextroot + resources + 저장할 내부 폴더명
+				jsonObject.addProperty("responseCode", "success");
+					
+			} catch (IOException e) {
+				//fileManger.deleteFile(fileName, session.getServletContext(), path);
+				jsonObject.addProperty("responseCode", "error");
+				e.printStackTrace();
 				
-		} catch (IOException e) {
-			fileManger.deleteFile(fileName, session.getServletContext(), path);
-			jsonObject.addProperty("responseCode", "error");
-			e.printStackTrace();
+			}
 			
-		}
+		
+		
+		
 		
 		String a = jsonObject.toString();
 		return a;
