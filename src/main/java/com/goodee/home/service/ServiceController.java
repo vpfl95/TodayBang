@@ -8,13 +8,16 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +25,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.member.MemberDTO;
+import com.goodee.home.util.FileManger;
 import com.goodee.home.util.Pager;
+import com.google.gson.JsonObject;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -121,9 +128,9 @@ public class ServiceController {
 	
 		
 		boardDTO.setBoard(getBoardName());
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		service.addBoard(boardDTO,file,session.getServletContext());
-	
-		
+		//temp에 값을 upload/sort=1로 변경하여 업로드 하는 코드.
 		
 		
 		
@@ -239,7 +246,33 @@ public class ServiceController {
 		return "redirect:./list";
 	}
 	
-	
+	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request,HttpSession session ) throws Exception  {
+		JsonObject jsonObject = new JsonObject();
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		
+		String path = "resources/upload/temp/"+memberDTO.getUserId();
+		
+		FileManger fileManger = new FileManger();
+		String fileName=null;
+		try {
+			String FileName = fileManger.saveFile(path, session.getServletContext(), multipartFile);
+			fileName = FileName;
+			jsonObject.addProperty("url", "/"+path+"/"+FileName); // contextroot + resources + 저장할 내부 폴더명
+			jsonObject.addProperty("responseCode", "success");
+				
+		} catch (IOException e) {
+			fileManger.deleteFile(fileName, session.getServletContext(), path);
+			jsonObject.addProperty("responseCode", "error");
+			e.printStackTrace();
+			
+		}
+		
+		String a = jsonObject.toString();
+		return a;
+	}
 	
 	
 	

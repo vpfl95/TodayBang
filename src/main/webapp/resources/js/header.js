@@ -1,6 +1,7 @@
 const subMenu = document.querySelector("#subMenu");
 const menus = document.getElementsByClassName("menu");
 const header = document.querySelector("#header");
+const loginBtn = document.querySelector("#loginBtn");
 
 let defaultSelected=null ;
 
@@ -155,10 +156,6 @@ subMenu.addEventListener("mouseover",function(event){
 })
 
 
-
-
-
-// 마우스 스크롤 이벤트
 
 
 

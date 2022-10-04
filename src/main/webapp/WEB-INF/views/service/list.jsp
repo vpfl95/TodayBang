@@ -100,6 +100,28 @@
 				
 				
 				<c:import url="../template/navPager.jsp"></c:import>
+				
+				<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method="get">
+					  <div class="col-12">
+					    <label class="visually-hidden" for="kind">Kind</label>
+					    <select name="kind" class="form-select"  id="kind">
+					      <option class = "kinds" selected value="title">제목</option>
+					      <option class = "kinds" value="contents">내용</option>
+					      <option class = "kinds" value="writer">작성자</option>
+					    </select>
+					  </div>
+						<div class="col-12">
+				  	  		<label class="visually-hidden" for="search">검색어</label>
+						    <div class="input-group">
+						      <input type="text" name="search" class="form-control" id="search">
+						    </div>
+				 		 </div>
+				
+					  <div class="col-12">
+					    <button type="submit" class="btn btn-primary">검색</button>
+					  </div>
+				</form>
+				
 			</div>
 		</div>
 	</section>

@@ -2,6 +2,7 @@
 // 로그인 부분
 function login() {
 
+    
     const loginBtn =  document.querySelector("#loginBtn");
     const userId = document.querySelector("#userId");
     const password = document.querySelector("#password");
@@ -25,7 +26,7 @@ function login() {
                     } )
 
                     setTimeout(() => {
-                        location.href = "/"
+                        location.href = document.referrer;
                     }, 700)
         
                 }else if(result == 0){

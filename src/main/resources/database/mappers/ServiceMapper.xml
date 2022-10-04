@@ -25,6 +25,15 @@
 					<otherwise>QNAANSWERFILE</otherwise>
 				</choose>
 			</sql>
+			<sql id="search">
+				WHERE
+				<choose>
+					<when test="kind == 'title'">TITLE</when>
+					<when test="kind == 'writer'">WRITER</when>
+					<otherwise>CONTENTS</otherwise>
+				</choose>
+				LIKE '%'||#{search}||'%' 
+			</sql>
 		
 			<!-- <select id="getList" parameterType="String" resultType="BoardDTO">
 				SELECT * FROM <include refid="getBoard"></include>
@@ -35,7 +44,7 @@
 				FROM <include refid="getBoard"></include> BO
 					LEFT JOIN <include refid="getBoardFile"></include> BF
     				ON BO.BOARDNUM = BF.BOARDNUM
-				WHERE BO.BOARDNUM = #{boardNum}
+				WHERE BO.BOARDNUM = #{boardNum} 
 				
 				
 			</select>
@@ -61,6 +70,7 @@
 		
 			<select id="getCount" parameterType="Pager"  resultType="Long">
 				SELECT COUNT(*) FROM <include refid="getBoard"></include>
+				<include refid="search"></include> 
 			</select>
 		
 		    
@@ -68,6 +78,7 @@
 		    	SELECT * FROM
 				( SELECT ROWNUM R,N.*
 				 FROM (SELECT * FROM <include refid="getBoard"></include> 
+				 <include refid="search"></include> 
 				 ORDER BY BOARDNUM DESC) N)
 				 WHERE R BETWEEN #{startRow} AND #{lastRow}
 	    	</select>
@@ -108,7 +119,7 @@
 			
 			
 			<insert id="addBoardFile" parameterType="BoardFileDTO">
-			INSERT INTO <include refid="getBoardFile"></include> VALUES (TODAY_SEQ.NEXTVAL,#{fileName},#{oriName},#{boardNum})
+			INSERT INTO <include refid="getBoardFile"></include> VALUES (TODAY_SEQ.NEXTVAL,#{fileName},#{oriName},#{boardNum},#{sort})
 			</insert>
 			<delete id="deleteBoardFile" parameterType="BoardDTO">
 			DELETE FROM <include refid="getBoardFile"></include> WHERE BOARDNUM =#{boardNum}

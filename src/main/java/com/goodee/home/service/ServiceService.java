@@ -1,6 +1,9 @@
 package com.goodee.home.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -211,5 +214,46 @@ public class ServiceService {
 		return serviceDAO.getOftenQna();
 	}
 	
-	
+	public void saveTempFIle(BoardDTO boardDTO,ServletContext servletContext) throws Exception{
+		
+		String [] contents = boardDTO.getContents().split("src=\"/");
+		String [] split = null;
+		ArrayList<String> src = new ArrayList<String>();
+		
+		for(int i = 1; i < contents.length ; i++) {
+			split = contents[i].split("\"");
+			
+			src.add(split[0]);
+		}
+		
+		for(String ar : src){
+			
+			    String oriFilePath = servletContext.getRealPath(ar);
+			    String copyFilePath = oriFilePath.replaceAll("temp\\"+boardDTO.getUserId(),boardDTO.getBoard());
+			    System.out.println("temp/"+boardDTO.getUserId());
+			    System.out.println("board/"+boardDTO.getBoard());
+		        FileInputStream fis = new FileInputStream(oriFilePath); //읽을파일
+		        FileOutputStream fos = new FileOutputStream(copyFilePath); //복사할파일
+		        System.out.println("ori:" +oriFilePath);
+		        System.out.println("copy:" +copyFilePath);
+		        
+		        int data = 0;
+		        while((data=fis.read())!=-1) {
+		        	 System.out.println("copy 실행");
+		         fos.write(data);
+		        }
+		        fis.close();
+		        fos.close();
+		        
+		}
+			
+	}
 }
+	
+	
+	
+	
+	
+	
+	
+

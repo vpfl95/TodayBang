@@ -9,11 +9,28 @@ public class BoardFileDTO extends FileDTO {
 
 	private Long boardNum;
 	private String board;
+	private Boolean sort;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public Boolean getSort() {
+		if(sort==null) {
+			sort = false;
+		}
+		
+		return sort;
+	}
 
-	
-	
-	
-	
+	public void setSort(Boolean sort) {
+		this.sort = sort;
+	}
+
 	public String getBoard() {
 		return board;
 	}

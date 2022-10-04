@@ -31,7 +31,7 @@
 	       	
 	       		<c:if test="${empty member }">
        			 <!-- 로그인 XXX -->
-	        		<li><a href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
+	        		<li><a id="loginBtn" href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
 		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
 		         	<li><a href="/member/joinCheck" class="nav-link px-2 link-secondary">회원가입</a></li>
 	        
@@ -51,16 +51,7 @@
         		</c:if>
 	          </ul>
         
-          <!-- <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">마이페이지</a></li>
-            <li><a class="dropdown-item" href="#">설정</a></li>
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">로그아웃</a></li>
-          </ul> -->
+     
         </div>
       </div>
     </div>
@@ -169,6 +160,10 @@
 
 
       });
+    
+    	
+    
+    
     </script>
 
    

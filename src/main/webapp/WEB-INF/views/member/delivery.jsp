@@ -59,11 +59,17 @@
 						    <c:forEach items="${delivery }" var="del" varStatus="index">
 								<th><a href="/member/delivery?num=${index.index }" class = "de-ListItem" >${del.deliveryName }</a></th>
 							</c:forEach>
+							
+							
 							<c:if test="${length<3 }">
 								<th><a href="/member/delivery?num=3" class = "de-ListItem" >추가하기</a></th>
 							</c:if>
-							
-						    	
+							<c:if test="${length<2 }">
+								<th></th>
+							</c:if>
+					    	<c:if test="${length<1 }">
+								<th></th>
+							</c:if>
 						    </tr>
 						    
 						    

@@ -10,6 +10,7 @@
     <title>오늘의 직방</title>
 		<link href="/resources/css/reset.css" rel="stylesheet">
 		<link href="/resources/css/board/board.css" rel="stylesheet">
+		<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -160,7 +161,8 @@
 													</tr>
 													<tr>
 														<th>내용</th>
-														<td><input type="text" value="${update.contents }" id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
+														
+														<td><textarea   id="summernote" name="contents"></textarea></td>
 													</tr>
 													<tr>
 															<td><p id = "addFileBtn">파일추가</p></td>
@@ -210,6 +212,9 @@
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/js/board.js"></script>
+    
+   	<script src="/resources/js/summernote/summernote-lite.js"></script>
+	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script type="text/javascript">
     
     if (${board eq 'QNA' && empty qnaAnswer}){
@@ -217,7 +222,19 @@
     	fileJs();
     }
     	
-    	
+    $(document).ready(function() {
+			$('#summernote').val("${update.contents }");
+			//여기 아래 부분
+			$('#summernote').summernote({
+				  height: 500,                 // 에디터 높이
+				  minHeight: 300,             // 최소 높이
+				  maxHeight: null,             // 최대 높이
+				  focus: false,                  // 에디터 로딩후 포커스를 맞출지 여부
+				  lang: "ko-KR",					// 한글 설정
+				  placeholder: '내용'	//placeholder 설정
+		          
+			});
+		});
     	
     </script>
     
