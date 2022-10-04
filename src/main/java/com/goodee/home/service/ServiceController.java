@@ -178,16 +178,10 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		
-		
-		
 		String contents = boardDTO.getContents();
 		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
 		service.saveTempFIle(boardDTO,session.getServletContext());
 		service.updateBoard(boardDTO,file,session.getServletContext(),number);
-		
-		
-		
-		
 		
 		
 		return "redirect:./list";
@@ -197,7 +191,13 @@ public class ServiceController {
 	@PostMapping("answer")
 	public String addQnaAnswer(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception{
 		boardDTO.setBoard("QNAANSWER");
+		
+		String contents = boardDTO.getContents();
+		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
+		
+		
 		service.addQnaAnswer(boardDTO,file,session.getServletContext());
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		
 		
 		
