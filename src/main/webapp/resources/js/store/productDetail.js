@@ -32,15 +32,18 @@ const radio2 = document.querySelectorAll('.radio2');
 const radio3 = document.querySelectorAll('.radio3');
 const radio4 = document.querySelectorAll('.radio4');
 const reviewList = document.querySelectorAll('.reviewList');
+const inqueryList = document.querySelectorAll('.inqueryList');
 const btnWrite = document.querySelector('#btnWrite');
 const btnInquiry = document.querySelector('#btnInquiry');
 const reviewWriter = document.querySelector('#reviewWriter');
 const userId = document.querySelector('#userId');
 const contents = document.querySelector('#contents');
 const inqueryContents = document.querySelector('#inqueryContents');
+const inqueryReplyContents = document.querySelector('#inqueryReplyContents');
 const chkInquiry = document.querySelector('#chkInquiry');
 const reviewImage = document.querySelector('#reviewImage');
 const exampleModalLabel = document.querySelector('#exampleModalLabel');
+const btnInquiryReply = document.querySelector('#btnInquiryReply');
 let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
@@ -366,6 +369,18 @@ btnInquiry.onclick=function() {
     }
 }
 
+btnInquiryReply.onclick=function() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/inquiry/reply');
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send('contents='+inqueryReplyContents.value+'&productNum='+jsonList[0].productNum+'&userId='+userId.value+'&inqNum='+inqNum);
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200) {
+            console.log(this.responseText.trim());
+        }
+    }
+}
+
 // 업로드 이미지 미리보기
 function setThumbnail(event) {
     let reader = new FileReader();
@@ -411,9 +426,6 @@ reviewList[0].onclick=function(event) {
                 $("input:radio[name='rating4']:radio[value="+result.deliveryStar+"]").prop('checked', true); 
             
                 let img = document.createElement('img');
-                let img_revNum = document.createAttribute('data-revNum');
-                img_revNum.value=event.target.dataset.updateRevnum;
-                img.setAttributeNode(img_revNum);
                 if(result.fileName != null) {
                     img.setAttribute('src','../../resources/upload/store/review/'+result.fileName);
                 }
@@ -492,5 +504,38 @@ reviewList[0].onclick=function(event) {
         } else {
             getReviewList(1);
         }
+    }
+}
+
+function getInquiryList() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/inquiry/list?productNum="+jsonList[0].productNum);
+    xhttp.send();
+    xhttp.onreadystatechange=function() {
+        if(this.readyState==4 && this.status==200) {
+            inqueryList[0].innerHTML=this.responseText.trim();
+        }
+    }
+}
+
+let inqNum;
+inqueryList[0].onclick=function(event) {
+    if(event.target.classList[0] == 'delete') {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/inquiry/delete");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("inqNum="+event.target.dataset.deleteInqnum);
+        xhttp.onreadystatechange=function() {
+            if(this.readyState==4 && this.status==200) {
+                if(this.responseText.trim() == 1) {
+                    alert('삭제 성공');
+                    getInquiryList();
+                }
+            }
+        }
+    }
+
+    if(event.target.classList[0] == 'reply') {
+        inqNum=event.target.dataset.replyInqnum;
     }
 }

@@ -3,5 +3,23 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.goodee.home.store.inquiry.InquiryDAO">
-	<insert id="addInquiry"></insert>
+	<insert id="addInquiry" parameterType="InquiryDTO">
+		INSERT INTO INQUIRY VALUES (REV_SEQ.NEXTVAL, #{contents}, #{buyStatus}, 0, SYSDATE, #{productNum}, #{userId}, #{priStatus})
+	</insert>
+	
+	<select id="getInauiryList" parameterType="InquiryDTO" resultType="InquiryDTO">
+		SELECT * FROM INQUIRY WHERE PRODUCTNUM = #{productNum}
+	</select>
+	
+	<delete id="deleteInquiry" parameterType="InquiryDTO">
+		DELETE INQUIRY WHERE INQNUM = #{inqNum}
+	</delete>
+	
+	<insert id="replyInquiry" parameterType="InquiryDTO">
+		INSERT INTO INQUIRY VALUES (REV_SEQ.NEXTVAL, #{contents}, 0, #{inqNum}, SYSDATE, #{productNum}, #{userId}, 0)
+	</insert>
+	
+	<select id="getReply" parameterType="InquiryDTO" resultType="InquiryDTO">
+		SELECT * FROM INQUIRY WHERE REPLYSTATUS = #{inqNum}
+	</select>
 </mapper>

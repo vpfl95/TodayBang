@@ -1,21 +1,20 @@
 const productList = document.querySelector("#productList");
-const code = productList.getAttribute("data-ex-code");
 let jsonList;
 
 function getList() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/product/ex_list?exhibitionCode="+code);
+    xhttp.open("GET", "/product/list");
     xhttp.send();
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {
             jsonList = JSON.parse(this.responseText.trim());
             let j=0;
-            for(let i=0; i<Math.ceil(jsonList.length/3); i++) {
+            for(let i=0; i<Math.ceil(jsonList.length/4); i++) {
                 let divWrap = document.createElement("div");
                 let divWrap_class = document.createAttribute("class");
                 divWrap_class.value='imageList d-flex justify-content-between';
                 divWrap.setAttributeNode(divWrap_class);
-                for(let k=0; k<3; k++) {
+                for(let k=0; k<4; k++) {
                     if(j>=jsonList.length) {
                         continue;
                     }

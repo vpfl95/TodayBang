@@ -240,6 +240,27 @@
                 </div>
             </div>
         </div>
+
+        <!-- Inquery Reply Modal -->
+        <div class="modal fade" id="inquiryReplyModal" tabindex="-1" aria-labelledby="inquiryReplyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 100%;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inquiryReplyModalLabel">문의 답변하기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <div class="modal-section-title">답변내용</div>
+                            <textarea name="contents" id="inqueryReplyContents" cols="60" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnInquiryReply">완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
 	</section>
 	
 
@@ -257,6 +278,7 @@
         setItem();
         setModal();
         getReviewList(0);
+        getInquiryList();
     </script>
 </body>
 </html>

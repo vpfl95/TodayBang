@@ -53,7 +53,7 @@ public class ProductController {
 		return productService.getCategory();
 	}
 	
-	@GetMapping("list")
+	@GetMapping("ex_list")
 	@ResponseBody
 	public List<ProductDTO> getExProductList(ExhibitionDTO exhibitionDTO) throws Exception {
 		List<ProductDTO> ar = productService.getExProductList(exhibitionDTO);
@@ -69,5 +69,11 @@ public class ProductController {
 		mv.addObject("jsonList", jsonList);
 		mv.setViewName("store/products/detailProduct");
 		return mv;
+	}
+	
+	@GetMapping("list")
+	@ResponseBody
+	public List<ProductDTO> getProductList() throws Exception {
+		return productService.getProductList();
 	}
 }
