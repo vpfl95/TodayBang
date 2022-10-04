@@ -101,4 +101,9 @@ public class MemberDAO {
 		return sqlSession.delete(NAMESPACE+ "dropMember",memberDTO);
 	}
 	
+	public MemberDTO findId(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+ "findId",memberDTO);
+	}
+	
 }

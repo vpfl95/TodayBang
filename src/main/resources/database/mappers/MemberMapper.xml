@@ -92,4 +92,9 @@
 				DELETE "MEMBER-ROLE" WHERE USERID = #{userId}
 			</delete>
 			
+			<select id="findId" parameterType="MemberDTO" resultType="MemberDTO">
+				SELECT USERID FROM MEMBERS WHERE USERNAME=#{userName} AND EMAIL=#{email}
+			</select>
+			
+			
 		</mapper>

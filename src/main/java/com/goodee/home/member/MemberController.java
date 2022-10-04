@@ -1,6 +1,8 @@
 package com.goodee.home.member;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpSession;
@@ -313,10 +315,6 @@ public class MemberController {
 	@PostMapping("dropMember")
 	public String dropMember(MemberDTO memberDTO) throws Exception{
 		
-		
-		
-		
-		
 		// member & rank delete
 		//int result = memberService.dropMember(memberDTO);
 		
@@ -326,5 +324,24 @@ public class MemberController {
 		
 		return "redirect:/";
 	}
+	
+	@GetMapping("findId")
+	@ResponseBody
+	public String findId(MemberDTO memberDTO) throws Exception{
+		System.out.println("find Name !! " + memberDTO.getUserName());
+		System.out.println("find email !! " + memberDTO.getEmail());
+		memberDTO = memberService.findId(memberDTO);
+		System.out.println("find id !! " + memberDTO.getUserId());
+		
+		 
+		
+		
+		
+		
+		
+		return memberDTO.getUserId();
+	}
+	
+	
 	
 }

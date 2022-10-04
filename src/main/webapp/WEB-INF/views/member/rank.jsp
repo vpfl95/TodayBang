@@ -65,11 +65,47 @@
  		</div>
  		
  	</c:if>
+ 	
+ 	
+ 	
+ 	
+ 	
+ 	<div>
+ 		<table class ="table">
+ 		<thead>
+ 			<tr>
+ 				<th>등급이미지</th>
+ 				<th>등급명</th>
+ 				<th colspan="2">등급 혜택</th>
+ 			</tr>
+ 		</thead>
+
+ 		<tbody>
+ 			<tr>
+	 			<td><img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankExplain"></td>
+	 			<td>다이아몬드</td>
+	 			<td colspan="2"></td>
+ 			</tr>
+ 			<tr>
+	 			<td><img alt="" src="/resources/images/rank/Gold.png" class = "pf-rankExplain"></td>
+	 			<td>골드</td>
+	 			<td colspan="2"></td>
+ 			</tr>
+ 			<tr>
+	 			<td><img alt="" src="/resources/images/rank/Silver.png" class = "pf-rankExplain"></td>
+	 			<td>실버</td>
+	 			<td colspan="2"></td>
+ 			</tr>
+ 			<tr>
+	 			<td><img alt="" src="/resources/images/rank/White.png" class = "pf-rankExplain"></td>
+	 			<td>화이트</td>
+	 			<td colspan="2"></td>
+ 			</tr>
+ 		</tbody>
+ 		
+ 		</table>
+ 		</div>
  	</div>
- 	
- 	
- 	
- 	
  </div>
 
 

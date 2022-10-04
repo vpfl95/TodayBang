@@ -2,7 +2,7 @@
 // 로그인 부분
 function login() {
 
-    
+    const findId = document.querySelector("#findId");
     const loginBtn =  document.querySelector("#loginBtn");
     const userId = document.querySelector("#userId");
     const password = document.querySelector("#password");
@@ -19,7 +19,7 @@ function login() {
                 let result = xhttp.responseText.trim();
                 
                 if(result == 1){
-                    swal({
+                    Swal.fire({
                         
                         icon: "success",
                         button : false
@@ -30,7 +30,7 @@ function login() {
                     }, 700)
         
                 }else if(result == 0){
-                    swal({
+                    Swal.fire({
                         title: "로그인 실패",
                         text : "존재하지 않는 계정입니다.",
                         icon: "error"
@@ -44,7 +44,63 @@ function login() {
         }
     })
 
+
+    findId.addEventListener("click",function(){
+
+        Swal.fire({
+            title: 'Submit your Github username',
+            html :
+            '<input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+            '<input id="swalinput2" class="swal2-input">',
+
+           
+            showCancelButton: true,
+            confirmButtonText: 'Look up',
+            
+            showLoaderOnConfirm: true, // 데이터 결과를 받을때까지, 버튼에다가 로딩바를 표현
+            preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
+              return  fetch(`/member/findId?userName=`+swalinput1.value+`&email=`+swalinput2.value)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.statusText)
+                  }
+                  return response.text();
+
+                })
+                .catch(error => {
+                  Swal.showValidationMessage(
+                    `Request failed: ${error}`
+                  )
+                })
+            }, allowOutsideClick: () => !Swal.isLoading() 
+            
+          }).then((result) => {
+
+
+            let map = JSON.parse(JSON.stringify(result.value));
+            
+
+            console.log(map);
+            
+
+
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: `ID 찾기`,
+                text: 'ID는 '+map + " 입니다."
+              })
+            }
+
+
+          })
+
+
+    })
 }
+
+
+
+
 
 
 

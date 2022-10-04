@@ -143,4 +143,10 @@ public class MemberService {
 		
 		return memberDAO.dropMember(memberDTO);
 	}
+	
+	public MemberDTO findId(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.findId(memberDTO);
+	}
+	
 }

@@ -154,7 +154,11 @@
     height: 150px; 
 
 }
+.pf-rankExplain{
+    width: 60px;
+   
 
+}
 .pf-img{
 
     min-width: 150px;
