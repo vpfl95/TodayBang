@@ -129,10 +129,14 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		service.saveTempFIle(boardDTO,session.getServletContext());
+		
+		String contents = boardDTO.getContents();
+		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
+		
 		service.addBoard(boardDTO,file,session.getServletContext());
 		//temp에 값을 upload/sort=1로 변경하여 업로드 하는 코드.
 		
-		
+		System.out.println("bb" + boardDTO.getContents());
 		
 		
 		return "redirect:./list";

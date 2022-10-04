@@ -216,21 +216,23 @@ public class ServiceService {
 	
 	public void saveTempFIle(BoardDTO boardDTO,ServletContext servletContext) throws Exception{
 		
+		
+		String path = "resources/upload/temp/"+boardDTO.getUserId();
+		String realpath = servletContext.getRealPath(path);
 		String [] contents = boardDTO.getContents().split("src=\"/");
 		String [] split = null;
 		ArrayList<String> src = new ArrayList<String>();
 		
 		for(int i = 1; i < contents.length ; i++) {
 			split = contents[i].split("\"");
-			
 			src.add(split[0]);
 		}
 		
 		for(String ar : src){
 			
 			    String oriFilePath = servletContext.getRealPath(ar);
-			    String copyFilePath = oriFilePath.replaceAll("temp\\"+boardDTO.getUserId(),boardDTO.getBoard());
-			    System.out.println("temp/"+boardDTO.getUserId());
+			    String copyFilePath = oriFilePath.replace("temp\\"+boardDTO.getUserId(),boardDTO.getBoard());
+			    System.out.println("temp\\"+boardDTO.getUserId());
 			    System.out.println("board/"+boardDTO.getBoard());
 		        FileInputStream fis = new FileInputStream(oriFilePath); //읽을파일
 		        FileOutputStream fos = new FileOutputStream(copyFilePath); //복사할파일
@@ -239,14 +241,25 @@ public class ServiceService {
 		        
 		        int data = 0;
 		        while((data=fis.read())!=-1) {
-		        	 System.out.println("copy 실행");
 		         fos.write(data);
 		        }
 		        fis.close();
 		        fos.close();
-		        
+		        File folder = new File(realpath);
+		        if(folder.exists()) {
+		        	File[] files = folder.listFiles();
+		        	
+		        	for(File file : files) {
+		        		file.delete();
+		        	}
+		        	
+		            folder.delete();
+		                
+		        }
 		}
 			
+		
+		
 	}
 }
 	

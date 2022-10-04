@@ -42,7 +42,9 @@
 			<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
 				SELECT BO.* , BF.FILENUM , BF.FILENAME , BF.ORINAME
 				FROM <include refid="getBoard"></include> BO
-					LEFT JOIN <include refid="getBoardFile"></include> BF
+					LEFT JOIN (SELECT * 
+                    FROM <include refid="getBoardFile"></include>
+                    WHERE SORT=0) BF
     				ON BO.BOARDNUM = BF.BOARDNUM
 				WHERE BO.BOARDNUM = #{boardNum} 
 				

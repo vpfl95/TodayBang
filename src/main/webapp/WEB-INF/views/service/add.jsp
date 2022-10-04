@@ -105,10 +105,9 @@
    	
    		board();
    		fileJs();
-   		
-   		
+   	 	
    		$(document).ready(function() {
-
+   			$('#summernote').summernote('pasteHTML', '${update.contents}');
    			var toolbar = [
    				    // 글꼴 설정
    				    ['fontname', ['fontname']],
@@ -149,7 +148,10 @@
    		         };
 
    		        $('#summernote').summernote(setting);
+   		     	
    		        });
+   		
+   		
    		function uploadSummernoteImageFile(file, el) {
 			data = new FormData();
 			data.append("file", file);
