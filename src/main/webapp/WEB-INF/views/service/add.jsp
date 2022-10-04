@@ -107,7 +107,7 @@
    		fileJs();
    	 	
    		$(document).ready(function() {
-   			$('#summernote').summernote('pasteHTML', '${update.contents}');
+   			
    			var toolbar = [
    				    // 글꼴 설정
    				    ['fontname', ['fontname']],
@@ -148,7 +148,7 @@
    		         };
 
    		        $('#summernote').summernote(setting);
-   		     	
+   		     $('#summernote').summernote('pasteHTML', '${update.contents}');
    		        });
    		
    		

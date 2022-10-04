@@ -232,32 +232,33 @@ public class ServiceService {
 			
 			    String oriFilePath = servletContext.getRealPath(ar);
 			    String copyFilePath = oriFilePath.replace("temp\\"+boardDTO.getUserId(),boardDTO.getBoard());
-			    System.out.println("temp\\"+boardDTO.getUserId());
-			    System.out.println("board/"+boardDTO.getBoard());
-		        FileInputStream fis = new FileInputStream(oriFilePath); //읽을파일
-		        FileOutputStream fos = new FileOutputStream(copyFilePath); //복사할파일
-		        System.out.println("ori:" +oriFilePath);
-		        System.out.println("copy:" +copyFilePath);
+			    
+			    if(oriFilePath != copyFilePath) {
+			    	FileInputStream fis = new FileInputStream(oriFilePath); //읽을파일
+			        FileOutputStream fos = new FileOutputStream(copyFilePath); //복사할파일
+			        System.out.println("ori:" +oriFilePath);
+			        System.out.println("copy:" +copyFilePath);
+			    	
+			        int data = 0;
+			        while((data=fis.read())!=-1) {
+			         fos.write(data);
+			        }
+			        fis.close();
+			        fos.close();
+			    }
 		        
-		        int data = 0;
-		        while((data=fis.read())!=-1) {
-		         fos.write(data);
-		        }
-		        fis.close();
-		        fos.close();
-		        File folder = new File(realpath);
-		        if(folder.exists()) {
-		        	File[] files = folder.listFiles();
-		        	
-		        	for(File file : files) {
-		        		file.delete();
-		        	}
-		        	
-		            folder.delete();
-		                
-		        }
 		}
-			
+		File folder = new File(realpath);
+        if(folder.exists()) {
+        	File[] files = folder.listFiles();
+        	
+        	for(File file : files) {
+        		file.delete();
+        	}
+        	
+            folder.delete();
+                
+        }
 		
 		
 	}

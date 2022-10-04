@@ -134,9 +134,7 @@ public class ServiceController {
 		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
 		
 		service.addBoard(boardDTO,file,session.getServletContext());
-		//temp에 값을 upload/sort=1로 변경하여 업로드 하는 코드.
 		
-		System.out.println("bb" + boardDTO.getContents());
 		
 		
 		return "redirect:./list";
@@ -177,13 +175,20 @@ public class ServiceController {
 	@PostMapping("update")
 	public String updateBoard(BoardDTO boardDTO,MultipartFile [] file,HttpSession session , Integer number) throws Exception{
 		
-		
-		
-//		boardDTO.setBoard(getBoardName());
-//		BoardDTO boardDTO2 = service.getDetail(boardDTO);
+
 		
 		boardDTO.setBoard(getBoardName());
+		
+		service.saveTempFIle(boardDTO,session.getServletContext());
+		
+		String contents = boardDTO.getContents();
+		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
+		
 		service.updateBoard(boardDTO,file,session.getServletContext(),number);
+		
+		
+		
+		
 		
 		
 		return "redirect:./list";
@@ -253,6 +258,7 @@ public class ServiceController {
 	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
 	@ResponseBody
 	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request,HttpSession session ) throws Exception  {
+		System.out.println("AJAX 실행");
 		JsonObject jsonObject = new JsonObject();
 		
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
@@ -262,6 +268,7 @@ public class ServiceController {
 		FileManger fileManger = new FileManger();
 		String fileName=null;
 		try {
+			System.out.println("파일저장");
 			String FileName = fileManger.saveFile(path, session.getServletContext(), multipartFile);
 			fileName = FileName;
 			jsonObject.addProperty("url", "/"+path+"/"+FileName); // contextroot + resources + 저장할 내부 폴더명
