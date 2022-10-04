@@ -328,16 +328,8 @@ public class MemberController {
 	@GetMapping("findId")
 	@ResponseBody
 	public String findId(MemberDTO memberDTO) throws Exception{
-		System.out.println("find Name !! " + memberDTO.getUserName());
-		System.out.println("find email !! " + memberDTO.getEmail());
+		
 		memberDTO = memberService.findId(memberDTO);
-		System.out.println("find id !! " + memberDTO.getUserId());
-		
-		 
-		
-		
-		
-		
 		
 		return memberDTO.getUserId();
 	}

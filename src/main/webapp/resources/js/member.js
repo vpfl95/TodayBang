@@ -48,14 +48,14 @@ function login() {
     findId.addEventListener("click",function(){
 
         Swal.fire({
-            title: 'Submit your Github username',
+            title: 'ID 찾기',
             html :
-            '<input id="swalinput1" name = "swalinput1" class="swal2-input">' +
-            '<input id="swalinput2" class="swal2-input">',
+            '  이름 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+            '<br>이메일 : <input id="swalinput2" class="swal2-input">',
 
-           
+            reverseButtons:true,
             showCancelButton: true,
-            confirmButtonText: 'Look up',
+            confirmButtonText: '찾기',
             
             showLoaderOnConfirm: true, // 데이터 결과를 받을때까지, 버튼에다가 로딩바를 표현
             preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
@@ -69,30 +69,37 @@ function login() {
                 })
                 .catch(error => {
                   Swal.showValidationMessage(
-                    `Request failed: ${error}`
+                    `없는 ID 입니다. error : ${error}`
                   )
                 })
             }, allowOutsideClick: () => !Swal.isLoading() 
             
           }).then((result) => {
-
-
             let map = JSON.parse(JSON.stringify(result.value));
-            
-
-            console.log(map);
-            
-
-
             if (result.isConfirmed) {
               Swal.fire({
                 title: `ID 찾기`,
-                text: 'ID는 '+map + " 입니다."
-              })
-            }
+                text: '찾으시는 ID는 '+map + " 입니다.",
+                showCancelButton: true,
+                cancelButtonText:"확인",
+                confirmButtonText: 'PW 찾기',
+                reverseButtons:true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: `PW 찾기`,
+                        html :
+                        '  이름 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+                        '<br>이메일 : <input id="swalinput2" class="swal2-input">',
+                    })
 
 
-          })
+                }
+
+            })
+
+
+          }})
 
 
     })
