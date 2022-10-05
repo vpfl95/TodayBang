@@ -39,7 +39,7 @@
 		
 
 		#review{position:absolute;right:10px;top:363px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-		
+		#writeReview{position:absolute;right:10px;bottom:10px;}
 		/* #sugguestList{position:absolute; right:25px;top:40px;border-radius: 2px;background:rgba(255,255,255,0.8);z-index:10;padding:5px; height: 30%; overflow: auto; height: 30%;}  */
 	</style>
 	 <link href="/resources/css/reset.css" rel="stylesheet">
@@ -86,13 +86,12 @@
 					</div>
 				</div>
 	
+				<div style="position:absolute;right:10px;top:343px;">거주민 리뷰</div>
 				<div id="review" style="height: 40%;width: 95%;overflow:auto;">
-					<div>거주민 리뷰</div>
 					<div id="houseReviewList"></div>
-					<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
-					
-					
+					<button id="reviewMore">더보기</button>		
 				</div>
+				<button type="button" id="writeReview" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
 				
 			</div>
 			
@@ -100,36 +99,46 @@
 		
 		<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 			<div class="modal-dialog">
-			  <div class="modal-content">
-				<div class="modal-header">
-				  <h5 class="modal-title" id="exampleModalLabel">New message</h5>
-				  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-				  <form>
-					<div class="mb-3">
-						<label for="message-text" class="col-form-label">추천점수:</label>
-						<textarea class="form-control" id="grade-text"></textarea>
-					  </div>
-					<div class="mb-3">
-					  <label for="message-text" class="col-form-label">교통여건:</label>
-					  <textarea class="form-control" id="traffic-text"></textarea>
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">New message</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
-					<div class="mb-3">
-						<label for="message-text" class="col-form-label">주변환경:</label>
-						<textarea class="form-control" id="environment-text"></textarea>
-					  </div>
-					  <div class="mb-3">
-						<label for="message-text" class="col-form-label">거주환경:</label>
-						<textarea class="form-control" id="residential-text"></textarea>
-					  </div>
-				  </form>
+					
+					<div class="modal-body">
+						<input type="text" name="" id="roadname">
+						<form>
+							<input type="text" id="maemulNum">
+							<input type="text" value="${member.userId}" id="userId">
+							<div class="mb-3">
+								<label for="message-text" class="col-form-label">추천점수:</label>
+								<input type="number" id="grade">
+								<textarea class="form-control" id="grade-text"></textarea>
+							</div>
+							<div class="mb-3">
+								<label for="message-text" class="col-form-label">교통여건:</label>
+								<input type="number" id="trfgrade">
+								<textarea class="form-control" id="trf-text"></textarea>
+							</div>
+							<div class="mb-3">
+								<label for="message-text" class="col-form-label">주변환경:</label>
+								<input type="number" id="envgrade">
+								<textarea class="form-control" id="env-text"></textarea>
+							</div>
+							<div class="mb-3">
+								<label for="message-text" class="col-form-label">거주환경:</label>
+								<input type="number" id="resgrade">
+								<textarea class="form-control" id="res-text"></textarea>
+							</div>
+						</form>
+					</div>
+
+					<div class="modal-footer">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary" id="addReview">리뷰 작성</button>
+					</div>
+
 				</div>
-				<div class="modal-footer">
-				  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-				  <button type="button" class="btn btn-primary">Send message</button>
-				</div>
-			  </div>
 			</div>
 		</div>
 

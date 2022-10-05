@@ -24,4 +24,8 @@ public class HouseReviewDAO {
 	public Long getTotalCount(MaemulPager maemulPager)throws Exception{
 		return sqlSession.selectOne(NAMESPACE+"getTotalCount",maemulPager);
 	}
+	
+	public int setAddHouseReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddHouseReview", houseReviewDTO);
+	}
 }

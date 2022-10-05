@@ -1,9 +1,26 @@
 const more = document.getElementById("more");
+const reviewMore = document.getElementById("reviewMore");
 const maemulList = document.getElementById("maemulList");
 const buildingName = document.getElementById("buildingName")
 const buildingWrap = document.getElementById("buildingWrap")
 const buildingInfo = document.getElementById("buildingInfo")
 const houseReviewList = document.getElementById("houseReviewList")
+// const recommend = document.getElementById("recommend")
+// const traffic = document.getElementById("traffic")
+// const environment = document.getElementById("environment")
+// const residential = document.getElementById("residential")
+const maemulNum = document.getElementById("maemulNum")
+const userId = document.getElementById("userId")
+const addReview = document.getElementById("addReview")
+const grade = document.getElementById("grade")
+const trfgrade = document.getElementById("trfgrade")
+const envgrade = document.getElementById("envgrade")
+const resgrade = document.getElementById("resgrade")
+const grade_text = document.getElementById("grade-text")
+const trf_text = document.getElementById("trf-text")
+const env_text = document.getElementById("env-text")
+const res_text = document.getElementById("res-text")
+const roadname = document.getElementById("roadname")
 let page =1;
 let reviewPage = 1;
 
@@ -40,6 +57,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
     
 
     page=1  //매물정보창 리스트 페이지1로 리셋
+    let reviewPage = 1;
     buildingInfo.style.display="none" //매물정보창 안보이기
 
     getRegionName();    //지역명 커스텀 오버레이
@@ -377,6 +395,7 @@ function addEventHandle(target,coords, type) {
             console.log(roadName);
 
             realEstateList.innerHTML='' //매물리스트 초기화
+            houseReviewList.innerHTML=''
             //매물리스트 테이블헤더
             let tr = document.createElement("tr")
             let th = document.createElement("th")
@@ -408,55 +427,7 @@ function addEventHandle(target,coords, type) {
     }
 }
 
-function getReviewList(roadName,p){
-    let xhttp = new XMLHttpRequest();
-    xhttp.open("GET","./getHouseReview?roadName="+roadName);
-    xhttp.send();
-    xhttp.addEventListener("readystatechange",function(){
-        if(xhttp.status==200 && xhttp.readyState==4){
-            var result = JSON.parse(xhttp.responseText.trim());
-            console.log(result)
-            let list= result.list
-            let pager=result.maemulPager
-            for(let i=0; i<list.length; i++){
-                let revDiv = document.createElement("div")
-
-                let gradeDiv = document.createElement("div")
-                gradeDiv.innerText = "추천점수" + list[i].grade
-                let contents = document.createElement("div")
-                contents.innerText = list[i].contents
-                revDiv.appendChild(gradeDiv)
-                revDiv.appendChild(contents)
-
-                let trfDiv = document.createElement("div")
-                trfDiv.innerText="교통여건"+list[i].trfGrade
-                let trfContents = document.createElement("div")
-                trfContents.innerText = list[i].trfContents
-                revDiv.appendChild(trfDiv)
-                revDiv.appendChild(trfContents)
-
-                let envDiv = document.createElement("div")
-                envDiv.innerText="주변환경"+list[i].envGrade
-                let envContents = document.createElement("div")
-                envContents.innerText = list[i].envContents
-                revDiv.appendChild(envDiv)
-                revDiv.appendChild(envContents)
-
-                let resDiv = document.createElement("div")
-                resDiv.innerText="거주환경"+list[i].resGrade
-                let resContents = document.createElement("div")
-                resContents.innerText = list[i].resContents
-                revDiv.appendChild(resDiv)
-                revDiv.appendChild(resContents)
-
-                houseReviewList.appendChild(revDiv)
-            }
-        }
-    });
-}
-
-
-
+//매물리스트
 function getMaemulList(roadName,p){
     buildingInfo.style.display="block"
     
@@ -467,7 +438,7 @@ function getMaemulList(roadName,p){
         if(xhttp.status==200 && xhttp.readyState==4){
             
             var result = JSON.parse(xhttp.responseText.trim());
-
+            console.log(result);
             let list= result.list
             let pager=result.maemulPager
 
@@ -530,7 +501,8 @@ function getMaemulList(roadName,p){
                
                 more.setAttribute("data-name",list[i].roadName)
                 buildingName.innerText=list[i].buildingNm
-                
+                maemulNum.value = list[0].num
+                roadname.value = list[0].roadName
             }
         }
     })
@@ -544,19 +516,104 @@ more.addEventListener("click", function(){
 });
 
 
+//-----------------------------리뷰---------------------------------
+
+//리뷰리스트
+function getReviewList(roadName,p){
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET","./getHouseReview?roadName="+roadName+"&page="+p);
+    xhttp.send();
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            var result = JSON.parse(xhttp.responseText.trim());
+            console.log(result)
+            let list= result.list
+            let pager=result.maemulPager
+            for(let i=0; i<list.length; i++){
+                let revDiv = document.createElement("div")
+
+                let gradeDiv = document.createElement("div")
+                gradeDiv.innerText = "추천점수" + list[i].grade
+                let contents = document.createElement("div")
+                contents.innerText = list[i].contents
+                revDiv.appendChild(gradeDiv)
+                revDiv.appendChild(contents)
+
+                let trfDiv = document.createElement("div")
+                trfDiv.innerText="교통여건"+list[i].trfGrade
+                let trfContents = document.createElement("div")
+                trfContents.innerText = list[i].trfContents
+                revDiv.appendChild(trfDiv)
+                revDiv.appendChild(trfContents)
+
+                let envDiv = document.createElement("div")
+                envDiv.innerText="주변환경"+list[i].envGrade
+                let envContents = document.createElement("div")
+                envContents.innerText = list[i].envContents
+                revDiv.appendChild(envDiv)
+                revDiv.appendChild(envContents)
+
+                let resDiv = document.createElement("div")
+                resDiv.innerText="거주환경"+list[i].resGrade
+                let resContents = document.createElement("div")
+                resContents.innerText = list[i].resContents
+                revDiv.appendChild(resDiv)
+                revDiv.appendChild(resContents)
+
+                houseReviewList.appendChild(revDiv)
+
+                //페이지 없으면 버튼 비활성화
+                if(reviewPage >= pager.totalPage){
+                    reviewMore.disabled= true;
+                }else{
+                    reviewMore.disabled= false;
+                }
+                reviewMore.setAttribute("data-name",roadName)
+            }
+        }
+    });
+}
+//리뷰 더보기
+reviewMore.addEventListener("click", function(){
+    reviewPage++
+    let roadName = reviewMore.getAttribute("data-name");
+    getReviewList(roadName,reviewPage)
+});
 
 
-// //마커 화면에 생성 or 제거 함수
-// function setMarkers(map) {
-//     for (var i = 0; i < markers.length; i++) {
-//         markers[i].setMap(map);
-        
-//     }            
-// }
-// //마커 제거함수
-// function hideMarkers(){
-//     setMarkers(null);
-// }
+
+addReview.addEventListener("click",function(){
+    let num = maemulNum.value
+    let id = userId.value
+    let gv = grade.value
+    let gtv = grade_text.value
+    let tgv = trfgrade.value
+    let ttv = trf_text.value
+    let egv = envgrade.value
+    let etv = env_text.value
+    let rgv = resgrade.value
+    let rtv = res_text.value
+    let road = roadname.value
+    let xhttp= new XMLHttpRequest();
+    xhttp.open("POST","./addReview");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("num="+num+"&userId="+id+"&grade="+gv+"&contents="+gtv+"&trfGrade="+tgv+"&trfContents="+ttv+"&envGrade="+egv+"&envContents="+etv+"&resGrade="+rgv+"&resContents="+rtv);
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            let result = xhttp.responseText;
+            if(result==1){
+                for(let i=0; i<houseReviewList.children.length;){
+                    houseReviewList.children[0].remove();
+                }
+                reviewPage=1;
+                getReviewList(road,reviewPage)
+
+            }
+        }
+    });
+
+});
+
 
 
 //--------------------------왼쪽 상단 현재 지도영역 중심의 주소이름------------------------

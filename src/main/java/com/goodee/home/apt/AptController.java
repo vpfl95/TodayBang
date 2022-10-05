@@ -117,7 +117,7 @@ public class AptController {
 	@GetMapping("getHouseReview")
 	@ResponseBody
 	public Map<String, Object>  getHouseReview(MaemulPager maemulPager)throws Exception{
-		System.out.println("getHouseReview" + maemulPager.getRoadName());
+		System.out.println("getHouseReview" + maemulPager.getRoadName() + "page"+maemulPager.getPage());
 		ModelAndView mv = new ModelAndView();
 		
 		List<HouseReviewDTO> list = houseReviewService.getHouseReview(maemulPager);
@@ -126,6 +126,14 @@ public class AptController {
 		map.put("maemulPager", maemulPager);
 		
 		return map;
+	}
+	
+	@PostMapping("addReview")
+	@ResponseBody
+	public int setAddHouseReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		int result = houseReviewService.setAddHouseReview(houseReviewDTO);
+		
+		return result;
 	}
 	
 }

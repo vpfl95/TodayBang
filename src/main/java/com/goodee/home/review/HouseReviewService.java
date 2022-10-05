@@ -22,4 +22,9 @@ public class HouseReviewService {
 		
 		return houseReviewDAO.getHouseReview(maemulPager);
 	}
+	
+	public int setAddHouseReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		return houseReviewDAO.setAddHouseReview(houseReviewDTO);
+	}
+	
 }

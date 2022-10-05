@@ -5,12 +5,23 @@
 <mapper namespace="com.goodee.home.review.HouseReviewDAO">
 	
 	<select id="getHouseReview" parameterType="MaemulPager" resultType="HouseReviewDTO">
-		SELECT H.*,R.ROADNAME
+		SELECT * FROM
+		(SELECT ROWNUM N, A.*
+		FROM (SELECT *
 		FROM HOUSEREVIEW H
 		     INNER JOIN 
 		     REALESTATE R
 		     ON H.NUM=R.NUM
 		WHERE R.ROADNAME=#{roadName}
+		ORDER BY "DATE" DESC) A) 
+		WHERE N BETWEEN #{startRow} AND #{lastRow}
+		<!-- SELECT H.*,R.ROADNAME
+		FROM HOUSEREVIEW H
+		     INNER JOIN 
+		     REALESTATE R
+		     ON H.NUM=R.NUM
+		WHERE R.ROADNAME=#{roadName}
+		ORDER BY "DATE" -->
 	</select>
 	<!-- <resultMap type="HouseReviewDTO" id="getHouseReviewResult">
 		<id column="reviewNum" property="reviewNum"/>
@@ -39,5 +50,10 @@
 		     ON H.NUM=R.NUM
 		WHERE R.ROADNAME=#{roadName}
 	</select>
+	
+	<insert id="setAddHouseReview" parameterType="HouseReviewDTO">
+		INSERT INTO HOUSEREVIEW VALUES(HOUSEREV_SEQ.nextval,#{grade},sysdate,null,#{contents},#{userId},#{num},#{trfContents},#{envContents},#{resContents},#{trfGrade},#{envGrade},#{resGrade})
+	</insert>
+	
 
 </mapper>
