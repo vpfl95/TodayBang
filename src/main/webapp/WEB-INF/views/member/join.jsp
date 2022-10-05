@@ -87,6 +87,8 @@
 		        		</div>
 						<button id="emailBtn" class="w-100 btn btn-lg btn-primary" type="button">이메일 확인</button>
 				       
+				       
+				       
 				        <button id="joinBtn" class="w-100 btn btn-lg btn-primary" type="button">회원가입</button>
 				        
 				        <div id = "joinPart" class="mx-auto">
@@ -97,7 +99,11 @@
 				        
 				        
 					</form>
-		        
+		        		<div style="display:none" class="thankyou_message">
+						 <!-- You can customize the thankyou message by editing the code below -->
+						 <h2><em>Thanks</em> for contacting us! We will get back to you soon!
+						 </h2>
+						</div>
 		        
 		        
 		        </div>
@@ -115,6 +121,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script src="/resources/js/member.js"></script>
+    
    <script type="text/javascript">
 	join();
 

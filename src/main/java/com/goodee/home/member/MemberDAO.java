@@ -105,5 +105,9 @@ public class MemberDAO {
 		
 		return sqlSession.selectOne(NAMESPACE+ "findId",memberDTO);
 	}
+	public MemberDTO findPw(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+ "findPw",memberDTO);
+	}
 	
 }

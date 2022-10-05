@@ -44,8 +44,14 @@ function login() {
         }
     })
 
+    
+
 
     findId.addEventListener("click",function(){
+        const name = document.getElementById("name");
+        const password1 = document.getElementById("password1");
+        const email = document.getElementById("email");
+        const submit = document.getElementById("submit");
 
         Swal.fire({
             title: 'ID 찾기',
@@ -69,7 +75,7 @@ function login() {
                 })
                 .catch(error => {
                   Swal.showValidationMessage(
-                    `없는 ID 입니다. error : ${error}`
+                    `입력하신 정보가 일치하지 않습니다.  : ${error}`
                   )
                 })
             }, allowOutsideClick: () => !Swal.isLoading() 
@@ -89,9 +95,55 @@ function login() {
                     Swal.fire({
                         title: `PW 찾기`,
                         html :
-                        '  이름 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
-                        '<br>이메일 : <input id="swalinput2" class="swal2-input">',
+                        
+                        '<input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+                        '<br><input id="swalinput2" name = "swalinput2" class="swal2-input">'
+                        
+            
+                        ,
+                        
+                        reverseButtons:true,
+                        showCancelButton: true,
+                        confirmButtonText: '찾기',
+                        showLoaderOnConfirm: true, 
+                        preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
+                            return  fetch(`/member/findPw?userId=`+swalinput1.value+`&email=`+swalinput2.value)
+                              .then(response => {
+                                if (!response.ok) {
+                                  throw new Error(response.statusText)
+                                }
+                               return response.text();
+                              })
+                              .catch(error => {
+                                Swal.showValidationMessage(
+                                  `없는 계정입니다. : ${error}`
+                                )
+                              })
+                          }, allowOutsideClick: () => !Swal.isLoading() 
+                    }).then((result)=> {
+                        if (result.isConfirmed) {
+                            let map = JSON.parse(JSON.stringify(result.value));
+                            
+                            name.value = swalinput1.value;
+                            email.value = swalinput2.value;
+                            password1.value = map;
+                            submit.click();
+
+                            Swal.fire({
+                                title: `PW 찾기`,
+                                text: '이메일전송',
+                              
+                                showCancelButton: true,
+                                cancelButtonText:"확인"
+
+
+                              })
+
+                        }
+
+
                     })
+
 
 
                 }

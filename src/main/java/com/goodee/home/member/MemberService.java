@@ -148,5 +148,9 @@ public class MemberService {
 		
 		return memberDAO.findId(memberDTO);
 	}
+	public MemberDTO findPw(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.findPw(memberDTO);
+	}
 	
 }

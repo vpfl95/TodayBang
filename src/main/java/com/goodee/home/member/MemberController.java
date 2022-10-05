@@ -331,7 +331,18 @@ public class MemberController {
 		
 		memberDTO = memberService.findId(memberDTO);
 		
+		
+		
 		return memberDTO.getUserId();
+	}
+	
+	@GetMapping("findPw")
+	@ResponseBody
+	public String findPw(MemberDTO memberDTO) throws Exception{
+		
+		memberDTO = memberService.findPw(memberDTO);
+		
+		return memberDTO.getPassword();
 	}
 	
 	

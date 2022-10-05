@@ -95,6 +95,8 @@
 			<select id="findId" parameterType="MemberDTO" resultType="MemberDTO">
 				SELECT USERID FROM MEMBERS WHERE USERNAME=#{userName} AND EMAIL=#{email}
 			</select>
-			
+			<select id="findPw" parameterType="MemberDTO" resultType="MemberDTO">
+				SELECT PASSWORD FROM MEMBERS WHERE USERID=#{userId} AND EMAIL=#{email}
+			</select>
 			
 		</mapper>
