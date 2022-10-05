@@ -76,4 +76,28 @@ public class ProductController {
 	public List<ProductDTO> getProductList() throws Exception {
 		return productService.getProductList();
 	}
+	
+	@GetMapping("option")
+	@ResponseBody
+	public ModelAndView getOptionDetail(ProductDTO productDTO) throws Exception {
+		int result=0;
+		ModelAndView mv = new ModelAndView();
+		ProductDTO dto = productService.getOptionDetail(productDTO);
+		if(dto.getOption1DTOs().size() != 0) {			
+			if(dto.getOption1DTOs().get(0).getOptionPrice() == -2 || dto.getOption1DTOs().get(0).getOptionPrice() == -3) result=1;
+		}
+		if(dto.getOption2DTOs().size() != 0) {			
+			if(dto.getOption2DTOs().get(0).getOptionPrice() == -2 || dto.getOption2DTOs().get(0).getOptionPrice() == -3) result=1;
+		}
+		if(dto.getOption3DTOs().size() != 0) {			
+			if(dto.getOption3DTOs().get(0).getOptionPrice() == -2 || dto.getOption3DTOs().get(0).getOptionPrice() == -3) result=1;
+		}
+		
+		Integer price = (int) (dto.getPrice() * (100 - dto.getSaleRate())/100);
+		mv.addObject("dto", dto);
+		mv.addObject("result", result);
+		mv.addObject("price", price);
+		mv.setViewName("/store/products/option");
+		return mv;
+	}
 }

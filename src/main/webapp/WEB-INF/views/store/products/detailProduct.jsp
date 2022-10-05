@@ -59,33 +59,7 @@
                 <div id="delivery"></div>
 
                 <div id="optionWrap">
-                    <div><select id="option1" class="form-select" aria-label="Default select example"></select></div>
-                    <div><select id="option2" class="form-select" aria-label="Default select example"></select></div>
-                    <div><select id="option3" class="form-select" aria-label="Default select example"></select></div>
-
-                    <div class="items">
-                        <div class="additionalItem mt-2">
-                            <h5 class="sellingOption"></h5>
-                            <div class="d-flex justify-content-between">
-                                <div style="width: 30%;">
-                                    <select class="form-select sellingOptionControll">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                                <div class="price3"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 d-flex justify-content-between">
-                        <span><b>주문금액</b></span>
-                        <span class="totalPrice"></span>
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <button class="btn btn-outline-secondary" id="cart" style="width: 48%;">장바구니</button>
-                        <button class="btn btn-primary" id="buy" style="width: 48%;">바로구매</button>
-                    </div>
+                    <!-- 옵션자리-->
                 </div>
             </div>
         </div>
@@ -130,7 +104,9 @@
                 <div class="inqueryList"></div>
             </div>
             <div style="width: 30%;">
-                <div class="fixInfo"></div>
+                <div class="fixInfo">
+                    <!-- 옵션자리 -->
+                </div>
             </div>
         </div>
         <!-- Review Modal -->
@@ -273,12 +249,12 @@
         getProductImageCount();
         setProductImage();
         setProductInfo();
-        setOption();
         getCategory();
-        setItem();
         setModal();
         getReviewList(0);
         getInquiryList();
+        setOption();
+        // setItem();
     </script>
 </body>
 </html>

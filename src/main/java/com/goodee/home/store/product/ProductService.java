@@ -94,4 +94,8 @@ public class ProductService {
 	public List<ProductDTO> getProductList() throws Exception {
 		return productDAO.getProductList();
 	}
+	
+	public ProductDTO getOptionDetail(ProductDTO productDTO) throws Exception {
+		return productDAO.getOptionDetail(productDTO);
+	}
 }

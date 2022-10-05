@@ -4,25 +4,17 @@ const productImage = document.querySelector('#productImage');
 const categoryLink = document.querySelector('#categoryLink');
 const optionWrap = document.querySelector('#optionWrap');
 const section = document.querySelector('#section');
-const additionalItem = document.querySelectorAll('.additionalItem');
 const fixInfo = document.querySelectorAll('.fixInfo');
 const brand = document.querySelector('#brand');
 const productName = document.querySelector('#productName');
 const saleRate = document.querySelector('#saleRate');
-const sellingOption = document.querySelectorAll('.sellingOption');
-const sellingOptionControll = document.querySelectorAll('.sellingOptionControll');
 const price1 = document.querySelector('#price1');
 const price2 = document.querySelector('#price2');
-const price3 = document.querySelectorAll('.price3');
-const totalPrice = document.querySelectorAll('.totalPrice');
 const modal_brand = document.querySelectorAll('.modal-product-contents-brand');
 const modal_productName = document.querySelectorAll('.modal-product-contents-productName');
 const modal_image = document.querySelectorAll('.modal-product-image');
 const point = document.querySelector('#point');
 const delivery = document.querySelector('#delivery');
-const option1 = document.querySelector('#option1');
-const option2 = document.querySelector('#option2');
-const option3 = document.querySelector('#option3');
 const cate1 = document.querySelector('#cate1');
 const cate2 = document.querySelector('#cate2');
 const cate3 = document.querySelector('#cate3');
@@ -48,7 +40,6 @@ let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
 let category = jsonList[0].categoryDTO.categoryNum;
-let items = document.querySelectorAll('.items');
 let realPrice;
 
 
@@ -97,61 +88,15 @@ function setProductInfo() {
 }
 
 function setOption() {
-    if(jsonList[0].option1DTOs.length == 0) {
-        option1.setAttribute('style', 'display:none');
-    }
-    if(jsonList[0].option2DTOs.length == 0) {
-        option2.setAttribute('style', 'display:none');
-    }
-    if(jsonList[0].option3DTOs.length == 0) {
-        option3.setAttribute('style', 'display:none');
-    }
-
-    for(let i=0; i<jsonList[0].option1DTOs.length; i++) {
-        let option = document.createElement('option');
-        let option_value = document.createAttribute('value');
-        option_value.value=jsonList[0].option1DTOs[i].num;
-        option.setAttributeNode(option_value);
-        let option_text;
-        if(jsonList[0].option1DTOs[i].optionPrice < 0) {
-            option_text = document.createTextNode(jsonList[0].option1DTOs[i].optionName);
-        } else {
-            option_text = document.createTextNode(jsonList[0].option1DTOs[i].optionName + '(' + jsonList[0].option1DTOs[i].optionPrice + '원)');
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', '/product/option?productNum='+jsonList[0].productNum);
+    xhttp.send();
+    xhttp.onreadystatechange=function() {
+        if(this.readyState==4 && this.status==200) {
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
         }
-        option.appendChild(option_text);
-        option1.append(option);
     }
-
-    for(let i=0; i<jsonList[0].option2DTOs.length; i++) {
-        let option = document.createElement('option');
-        let option_value = document.createAttribute('value');
-        option_value.value=jsonList[0].option2DTOs[i].num;
-        option.setAttributeNode(option_value);
-        let option_text;
-        if(jsonList[0].option2DTOs[i].optionPrice < 0) {
-            option_text = document.createTextNode(jsonList[0].option2DTOs[i].optionName);
-        } else {
-            option_text = document.createTextNode(jsonList[0].option2DTOs[i].optionName + '(' + jsonList[0].option2DTOs[i].optionPrice + '원)');
-        }        
-        option.appendChild(option_text);
-        option2.append(option);
-    }
-
-    for(let i=0; i<jsonList[0].option3DTOs.length; i++) {
-        let option = document.createElement('option');
-        let option_value = document.createAttribute('value');
-        option_value.value=jsonList[0].option3DTOs[i].num;
-        option.setAttributeNode(option_value);
-        let option_text;
-        if(jsonList[0].option3DTOs[i].optionPrice < 0) {
-            option_text = document.createTextNode(jsonList[0].option3DTOs[i].optionName);
-        } else {
-            option_text = document.createTextNode(jsonList[0].option3DTOs[i].optionName + '(' + jsonList[0].option3DTOs[i].optionPrice + '원)');
-        }        
-        option.appendChild(option_text);
-        option3.append(option);
-    }
-    fixInfo[0].innerHTML = optionWrap.innerHTML;
 }
 
 function getCategory() {
@@ -181,85 +126,13 @@ function getCategory() {
     }
 }
 
-function setItem() {
-    let check = true;
-    if(jsonList[0].option1DTOs.length != 0) {
-        if(jsonList[0].option1DTOs[0].optionPrice == -2 || jsonList[0].option1DTOs[0].optionPrice == -3) {
-            check = false;
-            additionalItem[0].setAttribute("style", 'display:none')
-        }
-    }
-    if(jsonList[0].option2DTOs.length != 0) {
-        if(jsonList[0].option2DTOs[0].optionPrice == -2 || jsonList[0].option2DTOs[0].optionPrice == -3) {
-            check = false;
-            additionalItem[0].setAttribute("style", 'display:none')
-        }
-    }
-    if(jsonList[0].option3DTOs.length != 0) {
-        if(jsonList[0].option3DTOs[0].optionPrice == -2 || jsonList[0].option3DTOs[0].optionPrice == -3) {
-            check = false;
-            additionalItem[0].setAttribute("style", 'display:none')
-        }
-    }
-
-    if(check) {
-        for(let i=0; i<sellingOption.length; i++) {
-            sellingOption[i].innerHTML=jsonList[0].productNum;
-            price3[i].innerHTML=realPrice*sellingOptionControll[i].value+'원';
-            totalPrice[i].innerHTML=realPrice*sellingOptionControll[i].value+'원'
-        }
-    }
-    fixInfo[0].innerHTML = optionWrap.innerHTML;
-}
-
-
-
 productImageList[0].onmouseover=function(event){
     productImage.setAttribute('src', event.target.getAttribute('src'));
 }
 
-option1.onchange=function() {
-    // let divItem = document.createElement('div');
-    // let divTitle = document.createElement('div');
-
-
-    // if(jsonList[0].option1DTOs[0].optionPrice == -1) {
-
-    // } else if(jsonList[0].option1DTOs[0].optionPrice == -2) {
-        
-    // } else {          
-    // }
-}
-
 section.onchange=function(event) {
     if(event.target.classList.contains('sellingOptionControll')) {
-        let target_class = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-        let fixed = section.lastChild.previousSibling.lastChild.previousSibling.lastChild.previousSibling;
-        let fixed_select = fixed.children[3].firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
-        let wrap = section.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
-        let wrap_items = wrap.firstChild.nextSibling.nextSibling.nextSibling
-        .lastChild.previousSibling.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
-        let wrap_select = wrap_items.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
-        let fix_span = fixed_items.parentNode.lastChild.previousSibling.previousSibling.previousSibling.lastChild.previousSibling;
-        let wrap_span = wrap_items.parentNode.lastChild.previousSibling.previousSibling.previousSibling.lastChild.previousSibling;
-        
-        if(target_class.classList.contains('itemWrap')) {
-            for(let j=0; j<3; j++) {
-                if(event.target.value == fixed_select.options[j].value) {
-                    fixed_select.options[j].selected = true;
-                }
-            }
-        } else {
-            for(let j=0; j<3; j++) {
-                if(event.target.value == wrap_select.options[j].value) {
-                    wrap_select.options[j].selected = true;
-                }
-            }
-        }
-        fix_span.innerHTML=realPrice*event.target.value+'원';
-        wrap_span.innerHTML=realPrice*event.target.value+'원'
-        fixed_select.parentNode.nextSibling.nextSibling.innerHTML=realPrice*event.target.value+'원';
-        wrap_select.parentNode.nextSibling.nextSibling.innerHTML=realPrice*event.target.value+'원';
+       console.log('test');
     }
 }
 
