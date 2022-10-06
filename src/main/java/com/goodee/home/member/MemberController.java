@@ -291,6 +291,7 @@ public class MemberController {
 		
 		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
 		deliveryDTO.setUserId(memberDTO.getUserId());
+		System.out.println(deliveryDTO.getUserId());
 		int result = memberService.setDelivery(deliveryDTO);
 		
 		return "redirect:./delivery";

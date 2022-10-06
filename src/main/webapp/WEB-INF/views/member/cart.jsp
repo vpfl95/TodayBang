@@ -16,7 +16,8 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>전체 00개</th>
+				<th></th>
+				<th>전체 ${length }개</th>
 				<th>상품명(옵션)</th>
 				<th>수량</th>
 				<th>가격</th>
@@ -28,6 +29,7 @@
 		
 			<c:forEach items="${cart }" var="list" varStatus="status">
 			<tr>
+				<td><input type="checkbox"/></td>
 				<td>${status.index +1}</td>
 				<td>
 					${list.productDTO.productName }
