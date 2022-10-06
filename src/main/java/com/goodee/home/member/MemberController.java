@@ -346,5 +346,83 @@ public class MemberController {
 	}
 	
 	
+	@GetMapping("myShopping")
+	public ModelAndView getMyShopping(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		mv.setViewName("member/myShopping");
+		
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("cart")
+	public ModelAndView getCart(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		List<CartDTO> ar =memberService.getCart(memberDTO);
+		
+		
+		mv.addObject("length",ar.size());
+		mv.addObject("cart",ar);
+		mv.setViewName("member/cart");
+		return mv;
+	}
+	
+	@GetMapping("deliveryDetail")
+	public ModelAndView getDeliveryDetail(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		
+		
+		
+		mv.setViewName("member//deliveryDetail");
+		return mv;
+	}
+	
+	@GetMapping("buyDetail")
+	public ModelAndView getBuyDetail(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		
+		mv.setViewName("member/buyDetail");
+		return mv;
+	}
+	
+	
+	
+	
+	@GetMapping("myWriting")
+	public ModelAndView getMyWriting(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		mv.setViewName("member/myWriting");
+		
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

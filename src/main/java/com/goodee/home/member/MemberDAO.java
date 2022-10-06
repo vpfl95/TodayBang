@@ -6,6 +6,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
 
 @Repository
 public class MemberDAO {
@@ -108,6 +109,13 @@ public class MemberDAO {
 	public MemberDTO findPw(MemberDTO memberDTO) throws Exception{
 		
 		return sqlSession.selectOne(NAMESPACE+ "findPw",memberDTO);
+	}
+	
+	
+	public List<CartDTO> getCart(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getCart",memberDTO);
 	}
 	
 }

@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-     <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+    <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html >
+<html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,10 +16,8 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
 <body>
-    <c:import url="../template/header.jsp"></c:import>
-
+	<c:import url="../template/header.jsp"></c:import>
 	
-<!--  내용 부  -->
 	<section class="container-fluid container-lg-8 mt-4">
 	
 		<c:import url="./myPageCate.jsp"></c:import>
@@ -28,8 +26,11 @@
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
-			
-				
+				<li>내 문의</li>
+				<li>내 상품리뷰</li>
+				<li>내 방리뷰</li>
+				<li>내 게시글</li>
+				<li>내 댓글</li>
 			</ul>
 		<hr>
 		</div>
@@ -50,34 +51,10 @@
     <script type="text/javascript">
     	myPage();
     	
-    	 $(document).ready(function(){
-    		
-    		$("#myPage-profile").trigger("click");
-    		
-    		
-    		
-
-			
-
-    		if(${not empty page}){
-    			$("#${page}").trigger("click");
-    		}else{
-    			
-    			$("#profileDiv").load("/member/profile");
-    		}
-    		
-    	});
-    	$(document).on("click",".submenuList",function(){
-    		$("#profileDiv").load(this.getAttribute('data-a'));
-    	});
-    	
-    	
-    	
-    	
-    	
-    	
     	
     </script>
-   
+	
+	
+	
 </body>
 </html>

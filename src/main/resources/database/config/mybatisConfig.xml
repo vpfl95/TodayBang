@@ -8,6 +8,7 @@
 		<typeAlias type="com.goodee.home.member.MemberFileDTO" alias="MemberFileDTO"/>
 		<typeAlias type="com.goodee.home.member.RoleDTO" alias="RoleDTO"/>
 		<typeAlias type="com.goodee.home.member.DeliveryDTO" alias="DeliveryDTO"/>
+		<typeAlias type="com.goodee.home.member.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.goodee.home.service.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardFileDTO" alias="BoardFileDTO"/>

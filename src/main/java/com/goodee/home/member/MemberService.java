@@ -153,4 +153,10 @@ public class MemberService {
 		return memberDAO.findPw(memberDTO);
 	}
 	
+	
+	public List<CartDTO> getCart(MemberDTO memberDTO) throws Exception{
+		
+		
+		return memberDAO.getCart(memberDTO);
+	}
 }

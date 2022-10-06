@@ -521,51 +521,26 @@ function myPage(){
 
     const myPage1 = document.querySelector("#myPage-1");
     const myPagelist = document.querySelectorAll(".myPage-list");
+    const myPageProfile =document.querySelector("#myPage-profile");
+    const myPageShopping =document.querySelector("#myPage-shopping");
+    const myPageWriting =document.querySelector("#myPage-writing");
     
-    
-    for(category of myPagelist){
 
-        category.addEventListener("click",function(event){
+    myPageProfile.addEventListener("click",function(){
             
             let arr ;
             let url ;
 
-
-            for(ct of myPagelist){
-                ct.style.color = "";
-            }
-            event.target.style.color = "#38b9e0";
-
-            if(event.target.id == "myPage-profile"){
+            
     
                  arr = ['정보수정', '비밀번호변경','멤버등급', '배송지정보'];
                  url = ['profile','updatePw' ,'rank', 'delivery'];
         
                 
-            }else if(event.target.id == "myPage-shopping"){
-    
-                 arr = ['장바구니', '배송내역', '구매내역','관심매물'];
-                 url = ['store/url1', 'store/url2', 'store/url3' , 'store/url4'];
-        
-                
-            }else if(event.target.id == "myPage-write"){
-    
-                 arr = ['내 문의', '내 상품리뷰', '내 방리뷰', '내 게시글', '내 댓글'];
-                 url = ['/member/myQna', '/member/myPReview', '/member/myPReview','store/url4','store/url5'];
-        
-               
-            }
-
-
-
-
-            profileCategory(event.target , arr , url);
+            
+            profileCategory(myPageProfile , arr , url);
             
         })
-
-
-    }
-    
 
     function profileCategory(cate , arr , url){
 
@@ -578,11 +553,6 @@ function myPage(){
         if(arr.length != url.length){
             return;
         }
-    
-        
-
-
-
     
         for(let i = 0 ; i < arr.length; i ++){
 

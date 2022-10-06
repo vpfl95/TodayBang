@@ -19,16 +19,7 @@
 
  <c:import url="../template/header.jsp"></c:import>
 <section class="container-fluid container-lg-8 mt-4">
-	<div class="container-fluid container-lg-8 pt-4">
-		<!-- 카테고리 1  --> 
-			<ul id = "myPage-1">
-				<li class = "myPage-list" id = "myPage-profile" > 프로필 </li>
-				<li class = "myPage-list" id = "myPage-shopping"> 나의 쇼핑</li>
-				<li class = "myPage-list" id = "myPage-write"> 나의 글</li>
-				
-			</ul>
-		<hr>
-		</div>
+	<c:import url="./myPageCate.jsp"></c:import>
 		
 		<div class="container-fluid container-lg-8 mt-4 ">
 		<!-- 카테고리 2 -->
