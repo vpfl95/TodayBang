@@ -92,4 +92,100 @@ function member(){
             
         }
     })
+
+    const OnlyBan = document.querySelector("#OnlyBan");
+    const OnlyNoBan = document.querySelector("#OnlyNoBan");
+
+    OnlyBan.addEventListener("click",function(){
+        if(OnlyBan.checked){
+            OnlyNoBan.checked = false;
+        }
+    })
+    OnlyNoBan.addEventListener("click",function(){
+        if(OnlyNoBan.checked){
+            OnlyBan.checked = false;
+        }
+    })
+
+    
+    const operatorKindLabel = document.getElementsByClassName("operatorKindLabel");
+    const operatorKind =  document.getElementsByClassName("operatorKind");
+    const operatorKindTd =  document.getElementsByClassName("operatorKindTd");
+    for(opKL of operatorKindLabel){
+        opKL.addEventListener("mouseover",function(event){
+            
+            event.target.classList.toggle("hidden");
+            
+            event.target.nextSibling.nextSibling.classList.toggle("hidden");
+        })
+            
+
+
+        let select =  opKL.getAttribute("data-a");
+        
+            for(op of opKL.nextSibling.nextSibling.options){
+                if(op.value == select){
+                    op.selected = true;
+                }
+            }
+        
+    }
+  
+
+    for(opK of operatorKind){
+        opK.addEventListener("mouseleave",function(event){
+            
+                    event.target.classList.toggle("hidden");
+                    
+                    event.target.previousSibling.previousSibling.classList.toggle("hidden");
+        })
+            
+        opK.addEventListener("change",function(event){
+            let url =event.target.getAttribute("data-a")
+            let roleNum;
+            for(op of event.target.options){
+                if(op.selected == true){
+                    roleNum = op.value;
+
+                }
+                
+            }
+
+            
+            console.log("change" +url+"&roleNum=" + roleNum)
+
+            const xhttp = new XMLHttpRequest();
+
+            xhttp.open("GET",url +"&roleNum=" + roleNum);
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send();
+            xhttp.onreadystatechange= function(){
+
+                if(xhttp.readyState == 4 && xhttp.status ==200){
+                    let result = xhttp.responseText.trim();
+                    console.log("AJAX")
+                    if(result == 0){
+                        console.log("result == 0")
+
+                    }else if(result == 1){
+                        console.log("result == 1")
+                        
+                    }
+                }
+            }
+
+
+
+
+
+
+
+        })
+    }
+   
+    
+
+
+
+
 }

@@ -39,9 +39,60 @@ public class AdminSerivece {
 	
 	
 	public int updateMemberRank(MemberDTO memberDTO,String action) throws Exception{
-		
+		Long newRoleNum = memberDTO.getRoleNum() ;
 		memberDTO = adminDAO.getDetailMember(memberDTO);
-		Long newRoleNum = null ;
+		
+		
+		
+		
+		if(action.equals("operator")) {
+			memberDTO.setRoleNum(newRoleNum);
+			System.out.println("운영자 등급 설정");
+			
+			
+			
+			if(newRoleNum ==9) {
+				System.out.println("운영자 등급 지우기");
+				boolean check = false;
+				for(RoleDTO role : memberDTO.getRoleDTOs()) {
+					if(role.getRoleNum()>0 && role.getRoleNum()<10) {
+						System.out.println("유");
+						check = true;
+						memberDTO.setRoleNum(role.getRoleNum());
+						break;
+					}
+				}
+				adminDAO.deleteMemberRank(memberDTO);
+				return 1;
+			}
+			
+			
+			
+			boolean check = false;
+			for(RoleDTO role : memberDTO.getRoleDTOs()) {
+				
+				if(role.getRoleNum()>0 && role.getRoleNum()<10) {
+					System.out.println("유");
+					check = true;
+					//update
+					memberDTO.setRoleDTO(role);
+					
+					adminDAO.updateMemberRank(memberDTO);
+					
+					return 1;
+				}
+			}
+			if(check == false) {
+				// insert 
+				
+				adminDAO.addMemberRank(memberDTO);
+				
+				return 1;
+				
+			}
+		}
+		
+		
 		
 		
 		
@@ -51,7 +102,8 @@ public class AdminSerivece {
 			adminDAO.addMemberRank(memberDTO);
 			
 		}else if (action.equals("noBan")) {
-			
+			newRoleNum = 100L;
+			memberDTO.setRoleNum(newRoleNum);
 			adminDAO.deleteMemberRank(memberDTO);
 		}
 		
