@@ -1,4 +1,4 @@
-package com.goodee.home.store.product;
+package com.goodee.home.store.category;
 
 public class CategoryDTO {
 

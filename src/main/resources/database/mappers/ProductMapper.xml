@@ -5,15 +5,7 @@
 <mapper namespace="com.goodee.home.store.product.ProductDAO">
 	<insert id="setProduct" parameterType="ProductDTO">
 		INSERT INTO PRODUCT VALUES (#{productNum}, #{price}, #{stock}, #{saleRate}, #{brand}, SYSDATE,
-		#{deliDate}, #{todayDeal}, #{premium}, #{deliFee}, #{productName})
-	</insert>
-	
-	<select id="getCategory" resultType="CategoryDTO">
-		SELECT * FROM CATEGORY
-	</select>
-	
-	<insert id="setCategory" parameterType="Cate_ProductDTO">
-		INSERT INTO "CATE-PRODUCT" VALUES (CATE_SEQ.NEXTVAL, #{categoryNum}, #{productNum})
+		#{deliDate}, #{todayDeal}, #{deliFee}, #{productName})
 	</insert>
 	
 	<insert id="setOption1" parameterType="OptionDTO">

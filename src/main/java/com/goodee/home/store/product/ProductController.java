@@ -15,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.goodee.home.store.category.Cate_ProductDTO;
+import com.goodee.home.store.category.CategoryService;
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDTO;
 
@@ -24,6 +26,8 @@ public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+	@Autowired
+	private CategoryService categoryService;
 
 	@GetMapping("add")
 	public String getAddProductPage() throws Exception {
@@ -37,7 +41,7 @@ public class ProductController {
 			MultipartFile[] productDetail, MultipartFile[] productImage, HttpSession httpSession) throws Exception {
 		
 		productService.setProduct(productDTO);
-		productService.setCategory(cate_ProductDTO);
+		categoryService.setCategory(cate_ProductDTO);
 		productService.setOption(optionName, optionPrice, productDTO.getProductNum(), 1);
 		productService.setOption(optionName2, optionPrice2, productDTO.getProductNum(), 2);
 		productService.setOption(optionName3, optionPrice3, productDTO.getProductNum(), 3);
@@ -46,12 +50,6 @@ public class ProductController {
 		productService.setProductImage(productDetail, httpSession.getServletContext(), productDTO.getProductNum(), 1);
 		
 		return "redirect:./add";
-	}
-	
-	@GetMapping("category")
-	@ResponseBody
-	public List<CategoryDTO> getCategory() throws Exception {
-		return productService.getCategory();
 	}
 	
 	@GetMapping("ex_list")

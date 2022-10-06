@@ -6,6 +6,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.goodee.home.store.category.CategoryDTO;
 import com.goodee.home.store.exhibition.ExhibitionDTO;
 import com.goodee.home.store.impl.OptionDTO;
 
@@ -18,14 +19,6 @@ public class ProductDAO {
 	
 	public int setProduct(ProductDTO productDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setProduct", productDTO);
-	}
-	
-	public List<CategoryDTO> getCategory() throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getCategory");
-	}
-	
-	public int setCategory(Cate_ProductDTO cate_ProductDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setCategory", cate_ProductDTO);
 	}
 	
 	public int setOption(OptionDTO optionDTO, int num) {

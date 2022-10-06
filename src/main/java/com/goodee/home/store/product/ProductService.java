@@ -10,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goodee.home.store.category.Cate_ProductDTO;
+import com.goodee.home.store.category.CategoryDTO;
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDAO;
 import com.goodee.home.store.exhibition.ExhibitionDTO;
@@ -26,14 +28,6 @@ public class ProductService {
 	
 	public int setProduct(ProductDTO productDTO) throws Exception {
 		return productDAO.setProduct(productDTO);
-	}
-
-	public List<CategoryDTO> getCategory() throws Exception {
-		return productDAO.getCategory();
-	}
-	
-	public int setCategory(Cate_ProductDTO cate_ProductDTO) throws Exception {
-		return productDAO.setCategory(cate_ProductDTO);
 	}
 	
 	public int setOption(String[] optionName, Long[] optionPrice, Long productNum,int num) throws Exception {

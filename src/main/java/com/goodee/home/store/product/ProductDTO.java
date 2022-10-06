@@ -3,6 +3,8 @@ package com.goodee.home.store.product;
 import java.sql.Date;
 import java.util.List;
 
+import com.goodee.home.store.category.CategoryDTO;
+
 public class ProductDTO {
 	private Long productNum;
 	private String productName;

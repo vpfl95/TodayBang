@@ -83,13 +83,6 @@
                                 <span class="input-group-text" id="basic-addon7">배송비</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon7" name="deliFee">
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-text">
-                                  <input type="hidden" name="premium" id="premium" value=0>
-                                  <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input" id="cbxPremium">
-                                  <span class="ms-3">프리미엄 여부</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="options" style="border: solid red 1px; height: auto;">
