@@ -254,7 +254,6 @@
         getReviewList(0);
         getInquiryList();
         setOption();
-        // setItem();
     </script>
 </body>
 </html>

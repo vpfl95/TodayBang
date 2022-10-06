@@ -36,6 +36,7 @@ const chkInquiry = document.querySelector('#chkInquiry');
 const reviewImage = document.querySelector('#reviewImage');
 const exampleModalLabel = document.querySelector('#exampleModalLabel');
 const btnInquiryReply = document.querySelector('#btnInquiryReply');
+const btnClose = document.querySelectorAll('.btn-close');
 let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
@@ -89,7 +90,7 @@ function setProductInfo() {
 
 function setOption() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', '/product/option?productNum='+jsonList[0].productNum);
+    xhttp.open('GET', '/product/option?productNum='+jsonList[0].productNum+"&option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List);
     xhttp.send();
     xhttp.onreadystatechange=function() {
         if(this.readyState==4 && this.status==200) {
@@ -130,9 +131,63 @@ productImageList[0].onmouseover=function(event){
     productImage.setAttribute('src', event.target.getAttribute('src'));
 }
 
+// 옵션 변경 시 실행 이벤트
+let option1List=[];
+let option2List=[];
+let option3List=[];
 section.onchange=function(event) {
     if(event.target.classList.contains('sellingOptionControll')) {
-       console.log('test');
+       console.log($('section').find('select.sellingOptionControll'));
+       console.log('value : ' + event.target.value);
+       $('section').find('select.sellingOptionControll').val(event.target.value).prop("selected", true);
+    }
+
+    if(event.target.classList.contains('option1')) {
+        if(option1List.includes(event.target.value)) {
+            alert('이미 선택한 옵션입니다.');
+        } else {
+            option1List.push(event.target.value);
+        }
+        $('section').find('select.option1 option:eq(0)').prop("selected", true);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
+    }
+
+    if(event.target.classList.contains('option2')) {
+        if(option2List.includes(event.target.value)) {
+            alert('이미 선택한 옵션입니다.');
+        } else {
+            option2List.push(event.target.value);
+        }
+        $('section').find('select.option2 option:eq(0)').prop("selected", true);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
+    }
+
+    if(event.target.classList.contains('option3')) {
+        if(option3List.includes(event.target.value)) {
+            alert('이미 선택한 옵션입니다.');
+        } else {
+            option3List.push(event.target.value);
+        }
+        $('section').find('select.option3 option:eq(0)').prop("selected", true);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
     }
 }
 
@@ -160,7 +215,6 @@ btnWrite.onclick=function() {
     let priceStar;
     let designStar;
     let deliveryStar;
-    let btnClose = document.querySelectorAll('.btn-close');
     
     for(r of radio1) {
         if(r.checked) {
@@ -237,7 +291,10 @@ btnInquiry.onclick=function() {
     xhttp.send('contents='+inqueryContents.value+'&priStatus='+priStatus+'&productNum='+jsonList[0].productNum+'&userId='+userId.value);
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {
-            console.log(this.responseText.trim());
+            if(this.responseText.trim() == 1) {
+                btnClose[1].click();
+                getInquiryList();
+            }
         }
     }
 }
@@ -249,7 +306,10 @@ btnInquiryReply.onclick=function() {
     xhttp.send('contents='+inqueryReplyContents.value+'&productNum='+jsonList[0].productNum+'&userId='+userId.value+'&inqNum='+inqNum);
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {
-            console.log(this.responseText.trim());
+            if(this.responseText.trim() == 1) {
+                btnClose[2].click();
+                getInquiryList();
+            }
         }
     }
 }
@@ -410,5 +470,28 @@ inqueryList[0].onclick=function(event) {
 
     if(event.target.classList[0] == 'reply') {
         inqNum=event.target.dataset.replyInqnum;
+    }
+}
+
+// 섹션 클릭리스너
+section.onclick=function(event) {
+    if(event.target.classList.contains('deleteOption')) {
+        if(option1List.includes(event.target.dataset.deleteOpnum)) {
+            option1List.splice(option1List.indexOf(event.target.dataset.deleteOpnum),1);
+        }
+        if(option2List.includes(event.target.dataset.deleteOpnum)) {
+            option2List.splice(option2List.indexOf(event.target.dataset.deleteOpnum),1);
+        }
+        if(option3List.includes(event.target.dataset.deleteOpnum)) {
+            option3List.splice(option3List.indexOf(event.target.dataset.deleteOpnum),1);
+        }
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
     }
 }
