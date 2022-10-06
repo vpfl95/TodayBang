@@ -71,7 +71,7 @@ public class ServiceController {
 		
 		
 		List<QnaDTO> ar = null;
-		// getBoardName()
+		
 		pager.setUrl("list");
 		pager.setBoard(getBoardName());
 		ar = service.getList(pager);

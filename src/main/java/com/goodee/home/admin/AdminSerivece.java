@@ -47,16 +47,16 @@ public class AdminSerivece {
 		
 		if(action.equals("operator")) {
 			memberDTO.setRoleNum(newRoleNum);
-			System.out.println("운영자 등급 설정");
+			
 			
 			
 			
 			if(newRoleNum ==9) {
-				System.out.println("운영자 등급 지우기");
+				
 				boolean check = false;
 				for(RoleDTO role : memberDTO.getRoleDTOs()) {
 					if(role.getRoleNum()>0 && role.getRoleNum()<10) {
-						System.out.println("유");
+						
 						check = true;
 						memberDTO.setRoleNum(role.getRoleNum());
 						break;

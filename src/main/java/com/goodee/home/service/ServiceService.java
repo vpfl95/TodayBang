@@ -28,6 +28,11 @@ public class ServiceService {
 	public List<QnaDTO> getList(Pager pager) throws Exception{
 		
 		Long totalCount = serviceDAO.getCount(pager);
+		
+		if(totalCount == 0) {
+			totalCount +=1;
+		}
+		
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
