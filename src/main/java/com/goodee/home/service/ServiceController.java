@@ -84,7 +84,7 @@ public class ServiceController {
 		}
 		
 		
-		
+		mv.addObject("search",pager);
 		mv.addObject("boardList",ar);
 		mv.setViewName("/service/list");
 		

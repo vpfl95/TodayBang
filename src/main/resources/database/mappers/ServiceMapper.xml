@@ -29,7 +29,7 @@
 				WHERE
 				<choose>
 					<when test="kind == 'title'">TITLE</when>
-					<when test="kind == 'writer'">WRITER</when>
+					<when test="kind == 'userId'">USERID</when>
 					<otherwise>CONTENTS</otherwise>
 				</choose>
 				LIKE '%'||#{search}||'%' 
