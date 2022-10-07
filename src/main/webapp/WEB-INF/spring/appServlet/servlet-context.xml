@@ -24,7 +24,7 @@
 	
 	<context:component-scan base-package="com.goodee.home" />
 	
-	<!-- <beans:bean class="com.goodee.home.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
+	<beans:bean class="com.goodee.home.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
