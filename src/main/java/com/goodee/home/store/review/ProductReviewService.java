@@ -32,7 +32,11 @@ public class ProductReviewService {
 	}
 	
 	public List<ProductReviewDTO> getReview(ProductReviewDTO productReviewDTO) throws Exception {
-		return productReviewDAO.getReview(productReviewDTO);
+		if(productReviewDTO.getType() % 2 == 1) {
+			return productReviewDAO.getReviewNew(productReviewDTO);			
+		} else {
+			return productReviewDAO.getReviewBest(productReviewDTO);						
+		}
 	}
 	
 	public List<Long> getGrade(ProductReviewDTO productReviewDTO) throws Exception {
@@ -60,20 +64,20 @@ public class ProductReviewService {
 		return grade;
 	}
 	
-	public HelpDTO getHelp(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.getHelp(helpDTO);
+	public ReviewLikeDTO getHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.getHelp(reviewLikeDTO);
 	}
 	
-	public int setHelp(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.setHelp(helpDTO);
+	public int setHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.setHelp(reviewLikeDTO);
 	}
 	
-	public int deleteHelp(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.deleteHelp(helpDTO);
+	public int deleteHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.deleteHelp(reviewLikeDTO);
 	}
 	
-	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
-		return productReviewDAO.getHelpCount(helpDTO);
+	public Long getHelpCount(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return productReviewDAO.getHelpCount(reviewLikeDTO);
 	}
 	
 	public ProductReviewDTO getReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {
@@ -82,5 +86,27 @@ public class ProductReviewService {
 	
 	public int deleteReview(ProductReviewDTO productReviewDTO) throws Exception {
 		return productReviewDAO.deleteReview(productReviewDTO);
+	}
+	
+	public int deleteHelpAll(ProductReviewDTO productReviewDTO) throws Exception {
+		return productReviewDAO.deleteHelpAll(productReviewDTO);
+	}
+	
+	public int updateReview(ProductReviewDTO productReviewDTO, MultipartFile file, ServletContext servletContext) throws Exception {
+		ProductReviewDTO dto = productReviewDAO.getReviewDetail(productReviewDTO);
+		if(file == null) {
+			if(dto.getFileName() == null) {				
+				productReviewDTO.setFileName("");
+			} else {
+				productReviewDTO.setFileName(dto.getFileName());
+			}
+		} else {
+			if(dto.getFileName() != null) {				
+				fileManger.deleteFile(dto.getFileName(), servletContext, "resources/upload/store/review");
+			}
+			String fileName = fileManger.saveFile("resources/upload/store/review", servletContext, file);
+			productReviewDTO.setFileName(fileName);			
+		}
+		return productReviewDAO.updateReview(productReviewDTO);
 	}
 }

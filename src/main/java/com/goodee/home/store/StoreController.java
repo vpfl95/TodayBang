@@ -11,4 +11,10 @@ public class StoreController {
 		
 		return "store/storeHome";
 	}
+	
+	@GetMapping("/todayDeals")
+	public String todayDeals() throws Exception {
+		
+		return "store/todayDeal";
+	}
 }

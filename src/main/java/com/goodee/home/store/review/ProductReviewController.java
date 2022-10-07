@@ -39,19 +39,19 @@ public class ProductReviewController {
 	public ModelAndView getList(ProductReviewDTO productReviewDTO, HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<ProductReviewDTO> ar = productReviewService.getReview(productReviewDTO);
-		List<HelpDTO> chkHelp = new ArrayList<HelpDTO>();
+		List<ReviewLikeDTO> chkHelp = new ArrayList<ReviewLikeDTO>();
 		List<Long> grade = productReviewService.getGrade(productReviewDTO);
 		List<Long> totalCount = new ArrayList<Long>();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 		for(ProductReviewDTO dto : ar) {
-			HelpDTO helpDTO = new HelpDTO();
-			helpDTO.setRevNum(dto.getRevNum());
-			Long count = productReviewService.getHelpCount(helpDTO);
+			ReviewLikeDTO reviewLikeDTO = new ReviewLikeDTO();
+			reviewLikeDTO.setRevNum(dto.getRevNum());
+			Long count = productReviewService.getHelpCount(reviewLikeDTO);
 			totalCount.add(count);
 			if(memberDTO != null) {
-				helpDTO.setUserId(memberDTO.getUserId());
-				helpDTO = productReviewService.getHelp(helpDTO);
-				chkHelp.add(helpDTO);
+				reviewLikeDTO.setUserId(memberDTO.getUserId());
+				reviewLikeDTO = productReviewService.getHelp(reviewLikeDTO);
+				chkHelp.add(reviewLikeDTO);
 			} else {
 				chkHelp = null;
 			}
@@ -64,20 +64,21 @@ public class ProductReviewController {
 		mv.addObject("totalCount", totalCount);
 		mv.addObject("chkHelp", chkHelp);
 		mv.addObject("totalGrade", totalGrade);
+		mv.addObject("type", productReviewDTO.getType());
 		mv.setViewName("store/review/list");
 		return mv;
 	}
 	
 	@PostMapping("help")
 	@ResponseBody
-	public int setHelp(HelpDTO helpDTO) throws Exception {
+	public int setHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
 		int result = 0;
-		HelpDTO dto = productReviewService.getHelp(helpDTO);
+		ReviewLikeDTO dto = productReviewService.getHelp(reviewLikeDTO);
 		if(dto == null) {
 			result = 1;
-			productReviewService.setHelp(helpDTO);
+			productReviewService.setHelp(reviewLikeDTO);
 		} else {
-			productReviewService.deleteHelp(helpDTO);
+			productReviewService.deleteHelp(reviewLikeDTO);
 		}
 		return result;
 	}
@@ -92,10 +93,17 @@ public class ProductReviewController {
 	@ResponseBody
 	public boolean deleteReview(ProductReviewDTO productReviewDTO, HttpSession session) throws Exception {
 		productReviewDTO = productReviewService.getReviewDetail(productReviewDTO);
+		productReviewService.deleteHelpAll(productReviewDTO);
 		int result = productReviewService.deleteReview(productReviewDTO);
 		if(result == 1 && productReviewDTO.getFileName() != null) {
-			return fileManger.deleteFile("/resources/upload/store/review", session.getServletContext(), productReviewDTO.getFileName());
+			return fileManger.deleteFile(productReviewDTO.getFileName(), session.getServletContext(), "/resources/upload/store/review");
 		}
 		return false;
+	}
+	
+	@PostMapping("update")
+	@ResponseBody
+	public int updateReview(@RequestParam(value="fileObj", required = false) MultipartFile file, ProductReviewDTO productReviewDTO, HttpSession httpSession) throws Exception {
+		return productReviewService.updateReview(productReviewDTO, file, httpSession.getServletContext());
 	}
 }

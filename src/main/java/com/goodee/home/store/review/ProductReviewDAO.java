@@ -17,28 +17,32 @@ public class ProductReviewDAO {
 		return sqlSession.insert(NAMESPACE+"addReview", productReviewDTO);
 	}
 	
-	public List<ProductReviewDTO> getReview(ProductReviewDTO productReviewDTO) throws Exception {
-		return sqlSession.selectList(NAMESPACE+"getReview", productReviewDTO);
+	public List<ProductReviewDTO> getReviewBest(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getReviewBest", productReviewDTO);
+	}
+	
+	public List<ProductReviewDTO> getReviewNew(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getReviewNew", productReviewDTO);
 	}
 	
 	public List<Long> getGrade(ProductReviewDTO productReviewDTO) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getGrade", productReviewDTO);
 	}
 	
-	public HelpDTO getHelp(HelpDTO helpDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getHelp", helpDTO);
+	public ReviewLikeDTO getHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getHelp", reviewLikeDTO);
 	}
 	
-	public int setHelp(HelpDTO helpDTO) throws Exception {
-		return sqlSession.insert(NAMESPACE+"setHelp", helpDTO);
+	public int setHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setHelp", reviewLikeDTO);
 	}
 	
-	public int deleteHelp(HelpDTO helpDTO) throws Exception {
-		return sqlSession.delete(NAMESPACE+"deleteHelp", helpDTO);
+	public int deleteHelp(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteHelp", reviewLikeDTO);
 	}
 	
-	public Long getHelpCount(HelpDTO helpDTO) throws Exception {
-		return sqlSession.selectOne(NAMESPACE+"getHelpCount", helpDTO);
+	public Long getHelpCount(ReviewLikeDTO reviewLikeDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getHelpCount", reviewLikeDTO);
 	}
 	
 	public ProductReviewDTO getReviewDetail(ProductReviewDTO productReviewDTO) throws Exception {
@@ -47,5 +51,13 @@ public class ProductReviewDAO {
 	
 	public int deleteReview(ProductReviewDTO productReviewDTO) throws Exception {
 		return sqlSession.delete(NAMESPACE+"deleteReview", productReviewDTO);
+	}
+	
+	public int deleteHelpAll(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.delete(NAMESPACE+"deleteHelpAll", productReviewDTO);
+	}
+	
+	public int updateReview(ProductReviewDTO productReviewDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"updateReview", productReviewDTO);
 	}
 }

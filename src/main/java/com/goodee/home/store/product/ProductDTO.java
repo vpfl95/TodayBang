@@ -3,6 +3,8 @@ package com.goodee.home.store.product;
 import java.sql.Date;
 import java.util.List;
 
+import com.goodee.home.store.category.CategoryDTO;
+
 public class ProductDTO {
 	private Long productNum;
 	private String productName;
@@ -17,33 +19,19 @@ public class ProductDTO {
 	private ProductImageDTO productImageDTO;
 	private CategoryDTO categoryDTO;
 	private List<ProductImageDTO> productImageDTOs;
-	private List<Option1DTO> option1DTOs;
-	private List<Option2DTO> option2DTOs;
-	private List<Option3DTO> option3DTOs;
+	private List<ProductOptionDTO> ProductOptionDTOs;
 	
+	public List<ProductOptionDTO> getProductOptionDTOs() {
+		return ProductOptionDTOs;
+	}
+	public void setProductOptionDTOs(List<ProductOptionDTO> productOptionDTOs) {
+		ProductOptionDTOs = productOptionDTOs;
+	}
 	public CategoryDTO getCategoryDTO() {
 		return categoryDTO;
 	}
 	public void setCategoryDTO(CategoryDTO categoryDTO) {
 		this.categoryDTO = categoryDTO;
-	}
-	public List<Option1DTO> getOption1DTOs() {
-		return option1DTOs;
-	}
-	public void setOption1DTOs(List<Option1DTO> option1dtOs) {
-		option1DTOs = option1dtOs;
-	}
-	public List<Option2DTO> getOption2DTOs() {
-		return option2DTOs;
-	}
-	public void setOption2DTOs(List<Option2DTO> option2dtOs) {
-		option2DTOs = option2dtOs;
-	}
-	public List<Option3DTO> getOption3DTOs() {
-		return option3DTOs;
-	}
-	public void setOption3DTOs(List<Option3DTO> option3dtOs) {
-		option3DTOs = option3dtOs;
 	}
 	public ProductImageDTO getProductImageDTO() {
 		return productImageDTO;

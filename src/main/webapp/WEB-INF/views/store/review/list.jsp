@@ -143,10 +143,29 @@
 			</div>
 		</div>
 	</div>
-	<div class="d-flex mt-2">
-		<button class="btnSort">베스트순</button>
-		<button class="btnSort">최신순</button>
-		<button class="btnSort">🖼사진리뷰</button>
+	<div class="d-flex mt-2" id="sort" data-sort-type="${type}">
+		<c:choose>
+			<c:when test="${type eq 0}">
+				<button class="btnSort sortList" data-sort=0 style="font-weight: bold;">베스트순</button>
+				<button class="btnSort sortList" data-sort=1>최신순</button>			
+				<button class="btnSort picCheck">🖼사진리뷰</button>
+			</c:when>
+			<c:when test="${type eq 1}">
+				<button class="btnSort sortList" data-sort=0>베스트순</button>
+				<button class="btnSort sortList" data-sort=1 style="font-weight: bold;">최신순</button>			
+				<button class="btnSort picCheck">🖼사진리뷰</button>
+			</c:when>
+			<c:when test="${type eq 2}">
+				<button class="btnSort sortList" data-sort=0 style="font-weight: bold;">베스트순</button>
+				<button class="btnSort sortList" data-sort=1>최신순</button>			
+				<button class="btnSort picCheck" style="font-weight: bold;">🖼사진리뷰</button>
+			</c:when>
+			<c:otherwise>
+				<button class="btnSort sortList" data-sort=0>베스트순</button>
+				<button class="btnSort sortList" data-sort=1 style="font-weight: bold;">최신순</button>
+				<button class="btnSort picCheck" style="font-weight: bold;">🖼사진리뷰</button>
+			</c:otherwise>
+		</c:choose>
 	</div>
 	<hr>
 	<c:forEach items="${list}" var="dto" varStatus="i">

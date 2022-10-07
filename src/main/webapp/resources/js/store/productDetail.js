@@ -4,25 +4,17 @@ const productImage = document.querySelector('#productImage');
 const categoryLink = document.querySelector('#categoryLink');
 const optionWrap = document.querySelector('#optionWrap');
 const section = document.querySelector('#section');
-const additionalItem = document.querySelectorAll('.additionalItem');
 const fixInfo = document.querySelectorAll('.fixInfo');
 const brand = document.querySelector('#brand');
 const productName = document.querySelector('#productName');
 const saleRate = document.querySelector('#saleRate');
-const sellingOption = document.querySelectorAll('.sellingOption');
-const sellingOptionControll = document.querySelectorAll('.sellingOptionControll');
 const price1 = document.querySelector('#price1');
 const price2 = document.querySelector('#price2');
-const price3 = document.querySelectorAll('.price3');
-const totalPrice = document.querySelectorAll('.totalPrice');
 const modal_brand = document.querySelectorAll('.modal-product-contents-brand');
 const modal_productName = document.querySelectorAll('.modal-product-contents-productName');
 const modal_image = document.querySelectorAll('.modal-product-image');
 const point = document.querySelector('#point');
 const delivery = document.querySelector('#delivery');
-const option1 = document.querySelector('#option1');
-const option2 = document.querySelector('#option2');
-const option3 = document.querySelector('#option3');
 const cate1 = document.querySelector('#cate1');
 const cate2 = document.querySelector('#cate2');
 const cate3 = document.querySelector('#cate3');
@@ -32,16 +24,24 @@ const radio2 = document.querySelectorAll('.radio2');
 const radio3 = document.querySelectorAll('.radio3');
 const radio4 = document.querySelectorAll('.radio4');
 const reviewList = document.querySelectorAll('.reviewList');
+const inqueryList = document.querySelectorAll('.inqueryList');
 const btnWrite = document.querySelector('#btnWrite');
+const btnInquiry = document.querySelector('#btnInquiry');
 const reviewWriter = document.querySelector('#reviewWriter');
 const userId = document.querySelector('#userId');
 const contents = document.querySelector('#contents');
+const inqueryContents = document.querySelector('#inqueryContents');
+const inqueryReplyContents = document.querySelector('#inqueryReplyContents');
+const chkInquiry = document.querySelector('#chkInquiry');
 const reviewImage = document.querySelector('#reviewImage');
+const exampleModalLabel = document.querySelector('#exampleModalLabel');
+const btnInquiryReply = document.querySelector('#btnInquiryReply');
+const btnClose = document.querySelectorAll('.btn-close');
+const navigationItem = document.querySelectorAll('.navigation-item');
 let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
 let category = jsonList[0].categoryDTO.categoryNum;
-let items = document.querySelectorAll('.items');
 let realPrice;
 
 
@@ -90,66 +90,20 @@ function setProductInfo() {
 }
 
 function setOption() {
-    if(jsonList[0].option1DTOs.length == 0) {
-        option1.setAttribute('style', 'display:none');
-    }
-    if(jsonList[0].option2DTOs.length == 0) {
-        option2.setAttribute('style', 'display:none');
-    }
-    if(jsonList[0].option3DTOs.length == 0) {
-        option3.setAttribute('style', 'display:none');
-    }
-
-    for(let i=0; i<jsonList[0].option1DTOs.length; i++) {
-        let option = document.createElement('option');
-        let option_value = document.createAttribute('value');
-        option_value.value=jsonList[0].option1DTOs[i].num;
-        option.setAttributeNode(option_value);
-        let option_text;
-        if(jsonList[0].option1DTOs[i].optionPrice < 0) {
-            option_text = document.createTextNode(jsonList[0].option1DTOs[i].optionName);
-        } else {
-            option_text = document.createTextNode(jsonList[0].option1DTOs[i].optionName + '(' + jsonList[0].option1DTOs[i].optionPrice + '원)');
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('GET', '/product/option?productNum='+jsonList[0].productNum+"&optionList="+optionList);
+    xhttp.send();
+    xhttp.onreadystatechange=function() {
+        if(this.readyState==4 && this.status==200) {
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
         }
-        option.appendChild(option_text);
-        option1.append(option);
     }
-
-    for(let i=0; i<jsonList[0].option2DTOs.length; i++) {
-        let option = document.createElement('option');
-        let option_value = document.createAttribute('value');
-        option_value.value=jsonList[0].option2DTOs[i].num;
-        option.setAttributeNode(option_value);
-        let option_text;
-        if(jsonList[0].option2DTOs[i].optionPrice < 0) {
-            option_text = document.createTextNode(jsonList[0].option2DTOs[i].optionName);
-        } else {
-            option_text = document.createTextNode(jsonList[0].option2DTOs[i].optionName + '(' + jsonList[0].option2DTOs[i].optionPrice + '원)');
-        }        
-        option.appendChild(option_text);
-        option2.append(option);
-    }
-
-    for(let i=0; i<jsonList[0].option3DTOs.length; i++) {
-        let option = document.createElement('option');
-        let option_value = document.createAttribute('value');
-        option_value.value=jsonList[0].option3DTOs[i].num;
-        option.setAttributeNode(option_value);
-        let option_text;
-        if(jsonList[0].option3DTOs[i].optionPrice < 0) {
-            option_text = document.createTextNode(jsonList[0].option3DTOs[i].optionName);
-        } else {
-            option_text = document.createTextNode(jsonList[0].option3DTOs[i].optionName + '(' + jsonList[0].option3DTOs[i].optionPrice + '원)');
-        }        
-        option.appendChild(option_text);
-        option3.append(option);
-    }
-    fixInfo[0].innerHTML = optionWrap.innerHTML;
 }
 
 function getCategory() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", 'category');
+    xhttp.open("GET", '/category/get');
     xhttp.send();
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {
@@ -174,85 +128,65 @@ function getCategory() {
     }
 }
 
-function setItem() {
-    let check = true;
-    if(jsonList[0].option1DTOs.length != 0) {
-        if(jsonList[0].option1DTOs[0].optionPrice == -2 || jsonList[0].option1DTOs[0].optionPrice == -3) {
-            check = false;
-            additionalItem[0].setAttribute("style", 'display:none')
-        }
-    }
-    if(jsonList[0].option2DTOs.length != 0) {
-        if(jsonList[0].option2DTOs[0].optionPrice == -2 || jsonList[0].option2DTOs[0].optionPrice == -3) {
-            check = false;
-            additionalItem[0].setAttribute("style", 'display:none')
-        }
-    }
-    if(jsonList[0].option3DTOs.length != 0) {
-        if(jsonList[0].option3DTOs[0].optionPrice == -2 || jsonList[0].option3DTOs[0].optionPrice == -3) {
-            check = false;
-            additionalItem[0].setAttribute("style", 'display:none')
-        }
-    }
-
-    if(check) {
-        for(let i=0; i<sellingOption.length; i++) {
-            sellingOption[i].innerHTML=jsonList[0].productNum;
-            price3[i].innerHTML=realPrice*sellingOptionControll[i].value+'원';
-            totalPrice[i].innerHTML=realPrice*sellingOptionControll[i].value+'원'
-        }
-    }
-    fixInfo[0].innerHTML = optionWrap.innerHTML;
-}
-
-
-
 productImageList[0].onmouseover=function(event){
     productImage.setAttribute('src', event.target.getAttribute('src'));
 }
 
-option1.onchange=function() {
-    // let divItem = document.createElement('div');
-    // let divTitle = document.createElement('div');
-
-
-    // if(jsonList[0].option1DTOs[0].optionPrice == -1) {
-
-    // } else if(jsonList[0].option1DTOs[0].optionPrice == -2) {
-        
-    // } else {          
-    // }
-}
-
+// 옵션 변경 시 실행 이벤트
+let optionList=[];
 section.onchange=function(event) {
     if(event.target.classList.contains('sellingOptionControll')) {
-        let target_class = event.target.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode.parentNode;
-        let fixed = section.lastChild.previousSibling.lastChild.previousSibling.lastChild.previousSibling;
-        let fixed_select = fixed.children[3].firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
-        let wrap = section.firstChild.nextSibling.nextSibling.nextSibling.nextSibling.nextSibling;
-        let wrap_items = wrap.firstChild.nextSibling.nextSibling.nextSibling
-        .lastChild.previousSibling.lastChild.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling;
-        let wrap_select = wrap_items.firstChild.nextSibling.firstChild.nextSibling.nextSibling.nextSibling.firstChild.nextSibling.firstChild.nextSibling;
-        let fix_span = fixed_items.parentNode.lastChild.previousSibling.previousSibling.previousSibling.lastChild.previousSibling;
-        let wrap_span = wrap_items.parentNode.lastChild.previousSibling.previousSibling.previousSibling.lastChild.previousSibling;
-        
-        if(target_class.classList.contains('itemWrap')) {
-            for(let j=0; j<3; j++) {
-                if(event.target.value == fixed_select.options[j].value) {
-                    fixed_select.options[j].selected = true;
-                }
-            }
+       console.log($('section').find('select.sellingOptionControll'));
+       console.log('value : ' + event.target.value);
+       $('section').find('select.sellingOptionControll').val(event.target.value).prop("selected", true);
+    }
+
+    if(event.target.classList.contains('option1')) {
+        if(optionList.includes(event.target.value)) {
+            alert('이미 선택한 옵션입니다.');
         } else {
-            for(let j=0; j<3; j++) {
-                if(event.target.value == wrap_select.options[j].value) {
-                    wrap_select.options[j].selected = true;
-                }
-            }
+            optionList.push(event.target.value);
         }
-        fix_span.innerHTML=realPrice*event.target.value+'원';
-        wrap_span.innerHTML=realPrice*event.target.value+'원'
-        fixed_select.parentNode.nextSibling.nextSibling.innerHTML=realPrice*event.target.value+'원';
-        wrap_select.parentNode.nextSibling.nextSibling.innerHTML=realPrice*event.target.value+'원';
+        $('section').find('select.option1 option:eq(0)').prop("selected", true);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
+    }
+
+    if(event.target.classList.contains('option2')) {
+        if(optionList.includes(event.target.value)) {
+            alert('이미 선택한 옵션입니다.');
+        } else {
+            optionList.push(event.target.value);
+        }
+        $('section').find('select.option2 option:eq(0)').prop("selected", true);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
+    }
+
+    if(event.target.classList.contains('option3')) {
+        if(optionList.includes(event.target.value)) {
+            alert('이미 선택한 옵션입니다.');
+        } else {
+            optionList.push(event.target.value);
+        }
+        $('section').find('select.option3 option:eq(0)').prop("selected", true);
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
     }
 }
 
@@ -265,6 +199,7 @@ function setModal() {
 
 // 리뷰 쓰기 버튼 클릭 시 입력된 정보들 초기화
 reviewWriter.onclick=function() {
+    exampleModalLabel.innerHTML = '리뷰 쓰기';
     for(r of radio) {
         r.checked = false;
     }
@@ -279,7 +214,6 @@ btnWrite.onclick=function() {
     let priceStar;
     let designStar;
     let deliveryStar;
-    let btnClose = document.querySelectorAll('.btn-close');
     
     for(r of radio1) {
         if(r.checked) {
@@ -304,6 +238,7 @@ btnWrite.onclick=function() {
     let form = $('#frmUpload')[0];
     let formData = new FormData(form);
     formData.append("fileObj", $("#reviewImage")[0].files[0]);
+    
     formData.append("durStar", durStar);
     formData.append("priceStar", priceStar);
     formData.append("designStar", designStar);
@@ -311,20 +246,71 @@ btnWrite.onclick=function() {
     formData.append("userId", userId.value);
     formData.append("contents", contents.value);
     formData.append("productNum", jsonList[0].productNum);
+    if(exampleModalLabel.innerHTML == '리뷰 수정') {
+        formData.append("revNum", revNum);
+        $.ajax({
+            url: '/review/update',
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: 'POST',
+            success: function(result) {
+                alert('수정 성공!');
+                btnClose[0].click();
+                getReviewList(0);
+            }
+        });
+    } else {
+        $.ajax({
+            url: '/review/add',
+            processData: false,
+            contentType: false,
+            data: formData,
+            type: 'POST',
+            success: function(result) {
+                alert('작성 성공!');
+                btnClose[0].click();
+                getReviewList(0);
+            }
+        });
+    }
+}
 
+btnInquiry.onclick=function() {
+    let priStatus;
+    if(chkInquiry.checked) {
+        priStatus=1;
+    } else {
+        priStatus=0;
+    }
 
-    $.ajax({
-        url: '/review/add',
-        processData: false,
-        contentType: false,
-        data: formData,
-        type: 'POST',
-        success: function(result) {
-            alert('업로드 성공!');
-            btnClose[0].click();
-            getReviewList();
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/inquiry/add');
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send('contents='+inqueryContents.value+'&priStatus='+priStatus+'&productNum='+jsonList[0].productNum+'&userId='+userId.value);
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200) {
+            if(this.responseText.trim() == 1) {
+                btnClose[1].click();
+                getInquiryList();
+            }
         }
-    });
+    }
+}
+
+btnInquiryReply.onclick=function() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open('POST', '/inquiry/reply');
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send('contents='+inqueryReplyContents.value+'&productNum='+jsonList[0].productNum+'&userId='+userId.value+'&inqNum='+inqNum);
+    xhttp.onreadystatechange=function(){
+        if(this.readyState==4 && this.status==200) {
+            if(this.responseText.trim() == 1) {
+                btnClose[2].click();
+                getInquiryList();
+            }
+        }
+    }
 }
 
 // 업로드 이미지 미리보기
@@ -340,9 +326,9 @@ function setThumbnail(event) {
 }
 
 // 리뷰 리스트
-function getReviewList() {
+function getReviewList(type) {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum);
+    xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum+"&type="+type);
     xhttp.send();
     xhttp.onreadystatechange=function() {
         if(this.readyState==4 && this.status==200) {
@@ -351,8 +337,13 @@ function getReviewList() {
     }
 }
 
+let revNum;
+// review/list.jsp 안 클릭 리스너
 reviewList[0].onclick=function(event) {
     if(event.target.classList[0] == 'update') {
+        revNum = event.target.getAttribute("data-update-revnum");
+        exampleModalLabel.innerHTML = '리뷰 수정';
+        reviewImage.value='';
         const xhttp = new XMLHttpRequest();
         xhttp.open("GET", "/review/detail?revNum="+event.target.dataset.updateRevnum);
         xhttp.send();
@@ -384,7 +375,7 @@ reviewList[0].onclick=function(event) {
             if(this.readyState==4 && this.status==200) {
                 if(this.responseText.trim()) {
                     alert('삭제 성공');
-                    getReviewList();
+                    getReviewList(0);
                 }
             }
         }
@@ -423,5 +414,92 @@ reviewList[0].onclick=function(event) {
                 }
             }
         }
+    }
+
+    if(event.target.classList[1] == 'sortList') {
+        let type = event.target.parentNode.dataset.sortType;
+        if(type == 2 || type == 3) {
+            getReviewList(event.target.dataset.sort+2);
+        } else {
+            getReviewList(event.target.dataset.sort);
+        }
+    }
+
+    if(event.target.classList[1] == 'picCheck') {
+        let type = event.target.parentNode.dataset.sortType;
+        if(type == 0) {
+            getReviewList(2);
+        } else if(type == 1) {
+            getReviewList(3);
+        } else if(type == 2) {
+            getReviewList(0);
+        } else {
+            getReviewList(1);
+        }
+    }
+}
+
+function getInquiryList() {
+    const xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "/inquiry/list?productNum="+jsonList[0].productNum);
+    xhttp.send();
+    xhttp.onreadystatechange=function() {
+        if(this.readyState==4 && this.status==200) {
+            inqueryList[0].innerHTML=this.responseText.trim();
+        }
+    }
+}
+
+let inqNum;
+inqueryList[0].onclick=function(event) {
+    if(event.target.classList[0] == 'delete') {
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("POST", "/inquiry/delete");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("inqNum="+event.target.dataset.deleteInqnum);
+        xhttp.onreadystatechange=function() {
+            if(this.readyState==4 && this.status==200) {
+                if(this.responseText.trim() == 1) {
+                    alert('삭제 성공');
+                    getInquiryList();
+                }
+            }
+        }
+    }
+
+    if(event.target.classList[0] == 'reply') {
+        inqNum=event.target.dataset.replyInqnum;
+    }
+}
+
+// 섹션 클릭리스너
+section.onclick=function(event) {
+    if(event.target.classList.contains('deleteOption')) {
+        if(optionList.includes(event.target.dataset.deleteOpnum)) {
+            optionList.splice(optionList.indexOf(event.target.dataset.deleteOpnum),1);
+        }
+
+        const xhttp = new XMLHttpRequest();
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
+        xhttp.send();
+        xhttp.onreadystatechange=function(){
+            optionWrap.innerHTML = this.responseText.trim();
+            fixInfo[0].innerHTML = this.responseText.trim();
+        }
+    }
+}
+
+for(navi of navigationItem) {
+    navi.onclick=function(e) {
+        e.preventDefault();
+        console.log('test');
+        let url = location.href;
+        location.href=url+'#top';
+       alert(url)
+        url = url.replace(/(#.*)/ig,'');
+        console.log(url);
+        history.replaceState(null, null, url);
+        console.log(history);
+        
     }
 }

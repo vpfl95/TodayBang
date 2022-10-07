@@ -5,27 +5,11 @@
 <mapper namespace="com.goodee.home.store.product.ProductDAO">
 	<insert id="setProduct" parameterType="ProductDTO">
 		INSERT INTO PRODUCT VALUES (#{productNum}, #{price}, #{stock}, #{saleRate}, #{brand}, SYSDATE,
-		#{deliDate}, #{todayDeal}, #{premium}, #{deliFee}, #{productName})
+		#{deliDate}, #{todayDeal}, #{deliFee}, #{productName})
 	</insert>
 	
-	<select id="getCategory" resultType="CategoryDTO">
-		SELECT * FROM CATEGORY
-	</select>
-	
-	<insert id="setCategory" parameterType="Cate_ProductDTO">
-		INSERT INTO "CATE-PRODUCT" VALUES (CATE_SEQ.NEXTVAL, #{categoryNum}, #{productNum})
-	</insert>
-	
-	<insert id="setOption1" parameterType="OptionDTO">
-		INSERT INTO OPTION1 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
-	</insert>
-	
-	<insert id="setOption2" parameterType="OptionDTO">
-		INSERT INTO OPTION2 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
-	</insert>
-	
-	<insert id="setOption3" parameterType="OptionDTO">
-		INSERT INTO OPTION3 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
+	<insert id="setOption" parameterType="ProductOptionDTO">
+		INSERT INTO PRODUCTOPTION VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{optionDiv}, #{productNum})
 	</insert>
 	
 	<insert id="setProductImage" parameterType="ProductImageDTO">
@@ -63,21 +47,14 @@
 	
 	<select id="getProductDetail" parameterType="ProductDTO"
 		resultMap="getProductDetailResult">
-		SELECT P.*, C.CATEGORYNUM, I.FILENAME, I.FILENUM, I.ORINAME, I.DETAIL,o1.NUM NUM1, o1.OPTIONNAME OPTIONNAME1, o1.OPTIONPRICE OPTIONPRICE1,
-        o2.NUM NUM2, o2.OPTIONNAME OPTIONNAME2, o2.OPTIONPRICE OPTIONPRICE2,o3.NUM NUM3, o3.OPTIONNAME OPTIONNAME3, o3.OPTIONPRICE OPTIONPRICE3
+		SELECT P.*, C.CATEGORYNUM, I.FILENAME, I.FILENUM, I.ORINAME, I.DETAIL
         FROM "CATE-PRODUCT" C
 		JOIN PRODUCT P 
 		ON P.PRODUCTNUM = C.PRODUCTNUM
 		JOIN PRODUCTIMAGE I
 		ON P.PRODUCTNUM = I.PRODUCTNUM
-        LEFT JOIN OPTION1 o1
-        ON P.PRODUCTNUM = o1.PRODUCTNUM
-        LEFT JOIN OPTION2 o2
-        ON P.PRODUCTNUM = o2.PRODUCTNUM
-        LEFT JOIN OPTION3 o3
-        ON P.PRODUCTNUM = o3.PRODUCTNUM
-		WHERE P.PRODUCTNUM=#{productNum}
-		ORDER BY I.FILENUM ASC, o1.NUM ASC, o2.NUM ASC, o3.NUM ASC
+		WHERE P.PRODUCTNUM = #{productNum}
+		ORDER BY I.FILENUM ASC
 	</select>
 	
 	<resultMap type="ProductDTO" id="getProductDetailResult">
@@ -95,26 +72,94 @@
 		<association property="categoryDTO" javaType="CategoryDTO">
 			<id column="CATEGORYNUM" property="categoryNum"/>
 		</association>
-		<collection property="option1DTOs" javaType="List" ofType="Option1DTO">
-			<id column="NUM1" property="num"/>
-			<result column="OPTIONNAME1" property="optionName"/>
-			<result column="OPTIONPRICE1" property="optionPrice"/>
-		</collection>
-		<collection property="option2DTOs" javaType="List" ofType="Option2DTO">
-			<id column="NUM2" property="num"/>
-			<result column="OPTIONNAME2" property="optionName"/>
-			<result column="OPTIONPRICE2" property="optionPrice"/>
-		</collection>
-		<collection property="option3DTOs" javaType="List" ofType="Option3DTO">
-			<id column="NUM3" property="num"/>
-			<result column="OPTIONNAME3" property="optionName"/>
-			<result column="OPTIONPRICE3" property="optionPrice"/>
-		</collection>
 		<collection property="productImageDTOs" javaType="List" ofType="ProductImageDTO">
 			<id column="FILENUM" property="fileNum"/>
 			<result column="FILENAME" property="fileName"/>
 			<result column="ORINAME" property="oriName"/>
 			<result column="DETAIL" property="detail"/>
 		</collection>
+	</resultMap>
+	
+	<select id="getProductList" resultMap="getProductResult">
+		SELECT P.*, I.FILENAME, I.FILENUM, I.ORINAME FROM PRODUCT P 
+		JOIN PRODUCTIMAGE I
+		ON P.PRODUCTNUM = I.PRODUCTNUM
+		WHERE I.ORINAME LIKE '01%'
+	</select>
+	
+	<resultMap type="ProductDTO" id="getProductResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<association property="productImageDTO" javaType="ProductImageDTO">
+			<id column="FILENUM" property="fileName"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+	</resultMap>
+	
+	<select id="getOptionDetail" parameterType="ProductDTO" resultMap="getOptionDetailResult">
+		SELECT P.* ,O.OPTIONNUM, O.OPTIONNAME, O.OPTIONPRICE, O.OPTIONDIV
+        FROM PRODUCT P 
+        LEFT JOIN PRODUCTOPTION O
+        ON P.PRODUCTNUM = O.PRODUCTNUM
+		WHERE P.PRODUCTNUM=#{productNum}
+		ORDER BY O.OPTIONNUM ASC
+	</select>
+	
+	<resultMap type="ProductDTO" id="getOptionDetailResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<collection property="ProductOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+			<id column="OPTIONNUM" property="optionNum"/>
+			<result column="OPTIONNAME" property="optionName"/>
+			<result column="OPTIONPRICE" property="optionPrice"/>
+			<result column="OPTIONDIV" property="optionDiv"/>
+		</collection>
+	</resultMap>
+	
+	<select id="getCateItem" parameterType="String" resultMap="getCateItem">
+		SELECT P.*, I.FILENAME, I.FILENUM, I.ORINAME, C.CATEGORYNUM FROM PRODUCT P 
+		JOIN PRODUCTIMAGE I
+		ON P.PRODUCTNUM = I.PRODUCTNUM
+        JOIN "CATE-PRODUCT" C
+        ON P.PRODUCTNUM = C.PRODUCTNUM
+		WHERE I.ORINAME LIKE '01%' AND C.CATEGORYNUM LIKE #{category}||'%'
+	</select>
+	
+	<resultMap type="ProductDTO" id="getCateItem">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<association property="productImageDTO" javaType="ProductImageDTO">
+			<id column="FILENUM" property="fileName"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
 	</resultMap>
 </mapper>

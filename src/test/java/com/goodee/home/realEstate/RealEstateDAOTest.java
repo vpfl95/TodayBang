@@ -12,8 +12,6 @@ import com.goodee.home.apt.AptDAO;
 import com.goodee.home.apt.AptDTO;
 import com.goodee.home.region.RegionDAO;
 import com.goodee.home.region.RegionDTO;
-import com.goodee.home.review.HouseReviewDAO;
-import com.goodee.home.review.HouseReviewDTO;
 import com.goodee.home.util.MaemulPager;
 
 
@@ -23,8 +21,6 @@ public class RealEstateDAOTest extends MyAbstractTest {
 	public RegionDAO sigunguDAO;
 	@Autowired
 	public AptDAO aptDAO;
-	@Autowired
-	private HouseReviewDAO houseReviewDAO;
 	
 //	@Test
 //	public void getHouseList()throws Exception {
@@ -64,31 +60,5 @@ public class RealEstateDAOTest extends MyAbstractTest {
 //		
 //	}
 	
-//	@Test
-//	public void getHouseReview() throws Exception{
-//		
-//		AptDTO aptDTO = new AptDTO();
-//		aptDTO.setRoadName("청라라임로 131");
-//		
-//		List<HouseReviewDTO> arr = (List<HouseReviewDTO>)houseReviewDAO.getHouseReview(aptDTO);
-//		
-//		assertEquals(1,arr.size());
-//		
-//	}
-	@Test
-	public void getHouseReview() throws Exception{
-		
-		MaemulPager maemulPager = new MaemulPager();
-		maemulPager.getRowNum();
-		maemulPager.setRoadName("가산디지털1로 222");
-
-		long totalCount = houseReviewDAO.getTotalCount(maemulPager);
-		maemulPager.makePage(totalCount);
-		System.out.println(totalCount);
-		List<HouseReviewDTO> arr = (List<HouseReviewDTO>)houseReviewDAO.getHouseReview(maemulPager);
-		
-		assertEquals(2,arr.size());
-		
-	}
 	
 }

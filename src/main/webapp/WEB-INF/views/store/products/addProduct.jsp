@@ -83,13 +83,6 @@
                                 <span class="input-group-text" id="basic-addon7">배송비</span>
                                 <input type="text" class="form-control" aria-describedby="basic-addon7" name="deliFee">
                             </div>
-                            <div class="input-group mb-3">
-                                <div class="input-group-text">
-                                  <input type="hidden" name="premium" id="premium" value=0>
-                                  <input class="form-check-input mt-0" type="checkbox" aria-label="Checkbox for following text input" id="cbxPremium">
-                                  <span class="ms-3">프리미엄 여부</span>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div class="options" style="border: solid red 1px; height: auto;">
@@ -100,8 +93,8 @@
                                 <c:forEach begin="0" end="6" var="i">
 	                                <div class="input-group">
 	                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
-	                                    <input type="text" class="form-control" name="optionName" style="width: 50%;">
-	                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;">
+	                                    <input type="text" class="form-control" name="optionName1" style="width: 50%;">
+	                                    <input type="text" class="form-control" name="optionPrice1" style="width: 15%;">
 	                                </div>
                                 </c:forEach>
                             </div>
