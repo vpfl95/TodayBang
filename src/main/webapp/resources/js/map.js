@@ -524,7 +524,6 @@ more.addEventListener("click", function(){
 
 //리뷰리스트
 function getReviewList(roadName,p){
-    console.log("겟리뷰리스트")
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getHouseReview?roadName="+roadName+"&page="+p);
     xhttp.send();
