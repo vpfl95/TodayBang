@@ -23,7 +23,7 @@
             <div class="col-lg-9">
             	<!-- Carousel 이미지 변경 버튼 -->
 	            <div class="exhibition">
-	                <div class="d-flex justify-content-center menu d-lg-block d-md-none d-sm-none d-none" style="text-align: center;">
+	                <div class="d-flex justify-content-center menu" style="text-align: center;">
 	                    <div>패브릭 세일</div>
 	                    <div>인기가전 특가</div>
 	                    <div>리퍼마켓</div>
