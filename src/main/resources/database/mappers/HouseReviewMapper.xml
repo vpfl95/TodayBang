@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.goodee.home.review.HouseReviewDAO">
+	
+	<select id="getHouseReview" parameterType="MaemulPager" resultType="HouseReviewDTO">
+		SELECT * FROM
+		(SELECT ROWNUM N, A.*
+		FROM (SELECT *
+		FROM HOUSEREVIEW H
+		     INNER JOIN 
+		     REALESTATE R
+		     ON H.NUM=R.NUM
+		WHERE R.ROADNAME=#{roadName}
+		ORDER BY "DATE" DESC) A) 
+		WHERE N BETWEEN #{startRow} AND #{lastRow}
+		<!-- SELECT H.*,R.ROADNAME
+		FROM HOUSEREVIEW H
+		     INNER JOIN 
+		     REALESTATE R
+		     ON H.NUM=R.NUM
+		WHERE R.ROADNAME=#{roadName}
+		ORDER BY "DATE" -->
+	</select>
+	<!-- <resultMap type="HouseReviewDTO" id="getHouseReviewResult">
+		<id column="reviewNum" property="reviewNum"/>
+		<result column="grade" property="grade"/>
+		<result column="date" property="date"/>
+		<result column="help" property="help"/>
+		<result column="contents" property="contents"/>
+		<result column="userId" property="userId"/>
+		<result column="num" property="num"/>
+		<result column="trfContents" property="trfContents"/>
+		<result column="envContents" property="envContents"/>
+		<result column="resContents" property="resContents"/>
+		<result column="trfGrade" property="trfGrade"/>
+		<result column="envGrade" property="envGrade"/>
+		<result column="resGrade" property="resGrade"/>
+		<association property="realEstateDTO" javaType="realEstateDTO">
+			<result column="ROADENAME" property="roadName"/>
+		</association>
+	</resultMap> -->
+	
+	<select id="getTotalCount" parameterType="MaemulPager" resultType="Long" >
+		SELECT COUNT(H.REVIEWNUM)
+		FROM HOUSEREVIEW H
+		     INNER JOIN 
+		     REALESTATE R
+		     ON H.NUM=R.NUM
+		WHERE R.ROADNAME=#{roadName}
+	</select>
+	
+	<insert id="setAddHouseReview" parameterType="HouseReviewDTO">
+		INSERT INTO HOUSEREVIEW VALUES(HOUSEREV_SEQ.nextval,#{grade},sysdate,null,#{contents},#{userId},#{num},#{trfContents},#{envContents},#{resContents},#{trfGrade},#{envGrade},#{resGrade})
+	</insert>
+	
+	<update id="setUpdateReview" parameterType="HouseReviewDTO">
+		UPDATE HOUSEREVIEW 
+		SET GRADE=#{grade}, CONTENTS=#{contents}, TRFCONTENTS=#{trfContents}, ENVCONTENTS=#{envContents}, RESCONTENTS=#{resContents}, TRFGRADE=#{trfGrade}, ENVGRADE=#{envGrade}, RESGRADE=#{resGrade} 
+		WHERE REVIEWNUM=#{reviewNum}
+	</update>
+	
+	<delete id="setDeleteReview" parameterType="HouseReviewDTO">
+		DELETE FROM HOUSEREVIEW WHERE REVIEWNUM=#{reviewNum}
+	</delete>
+
+</mapper>

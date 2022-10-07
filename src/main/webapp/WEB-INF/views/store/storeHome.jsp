@@ -26,7 +26,6 @@
 	                <div class="d-flex justify-content-center menu d-lg-block d-md-none d-sm-none d-none" style="text-align: center;">
 	                    <div>패브릭 세일</div>
 	                    <div>인기가전 특가</div>
-	                    <div>1+1SHOP</div>
 	                    <div>리퍼마켓</div>
 	                    <div>프리미엄 핫딜</div>
 	                    <div>오!굿즈</div>
@@ -42,23 +41,23 @@
 	            <nav style="height: auto; overflow-y: hidden; overflow-x: auto;" class="mt-3">
 	                <div class="d-flex justify-content-between exhibition-icon row">
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/1+1shopIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=1552"><img src="/resources/images/store/storeHome/1+1shopIcon.jpg" alt=""></a></div>
 	                        <div class="text">1+1 샵</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/ogoodsIcon2.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=2181"><img src="/resources/images/store/storeHome/ogoodsIcon2.jpg" alt=""></a></div>
 	                        <div class="text">오!굿즈</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/fastDeliIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=1763"><img src="/resources/images/store/storeHome/fastDeliIcon.jpg" alt=""></a></div>
 	                        <div class="text">빠른배송</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/premiumIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=2415"><img src="/resources/images/store/storeHome/premiumIcon.jpg" alt=""></a></div>
 	                        <div class="text">프리미엄</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/refurbishedIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=1433"><img src="/resources/images/store/storeHome/refurbishedIcon.jpg" alt=""></a></div>
 	                        <div class="text">리퍼마켓</div>
 	                    </div>
 	                    <div class="col">
@@ -67,11 +66,11 @@
 	                    </div>
 						<!-- 카테고리 이동-->
 						<div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/fallFabric.jpg" alt=""></a></div>
+	                        <div><a href="/category/main?category=1"><img src="/resources/images/store/storeHome/fallFabric.jpg" alt=""></a></div>
 	                        <div class="text">가을이불</div>
 	                    </div>
 						<div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/bestLight.jpg" alt=""></a></div>
+	                        <div><a href="/category/main?category=27"><img src="/resources/images/store/storeHome/bestLight.jpg" alt=""></a></div>
 	                        <div class="text">인기조명</div>
 	                    </div>
 	                </div>       
@@ -79,7 +78,7 @@
 	
 	            <div style="height: 20px;" class="todayDealStart">
 	                <h5 class="d-inline-flex float-start"><b>👍오늘의 딜</b></h5>
-	                <a href="#" class="d-inline-flex float-end a_tag">📌더보기</a>
+	                <a href="/todayDeals" class="d-inline-flex float-end a_tag">📌더보기</a>
 	            </div>
 	
 	            <div class="d-flex justify-content-center center_menu row" style="height: 343px;">
@@ -160,87 +159,7 @@
 	                <h5 class="d-inline-flex float-start"><b>🔥인기 상품</b></h5>
 	            </div>
 	
-	            <div class="filter" style="height: 44px;">
-	                <!--Order-->
-	                <div class="order">
-	                    <form>
-	                    <div class="d-flex justify-content-between">
-	                    <div class="p-1">
-	                        <select class="select" name="">
-	                        <option value="">최신순</option>
-	                        <option value="">조회순</option>
-	                        </select>
-	                    </div>
-	                    <div class="p-1">
-	                        <select class="select" name="">
-	                        <option value="">답변전체</option>
-	                        <option value="">답변대기</option>
-	                        <option value="">답변완료</option>
-	                        </select>
-	                    </div>
-	                    </div>
-	                    </form>
-	                </div>
-	            </div>
-	
-	            <div class="popularItem" style="height: 1100px;">
-	                <div class="popularItemImg" style="height: 343px;">
-	                    <div class="d-flex justify-content-center center_menu">
-	                        <div>
-	                            <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
-	                            <div>
-	                                <div class="brand"></div>
-	                                <div class="product"></div>
-	                                <div class="saleRate"></div>
-	                                <div class="price"></div>
-	                                <div class="grade"></div>
-	                                <div class="reviewNum"></div>
-	                            </div>
-	                        </div>
-	                        <div></div>
-	                        <div></div>
-	                        <div></div>
-	                    </div>
-	                </div>
-	
-	                <div class="todayDealImg" style="height: 343px;">
-	                    <div class="d-flex justify-content-center center_menu">
-	                        <div>
-	                            <div class="center_menu_img">이미지</div>
-	                            <div>
-	                                <div class="brand"></div>
-	                                <div class="product"></div>
-	                                <div class="saleRate"></div>
-	                                <div class="price"></div>
-	                                <div class="grade"></div>
-	                                <div class="reviewNum"></div>
-	                            </div>
-	                        </div>
-	                        <div></div>
-	                        <div></div>
-	                        <div></div>
-	                    </div>
-	                </div>
-	
-	                <div class="todayDealImg" style="height: 343px;">
-	                    <div class="d-flex justify-content-center center_menu">
-	                        <div>
-	                            <div class="center_menu_img">이미지</div>
-	                            <div>
-	                                <div class="brand"></div>
-	                                <div class="product"></div>
-	                                <div class="saleRate"></div>
-	                                <div class="price"></div>
-	                                <div class="grade"></div>
-	                                <div class="reviewNum"></div>
-	                            </div>
-	                        </div>
-	                        <div></div>
-	                        <div></div>
-	                        <div></div>
-	                    </div>
-	                </div>
-	            </div>
+	            <div id="productList"></div>
 	
 	            <!--PageNation-->
 	            <div class="paging">
@@ -271,5 +190,9 @@
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+	<script src="/resources/js/store/storeHome.js"></script>
+	<script>
+		getList();
+	</script>
 </body>
 </html>

@@ -5,7 +5,6 @@ const cate3 = document.querySelector("#cate3");
 const frmAddProduct = document.querySelector("#frmAddProduct");
 const categoryNum = document.querySelector("#categoryNum");
 const premium = document.querySelector("#premium");
-const cbxPremium = document.querySelector("#cbxPremium");
 const exhibition = document.querySelector("#exhibition");
 const btnAddProduct = document.querySelector("#btnAddProduct");
 let jsonCategory; 
@@ -13,7 +12,7 @@ let jsonExhibition;
 
 function getCategory() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "./category");
+    xhttp.open("GET", "/category/get");
     xhttp.send();
     xhttp.onreadystatechange=function() {
         if(this.readyState==4 && this.status==200) {
@@ -108,14 +107,6 @@ function getExhibition() {
                 exhibition.append(option);
             }
         }
-    }
-}
-
-cbxPremium.onchange=function(){
-    if(cbxPremium.checked) {
-        premium.value=1;
-    } else {
-        premium.value=0;
     }
 }
 

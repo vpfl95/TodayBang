@@ -59,33 +59,7 @@
                 <div id="delivery"></div>
 
                 <div id="optionWrap">
-                    <div><select id="option1" class="form-select" aria-label="Default select example"></select></div>
-                    <div><select id="option2" class="form-select" aria-label="Default select example"></select></div>
-                    <div><select id="option3" class="form-select" aria-label="Default select example"></select></div>
-
-                    <div class="items">
-                        <div class="additionalItem mt-2">
-                            <h5 class="sellingOption"></h5>
-                            <div class="d-flex justify-content-between">
-                                <div style="width: 30%;">
-                                    <select class="form-select sellingOptionControll">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                    </select>
-                                </div>
-                                <div class="price3"></div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mt-3 d-flex justify-content-between">
-                        <span><b>주문금액</b></span>
-                        <span class="totalPrice"></span>
-                    </div>
-                    <div class="d-flex justify-content-between mt-3">
-                        <button class="btn btn-outline-secondary" id="cart" style="width: 48%;">장바구니</button>
-                        <button class="btn btn-primary" id="buy" style="width: 48%;">바로구매</button>
-                    </div>
+                    <!-- 옵션자리-->
                 </div>
             </div>
         </div>
@@ -93,18 +67,18 @@
             <div style="width: 70%;">
                 <a name="productDetailList"></a>
                 <div class="d-flex justify-content-center selling-nav">
-                    <div><a href="#productDetailList">상품정보</a></div>
-                    <div><a href="#review">리뷰</a></div>
-                    <div><a href="#inquiry">문의</a></div>
+                    <div><a class="navigation-item" href="#productDetailList">상품정보</a></div>
+                    <div><a class="navigation-item" href="#review">리뷰</a></div>
+                    <div><a class="navigation-item" href="#inquiry">문의</a></div>
                 </div>
                 <div class="productDetailList"></div>
 
                 <!-- 리뷰 페이지 -->
                 <a name="review"></a>
                 <div class="d-flex justify-content-center selling-nav">
-                    <div><a href="#productDetailList">상품정보</a></div>
-                    <div><a href="#review">리뷰</a></div>
-                    <div><a href="#inquiry">문의</a></div>
+                    <div><a class="navigation-item" href="#productDetailList">상품정보</a></div>
+                    <div><a class="navigation-item" href="#review">리뷰</a></div>
+                    <div><a class="navigation-item" href="#inquiry">문의</a></div>
                 </div>
         
                 <div class="d-flex justify-content-between mb-2">
@@ -117,9 +91,9 @@
                 <!-- 문의 페이지-->
                 <a name="inquiry"></a>
                 <div class="d-flex justify-content-center selling-nav mt-5">
-                    <div><a href="#productDetailList">상품정보</a></div>
-                    <div><a href="#review">리뷰</a></div>
-                    <div><a href="#inquiry">문의</a></div>
+                    <div><a class="navigation-item" href="#productDetailList">상품정보</a></div>
+                    <div><a class="navigation-item" href="#review">리뷰</a></div>
+                    <div><a class="navigation-item" href="#inquiry">문의</a></div>
                 </div>
 
                 <div class="d-flex justify-content-between mb-2 mt-3">
@@ -130,7 +104,9 @@
                 <div class="inqueryList"></div>
             </div>
             <div style="width: 30%;">
-                <div class="fixInfo"></div>
+                <div class="fixInfo">
+                    <!-- 옵션자리 -->
+                </div>
             </div>
         </div>
         <!-- Review Modal -->
@@ -218,15 +194,16 @@
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
-                        <div class="modal-section d-flex justify-content-center" style="text-align: center;">
-                            <div style="width: 33%;">상품</div>
-                            <div style="width: 33%;">배송</div>
-                            <div style="width: 33%;">기타</div>
-                        </div>
                         <div class="modal-section">
                             <div class="modal-section-title">문의내용</div>
-                            <textarea name="contents" id="contents" cols="60" rows="5"></textarea>
+                            <textarea name="contents" id="inqueryContents" cols="60" rows="5"></textarea>
                         </div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-text">
+                              <input class="form-check-input mt-0" type="checkbox" value="" aria-label="Checkbox for following text input" id="chkInquiry">
+                              <span style="margin-left: 5px;">비밀글로 문의하기</span>
+                            </div>
+                          </div>
                         <div class="modal-section">
                             <p>- 문의내용에 대한 답변은 ‘마이페이지 > 나의 쇼핑 > 나의 문의내역’ 또는 ‘상품 상세페이지’에서 확인 가능합니다.</p>
                             <p>- 배송,결제,교환/반품 문의는 고객센터로 문의 바랍니다.</p>
@@ -234,11 +211,36 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnWrite">완료</button>
+                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnInquiry">완료</button>
                     </div>
                 </div>
             </div>
         </div>
+
+        <!-- Inquery Reply Modal -->
+        <div class="modal fade" id="inquiryReplyModal" tabindex="-1" aria-labelledby="inquiryReplyModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content" style="width: 100%;">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="inquiryReplyModalLabel">문의 답변하기</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-section">
+                            <div class="modal-section-title">답변내용</div>
+                            <textarea name="contents" id="inqueryReplyContents" cols="60" rows="5"></textarea>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" style="width: 100%;" id="btnInquiryReply">완료</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <a href="#top" class="top-button navigation-item">
+            <img src="/resources/images/store/topButton.png">
+        </a>
 	</section>
 	
 
@@ -251,11 +253,11 @@
         getProductImageCount();
         setProductImage();
         setProductInfo();
-        setOption();
         getCategory();
-        setItem();
         setModal();
-        getReviewList();
+        getReviewList(0);
+        getInquiryList();
+        setOption();
     </script>
 </body>
 </html>

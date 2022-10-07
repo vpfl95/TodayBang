@@ -4,7 +4,7 @@ let jsonList;
 
 function getList() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "/product/list?exhibitionCode="+code);
+    xhttp.open("GET", "/product/ex_list?exhibitionCode="+code);
     xhttp.send();
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {

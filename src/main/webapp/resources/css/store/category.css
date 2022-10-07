@@ -7,3 +7,114 @@
     border: solid blue 1px;
     height: 100%;
 }
+
+#categorySide {
+    padding-right: 50px;
+}
+
+.tier1 {
+    font-weight: bold;
+    font-size: 23px;
+    margin-bottom: 10px;
+    cursor : pointer;
+}
+
+.tier2 {
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor : pointer;
+}
+
+.tier2_expand {
+    cursor : pointer;
+}
+
+.tier_hr {
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+.tier3 {
+    padding-left: 10px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    cursor : pointer;
+}
+
+.open {
+    transform: rotate(180deg);
+}
+
+.selected {
+    color: #35c5f0;
+    font-weight: bold;
+}
+
+/* Product Detail Font*/
+.imageList {
+    max-width: 100%;
+}
+
+.imageList img {
+    width: 100%;
+}
+
+.imageList>div {
+    width: 25%;
+    padding: 10px;
+}
+
+.brand {
+    font-size: 10px;
+    color: gray;
+}
+
+.productName {
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.saleRate {
+    font-size: 19px;
+    display: inline-block;
+    color: #35c5f0;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price {
+    display: inline-block;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.grade {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.reviewNum {
+    font-size: 14px;
+    display: inline-block;
+    color: gray;
+}
+
+.product {
+    position: relative;
+    z-index: 1;
+}
+
+.subA {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+#cate1_1, #cate2_1 {
+    margin: 0 5px;
+}

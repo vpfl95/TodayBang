@@ -1,10 +1,32 @@
 const more = document.getElementById("more");
+const reviewMore = document.getElementById("reviewMore");
 const maemulList = document.getElementById("maemulList");
 const buildingName = document.getElementById("buildingName")
 const buildingWrap = document.getElementById("buildingWrap")
 const buildingInfo = document.getElementById("buildingInfo")
+const houseReviewList = document.getElementById("houseReviewList")
+// const recommend = document.getElementById("recommend")
+// const traffic = document.getElementById("traffic")
+// const environment = document.getElementById("environment")
+// const residential = document.getElementById("residential")
+const maemulNum = document.getElementById("maemulNum")
+const userId = document.getElementById("userId")
+const addReview = document.getElementById("addReview")
+const updateReview = document.getElementById("updateReview")
+// const grade = document.getElementById("grade")
+const trfgrade = document.getElementById("trfgrade")
+const envgrade = document.getElementById("envgrade")
+const resgrade = document.getElementById("resgrade")
+const grade_text = document.getElementById("grade-text")
+const trf_text = document.getElementById("trf-text")
+const env_text = document.getElementById("env-text")
+const res_text = document.getElementById("res-text")
+const roadname = document.getElementById("roadname")
+const writeReview = document.getElementById("writeReview")
+const upReview = document.getElementById("upReview")
+const reviewNum = document.getElementById("reviewNum")
 let page =1;
-
+let reviewPage = 1;
 
 buildingInfo.style.display="none"
 var mapContainer = document.getElementById('map'), // 지도를 표시할 div 
@@ -39,6 +61,7 @@ kakao.maps.event.addListener(map, 'idle', function() {
     
 
     page=1  //매물정보창 리스트 페이지1로 리셋
+    let reviewPage = 1;
     buildingInfo.style.display="none" //매물정보창 안보이기
 
     getRegionName();    //지역명 커스텀 오버레이
@@ -376,6 +399,7 @@ function addEventHandle(target,coords, type) {
             console.log(roadName);
 
             realEstateList.innerHTML='' //매물리스트 초기화
+            houseReviewList.innerHTML=''
             //매물리스트 테이블헤더
             let tr = document.createElement("tr")
             let th = document.createElement("th")
@@ -397,7 +421,9 @@ function addEventHandle(target,coords, type) {
             realEstateList.append(tr)
 
             page=1;
+            reviewPage=1;
             getMaemulList(roadName,page) //매물리스트 호출
+            getReviewList(roadName,reviewPage)
 
         });
     } else {
@@ -405,6 +431,7 @@ function addEventHandle(target,coords, type) {
     }
 }
 
+//매물리스트
 function getMaemulList(roadName,p){
     buildingInfo.style.display="block"
     
@@ -415,7 +442,7 @@ function getMaemulList(roadName,p){
         if(xhttp.status==200 && xhttp.readyState==4){
             
             var result = JSON.parse(xhttp.responseText.trim());
-
+            console.log(result);
             let list= result.list
             let pager=result.maemulPager
 
@@ -478,7 +505,8 @@ function getMaemulList(roadName,p){
                
                 more.setAttribute("data-name",list[i].roadName)
                 buildingName.innerText=list[i].buildingNm
-                
+                maemulNum.value = list[0].num
+                roadname.value = list[0].roadName
             }
         }
     })
@@ -492,19 +520,297 @@ more.addEventListener("click", function(){
 });
 
 
+//-----------------------------리뷰---------------------------------
+
+//리뷰리스트
+function getReviewList(roadName,p){
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("GET","./getHouseReview?roadName="+roadName+"&page="+p);
+    xhttp.send();
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            var result = JSON.parse(xhttp.responseText.trim());
+            console.log(result)
+            let list= result.list
+            let pager=result.maemulPager
+            for(let i=0; i<list.length; i++){
+                let revDiv = document.createElement("div")
+                revDiv.className="revDiv"
+                revDiv.setAttribute("data-rvNum",list[i].reviewNum)
+                let gradeDiv = document.createElement("span")
+                let grade = document.createElement("span")
+                gradeDiv.innerText = "추천점수" 
+                grade.innerText=list[i].grade
+                let contents = document.createElement("div")
+                contents.innerText = list[i].contents
+                revDiv.appendChild(gradeDiv)
+                revDiv.appendChild(grade)
+                revDiv.appendChild(contents)
+
+                let trfDiv = document.createElement("span")
+                let trfgrade = document.createElement("span")
+                trfDiv.innerText="교통여건"
+                trfgrade.innerText=list[i].trfGrade
+                let trfContents = document.createElement("div")
+                trfContents.innerText = list[i].trfContents
+                revDiv.appendChild(trfDiv)
+                revDiv.appendChild(trfgrade)
+                revDiv.appendChild(trfContents)
+
+                let envDiv = document.createElement("span")
+                let envgrade = document.createElement("span")
+                envDiv.innerText="주변환경"
+                envgrade.innerText=list[i].envGrade
+                let envContents = document.createElement("div")
+                envContents.innerText = list[i].envContents
+                revDiv.appendChild(envDiv)
+                revDiv.appendChild(envgrade)
+                revDiv.appendChild(envContents)
+
+                let resDiv = document.createElement("span")
+                let resgrade = document.createElement("span")
+                resDiv.innerText="거주환경"
+                resgrade.innerText=list[i].resGrade
+                let resContents = document.createElement("div")
+                resContents.innerText = list[i].resContents
+                revDiv.appendChild(resDiv)
+                revDiv.appendChild(resgrade)
+                revDiv.appendChild(resContents)
+
+                let update = document.createElement("span")
+                update.innerText="수정"
+                update.className="update"
+                revDiv.appendChild(update)
+
+                let del = document.createElement("span")
+                del.setAttribute("data-rvNum",list[i].reviewNum)
+                del.setAttribute("data-road",roadName)
+                del.innerText="삭제"
+                del.className="delete"
+                revDiv.appendChild(del)   
 
 
-// //마커 화면에 생성 or 제거 함수
-// function setMarkers(map) {
-//     for (var i = 0; i < markers.length; i++) {
-//         markers[i].setMap(map);
-        
-//     }            
-// }
-// //마커 제거함수
-// function hideMarkers(){
-//     setMarkers(null);
-// }
+                houseReviewList.appendChild(revDiv)
+
+                //페이지 없으면 버튼 비활성화
+                if(reviewPage >= pager.totalPage){
+                    reviewMore.disabled= true;
+                }else{
+                    reviewMore.disabled= false;
+                }
+                reviewMore.setAttribute("data-name",roadName)
+            
+            }
+        }
+    });
+}
+//리뷰 더보기
+reviewMore.addEventListener("click", function(){
+    reviewPage++
+    let roadName = reviewMore.getAttribute("data-name");
+    getReviewList(roadName,reviewPage)
+});
+
+
+// 리뷰 작성
+addReview.addEventListener("click",function(){
+    let gv
+    let tgv
+    let egv
+    let rgv
+    let recommend = document.getElementsByName("recommend")
+    for(let i=0; i<recommend.length;i++){
+        if(recommend[i].checked){
+            gv=recommend[i].value
+        }
+    }
+    let trf = document.getElementsByName("trf")
+    for(let i=0; i<trf.length;i++){
+        if(trf[i].checked){
+            tgv=trf[i].value
+        }
+    }
+    let env = document.getElementsByName("env")
+    for(let i=0; i<env.length;i++){
+        if(env[i].checked){
+            egv=env[i].value
+        }
+    }
+    let res = document.getElementsByName("res")
+    for(let i=0; i<res.length;i++){
+        if(res[i].checked){
+            rgv=res[i].value
+        }
+    }
+
+    let num = maemulNum.value
+    let id = userId.value
+    let gtv = grade_text.value
+    let ttv = trf_text.value
+    let etv = env_text.value
+    let rtv = res_text.value
+    let road = roadname.value
+
+    if(id==""){
+        alert("로그인이 필요합니다.")
+    }
+
+    let xhttp= new XMLHttpRequest();
+    xhttp.open("POST","./addReview");
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("num="+num+"&userId="+id+"&grade="+gv+"&contents="+gtv+"&trfGrade="+tgv+"&trfContents="+ttv+"&envGrade="+egv+"&envContents="+etv+"&resGrade="+rgv+"&resContents="+rtv);
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            let result = xhttp.responseText;
+            if(result==1){
+                for(let i=0; i<houseReviewList.children.length;){
+                    houseReviewList.children[0].remove();
+                }
+                reviewPage=1;
+                getReviewList(road,reviewPage)
+
+            }
+        }
+    });
+
+});
+
+//리뷰 수정
+houseReviewList.addEventListener("click",function(event){   
+    if(event.target.className=="update"){
+        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        env_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        res_text.value=event.target.previousSibling.innerHTML
+        reviewNum.value=event.target.parentNode.getAttribute("data-rvnum")
+        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        let rg = event.target.previousSibling.previousSibling.innerHTML
+        document.getElementsByName("recommend")[Math.abs(grade-5)].checked=true
+        document.getElementsByName("trf")[Math.abs(tg-5)].checked=true
+        document.getElementsByName("env")[Math.abs(eg-5)].checked=true
+        document.getElementsByName("res")[Math.abs(rg-5)].checked=true
+        upReview.click()
+    }
+})
+//리뷰리스트에서 수정
+upReview.addEventListener("click",function(){
+    addReview.style.display="none"
+    updateReview.style.display="block"
+})
+writeReview.addEventListener("click",function(){
+    addReview.style.display="block"
+    updateReview.style.display="none"
+    grade_text.value=""
+    trf_text.value=""
+    env_text.value=""
+    res_text.value=""
+    reviewNum.value=""
+    $("input:radio[name='recommend']").prop('checked',false);
+    $("input:radio[name='trf']").prop('checked',false);
+    $("input:radio[name='env']").prop('checked',false);
+    $("input:radio[name='res']").prop('checked',false);
+})
+
+//모달에서 수정 클릭
+updateReview.addEventListener("click",function(){
+    let gv
+    let tgv
+    let egv
+    let rgv
+    let recommend = document.getElementsByName("recommend")
+    for(let i=0; i<recommend.length;i++){
+        if(recommend[i].checked){
+            gv=recommend[i].value
+        }
+    }
+    let trf = document.getElementsByName("trf")
+    for(let i=0; i<trf.length;i++){
+        if(trf[i].checked){
+            tgv=trf[i].value
+        }
+    }
+    let env = document.getElementsByName("env")
+    for(let i=0; i<env.length;i++){
+        if(env[i].checked){
+            egv=env[i].value
+        }
+    }
+    let res = document.getElementsByName("res")
+    for(let i=0; i<res.length;i++){
+        if(res[i].checked){
+            rgv=res[i].value
+        }
+    }
+
+    let rvnum = reviewNum.value
+    let gtv = grade_text.value
+    let ttv = trf_text.value
+    let etv = env_text.value
+    let rtv = res_text.value
+    let road = roadname.value
+    console.log(road)
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./updateReview")
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("reviewNum="+rvnum+"&grade="+gv+"&contents="+gtv+"&trfGrade="+tgv+"&trfContents="+ttv+"&envGrade="+egv+"&envContents="+etv+"&resGrade="+rgv+"&resContents="+rtv)
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            let result = xhttp.responseText
+            console.log(result)
+            if(result==1){
+                //alert("리뷰 수정완료")
+                for(let i=0; i<houseReviewList.children.length;){
+                    houseReviewList.children[0].remove();
+                }
+                reviewPage=1;
+                getReviewList(road,reviewPage)
+
+            }else{
+                alert("리뷰 수정실패")
+            }
+        }
+    })
+})
+
+//리뷰 삭제
+houseReviewList.addEventListener("click",function(event){
+    if(event.target.className=="delete"){
+        console.log(event.target.getAttribute("data-rvNum"))
+        let rvNum = event.target.getAttribute("data-rvNum");
+        let road = event.target.getAttribute("data-road");
+
+        let xhttp= new XMLHttpRequest();
+        xhttp.open("POST","./deleteReview")
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("reviewNum="+rvNum)
+        xhttp.addEventListener("readystatechange",function(){
+            if(xhttp.readyState==4 && xhttp.status==200){
+
+                let result = xhttp.responseText
+    
+                if(result==1){
+                    //alert("리뷰 수정완료")
+                    for(let i=0; i<houseReviewList.children.length;){
+                        houseReviewList.children[0].remove();
+                    }
+                    reviewPage=1;
+                    getReviewList(road,reviewPage)
+    
+                }else{
+                    alert("리뷰 삭제실패")
+                }
+            }
+        })
+    }
+
+})
+
+
+
+
 
 
 //--------------------------왼쪽 상단 현재 지도영역 중심의 주소이름------------------------

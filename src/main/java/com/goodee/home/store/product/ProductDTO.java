@@ -3,6 +3,8 @@ package com.goodee.home.store.product;
 import java.sql.Date;
 import java.util.List;
 
+import com.goodee.home.store.category.CategoryDTO;
+
 public class ProductDTO {
 	private Long productNum;
 	private String productName;
@@ -17,28 +19,19 @@ public class ProductDTO {
 	private ProductImageDTO productImageDTO;
 	private CategoryDTO categoryDTO;
 	private List<ProductImageDTO> productImageDTOs;
+	private List<ProductOptionDTO> ProductOptionDTOs;
 	
-	private List<Option2DTO> option2DTOs;
-	private List<Option3DTO> option3DTOs;
-	
+	public List<ProductOptionDTO> getProductOptionDTOs() {
+		return ProductOptionDTOs;
+	}
+	public void setProductOptionDTOs(List<ProductOptionDTO> productOptionDTOs) {
+		ProductOptionDTOs = productOptionDTOs;
+	}
 	public CategoryDTO getCategoryDTO() {
 		return categoryDTO;
 	}
 	public void setCategoryDTO(CategoryDTO categoryDTO) {
 		this.categoryDTO = categoryDTO;
-	}
-	
-	public List<Option2DTO> getOption2DTOs() {
-		return option2DTOs;
-	}
-	public void setOption2DTOs(List<Option2DTO> option2dtOs) {
-		option2DTOs = option2dtOs;
-	}
-	public List<Option3DTO> getOption3DTOs() {
-		return option3DTOs;
-	}
-	public void setOption3DTOs(List<Option3DTO> option3dtOs) {
-		option3DTOs = option3dtOs;
 	}
 	public ProductImageDTO getProductImageDTO() {
 		return productImageDTO;

@@ -13,7 +13,6 @@ import org.springframework.web.multipart.MultipartFile;
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDAO;
 import com.goodee.home.store.exhibition.ExhibitionDTO;
-import com.goodee.home.store.impl.OptionDTO;
 
 @Service
 public class ProductService {
@@ -27,24 +26,17 @@ public class ProductService {
 	public int setProduct(ProductDTO productDTO) throws Exception {
 		return productDAO.setProduct(productDTO);
 	}
-
-	public List<CategoryDTO> getCategory() throws Exception {
-		return productDAO.getCategory();
-	}
-	
-	public int setCategory(Cate_ProductDTO cate_ProductDTO) throws Exception {
-		return productDAO.setCategory(cate_ProductDTO);
-	}
 	
 	public int setOption(String[] optionName, Long[] optionPrice, Long productNum,int num) throws Exception {
 		int result=0;
 		for(int i=0; i<optionName.length; i++) {
 			if(!optionName[i].equals("")) {
-				OptionDTO optionDTO = new OptionDTO();
-				optionDTO.setOptionName(optionName[i]);
-				optionDTO.setOptionPrice(optionPrice[i]);
-				optionDTO.setProductNum(productNum);
-				result += productDAO.setOption(optionDTO, num);
+				ProductOptionDTO productOptionDTO = new ProductOptionDTO();
+				productOptionDTO.setOptionName(optionName[i]);
+				productOptionDTO.setOptionPrice(optionPrice[i]);
+				productOptionDTO.setProductNum(productNum);
+				productOptionDTO.setOptionDiv(num);
+				result += productDAO.setOption(productOptionDTO);
 			}
 		}
 		return result;
@@ -89,5 +81,17 @@ public class ProductService {
 	
 	public List<ProductDTO> getProductDetail(ProductDTO productDTO) throws Exception {
 		return productDAO.getProductDetail(productDTO);
+	}
+	
+	public List<ProductDTO> getProductList() throws Exception {
+		return productDAO.getProductList();
+	}
+	
+	public ProductDTO getOptionDetail(ProductDTO productDTO) throws Exception {
+		return productDAO.getOptionDetail(productDTO);
+	}
+	
+	public List<ProductDTO> getCateItem(String category) throws Exception {
+		return productDAO.getCateItem(category);
 	}
 }

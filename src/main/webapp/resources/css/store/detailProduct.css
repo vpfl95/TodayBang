@@ -47,7 +47,7 @@
 }
 
 /* Review Setting */
-#review {
+#review, #inquiry {
     font-size: 18px;
 }
 
@@ -172,7 +172,7 @@
     margin-bottom: 20px;
 }
 
-.totalPrice, .price3 {
+.totalPrice, .optionPrice {
     font-weight: bold;
 }
 
@@ -213,4 +213,26 @@
 
 .field-text {
     font-size: 15px;
+}
+
+.none-a {
+    text-decoration: none;
+}
+
+.top-button {
+    position: fixed;
+    overflow: visible;
+    z-index: 999;
+    cursor: pointer;
+    text-decoration: none;
+    right: 50px;
+    bottom: 50px;
+    width: 58px;
+}
+
+.top-button img {
+    max-width: 100%;
+    border-radius: 50%;
+    padding: 10px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
