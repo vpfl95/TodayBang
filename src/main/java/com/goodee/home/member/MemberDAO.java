@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.goodee.home.store.product.ProductOptionDTO;
+
 @Repository
 public class MemberDAO {
 
@@ -118,4 +120,11 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+ "getCart",memberDTO);
 	}
 	
+	
+
+	public List<OrderDTO> getOrder(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getOrder",memberDTO);
+	}
 }

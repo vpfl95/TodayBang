@@ -32,10 +32,18 @@
 				<td><input type="checkbox"/></td>
 				<td>${status.index +1}</td>
 				<td>
+					${list.productDTO.brand }
+					<br>
 					${list.productDTO.productName }
-					${list.option1DTO.optionName }	
-					${list.option2DTO.optionName }	
-					${list.option3DTO.optionName }	
+					<br>	
+					<c:forEach items="${list.productOptionDTOs }" var="option">
+						${option.optionName }:
+						${option.optionCount }개 
+						<br>
+					</c:forEach>
+					
+					
+					
 				</td>
 				<td>${list.buyAmount }</td>
 				<td>${list.productDTO.price }</td>

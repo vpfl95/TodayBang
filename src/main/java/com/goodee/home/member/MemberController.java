@@ -17,6 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.service.ServiceService;
+import com.goodee.home.store.product.ProductOptionDTO;
 
 @Controller
 @RequestMapping("/member/*")
@@ -382,11 +383,13 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
+		List<OrderDTO> ar =memberService.getOrder(memberDTO);
 		
 		
+		mv.addObject("length",ar.size());
+		mv.addObject("order",ar);
 		
-		
-		mv.setViewName("member//deliveryDetail");
+		mv.setViewName("member/deliveryDetail");
 		return mv;
 	}
 	
@@ -396,7 +399,6 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
-		
 		
 		mv.setViewName("member/buyDetail");
 		return mv;

@@ -17,7 +17,7 @@ public class ProductDTO {
 	private ProductImageDTO productImageDTO;
 	private CategoryDTO categoryDTO;
 	private List<ProductImageDTO> productImageDTOs;
-	private List<Option1DTO> option1DTOs;
+	
 	private List<Option2DTO> option2DTOs;
 	private List<Option3DTO> option3DTOs;
 	
@@ -27,12 +27,7 @@ public class ProductDTO {
 	public void setCategoryDTO(CategoryDTO categoryDTO) {
 		this.categoryDTO = categoryDTO;
 	}
-	public List<Option1DTO> getOption1DTOs() {
-		return option1DTOs;
-	}
-	public void setOption1DTOs(List<Option1DTO> option1dtOs) {
-		option1DTOs = option1dtOs;
-	}
+	
 	public List<Option2DTO> getOption2DTOs() {
 		return option2DTOs;
 	}

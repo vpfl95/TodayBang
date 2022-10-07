@@ -102,49 +102,101 @@
 			
 			<select id="getCart" parameterType="MemberDTO" resultMap="getCartResult">
 			
-				SELECT C.*,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE,
-						OP1.OPTIONNAME OP1NAME,OP1.OPTIONPRICE OP1PRICE,
-						OP2.OPTIONNAME OP2NAME,OP2.OPTIONPRICE OP2PRICE,
-						OP3.OPTIONNAME OP3NAME,OP3.OPTIONPRICE OP3PRICE
-				FROM CART C
-				    INNER JOIN PRODUCT P
-				    ON C.PRODUCTNUM = P.PRODUCTNUM
-				    LEFT JOIN OPTION1 OP1
-				    ON C.OPTION1 = OP1.NUM
-				    LEFT JOIN OPTION2 OP2
-				    ON C.OPTION2 = OP2.NUM
-				    LEFT JOIN OPTION3 OP3
-				    ON C.OPTION3 = OP3.NUM
-				WHERE C.USERID = #{userId}
+				SELECT C.CARTNUM,C.BUYAMOUNT,C.STATUS,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
+     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE
+                  FROM CART C
+                        INNER JOIN PRODUCT P
+                        ON C.PRODUCTNUM = P.PRODUCTNUM
+                        
+                        LEFT JOIN  "CART-OPTION" CO
+                        ON CO.CARTNUM = C.CARTNUM
+                        
+                        INNER JOIN PRODUCTOPTION PO
+                        ON CO.OPTIONNUM = PO.OPTIONNUM
+                            
+                     WHERE USERID =#{userId}
+				
 			</select>
 			<resultMap type="CartDTO" id="getCartResult">
 				<id column="CARTNUM" property="cartNum"/>
 				<result column="BUYAMOUNT" property="buyAmount"/>
-				<result column="PRODUCTNUM" property="productNum"/>
-				<result column="USERID" property="userId"/>
-				<result column="OPTION1" property="option1"/>
-				<result column="OPTION2" property="option2"/>
-				<result column="OPTION3" property="option3"/>
+				<result column="STATUS" property="status"/>
 				<association property="productDTO" javaType="ProductDTO">
 					<result column="PRODUCTNAME" property="productName"/>
 					<result column="DELIFEE" property="deliFee"/>
-					<result column="PRICE" property="price"/>
 					<result column="BRAND" property="brand"/>
+					<result column="PRICE" property="price"/>
+				</association>
+				<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+					<result column="OPTIONCOUNT" property="optionCount"/>
+					<result column="OPTIONNAME" property="optionName"/>
+					<result column="OPTIONPRICE" property="optionPrice"/>
+				
+				</collection>
+			</resultMap>
+			
+			
+			
+			
+			
+			
+			<select id="getOrder" parameterType="MemberDTO" resultMap="getOrderResult">
+			
+				SELECT O.ORDERNUM,O.ORDERDATE, O.DELIVERYSTATUS,N.*
+				FROM (SELECT C.CARTNUM,C.BUYAMOUNT,C.STATUS,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
+     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE
+                  FROM CART C
+                        INNER JOIN PRODUCT P
+                        ON C.PRODUCTNUM = P.PRODUCTNUM
+                        
+                        LEFT JOIN  "CART-OPTION" CO
+                        ON CO.CARTNUM = C.CARTNUM
+                        
+                        INNER JOIN PRODUCTOPTION PO
+                        ON CO.OPTIONNUM = PO.OPTIONNUM
+                     ) N
+                     INNER JOIN "ORDER" O
+                     ON N.CARTNUM = O.CARTNUM
+				WHERE USERID =#{userId}
+				
+			</select>
+			<resultMap type="OrderDTO" id="getOrderResult">
+				<id column="ORDERNUM" property="orderNum"/>
+				<result column="ORDERDATE" property="orderDate"/>
+				<result column="DELIVERYSTATUS" property="deliveryStatus"/>
+		
+				<association property="cartDTO" javaType="CartDTO">
+					<id column="CARTNUM" property="cartNum"/>
+					<result column="BUYAMOUNT" property="buyAmount"/>
+					<result column="STATUS" property="status"/>
+					<association property="productDTO" javaType="ProductDTO">
+						<result column="PRODUCTNAME" property="productName"/>
+						<result column="DELIFEE" property="deliFee"/>
+						<result column="BRAND" property="brand"/>
+						<result column="PRICE" property="price"/>
+					</association>
+					<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+						<result column="OPTIONCOUNT" property="optionCount"/>
+						<result column="OPTIONNAME" property="optionName"/>
+						<result column="OPTIONPRICE" property="optionPrice"/>
 					
+					</collection>
 				</association>
-				<association property="option1DTO" javaType="Option1DTO">
-					<result column="OP1NAME" property="optionName"/>
-					<result column="OP1PRICE" property="optionPrice"/>
-				</association>
-				<association property="option2DTO" javaType="Option2DTO">
-					<result column="OP2NAME" property="optionName"/>
-					<result column="OP2PRICE" property="optionPrice"/>
-				</association>
-				<association property="option3DTO" javaType="Option3DTO">
-					<result column="OP3NAME" property="optionName"/>
-					<result column="OP3PRICE" property="optionPrice"/>
-				</association>
+				
 			
 			</resultMap>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 		</mapper>

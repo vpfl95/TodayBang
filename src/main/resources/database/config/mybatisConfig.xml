@@ -9,6 +9,7 @@
 		<typeAlias type="com.goodee.home.member.RoleDTO" alias="RoleDTO"/>
 		<typeAlias type="com.goodee.home.member.DeliveryDTO" alias="DeliveryDTO"/>
 		<typeAlias type="com.goodee.home.member.CartDTO" alias="CartDTO"/>
+		<typeAlias type="com.goodee.home.member.OrderDTO" alias="OrderDTO"/>
 		<typeAlias type="com.goodee.home.service.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardFileDTO" alias="BoardFileDTO"/>
@@ -21,7 +22,7 @@
 		<typeAlias type="com.goodee.home.store.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.goodee.home.store.product.ProductImageDTO" alias="ProductImageDTO"/>
 		<typeAlias type="com.goodee.home.store.impl.OptionDTO" alias="OptionDTO"/>
-		<typeAlias type="com.goodee.home.store.product.Option1DTO" alias="Option1DTO"/>
+		<typeAlias type="com.goodee.home.store.product.ProductOptionDTO" alias="ProductOptionDTO"/>
 		<typeAlias type="com.goodee.home.store.product.Option2DTO" alias="Option2DTO"/>
 		<typeAlias type="com.goodee.home.store.product.Option3DTO" alias="Option3DTO"/>
 		<typeAlias type="com.goodee.home.store.product.CategoryDTO" alias="CategoryDTO"/>

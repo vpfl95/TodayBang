@@ -16,9 +16,7 @@
 		INSERT INTO "CATE-PRODUCT" VALUES (CATE_SEQ.NEXTVAL, #{categoryNum}, #{productNum})
 	</insert>
 	
-	<insert id="setOption1" parameterType="OptionDTO">
-		INSERT INTO OPTION1 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
-	</insert>
+
 	
 	<insert id="setOption2" parameterType="OptionDTO">
 		INSERT INTO OPTION2 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
@@ -63,15 +61,14 @@
 	
 	<select id="getProductDetail" parameterType="ProductDTO"
 		resultMap="getProductDetailResult">
-		SELECT P.*, C.CATEGORYNUM, I.FILENAME, I.FILENUM, I.ORINAME, I.DETAIL,o1.NUM NUM1, o1.OPTIONNAME OPTIONNAME1, o1.OPTIONPRICE OPTIONPRICE1,
+		SELECT P.*, C.CATEGORYNUM, I.FILENAME, I.FILENUM, I.ORINAME, I.DETAIL,
         o2.NUM NUM2, o2.OPTIONNAME OPTIONNAME2, o2.OPTIONPRICE OPTIONPRICE2,o3.NUM NUM3, o3.OPTIONNAME OPTIONNAME3, o3.OPTIONPRICE OPTIONPRICE3
         FROM "CATE-PRODUCT" C
 		JOIN PRODUCT P 
 		ON P.PRODUCTNUM = C.PRODUCTNUM
 		JOIN PRODUCTIMAGE I
 		ON P.PRODUCTNUM = I.PRODUCTNUM
-        LEFT JOIN OPTION1 o1
-        ON P.PRODUCTNUM = o1.PRODUCTNUM
+        
         LEFT JOIN OPTION2 o2
         ON P.PRODUCTNUM = o2.PRODUCTNUM
         LEFT JOIN OPTION3 o3
@@ -95,11 +92,7 @@
 		<association property="categoryDTO" javaType="CategoryDTO">
 			<id column="CATEGORYNUM" property="categoryNum"/>
 		</association>
-		<collection property="option1DTOs" javaType="List" ofType="Option1DTO">
-			<id column="NUM1" property="num"/>
-			<result column="OPTIONNAME1" property="optionName"/>
-			<result column="OPTIONPRICE1" property="optionPrice"/>
-		</collection>
+		
 		<collection property="option2DTOs" javaType="List" ofType="Option2DTO">
 			<id column="NUM2" property="num"/>
 			<result column="OPTIONNAME2" property="optionName"/>

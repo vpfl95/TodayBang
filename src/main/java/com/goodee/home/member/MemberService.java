@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goodee.home.store.product.ProductOptionDTO;
 import com.goodee.home.util.FileManger;
 
 @Service
@@ -158,5 +159,13 @@ public class MemberService {
 		
 		
 		return memberDAO.getCart(memberDTO);
+	}
+	
+	
+	
+	public List<OrderDTO> getOrder(MemberDTO memberDTO) throws Exception{
+		
+		
+		return memberDAO.getOrder(memberDTO);
 	}
 }
