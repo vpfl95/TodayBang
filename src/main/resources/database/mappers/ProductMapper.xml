@@ -8,16 +8,8 @@
 		#{deliDate}, #{todayDeal}, #{deliFee}, #{productName})
 	</insert>
 	
-	<insert id="setOption1" parameterType="OptionDTO">
-		INSERT INTO OPTION1 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
-	</insert>
-	
-	<insert id="setOption2" parameterType="OptionDTO">
-		INSERT INTO OPTION2 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
-	</insert>
-	
-	<insert id="setOption3" parameterType="OptionDTO">
-		INSERT INTO OPTION3 VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{productNum})
+	<insert id="setOption" parameterType="ProductOptionDTO">
+		INSERT INTO PRODUCTOPTION VALUES (OPTION_SEQ.NEXTVAL, #{optionName}, #{optionPrice}, #{optionDiv}, #{productNum})
 	</insert>
 	
 	<insert id="setProductImage" parameterType="ProductImageDTO">
@@ -115,17 +107,12 @@
 	</resultMap>
 	
 	<select id="getOptionDetail" parameterType="ProductDTO" resultMap="getOptionDetailResult">
-		SELECT P.* ,o1.NUM NUM1, o1.OPTIONNAME OPTIONNAME1, o1.OPTIONPRICE OPTIONPRICE1,
-        o2.NUM NUM2, o2.OPTIONNAME OPTIONNAME2, o2.OPTIONPRICE OPTIONPRICE2,o3.NUM NUM3, o3.OPTIONNAME OPTIONNAME3, o3.OPTIONPRICE OPTIONPRICE3
+		SELECT P.* ,O.OPTIONNUM, O.OPTIONNAME, O.OPTIONPRICE, O.OPTIONDIV
         FROM PRODUCT P 
-        LEFT JOIN OPTION1 o1
-        ON P.PRODUCTNUM = o1.PRODUCTNUM
-        LEFT JOIN OPTION2 o2
-        ON P.PRODUCTNUM = o2.PRODUCTNUM
-        LEFT JOIN OPTION3 o3
-        ON P.PRODUCTNUM = o3.PRODUCTNUM
+        LEFT JOIN PRODUCTOPTION O
+        ON P.PRODUCTNUM = O.PRODUCTNUM
 		WHERE P.PRODUCTNUM=#{productNum}
-		ORDER BY o1.NUM ASC, o2.NUM ASC, o3.NUM ASC
+		ORDER BY O.OPTIONNUM ASC
 	</select>
 	
 	<resultMap type="ProductDTO" id="getOptionDetailResult">
@@ -140,20 +127,11 @@
 		<result column="PREMIUM" property="premium"/>
 		<result column="DELIFEE" property="deliFee"/>
 		<result column="PRODUCTNAME" property="productName"/>
-		<collection property="option1DTOs" javaType="List" ofType="Option1DTO">
-			<id column="NUM1" property="num"/>
-			<result column="OPTIONNAME1" property="optionName"/>
-			<result column="OPTIONPRICE1" property="optionPrice"/>
-		</collection>
-		<collection property="option2DTOs" javaType="List" ofType="Option2DTO">
-			<id column="NUM2" property="num"/>
-			<result column="OPTIONNAME2" property="optionName"/>
-			<result column="OPTIONPRICE2" property="optionPrice"/>
-		</collection>
-		<collection property="option3DTOs" javaType="List" ofType="Option3DTO">
-			<id column="NUM3" property="num"/>
-			<result column="OPTIONNAME3" property="optionName"/>
-			<result column="OPTIONPRICE3" property="optionPrice"/>
+		<collection property="ProductOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+			<id column="OPTIONNUM" property="optionNum"/>
+			<result column="OPTIONNAME" property="optionName"/>
+			<result column="OPTIONPRICE" property="optionPrice"/>
+			<result column="OPTIONDIV" property="optionDiv"/>
 		</collection>
 	</resultMap>
 	

@@ -10,12 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.goodee.home.store.category.Cate_ProductDTO;
-import com.goodee.home.store.category.CategoryDTO;
 import com.goodee.home.store.exhibition.Ex_ProductDTO;
 import com.goodee.home.store.exhibition.ExhibitionDAO;
 import com.goodee.home.store.exhibition.ExhibitionDTO;
-import com.goodee.home.store.impl.OptionDTO;
 
 @Service
 public class ProductService {
@@ -34,11 +31,12 @@ public class ProductService {
 		int result=0;
 		for(int i=0; i<optionName.length; i++) {
 			if(!optionName[i].equals("")) {
-				OptionDTO optionDTO = new OptionDTO();
-				optionDTO.setOptionName(optionName[i]);
-				optionDTO.setOptionPrice(optionPrice[i]);
-				optionDTO.setProductNum(productNum);
-				result += productDAO.setOption(optionDTO, num);
+				ProductOptionDTO productOptionDTO = new ProductOptionDTO();
+				productOptionDTO.setOptionName(optionName[i]);
+				productOptionDTO.setOptionPrice(optionPrice[i]);
+				productOptionDTO.setProductNum(productNum);
+				productOptionDTO.setOptionDiv(num);
+				result += productDAO.setOption(productOptionDTO);
 			}
 		}
 		return result;

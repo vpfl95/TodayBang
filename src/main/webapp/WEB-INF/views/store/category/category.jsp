@@ -44,7 +44,7 @@
     <script src="/resources/js/store/category.js"></script>
     <script>
         setCategorySide();
-        getList('3');
+        getList('${param.category}');
     </script>
 </body>
 </html>

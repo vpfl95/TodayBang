@@ -216,8 +216,12 @@ function getCategory() {
             } else {
                 cate2_1.setAttribute("style", '');
             }
-            cate2.innerHTML=ca2[0].categoryName;
-            cate3.innerHTML=ca3[0].categoryName;
+            if(ca2[0] != null) {
+                cate2.innerHTML=ca2[0].categoryName;
+            }
+            if(ca3[0] != null) {
+                cate3.innerHTML=ca3[0].categoryName;
+            }
         }
     }
 }

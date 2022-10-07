@@ -93,8 +93,8 @@
                                 <c:forEach begin="0" end="6" var="i">
 	                                <div class="input-group">
 	                                    <span class="input-group-text" style="width: 35%;">Name and Price</span>
-	                                    <input type="text" class="form-control" name="optionName" style="width: 50%;">
-	                                    <input type="text" class="form-control" name="optionPrice" style="width: 15%;">
+	                                    <input type="text" class="form-control" name="optionName1" style="width: 50%;">
+	                                    <input type="text" class="form-control" name="optionPrice1" style="width: 15%;">
 	                                </div>
                                 </c:forEach>
                             </div>

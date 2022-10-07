@@ -67,18 +67,18 @@
             <div style="width: 70%;">
                 <a name="productDetailList"></a>
                 <div class="d-flex justify-content-center selling-nav">
-                    <div><a href="#productDetailList">상품정보</a></div>
-                    <div><a href="#review">리뷰</a></div>
-                    <div><a href="#inquiry">문의</a></div>
+                    <div><a class="navigation-item" href="#productDetailList">상품정보</a></div>
+                    <div><a class="navigation-item" href="#review">리뷰</a></div>
+                    <div><a class="navigation-item" href="#inquiry">문의</a></div>
                 </div>
                 <div class="productDetailList"></div>
 
                 <!-- 리뷰 페이지 -->
                 <a name="review"></a>
                 <div class="d-flex justify-content-center selling-nav">
-                    <div><a href="#productDetailList">상품정보</a></div>
-                    <div><a href="#review">리뷰</a></div>
-                    <div><a href="#inquiry">문의</a></div>
+                    <div><a class="navigation-item" href="#productDetailList">상품정보</a></div>
+                    <div><a class="navigation-item" href="#review">리뷰</a></div>
+                    <div><a class="navigation-item" href="#inquiry">문의</a></div>
                 </div>
         
                 <div class="d-flex justify-content-between mb-2">
@@ -91,9 +91,9 @@
                 <!-- 문의 페이지-->
                 <a name="inquiry"></a>
                 <div class="d-flex justify-content-center selling-nav mt-5">
-                    <div><a href="#productDetailList">상품정보</a></div>
-                    <div><a href="#review">리뷰</a></div>
-                    <div><a href="#inquiry">문의</a></div>
+                    <div><a class="navigation-item" href="#productDetailList">상품정보</a></div>
+                    <div><a class="navigation-item" href="#review">리뷰</a></div>
+                    <div><a class="navigation-item" href="#inquiry">문의</a></div>
                 </div>
 
                 <div class="d-flex justify-content-between mb-2 mt-3">
@@ -237,6 +237,10 @@
                 </div>
             </div>
         </div>
+
+        <a href="#top" class="top-button navigation-item">
+            <img src="/resources/images/store/topButton.png">
+        </a>
 	</section>
 	
 

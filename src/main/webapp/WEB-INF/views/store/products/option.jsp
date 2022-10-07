@@ -27,110 +27,77 @@
 </style>
 </head>
 <body>
-    <c:if test="${dto.option1DTOs.size() ne 0}">
+    <c:if test="${dto.productOptionDTOs.size() ne 0}">
 		<div>
             <select class="form-select option1" aria-label="Default select example">
-                <c:forEach items="${dto.option1DTOs}" var="dto">
-                	<c:choose>
-                		<c:when test="${dto.optionPrice < 0}">
-                			<option value="${dto.num}">${dto.optionName}</option>
-                		</c:when>
-                		<c:otherwise>
-                			<option value="${dto.num}">${dto.optionName} (${dto.optionPrice}원)</option>
-                		</c:otherwise>
-                	</c:choose>
+                <c:forEach items="${dto.productOptionDTOs}" var="dto">
+                	<c:if test="${dto.optionDiv eq 1}">
+                		<c:choose>
+	                		<c:when test="${dto.optionPrice < 0}">
+	                			<option value="${dto.optionNum}">${dto.optionName}</option>
+	                		</c:when>
+	                		<c:otherwise>
+	                			<option value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
+	                		</c:otherwise>
+	                	</c:choose>
+                	</c:if>
                 </c:forEach>
             </select>
+            <c:if test="${op2 eq 1}">
+	            <select class="form-select option2" aria-label="Default select example">
+	                <c:forEach items="${dto.productOptionDTOs}" var="dto">
+	                	<c:if test="${dto.optionDiv eq 2}">
+	                		<c:choose>
+		                		<c:when test="${dto.optionPrice < 0}">
+		                			<option value="${dto.optionNum}">${dto.optionName}</option>
+		                		</c:when>
+		                		<c:otherwise>
+		                			<option value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
+		                		</c:otherwise>
+		                	</c:choose>
+	                	</c:if>
+	                </c:forEach>
+	            </select>
+            </c:if>
+            <c:if test="${op3 eq 1}">
+	            <select class="form-select option3" aria-label="Default select example">
+	                <c:forEach items="${dto.productOptionDTOs}" var="dto">
+	                	<c:if test="${dto.optionDiv eq 3}">
+	                		<c:choose>
+		                		<c:when test="${dto.optionPrice < 0}">
+		                			<option value="${dto.optionNum}">${dto.optionName}</option>
+		                		</c:when>
+		                		<c:otherwise>
+		                			<option value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
+		                		</c:otherwise>
+		                	</c:choose>
+	                	</c:if>
+	                </c:forEach>
+	            </select>
+            </c:if>
         </div>
     </c:if>
-    <c:if test="${dto.option2DTOs.size() ne 0}">
-	    <div>
-            <select class="form-select option2" aria-label="Default select example">
-				<c:forEach items="${dto.option2DTOs}" var="dto">
-                	<c:choose>
-                		<c:when test="${dto.optionPrice < 0}">
-                			<option value="${dto.num}">${dto.optionName}</option>
-                		</c:when>
-                		<c:otherwise>
-                			<option value="${dto.num}">${dto.optionName} (${dto.optionPrice}원)</option>
-                		</c:otherwise>
-                	</c:choose>
-                </c:forEach>
-            </select>
-        </div>
-    </c:if>
-    <c:if test="${dto.option3DTOs.size() ne 0}">
-	    <div>
-            <select class="form-select option3" aria-label="Default select example">
-				<c:forEach items="${dto.option3DTOs}" var="dto">
-                	<c:choose>
-                		<c:when test="${dto.optionPrice < 0}">
-                			<option value="${dto.num}">${dto.optionName}</option>
-                		</c:when>
-                		<c:otherwise>
-                			<option value="${dto.num}">${dto.optionName} (${dto.optionPrice}원)</option>
-                		</c:otherwise>
-                	</c:choose>
-                </c:forEach>
-            </select>
-        </div>
-    </c:if>
-
+    
     <div class="items">
-    	<c:forEach items="${option1}" var="op1">
+    	<c:forEach items="${options}" var="option">
     		<div class="additionalItem mt-2">
                 <div class="d-flex justify-content-between">
-                    <div class="sellingOption">${op1.optionName}</div>
-                    <div class="deleteOption" data-delete-opnum="${op1.num}">❌</div>
+                    <div class="sellingOption">${option.optionName}</div>
+                    <div class="deleteOption" data-delete-opnum="${option.optionNum}">❌</div>
                 </div>
                 <div class="d-flex justify-content-between">
                     <div style="width: 30%;">
-                        <select class="form-select sellingOptionControll-${op1.num}">
+                        <select class="form-select sellingOptionControll-${option.optionNum}">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
                         </select>
                     </div>
-                    <div class="optionPrice">${op1.optionPrice}원</div>
+                    <div class="optionPrice">${option.optionPrice}원</div>
                 </div>
             </div>
     	</c:forEach>
-    	<c:forEach items="${option2}" var="op2">
-    		<div class="additionalItem mt-2">
-                <div class="d-flex justify-content-between">
-                    <div class="sellingOption">${op2.optionName}</div>
-                    <div class="deleteOption" data-delete-opnum="${op2.num}">❌</div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div style="width: 30%;">
-                        <select class="form-select sellingOptionControll-${op2.num}">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                    </div>
-                    <div class="optionPrice">${op2.optionPrice}원</div>
-                </div>
-            </div>
-    	</c:forEach>
-    	<c:forEach items="${option3}" var="op3">
-    		<div class="additionalItem mt-2">
-                <div class="d-flex justify-content-between">
-                    <div class="sellingOption">${op3.optionName}</div>
-                    <div class="deleteOption" data-delete-opnum="${op3.num}">❌</div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div style="width: 30%;">
-                        <select class="form-select sellingOptionControll-${op3.num}">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
-                    </div>
-                    <div class="optionPrice">${op3.optionPrice}원</div>
-                </div>
-            </div>
-    	</c:forEach>
+    	
         <c:if test="${result eq 0}">
         	<div class="additionalItem mt-2">
                 <div class="sellingOption">${dto.productNum}</div>

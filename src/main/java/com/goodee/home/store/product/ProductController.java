@@ -36,13 +36,13 @@ public class ProductController {
 	
 	@PostMapping("add")
 	public String setProduct(ProductDTO productDTO, Cate_ProductDTO cate_ProductDTO, Ex_ProductDTO ex_ProductDTO,
-			String[] optionName, String[] optionName2, String[] optionName3,
-			Long[] optionPrice, Long[] optionPrice2, Long[] optionPrice3,
+			String[] optionName1, String[] optionName2, String[] optionName3,
+			Long[] optionPrice1, Long[] optionPrice2, Long[] optionPrice3,
 			MultipartFile[] productDetail, MultipartFile[] productImage, HttpSession httpSession) throws Exception {
 		
 		productService.setProduct(productDTO);
 		categoryService.setCategory(cate_ProductDTO);
-		productService.setOption(optionName, optionPrice, productDTO.getProductNum(), 1);
+		productService.setOption(optionName1, optionPrice1, productDTO.getProductNum(), 1);
 		productService.setOption(optionName2, optionPrice2, productDTO.getProductNum(), 2);
 		productService.setOption(optionName3, optionPrice3, productDTO.getProductNum(), 3);
 		productService.setExhibition(ex_ProductDTO);
@@ -78,18 +78,16 @@ public class ProductController {
 	
 	@GetMapping("option")
 	@ResponseBody
-	public ModelAndView getOptionDetail(ProductDTO productDTO, Long[] option1List, Long[] option2List, Long[] option3List) throws Exception {
-		int result=0;
+	public ModelAndView getOptionDetail(ProductDTO productDTO, Long[] optionList) throws Exception {
+		int result=0; int op2=0; int op3=0;
 		ModelAndView mv = new ModelAndView();
 		ProductDTO dto = productService.getOptionDetail(productDTO);
-		if(dto.getOption1DTOs().size() != 0) {			
-			if(dto.getOption1DTOs().get(0).getOptionPrice() == -2 || dto.getOption1DTOs().get(0).getOptionPrice() == -3) result=1;
-		}
-		if(dto.getOption2DTOs().size() != 0) {			
-			if(dto.getOption2DTOs().get(0).getOptionPrice() == -2 || dto.getOption2DTOs().get(0).getOptionPrice() == -3) result=1;
-		}
-		if(dto.getOption3DTOs().size() != 0) {			
-			if(dto.getOption3DTOs().get(0).getOptionPrice() == -2 || dto.getOption3DTOs().get(0).getOptionPrice() == -3) result=1;
+		if(dto.getProductOptionDTOs().size() != 0) {			
+			for(ProductOptionDTO optionDTO : dto.getProductOptionDTOs()) {
+				if(optionDTO.getOptionPrice() == -2) {
+					result=1;
+				}
+			}
 		}
 		
 		Integer price = (int) (dto.getPrice() * (100 - dto.getSaleRate())/100);
@@ -98,39 +96,29 @@ public class ProductController {
 			totalPrice = price;			
 		}
 		
-		List<Option1DTO> op1List = new ArrayList<Option1DTO>();
-		List<Option2DTO> op2List = new ArrayList<Option2DTO>();
-		List<Option3DTO> op3List = new ArrayList<Option3DTO>();
-		for(Long op1 : option1List) {
-			for(Option1DTO op1DTO : dto.getOption1DTOs()) {
-				if(op1DTO.getNum().equals(op1)) {
-					op1List.add(op1DTO);
-					totalPrice += op1DTO.getOptionPrice();
+		List<ProductOptionDTO> productOptionDTOs = new ArrayList<ProductOptionDTO>();
+		for(Long option : optionList) {
+			for(ProductOptionDTO productOptionDTO : dto.getProductOptionDTOs()) {
+				if(productOptionDTO.getOptionNum().equals(option)) {
+					productOptionDTOs.add(productOptionDTO);
+					totalPrice += productOptionDTO.getOptionPrice();
 				}
 			}
 		}
-		for(Long op2 : option2List) {
-			for(Option2DTO op2DTO : dto.getOption2DTOs()) {
-				if(op2DTO.getNum().equals(op2)) {
-					op2List.add(op2DTO);
-					totalPrice += op2DTO.getOptionPrice();
-				}
+		for(ProductOptionDTO productOptionDTO : dto.getProductOptionDTOs()) {
+			if(productOptionDTO.getOptionDiv().equals(2)) {
+				op2=1;
 			}
-		}
-		for(Long op3 : option3List) {
-			for(Option3DTO op3DTO : dto.getOption3DTOs()) {
-				if(op3DTO.getNum().equals(op3)) {
-					op3List.add(op3DTO);
-					totalPrice += op3DTO.getOptionPrice();
-				}
+			if(productOptionDTO.getOptionDiv().equals(3)) {
+				op3=1;
 			}
 		}
 		mv.addObject("dto", dto);
 		mv.addObject("result", result);
 		mv.addObject("price", price);
-		mv.addObject("option1", op1List);
-		mv.addObject("option2", op2List);
-		mv.addObject("option3", op3List);
+		mv.addObject("op2", op2);
+		mv.addObject("op3", op3);
+		mv.addObject("options", productOptionDTOs);
 		mv.addObject("totalPrice", totalPrice);
 		mv.setViewName("/store/products/option");
 		return mv;

@@ -41,23 +41,23 @@
 	            <nav style="height: auto; overflow-y: hidden; overflow-x: auto;" class="mt-3">
 	                <div class="d-flex justify-content-between exhibition-icon row">
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/1+1shopIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=1552"><img src="/resources/images/store/storeHome/1+1shopIcon.jpg" alt=""></a></div>
 	                        <div class="text">1+1 샵</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/ogoodsIcon2.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=2181"><img src="/resources/images/store/storeHome/ogoodsIcon2.jpg" alt=""></a></div>
 	                        <div class="text">오!굿즈</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/fastDeliIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=1763"><img src="/resources/images/store/storeHome/fastDeliIcon.jpg" alt=""></a></div>
 	                        <div class="text">빠른배송</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/premiumIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=2415"><img src="/resources/images/store/storeHome/premiumIcon.jpg" alt=""></a></div>
 	                        <div class="text">프리미엄</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/refurbishedIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=1433"><img src="/resources/images/store/storeHome/refurbishedIcon.jpg" alt=""></a></div>
 	                        <div class="text">리퍼마켓</div>
 	                    </div>
 	                    <div class="col">
@@ -66,11 +66,11 @@
 	                    </div>
 						<!-- 카테고리 이동-->
 						<div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/fallFabric.jpg" alt=""></a></div>
+	                        <div><a href="/category/main?category=1"><img src="/resources/images/store/storeHome/fallFabric.jpg" alt=""></a></div>
 	                        <div class="text">가을이불</div>
 	                    </div>
 						<div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/bestLight.jpg" alt=""></a></div>
+	                        <div><a href="/category/main?category=27"><img src="/resources/images/store/storeHome/bestLight.jpg" alt=""></a></div>
 	                        <div class="text">인기조명</div>
 	                    </div>
 	                </div>       
@@ -78,7 +78,7 @@
 	
 	            <div style="height: 20px;" class="todayDealStart">
 	                <h5 class="d-inline-flex float-start"><b>👍오늘의 딜</b></h5>
-	                <a href="#" class="d-inline-flex float-end a_tag">📌더보기</a>
+	                <a href="/todayDeals" class="d-inline-flex float-end a_tag">📌더보기</a>
 	            </div>
 	
 	            <div class="d-flex justify-content-center center_menu row" style="height: 343px;">

@@ -37,6 +37,7 @@ const reviewImage = document.querySelector('#reviewImage');
 const exampleModalLabel = document.querySelector('#exampleModalLabel');
 const btnInquiryReply = document.querySelector('#btnInquiryReply');
 const btnClose = document.querySelectorAll('.btn-close');
+const navigationItem = document.querySelectorAll('.navigation-item');
 let product = document.querySelector('#jsonList').innerHTML;
 let jsonList = JSON.parse(product);
 let productImageCount=0;
@@ -90,7 +91,7 @@ function setProductInfo() {
 
 function setOption() {
     const xhttp = new XMLHttpRequest();
-    xhttp.open('GET', '/product/option?productNum='+jsonList[0].productNum+"&option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List);
+    xhttp.open('GET', '/product/option?productNum='+jsonList[0].productNum+"&optionList="+optionList);
     xhttp.send();
     xhttp.onreadystatechange=function() {
         if(this.readyState==4 && this.status==200) {
@@ -132,9 +133,7 @@ productImageList[0].onmouseover=function(event){
 }
 
 // 옵션 변경 시 실행 이벤트
-let option1List=[];
-let option2List=[];
-let option3List=[];
+let optionList=[];
 section.onchange=function(event) {
     if(event.target.classList.contains('sellingOptionControll')) {
        console.log($('section').find('select.sellingOptionControll'));
@@ -143,14 +142,14 @@ section.onchange=function(event) {
     }
 
     if(event.target.classList.contains('option1')) {
-        if(option1List.includes(event.target.value)) {
+        if(optionList.includes(event.target.value)) {
             alert('이미 선택한 옵션입니다.');
         } else {
-            option1List.push(event.target.value);
+            optionList.push(event.target.value);
         }
         $('section').find('select.option1 option:eq(0)').prop("selected", true);
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
         xhttp.send();
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
@@ -159,14 +158,14 @@ section.onchange=function(event) {
     }
 
     if(event.target.classList.contains('option2')) {
-        if(option2List.includes(event.target.value)) {
+        if(optionList.includes(event.target.value)) {
             alert('이미 선택한 옵션입니다.');
         } else {
-            option2List.push(event.target.value);
+            optionList.push(event.target.value);
         }
         $('section').find('select.option2 option:eq(0)').prop("selected", true);
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
         xhttp.send();
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
@@ -175,14 +174,14 @@ section.onchange=function(event) {
     }
 
     if(event.target.classList.contains('option3')) {
-        if(option3List.includes(event.target.value)) {
+        if(optionList.includes(event.target.value)) {
             alert('이미 선택한 옵션입니다.');
         } else {
-            option3List.push(event.target.value);
+            optionList.push(event.target.value);
         }
         $('section').find('select.option3 option:eq(0)').prop("selected", true);
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
         xhttp.send();
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
@@ -476,22 +475,31 @@ inqueryList[0].onclick=function(event) {
 // 섹션 클릭리스너
 section.onclick=function(event) {
     if(event.target.classList.contains('deleteOption')) {
-        if(option1List.includes(event.target.dataset.deleteOpnum)) {
-            option1List.splice(option1List.indexOf(event.target.dataset.deleteOpnum),1);
-        }
-        if(option2List.includes(event.target.dataset.deleteOpnum)) {
-            option2List.splice(option2List.indexOf(event.target.dataset.deleteOpnum),1);
-        }
-        if(option3List.includes(event.target.dataset.deleteOpnum)) {
-            option3List.splice(option3List.indexOf(event.target.dataset.deleteOpnum),1);
+        if(optionList.includes(event.target.dataset.deleteOpnum)) {
+            optionList.splice(optionList.indexOf(event.target.dataset.deleteOpnum),1);
         }
 
         const xhttp = new XMLHttpRequest();
-        xhttp.open("GET", "/product/option?option1List="+option1List+"&option2List="+option2List+"&option3List="+option3List+"&productNum="+jsonList[0].productNum);
+        xhttp.open("GET", "/product/option?optionList="+optionList+"&productNum="+jsonList[0].productNum);
         xhttp.send();
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
             fixInfo[0].innerHTML = this.responseText.trim();
         }
+    }
+}
+
+for(navi of navigationItem) {
+    navi.onclick=function(e) {
+        e.preventDefault();
+        console.log('test');
+        let url = location.href;
+        location.href=url+'#top';
+       alert(url)
+        url = url.replace(/(#.*)/ig,'');
+        console.log(url);
+        history.replaceState(null, null, url);
+        console.log(history);
+        
     }
 }
