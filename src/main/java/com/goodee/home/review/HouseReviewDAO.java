@@ -32,4 +32,8 @@ public class HouseReviewDAO {
 	public int setUpdateReview(HouseReviewDTO houseReviewDTO)throws Exception{
 		return sqlSession.update(NAMESPACE+"setUpdateReview", houseReviewDTO);
 	}
+	
+	public int setDeleteReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		return sqlSession.delete(NAMESPACE+"setDeleteReview", houseReviewDTO);
+	}
 }

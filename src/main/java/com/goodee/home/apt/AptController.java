@@ -145,4 +145,13 @@ public class AptController {
 		return result;
 	}
 	
+
+	@PostMapping("deleteReview")
+	@ResponseBody
+	public int setDeleteReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		int result = houseReviewService.setDeleteReview(houseReviewDTO);
+		
+		return result;
+	}
+	
 }

@@ -61,5 +61,8 @@
 		WHERE REVIEWNUM=#{reviewNum}
 	</update>
 	
+	<delete id="setDeleteReview" parameterType="HouseReviewDTO">
+		DELETE FROM HOUSEREVIEW WHERE REVIEWNUM=#{reviewNum}
+	</delete>
 
 </mapper>

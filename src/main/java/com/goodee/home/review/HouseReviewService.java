@@ -30,4 +30,8 @@ public class HouseReviewService {
 	public int setUpdateReview(HouseReviewDTO houseReviewDTO)throws Exception{
 		return houseReviewDAO.setUpdateReview(houseReviewDTO);
 	}
+	
+	public int setDeleteReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		return houseReviewDAO.setDeleteReview(houseReviewDTO);
+	}
 }

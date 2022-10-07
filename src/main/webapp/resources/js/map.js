@@ -584,6 +584,8 @@ function getReviewList(roadName,p){
                 revDiv.appendChild(update)
 
                 let del = document.createElement("span")
+                del.setAttribute("data-rvNum",list[i].reviewNum)
+                del.setAttribute("data-road",roadName)
                 del.innerText="삭제"
                 del.className="delete"
                 revDiv.appendChild(del)   
@@ -772,8 +774,45 @@ updateReview.addEventListener("click",function(){
             }
         }
     })
+})
+
+//리뷰 삭제
+houseReviewList.addEventListener("click",function(event){
+    if(event.target.className=="delete"){
+        console.log(event.target.getAttribute("data-rvNum"))
+        let rvNum = event.target.getAttribute("data-rvNum");
+        let road = event.target.getAttribute("data-road");
+
+        let xhttp= new XMLHttpRequest();
+        xhttp.open("POST","./deleteReview")
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("reviewNum="+rvNum)
+        xhttp.addEventListener("readystatechange",function(){
+            if(xhttp.readyState==4 && xhttp.status==200){
+
+                let result = xhttp.responseText
+    
+                if(result==1){
+                    //alert("리뷰 수정완료")
+                    for(let i=0; i<houseReviewList.children.length;){
+                        houseReviewList.children[0].remove();
+                    }
+                    reviewPage=1;
+                    getReviewList(road,reviewPage)
+    
+                }else{
+                    alert("리뷰 삭제실패")
+                }
+            }
+        })
+    }
 
 })
+
+
+
+
+
 
 //--------------------------왼쪽 상단 현재 지도영역 중심의 주소이름------------------------
 function HAddrFromCoords(coords, callback) {
