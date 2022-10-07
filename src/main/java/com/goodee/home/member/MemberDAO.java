@@ -127,4 +127,18 @@ public class MemberDAO {
 		
 		return sqlSession.selectList(NAMESPACE+ "getOrder",memberDTO);
 	}
+	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return sqlSession.insert(NAMESPACE+ "addCart",cartDTO);
+	}
+	public int deleteCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return sqlSession.delete(NAMESPACE+ "deleteCart",cartDTO);
+	}
+	
+	
+	
 }

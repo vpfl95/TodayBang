@@ -187,9 +187,13 @@
 			</resultMap>
 			
 			
+			<insert id="addCart" parameterType="CartDTO" >
+				INSERT INTO CART VALUES (TODAY_SEQ.NEXTVAL,#{userId},#{productNum},#{buyAmount},#{status})
+			</insert>
 			
-			
-			
+			<delete id="deleteCart" parameterType="CartDTO">
+				DELETE CART WHERE CARTNUM = #{cartNum}
+			</delete>
 			
 			
 			
