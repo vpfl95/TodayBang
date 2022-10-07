@@ -1,10 +1,12 @@
 package com.goodee.home.member;
 
+import java.net.http.HttpRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -377,15 +379,23 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("deliveryDetail")
-	public ModelAndView getDeliveryDetail(HttpSession session) throws Exception{
+	@GetMapping(value = {"deliveryDetail","buyDetail"})
+	public ModelAndView getDeliveryDetail(HttpSession session,HttpServletRequest request) throws Exception{
+		System.out.println("request== " + request.getServletPath());
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
+		
+		
 		List<OrderDTO> ar =memberService.getOrder(memberDTO);
 		
 		
+		String [] url = request.getServletPath().split("/");
+		
+		
+		
+		mv.addObject("url",url[2]);
 		mv.addObject("length",ar.size());
 		mv.addObject("order",ar);
 		
@@ -393,17 +403,7 @@ public class MemberController {
 		return mv;
 	}
 	
-	@GetMapping("buyDetail")
-	public ModelAndView getBuyDetail(HttpSession session) throws Exception{
-		
-		ModelAndView mv = new ModelAndView();
-		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-	
-		
-		mv.setViewName("member/buyDetail");
-		return mv;
-	}
-	
+
 	
 	
 	

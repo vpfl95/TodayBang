@@ -24,27 +24,59 @@
 		</thead>
 		<tbody>
 		
+			
+			
+		
+			<c:choose>
+				<c:when test="${url eq 'buyDetail' }">
+					<c:set var="loop" value="true"></c:set>
+				</c:when>
+				<c:otherwise>
+					<c:set var="loop" value="false"></c:set>
+				</c:otherwise>
+			</c:choose>
+			
+		
+			
 			<c:forEach items="${order }" var="list" varStatus="status">
-			<tr>
-				<td>
-					${list.cartDTO.productDTO.brand }
-					<br>
-					${list.cartDTO.productDTO.productName }
-					<br>	
-					<c:forEach items="${list.cartDTO.productOptionDTOs }" var="option">
-							${option.optionName }:
-							${option.optionCount }개 
-							<br>
-					</c:forEach>
-					
-				</td>
-				<td>${list.cartDTO.buyAmount }</td>
-				<td>${list.orderDate }</td>
-				<td>${list.orderNum }</td>
-				<td>${list.cartDTO.productDTO.price }</td>
-				<td>${list.deliveryStatus }</td>
-				<td></td>
-			</tr>
+			<c:choose>
+				<c:when test="${list.deliveryStatus eq '구매확정' }">
+					<c:set var="check" value="true"></c:set>
+				</c:when>
+				<c:otherwise>
+					<c:set var="check" value="false"></c:set>
+				</c:otherwise>
+			</c:choose>
+			
+			<c:if test="${loop eq check }">
+				<tr>
+					<td>
+						${list.cartDTO.productDTO.brand }
+						<br>
+						${list.cartDTO.productDTO.productName }
+						<br>	
+						<c:forEach items="${list.cartDTO.productOptionDTOs }" var="option">
+								${option.optionName }:
+								${option.optionCount }개 
+								<br>
+						</c:forEach>
+						
+					</td>
+					<td>${list.cartDTO.buyAmount }</td>
+					<td>${list.orderDate }</td>
+					<td>${list.orderNum }</td>
+					<td>${list.cartDTO.productDTO.price }</td>
+					<td>${list.deliveryStatus }</td>
+					<td></td>
+				</tr>
+			
+			</c:if>
+			
+			
+			
+			
+		
+			
 			
 			
 			</c:forEach>

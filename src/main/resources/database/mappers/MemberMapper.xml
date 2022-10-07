@@ -114,7 +114,7 @@
                         INNER JOIN PRODUCTOPTION PO
                         ON CO.OPTIONNUM = PO.OPTIONNUM
                             
-                     WHERE USERID =#{userId}
+                     WHERE USERID =#{userId} AND C.STATUS =1
 				
 			</select>
 			<resultMap type="CartDTO" id="getCartResult">
@@ -157,7 +157,7 @@
                      ) N
                      INNER JOIN "ORDER" O
                      ON N.CARTNUM = O.CARTNUM
-				WHERE USERID =#{userId}
+				WHERE USERID =#{userId} AND N.STATUS =0
 				
 			</select>
 			<resultMap type="OrderDTO" id="getOrderResult">
