@@ -12,7 +12,7 @@
           <li><a href="/store" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a>
     		</li>	
     			
-          <li><a href="/room" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
+          <li><a href="/apt/map" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
    			</li>
           <li><a href="/community/home" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
           <li><a href="/service/notice/list" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
@@ -31,7 +31,7 @@
 	       	
 	       		<c:if test="${empty member }">
        			 <!-- 로그인 XXX -->
-	        		<li><a href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
+	        		<li><a id="loginBtn" href="/member/login" class="nav-link px-2 link-secondary">로그인</a></li>
 		         	<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
 		         	<li><a href="/member/joinCheck" class="nav-link px-2 link-secondary">회원가입</a></li>
 	        
@@ -51,16 +51,7 @@
         		</c:if>
 	          </ul>
         
-          <!-- <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
-          </a>
-          <ul class="dropdown-menu text-small">
-            <li><a class="dropdown-item" href="#">마이페이지</a></li>
-            <li><a class="dropdown-item" href="#">설정</a></li>
-            <li><a class="dropdown-item" href="#">프로필</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">로그아웃</a></li>
-          </ul> -->
+     
         </div>
       </div>
     </div>
@@ -76,11 +67,12 @@
      
     
     
+	<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.js"></script>
     <script src="/resources/js/header.js"></script>
 	<script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script>    $(document).ready(function(){
      				var submenu = $(".hide");
-    			
+    				var url = location.href.split("/");
     	        	$(".menu").mouseover(function(){            
 						submenu.slideDown(150);        
 					})
@@ -91,44 +83,41 @@
    			                submenu.slideUp(150);       
    							$("#hr").remove();     
     					}     
-    				});    
-    				
-    				
-    				
-    				
-    				
+    				});   
     				
     				$(".menu").each (function(index,me){
     					
-    					if(location.href ==  me.href){
-    						
-    						
+    					var tag = me.href;
+    					tag = tag.split("/",4);
+    					
+    					
+    					if(url[3] ==  tag[3]){
     						$(this).addClass('selectColor');
-    						
-    						
     						let title = document.createAttribute("title");
     				        title.value = "selected";
     				        me.setAttributeNode(title);
-    				        
-    				        
+    					}else if(url[3] == "exhibitions" && index == 0){
+    						$(this).addClass('selectColor');
+    						let title = document.createAttribute("title");
+    				        title.value = "selected";
+    				        me.setAttributeNode(title);
+    						
+    						
     					}
-    					
-    					
-    					
     				});
-    				
-    				
    				});
     
     /* header scroll down  */
     	window.addEventListener('wheel', (e) => { 
     		var submenu = $(".hide");
     		var linkArr =  document.location.href.split("/");
+    		var linkArr2 = linkArr[4].split("?");
+    		
     		var storeMenu = $("#storeMenu");
     		
         if(e.deltaY < 0){
 
-        	if(linkArr[4] != "myPage" && linkArr[3] != "admin" ){
+        	if(linkArr2[0] != "myPage" && linkArr[3] != "admin" && linkArr2[0] != "delivery"){
         		console.log("ll " +  linkArr[3]);
         		
                 const hr = document.querySelector("#hr");
@@ -147,25 +136,14 @@
                if(linkArr[3] == ""){
             	   headerCategory("storeMenu");
                }else{
-            	   
             	   $(".menu").each (function(index,me){
    					if(me.title ==  "selected"){
-   						
-   						
    						headerCategory(me.id);
    				        
    					}
-   					
-   					
-   					
    					});
             	   
                }
-               
-               
-               
-               
-               
                submenu.slideDown(150); 
               
             }
@@ -182,6 +160,10 @@
 
 
       });
+    
+    	
+    
+    
     </script>
 
    

@@ -17,7 +17,7 @@ public class ServiceDAO {
 	private String NAMESPACE = "com.goodee.home.service.ServiceDAO.";
 	
 	
-	public List<BoardDTO> getList(Pager pager) throws Exception{
+	public List<QnaDTO> getList(Pager pager) throws Exception{
 		
 		
 		
@@ -97,6 +97,26 @@ public class ServiceDAO {
 		
 		return sqlSession.delete(NAMESPACE+"deleteFile",boardFileDTO);
 	}
+	
+	public Long getCheckAnswer(Long boardNum) throws Exception{
+		
+		
+		return sqlSession.selectOne(NAMESPACE+"getCheckAnswer",boardNum);
+	}
+	
+	public int hitBoard(BoardDTO boardDTO) throws Exception{
+		
+	
+		return sqlSession.update(NAMESPACE+"hitBoard",boardDTO);
+	}
+	
+	public List<QnaDTO> getOftenQna() throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE+"getOftenQna");
+	}
+
+
+
 	
 	
 	

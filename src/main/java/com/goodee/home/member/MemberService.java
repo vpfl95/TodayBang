@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goodee.home.store.product.ProductOptionDTO;
 import com.goodee.home.util.FileManger;
 
 @Service
@@ -136,5 +137,35 @@ public class MemberService {
 	public int deleteDelivery(DeliveryDTO deliveryDTO) throws Exception{
 		
 		return memberDAO.deleteDelivery(deliveryDTO);
+	}
+	
+	public int dropMember(MemberDTO memberDTO)throws Exception{
+		
+		
+		return memberDAO.dropMember(memberDTO);
+	}
+	
+	public MemberDTO findId(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.findId(memberDTO);
+	}
+	public MemberDTO findPw(MemberDTO memberDTO) throws Exception{
+		
+		return memberDAO.findPw(memberDTO);
+	}
+	
+	
+	public List<CartDTO> getCart(MemberDTO memberDTO) throws Exception{
+		
+		
+		return memberDAO.getCart(memberDTO);
+	}
+	
+	
+	
+	public List<OrderDTO> getOrder(MemberDTO memberDTO) throws Exception{
+		
+		
+		return memberDAO.getOrder(memberDTO);
 	}
 }

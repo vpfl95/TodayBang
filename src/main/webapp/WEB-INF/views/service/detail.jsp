@@ -10,6 +10,7 @@
     <title>오늘의 직방</title>
 		<link href="/resources/css/reset.css" rel="stylesheet">
 		<link href="/resources/css/board/board.css" rel="stylesheet">
+		<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -26,6 +27,10 @@
 						  	<tr>
 						      <th scope="row">글번호</th>
 						      <td colspan="3">${boardList.boardNum }</td>
+						    </tr>
+						    <tr>
+						      <th scope="row">조회수</th>
+						      <td colspan="3">${boardList.hit }</td>
 						    </tr>
 						    <tr>
 						      <th scope="row">제목</th>
@@ -50,8 +55,11 @@
 						      <c:if test="${not empty boardList.boardFileDTOs }">
 							      <c:forEach items="${boardList.boardFileDTOs }" var="file">
 							      	
-							      <td><a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a></td>
-									      
+							      	<c:if test="${not file.sort}">
+							      		<td><a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a></td>
+									
+							      	</c:if>
+							            
 							      </c:forEach>
 							      	
 							      
@@ -112,11 +120,10 @@
 								    <th scope="row">파일</th>
 								     <c:if test="${not empty qnaAnswer.boardFileDTOs }">
 									      <c:forEach items="${qnaAnswer.boardFileDTOs }" var="file">
+									      <c:if test="${not file.sort}">
 									      		<td><a href="/resources/upload/QNAANSWER/${file.fileName }">${file.oriName }</a></td>
-									      
+									      </c:if>
 									      </c:forEach>
-							      	
-							      
 						    		  </c:if>
 								    </tr>
 								    <tr>
@@ -158,17 +165,21 @@
 													</tr>
 													<tr>
 														<th>내용</th>
-														<td><input type="text" value="${update.contents }" id="contents"  name="contents"  class="form-control" placeholder="내용" required></td>
+														
+														<td><textarea   id="summernote" name="contents"></textarea></td>
 													</tr>
 													<tr>
 															<td><p id = "addFileBtn">파일추가</p></td>
 															<td>
 																<div id = "fileInputDiv" title = "${updateSize }">
 																	<!-- 파일선택 input -->
+																	
 																		<c:forEach items="${update.boardFileDTOs }" var="file" varStatus="status">
+																		<c:if test="${not file.sort}">
 																			<label for="file${status.count }">${file.fileName }</label>
 																			<input type="file" id="file${status.count }" value="${file}" name="file" class="form-control boardFile hideBoardFile" title="${status.count }">
 																			<button class="boardFileDelete" title="${status.count }">파일삭제</button>
+																		</c:if>
 																		</c:forEach>
 																	
 																	</div>
@@ -208,6 +219,9 @@
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/js/board.js"></script>
+    
+   	<script src="/resources/js/summernote/summernote-lite.js"></script>
+	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script type="text/javascript">
     
     if (${board eq 'QNA' && empty qnaAnswer}){
@@ -215,7 +229,67 @@
     	fileJs();
     }
     	
-    	
+    $(document).ready(function() {
+			
+			var toolbar = [
+				    // 글꼴 설정
+				    ['fontname', ['fontname']],
+				    // 글자 크기 설정
+				    ['fontsize', ['fontsize']],
+				    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+				    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+				    // 글자색
+				    ['color', ['forecolor','color']],
+				    // 표만들기
+				    ['table', ['table']],
+				    // 글머리 기호, 번호매기기, 문단정렬
+				    ['para', ['ul', 'ol', 'paragraph']],
+				    // 줄간격
+				    ['height', ['height']],
+				    // 그림첨부, 링크만들기, 동영상첨부
+				    ['insert',['picture','link','video']],
+				    // 코드보기, 확대해서보기, 도움말
+				    ['view', ['codeview','fullscreen', 'help']]
+				  ];
+
+			var setting = {
+		            height : 300,
+		            minHeight : null,
+		            maxHeight : null,
+		            focus : true,
+		            lang : 'ko-KR',
+		            toolbar : toolbar,
+		            callbacks : { //여기 부분이 이미지를 첨부하는 부분
+		            onImageUpload : function(files, editor,
+		            welEditable) {
+		            for (var i = files.length - 1; i >= 0; i--) {
+		            uploadSummernoteImageFile(files[i],
+		            this);
+		            		}
+		            	}
+		            }
+		         };
+
+		        $('#summernote').summernote(setting);
+		     $('#summernote').summernote('pasteHTML', '${update.contents}');
+		        });
+		
+		
+		function uploadSummernoteImageFile(file, el) {
+		data = new FormData();
+		data.append("file", file);
+		$.ajax({
+			data : data,
+			type : "POST",
+			url : "uploadSummernoteImageFile",
+			contentType : false,
+			enctype : 'multipart/form-data',
+			processData : false,
+			success : function(data) {
+				$(el).summernote('editor.insertImage', data.url);
+			}
+		});
+	}
     	
     </script>
     

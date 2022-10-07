@@ -8,13 +8,16 @@ import java.io.OutputStream;
 import java.nio.file.Files;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletRequestWrapper;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItem;
+import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.IOUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -22,12 +25,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.member.MemberDTO;
+import com.goodee.home.util.FileManger;
 import com.goodee.home.util.Pager;
+import com.google.gson.JsonObject;
 
 import oracle.jdbc.proxy.annotation.Post;
 
@@ -63,12 +70,21 @@ public class ServiceController {
 		ModelAndView mv = new ModelAndView();
 		
 		
-		List<BoardDTO> ar = null;
-		// getBoardName()
+		List<QnaDTO> ar = null;
+		
 		pager.setUrl("list");
 		pager.setBoard(getBoardName());
 		ar = service.getList(pager);
 		
+		if(getBoardName() == "QNA") {
+			
+			List<QnaDTO> oftenAr = service.getOftenQna();
+			
+			mv.addObject("oftenQna",oftenAr);
+		}
+		
+		
+		mv.addObject("search",pager);
 		mv.addObject("boardList",ar);
 		mv.setViewName("/service/list");
 		
@@ -112,11 +128,12 @@ public class ServiceController {
 	
 		
 		boardDTO.setBoard(getBoardName());
+		
+		String contents = boardDTO.getContents();
+		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
+		
 		service.addBoard(boardDTO,file,session.getServletContext());
-	
-		
-		
-		
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		
 		
 		return "redirect:./list";
@@ -157,12 +174,13 @@ public class ServiceController {
 	@PostMapping("update")
 	public String updateBoard(BoardDTO boardDTO,MultipartFile [] file,HttpSession session , Integer number) throws Exception{
 		
-		
-		
-//		boardDTO.setBoard(getBoardName());
-//		BoardDTO boardDTO2 = service.getDetail(boardDTO);
+
 		
 		boardDTO.setBoard(getBoardName());
+		
+		String contents = boardDTO.getContents();
+		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		service.updateBoard(boardDTO,file,session.getServletContext(),number);
 		
 		
@@ -173,7 +191,13 @@ public class ServiceController {
 	@PostMapping("answer")
 	public String addQnaAnswer(BoardDTO boardDTO,MultipartFile [] file,HttpSession session) throws Exception{
 		boardDTO.setBoard("QNAANSWER");
+		
+		String contents = boardDTO.getContents();
+		boardDTO.setContents(contents.replace("temp/"+boardDTO.getUserId(), boardDTO.getBoard())) ;
+		
+		
 		service.addQnaAnswer(boardDTO,file,session.getServletContext());
+		service.saveTempFIle(boardDTO,session.getServletContext());
 		
 		
 		
@@ -230,7 +254,39 @@ public class ServiceController {
 		return "redirect:./list";
 	}
 	
-	
+	@RequestMapping(value="/uploadSummernoteImageFile", produces = "application/json; charset=utf8")
+	@ResponseBody
+	public String uploadSummernoteImageFile(@RequestParam("file") MultipartFile multipartFile, HttpServletRequest request,HttpSession session ) throws Exception  {
+		System.out.println("AJAX 실행");
+		JsonObject jsonObject = new JsonObject();
+		
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		
+		
+			String path = "resources/upload/temp/"+memberDTO.getUserId();
+			FileManger fileManger = new FileManger();
+			String fileName=null;
+			try {
+				System.out.println("파일저장");
+				String FileName = fileManger.saveFile(path, session.getServletContext(), multipartFile);
+				fileName = FileName;
+				jsonObject.addProperty("url", "/"+path+"/"+FileName); // contextroot + resources + 저장할 내부 폴더명
+				jsonObject.addProperty("responseCode", "success");
+					
+			} catch (IOException e) {
+				//fileManger.deleteFile(fileName, session.getServletContext(), path);
+				jsonObject.addProperty("responseCode", "error");
+				e.printStackTrace();
+				
+			}
+			
+		
+		
+		
+		
+		String a = jsonObject.toString();
+		return a;
+	}
 	
 	
 	

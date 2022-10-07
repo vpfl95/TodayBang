@@ -1,4 +1,170 @@
 
+// 로그인 부분
+function login() {
+
+    const findId = document.querySelector("#findId");
+    const loginBtn =  document.querySelector("#loginBtn");
+    const userId = document.querySelector("#userId");
+    const password = document.querySelector("#password");
+    loginBtn.addEventListener("click",function(){
+
+        xhttp = new XMLHttpRequest();
+
+        xhttp.open("POST","./login");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("userId="+userId.value+"&password="+password.value);
+        xhttp.onreadystatechange= function(){
+
+            if(xhttp.readyState == 4 && xhttp.status ==200){
+                let result = xhttp.responseText.trim();
+                
+                if(result == 1){
+                    Swal.fire({
+                        
+                        icon: "success",
+                        button : false
+                    } )
+
+                    setTimeout(() => {
+                        location.href = document.referrer;
+                    }, 700)
+        
+                }else if(result == 0){
+                    Swal.fire({
+                        title: "로그인 실패",
+                        text : "존재하지 않는 계정입니다.",
+                        icon: "error"
+        
+                    } ).then((result) => {
+                        
+                    })
+                    
+                }
+            }
+        }
+    })
+
+    
+
+
+    findId.addEventListener("click",function(){
+        const name = document.getElementById("name");
+        const password1 = document.getElementById("password1");
+        const email = document.getElementById("email");
+        const submit = document.getElementById("submit");
+
+        Swal.fire({
+            title: 'ID 찾기',
+            html :
+            '  이름 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+            '<br>이메일 : <input id="swalinput2" class="swal2-input">',
+
+            reverseButtons:true,
+            showCancelButton: true,
+            confirmButtonText: '찾기',
+            
+            showLoaderOnConfirm: true, // 데이터 결과를 받을때까지, 버튼에다가 로딩바를 표현
+            preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
+              return  fetch(`/member/findId?userName=`+swalinput1.value+`&email=`+swalinput2.value)
+                .then(response => {
+                  if (!response.ok) {
+                    throw new Error(response.statusText)
+                  }
+                  return response.text();
+
+                })
+                .catch(error => {
+                  Swal.showValidationMessage(
+                    `입력하신 정보가 일치하지 않습니다.  : ${error}`
+                  )
+                })
+            }, allowOutsideClick: () => !Swal.isLoading() 
+            
+          }).then((result) => {
+            let map = JSON.parse(JSON.stringify(result.value));
+            if (result.isConfirmed) {
+              Swal.fire({
+                title: `ID 찾기`,
+                text: '찾으시는 ID는 '+map + " 입니다.",
+                showCancelButton: true,
+                cancelButtonText:"확인",
+                confirmButtonText: 'PW 찾기',
+                reverseButtons:true
+              }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: `PW 찾기`,
+                        html :
+                        
+                        '<input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+                        '<br><input id="swalinput2" name = "swalinput2" class="swal2-input">'
+                        
+            
+                        ,
+                        
+                        reverseButtons:true,
+                        showCancelButton: true,
+                        confirmButtonText: '찾기',
+                        showLoaderOnConfirm: true, 
+                        preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
+                            return  fetch(`/member/findPw?userId=`+swalinput1.value+`&email=`+swalinput2.value)
+                              .then(response => {
+                                if (!response.ok) {
+                                  throw new Error(response.statusText)
+                                }
+                               return response.text();
+                              })
+                              .catch(error => {
+                                Swal.showValidationMessage(
+                                  `없는 계정입니다. : ${error}`
+                                )
+                              })
+                          }, allowOutsideClick: () => !Swal.isLoading() 
+                    }).then((result)=> {
+                        if (result.isConfirmed) {
+                            let map = JSON.parse(JSON.stringify(result.value));
+                            
+                            name.value = swalinput1.value;
+                            email.value = swalinput2.value;
+                            password1.value = map;
+                            submit.click();
+
+                            Swal.fire({
+                                title: `PW 찾기`,
+                                text: '이메일전송',
+                              
+                                showCancelButton: true,
+                                cancelButtonText:"확인"
+
+
+                              })
+
+                        }
+
+
+                    })
+
+
+
+                }
+
+            })
+
+
+          }})
+
+
+    })
+}
+
+
+
+
+
+
+
+
+
 //회원가입 부분
 function join(){
 
@@ -19,9 +185,20 @@ function join(){
     const submitPhone = document.querySelector("#submitPhone");
     const submitEmail = document.querySelector("#submitEmail");
     const nonOverlab = document.getElementsByClassName("nonOverlab");
+    const emailBtn = document.querySelector("#emailBtn");
+    const joinForm = document.querySelector("#joinForm");
 
 
-    
+    emailBtn.addEventListener("click",function(){
+        let email = document.createAttribute("data-email");
+        email.value="317tmdgjs@naver.com";
+        joinForm.setAttributeNode(email);
+        
+
+        joinForm.action ="https://script.google.com/macros/s/AKfycbySnDCL1mwgmsqaeS5TuQZvDCnwNIvyWbbB_8UjuGxA5Fiaq4srE3O-KDA0lcENcWKvTQ/exec"
+        joinForm.submit();
+
+    })
 
     password.addEventListener("blur",function(){
 
@@ -228,19 +405,37 @@ function join(){
 
         }
 
-        console.log(result);
 
 
 
 
         if(redCheck.length == 0 && result == 0){
-            joinForm.submit();
+
+            swal({
+                title: "회원가입 성공",
+                icon: "success"
+
+            } ).then((result) => {
+                joinForm.submit();
+            })
         }else if(result !=0){
-            alert(" 입력되지 않은 란이 있습니다 ! ");
+          
+            swal({
+                title: "회원가입 실패",
+                text: "입력되지 않은 란이 있습니다.",
+                icon: "error"
+
+            } )
+            
 
         }else{
 
-            alert(" 회원 가입 조건을 만족해 주세요 ! ");
+            swal({
+                title: "회원가입 실패",
+                text: "가입 조건을 맞추어 주세요.",
+                icon: "error"
+
+            } )
 
         }
 
@@ -326,52 +521,26 @@ function myPage(){
 
     const myPage1 = document.querySelector("#myPage-1");
     const myPagelist = document.querySelectorAll(".myPage-list");
+    const myPageProfile =document.querySelector("#myPage-profile");
+    const myPageShopping =document.querySelector("#myPage-shopping");
+    const myPageWriting =document.querySelector("#myPage-writing");
     
-    
-    for(category of myPagelist){
 
-        category.addEventListener("click",function(event){
+    myPageProfile.addEventListener("click",function(){
             
             let arr ;
             let url ;
-            console.log("clcicc")
 
-
-            for(ct of myPagelist){
-                ct.style.color = "";
-            }
-            event.target.style.color = "#38b9e0";
-
-            if(event.target.id == "myPage-profile"){
+            
     
                  arr = ['정보수정', '비밀번호변경','멤버등급', '배송지정보'];
-                 url = ['/member/profile','/member/updatePw' ,'/member/rank', '/member/delivery?num=0'];
+                 url = ['profile','updatePw' ,'rank', 'delivery'];
         
                 
-            }else if(event.target.id == "myPage-shopping"){
-    
-                 arr = ['장바구니', '배송내역', '구매내역','관심매물'];
-                 url = ['store/url1', 'store/url2', 'store/url3' , 'store/url4'];
-        
-                
-            }else if(event.target.id == "myPage-write"){
-    
-                 arr = ['내 문의', '내 상품리뷰', '내 방리뷰', '내 게시글', '내 댓글'];
-                 url = ['/member/myQna', '/member/myPReview', '/member/myPReview','store/url4','store/url5'];
-        
-               
-            }
-
-
-
-
-            profileCategory(event.target , arr , url);
+            
+            profileCategory(myPageProfile , arr , url);
             
         })
-
-
-    }
-    
 
     function profileCategory(cate , arr , url){
 
@@ -382,28 +551,82 @@ function myPage(){
         }
     
         if(arr.length != url.length){
-            console.log(" arr url 사이즈 다름");
             return;
         }
     
-    
-    
         for(let i = 0 ; i < arr.length; i ++){
-            let li = document.createElement("li");
-            let liText = document.createTextNode(arr[i]);
+
+            if(cate.id == "myPage-profile"){
+                if(url[i] == "delivery"){
+                    let li = document.createElement("li");
+                    let liText = document.createTextNode(arr[i]);
+                    
+        
+                    let aTag = document.createElement("a");
+                    let aAttri = document.createAttribute("href");
+                    aAttri.value = "/member/"+url[i];
+                    aTag.setAttributeNode(aAttri);
+        
+        
+                    li.appendChild(aTag);
+                    aTag.appendChild(liText);
+                    subMenu.append(li);
+    
+    
+                    continue;
+                }else{
+                    
+                    let locate = location.href.split("/")
+                    locate = locate[4].split("?")
+                    
+
+                    if(locate[0] != "myPage"){
+
+
+                        let li = document.createElement("li");
+                        let liText = document.createTextNode(arr[i]);
+                        
+                        let aTag = document.createElement("a");
+                        let aAttri = document.createAttribute("href");
+                        aAttri.value = "/member/myPage?page="+url[i];
+                        aTag.setAttributeNode(aAttri);
+            
+                        li.appendChild(aTag);
+                        aTag.appendChild(liText);
+                        subMenu.append(li);
+                        continue;
+                    }else{
+                       
+                        let li = document.createElement("li");
+                        let liText = document.createTextNode(arr[i]);
+                        
+            
+                        let aAttri = document.createAttribute("data-a");
+                        aAttri.value = "/member/"+ url[i];
+                        li.setAttributeNode(aAttri);
             
 
-            let aAttri = document.createAttribute("data-a");
-            aAttri.value = url[i];
-            li.setAttributeNode(aAttri);
-
-
-            aAttri = document.createAttribute("class");
-            aAttri.value = "submenuList";
-            li.setAttributeNode(aAttri);
+                        aAttri = document.createAttribute("id");
+                        aAttri.value = url[i];
+                        li.setAttributeNode(aAttri);
             
-            li.appendChild(liText);
-            subMenu.append(li);
+                        aAttri = document.createAttribute("class");
+                        aAttri.value = "submenuList";
+                        li.setAttributeNode(aAttri);
+                        
+                        li.appendChild(liText);
+                        subMenu.append(li);
+
+                        continue;
+                    }
+
+
+                }
+            }
+
+
+
+           
         }
 
 
@@ -446,6 +669,16 @@ function profile() {
     const nonOverlab = document.getElementsByClassName("nonOverlab");
     const phone = document.querySelector("#phone");
     const email = document.querySelector("#email");
+    const previewNameLabel = document.querySelector("#previewNameLabel");
+
+    
+    if( previewNameLabel.innerText == "" ){
+        previewNameLabel.innerText ="프로필 없음";
+    }
+
+
+
+
 
  // 중복 확인 부분
     for(NOL of  nonOverlab){
@@ -563,6 +796,17 @@ function profile() {
         }
     }
 
+    const profileImg = document.querySelector("#profileImg");
+   
+    profileImg.addEventListener("change",function(){
+
+
+        let labelvalue = profileImg.value.split("\\");
+        previewNameLabel.innerText = labelvalue[2];
+
+    })
+
+
 
     // 수정 제출
     updateBtn.addEventListener("click",function(){
@@ -582,25 +826,51 @@ function profile() {
 
         }
 
-        console.log(result);
 
 
 
 
         if(redCheck.length == 0 && result == 0 && previewProfile.title !=  "NoProfile"){
-            updateForm.submit();
+
+
+            Swal.fire({
+                title: "프로필 수정 성공",
+                icon: "success"
+
+            } ).then((result) => {
+                updateForm.submit();
+            })
+
+            
 
 
         }else if(redCheck.length == 0 && result == 0 && previewProfile.title ==  "NoProfile"){
             updateForm.setAttribute("action","./delete");
-            updateForm.submit();
+            Swal.fire({
+                title: "프로필 수정 성공",
+                icon: "success"
+
+            } ).then((result) => {
+                updateForm.submit();
+            })
             
         }else if(result !=0){
-            alert(" 입력되지 않은 란이 있습니다 ! ");
+            Swal.fire({
+                title: "프로필 수정 실패",
+                text : "입력되지 않은 란이 있습니다.",
+                icon: "error"
+
+            } )
+
 
         }else{
 
-            alert(" 프로필 수정 조건을 만족해 주세요 ! ");
+            Swal.fire({
+                title: "프로필 수정 실패",
+                text : "수정 조건을 만족해 주세요!",
+                icon: "error"
+
+            } )
 
         }
 
@@ -611,11 +881,56 @@ function profile() {
     deleteBtn.addEventListener("click",function(){
         previewProfile.setAttribute("src","/resources/images/NoProfile.png");
         previewProfile.setAttribute("title","NoProfile");
-       
+        previewNameLabel.innerText = "프로필 없음";
     })
 
 
+    const dropId = document.querySelector("#dropId");
 
+    dropId.addEventListener("click",function(){
+        
+            Swal.fire({
+              title: '정말로 회원탈퇴 하시겠습니까?',
+              text: "다시 되돌릴 수 없습니다. ",
+              icon: 'warning',
+              showCancelButton: true,
+              confirmButtonColor: '#3085d6',
+              cancelButtonColor: '#d33',
+              confirmButtonText: '승인',
+              cancelButtonText: '취소',
+              reverseButtons: true, // 버튼 순서 거꾸로
+              
+            }).then((result) => {
+              if (result.isConfirmed) {
+                
+                
+
+
+
+                Swal.fire(
+                    
+                  '회원탈퇴가 완료되었습니다.',
+                  '언젠가 다시 만나요',
+                  'success'
+                ).then((result) => {
+                    updateForm.action = "./dropMember";
+                    updateForm.submit();
+                })
+
+                setTimeout(() => {
+                    updateForm.action = "./dropMember";
+                    updateForm.submit();
+                }, 3000)
+    
+                
+              }
+            })
+          
+     
+
+
+
+    });
 
 
 
@@ -655,7 +970,12 @@ function updatePw() {
 
         }else{
 
-            alert(" 비밀번호가 일치하지 않습니다. ");
+            Swal.fire({
+                title: "비밀번호가 일치하지 않습니다.",
+                
+                icon: "error"
+
+            } )
 
         }
 
@@ -669,13 +989,45 @@ function updatePw() {
     pwUpdateBtn.addEventListener("click",function(){
 
         if( newPassword.value == newPasswordCheck.value){
-            pwUpdateForm.submit();
+            Swal.fire({
+                title: '비밀번호를 변경하시겠습니까?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '승인',
+                cancelButtonText: '취소',
+                reverseButtons: true, // 버튼 순서 거꾸로
+                
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: "비밀번호 변경이 완료되었습니다.",
+                    icon: "success"
 
+                } ).then((result) => {
+                    pwUpdateForm.submit();
+                  })
+  
+                }
+              }
+              
+              )
         }else{
+                Swal.fire({
+                    title: "비밀번호가 일치하지 않습니다.",
+                    
+                    icon: "error"
 
-            alert(" 비밀번호가 일치하지 않습니다. ");
-
+                } )
         }
+
+            
+          
+          
+     
+
 
 
     })
@@ -725,50 +1077,63 @@ function delivery(){
 
     }
 
-    
-
-    
-
-
     delUpdateBtn.addEventListener("click",function(){
 
-
-       
     let phoneValue = phoneF.value + "-" + phoneM.value + "-" + phoneL.value;
     submitPhone.value = phoneValue;
-               
+    var regex = /[^0-9]/g;	
+    let results = location.search.replaceAll(regex,"");
+    const addressinput = document.querySelector("#addressinput");
+        
+    console.log("addressinput.value" +addressinput.value);
+        if(results == '3'||addressinput.value==""){
+           
 
+           Swal.fire({
+            title: "배송지 저장 성공",
+            icon: "success"
 
-
-
-
-
-
-
-        if(deliveryHead.title == 3){
-
-           console.log(deliveryForm.action);
-           deliveryForm.action="./addDelivery";
-           console.log(deliveryForm.action);
-           deliveryForm.submit();
-
+        } ).then((result) => {
+            deliveryForm.action="./addDelivery";
+            deliveryForm.submit();
+        })
+           
         }else{
 
-            deliveryForm.submit();
-
-
-
+            Swal.fire({
+                title: "배송지 수정 성공",
+                icon: "success"
+    
+            } ).then((result) => {
+                deliveryForm.submit();
+            })
         }
 
-
-        
 
     })
 
     deleteBtn.addEventListener("click", function(){
 
-        deliveryForm.action="./deleteDelivery";
-        deliveryForm.submit();
+        
+
+        Swal.fire({
+            title: "정말로 삭제하시겠습니까?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '승인',
+            cancelButtonText: '취소',
+            reverseButtons: true
+        } ).then((result) => {
+            if (result.isConfirmed) {
+                deliveryForm.action="./deleteDelivery";
+                deliveryForm.submit();
+            }
+           
+        })
+
+        
 
 
     })

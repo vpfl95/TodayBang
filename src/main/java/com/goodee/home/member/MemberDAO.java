@@ -6,6 +6,9 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.goodee.home.store.product.ProductOptionDTO;
 
 @Repository
 public class MemberDAO {
@@ -93,6 +96,49 @@ public class MemberDAO {
 		
 		return sqlSession.delete(NAMESPACE+ "deleteProfileImg",memberDTO);
 	}
+	
+	public int dropMember(MemberDTO memberDTO)throws Exception{
+		
+		
+		sqlSession.delete(NAMESPACE+"dropMemberRank",memberDTO);
+		return sqlSession.delete(NAMESPACE+ "dropMember",memberDTO);
+	}
+	
+	public MemberDTO findId(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+ "findId",memberDTO);
+	}
+	public MemberDTO findPw(MemberDTO memberDTO) throws Exception{
+		
+		return sqlSession.selectOne(NAMESPACE+ "findPw",memberDTO);
+	}
+	
+	
+	public List<CartDTO> getCart(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getCart",memberDTO);
+	}
+	
+	
+
+	public List<OrderDTO> getOrder(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getOrder",memberDTO);
+	}
+	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return sqlSession.insert(NAMESPACE+ "addCart",cartDTO);
+	}
+	public int deleteCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return sqlSession.delete(NAMESPACE+ "deleteCart",cartDTO);
+	}
+	
 	
 	
 }

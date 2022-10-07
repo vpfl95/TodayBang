@@ -6,16 +6,18 @@ import org.springframework.stereotype.Component;
 public class QnaDTO extends BoardDTO {
 
 	
-	private Long hit;
+	
+	private Boolean checkAnswer;
 	
 	
 	
-	public Long getHit() {
-		return hit;
+	public Boolean getCheckAnswer() {
+		return checkAnswer;
 	}
-	public void setHit(Long hit) {
-		this.hit = hit;
+	public void setCheckAnswer(Boolean checkAnswer) {
+		this.checkAnswer = checkAnswer;
 	}
+	
 	
 
 	

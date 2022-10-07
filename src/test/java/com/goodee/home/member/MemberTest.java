@@ -18,8 +18,8 @@ public class MemberTest extends MyAbstractTest{
 	public void getLoginTest() throws Exception{
 		
 		MemberDTO memberDTO = new MemberDTO();
-		memberDTO.setUserId("ID1");
-		memberDTO.setPassword("PW1");
+		memberDTO.setUserId("111");
+		memberDTO.setPassword("111");
 		
 		
 		memberDTO = memberDAO.getLogin(memberDTO);
@@ -27,7 +27,7 @@ public class MemberTest extends MyAbstractTest{
 		assertNotNull(memberDTO);
 		
 	}
-	@Test
+	//@Test
 	public void getJoinTest() throws Exception{
 		
 		
@@ -122,5 +122,20 @@ public class MemberTest extends MyAbstractTest{
 			assertEquals(result,1);
 			
 		}
+		
+		//@Test
+		public void dropMemberTest() throws Exception{
+			
+			
+			MemberDTO memberDTO = new MemberDTO();
+			memberDTO.setUserId("ID1");
+			
+			int result = memberDAO.dropMember(memberDTO);
+			
+			System.out.println(result);
+			assertEquals(result,1);
+		}
+		
+		
 
 }

@@ -25,17 +25,26 @@
 					<otherwise>QNAANSWERFILE</otherwise>
 				</choose>
 			</sql>
+			<sql id="search">
+				WHERE
+				<choose>
+					<when test="kind == 'title'">TITLE</when>
+					<when test="kind == 'userId'">USERID</when>
+					<otherwise>CONTENTS</otherwise>
+				</choose>
+				LIKE '%'||#{search}||'%' 
+			</sql>
 		
 			<!-- <select id="getList" parameterType="String" resultType="BoardDTO">
 				SELECT * FROM <include refid="getBoard"></include>
 					
 			</select> -->
 			<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
-				SELECT BO.* , BF.FILENUM , BF.FILENAME , BF.ORINAME
+				SELECT BO.* , BF.FILENUM , BF.FILENAME , BF.ORINAME , BF.SORT
 				FROM <include refid="getBoard"></include> BO
-					LEFT JOIN <include refid="getBoardFile"></include> BF
+					LEFT JOIN  <include refid="getBoardFile"></include> BF
     				ON BO.BOARDNUM = BF.BOARDNUM
-				WHERE BO.BOARDNUM = #{boardNum}
+				WHERE BO.BOARDNUM = #{boardNum} 
 				
 				
 			</select>
@@ -45,10 +54,12 @@
 				<result column="CONTENTS" property="contents"/>
 				<result column="REGDATE" property="regDate"/>
 				<result column="USERID" property="userId"/>
+				<result column="HIT" property="hit"/>
 				<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 					<id column="FILENUM" property="fileNum"/>
 					<result column="FILENAME" property="fileName"/>
 					<result column="ORINAME" property="oriName"/>
+					<result column="SORT" property="sort"/>
 					
 				
 				</collection>
@@ -60,13 +71,15 @@
 		
 			<select id="getCount" parameterType="Pager"  resultType="Long">
 				SELECT COUNT(*) FROM <include refid="getBoard"></include>
+				<include refid="search"></include> 
 			</select>
 		
 		    
-	    	<select id="getList" parameterType="Pager" resultType="BoardDTO" >
+	    	<select id="getList" parameterType="Pager" resultType="QnaDTO" >
 		    	SELECT * FROM
 				( SELECT ROWNUM R,N.*
 				 FROM (SELECT * FROM <include refid="getBoard"></include> 
+				 <include refid="search"></include> 
 				 ORDER BY BOARDNUM DESC) N)
 				 WHERE R BETWEEN #{startRow} AND #{lastRow}
 	    	</select>
@@ -107,7 +120,7 @@
 			
 			
 			<insert id="addBoardFile" parameterType="BoardFileDTO">
-			INSERT INTO <include refid="getBoardFile"></include> VALUES (TODAY_SEQ.NEXTVAL,#{fileName},#{oriName},#{boardNum})
+			INSERT INTO <include refid="getBoardFile"></include> VALUES (TODAY_SEQ.NEXTVAL,#{fileName},#{oriName},#{boardNum},#{sort})
 			</insert>
 			<delete id="deleteBoardFile" parameterType="BoardDTO">
 			DELETE FROM <include refid="getBoardFile"></include> WHERE BOARDNUM =#{boardNum}
@@ -117,7 +130,25 @@
 			DELETE FROM <include refid="getBoardFile"></include> WHERE FILENUM =#{fileNum}
 			</delete>
 			
+			<select id="getCheckAnswer" parameterType="Long" resultType="Long">
+				 SELECT COUNT(BOARDNUM)
+				 FROM QNAANSWER
+				 WHERE BOARDNUM = #{boardNum}
+			</select>
 			
+			<update id="hitBoard" parameterType="BoardDTO">
+				UPDATE <include refid="getBoard"></include> SET HIT = HIT +1 WHERE BOARDNUM = #{boardNum}     
+			</update>
+			
+			
+			<select id="getOftenQna" resultType="QnaDTO">
+				SELECT *  
+				 FROM (SELECT ROWNUM R,N.*
+				    FROM (SELECT * 
+				        FROM QNA
+				        ORDER BY HIT DESC) N)
+				    WHERE R BETWEEN 1 AND 5
+			</select>
 			
 			
 		</mapper>

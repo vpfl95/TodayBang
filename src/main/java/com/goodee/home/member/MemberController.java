@@ -1,8 +1,12 @@
 package com.goodee.home.member;
 
+import java.net.http.HttpRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +18,20 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.service.ServiceService;
+import com.goodee.home.store.product.ProductOptionDTO;
+
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	
 	@Autowired
 	MemberService memberService = new MemberService();
+	
+	@Autowired
+	ServiceService serviceService = new ServiceService();
+	
+	
 	
 	@GetMapping("login")
 	public void getLogin() throws Exception{
@@ -28,49 +40,32 @@ public class MemberController {
 	}
 	
 	@PostMapping("login")
-	public ModelAndView getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
+	@ResponseBody
+	public int getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
 		
-		ModelAndView mv = new ModelAndView();
 		memberDTO = memberService.getLogin(memberDTO);
 
-		
-		
 		if (memberDTO != null) {
-			
 			session.setAttribute("member", memberDTO);
-			
 			for(RoleDTO role : memberDTO.getRoleDTOs()) {
-				
 				if(role.getRoleNum()<10) {
 					session.setAttribute("ManagerRole", role);
-					
 				}else if(role.getRoleNum()<100 && role.getRoleNum()>9) {
-					System.out.println("memberrole =" +role.getRoleNum());
 					session.setAttribute("MemberRole", role);
-				}
-				
-				
+				}	
 			}
-			
-			
-			
-			
 			session.setAttribute("profile", memberDTO.getMemberFileDTO());
-			String url = "../";
-			mv.addObject("url",url);
-			mv.setViewName("common/message");
 			
+			
+			
+			return 1;
 		}else {
 			
-			String url = "./login";
-			String msg = "존재하지 않는 계정 입니다.";
-			mv.addObject("msg",msg);
-			mv.addObject("url",url);
-			mv.setViewName("common/message");
+			return 0;
 		}
 		
 		
-		return mv;
+		
 	}
 	
 	
@@ -78,14 +73,9 @@ public class MemberController {
 	public ModelAndView getNaverLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
-		System.out.println(" Naver login");
 		
 		session.setAttribute("member", mv);
-		
 		mv.setViewName("member/naverLogin");
-		
-		
-		
 		return mv;
 	}
 	
@@ -164,12 +154,13 @@ public class MemberController {
 	}
 	
 	@GetMapping("myPage")
-	public ModelAndView getMyPage(HttpSession session) throws Exception{
+	public ModelAndView getMyPage(HttpSession session,String page) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
 		mv.addObject("memberDTO", memberDTO);
+		mv.addObject("page",page);
 		mv.setViewName("member/myPage");
 		
 		
@@ -241,7 +232,11 @@ public class MemberController {
 		MemberDTO memberDTO2= (MemberDTO) session.getAttribute("member");
 		
 		memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
-		memberService.setDeleteProfile(memberDTO2,session.getServletContext());
+		
+		if(memberDTO2.getMemberFileDTO() != null) {
+			memberService.setDeleteProfile(memberDTO2,session.getServletContext());
+			
+		}
 		session.setAttribute("member", memberDTO);
 		session.setAttribute("profile", memberDTO.getMemberFileDTO());
 		
@@ -268,19 +263,21 @@ public class MemberController {
 	
 	
 	@GetMapping("delivery")
-	public ModelAndView getDelivery(HttpSession session,int num) throws Exception{
+	public ModelAndView getDelivery(HttpSession session,Integer num) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO)session.getAttribute("member");
 		List<DeliveryDTO> ar =memberService.getDelivery(memberDTO);
+	
+		if(num == null ) {
+				num =0;
+		}
 		
 		
-			mv.addObject("delivery", ar);
-			mv.addObject("length", ar.size());
-			mv.addObject("num", num);
+		mv.addObject("delivery", ar);
+		mv.addObject("length", ar.size());
+		mv.addObject("num", num);
 			
-			
-		
 		return mv;
 		
 	}
@@ -291,14 +288,16 @@ public class MemberController {
 		
 		
 	}
+	
 	@PostMapping("addDelivery")
 	public String setDelivery(DeliveryDTO deliveryDTO,HttpSession session) throws Exception{
 		
 		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
 		deliveryDTO.setUserId(memberDTO.getUserId());
+		System.out.println(deliveryDTO.getUserId());
 		int result = memberService.setDelivery(deliveryDTO);
 		
-		return "redirect:./myPage";
+		return "redirect:./delivery";
 	}
 	
 	@PostMapping("updateDelivery")
@@ -306,7 +305,7 @@ public class MemberController {
 		
 		int result = memberService.updateDelivery(deliveryDTO);
 		
-		return "redirect:./myPage";
+		return "redirect:./delivery";
 	}
 	
 	@PostMapping("deleteDelivery")
@@ -314,7 +313,119 @@ public class MemberController {
 		
 		
 		int result = memberService.deleteDelivery(deliveryDTO);
-		return "redirect:./myPage";
+		return "redirect:./delivery";
 	}
+	
+	@PostMapping("dropMember")
+	public String dropMember(MemberDTO memberDTO) throws Exception{
+		
+		// member & rank delete
+		//int result = memberService.dropMember(memberDTO);
+		
+		
+		//System.out.println("result =" +result);
+		
+		
+		return "redirect:/";
+	}
+	
+	@GetMapping("findId")
+	@ResponseBody
+	public String findId(MemberDTO memberDTO) throws Exception{
+		
+		memberDTO = memberService.findId(memberDTO);
+		
+		
+		
+		return memberDTO.getUserId();
+	}
+	
+	@GetMapping("findPw")
+	@ResponseBody
+	public String findPw(MemberDTO memberDTO) throws Exception{
+		
+		memberDTO = memberService.findPw(memberDTO);
+		
+		return memberDTO.getPassword();
+	}
+	
+	
+	@GetMapping("myShopping")
+	public ModelAndView getMyShopping(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		mv.setViewName("member/myShopping");
+		
+		
+		return mv;
+	}
+	
+	
+	@GetMapping("cart")
+	public ModelAndView getCart(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		List<CartDTO> ar =memberService.getCart(memberDTO);
+		
+		
+		mv.addObject("length",ar.size());
+		mv.addObject("cart",ar);
+		mv.setViewName("member/cart");
+		return mv;
+	}
+	
+	@GetMapping(value = {"deliveryDetail","buyDetail"})
+	public ModelAndView getDeliveryDetail(HttpSession session,HttpServletRequest request) throws Exception{
+		System.out.println("request== " + request.getServletPath());
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		
+		List<OrderDTO> ar =memberService.getOrder(memberDTO);
+		
+		
+		String [] url = request.getServletPath().split("/");
+		
+		
+		
+		mv.addObject("url",url[2]);
+		mv.addObject("length",ar.size());
+		mv.addObject("order",ar);
+		
+		mv.setViewName("member/deliveryDetail");
+		return mv;
+	}
+	
+
+	
+	
+	
+	@GetMapping("myWriting")
+	public ModelAndView getMyWriting(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+	
+		
+		mv.setViewName("member/myWriting");
+		
+		
+		return mv;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }

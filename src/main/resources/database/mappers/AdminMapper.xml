@@ -9,26 +9,46 @@
 					WHERE MR2.ROLENUM IN
 					<!-- memberFilter -->
 					<foreach item="item" index="index" collection="memberFilter" open="(" close=")" separator=",">
-						#{item}
+						<if test="item!='100' and item !='200'">
+							#{item}
+						</if>
+						
+						
 					</foreach>
 				</if>
 				
 			</sql>
 			
 			<sql id="search">
-				
-				
-				
 		 			WHERE
 		    		MB.USERID LIKE '%'||#{search}||'%' 	
 				 	OR MB.NICKNAME LIKE '%'||#{search}||'%'
 			</sql>
 			
+			<sql id="ban">
+				 <if test="memberFilter != null and memberFilter != ''">
+					
+					<!-- memberFilter -->
+					<foreach item="item" index="index" collection="memberFilter">
+						<if test="item=='100' || item=='200'">
+							<choose>
+							<when test="item=='100'">WHERE  ROLENUM BETWEEN 0 AND 99</when>
+							<when test="item=='200'">WHERE  ROLENUM-100 BETWEEN 0 AND 99</when>
+							<otherwise></otherwise>
+							</choose>
+						</if>
+					</foreach>
+				</if>
+				
+			</sql>
+			
+			
+			
 			
 			<select id="getMember" parameterType="Pager" resultType="MemberDTO">
 			 SELECT * 
-               FROM (SELECT ROWNUM R, S.*
-				FROM (SELECT N.USERID , N.NICKNAME, MAX(N.NEWROLENUM) roleNum
+               FROM  (SELECT * FROM(SELECT ROWNUM R, S.*
+				FROM (SELECT N.USERID , N.NICKNAME, MAX(N.NEWROLENUM) ROLENUM
 				      FROM  (SELECT MB.USERID , MB.NICKNAME ,SUM(MR.ROLENUM) newRoleNum
 				        FROM MEMBERS MB
 				            INNER JOIN "MEMBER-ROLE" MR
@@ -43,7 +63,7 @@
                         <include refid="getFilter"></include>  
                         
                         GROUP BY N.USERID , N.NICKNAME
-                        ) S)
+                        ) S)<include refid="ban"></include>  )
                        
 				       
 				WHERE R BETWEEN #{startRow} AND #{lastRow}
@@ -99,7 +119,7 @@
 			</insert>
 		
 			<delete id="deleteMemberRank" parameterType="MemberDTO">
-				DELETE "MEMBER-ROLE" WHERE ROLENUM=100 AND USERID=#{userId}
+				DELETE "MEMBER-ROLE" WHERE ROLENUM=#{roleNum} AND USERID=#{userId}
 			</delete>
 		
 		

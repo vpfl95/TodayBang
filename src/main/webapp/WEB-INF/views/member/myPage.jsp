@@ -12,6 +12,7 @@
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<link href= "/resources/css/member/myPage.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -21,16 +22,7 @@
 <!--  내용 부  -->
 	<section class="container-fluid container-lg-8 mt-4">
 	
-		<div class="container-fluid container-lg-8 pt-4">
-		<!-- 카테고리 1  --> 
-			<ul id = "myPage-1">
-				<li class = "myPage-list" id = "myPage-profile" > 프로필 </li>
-				<li class = "myPage-list" id = "myPage-shopping"> 나의 쇼핑</li>
-				<li class = "myPage-list" id = "myPage-write"> 나의 글</li>
-				
-			</ul>
-		<hr>
-		</div>
+		<c:import url="./myPageCate.jsp"></c:import>
 		
 		<div class="container-fluid container-lg-8 mt-4 ">
 		<!-- 카테고리 2 -->
@@ -42,37 +34,10 @@
 		<hr>
 		</div>
 		<div class = "row justify-content-center mt-5">
-			<div class = " col-lg-10 " id = "profile"  >
+			<div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
 				
 
-				<div id = "profile-id" class = "" >
-					<div id = "pf-img-box" class="pf-img-box">
-						<c:choose>
-					         	<c:when test="${empty member.memberFileDTO }">
-						         		<img id = "pf-img"alt="" src="/resources/images/NoProfile.png">
-					         	</c:when>
-					         	<c:when test="${not empty member.memberFileDTO }">
-						         		<img id = "pf-img"alt="" src="../resources/upload/member/${member.memberFileDTO.fileName }">
-					         	</c:when>
-					         </c:choose>
-					</div>
-					<div id = "pf-userName" class = "column">
-						<h2>${memberDTO.userName }</h2>
-					</div>
-					
-					<hr>
-					<div id = "pf-userAct" class = "column">
-						<h4>장바구니</h4>
-					</div>
 
-				</div>
-				
-				<div id="pf-betweenSpace"></div>
-				
-				
-				<div id = "profile-section" class= "">
-					<!-- 프로필 내용이 채워짐 -->
-				</div>
 			</div>
 		</div>
 	</section>
@@ -81,21 +46,32 @@
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/js/member.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
     	myPage();
     	
     	 $(document).ready(function(){
     		
     		$("#myPage-profile").trigger("click");
+    		
+    		
+    		
+
+			
+
+    		if(${not empty page}){
+    			$("#${page}").trigger("click");
+    		}else{
+    			
+    			$("#profileDiv").load("/member/profile");
+    		}
+    		
     	});
-    	
-    	
-    	$("#profile-section").load("/member/profile");
-    	
-    	
     	$(document).on("click",".submenuList",function(){
-    		$("#profile-section").load(this.getAttribute('data-a'));
+    		$("#profileDiv").load(this.getAttribute('data-a'));
     	});
+    	
+    	
     	
     	
     	

@@ -79,10 +79,10 @@
 							<td><label for="silver"><input id= "silver" class = "memberClass" type="checkbox" name= "memberFilter" value="30">Silver</label>
 							<td><label for="white"><input id= "white" class = "memberClass" type="checkbox" name= "memberFilter" value="40">White</label>
 						</tr>
-						<tr>
-							<td><label for="ban"><input id= "ban" type="checkbox" name= "memberFilter" value="100">Ban</label>
-							
-							<td></td>
+						<tr id = "banDiv">
+							<td><label for="OnlyNoBan"><input id= "OnlyNoBan" type="checkbox" name= "memberFilter" value="100">OnlyNoBan</label>
+							<td><label for="OnlyBan"><input id= "OnlyBan" type="checkbox" name= "memberFilter" value="200">OnlyBan</label>
+						
 							<td></td>
 							<td></td>
 							<td colspan="1"></td>
@@ -95,12 +95,7 @@
 						</tr>
 							
 						</tbody>
-					
-					
 					</table>
-					
-					
-					
 					
 					</form>
 					
@@ -140,19 +135,28 @@
 									<td>${list.userId }</td>
 									<td>${list.nickname }</td>
 									
-									<td>
-										<c:if test="${(list.roleNum % 100) % 10 >0}">
+									<td >
+									<c:choose>
+										<c:when test="${(list.roleNum % 100) % 10 >0}">
 											<c:forEach items="${roleList }" var="role">
-												<c:if test="${role.roleNum eq list.roleNum % 10}">
-													${role.roleName }
-												</c:if>
-											
-											
+													<c:if test="${role.roleNum eq list.roleNum % 10}">
+															<label for="operatorKind" class = "operatorKindLabel" id="operatorKindLabel" data-a="${(list.roleNum % 100) % 10}">${role.roleName }</label>
+													</c:if>
 											</c:forEach>
-											
-											
-											
-										</c:if>
+										</c:when>
+										<c:otherwise>
+										
+											<label for="operatorKind" class = "operatorKindLabel"  id= "operatorKindLabel">&nbsp</label>
+										</c:otherwise>
+									</c:choose>
+										<select name="operatorKind" class="form-select hidden operatorKind"  id="operatorKind" data-a="./updateOperatorRank?<%=url%>&userId=${list.userId}&action=operator">
+												  <option  class = "operatorKinds" value="9">&nbsp</option>
+											      <option class = "operatorKinds" value="1">Admin</option>
+											      <option class = "operatorKinds" value="2">Manager</option>
+											      <option class = "operatorKinds" value="3">스토어파트너</option>
+											      <option class = "operatorKinds" value="4">직방파트너</option>
+											      
+										</select>
 									</td>
 									
 									<td>
@@ -200,6 +204,15 @@
 	<script type="text/javascript">
 	getParam();
 	member();
+	
+	
+	$(document).ready(function(){        
+		var select = $("select#operatorKind");        
+		select.change(function(){        
+			var select_name = $(this).children("option:selected").text();        
+			$(this).siblings("label").text(select_name);    
+			});});
+	
 	</script>
    
 </body>

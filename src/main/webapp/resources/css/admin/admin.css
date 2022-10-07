@@ -3,3 +3,23 @@
     text-decoration: line-through;
 
 }
+#operatorKind{
+   
+
+}
+
+select {
+    -o-appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+select::-ms-expand { 
+	display: none;
+}
+
+.hidden{
+    display: none !important;
+
+}

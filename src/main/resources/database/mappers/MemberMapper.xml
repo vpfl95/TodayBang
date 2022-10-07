@@ -76,15 +76,130 @@
 				SELECT * FROM DELIVERY WHERE USERID = #{userId}
 			</select>
 			<select id="setDelivery" parameterType="DeliveryDTO" >
-				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL ,#{address}, #{phone}, #{name}, #{note}, #{deliveryName},#{userId})
-			</select>
+				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL,#{phone}, #{name}, #{note}, #{deliveryName},#{userId},#{address},#{postcode},#{detailAddress},#{extraAddress})</select>
 			<update id="updateDelivery" parameterType="DeliveryDTO">
-				UPDATE DELIVERY SET ADDRESS = #{address}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName} WHERE ADDRESSNUM = #{addressNum}
+				UPDATE DELIVERY SET ADDRESS = #{address},POSTCODE =#{postcode} ,DETAILADDRESS=#{detailAddress} ,EXTRAADDRESS=#{extraAddress}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName} WHERE ADDRESSNUM = #{addressNum}
 			</update>
 			<delete id="deleteDelivery" parameterType="DeliveryDTO">
 				DELETE FROM DELIVERY WHERE ADDRESSNUM = #{addressNum}
 			
 			</delete>
+			
+			<delete id="dropMember" parameterType="MemberDTO">
+				DELETE MEMBERS WHERE USERID = #{userId}
+			</delete>
+			<delete id="dropMemberRank" parameterType="MemberDTO">
+				DELETE "MEMBER-ROLE" WHERE USERID = #{userId}
+			</delete>
+			
+			<select id="findId" parameterType="MemberDTO" resultType="MemberDTO">
+				SELECT USERID FROM MEMBERS WHERE USERNAME=#{userName} AND EMAIL=#{email}
+			</select>
+			<select id="findPw" parameterType="MemberDTO" resultType="MemberDTO">
+				SELECT PASSWORD FROM MEMBERS WHERE USERID=#{userId} AND EMAIL=#{email}
+			</select>
+			
+			
+			<select id="getCart" parameterType="MemberDTO" resultMap="getCartResult">
+			
+				SELECT C.CARTNUM,C.BUYAMOUNT,C.STATUS,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
+     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE
+                  FROM CART C
+                        INNER JOIN PRODUCT P
+                        ON C.PRODUCTNUM = P.PRODUCTNUM
+                        
+                        LEFT JOIN  "CART-OPTION" CO
+                        ON CO.CARTNUM = C.CARTNUM
+                        
+                        INNER JOIN PRODUCTOPTION PO
+                        ON CO.OPTIONNUM = PO.OPTIONNUM
+                            
+                     WHERE USERID =#{userId} AND C.STATUS =1
+				
+			</select>
+			<resultMap type="CartDTO" id="getCartResult">
+				<id column="CARTNUM" property="cartNum"/>
+				<result column="BUYAMOUNT" property="buyAmount"/>
+				<result column="STATUS" property="status"/>
+				<association property="productDTO" javaType="ProductDTO">
+					<result column="PRODUCTNAME" property="productName"/>
+					<result column="DELIFEE" property="deliFee"/>
+					<result column="BRAND" property="brand"/>
+					<result column="PRICE" property="price"/>
+				</association>
+				<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+					<result column="OPTIONCOUNT" property="optionCount"/>
+					<result column="OPTIONNAME" property="optionName"/>
+					<result column="OPTIONPRICE" property="optionPrice"/>
+				
+				</collection>
+			</resultMap>
+			
+			
+			
+			
+			
+			
+			<select id="getOrder" parameterType="MemberDTO" resultMap="getOrderResult">
+			
+				SELECT O.ORDERNUM,O.ORDERDATE, O.DELIVERYSTATUS,N.*
+				FROM (SELECT C.CARTNUM,C.BUYAMOUNT,C.STATUS,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
+     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE
+                  FROM CART C
+                        INNER JOIN PRODUCT P
+                        ON C.PRODUCTNUM = P.PRODUCTNUM
+                        
+                        LEFT JOIN  "CART-OPTION" CO
+                        ON CO.CARTNUM = C.CARTNUM
+                        
+                        INNER JOIN PRODUCTOPTION PO
+                        ON CO.OPTIONNUM = PO.OPTIONNUM
+                     ) N
+                     INNER JOIN "ORDER" O
+                     ON N.CARTNUM = O.CARTNUM
+				WHERE USERID =#{userId} AND N.STATUS =0
+				
+			</select>
+			<resultMap type="OrderDTO" id="getOrderResult">
+				<id column="ORDERNUM" property="orderNum"/>
+				<result column="ORDERDATE" property="orderDate"/>
+				<result column="DELIVERYSTATUS" property="deliveryStatus"/>
+		
+				<association property="cartDTO" javaType="CartDTO">
+					<id column="CARTNUM" property="cartNum"/>
+					<result column="BUYAMOUNT" property="buyAmount"/>
+					<result column="STATUS" property="status"/>
+					<association property="productDTO" javaType="ProductDTO">
+						<result column="PRODUCTNAME" property="productName"/>
+						<result column="DELIFEE" property="deliFee"/>
+						<result column="BRAND" property="brand"/>
+						<result column="PRICE" property="price"/>
+					</association>
+					<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+						<result column="OPTIONCOUNT" property="optionCount"/>
+						<result column="OPTIONNAME" property="optionName"/>
+						<result column="OPTIONPRICE" property="optionPrice"/>
+					
+					</collection>
+				</association>
+				
+			
+			</resultMap>
+			
+			
+			<insert id="addCart" parameterType="CartDTO" >
+				INSERT INTO CART VALUES (TODAY_SEQ.NEXTVAL,#{userId},#{productNum},#{buyAmount},#{status})
+			</insert>
+			
+			<delete id="deleteCart" parameterType="CartDTO">
+				DELETE CART WHERE CARTNUM = #{cartNum}
+			</delete>
+			
+			
+			
+			
+			
+			
 			
 			
 			

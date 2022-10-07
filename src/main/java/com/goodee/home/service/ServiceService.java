@@ -1,6 +1,9 @@
 package com.goodee.home.service;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletContext;
@@ -22,16 +25,48 @@ public class ServiceService {
 	private FileManger fileManger;
 	
 	
-	public List<BoardDTO> getList(Pager pager) throws Exception{
+	public List<QnaDTO> getList(Pager pager) throws Exception{
 		
 		Long totalCount = serviceDAO.getCount(pager);
+		
+		if(totalCount == 0) {
+			totalCount +=1;
+		}
+		
 		pager.getNum(totalCount);
 		pager.getRowNum();
 		
+		List<QnaDTO> ar = serviceDAO.getList(pager);
 		
-		return serviceDAO.getList(pager);
+		if(pager.getBoard() == "QNA") {
+			for(QnaDTO dto : ar) {
+				
+				
+				Long boardNum = dto.getBoardNum();
+				boardNum = serviceDAO.getCheckAnswer(boardNum);
+				if(boardNum == 1) {
+					dto.setCheckAnswer(true);
+					
+				}else {
+					dto.setCheckAnswer(false);
+				}
+					
+				
+			}
+			
+			
+		}
+		
+		
+		return ar;
 	}
 	public BoardDTO getDetail(BoardDTO boardDTO) throws Exception{
+		
+		
+		if(boardDTO.getBoard() != "QNAANSWER") {
+			serviceDAO.hitBoard(boardDTO);
+			
+		}
 		
 		return serviceDAO.getDetail(boardDTO);
 	}
@@ -111,20 +146,21 @@ public class ServiceService {
 		int result = serviceDAO.updateBoard(boardDTO);
 		boardDTO = getDetail(boardDTO);
 		
-		System.out.println("결과 : " + result);
 		String path = "resources/upload/" +board;
 		// boardDTO.getBoardFileDTOs() 기존 파일
 		// files < 새롭게 추가된 파일
 		//boardDTO.getBoardFileDTOs().size() >> title 총 수
 		
-		if(number != null) {
-			String[] ar = number.toString().split("");
-		
-			for(String num : ar) {
-				int i = Integer.parseInt(num);
+		if(number != 0 || number !=null) {
+			for(int i = 0 ; i < number ; i ++) {
+			
 				
-				System.out.println("삭제 num = " + num);
-				BoardFileDTO boardFileDTO = boardDTO.getBoardFileDTOs().get(i-1);
+				
+				BoardFileDTO boardFileDTO = boardDTO.getBoardFileDTOs().get(i);
+				if(boardFileDTO.getSort()) {
+					continue;
+				}
+				
 				boardFileDTO.setBoard(board);
 				serviceDAO.deleteFile(boardFileDTO);
 				fileManger.deleteFile(boardFileDTO.getFileName(), servletContext, path);
@@ -136,7 +172,7 @@ public class ServiceService {
 				
 				
 				if(!file.isEmpty()) {
-					System.out.println("새 파일 추가");
+					System.out.println("update 파일추가");
 					String fileName = fileManger.saveFile(path, servletContext, file);
 					BoardFileDTO boardFileDTO = new BoardFileDTO();
 					boardFileDTO.setBoardNum(boardDTO.getBoardNum());
@@ -178,4 +214,80 @@ public class ServiceService {
 		
 		return serviceDAO.deleteFile(boardFileDTO);
 	}
+	
+	public List<QnaDTO> getOftenQna() throws Exception{
+		
+		
+		return serviceDAO.getOftenQna();
+	}
+	
+	public void saveTempFIle(BoardDTO boardDTO,ServletContext servletContext) throws Exception{
+		
+		String path = "resources/upload/temp/"+boardDTO.getUserId();
+		String realpath = servletContext.getRealPath(path);
+		String [] contents = boardDTO.getContents().split("src=\"/");
+		String [] split = null;
+		ArrayList<String> src = new ArrayList<String>();
+		
+		for(int i = 1; i < contents.length ; i++) {
+			split = contents[i].split("\"");
+			src.add(split[0]); ///resources/upload/QNA/filename
+		}
+		
+		for(String ar : src){
+				String copyFilePath = servletContext.getRealPath(ar); // upload/QNA
+			    String oriFilePath = copyFilePath.replace(boardDTO.getBoard(),"temp\\"+boardDTO.getUserId()); // upload\temp\id
+			    File copyfile = new File(copyFilePath);
+			    System.out.println("======파일 복사 실행 전");
+			    if(!copyfile.exists()) {
+			    	System.out.println("======파일 복사");
+			    	FileInputStream fis = new FileInputStream(oriFilePath); //읽을파일
+			        FileOutputStream fos = new FileOutputStream(copyFilePath); //복사할파일
+			        
+			    	
+			        int data = 0;
+			        while((data=fis.read())!=-1) {
+			         fos.write(data);
+			        }
+			        fis.close();
+			        fos.close();
+			    }
+			    String [] fileNames = ar.split("/");
+			    String fileName = fileNames[fileNames.length-1];
+			    String [] fileOriNames = fileName.split("_",2);
+			    String fileOriName = fileOriNames[1];
+			    System.out.println("fileOriName = " + fileOriName);
+			    
+			    BoardFileDTO boardFileDTO = new BoardFileDTO();
+				boardFileDTO.setBoardNum(boardDTO.getBoardNum());
+				boardFileDTO.setFileName(fileName);
+				boardFileDTO.setOriName(fileOriName);
+				boardFileDTO.setBoard(boardDTO.getBoard());
+				boardFileDTO.setSort(true);
+				serviceDAO.addBoardFile(boardFileDTO);
+		        
+		}
+		File folder = new File(realpath);
+        if(folder.exists()) {
+        	File[] files = folder.listFiles();
+        	
+        	for(File file : files) {
+        		System.out.println("list File ! =" + file.getName());
+        		file.delete();
+        	}
+        	
+            folder.delete();
+                
+        }
+		
+		
+	}
 }
+	
+	
+	
+	
+	
+	
+	
+
