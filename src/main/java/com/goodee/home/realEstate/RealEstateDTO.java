@@ -2,6 +2,8 @@ package com.goodee.home.realEstate;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class RealEstateDTO {
 	private Long num;
 	private String sigungu;
@@ -10,7 +12,9 @@ public class RealEstateDTO {
 	private String buildingNm;
 	private String dealType;
 	private Long area;
+	@JsonFormat(pattern = "YY-MM")
 	private Date dealYm;
+	@JsonFormat(pattern = "yy-MM-dd")
 	private Date dealDay;
 	private Long deal;
 	private Long deposit;

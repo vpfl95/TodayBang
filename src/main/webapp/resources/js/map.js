@@ -12,7 +12,8 @@ const houseReviewList = document.getElementById("houseReviewList")
 const maemulNum = document.getElementById("maemulNum")
 const userId = document.getElementById("userId")
 const addReview = document.getElementById("addReview")
-const grade = document.getElementById("grade")
+const updateReview = document.getElementById("updateReview")
+// const grade = document.getElementById("grade")
 const trfgrade = document.getElementById("trfgrade")
 const envgrade = document.getElementById("envgrade")
 const resgrade = document.getElementById("resgrade")
@@ -21,6 +22,9 @@ const trf_text = document.getElementById("trf-text")
 const env_text = document.getElementById("env-text")
 const res_text = document.getElementById("res-text")
 const roadname = document.getElementById("roadname")
+const writeReview = document.getElementById("writeReview")
+const upReview = document.getElementById("upReview")
+const reviewNum = document.getElementById("reviewNum")
 let page =1;
 let reviewPage = 1;
 
@@ -520,6 +524,7 @@ more.addEventListener("click", function(){
 
 //리뷰리스트
 function getReviewList(roadName,p){
+    console.log("겟리뷰리스트")
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getHouseReview?roadName="+roadName+"&page="+p);
     xhttp.send();
@@ -531,34 +536,58 @@ function getReviewList(roadName,p){
             let pager=result.maemulPager
             for(let i=0; i<list.length; i++){
                 let revDiv = document.createElement("div")
-
-                let gradeDiv = document.createElement("div")
-                gradeDiv.innerText = "추천점수" + list[i].grade
+                revDiv.className="revDiv"
+                revDiv.setAttribute("data-rvNum",list[i].reviewNum)
+                let gradeDiv = document.createElement("span")
+                let grade = document.createElement("span")
+                gradeDiv.innerText = "추천점수" 
+                grade.innerText=list[i].grade
                 let contents = document.createElement("div")
                 contents.innerText = list[i].contents
                 revDiv.appendChild(gradeDiv)
+                revDiv.appendChild(grade)
                 revDiv.appendChild(contents)
 
-                let trfDiv = document.createElement("div")
-                trfDiv.innerText="교통여건"+list[i].trfGrade
+                let trfDiv = document.createElement("span")
+                let trfgrade = document.createElement("span")
+                trfDiv.innerText="교통여건"
+                trfgrade.innerText=list[i].trfGrade
                 let trfContents = document.createElement("div")
                 trfContents.innerText = list[i].trfContents
                 revDiv.appendChild(trfDiv)
+                revDiv.appendChild(trfgrade)
                 revDiv.appendChild(trfContents)
 
-                let envDiv = document.createElement("div")
-                envDiv.innerText="주변환경"+list[i].envGrade
+                let envDiv = document.createElement("span")
+                let envgrade = document.createElement("span")
+                envDiv.innerText="주변환경"
+                envgrade.innerText=list[i].envGrade
                 let envContents = document.createElement("div")
                 envContents.innerText = list[i].envContents
                 revDiv.appendChild(envDiv)
+                revDiv.appendChild(envgrade)
                 revDiv.appendChild(envContents)
 
-                let resDiv = document.createElement("div")
-                resDiv.innerText="거주환경"+list[i].resGrade
+                let resDiv = document.createElement("span")
+                let resgrade = document.createElement("span")
+                resDiv.innerText="거주환경"
+                resgrade.innerText=list[i].resGrade
                 let resContents = document.createElement("div")
                 resContents.innerText = list[i].resContents
                 revDiv.appendChild(resDiv)
+                revDiv.appendChild(resgrade)
                 revDiv.appendChild(resContents)
+
+                let update = document.createElement("span")
+                update.innerText="수정"
+                update.className="update"
+                revDiv.appendChild(update)
+
+                let del = document.createElement("span")
+                del.innerText="삭제"
+                del.className="delete"
+                revDiv.appendChild(del)   
+
 
                 houseReviewList.appendChild(revDiv)
 
@@ -569,6 +598,7 @@ function getReviewList(roadName,p){
                     reviewMore.disabled= false;
                 }
                 reviewMore.setAttribute("data-name",roadName)
+            
             }
         }
     });
@@ -581,19 +611,49 @@ reviewMore.addEventListener("click", function(){
 });
 
 
-
+// 리뷰 작성
 addReview.addEventListener("click",function(){
+    let gv
+    let tgv
+    let egv
+    let rgv
+    let recommend = document.getElementsByName("recommend")
+    for(let i=0; i<recommend.length;i++){
+        if(recommend[i].checked){
+            gv=recommend[i].value
+        }
+    }
+    let trf = document.getElementsByName("trf")
+    for(let i=0; i<trf.length;i++){
+        if(trf[i].checked){
+            tgv=trf[i].value
+        }
+    }
+    let env = document.getElementsByName("env")
+    for(let i=0; i<env.length;i++){
+        if(env[i].checked){
+            egv=env[i].value
+        }
+    }
+    let res = document.getElementsByName("res")
+    for(let i=0; i<res.length;i++){
+        if(res[i].checked){
+            rgv=res[i].value
+        }
+    }
+
     let num = maemulNum.value
     let id = userId.value
-    let gv = grade.value
     let gtv = grade_text.value
-    let tgv = trfgrade.value
     let ttv = trf_text.value
-    let egv = envgrade.value
     let etv = env_text.value
-    let rgv = resgrade.value
     let rtv = res_text.value
     let road = roadname.value
+
+    if(id==""){
+        alert("로그인이 필요합니다.")
+    }
+
     let xhttp= new XMLHttpRequest();
     xhttp.open("POST","./addReview");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
@@ -614,7 +674,106 @@ addReview.addEventListener("click",function(){
 
 });
 
+//리뷰 수정
+houseReviewList.addEventListener("click",function(event){   
+    if(event.target.className=="update"){
+        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        env_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        res_text.value=event.target.previousSibling.innerHTML
+        reviewNum.value=event.target.parentNode.getAttribute("data-rvnum")
+        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        let rg = event.target.previousSibling.previousSibling.innerHTML
+        document.getElementsByName("recommend")[Math.abs(grade-5)].checked=true
+        document.getElementsByName("trf")[Math.abs(tg-5)].checked=true
+        document.getElementsByName("env")[Math.abs(eg-5)].checked=true
+        document.getElementsByName("res")[Math.abs(rg-5)].checked=true
+        upReview.click()
+    }
+})
+//리뷰리스트에서 수정
+upReview.addEventListener("click",function(){
+    addReview.style.display="none"
+    updateReview.style.display="block"
+})
+writeReview.addEventListener("click",function(){
+    addReview.style.display="block"
+    updateReview.style.display="none"
+    grade_text.value=""
+    trf_text.value=""
+    env_text.value=""
+    res_text.value=""
+    reviewNum.value=""
+    $("input:radio[name='recommend']").prop('checked',false);
+    $("input:radio[name='trf']").prop('checked',false);
+    $("input:radio[name='env']").prop('checked',false);
+    $("input:radio[name='res']").prop('checked',false);
+})
 
+//모달에서 수정 클릭
+updateReview.addEventListener("click",function(){
+    let gv
+    let tgv
+    let egv
+    let rgv
+    let recommend = document.getElementsByName("recommend")
+    for(let i=0; i<recommend.length;i++){
+        if(recommend[i].checked){
+            gv=recommend[i].value
+        }
+    }
+    let trf = document.getElementsByName("trf")
+    for(let i=0; i<trf.length;i++){
+        if(trf[i].checked){
+            tgv=trf[i].value
+        }
+    }
+    let env = document.getElementsByName("env")
+    for(let i=0; i<env.length;i++){
+        if(env[i].checked){
+            egv=env[i].value
+        }
+    }
+    let res = document.getElementsByName("res")
+    for(let i=0; i<res.length;i++){
+        if(res[i].checked){
+            rgv=res[i].value
+        }
+    }
+
+    let rvnum = reviewNum.value
+    let gtv = grade_text.value
+    let ttv = trf_text.value
+    let etv = env_text.value
+    let rtv = res_text.value
+    let road = roadname.value
+    console.log(road)
+
+    let xhttp = new XMLHttpRequest();
+    xhttp.open("POST","./updateReview")
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("reviewNum="+rvnum+"&grade="+gv+"&contents="+gtv+"&trfGrade="+tgv+"&trfContents="+ttv+"&envGrade="+egv+"&envContents="+etv+"&resGrade="+rgv+"&resContents="+rtv)
+    xhttp.addEventListener("readystatechange",function(){
+        if(xhttp.status==200 && xhttp.readyState==4){
+            let result = xhttp.responseText
+            console.log(result)
+            if(result==1){
+                //alert("리뷰 수정완료")
+                for(let i=0; i<houseReviewList.children.length;){
+                    houseReviewList.children[0].remove();
+                }
+                reviewPage=1;
+                getReviewList(road,reviewPage)
+
+            }else{
+                alert("리뷰 수정실패")
+            }
+        }
+    })
+
+})
 
 //--------------------------왼쪽 상단 현재 지도영역 중심의 주소이름------------------------
 function HAddrFromCoords(coords, callback) {

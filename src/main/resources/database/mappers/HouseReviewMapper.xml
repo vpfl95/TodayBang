@@ -55,5 +55,11 @@
 		INSERT INTO HOUSEREVIEW VALUES(HOUSEREV_SEQ.nextval,#{grade},sysdate,null,#{contents},#{userId},#{num},#{trfContents},#{envContents},#{resContents},#{trfGrade},#{envGrade},#{resGrade})
 	</insert>
 	
+	<update id="setUpdateReview" parameterType="HouseReviewDTO">
+		UPDATE HOUSEREVIEW 
+		SET GRADE=#{grade}, CONTENTS=#{contents}, TRFCONTENTS=#{trfContents}, ENVCONTENTS=#{envContents}, RESCONTENTS=#{resContents}, TRFGRADE=#{trfGrade}, ENVGRADE=#{envGrade}, RESGRADE=#{resGrade} 
+		WHERE REVIEWNUM=#{reviewNum}
+	</update>
+	
 
 </mapper>

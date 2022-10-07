@@ -27,4 +27,7 @@ public class HouseReviewService {
 		return houseReviewDAO.setAddHouseReview(houseReviewDTO);
 	}
 	
+	public int setUpdateReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		return houseReviewDAO.setUpdateReview(houseReviewDTO);
+	}
 }

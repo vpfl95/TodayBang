@@ -131,7 +131,16 @@ public class AptController {
 	@PostMapping("addReview")
 	@ResponseBody
 	public int setAddHouseReview(HouseReviewDTO houseReviewDTO)throws Exception{
+				
 		int result = houseReviewService.setAddHouseReview(houseReviewDTO);
+		
+		return result;
+	}
+	
+	@PostMapping("updateReview")
+	@ResponseBody
+	public int setUpdateReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		int result = houseReviewService.setUpdateReview(houseReviewDTO);
 		
 		return result;
 	}
