@@ -92,4 +92,8 @@ public class ProductService {
 	public ProductDTO getOptionDetail(ProductDTO productDTO) throws Exception {
 		return productDAO.getOptionDetail(productDTO);
 	}
+	
+	public List<ProductDTO> getCateItem(String category) throws Exception {
+		return productDAO.getCateItem(category);
+	}
 }

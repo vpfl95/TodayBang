@@ -153,8 +153,10 @@
         <span class="totalPrice">${totalPrice}원</span>
     </div>
     <div class="d-flex justify-content-between mt-3">
-        <button class="btn btn-outline-secondary" id="cart" style="width: 48%;">장바구니</button>
-        <button class="btn btn-primary" id="buy" style="width: 48%;">바로구매</button>
+        <button class="cart btn btn-outline-secondary" style="width: 48%;">장바구니</button>
+        <a class="none-a" href="/orders/checkout" style="width: 48%;">
+            <button class="buy btn btn-primary" style="width: 100%;">바로구매</button>
+        </a>
     </div>
 </body>
 </html>

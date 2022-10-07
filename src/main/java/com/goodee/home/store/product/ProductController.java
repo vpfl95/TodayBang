@@ -135,4 +135,10 @@ public class ProductController {
 		mv.setViewName("/store/products/option");
 		return mv;
 	}
+	
+	@GetMapping("cateItem")
+	@ResponseBody
+	public List<ProductDTO> cateItem(String category) throws Exception {
+		return productService.getCateItem(category);
+	}
 }

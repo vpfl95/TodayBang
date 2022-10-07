@@ -156,4 +156,32 @@
 			<result column="OPTIONPRICE3" property="optionPrice"/>
 		</collection>
 	</resultMap>
+	
+	<select id="getCateItem" parameterType="String" resultMap="getCateItem">
+		SELECT P.*, I.FILENAME, I.FILENUM, I.ORINAME, C.CATEGORYNUM FROM PRODUCT P 
+		JOIN PRODUCTIMAGE I
+		ON P.PRODUCTNUM = I.PRODUCTNUM
+        JOIN "CATE-PRODUCT" C
+        ON P.PRODUCTNUM = C.PRODUCTNUM
+		WHERE I.ORINAME LIKE '01%' AND C.CATEGORYNUM LIKE #{category}||'%'
+	</select>
+	
+	<resultMap type="ProductDTO" id="getCateItem">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<association property="productImageDTO" javaType="ProductImageDTO">
+			<id column="FILENUM" property="fileName"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+	</resultMap>
 </mapper>

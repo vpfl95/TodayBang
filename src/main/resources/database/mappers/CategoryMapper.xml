@@ -10,4 +10,12 @@
 	<insert id="setCategory" parameterType="Cate_ProductDTO">
 		INSERT INTO "CATE-PRODUCT" VALUES (CATE_SEQ.NEXTVAL, #{categoryNum}, #{productNum})
 	</insert>
+	
+	<select id="getTier1" resultType="CategoryDTO">
+		SELECT * FROM CATEGORY WHERE TIER = 1
+	</select>
+	
+	<select id="getCateDetail" parameterType="String" resultType="CategoryDTO">
+		SELECT * FROM CATEGORY WHERE CATEGORYREF = #{category} OR CATEGORYREF LIKE #{category}||'#_%' ESCAPE '#'
+	</select>
 </mapper>

@@ -214,3 +214,7 @@
 .field-text {
     font-size: 15px;
 }
+
+.none-a {
+    text-decoration: none;
+}

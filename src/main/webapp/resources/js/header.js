@@ -69,7 +69,7 @@ function headerCategory(cate){
     if(cate == "storeMenu"){
         
         arr = ['스토어 홈', '카테고리', '오늘의딜', '리퍼마켓', '오!굿즈', '빠른배송', '기획전'];
-        url = ['/store', '/category/main', '/todayDeals', '/exhibitions/detail?exhibitionCode=1433', '/exhibitions/detail?exhibitionCode=2181', '/exhibitions/detail?exhibitionCode=1763', '/exhibitions/main'];
+        url = ['/store', '/category/main?category=3', '/todayDeals', '/exhibitions/detail?exhibitionCode=1433', '/exhibitions/detail?exhibitionCode=2181', '/exhibitions/detail?exhibitionCode=1763', '/exhibitions/main'];
     
     } else if(cate == "roomMenu"){
 
