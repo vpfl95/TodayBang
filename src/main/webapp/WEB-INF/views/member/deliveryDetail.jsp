@@ -51,21 +51,22 @@
 			<c:if test="${loop eq check }">
 				<tr>
 					<td>
-						${list.cartDTO.productDTO.brand }
+						<img alt="" src="/resources/upload/store/product/${list.fileName }" style=" width: 70px;">
+						${list.productDTO.brand }
 						<br>
-						${list.cartDTO.productDTO.productName }
+						${list.productDTO.productName }
 						<br>	
-						<c:forEach items="${list.cartDTO.productOptionDTOs }" var="option">
+						<c:forEach items="${list.productOptionDTOs }" var="option">
 								${option.optionName }:
 								${option.optionCount }개 
 								<br>
 						</c:forEach>
 						
 					</td>
-					<td>${list.cartDTO.buyAmount }</td>
+					<td>${list.buyAmount }</td>
 					<td>${list.orderDate }</td>
 					<td>${list.orderNum }</td>
-					<td>${list.cartDTO.productDTO.price }</td>
+					<td>${list.productDTO.price }</td>
 					<td>${list.deliveryStatus }</td>
 					<td></td>
 				</tr>

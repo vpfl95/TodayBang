@@ -371,7 +371,7 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
 		List<CartDTO> ar =memberService.getCart(memberDTO);
-		
+		System.out.println("cart FNN = " +ar.get(0).getFileName());
 		
 		mv.addObject("length",ar.size());
 		mv.addObject("cart",ar);
@@ -381,7 +381,7 @@ public class MemberController {
 	
 	@GetMapping(value = {"deliveryDetail","buyDetail"})
 	public ModelAndView getDeliveryDetail(HttpSession session,HttpServletRequest request) throws Exception{
-		System.out.println("request== " + request.getServletPath());
+		
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");

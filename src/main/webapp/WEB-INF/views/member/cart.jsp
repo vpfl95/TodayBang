@@ -32,6 +32,7 @@
 				<td><input type="checkbox"/></td>
 				<td>${status.index +1}</td>
 				<td>
+					<img alt="" src="/resources/upload/store/product/${list.fileName }" style=" width: 70px;">
 					${list.productDTO.brand }
 					<br>
 					${list.productDTO.productName }
