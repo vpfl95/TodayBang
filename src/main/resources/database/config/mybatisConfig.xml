@@ -18,7 +18,6 @@
 		
 		
 		
-		
 		<typeAlias type="com.goodee.home.store.product.ProductDTO" alias="ProductDTO"/>
 		<typeAlias type="com.goodee.home.store.product.ProductImageDTO" alias="ProductImageDTO"/>
 		<typeAlias type="com.goodee.home.store.product.ProductOptionDTO" alias="ProductOptionDTO"/>
