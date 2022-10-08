@@ -39,6 +39,11 @@ public class AdminController {
 		ModelAndView mv = new ModelAndView();
 		
 		pager.setUrl("member");
+		
+		
+		
+		
+		
 		List<MemberDTO> ar = adminSerivece.getMember(pager);
 		List<RoleDTO> rr = adminSerivece.getRole();
 		

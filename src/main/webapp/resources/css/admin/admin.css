@@ -1,6 +1,6 @@
 .ban{
 
-    text-decoration: line-through;
+    text-decoration: line-through !important;
 
 }
 #operatorKind{

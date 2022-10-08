@@ -5,17 +5,48 @@
 		<mapper namespace="com.goodee.home.admin.AdminDAO">
 			
 			<sql id="getFilter">
-				<if test="memberFilter != null and memberFilter != ''">
+			
+			<if test="memberFilter != null and memberFilter != ''">
+				
+				<choose>
+					 <when test="memberFilter.length == 1">
+						 <foreach item="item" index="index" collection="memberFilter">
+							<choose>
+								<when test="item == '200' or item =='100'">
+								</when>
+								<otherwise>
+									WHERE MR2.ROLENUM IN (#{item})
+								</otherwise>
+							</choose>
+						</foreach>
+					 </when>
+					<otherwise>
+						
+						WHERE MR2.ROLENUM IN
+						<foreach item="item" index="index" collection="memberFilter" open="(" close=")" separator=",">
+							<if test="item != '200' and item !='100'">
+								#{item}
+							</if>
+						</foreach>
+					</otherwise>
+				
+				</choose>
+				
+			</if>
+			
+			
+			
+			
+			
+				<!-- <if test="memberFilter != null and memberFilter != ''">
+					
 					WHERE MR2.ROLENUM IN
-					<!-- memberFilter -->
 					<foreach item="item" index="index" collection="memberFilter" open="(" close=")" separator=",">
-						<if test="item!='100' and item !='200'">
+						<if test="item != '200' and item !='100'">
 							#{item}
 						</if>
-						
-						
 					</foreach>
-				</if>
+				</if> -->
 				
 			</sql>
 			
@@ -32,8 +63,8 @@
 					<foreach item="item" index="index" collection="memberFilter">
 						<if test="item=='100' || item=='200'">
 							<choose>
-							<when test="item=='100'">WHERE  ROLENUM BETWEEN 0 AND 99</when>
-							<when test="item=='200'">WHERE  ROLENUM-100 BETWEEN 0 AND 99</when>
+							<when test="item=='100'">WHERE  ROLENUM-100 BETWEEN 0 AND 99</when>
+							<when test="item=='200'">WHERE  ROLENUM BETWEEN 0 AND 99</when>
 							<otherwise></otherwise>
 							</choose>
 						</if>
@@ -72,21 +103,11 @@
 					
 			</select>
 			
-			<!-- <resultMap type="MemberDTO" id="getMemberResult">
-				<id column="USERID" property="userId"/>
-				<result column="NICKNAME" property="nickname"/>
-				<collection property="roleDTOs" javaType="List" ofType="RoleDTO">
-					<id column="ROLENUM" property="roleNum"/>
-					<result column="ROLENAME" property="roleName"/>
-				</collection>
-				
 			
-			
-			
-			</resultMap> -->
 			
 			<select id="getMemberCount" parameterType="Pager" resultType="Long">
-			SELECT MAX(R)
+			SELECT * 
+			FROM (SELECT COUNT(R)
                FROM (SELECT ROWNUM R, S.*
 				FROM (SELECT N.USERID , N.NICKNAME, MAX(N.NEWROLENUM) roleNum
 				      FROM  (SELECT MB.USERID , MB.NICKNAME ,SUM(MR.ROLENUM) newRoleNum
@@ -103,7 +124,7 @@
                         <include refid="getFilter"></include>  
                         
                         GROUP BY N.USERID , N.NICKNAME
-                        ) S)
+                        ) S) <include refid="ban"></include>  )
                        
 				
 			</select>

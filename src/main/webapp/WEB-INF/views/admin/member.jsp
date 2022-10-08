@@ -80,8 +80,8 @@
 							<td><label for="white"><input id= "white" class = "memberClass" type="checkbox" name= "memberFilter" value="40">White</label>
 						</tr>
 						<tr id = "banDiv">
-							<td><label for="OnlyNoBan"><input id= "OnlyNoBan" type="checkbox" name= "memberFilter" value="100">OnlyNoBan</label>
-							<td><label for="OnlyBan"><input id= "OnlyBan" type="checkbox" name= "memberFilter" value="200">OnlyBan</label>
+							<td><label for="OnlyBan"><input id= "OnlyBan" type="checkbox" name= "memberFilter" value="100">OnlyBan</label>
+							<td><label for="OnlyNoBan"><input id= "OnlyNoBan" type="checkbox" name= "memberFilter" value="200">OnlyNoBan</label>
 						
 							<td></td>
 							<td></td>
