@@ -10,7 +10,11 @@
 <body>
 	<!-- 장바구니 -->
 	
-	배송내역 페이지 입니다 .
+	
+	
+	<div>
+	<h3>${url }</h3>	
+	
 	<table class="table table-hover">
 		<thead>
 			<tr>
@@ -28,7 +32,7 @@
 			
 		
 			<c:choose>
-				<c:when test="${url eq 'buyDetail' }">
+				<c:when test="${url eq '구매내역' }">
 					<c:set var="loop" value="true"></c:set>
 				</c:when>
 				<c:otherwise>
@@ -86,7 +90,7 @@
 	
 	
 	</table>
-	
+	</div>
 	
 	
 </body>

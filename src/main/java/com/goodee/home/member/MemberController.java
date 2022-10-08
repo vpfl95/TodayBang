@@ -392,10 +392,17 @@ public class MemberController {
 		
 		
 		String [] url = request.getServletPath().split("/");
+		String page;
+		if(url[2].equals("deliveryDetail") ) {
+			page ="배송내역";
+			System.out.println("배송내역");
+		}else {
+			
+			page ="구매내역";
+			System.out.println("구매내역");
+		}
 		
-		
-		
-		mv.addObject("url",url[2]);
+		mv.addObject("url",page);
 		mv.addObject("length",ar.size());
 		mv.addObject("order",ar);
 		

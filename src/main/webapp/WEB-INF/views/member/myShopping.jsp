@@ -18,11 +18,11 @@
 <body>
 	<c:import url="../template/header.jsp"></c:import>
 	
-	<section class="container-fluid container-lg-8 mt-4">
+	<section class="container-fluid container-lg-8 mt-4" id="shoppingSection">
 	
 		<c:import url="./myPageCate.jsp"></c:import>
 		
-		<div class="container-fluid container-lg-8 mt-4 ">
+		<div class="container-fluid container-lg-8 " style="background-color: white; padding-top: 24px;">
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
