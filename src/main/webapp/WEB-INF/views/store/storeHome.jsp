@@ -17,23 +17,60 @@
 <body>
     <c:import url="../template/header.jsp"></c:import>
     <!-- Carousel -->
-    <section class="container-fluid container-lg-8">
+	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+		<div class="carousel-indicators">
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
+		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+		</div>
+		<div class="carousel-inner" style="margin-top: 150px;">
+		  <div class="carousel-item active">
+			<img src="/resources/images/store/storeHome/1+1main.webp" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/samsung.webp" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/refur.webp" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/premium.jpg" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/oGoods.webp" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/fastDeli.webp" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/newLine.webp" class="d-block w-100" alt="...">
+		  </div>
+		  <div class="carousel-item">
+			<img src="/resources/images/store/storeHome/fur.webp" class="d-block w-100" alt="...">
+		  </div>
+		</div>
+	</div>
+    <section class="container-fluid container-lg-8" style="padding-top: 0px;">
         <div class="row justify-content-center">
-    		<img src="/resources/images/store/storeHome/fabricSale.png" alt="" style="width: 100%; height: 340px; margin-top: 55px;">
             <div class="col-lg-9">
             	<!-- Carousel 이미지 변경 버튼 -->
 	            <div class="exhibition">
 	                <div class="d-flex justify-content-center menu" style="text-align: center;">
-	                    <div>패브릭 세일</div>
-	                    <div>인기가전 특가</div>
-	                    <div>리퍼마켓</div>
-	                    <div>프리미엄 핫딜</div>
-	                    <div>오!굿즈</div>
-	                    <div>빠른배송</div>
-	                    <div>신규 브랜드</div>
-	                    <div>삼성 가전</div>
-	                    <div><</div>
-	                    <div>></div>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1+1Shop</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">삼성 가전</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">리퍼마켓</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4">프리미엄 핫딜</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5">오!굿즈</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6">빠른배송</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7">신규 브랜드</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8">가구 세일</button>
+	                    <button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">></button>
 	                </div>       
 	            </div>
 	
@@ -61,7 +98,7 @@
 	                        <div class="text">리퍼마켓</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/newLine.jpg" alt=""></a></div>
+	                        <div><a href="#"><img src="/resources/images/store/storeHome/newLineIcon.jpg" alt=""></a></div>
 	                        <div class="text">신상특가</div>
 	                    </div>
 						<!-- 카테고리 이동-->
@@ -81,56 +118,7 @@
 	                <a href="/todayDeals" class="d-inline-flex float-end a_tag">📌더보기</a>
 	            </div>
 	
-	            <div class="d-flex justify-content-center center_menu row" style="height: 343px;">
-	                <div class="col d-sm-6 d-lg-6 menu-div">
-	                    <div class="center_menu_img"><img src="/resources/images/test2.jpeg" alt=""></div>
-	                    <div>
-	                        <div class="brand">먼데이하우스</div>
-	                        <div class="productName">오늘의 직방 최다리뷰! 인기 총합 가구 BIG SALE</div>
-	                        <div>
-	                            <div class="saleRate"><b>61%</b></div>
-	                            <div class="price"><b>10300 외</b></div>
-	                        </div>
-	                        <div>
-	                            <div class="grade"><b>4.6</b></div>
-	                            <div class="reviewNum">리뷰 187350</div>
-	                        </div>
-	                    </div>
-	                </div>
-	                <div class="col d-sm-6 d-lg-6 menu-div">
-	                    <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
-	                    <div>
-	                        <div class="brand"></div>
-	                        <div class="product"></div>
-	                        <div class="saleRate"></div>
-	                        <div class="price"></div>
-	                        <div class="grade"></div>
-	                        <div class="reviewNum"></div>
-	                    </div>
-	                </div>
-	                <div class="col d-sm-6 d-lg-6 menu-div">
-	                    <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
-	                    <div>
-	                        <div class="brand"></div>
-	                        <div class="product"></div>
-	                        <div class="saleRate"></div>
-	                        <div class="price"></div>
-	                        <div class="grade"></div>
-	                        <div class="reviewNum"></div>
-	                    </div>
-	                </div>
-	                <div class="col d-sm-6 d-lg-6 menu-div">
-	                    <div class="center_menu_img"><img src="/resources/images/testProductImage.jpg" alt=""></div>
-	                    <div>
-	                        <div class="brand"></div>
-	                        <div class="product"></div>
-	                        <div class="saleRate"></div>
-	                        <div class="price"></div>
-	                        <div class="grade"></div>
-	                        <div class="reviewNum"></div>
-	                    </div>
-	                </div>
-	            </div>
+	            <div class="d-flex justify-content-center center_menu row" id="center_menu"></div>
 	
 	            <div style="height: 20px; width: 100%;" class="category">
 	                <h5 class="d-inline-flex float-start"><b>🏷카테고리</b></h5>
@@ -193,6 +181,7 @@
 	<script src="/resources/js/store/storeHome.js"></script>
 	<script>
 		getList();
+		getTodayList();
 	</script>
 </body>
 </html>

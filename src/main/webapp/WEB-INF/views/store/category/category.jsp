@@ -17,7 +17,7 @@
 <body>
     <c:import url="../../template/header.jsp"></c:import>
 
-    <section class="container main">
+    <section class="container main" id="main">
         <div style="margin: 40px 40px 0 40px; height: 1000px;">
             <div class="d-flex justify-content-between" style="height: 100%;">
                 <div style="width: 20%;" id="categorySide">

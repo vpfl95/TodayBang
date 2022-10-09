@@ -22,12 +22,82 @@
     margin-top: 100px;
 }
 
-/**PageNation*/
-.paging {
-    height: 100px;
-    margin-bottom: 2em;
+/* Product Detail Font*/
+.imageList {
+    max-width: 100%;
 }
-.pagination {
-    justify-content: center;
-    padding-top: 2em;
+
+.imageList img {
+    width: 100%;
+}
+
+.imageList>div {
+    width: 25%;
+    padding: 10px;
+}
+
+.brand {
+    font-size: 10px;
+    color: gray;
+}
+
+.productName {
+    font-size: 14px;
+    word-break: break-all;
+}
+
+.saleRate {
+    font-size: 19px;
+    display: inline-block;
+    color: #35c5f0;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.price {
+    display: inline-block;
+    font-size: 19px;
+    font-weight: bold;
+}
+
+.grade {
+    font-size: 14px;
+    display: inline-block;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+.reviewNum {
+    font-size: 14px;
+    display: inline-block;
+    color: gray;
+}
+
+.product {
+    position: relative;
+    z-index: 1;
+}
+
+.subA {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 3;
+}
+/* todayDeal 전용 */
+.todayTimer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 4;
+    background-color: rgb(255, 119, 119);
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 0px 6px;
+    font-weight: 700;
+    height: 24px;
+    line-height: 24px;
 }
