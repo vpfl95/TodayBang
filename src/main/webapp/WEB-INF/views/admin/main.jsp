@@ -25,8 +25,8 @@
 					
 					
 					<h1> <a href="../service/notice/add">공지사항 추가하기 </a> </h1>
-					
-				
+					<h1> <a href="../product/add">상품 추가 </a> </h1>
+					<h1> <a href="../product/todayDeal">오늘의 딜 설정 </a> </h1>
 					<h3> (후)팝업 광고 추가하기 </h3>
 					<h3> (후)신고 관리 </h3>
 			</div>

@@ -544,12 +544,22 @@ tr,th{
     align-items: baseline;
 }
 
-#order-body{
+#order-body,.myQna-body,.myPdReview-body{
     display: flex;
     width: 90%;
     max-width: 1150px;
     margin: 0 auto;
     flex-direction: column;
+
+}
+.myQna-div{
+
+    width: 100%;
+}
+.myPdReview-div{
+
+    max-width: 900px;
+    margin: 0 auto;
 
 }
 
@@ -558,4 +568,13 @@ tr,th{
   
     margin-top: 40px;
     text-align: center;
+}
+
+.bigImg{
+    position: absolute;
+
+    width: 500px !important;
+    height: 500px;
+
+
 }

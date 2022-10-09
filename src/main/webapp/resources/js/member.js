@@ -1365,3 +1365,25 @@ function cart(){
 
 }
 
+
+function myPdReview() {
+
+    const reviewImg = document.getElementsByClassName("reviewImg");
+
+
+    for(re of reviewImg){
+
+        re.addEventListener("click",function(event){
+
+            
+            event.target.classList.toggle("bigImg");
+
+
+
+
+        })
+
+    }
+
+
+}
