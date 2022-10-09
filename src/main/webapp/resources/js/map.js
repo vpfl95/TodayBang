@@ -580,6 +580,7 @@ function getReviewList(roadName,p){
                 let update = document.createElement("span")
                 update.innerText="수정"
                 update.className="update"
+                update.setAttribute("value",list[i].userId)
                 revDiv.appendChild(update)
 
                 let del = document.createElement("span")
@@ -675,9 +676,53 @@ addReview.addEventListener("click",function(){
 
 });
 
+function writerCheck(userId){
+    let result
+    if(writeReview.value==""){
+        alert("로그인이 필요합니다.")
+        window.location.href='/member/login'
+    }
+    // console.log(userId)
+    // let xhttp= new XMLHttpRequest();
+    // xhttp.open("POST","./writerCheck")
+    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    // xhttp.send("userId="+userId)
+    // xhttp.addEventListener("readystatechange",function(){
+    //     if(xhttp.status==200 && xhttp.readyState==4){
+    //         result = xhttp.responseText.trim();
+    //         console.log(result)
+    //     }
+    // })
+    
+    // return result
+
+    $.ajax({
+        type: "post",
+        url: "./writerCheck",
+        async: false,     //값을 리턴시 해당코드를 추가하여 동기로 변경
+        data: { userId: userId },
+        success: function (data) {
+            result = data;
+        }
+    });
+    return result
+}
+
+
+
 //리뷰 수정
 houseReviewList.addEventListener("click",function(event){   
     if(event.target.className=="update"){
+     
+        console.log(event.target.getAttribute("value"))
+        let result = writerCheck(event.target.getAttribute("value"));
+        console.log(result)
+        if(result==0){
+            alert("작성자만 수정이 가능합니다.")
+            // window.location.href='/apt/map'
+            return false
+        }
+        
         grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
         trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
         env_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
@@ -700,6 +745,13 @@ upReview.addEventListener("click",function(){
     updateReview.style.display="block"
 })
 writeReview.addEventListener("click",function(){
+    
+    console.log(writeReview.value)
+    if(writeReview.value==""){
+        alert("로그인이 필요합니다.")
+        window.location.href='/member/login'
+    }
+
     addReview.style.display="block"
     updateReview.style.display="none"
     grade_text.value=""

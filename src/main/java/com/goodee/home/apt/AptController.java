@@ -24,7 +24,7 @@ import com.goodee.home.util.MaemulPager;
 
 
 @Controller
-@RequestMapping("/apt/*")
+@RequestMapping("/apt/**")
 public class AptController {
 
 	@Autowired
@@ -140,6 +140,7 @@ public class AptController {
 	@PostMapping("updateReview")
 	@ResponseBody
 	public int setUpdateReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		System.out.println("update Review");
 		int result = houseReviewService.setUpdateReview(houseReviewDTO);
 		
 		return result;
@@ -152,6 +153,15 @@ public class AptController {
 		int result = houseReviewService.setDeleteReview(houseReviewDTO);
 		
 		return result;
+	}
+	
+	@PostMapping("writerCheck")
+	@ResponseBody
+	public ModelAndView writerCheck(HouseReviewDTO houseReviewDTO)throws Exception{
+		System.out.println("컨트롤러"+houseReviewDTO.getUserId());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("houseReviewDTO",houseReviewDTO);
+		return mv;
 	}
 	
 }
