@@ -33,9 +33,6 @@ public class WriterCheckInterceptor extends HandlerInterceptorAdapter {
 		
 		if(!memberDTO.getUserId().equals(houseReviewDTO.getUserId())) {
 			System.out.println("일치하지 않음");
-//			modelAndView.setViewName("common/message");
-//			modelAndView.addObject("msg","작성자만 수정이 가능합니다.");
-//			modelAndView.addObject("url","/apt/map");
 			modelAndView.setViewName("common/ajaxResult");
 			modelAndView.addObject("result",0);
 		}else {

@@ -586,6 +586,7 @@ function getReviewList(roadName,p){
                 let del = document.createElement("span")
                 del.setAttribute("data-rvNum",list[i].reviewNum)
                 del.setAttribute("data-road",roadName)
+                del.setAttribute("value",list[i].userId)
                 del.innerText="삭제"
                 del.className="delete"
                 revDiv.appendChild(del)   
@@ -676,25 +677,14 @@ addReview.addEventListener("click",function(){
 
 });
 
+
+//작성자확인 인터셉터
 function writerCheck(userId){
     let result
     if(writeReview.value==""){
         alert("로그인이 필요합니다.")
         window.location.href='/member/login'
     }
-    // console.log(userId)
-    // let xhttp= new XMLHttpRequest();
-    // xhttp.open("POST","./writerCheck")
-    // xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    // xhttp.send("userId="+userId)
-    // xhttp.addEventListener("readystatechange",function(){
-    //     if(xhttp.status==200 && xhttp.readyState==4){
-    //         result = xhttp.responseText.trim();
-    //         console.log(result)
-    //     }
-    // })
-    
-    // return result
 
     $.ajax({
         type: "post",
@@ -829,6 +819,18 @@ updateReview.addEventListener("click",function(){
 //리뷰 삭제
 houseReviewList.addEventListener("click",function(event){
     if(event.target.className=="delete"){
+
+        let result = writerCheck(event.target.getAttribute("value"));
+        console.log(result)
+        if(result==0){
+            alert("작성자만 삭제 가능합니다.")
+            return false
+        }else{
+            if(confirm("리뷰를 삭제 하시겠습니까?")==false){
+                return false
+            }
+        }
+
         console.log(event.target.getAttribute("data-rvNum"))
         let rvNum = event.target.getAttribute("data-rvNum");
         let road = event.target.getAttribute("data-road");
