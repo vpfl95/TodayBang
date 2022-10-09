@@ -20,17 +20,93 @@
         <div class="left_re mt-5">
             <h3 style="margin-bottom: 50px;">주문/결제</h3>
             <h4>주문자</h4>
-            <hr style="width: 90%;">
+            <hr style="width: 95%;">
+            <div class="d-flex" style="height: 38px;">
+                <label for="userName" style="width: 15%; line-height: 50px;">이름</label>
+				<input type="text" id="userName" name = "userName" class="form-control nonOverlab" style="width: 40%;">
+            </div>
+
+            <div class="d-flex mt-3">
+                <label for="email" style="width: 15%;">이메일</label>
+                <div id= "email" style="width: 80%;" class="d-flex">
+                    <input type="hidden" name = "email" id="submitEmail">
+                    <input type="text"  id="emailFirst" name = "email1" class="form-control nonOverlab" style="width: 50%;">
+                    <label for="emailAt" class="nolabel" style="width: 10%; text-align: center; font-size: 20px;">@</label>
+                    <select name="email1" id="emailAt" class="form-control nonOverlab" style="width: 40%;">
+                        <option value="0" disabled selected="selected">선택해주세요</option>
+                        <option value="naver.com">naver.com</option>
+                        <option value="gmail.com">gmail.com</option>
+                        <option value="hanmail.net">hanmail.net</option>
+                        <option value="daum.net">daum.net</option>
+                        <option value="nate.com">nate.com</option>
+                        <option value="1">직접입력</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="d-flex mt-3">
+                <label for="inputPhone" style="width: 15%;">휴대전화</label>
+                <input type="hidden" name = "phone" id="submitPhone">
+                <div id= "phone" class="d-flex" style="width: 40%;">
+                    <select name="phone1" id="phoneFirst" class="form-control nonOverlab" style="width: 30%; margin-right: 10px;">
+                        <option value="010" selected="selected">010</option>
+                        <option value="011" >011</option>
+                        <option value="070" >070</option>
+                    </select>
+                    <input type="text"  id="phone" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between mt-5" style="width: 95%;">
+                <h4>배송지</h4>
+                <button type="button" class="same">위와 동일하게 채우기</button>
+            </div>
+            <hr style="width: 95%;">
+            <div class="d-flex" style="height: 38px;">
+                <label for="deliName" style="width: 15%; line-height: 50px;">배송지명</label>
+				<input type="text" id="deliName" name = "deliName" class="form-control nonOverlab" style="width: 40%;">
+            </div>
+            <div class="d-flex mt-3" style="height: 38px;">
+                <label for="addressee" style="width: 15%; line-height: 50px;">받는 사람</label>
+				<input type="text" id="addressee" name = "addressee" class="form-control nonOverlab" style="width: 40%;">
+            </div>
+            <div class="d-flex mt-3">
+                <label for="inputPhone" style="width: 15%;">연락처</label>
+                <input type="hidden" name = "phone" id="submitPhone">
+                <div id= "phone" class="d-flex" style="width: 40%;">
+                    <select name="phone1" id="phoneFirst" class="form-control nonOverlab" style="width: 30%; margin-right: 10px;">
+                        <option value="010" selected="selected">010</option>
+                        <option value="011" >011</option>
+                        <option value="070" >070</option>
+                    </select>
+                    <input type="text"  id="phone" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
+                </div>
+            </div>
         </div>
 
         <div class="right_re mt-5">
             <div class="right_re1">
-                <p>비스포크 인기가전 한정 특가!</p>
-                <h5><b>삼성전자 슈퍼세일</b></h5>
-                <hr>
-                <div class="d-grid gap-2 col-12 mx-auto mt-4">
-                    <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
+                <h3>결제금액</h3>
+                <div class="d-flex justify-content-between mt-4">
+                    <div>총 상품 금액</div>
+                    <div>0원</div>
                 </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <div>배송비</div>
+                    <div>0원</div>
+                </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <div>포인트 사용</div>
+                    <div>0원</div>
+                </div>
+                <hr style="width: 90%; margin: 30px auto 0 auto;">
+
+                <div class="d-flex justify-content-between mt-2">
+                    <div>최종 결제 금액</div>
+                    <div>0원</div>
+                </div>
+                <div>0포인트 적립 예정</div>
+                <hr style="width: 90%; margin: 30px auto 0 auto;">
             </div>
         </div>
 	</section>

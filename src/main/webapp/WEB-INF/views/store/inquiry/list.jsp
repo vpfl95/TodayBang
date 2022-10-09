@@ -32,11 +32,17 @@
 		font-size: 13px;
 		margin-right: 5px;
 	}
+
+	.production-question-feed__item__content__secret-icon {
+		margin-left: 3px;
+		width: 4%;
+	}
 </style>
 </head>
 <body>
 	<c:forEach items="${list}" var="dto" varStatus="i">
 		<c:if test="${dto.replyStatus eq 0}">
+			<hr>
 			<div class="d-flex justify-content-between">
 			<c:choose>
 				<c:when test="${dto.buyStatus eq 0 and reStatus[i.index] eq 0}">
@@ -73,22 +79,38 @@
 			<div class="d-flex justify-content-between">
 				<div>
 					<span class="question">Q</span>
-					<span>${dto.contents}</span>
+					<c:choose>
+						<c:when test="${dto.priStatus eq 0 or dto.userId eq member.userId or ManagerRole ne null}">
+							<span>${dto.contents}</span>
+						</c:when>
+						<c:otherwise>
+							<span>
+								<svg class="production-question-feed__item__content__secret-icon" viewBox="0 0 16 16" preserveAspectRatio="xMidYMid meet">
+									<path fill="#AFAFAF" d="M10 5.33h-.67V4a3.33 3.33 0 00-6.66 0v1.33H2c-.73 0-1.33.6-1.33 1.34v6.66c0 
+										.74.6 1.34 1.33 1.34h8c.73 0 1.33-.6 1.33-1.34V6.67c0-.74-.6-1.34-1.33-1.34zm-4 6c-.73 0-1.33-.6-1.33-1.33S5.27 8.67 
+										6 8.67s1.33.6 1.33 1.33-.6 1.33-1.33 1.33zm2.07-6H3.93V4a2.07 2.07 0 014.14 0v1.33z">
+									</path>
+								</svg>
+								비밀글입니다.
+							</span>
+						</c:otherwise>
+					</c:choose>
 				</div>
 				<button class="reply" data-bs-toggle="modal" data-bs-target="#inquiryReplyModal" data-reply-inqnum="${dto.inqNum}">답글</button>
 			</div>
 		</c:if>
 		<c:if test="${not empty reply[i.index]}">
-			<div style="margin-top: 5px;">
-				<div>
-					<span class="question">A</span>
-					<span>${reply[i.index].userId}</span>
-					<span>${reply[i.index].regDate}</span>
+			<c:if test="${dto.priStatus eq 0 or dto.userId eq member.userId or ManagerRole ne null}">
+				<div style="margin-top: 5px;">
+					<div>
+						<span class="question">A</span>
+						<span>${reply[i.index].userId}</span>
+						<span>${reply[i.index].regDate}</span>
+					</div>
+					<div>${reply[i.index].contents}</div>
 				</div>
-				<div>${reply[i.index].contents}</div>
-			</div>
+			</c:if>
 		</c:if>
-		<hr>
 	</c:forEach>
 </body>
 </html>

@@ -1,7 +1,7 @@
 .right_re {
     width: 30%;
     margin: 0px;
-    height: 9000px;
+    height: 2000px;
     display:inline-block;
 }
 
@@ -11,14 +11,26 @@
     margin: 0 auto;
     padding: 2em 1em;
     position: fixed;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
 .left_re{
     width: 55%;
-    height: 9000px;
+    height: 2000px;
     float: left;
 }
 
 .left_re img {
     max-width: 100%;
+}
+
+.same {
+    color: #35c5f0;
+    transition: opacity .1s;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    font-weight: bold;
 }

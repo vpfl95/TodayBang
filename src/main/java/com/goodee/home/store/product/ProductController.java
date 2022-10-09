@@ -2,6 +2,7 @@ package com.goodee.home.store.product;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 import javax.servlet.http.HttpSession;
 
@@ -128,5 +129,23 @@ public class ProductController {
 	@ResponseBody
 	public List<ProductDTO> cateItem(String category) throws Exception {
 		return productService.getCateItem(category);
+	}
+	
+	@GetMapping("todayDeal")
+	public String setTodayDeals() throws Exception {
+		List<ProductDTO> ar = productService.getTodayDealSub();
+		productService.minusTodayDeal();
+		int result = 0;
+		Random random = new Random();
+		for(int i=0; i<5; i++) {
+			result += productService.setTodayDeal(ar.get(random.nextInt(ar.size())));
+		}
+		return "redirect:/";
+	}
+	
+	@GetMapping("today_list")
+	@ResponseBody
+	public List<ProductDTO> getTodayDealList() throws Exception {
+		return productService.getTodayDealList();
 	}
 }
