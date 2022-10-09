@@ -1,0 +1,24 @@
+.right_re {
+    width: 30%;
+    margin: 0px;
+    height: 9000px;
+    display:inline-block;
+}
+
+.right_re1 {
+    width: 300px;
+    height: 300px;
+    margin: 0 auto;
+    padding: 2em 1em;
+    position: fixed;
+}
+
+.left_re{
+    width: 55%;
+    height: 9000px;
+    float: left;
+}
+
+.left_re img {
+    max-width: 100%;
+}

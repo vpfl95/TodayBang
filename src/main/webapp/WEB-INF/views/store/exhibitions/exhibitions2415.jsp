@@ -86,14 +86,7 @@
                 <img src="/resources/images/store/exhibitions/ex2415/newItem3.jpg" alt="">
                 <img src="/resources/images/store/exhibitions/ex2415/newItem4.jpg" alt="">
             </div>
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>Best Top10</b></div>
-                <div><b>New Item</b></div>
-                <div><b>추천브랜드</b></div>
-                <div><b>빠른배송</b></div>
-                <div><b>스몰럭셔리</b></div>
-            </div>
+
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

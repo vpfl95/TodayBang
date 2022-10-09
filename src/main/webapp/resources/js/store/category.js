@@ -60,6 +60,7 @@ categorySide.onclick=function(event) {
         history.pushState(null,null,url);
         getList(event.target.dataset.cateNum);
     }
+    setExpand();
 }
 
 function getList(category) {
@@ -224,4 +225,8 @@ function getCategory() {
             }
         }
     }
+}
+
+function setExpand() {
+    console.log($("#categorySide").find('.tier3Wrap'));
 }

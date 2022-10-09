@@ -136,23 +136,23 @@
 	                <h5 class="d-inline-flex float-start"><b>🏷카테고리</b></h5>
 	            </div>
 	            
-	            <div style="height: 122px;">
+	            <div style="height: auto;">
 	                <div class="d-flex justify-content-between menu_cate">
-	                    <div><img src="/resources/images/store/storeHome/furnitureIcon.png" alt=""></div>
-	                    <div><img src="/resources/images/store/storeHome/fabricIcon.png" alt=""></div>
-	                    <div><img src="/resources/images/store/storeHome/homeAppliancesIcon.png" alt=""></div>
-	                    <div><img src="/resources/images/store/storeHome/lightIcon.png" alt=""></div>
-	                    <div><img src="/resources/images/store/storeHome/drawerIcon.png" alt=""></div>
-	                    <div><img src="/resources/images/store/storeHome/rentalIcon.png" alt=""></div>
+	                    <a href="/category/main?category=0"><img src="/resources/images/store/storeHome/furnitureIcon.png" alt=""></a>
+	                    <a href="/category/main?category=1"><img src="/resources/images/store/storeHome/fabricIcon.png" alt=""></a>
+	                    <a href="/category/main?category=3"><img src="/resources/images/store/storeHome/homeAppliancesIcon.png" alt=""></a>
+	                    <a href="/category/main?category=27"><img src="/resources/images/store/storeHome/lightIcon.png" alt=""></a>
+	                    <a href="/category/main?category=11"><img src="/resources/images/store/storeHome/drawerIcon.png" alt=""></a>
+	                    <a href="/category/main?category=25"><img src="/resources/images/store/storeHome/rentalIcon.png" alt=""></a>
 	                </div>
 	            </div>
 	            <div class="d-flex justify-content-between menu_cate_bottom">
-	                <div><b>가구</b></div>
-	                <div><b>패브릭</b></div>
-	                <div><b>가전</b></div>
-	                <div><b>조명</b></div>
-	                <div><b>서랍장</b></div>
-	                <div><b>렌탈</b></div>
+	                <a class="cateA" href="/category/main?category=0">가구</a>
+	                <a class="cateA" href="/category/main?category=1">패브릭</a>
+	                <a class="cateA" href="/category/main?category=3">가전</a>
+	                <a class="cateA" href="/category/main?category=27">조명</a>
+	                <a class="cateA" href="/category/main?category=11">서랍장</a>
+	                <a class="cateA" href="/category/main?category=25">렌탈</a>
 	            </div>
 	
 	            <div style="height: 20px; width: 100%;" class="popularItemText">

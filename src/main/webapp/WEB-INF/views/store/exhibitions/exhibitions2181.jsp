@@ -62,14 +62,6 @@
             <img src="/resources/images/store/exhibitions/ex2181/colorItem3.png" alt="">
             <img src="/resources/images/store/exhibitions/ex2181/colorItem4.png" alt="">
 
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>가구</b></div>
-                <div><b>패브릭</b></div>
-                <div><b>가전</b></div>
-                <div><b>수납</b></div>
-                <div><b>조명</b></div>
-            </div>
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

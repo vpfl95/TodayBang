@@ -120,17 +120,6 @@
                 </div>
             </div>
 
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>침대</b></div>
-                <div><b>매트리스</b></div>
-                <div><b>소파/거실장</b></div>
-                <div><b>서랍장/책상</b></div>
-                <div><b>식탁/테이블</b></div>
-                <div><b>드레스룸/화장대</b></div>
-                <div><b>가전</b></div>
-                <div><b>해외 브랜드</b></div>
-            </div>
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

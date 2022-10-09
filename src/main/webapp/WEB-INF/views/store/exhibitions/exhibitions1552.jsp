@@ -35,18 +35,7 @@
         </div>
         <div class="left_re mt-5" style="margin-left: 70px;">
             <img src="/resources/images/store/exhibitions/ex1552/caseMain.gif" alt="">
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>1+1득템</b></div>
-                <div><b>의류정리</b></div>
-                <div><b>의류보관</b></div>
-                <div><b>화장품/소품정리</b></div>
-                <div><b>신발정리</b></div>
-                <div><b>거실정리</b></div>
-                <div><b>욕실정리</b></div>
-                <div><b>아이방정리</b></div>
-                <div><b>자투리 공간 활용</b></div>
-            </div>
+          
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

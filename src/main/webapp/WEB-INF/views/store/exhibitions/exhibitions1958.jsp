@@ -147,16 +147,6 @@
                 <img src="/resources/images/store/exhibitions/ex1958/sizeItem3.webp" alt="">
                 <img src="/resources/images/store/exhibitions/ex1958/sizeItem4.webp" alt="">
             </div>
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>거실조명</b></div>
-                <div><b>방조명</b></div>
-                <div><b>주방조명</b></div>
-                <div><b>현관/베란다</b></div>
-                <div><b>식탁/테이블</b></div>
-                <div><b>욕실조명</b></div>
-                <div><b>평형별 세트</b></div>
-            </div>
       
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->

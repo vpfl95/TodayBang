@@ -34,10 +34,10 @@
                 	<c:if test="${dto.optionDiv eq 1}">
                 		<c:choose>
 	                		<c:when test="${dto.optionPrice < 0}">
-	                			<option value="${dto.optionNum}">${dto.optionName}</option>
+	                			<option class="option1_op" value="${dto.optionNum}" data-option-price="${dto.optionPrice}">${dto.optionName}</option>
 	                		</c:when>
 	                		<c:otherwise>
-	                			<option value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
+	                			<option class="option1_op" value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
 	                		</c:otherwise>
 	                	</c:choose>
                 	</c:if>
@@ -49,10 +49,10 @@
 	                	<c:if test="${dto.optionDiv eq 2}">
 	                		<c:choose>
 		                		<c:when test="${dto.optionPrice < 0}">
-		                			<option value="${dto.optionNum}">${dto.optionName}</option>
+		                			<option class="option2_op" value="${dto.optionNum}" data-option-price="${dto.optionPrice}">${dto.optionName}</option>
 		                		</c:when>
 		                		<c:otherwise>
-		                			<option value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
+		                			<option class="option2_op" value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
 		                		</c:otherwise>
 		                	</c:choose>
 	                	</c:if>
@@ -65,10 +65,10 @@
 	                	<c:if test="${dto.optionDiv eq 3}">
 	                		<c:choose>
 		                		<c:when test="${dto.optionPrice < 0}">
-		                			<option value="${dto.optionNum}">${dto.optionName}</option>
+		                			<option class="option3_op" value="${dto.optionNum}" data-option-price="${dto.optionPrice}">${dto.optionName}</option>
 		                		</c:when>
 		                		<c:otherwise>
-		                			<option value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
+		                			<option class="option3_op" value="${dto.optionNum}">${dto.optionName} (${dto.optionPrice}원)</option>
 		                		</c:otherwise>
 		                	</c:choose>
 	                	</c:if>
@@ -87,7 +87,7 @@
                 </div>
                 <div class="d-flex justify-content-between">
                     <div style="width: 30%;">
-                        <select class="form-select sellingOptionControll-${option.optionNum}">
+                        <select class="form-select sellingOptionControll-${option.optionNum}" data-option-price="${option.optionPrice}">
                             <option value="1">1</option>
                             <option value="2">2</option>
                             <option value="3">3</option>
@@ -103,7 +103,7 @@
                 <div class="sellingOption">${dto.productNum}</div>
                     <div class="d-flex justify-content-between">
                         <div style="width: 30%;">
-                            <select class="form-select sellingOptionControll">
+                            <select class="form-select sellingOptionControll" data-option-price="${price}">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -121,9 +121,7 @@
     </div>
     <div class="d-flex justify-content-between mt-3">
         <button class="cart btn btn-outline-secondary" style="width: 48%;">장바구니</button>
-        <a class="none-a" href="/orders/checkout" style="width: 48%;">
-            <button class="buy btn btn-primary" style="width: 100%;">바로구매</button>
-        </a>
+        <button class="buy btn btn-primary" style="width: 48%;">바로구매</button>
     </div>
 </body>
 </html>

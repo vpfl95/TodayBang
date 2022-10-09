@@ -62,12 +62,7 @@
             <img src="/resources/images/store/exhibitions/ex2394/deepPoint.webp" alt="">
             <img src="/resources/images/store/exhibitions/ex2394/deepItem1.webp" alt="">
             <img src="/resources/images/store/exhibitions/ex2394/deepItem2.webp" alt="">
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>본넬스프링</b></div>
-                <div><b>포켓스프링</b></div>
-                <div><b>일체형침대</b></div>
-            </div>
+
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>
