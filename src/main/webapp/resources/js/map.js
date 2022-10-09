@@ -719,7 +719,6 @@ houseReviewList.addEventListener("click",function(event){
         console.log(result)
         if(result==0){
             alert("작성자만 수정이 가능합니다.")
-            // window.location.href='/apt/map'
             return false
         }
         
