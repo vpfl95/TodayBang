@@ -30,7 +30,7 @@
 					
 					<hr>
 					<div id = "pf-userAct" class = "column">
-						<h4>장바구니</h4>
+						<h4><span class="material-symbols-outlined">shopping_cart</span></h4>
 					</div>
 
 				</div>

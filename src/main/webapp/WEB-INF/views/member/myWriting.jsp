@@ -26,11 +26,10 @@
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
-				<li>내 문의</li>
-				<li>내 상품리뷰</li>
-				<li>내 방리뷰</li>
-				<li>내 게시글</li>
-				<li>내 댓글</li>
+				<li id="myQna" class="submenuList" data-a ="/member/myQna">내 문의</li>
+				<li id="myPdReview" class="submenuList" data-a ="/member/myPdReview">내 상품리뷰</li>
+				<li id="myRoomReview" class="submenuList" data-a ="/member/myRoomReview">내 방리뷰</li>
+				
 			</ul>
 		<hr>
 		</div>
@@ -51,6 +50,15 @@
     <script type="text/javascript">
     	myPage();
     	
+    	
+    	$(document).ready(function(){
+    		$("#myQna").trigger("click");
+    		
+    	
+    	});
+    	$(document).on("click",".submenuList",function(){
+    		$("#profileDiv").load(this.getAttribute('data-a'));
+    	});
     	
     </script>
 	

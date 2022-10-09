@@ -28,12 +28,23 @@ public class Pager {
 	
 	private Long totalPage;
 	
+	private String userId;
 	
 	
 	
 	
 	
 	
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public Long getTotalPage() {
 		return totalPage;
 	}

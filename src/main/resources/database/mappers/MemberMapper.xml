@@ -201,7 +201,22 @@
 				DELETE CART WHERE CARTNUM = #{cartNum}
 			</delete>
 			
+			<select id="getCount" parameterType="Pager" resultType="Long">
+			 	
+				SELECT COUNT(*) FROM QNA WHERE USERID = #{userId}
+				
+			</select>
 			
+			
+			<select id="getMyQna" parameterType="Pager" resultType="QnaDTO">
+			 	
+				SELECT * FROM
+				( SELECT ROWNUM R,N.*
+				 FROM (SELECT * FROM QNA
+				WHERE USERID = #{userId}
+				 ORDER BY BOARDNUM DESC) N)
+				 WHERE R BETWEEN #{startRow} AND #{lastRow}
+			</select>
 			
 			
 			

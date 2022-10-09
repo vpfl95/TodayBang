@@ -8,14 +8,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goodee.home.service.QnaDTO;
+import com.goodee.home.service.ServiceDAO;
 import com.goodee.home.store.product.ProductOptionDTO;
 import com.goodee.home.util.FileManger;
+import com.goodee.home.util.Pager;
 
 @Service
 public class MemberService {
 
 	@Autowired
 	MemberDAO memberDAO = new MemberDAO();
+	@Autowired
+	ServiceDAO serviceDAO = new ServiceDAO();
 	
 	@Autowired
 	FileManger fileManger = new FileManger();
@@ -167,5 +172,39 @@ public class MemberService {
 		
 		
 		return memberDAO.getOrder(memberDTO);
+	}
+	public List<QnaDTO> getMyQna(Pager pager) throws Exception{
+		
+		
+		Long totalCount = memberDAO.getCount(pager);
+		
+		if(totalCount == 0) {
+			totalCount +=1;
+		}
+		
+		pager.getNum(totalCount);
+		pager.getRowNum();
+		
+		
+	
+		
+		
+		List<QnaDTO> ar = memberDAO.getMyQna(pager);
+		
+		for(QnaDTO dto : ar) {
+			
+			
+			Long boardNum = dto.getBoardNum();
+			boardNum = serviceDAO.getCheckAnswer(boardNum);
+			if(boardNum == 1) {
+				dto.setCheckAnswer(true);
+				
+			}else {
+				dto.setCheckAnswer(false);
+			}
+				
+			
+		}
+		return ar;
 	}
 }

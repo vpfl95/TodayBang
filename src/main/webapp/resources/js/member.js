@@ -1171,3 +1171,197 @@ function deliveryDetail(){
 
 
 }
+
+
+
+
+function cart(){
+
+
+    const checked = document.getElementsByClassName("cart-checked");
+    const allCheck = document.querySelector("#allCheck");
+    const opPrice = document.getElementsByClassName("cart-option-price");
+    const buyAmount = document.getElementsByClassName("cart-buyAmount");
+    const deliFee = document.getElementsByClassName("cart-deliFee");
+    const pdPrice = document.getElementsByClassName("cart-price");
+    const lastPdPrice = document.querySelector("#cart-lastPdPrice");
+    const lastDeliFee = document.querySelector("#cart-lastDeliFee");
+    const lastPrice = document.querySelector("#cart-lastPrice");
+    const discount  = document.querySelector("#cart-discount");
+    const selDelete = document.querySelector("#cart-selDelete");
+    const cartDelete = document.getElementsByClassName("cart-delete");
+    
+   
+
+    for(op of opPrice){
+        let result = op.getAttribute("data-a")
+        result = result.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+        op.innerHTML = result +"원";
+    }
+    for(pd of pdPrice){
+        let result = pd.getAttribute("data-a")
+        result = result.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+        pd.innerHTML = result +"원";
+    }
+
+
+
+    allCheck.addEventListener("click",function(){
+
+        for(ch of checked){
+            ch.checked = allCheck.checked;
+        }
+
+        cartPrice();
+
+
+
+
+
+
+
+    })
+
+    for(ch of checked){
+        ch.addEventListener("click",function(){
+            let check = true;
+            for(ch of checked){
+               if(!ch.checked){
+                    check = false;
+               }
+            }
+
+            allCheck.checked = check ;
+            cartPrice();
+
+            
+
+        })
+    }
+
+    function cartPrice() {
+
+
+
+
+        let resultDeliFee=0;
+        let resultLastPrice=0;
+        let resultDiscount=0;
+        for(ch of checked){
+            if(ch.checked){
+                let gi = ch.parentNode.nextSibling.nextSibling.getElementsByClassName("cart-get");
+                
+                let deilf =  parseInt(gi[0].getAttribute("data-a"));
+                let lastp = parseInt(gi[1].getAttribute("data-a"));
+                console.log("hi" +lastp);
+                resultDeliFee += deilf;
+                resultLastPrice += lastp;
+
+            }
+        }
+
+        let resultPrice = (resultLastPrice+resultDeliFee).toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+        resultLastPrice = resultLastPrice.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        resultDeliFee = resultDeliFee.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+        
+
+        lastPdPrice.innerHTML = "";
+        lastDeliFee.innerHTML =  "";
+        lastPrice.innerHTML = "";
+        discount.innerHTML = "";
+        lastPdPrice.innerHTML = resultLastPrice +"원" ;
+        lastDeliFee.innerHTML = "+ " +resultDeliFee +"원" ;
+        discount.innerHTML = "- 0원";
+        lastPrice.innerHTML = resultPrice +"원";
+
+        
+        
+    }
+
+    selDelete.addEventListener("click",function(){
+
+        let count = 0;
+        for(ch of checked){
+            if(ch.checked){
+                count++;
+
+            }
+
+        }
+
+
+        Swal.fire({
+            title: '선택한 '+ count +'개의 상품을 삭제하시겠습니까?',
+            text: "",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: '삭제',
+            cancelButtonText: '취소',
+            reverseButtons: true, // 버튼 순서 거꾸로
+            
+          }).then((result) => {
+            if (result.isConfirmed) {
+              Swal.fire(
+                  
+                '삭제 되었습니다.',
+                '',
+                'success'
+              ).then((result) => {
+                 
+              })
+
+  
+            }
+          })
+
+
+
+    })
+
+    for(cd of cartDelete){
+
+        cd.addEventListener("click",function(event){
+
+            Swal.fire({
+                title: '선택한 상품을 삭제하시겠습니까?',
+                text: "",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: '삭제',
+                cancelButtonText: '취소',
+                reverseButtons: true, // 버튼 순서 거꾸로
+                
+              }).then((result) => {
+               
+                  
+    
+      
+                
+              })
+
+
+
+
+
+        })
+
+    }
+
+
+
+
+
+}
+

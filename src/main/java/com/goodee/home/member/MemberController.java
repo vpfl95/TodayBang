@@ -18,8 +18,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceService;
 import com.goodee.home.store.product.ProductOptionDTO;
+import com.goodee.home.util.Pager;
 
 @Controller
 @RequestMapping("/member/*")
@@ -426,7 +428,33 @@ public class MemberController {
 		return mv;
 	}
 	
-	
+	@GetMapping("myQna")
+	public ModelAndView getMyQna(HttpSession session,Pager pager) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		
+		pager.setUserId(memberDTO.getUserId());
+		List<QnaDTO> ar = memberService.getMyQna(pager);
+		
+		
+		
+		mv.addObject("list",ar);
+		mv.setViewName("member/myQna");
+		return mv;
+	}
+	@GetMapping("myPdReview")
+	public void getMyPdReview() throws Exception{
+		
+		
+		
+	}
+	@GetMapping("myRoomReview")
+	public void getMyRoomReview() throws Exception{
+		
+		
+		
+	}
 	
 	
 	
