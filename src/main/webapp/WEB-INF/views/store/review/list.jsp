@@ -214,31 +214,7 @@
 			</div>
 			<div class="mt-3">${dto.contents}</div>
 			<div class="d-flex justify-content-between mt-3">
-				<div class="d-flex">
-					<c:choose>
-						<c:when test="${chkHelp ne null}">
-							<c:choose>
-								<c:when test="${chkHelp[i.index] eq null}">
-									<button class="btnHelp" data-help-revnum="${dto.revNum}">도움이 돼요</button>
-								</c:when>
-								<c:otherwise>
-									<button class="btnHelp" data-help-revnum="${dto.revNum}" style="background-color: #35c5f0; color: white;">✔ 도움됨</button>						
-								</c:otherwise>
-							</c:choose>
-						</c:when>
-						<c:otherwise>
-							<button class="btnHelp" data-help-revnum="${dto.revNum}">도움이 돼요</button>
-						</c:otherwise>
-					</c:choose>
-					<c:choose>
-						<c:when test="${totalCount[i.index] eq null}">
-							<div class="divHelp" style="margin-top: 4px;"></div>
-						</c:when>
-						<c:otherwise>		
-							<div class="divHelp" style="margin-top: 4px;">${totalCount[i.index]}명에게 도움이 되었습니다.</div>			
-						</c:otherwise>
-					</c:choose>
-				</div>
+				
 				<div class="d-flex">
 					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}" data-bs-toggle="modal" data-bs-target="#reviewModal">수정</button>
 				</div>

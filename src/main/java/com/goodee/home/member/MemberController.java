@@ -1,6 +1,7 @@
 package com.goodee.home.member;
 
 import java.net.http.HttpRequest;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -21,6 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceService;
 import com.goodee.home.store.product.ProductOptionDTO;
+import com.goodee.home.store.review.ProductReviewDTO;
+import com.goodee.home.store.review.ProductReviewService;
+import com.goodee.home.store.review.ReviewLikeDTO;
 import com.goodee.home.util.Pager;
 
 @Controller
@@ -33,6 +37,8 @@ public class MemberController {
 	@Autowired
 	ServiceService serviceService = new ServiceService();
 	
+	@Autowired
+	ProductReviewService productReviewService = new ProductReviewService();
 	
 	
 	@GetMapping("login")
@@ -444,9 +450,17 @@ public class MemberController {
 		return mv;
 	}
 	@GetMapping("myPdReview")
-	public void getMyPdReview() throws Exception{
+	public ModelAndView getMyPdReview(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
+		
+		List<ProductReviewDTO> ar = memberService.getMyPdReview(memberDTO);
 		
 		
+		
+		
+		mv.addObject("list", ar);
+		return mv;
 		
 	}
 	@GetMapping("myRoomReview")

@@ -76,12 +76,17 @@
 		
 		    
 	    	<select id="getList" parameterType="Pager" resultType="QnaDTO" >
-		    	SELECT * FROM
-				( SELECT ROWNUM R,N.*
-				 FROM (SELECT * FROM <include refid="getBoard"></include> 
-				 <include refid="search"></include> 
-				 ORDER BY BOARDNUM DESC) N)
-				 WHERE R BETWEEN #{startRow} AND #{lastRow}
+		    	SELECT * 
+				  FROM ( SELECT ROWNUM R,N.* 
+				    FROM( SELECT BO.BOARDNUM,BO.TITLE,BO.CONTENTS,BO.REGDATE,BO.HIT,BO.USERID, SUM(MR.ROLENUM) NEWROLENUM
+				         FROM <include refid="getBoard"></include> BO
+				            LEFT JOIN "MEMBER-ROLE" MR
+				            ON BO.USERID = MR.USERID
+				            <include refid="search"></include>
+				        GROUP BY BO.BOARDNUM,BO.TITLE,BO.CONTENTS,BO.REGDATE,BO.HIT,BO.USERID
+				        ORDER BY BO.BOARDNUM DESC 
+				        ) N) 
+				        WHERE NEWROLENUM BETWEEN 0 AND 99   AND  R BETWEEN #{startRow} AND #{lastRow}
 	    	</select>
 	    	
 	    	<insert id="addBoard" parameterType="BoardDTO">
@@ -142,12 +147,15 @@
 			
 			
 			<select id="getOftenQna" resultType="QnaDTO">
-				SELECT *  
+				 SELECT *  
 				 FROM (SELECT ROWNUM R,N.*
-				    FROM (SELECT * 
+				    FROM (SELECT QNA.BOARDNUM,QNA.TITLE,QNA.CONTENTS,QNA.REGDATE,QNA.HIT,QNA.USERID ,SUM(MR.ROLENUM) NEWROLENUM
 				        FROM QNA
+                            LEFT JOIN "MEMBER-ROLE" MR
+                            ON QNA.USERID = MR.USERID
+                            GROUP BY QNA.BOARDNUM,QNA.TITLE,QNA.CONTENTS,QNA.REGDATE,QNA.HIT,QNA.USERID
 				        ORDER BY HIT DESC) N)
-				    WHERE R BETWEEN 1 AND 5
+				    WHERE NEWROLENUM BETWEEN 0 AND 99 AND R BETWEEN 1 AND 5
 			</select>
 			
 			

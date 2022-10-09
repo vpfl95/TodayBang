@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.store.product.ProductOptionDTO;
+import com.goodee.home.store.review.ProductReviewDTO;
 import com.goodee.home.util.Pager;
 
 @Repository
@@ -149,6 +150,12 @@ public class MemberDAO {
 		
 		
 		return sqlSession.selectOne(NAMESPACE+ "getCount",pager);
+	}
+	
+	public List<ProductReviewDTO> getMyPdReview(MemberDTO memberDTO)throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getMyPdReview",memberDTO);
 	}
 	
 }

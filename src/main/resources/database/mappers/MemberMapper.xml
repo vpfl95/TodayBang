@@ -218,7 +218,11 @@
 				 WHERE R BETWEEN #{startRow} AND #{lastRow}
 			</select>
 			
-			
+			<select id="getMyPdReview" parameterType="MemberDTO" resultType="ProductReviewDTO">
+			 SELECT * 
+			 FROM PRODUCTREVIEW 
+			 WHERE USERID=#{userId}
+			</select>
 			
 			
 			

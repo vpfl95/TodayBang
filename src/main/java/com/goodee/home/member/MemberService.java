@@ -11,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceDAO;
 import com.goodee.home.store.product.ProductOptionDTO;
+import com.goodee.home.store.review.ProductReviewDTO;
 import com.goodee.home.util.FileManger;
 import com.goodee.home.util.Pager;
 
@@ -207,4 +208,16 @@ public class MemberService {
 		}
 		return ar;
 	}
+	
+	
+	public List<ProductReviewDTO> getMyPdReview(MemberDTO memberDTO)throws Exception{
+		
+		
+		return memberDAO.getMyPdReview(memberDTO);
+	}
+	
+	
+	
+	
+	
 }
