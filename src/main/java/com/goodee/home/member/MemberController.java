@@ -212,7 +212,7 @@ public class MemberController {
 		
 		}else {  // 세션 x 사진 x , 
 			// 삭제를 누르면 사진이 사라진다
-			
+			memberService.setUpdate(memberDTO,session.getServletContext(),profileImg);
 			
 		}
 		
@@ -371,7 +371,6 @@ public class MemberController {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
 		List<CartDTO> ar =memberService.getCart(memberDTO);
-		System.out.println("cart FNN = " +ar.get(0).getFileName());
 		
 		mv.addObject("length",ar.size());
 		mv.addObject("cart",ar);
@@ -395,11 +394,11 @@ public class MemberController {
 		String page;
 		if(url[2].equals("deliveryDetail") ) {
 			page ="배송내역";
-			System.out.println("배송내역");
+			
 		}else {
 			
 			page ="구매내역";
-			System.out.println("구매내역");
+		
 		}
 		
 		mv.addObject("url",page);

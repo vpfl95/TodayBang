@@ -1139,3 +1139,35 @@ function delivery(){
     })
   
 }
+
+
+function deliveryDetail(){
+
+    console.log("h i deliveryDetail");
+
+    const deliBtn = document.getElementsByClassName("order-deliveryDetail");
+    const buyBtn = document.getElementsByClassName("order-buyDetail");
+    const deliveryDetail = document.querySelector("#deliveryDetail");
+    const buyDetail = document.querySelector("#buyDetail");
+
+    for(deli of deliBtn){
+
+        deli.addEventListener("click",function(){
+
+            deliveryDetail.click();
+        })
+    }
+
+
+    for(buy of buyBtn){
+
+        buy.addEventListener("click",function(){
+
+            buyDetail.click();
+        })
+    }
+   
+
+
+
+}

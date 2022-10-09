@@ -17,7 +17,7 @@
 	<div class="cart-section">
 	
 	<div class = "cart-header">
-	 <label for="allCheck" class ="nolabel"><input id="allCheck" type="checkbox" />모두선택</label>
+	 <label for="allCheck" class ="nolabel"><input checked="checked" id="allCheck" type="checkbox" />모두선택</label>
 	<span class = "cart-won" id="cart-selDelete">선택 삭제</span></div>
 	
 		
@@ -26,17 +26,17 @@
 		<c:forEach items="${cart }" var="list" varStatus="status">
 			<div class="cart-pd">
 				<div class="cart-checkbox">
-					<input type="checkbox" style="width: 20px; margin: 10px auto;"/>
+					<input checked="checked" type="checkbox" style="width: 20px; margin: 10px auto;"/>
 				</div>
 				<div class="cart-pd-body">
 					<div class="cart-pd-detail">
 						<div class="cart-pd-detail-image">
-							<img id="cart-img" alt="" src="/resources/upload/store/product/${list.fileName }">
+							<a href="../product/detail?productNum=${list.productNum }"><img id="cart-img" alt="" src="/resources/upload/store/product/${list.fileName }"></a>
  						</div> 
 						<div  class="cart-pd-detail-contents">
 							<div id="cart-brand">${list.productDTO.brand }</div> 
 							
-							<div id="cart-product">${list.productDTO.productName }</div> 
+							<div id="cart-product"><a href="../product/detail?productNum=${list.productNum }">${list.productDTO.productName }</a></div>
 						</div>
 						<div>
 						X

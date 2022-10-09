@@ -72,7 +72,6 @@ public class AdminSerivece {
 			for(RoleDTO role : memberDTO.getRoleDTOs()) {
 				
 				if(role.getRoleNum()>0 && role.getRoleNum()<10) {
-					System.out.println("유");
 					check = true;
 					//update
 					memberDTO.setRoleDTO(role);
@@ -117,12 +116,14 @@ public class AdminSerivece {
 				if(action.equals("up")) {
 					newRoleNum = role.getRoleNum() - 10;
 					memberDTO.setRoleNum(newRoleNum);
+				
 				}else if(action.equals("down")) {
 					newRoleNum = role.getRoleNum() + 10;
 					memberDTO.setRoleNum(newRoleNum);
+					
 				}
 				
-				if(newRoleNum >9 && newRoleNum<100) {
+				if(newRoleNum >9 && newRoleNum<50) {
 					adminDAO.updateMemberRank(memberDTO);
 				}
 				

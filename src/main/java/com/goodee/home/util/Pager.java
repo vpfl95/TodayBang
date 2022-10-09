@@ -43,11 +43,7 @@ public class Pager {
 	}
 
 	public String getParam() {
-		
 		if(param=="") {
-			
-			System.out.println("파라미터 호출");
-			
 			this.param += "&search="+this.getSearch();
 			
 			if(memberFilter != null) {

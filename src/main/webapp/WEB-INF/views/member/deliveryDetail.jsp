@@ -12,12 +12,12 @@
 	<div id="order-body">
 	<h3>${url }</h3>	
 		<div id="order-status-list">
-			<a href="#"><div class ="order-status">입금대기<p>0<p></div></a>
-			<a><div class ="order-status">결제완료<p>0<p></div></a>
-			<a><div class ="order-status">배송준비<p>0<p></div></a>
-			<a><div class ="order-status">배송중<p>0<p></div></a>
-			<a><div class ="order-status">배송완료<p>0<p></div></a>
-			<a id="order-status-last"><div class ="order-status" >구매확정<p>0<p></div></a>
+			<div class ="order-status order-deliveryDetail">입금대기<p>0<p></div>
+			<div class ="order-status order-deliveryDetail">결제완료<p>0<p></div>
+			<div class ="order-status order-deliveryDetail">배송준비<p>0<p></div>
+			<div class ="order-status order-deliveryDetail">배송중<p>0<p></div>
+			<div class ="order-status order-deliveryDetail">배송완료<p>0<p></div>
+			<div class ="order-status order-buyDetail" >구매확정<p>0<p></div>
 		</div>
 	
 	
@@ -70,12 +70,12 @@
 					<td id="order-detail">
 						<div class="cart-pd-detail">
 							<div class="cart-pd-detail-image">
-								<img id="cart-img" alt="" src="/resources/upload/store/product/${list.fileName }">
+								<a href="../product/detail?productNum=${list.productNum }"><img id="cart-img" alt="" src="/resources/upload/store/product/${list.fileName }"></a>
 	 						</div> 
 							<div  class="cart-pd-detail-contents">
 								<div id="cart-brand">${list.productDTO.brand }</div> 
 								
-								<div id="cart-product">${list.productDTO.productName }</div> 
+								<div id="cart-product"><a href="../product/detail?productNum=${list.productNum }">${list.productDTO.productName }</a></div> 
 							</div>
 							<div>
 						
@@ -112,6 +112,12 @@
 	</div>
 	</div>
 	
+	
+	<script type="text/javascript">
+		
+		deliveryDetail();
+	
+	</script>
 	
 </body>
 </html>
