@@ -208,7 +208,7 @@ function getRegionName(){
 function getBuildingInfo(result, status){
     let buildingInfoResult;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST","getAptRoadName");
+    xhttp.open("POST","./getAptRoadName");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
     // console.log(map.getBounds())
     // console.log(map.getBounds().ha)
@@ -825,38 +825,43 @@ houseReviewList.addEventListener("click",function(event){
         if(result==0){
             alert("작성자만 삭제 가능합니다.")
             return false
-        }else{
+        }
+        if(result==1){
             if(confirm("리뷰를 삭제 하시겠습니까?")==false){
                 return false
+            }else{
+                console.log(event.target.getAttribute("data-rvNum"))
+                let rvNum = event.target.getAttribute("data-rvNum");
+                let road = event.target.getAttribute("data-road");
+        
+                let xhttp= new XMLHttpRequest();
+                xhttp.open("POST","./deleteReview")
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("reviewNum="+rvNum)
+                xhttp.addEventListener("readystatechange",function(){
+                    if(xhttp.readyState==4 && xhttp.status==200){
+        
+                        let result = xhttp.responseText
+            
+                        if(result==1){
+                            //alert("리뷰 수정완료")
+                            for(let i=0; i<houseReviewList.children.length;){
+                                houseReviewList.children[0].remove();
+                            }
+                            reviewPage=1;
+                            getReviewList(road,reviewPage)
+            
+                        }else{
+                            alert("리뷰 삭제실패")
+                        }
+                    }
+                })
+
+
+
             }
         }
 
-        console.log(event.target.getAttribute("data-rvNum"))
-        let rvNum = event.target.getAttribute("data-rvNum");
-        let road = event.target.getAttribute("data-road");
-
-        let xhttp= new XMLHttpRequest();
-        xhttp.open("POST","./deleteReview")
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("reviewNum="+rvNum)
-        xhttp.addEventListener("readystatechange",function(){
-            if(xhttp.readyState==4 && xhttp.status==200){
-
-                let result = xhttp.responseText
-    
-                if(result==1){
-                    //alert("리뷰 수정완료")
-                    for(let i=0; i<houseReviewList.children.length;){
-                        houseReviewList.children[0].remove();
-                    }
-                    reviewPage=1;
-                    getReviewList(road,reviewPage)
-    
-                }else{
-                    alert("리뷰 삭제실패")
-                }
-            }
-        })
     }
 
 })
@@ -1111,31 +1116,31 @@ function closeSuggestList(){
 
 
 
-// var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
-//     infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+    infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
-// //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-// kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-//     BAddrFromCoords(mouseEvent.latLng, function(result, status) {
-//         if (status === kakao.maps.services.Status.OK) {
-//             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-//             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+//지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+    BAddrFromCoords(mouseEvent.latLng, function(result, status) {
+        if (status === kakao.maps.services.Status.OK) {
+            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             
-//             var content = '<div class="bAddr">' +
-//                             '<span class="title">법정동 주소정보</span>' + 
-//                             detailAddr + 
-//                         '</div>';
+            var content = '<div class="bAddr">' +
+                            '<span class="title">법정동 주소정보</span>' + 
+                            detailAddr + 
+                        '</div>';
 
-//             // 마커를 클릭한 위치에 표시합니다 
-//             addressmarker.setPosition(mouseEvent.latLng);
-//             addressmarker.setMap(map);
+            // 마커를 클릭한 위치에 표시합니다 
+            addressmarker.setPosition(mouseEvent.latLng);
+            addressmarker.setMap(map);
 
-//             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-//             infowindow.setContent(content);
-//             infowindow.open(map, addressmarker);
-//         }   
-//     });
-// });
+            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+            infowindow.setContent(content);
+            infowindow.open(map, addressmarker);
+        }   
+    });
+});
 
 
 

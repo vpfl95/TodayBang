@@ -30,7 +30,7 @@ public class AptController {
 	@Autowired
 	private AptService aptService;
 	@Autowired
-	private RegionService sigunguService;
+	private RegionService regionService;
 	@Autowired
 	private HouseReviewService houseReviewService;
 	
@@ -87,11 +87,11 @@ public class AptController {
 		if(sigunguDTO.getMapLevel()<5) {
 			
 		}else if(sigunguDTO.getMapLevel()>=5 && sigunguDTO.getMapLevel()<7) {
-			arr = sigunguService.getEmd(sigunguDTO);
+			arr = regionService.getEmd(sigunguDTO);
 		}else if(sigunguDTO.getMapLevel()>=7 && sigunguDTO.getMapLevel()<11) {
-			arr = sigunguService.getSigungu(sigunguDTO);
+			arr = regionService.getSigungu(sigunguDTO);
 		}else {
-			arr = sigunguService.getSido(sigunguDTO);
+			arr = regionService.getSido(sigunguDTO);
 		}
 		
 		return arr;

@@ -34,6 +34,7 @@
     text-shadow: 0 0 0 gold; /* 마우스 클릭 체크 */
 }
 
+
 .map_wrap {position:relative;width:100%;height:800px;}
 .title {font-weight:bold;display:block;}
 .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
@@ -60,8 +61,8 @@
 
 #buildingWrap{position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 #buildingName{position:absolute;right:10px;top:0px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-#maemulList{position:absolute;right:10px;top:50px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-
+#maemulList{position:absolute; width: 95%; right:10px;top:50px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#realEstateList{width: 100%;}
 
 #review{position:absolute;right:10px;top:363px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 /* #houseReviewList{border:1px solid gray} */

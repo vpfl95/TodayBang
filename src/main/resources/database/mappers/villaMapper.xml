@@ -2,36 +2,36 @@
 		<!DOCTYPE mapper
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
-<mapper namespace="com.goodee.home.apt.AptDAO">
-	<select id="getAptRoadName" parameterType="AptDTO" resultType="AptDTO">
+<mapper namespace="com.goodee.home.villa.VillaDAO">
+	<select id="getVillaRoadName" parameterType="VillaDTO" resultType="VillaDTO">
 	
 		SELECT BUILDINGNM,ROADNAME,SIGUNGU, AVG(DEPOSIT) DEPOSIT, AVG(WDEPOSIT) WDEPOSIT, AVG(MONTHLY) MONTHLY, AVG(AVG) AVG       
 		FROM (SELECT BUILDINGNM,ROADNAME,SIGUNGU,DEALTYPE,AVG(DEPOSIT) DEPOSIT, AVG(WDEPOSIT) WDEPOSIT, AVG(MONTHLY) MONTHLY, AVG(DEAL) AVG
 			  FROM (SELECT  *
 		        		FROM REALESTATE 
-		        		WHERE SIGUNGU LIKE '%'||#{sigungu}||'%' AND BUILDTYPE='아파트')
+		        		WHERE SIGUNGU LIKE '%'||#{sigungu}||'%' AND BUILDTYPE='빌라')
 					GROUP BY BUILDINGNM,ROADNAME,SIGUNGU,DEALTYPE)     
 		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU
 	</select>
 	
-	<select id="getList" parameterType="MaemulPager" resultType="AptDTO">
+	<select id="getList" parameterType="MaemulPager" resultType="VillaDTO">
 		SELECT * FROM
 		(SELECT ROWNUM R, A.*
-		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트' ORDER BY DEALDAY) A)
+		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='빌라' ORDER BY DEALDAY) A)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getTotalCount" parameterType="MaemulPager" resultType="Long">
-		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트'
+		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='빌라'
 	</select>
 	
-	<select id="getSearchAddressList" parameterType="String" resultType="AptDTO">
-		SELECT DISTINCT SIGUNGU FROM REALESTATE WHERE SIGUNGU LIKE '%'||#{search}||'%' AND BUILDTYPE='아파트'
+	<select id="getSearchAddressList" parameterType="String" resultType="VillaDTO">
+		SELECT DISTINCT SIGUNGU FROM REALESTATE WHERE SIGUNGU LIKE '%'||#{search}||'%' AND BUILDTYPE='빌라'
 	</select>
 	
-	<select id="getSearchAptList" parameterType="String" resultType="AptDTO">
+	<select id="getSearchVillaList" parameterType="String" resultType="VillaDTO">
 		SELECT DISTINCT SIGUNGU, BUILDINGNM, ROADNAME FROM REALESTATE WHERE BUILDINGNM LIKE '%'||#{search}||'%' AND BUILDTYPE='아파트'
-	</select>
+	</select> 
 	
 	
 </mapper>
