@@ -33,6 +33,7 @@
 	<interceptors>
 		<interceptor>
 			<mapping path="/apt/writerCheck"/>
+			<mapping path="/villa/writerCheck"/>
 			<beans:ref bean="writerCheckInterceptor"/>
 		</interceptor>
 	</interceptors>
