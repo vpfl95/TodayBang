@@ -283,7 +283,7 @@
             			$('html').animate({scrollTop : offset.top}, 300);
         				
         				
-        			},900) 
+        			},1000) 
             	 
              }
              

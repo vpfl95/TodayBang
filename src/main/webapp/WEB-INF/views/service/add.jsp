@@ -23,7 +23,16 @@
 				<div class = " col-lg-7 ">
 		
 		
-					<h3> ${board } 게시  </h3>
+					<c:if test="${board=='NOTICE'}">
+						<div>
+							<h3>공지사항 글쓰기</h3>
+						</div>
+					</c:if>
+					<c:if test="${board=='QNA'}">
+						<div>
+							<h3>문의하기</h3>
+						</div>
+					</c:if>
 					<hr>
 					<form action="./add" method="post" id = "boardForm"  enctype="multipart/form-data">
 					<input type="hidden" value="${update.boardNum }"  id="boardNum" name="boardNum" class="form-control" >
@@ -35,24 +44,21 @@
 						
 						<tbody>
 							<tr>
-								<th>제목</th>
 								<td>
-						        	<input type="text" value="${update.title }"  id="title" name="title" class="form-control" placeholder="제목" required>
+						        	<input type="text" value="${update.title }"  id="title" name="title" class="form-control" placeholder="제목을 입력해 주세요." required>
 						        </td>
 							</tr>
 							<tr>
-								<th>작성자</th>
 								<td><input type="text" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required></td>
 							</tr>
 							<tr>
-								<th>내용</th>
 								<td><textarea   id="summernote" name="contents"></textarea></td>
 							</tr>
 							
 							<tr>
-								<th>파일</th>
-								
-								
+								<th><p id = "addFileBtn">파일추가</p></th>
+							</tr>
+							<tr>
 								<td>
 									<div id = "fileInputDiv" title = "${updateSize }">
 									<!-- 파일선택 input -->
@@ -62,12 +68,13 @@
 											<label for="file${status.count }">${file.fileName }</label>
 											<input type="file" id="file${status.count }" value="${file}" name="file" class="form-control boardFile hideBoardFile" title="${status.count }">
 											<button class="boardFileDelete" title="${status.count }">파일삭제</button>
+											
 										</c:if>
 										</c:forEach>
 									
 									</div>
 								</td>
-								<td><p id = "addFileBtn">파일추가</p></td>
+								
 								
 							</tr>
 							<tr>

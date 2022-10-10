@@ -20,131 +20,137 @@
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = "row justify-content-center mt-5" >
 				<div class = " col-lg-7 " id="boardSection">
-						<table class="table " id="mainTable">
-						  <thead>
-						  </thead>
-						  <tbody>
-						  	<tr>
-						      <th scope="row">글번호</th>
-						      <td colspan="3">${boardList.boardNum }</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">조회수</th>
-						      <td colspan="3">${boardList.hit }</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">제목</th>
-						      <td colspan="3">${boardList.title }</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">작성자</th>
-						      <td colspan="3">${boardList.userId }</td>
-						    </tr>
-						    <tr>
-						      <th scope="row">작성일</th>
-						      <td  colspan="3">${boardList.regDate }</td>
-							</tr>
-						    <tr>
-						      <th scope="row">내용</th>
-						      <td  colspan="3">${boardList.contents }</td>
-						    </tr>
-						    
-						    <tr>
-						      <th scope="row">파일</th>
-						      
+				
+					<div class="board-url">
+						<c:if test="${board=='NOTICE'}">
+							<div>
+								공지사항
+							</div>
+						</c:if>
+						<c:if test="${board=='QNA'}">
+							<div>
+								문의
+							</div>
+						</c:if>
+					</div>
+				
+				
+				
+				
+				
+				
+				
+						<div class="board-title">
+							${boardList.title }
+						</div>
+						
+						<div  class="board-writerSection">
+							<div  class="board-imgDiv">
+								<img class="board-img" alt="" src="/resources/images/NoProfile.png" >
+							</div>
+							<div>
+								<div  class="board-userId">
+									${boardList.userId }
+								</div>
+								<div class="board-info">
+									${boardList.regDate } 조회수 ${boardList.hit }
+								</div>
+							</div>
+						</div>
+						<hr>
+						<div class="board-contents">
+						     ${boardList.contents }
+						</div>
+					    <div>
+					    
+					    	<div  class="board-filetitle">💾첨부 파일</div>
 						      <c:if test="${not empty boardList.boardFileDTOs }">
 							      <c:forEach items="${boardList.boardFileDTOs }" var="file">
-							      	
 							      	<c:if test="${not file.sort}">
-							      		<td><a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a></td>
-									
+							      		<a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a>
+							
 							      	</c:if>
-							            
 							      </c:forEach>
-							      	
-							      
 						      </c:if>
+					    </div>
+						    
+						    
+						   
+						     
 						      
 						      
 						     
-						    </tr>
 						    
-						    <tr>
+						    
+						  	<div >
 						    	<c:if test="${boardList.userId eq member.userId }">
-						    		<td><a href="./delete?boardNum=${boardList.boardNum }">삭제</a></td>
-						    		<c:if test="${empty qnaAnswer }">
-						    			<td><a href="./update?boardNum=${boardList.boardNum }">수정</a></td>
-						    		</c:if>
 						    		
+						    		<c:if test="${empty qnaAnswer }">
+						    			<a href="./update?boardNum=${boardList.boardNum }">수정</a>
+						    		</c:if>
+						    		<a href="./delete?boardNum=${boardList.boardNum }">삭제</a>
 						    	</c:if>
+						    </div>
 						    	
-						    	
-						    	
-						    	
-						    	
-						    </tr>
-						  </tbody>
-						</table>
-					
-					
 					
 					<!-- QNA 추가 페이지 -->
-					
+					</div>
 					
 					<c:if test="${board eq 'QNA' }">
+						
 						<c:choose>
 							<c:when test="${not empty qnaAnswer}">
+							<div class = " col-lg-7 " id="boardSection">
+							<div class="board-url">
+								<div>문의 답변</div>
+							</div>
+							<div class="board-title">
+							${boardList.title }
+							</div>
 							
+							<div  class="board-writerSection">
+								<div  class="board-imgDiv">
+									<img class="board-img" alt="" src="/resources/images/NoProfile.png" >
+								</div>
+								<div>
+									<div  class="board-userId">
+										${boardList.userId }
+									</div>
+									<div class="board-info">
+										${boardList.regDate } 조회수 ${boardList.hit }
+									</div>
+								</div>
+							</div>
+							<hr>
+							<div class="board-contents">
+							     ${boardList.contents }
+							</div>
 							
-							<table class="table">
-								  <thead>
-								  </thead>
-								  <tbody>
-								    <tr>
-								      <th scope="row">제목</th>
-								      <td>${qnaAnswer.title }</td>
-								    </tr>
-								    <tr>
-								      <th scope="row">작성자</th>
-								      <td>${qnaAnswer.userId }</td>
-								    </tr>
-								    <tr>
-								      <th scope="row">작성일</th>
-								      <td >${qnaAnswer.regDate }</td>
-									</tr>
-								    <tr>
-								      <th scope="row">내용</th>
-								      <td >${qnaAnswer.contents }</td>
-								    </tr>
-								    <tr>
-								    <th scope="row">파일</th>
+							<div> 
+								<div class="board-filetitle">💾첨부 파일</div>
+								   
 								     <c:if test="${not empty qnaAnswer.boardFileDTOs }">
 									      <c:forEach items="${qnaAnswer.boardFileDTOs }" var="file">
 									      <c:if test="${not file.sort}">
-									      		<td><a href="/resources/upload/QNAANSWER/${file.fileName }">${file.oriName }</a></td>
+									      		<a href="/resources/upload/QNAANSWER/${file.fileName }">${file.oriName }</a>
 									      </c:if>
 									      </c:forEach>
 						    		  </c:if>
-								    </tr>
-								    <tr>
-								    	<c:if test="${qnaAnswer.userId eq member.userId }">
-													
-								    		<td><a href="./deleteAnswer?boardNum=${boardList.boardNum }">답변 삭제</a></td>
-								    		<td><a href="./updateAnswer?boardNum=${boardList.boardNum }">답변 수정</a></td>
-
-							    		
-								    	</c:if>
-								    </tr>
-								  </tbody>
-								</table>
-							
-							
-							
+							</div>  
+							<div>
+								<c:if test="${qnaAnswer.userId eq member.userId }">
+												<a href="./updateAnswer?boardNum=${boardList.boardNum }">답변 수정</a>	
+									    		<a href="./deleteAnswer?boardNum=${boardList.boardNum }">답변 삭제</a>
+									    		
+						    	</c:if>
+					    	</div>
+					    	</div>
 							</c:when>
 							
 							<c:otherwise>
 							
 							<c:if test="${member.roleDTOs[0].roleNum<3 }">
+							<div class = " col-lg-7 " id="boardSection">
 							    	<form action="./answer" method="post" id = "boardForm" enctype="multipart/form-data" >
 							    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
 							    	
@@ -205,14 +211,16 @@
 											</table>
 											
 										</form>
+										</div>
 				    			</c:if>
+				    			
 							</c:otherwise>
 						</c:choose>
 						
 					</c:if>
 	
 			</div>
-		</div>
+		
 	</section>
 	
 

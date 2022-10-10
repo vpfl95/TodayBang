@@ -20,10 +20,12 @@ section{
 
 #boardSection{
 	border : 1px solid #dfe2e6;
+	border-radius: 3%;
 	min-width : 400px;
-	min-height : 800px;
+	min-height : 600px;
 	background-color: white;
-	margin: auto;
+	margin: auto auto 50px auto;
+	padding: 40px;
 }
 #mainTable{
 	
@@ -32,3 +34,57 @@ section{
 
 }
 
+.board-writerSection{
+
+	display: inline-flex;
+
+}
+
+.board-img{
+
+	width: 50px;
+
+}
+
+.board-imgDiv{
+
+	width: 50px;
+    height: 50px; 
+    border-radius: 70%;
+    border : 1px solid #c8c9ca;
+    overflow: hidden;
+   margin-right: 15px;
+
+}
+.board-userId{
+	font-size: 20px;
+
+}
+.board-info{
+
+	color: #c8c9ca;
+	font-size: 15px;
+
+}
+.board-title{
+	font-size: 30px;
+	font-weight: 700;
+	margin-bottom: 15px;
+}
+.board-filetitle{
+
+	margin-top: 30px;
+	color: #c8c9ca;
+
+}
+.board-contents{
+
+	min-height: 350px;
+	height: auto;
+
+}
+.board-url{
+
+	font-size: 15px;
+	color: #61b6dc;
+}

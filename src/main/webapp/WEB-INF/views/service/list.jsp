@@ -22,9 +22,27 @@
 				<div class = " col-lg-7 ">
 	
 					<c:if test="${board=='QNA'}">
-						<h1> 자주 묻는 질문 </h1>
+							<div>
+								<h3> 자주 묻는 질문 </h3>
+							</div>
+						
 						
 							<table class = "table table-hover">
+								 <thead>
+								    <tr>
+								      <th scope="col">글 번호</th>
+								      <th scope="col">글 제목</th>
+								      
+								      <th scope="col">작성자</th>
+								      <th scope="col">게시일</th>
+								      <c:if test="${board=='QNA' }">
+								      		<th scope="col">답변상태</th>
+							      	  </c:if>
+								      
+								      
+								    </tr>
+								  </thead>
+								<tbody>
 								<c:forEach items="${oftenQna }" var="often">
 									<tr>
 										<td>${often.boardNum }</td>
@@ -34,6 +52,7 @@
 										
 									</tr>
 								</c:forEach>
+								</tbody>
 							</table>
 						
 					</c:if>
@@ -42,19 +61,28 @@
 	
 	
 	
+					<c:if test="${board=='NOTICE'}">
+						<div>
+							<h3>공지사항</h3>
+						</div>
+					</c:if>
+					<c:if test="${board=='QNA'}">
+						<div>
+							<h3>문의하기</h3>
+						</div>
+					</c:if>
 					
-					<h1>${board }</h1>
 					
 					<table class="table table-hover">
 				  <thead>
 				    <tr>
-				      <th scope="col">글 번호</th>
-				      <th scope="col">글 제목</th>
+				      <th scope="col" width="120px">글 번호</th>
+				      <th scope="col" width="500px">글 제목</th>
 				      
-				      <th scope="col">작성자</th>
-				      <th scope="col">게시일</th>
+				      <th scope="col" width="150px">작성자</th>
+				      <th scope="col" width="200px">게시일</th>
 				      <c:if test="${board=='QNA' }">
-				      		<th scope="col">답변상태</th>
+				      		<th scope="col" width="120px">답변상태</th>
 			      	  </c:if>
 				      
 				      
@@ -89,7 +117,7 @@
 				    <c:if test="${board=='QNA' }">
 				      <tr>
 				      	<td>
-				      		 <a href="/service/qna/add">글 쓰기</a>
+				      		 <a href="/service/qna/add">질문하기</a>
 				      	</td>
 				      </tr>
 			      	</c:if>
@@ -100,7 +128,7 @@
 				
 				
 				<c:import url="../template/navPager.jsp"></c:import>
-				
+				<div>
 				<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method="get">
 					  <div class="col-12">
 					    <label class="visually-hidden" for="kind">Kind</label>
@@ -121,7 +149,7 @@
 					    <button type="submit" class="btn btn-primary">검색</button>
 					  </div>
 				</form>
-				
+				</div>
 			</div>
 		</div>
 	</section>
