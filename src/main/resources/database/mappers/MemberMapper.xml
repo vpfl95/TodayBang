@@ -200,6 +200,10 @@
 			<delete id="deleteCart" parameterType="CartDTO">
 				DELETE CART WHERE CARTNUM = #{cartNum}
 			</delete>
+			<delete id="deleteCartOption" parameterType="CartDTO">
+				DELETE "CART-OPTION" WHERE CARTNUM = #{cartNum}
+			</delete>
+			
 			
 			<select id="getCount" parameterType="Pager" resultType="Long">
 			 	

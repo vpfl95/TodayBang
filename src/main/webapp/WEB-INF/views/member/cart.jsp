@@ -26,7 +26,7 @@
 		<c:forEach items="${cart }" var="list" varStatus="status">
 			<div class="cart-pd">
 				<div class="cart-checkbox">
-					<input class="cart-checked" type="checkbox" style="width: 20px; margin: 10px auto;"/>
+					<input class="cart-checked" type="checkbox" data-a="${list.cartNum }" style="width: 20px; margin: 10px auto;" />
 				</div>
 				<div class="cart-pd-body">
 					<div class="cart-pd-detail">
@@ -38,7 +38,7 @@
 							
 							<div id="cart-product"><a href="../product/detail?productNum=${list.productNum }">${list.productDTO.productName }</a></div>
 						</div>
-						<div class = "cart-delete">
+						<div class = "cart-delete" data-a="${list.cartNum }">
 						X
 						</div>
 						

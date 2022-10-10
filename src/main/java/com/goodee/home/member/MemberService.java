@@ -217,7 +217,11 @@ public class MemberService {
 	}
 	
 	
-	
+	public int deleteCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return memberDAO.deleteCart(cartDTO);
+	}
 	
 	
 }

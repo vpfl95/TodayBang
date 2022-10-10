@@ -139,6 +139,7 @@ public class MemberDAO {
 	public int deleteCart(CartDTO cartDTO) throws Exception{
 		
 		
+		sqlSession.delete(NAMESPACE+ "deleteCartOption",cartDTO);
 		return sqlSession.delete(NAMESPACE+ "deleteCart",cartDTO);
 	}
 	public List<QnaDTO> getMyQna(Pager pager) throws Exception{

@@ -1289,10 +1289,14 @@ function cart(){
     selDelete.addEventListener("click",function(){
 
         let count = 0;
+        let deleteList = []; 
+
+
         for(ch of checked){
             if(ch.checked){
                 count++;
-
+                
+                deleteList.push(ch.getAttribute("data-a"));
             }
 
         }
@@ -1317,10 +1321,10 @@ function cart(){
                 '',
                 'success'
               ).then((result) => {
-                 
-              })
+                 console.log(deleteList);
+                 location.href ="/member/deleteSelectCart?cartNum="+deleteList;
 
-  
+              })
             }
           })
 
@@ -1331,7 +1335,7 @@ function cart(){
     for(cd of cartDelete){
 
         cd.addEventListener("click",function(event){
-
+            console.log("실행");
             Swal.fire({
                 title: '선택한 상품을 삭제하시겠습니까?',
                 text: "",
@@ -1344,8 +1348,12 @@ function cart(){
                 reverseButtons: true, // 버튼 순서 거꾸로
                 
               }).then((result) => {
-               
+                
+                let cartNum =  event.target.getAttribute("data-a");
                   
+                location.href ="/member/deleteCart?cartNum="+cartNum;
+
+
     
       
                 

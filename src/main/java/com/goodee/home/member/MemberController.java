@@ -471,8 +471,28 @@ public class MemberController {
 	}
 	
 	
-	
-	
+	@GetMapping("deleteCart")
+	public String deleteCart(CartDTO cartDTO) throws Exception{
+		
+		
+		int result = memberService.deleteCart(cartDTO);
+		
+		return "redirect:/member/myShopping";
+	}
+	@GetMapping("deleteSelectCart")
+	public String deleteSelectCart(Long [] cartNum) throws Exception{
+		
+		
+		for(Long i : cartNum) {
+			CartDTO cartDTO = new CartDTO();
+			cartDTO.setCartNum(i);
+			memberService.deleteCart(cartDTO);
+			
+		}
+		
+		
+		return "redirect:/member/myShopping";
+	}
 	
 	
 	
