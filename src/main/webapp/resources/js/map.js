@@ -499,6 +499,7 @@ function getMaemulList(roadName,p){
                 td.appendChild(tdText)
                 tr.appendChild(td)
 
+                
                 realEstateList.append(tr)
 
                 //페이지 없으면 버튼 비활성화
