@@ -49,20 +49,24 @@
 .building-select {position: relative; z-index:10; cursor: pointer;background-size: 100%;background-repeat: no-repeat;text-align: center;user-select: none;background-image: url('/resources/images/apartment_select.png')}
 .building-top-select{line-height: 1.1;padding-top: 7px;font-size: 10px;font-weight: bold; color: black;}
 .building-bot-select {line-height: 1.1;padding-top: 4px;font-size: 12px;font-weight: bold; color: black;}
-.building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);overflow: hidden;text-overflow: ellipsis;}
+.building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);text-overflow: ellipsis;}
 
-#searchWrap{position:absolute; right:10px;top:10px;border-radius: 2px;z-index:10;padding:5px; height: 30%;}
+
+#searchWrap{position:absolute; right:10px;top:10px;border-radius: 2px;z-index:2;padding:5px; height: 30%;}
 #sugguestList{overflow: auto; height: 100%; display: none;}
 .selectItem{background: white;font-size: 12px;font-weight: bold;color: rgb(68, 68, 68);box-sizing: border-box;cursor: pointer;padding: 13px 10px 0px;line-height: 18px;border:1px solid gray}
 .addressDIV{color: rgb(68, 68, 68);font-size: 10px;font-weight: normal;}
 .selected{background-color: lightskyblue; color: white;}
 
-#buildingInfo{position:absolute;right:10px;top:40px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#buildingInfo{position:absolute;right:10px;top:40px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:10;padding:5px;}
 
-#buildingWrap{position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+#buildingWrap{overflow:auto;position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 #buildingName{position:absolute;right:10px;top:0px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 #maemulList{position:absolute; width: 95%; right:10px;top:50px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-#realEstateList{width: 100%;}
+#realEstateList{
+    width: 100%;
+    border: 1px solid rgb(117, 117, 117);
+}
 
 #review{position:absolute;right:10px;top:363px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 /* #houseReviewList{border:1px solid gray} */
@@ -120,13 +124,23 @@
     flex-direction: row;
 }
 
-.gradeDiv{
+/* .gradeDiv{
 
-}
+} */
 .gradeDivWrap{
     border: 0 solid black;
     border-right-color: rgb(225, 225, 225);
     border-right-width: 1px;
     padding-right: 10px;
     margin-right: 10px;
+}
+
+.interested{
+    color: transparent;
+    text-shadow: 0 0 0 #f0f0f0;
+    cursor: pointer
+}
+
+.interested_select{
+    text-shadow: 0 0 0 red;
 }

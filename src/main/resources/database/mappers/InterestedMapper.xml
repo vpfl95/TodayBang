@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+		<!DOCTYPE mapper
+		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
+<mapper namespace="com.goodee.home.interested.InterestedDAO">
+	
+	<insert id="setInterested" parameterType="InterestedDTO">
+		INSERT INTO INTERESTED VALUES(INTERESTED_SEQ.NEXTVAL, #{userId}, #{num})
+	</insert>
+	
+	<select id="getInterestedUser" parameterType="InterestedDTO" resultType="InterestedDTO">
+		SELECT NUM, I.USERID
+      FROM REALESTATE R
+           INNER JOIN
+           INTERESTED I
+           USING(NUM)
+      WHERE ROADNAME=#{roadName} AND USERID=#{userId} ORDER BY DEALDAY
+	</select>
+	
+	<delete id="setDeleteInterested" parameterType="InterestedDTO">
+		DELETE FROM INTERESTED WHERE USERID=#{userId} AND NUM=#{num}
+	</delete>
+</mapper>

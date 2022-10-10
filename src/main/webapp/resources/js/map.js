@@ -368,7 +368,7 @@ function addEventHandle(target,coords, type) {
 
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
-
+             document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             //map.setCenter(coords)
             
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
@@ -403,7 +403,7 @@ function addEventHandle(target,coords, type) {
             //매물리스트 테이블헤더
             let tr = document.createElement("tr")
             let th = document.createElement("th")
-            let thText = document.createTextNode("계약일")
+            let thText = document.createTextNode("등록일")
             th.appendChild(thText)
             tr.appendChild(th)
             th = document.createElement("th")
@@ -416,6 +416,10 @@ function addEventHandle(target,coords, type) {
             tr.appendChild(th)
             th = document.createElement("th")
             thText = document.createTextNode("층수")
+            th.appendChild(thText)
+            tr.appendChild(th)
+            th = document.createElement("th")
+            thText = document.createTextNode("관심")
             th.appendChild(thText)
             tr.appendChild(th)
             realEstateList.append(tr)
@@ -435,6 +439,10 @@ function addEventHandle(target,coords, type) {
 function getMaemulList(roadName,p){
     buildingInfo.style.display="block"
     
+    let user = interestedCheck(roadName);
+    
+
+
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getList?roadName="+roadName+"&page="+p);
     xhttp.send();
@@ -494,12 +502,27 @@ function getMaemulList(roadName,p){
                 td.appendChild(tdText)
                 tr.appendChild(td)
                 
+                
                 td=document.createElement("td")
                 tdText = document.createTextNode("🤍")
+                let tdAttr = document.createAttribute("class")
+                tdAttr.value="interested"
+                td.setAttributeNode(tdAttr)
                 td.appendChild(tdText)
+                td.setAttribute("data-num",list[i].num)
+                td.setAttribute("data-userId",userId.value)
                 tr.appendChild(td)
+               
+                if(user.length>0){
+                    for(let j =0; j<user.length; j++){
+                        if(user[j].num==list[i].num){
+                            td.classList.add("interested_select")
+                            user.splice(j, 1);
+                        }
+                    }
+                }
 
-                
+
                 realEstateList.append(tr)
 
                 //페이지 없으면 버튼 비활성화
@@ -517,6 +540,67 @@ function getMaemulList(roadName,p){
         }
     })
 }
+
+//유저별 좋아요클릭한 매물 받아오기
+function interestedCheck(roadname){
+
+    let result
+
+    $.ajax({
+        type: "post",
+        url: "./getInterestedUser",
+        async: false,     //값을 리턴시 해당코드를 추가하여 동기로 변경
+        data: { userId: userId.value,
+                roadName: roadname},
+        success: function (data) {
+            result = data;
+        }
+    });
+    return result
+
+}
+
+
+//매물 좋아요 클릭 이벤트처리
+realEstateList.addEventListener("click",function(event){
+    let num =event.target.getAttribute("data-num");
+    let userId = event.target.getAttribute("data-userId");
+    if(event.target.className=="interested"){
+        if(userId==""){
+            alert("로그인이 필요합니다.")
+            window.location.href='/member/login'
+        }else{
+            event.target.classList.add("interested_select")
+            console.log(event.target.getAttribute("data-num"))
+            console.log(event.target.getAttribute("data-userId"))
+    
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST","./setInterested");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("userId="+userId+"&num="+num);
+            xhttp.addEventListener("readystatechange",function(){
+                if(xhttp.status==200 && xhttp.readyState==4){
+                    let result = xhttp.responseText
+                    console.log(result)
+                }
+            })
+        }
+    }else if(event.target.classList.contains("interested_select")){
+        console.log("선택된거")
+        event.target.classList.toggle("interested_select")
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST","./setDeleteInterested");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("userId="+userId+"&num="+num);
+        xhttp.addEventListener("readystatechange",function(){
+            if(xhttp.status==200 && xhttp.readyState==4){
+                let result = xhttp.responseText
+                console.log(result)
+            }
+        })
+    }
+})
 
 //매물리스트 더보기 클릭 이벤트
 more.addEventListener("click", function(){
@@ -1010,6 +1094,7 @@ function delay(fn, ms) {
 }
 
 const sugguestList = document.getElementById("sugguestList")
+const searchWrap = document.getElementById("searchWrap")
 searchSuggest();
 
 function searchSuggest(){
@@ -1023,8 +1108,10 @@ function searchSuggest(){
 
         if(keyword.value==''){
             sugguestList.style.display="none"
+            searchWrap.style.zIndex=2
         }else{
             sugguestList.style.display="block"
+            searchWrap.style.zIndex=11
         }
 
   
@@ -1134,9 +1221,11 @@ function searchSuggest(){
         }
 
         if(e.key==="Escape"){
+            searchWrap.style.zIndex=2
             closeSuggestList();
         }
         if(e.key==="Enter"){
+            searchWrap.style.zIndex=2
             closeSuggestList();
         }
     }, 200));
@@ -1148,31 +1237,31 @@ function closeSuggestList(){
 
 
 
-var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
-    infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
+// var addressmarker = new kakao.maps.Marker(), // 클릭한 위치를 표시할 마커입니다
+//     infowindow = new kakao.maps.InfoWindow({zindex:1}); // 클릭한 위치에 대한 주소를 표시할 인포윈도우입니다
 
-//지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
-kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
-    BAddrFromCoords(mouseEvent.latLng, function(result, status) {
-        if (status === kakao.maps.services.Status.OK) {
-            var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
-            detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
+// //지도를 클릭했을 때 클릭 위치 좌표에 대한 주소정보를 표시하도록 이벤트를 등록합니다
+// kakao.maps.event.addListener(map, 'click', function(mouseEvent) {
+//     BAddrFromCoords(mouseEvent.latLng, function(result, status) {
+//         if (status === kakao.maps.services.Status.OK) {
+//             var detailAddr = !!result[0].road_address ? '<div>도로명주소 : ' + result[0].road_address.address_name + '</div>' : '';
+//             detailAddr += '<div>지번 주소 : ' + result[0].address.address_name + '</div>';
             
-            var content = '<div class="bAddr">' +
-                            '<span class="title">법정동 주소정보</span>' + 
-                            detailAddr + 
-                        '</div>';
+//             var content = '<div class="bAddr">' +
+//                             '<span class="title">법정동 주소정보</span>' + 
+//                             detailAddr + 
+//                         '</div>';
 
-            // 마커를 클릭한 위치에 표시합니다 
-            addressmarker.setPosition(mouseEvent.latLng);
-            addressmarker.setMap(map);
+//             // 마커를 클릭한 위치에 표시합니다 
+//             addressmarker.setPosition(mouseEvent.latLng);
+//             addressmarker.setMap(map);
 
-            // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
-            infowindow.setContent(content);
-            infowindow.open(map, addressmarker);
-        }   
-    });
-});
+//             // 인포윈도우에 클릭한 위치에 대한 법정동 상세 주소정보를 표시합니다
+//             infowindow.setContent(content);
+//             infowindow.open(map, addressmarker);
+//         }   
+//     });
+// });
 
 
 

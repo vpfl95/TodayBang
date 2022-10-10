@@ -33,14 +33,15 @@
 				<div class="slClass" id="sugguestList"></div>
 			</form>
 	
-			<div id="buildingInfo"style="height: 95%;width: 30%;overflow:auto;">
+			<div id="buildingInfo"style="height: 95%;width: 30%;">
 	
-				<div id="buildingWrap" style="height: 40%;width: 95%;overflow:auto;">
+				<div id="buildingWrap" style="height: 40%;width: 95%;">
 					
 					<div id="buildingName"></div>
 			
 					<div id="maemulList">
-						<table id="realEstateList" border="1">
+						<!-- <input type="text" name="" id="user" value="${member.userId}"> -->
+						<table id="realEstateList">
 							<tr>
 								<th>등록일</th>
 								<th>거래가격</th>
