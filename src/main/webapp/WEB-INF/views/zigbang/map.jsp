@@ -42,10 +42,11 @@
 					<div id="maemulList">
 						<table id="realEstateList" border="1">
 							<tr>
-								<th>계약일</th>
+								<th>등록일</th>
 								<th>거래가격</th>
 								<th>면적</th>
 								<th>층수</th>
+								<th>관심</th>
 							</tr>
 						</table>
 						<button id="more">더보기</button>
@@ -72,8 +73,8 @@
 					</div>
 					
 					<div class="modal-body">
-						<!-- <div class="css-1dbjc4n" style="background-color: rgb(117, 117, 117);border-radius: 3.5px;height: 7px;margin-left: 2px;margin-right: 2px;margin-top: 2.33333px;width: 7px;"></div>
-						<div class="css-1dbjc4n" style="background-color: rgb(225, 225, 225); border-radius: 3.5px; height: 7px; margin-left: 2px; margin-right: 2px; margin-top: 2.33333px; width: 7px;"></div> -->
+						<!-- <div class="grade_empty" style="background-color: rgb(117, 117, 117);border-radius: 3.5px;height: 7px;margin-left: 2px;margin-right: 2px;margin-top: 2.33333px;width: 7px;"></div>
+						<div class="grade_full" style="background-color: rgb(225, 225, 225); border-radius: 3.5px; height: 7px; margin-left: 2px; margin-right: 2px; margin-top: 2.33333px; width: 7px;"></div> -->
 						<input type="text" name="" id="roadname" >
 						<form>
 							<input type="text" id="maemulNum" >

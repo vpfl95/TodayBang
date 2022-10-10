@@ -66,7 +66,12 @@
 
 #review{position:absolute;right:10px;top:363px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 /* #houseReviewList{border:1px solid gray} */
-.revDiv{border:1px solid gray}
+.revDiv{
+    border:1px solid gray;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+}
 #writeReview{position:absolute;right:10px;bottom:10px;}
 #upReview{position:absolute;left:10px;bottom:10px;visibility: hidden;}
 .update{
@@ -74,4 +79,54 @@
 }
 .delete{
     cursor: pointer
+}
+
+.grade_full{
+    background-color: rgb(117, 117, 117);
+    border-radius: 3.5px;
+    height: 7px;
+    margin-left: 2px;
+    margin-right: 2px;
+    margin-top: 2.33333px;
+    width: 7px;
+}
+
+.grade_empty    {
+    background-color: rgb(225, 225, 225); 
+    border-radius: 3.5px; 
+    height: 7px;
+     margin-left: 2px; 
+     margin-right: 2px; 
+     margin-top: 2.33333px; 
+     width: 7px;
+}
+
+.circle {
+    border: 0 solid black;
+    display: flex;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+    -webkit-box-align: center;
+    align-items: center;
+}
+
+.recommend{
+    border: 0 solid black;
+    display: flex;
+    margin-bottom: 5px;
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+}
+
+.gradeDiv{
+
+}
+.gradeDivWrap{
+    border: 0 solid black;
+    border-right-color: rgb(225, 225, 225);
+    border-right-width: 1px;
+    padding-right: 10px;
+    margin-right: 10px;
 }

@@ -30,7 +30,7 @@
 	</select>
 	
 	<select id="getSearchVillaList" parameterType="String" resultType="VillaDTO">
-		SELECT DISTINCT SIGUNGU, BUILDINGNM, ROADNAME FROM REALESTATE WHERE BUILDINGNM LIKE '%'||#{search}||'%' AND BUILDTYPE='아파트'
+		SELECT DISTINCT SIGUNGU, BUILDINGNM, ROADNAME FROM REALESTATE WHERE BUILDINGNM LIKE '%'||#{search}||'%' AND BUILDTYPE='빌라'
 	</select> 
 	
 	

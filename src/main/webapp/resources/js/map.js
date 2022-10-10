@@ -494,6 +494,11 @@ function getMaemulList(roadName,p){
                 td.appendChild(tdText)
                 tr.appendChild(td)
                 
+                td=document.createElement("td")
+                tdText = document.createTextNode("🤍")
+                td.appendChild(tdText)
+                tr.appendChild(td)
+
                 realEstateList.append(tr)
 
                 //페이지 없으면 버튼 비활성화
@@ -537,14 +542,40 @@ function getReviewList(roadName,p){
                 let revDiv = document.createElement("div")
                 revDiv.className="revDiv"
                 revDiv.setAttribute("data-rvNum",list[i].reviewNum)
-                let gradeDiv = document.createElement("span")
-                let grade = document.createElement("span")
-                gradeDiv.innerText = "추천점수" 
-                grade.innerText=list[i].grade
+
+                let recommend = document.createElement("div")
+                recommend.className="recommend"
+                let gradeDivWrap = document.createElement("div")
+                let gradeDiv = document.createElement("div")
+                let gradeNum = document.createElement("div")
+                let gradeCircle = document.createElement("div")
+                gradeDivWrap.className="gradeDivWrap"
+                gradeCircle.className="circle"
+                gradeDiv.className="gradeDiv"
+
+                gradeDiv.innerText = "추천점수"
+                gradeNum.innerText=list[i].grade
+                gradeDivWrap.appendChild(gradeDiv)
+                recommend.appendChild(gradeDivWrap)
+                recommend.appendChild(gradeNum)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].grade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        gradeCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        gradeCircle.appendChild(grade_empty)
+                    }
+                }
+                recommend.appendChild(gradeCircle)
+
+                
                 let contents = document.createElement("div")
                 contents.innerText = list[i].contents
-                revDiv.appendChild(gradeDiv)
-                revDiv.appendChild(grade)
+                revDiv.appendChild(recommend)
                 revDiv.appendChild(contents)
 
                 let trfDiv = document.createElement("span")
