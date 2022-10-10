@@ -170,6 +170,7 @@
 	<hr>
 	<c:forEach items="${list}" var="dto" varStatus="i">
 		<div class="mt-3">
+			<a id="${dto.revNum }"></a>
 			<div class="d-flex justify-content-between">
 				<div class="d-flex">
 					<div style="width: 20%; margin-right: 10px;">
@@ -246,5 +247,14 @@
 		</div>
 		<hr>
 	</c:forEach>
+	
+	
+	<script type="text/javascript"  src="http://code.jquery.com/jquery-latest.js">
+	
+	
+	
+	
+	</script>
+	
 </body>
 </html>

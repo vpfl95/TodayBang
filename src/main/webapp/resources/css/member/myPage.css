@@ -571,8 +571,7 @@ tr,th{
 }
 
 .bigImg{
-    position: absolute;
-
+    
     width: 500px !important;
     height: 500px;
 

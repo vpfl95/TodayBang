@@ -16,6 +16,34 @@ public class ProductReviewDTO {
 	private String userId;
 	private Long type;
 	
+	
+	private String brand;
+	private String productName;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getBrand() {
+		return brand;
+	}
+	public void setBrand(String brand) {
+		this.brand = brand;
+	}
+	public String getProductName() {
+		return productName;
+	}
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
 	public Long getType() {
 		if(type == null) {
 			type = 0L;

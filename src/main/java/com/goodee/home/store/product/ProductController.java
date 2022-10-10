@@ -60,12 +60,13 @@ public class ProductController {
 	}
 	
 	@GetMapping("detail")
-	public ModelAndView getProductDetail(ProductDTO productDTO) throws Exception {
+	public ModelAndView getProductDetail(ProductDTO productDTO,Long revNum) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<ProductDTO> ar = productService.getProductDetail(productDTO);
 		ObjectMapper mapper = new ObjectMapper();
 		String jsonList = mapper.writeValueAsString(ar);
 		mv.addObject("jsonList", jsonList);
+		mv.addObject("moveRevNum", revNum);
 		mv.setViewName("store/products/detailProduct");
 		return mv;
 	}

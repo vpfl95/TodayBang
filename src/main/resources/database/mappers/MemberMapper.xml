@@ -219,9 +219,12 @@
 			</select>
 			
 			<select id="getMyPdReview" parameterType="MemberDTO" resultType="ProductReviewDTO">
-			 SELECT * 
-			 FROM PRODUCTREVIEW 
-			 WHERE USERID=#{userId}
+			  SELECT PR.*,PD.PRODUCTNAME,PD.BRAND
+				 FROM PRODUCTREVIEW PR
+	             INNER JOIN PRODUCT PD
+	             ON PR.PRODUCTNUM = PD.PRODUCTNUM
+	             
+				 WHERE USERID=#{userId}
 			</select>
 			
 			

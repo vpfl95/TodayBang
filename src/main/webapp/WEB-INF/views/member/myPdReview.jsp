@@ -126,12 +126,22 @@
 	<c:forEach items="${list}" var="dto" varStatus="i">
 		<div class="mt-3">
 			<div class="d-flex justify-content-between">
+				<div class="d-flex" style="width: 100%;">
+					<div  style="width:98%;">
+						 
+						<a href="/product/detail?productNum=${dto.productNum }&revNum=${dto.revNum}"><span>[${dto.brand}]</span>	<span>${dto.productName }</span></a>
+					</div>
+					
+				</div>
+			</div>
+		
+		
+		
+		
+			<div class="d-flex justify-content-between flex-wrap">
 				<div class="d-flex">
 					<div style="width:750px;">
-						<div>
-							[삼성전자] 가전제품 뭐시기 냉장고 3njnalda 제품코드 대충 이정도 길이
 						
-						</div>
 						
 						<div class="d-flex" style="width: 220px;">
 							<div class='star-rating'>
@@ -151,14 +161,14 @@
 		<div class='bigPicture'>
 		</div>
 	</div>
-				<div style="width: 20%;">
+				<div style="">
 					<c:if test="${not empty dto.fileName}">						
 						<img class="reviewImg" src="../../resources/upload/store/review/${dto.fileName}" 
 						alt="..." style="width: 100px;">
 					</c:if>
 				</div>
 				
-				<div class="delete" data-delete-revnum="${dto.revNum}">❌</div>
+				
 				
 			</div>
 			
