@@ -18,8 +18,8 @@
 
 	<section class="container d-flex justify-content-center">
         <div class="left_re">
-            <h3 style="margin-bottom: 50px;">주문/결제</h3>
-            <h4>주문자</h4>
+            <h3 style="margin-bottom: 50px; font-weight: 700;">주문/결제</h3>
+            <h5 style="font-weight: 600;">주문자</h5>
             <hr style="width: 95%; margin-top: 8px;">
             <div class="d-flex" style="height: 38px;">
                 <label for="userName">이름</label>
@@ -58,7 +58,7 @@
             </div>
 
             <div class="d-flex justify-content-between mt-5" style="width: 95%;">
-                <h4>배송지</h4>
+                <h5 style="font-weight: 600;">배송지</h5>
                 <button type="button" class="same">내 배송지 가져오기</button>
             </div>
             <hr style="width: 95%; margin-top: 8px;">
@@ -110,11 +110,11 @@
                 </select>
             </div>
 
-            <h3 style="margin-top: 50px; margin-bottom: 5px;">주문상품</h3>
+            <h5 style="margin-top: 50px; margin-bottom: 5px; font-weight: 600;">주문상품</h5>
             <hr style="width: 95%; margin-top: 8px;">
 
             <div class="d-flex justify-content-between" style="margin-top: 50px; width: 95%;">
-                <h3>포인트</h3>
+                <h5 style="font-weight: 600; margin: 10px 0 0 0;">포인트</h5>
                 <div style="line-height: 40px; color: rgb(117, 117, 117); font-size: 15px;">사용 가능한 포인트가 없습니다</div>
             </div>
             <hr style="width: 95%; margin-top: 8px;">
@@ -129,37 +129,88 @@
 
         <div class="right_re mt-5">
             <div class="right_re1">
-                <div>
-                    <h3>결제금액</h3>
-                    <div class="d-flex justify-content-between mt-4">
-                        <div>총 상품 금액</div>
-                        <div>0원</div>
+                <div class="right_re1_re1">
+                    <div>
+                        <h5 class="mt-3" style="font-weight: 600;">결제금액</h5>
+                        <div class="d-flex justify-content-between mt-4">
+                            <div style="font-size: 15px;">총 상품 금액</div>
+                            <div class="price">0원</div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <div style="font-size: 15px;">배송비</div>
+                            <div class="deleFee">0원</div>
+                        </div>
+                        <div class="d-flex justify-content-between mt-2">
+                            <div style="font-size: 15px;">포인트 사용</div>
+                            <div class="point">0원</div>
+                        </div>
+                        <hr style="width: 90%; margin: 30px auto 0 auto;">
+        
+                        <div class="d-flex justify-content-between mt-4">
+                            <div style="font-weight: 600; font-size: 20px;">최종 결제 금액</div>
+                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice" style="color: #35c5f0;">0</span> 원</div>
+                        </div>
+                        <div style="font-size: 14px; text-align: right; margin-top: 5px;"><span style="font-weight: 600;">0 P</span> 적립 예정</div>
                     </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div>배송비</div>
-                        <div>0원</div>
+                    <hr style="width: 100%; margin: 30px auto 0 auto;">
+                    <div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                            <button class="form-check-all">아래 내용에 모두 동의합니다. (필수)</button>
+                        </div>
+                        <div class="form-check mb-2">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault2">
+                            <button class="form-check-button" id="termsAgree1">개인정보 수집 이용 및 제 3자 제공 동의 (필수)
+                                <svg fill="none" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid meet" class="terms-expand">
+                                    <path d="M1.75.833L8 6.873l6.25-6.04L15.5 1.98 8 9.167.5 1.98 1.75.833z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="form-check mb-2 termSub1" id="termsAgree1_1" style="display: none;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                            <span style="font-size: 13px;">개인정보 제 3자 제공</span>
+                            <button class="btnView" id="termsView1" style="float: right; line-height: 24px;">약관보기
+                                <svg class="icon" fill="none" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid meet">
+                                    <path d="M1.75.833L8 6.873l6.25-6.04L15.5 1.98 8 9.167.5 1.98 1.75.833z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="form-check mb-2 termSub1" id="termsAgree1_2" style="display: none;">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault4">
+                            <span style="font-size: 13px;">개인정보 수집 및 이용</span>
+                            <button class="btnView" id="termsView2" style="float: right; line-height: 24px;">약관보기
+                                <svg class="icon" fill="none" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid meet">
+                                    <path d="M1.75.833L8 6.873l6.25-6.04L15.5 1.98 8 9.167.5 1.98 1.75.833z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault3">
+                            <button class="form-check-button" id="termsAgree2">결제대행 서비스 이용약관 동의 (필수)
+                                <svg fill="none" viewBox="0 0 16 10" preserveAspectRatio="xMidYMid meet" class="terms-expand">
+                                    <path d="M1.75.833L8 6.873l6.25-6.04L15.5 1.98 8 9.167.5 1.98 1.75.833z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="terms1 mt-2">
+                            본인은 만 14세 이상이며, 주문 내용을 확인하였습니다.
+                            <div class="terms2 mt-2">
+                                (우리팀이름)는 통신판매중개자로 거래 당사자가 아니므로, 판매자가 등록한 상품정보 및 거래 등에 대해 책임을 지지 않습니다 
+                                (단, (우리팀이름)가 판매자로 등록 판매한 상품은 판매자로서 책임을 부담합니다).
+                            </div>
+                        </div>
                     </div>
-                    <div class="d-flex justify-content-between mt-2">
-                        <div>포인트 사용</div>
-                        <div>0원</div>
-                    </div>
-                    <hr style="width: 90%; margin: 30px auto 0 auto;">
-    
-                    <div class="d-flex justify-content-between mt-2">
-                        <div>최종 결제 금액</div>
-                        <div>0원</div>
-                    </div>
-                    <div>0포인트 적립 예정</div>
                 </div>
-                <hr style="width: 100%; margin: 30px auto 0 auto;">
-                <div>
-                    <div>아래 내용에 모두 동의합니다</div>
-                </div>
+
+                <button class="btnPay mt-4">
+                    <span class="totalPrice">0</span>원 결제하기
+                </button>
             </div>
         </div>
 	</section>
 	
 	<c:import url="../../template/footer.jsp"></c:import>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/resources/js/store/order.js"></script>

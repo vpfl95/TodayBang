@@ -1,4 +1,8 @@
 const samplePostcode = document.querySelectorAll('.sample-postcode');
+const termsAgree1 = document.querySelector('#termsAgree1');
+const termsAgree2 = document.querySelector('#termsAgree2');
+const termsAgree1_1 = document.querySelector('#termsAgree1_1');
+const termsAgree1_2 = document.querySelector('#termsAgree1_2');
 
 for(sp of samplePostcode) {
     sp.onclick=sample6_execDaumPostcode;
@@ -27,4 +31,35 @@ function sample6_execDaumPostcode() {
             document.getElementById("sample6_detailAddress").focus();
         }
     }).open();
+}
+
+termsAgree1.onclick=function(event) {
+    if(event.target.classList.contains('terms-expand') || event.target.classList.contains('terms-expand-click')) {
+        let svg = event.target;
+        svg.classList.toggle('terms-expand');
+        svg.classList.toggle('terms-expand-click');
+        if(svg.classList.contains('terms-expand')) {
+            termsAgree1_1.setAttribute('style', 'display: none');
+            termsAgree1_2.setAttribute('style', 'display: none');
+        } else {
+            termsAgree1_1.setAttribute('style', '');
+            termsAgree1_2.setAttribute('style', '');
+        }
+    } else {
+        let svg = $(event.target).find('svg');
+        svg[0].classList.toggle('terms-expand');
+        svg[0].classList.toggle('terms-expand-click');
+        if(svg[0].classList.contains('terms-expand')) {
+            termsAgree1_1.setAttribute('style', 'display: none');
+            termsAgree1_2.setAttribute('style', 'display: none');
+        } else {
+            termsAgree1_1.setAttribute('style', '');
+            termsAgree1_2.setAttribute('style', '');
+        }
+    }
+    
+}
+
+termsAgree2.onclick=function(event) {
+    console.log(event.target.firstChild.nextSibling);
 }
