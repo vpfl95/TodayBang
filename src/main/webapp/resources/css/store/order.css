@@ -1,5 +1,5 @@
 .right_re {
-    width: 30%;
+    width: 35%;
     margin: 0px;
     height: 2000px;
     display:inline-block;
@@ -7,17 +7,22 @@
 
 .right_re1 {
     width: 300px;
-    height: 300px;
+    height: auto;
     margin: 0 auto;
-    padding: 2em 1em;
+    margin-top: 100px;
     position: fixed;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
 }
 
+.right_re1>div {
+    padding: 2em 1em;
+}
+
 .left_re{
-    width: 55%;
+    width: 65%;
     height: 2000px;
     float: left;
+    margin-top: 150px;
 }
 
 .left_re img {
@@ -33,4 +38,33 @@
     background: none;
     border: none;
     font-weight: bold;
+}
+
+label {
+    line-height: 38px;
+    width: 15%;
+}
+
+.searchAddress, .pointAll {
+    font: inherit;
+    transition: opacity .1s;
+    width: 30%;
+    margin-right: 10px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 900;
+    color: #35c5f0;
+    padding: 0;
+    background: none;
+    border-radius: 4px;
+    border: solid 1px #35c5f0;
+}
+
+.sample-postcode-input {
+    background-color: #f5f5f5 !important;
+}
+
+.usePointValue {
+    font-weight: bold;
+    color: #35c5f0;
 }
