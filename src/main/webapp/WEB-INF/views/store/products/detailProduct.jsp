@@ -255,50 +255,16 @@
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
     <script >
        
+    getProductImageCount();
+    setProductImage();
+    setProductInfo();
+    getCategory();
+    setModal();
+    getReviewList(0);
+    getInquiryList();
+    setOption();
         
-        $(document).ready(function(){
-    		
-        	
-        	 getProductImageCount();
-             setProductImage();
-             setProductInfo();
-             getCategory();
-             setModal();
-             getReviewList(0);
-             getInquiryList();
-             setOption();
-        	
-             
-             
-             
-             if(${not empty moveRevNum}){
-            	 
-            	 setTimeout(function(){
-	            	  var offset = $('#review').offset(); 
-	                  $('html').animate({scrollTop : offset.top}, 700);
-	                  
-            	 },600) 
-                  
-                  
-                  
-        			setTimeout(function(){
-        				
-        				var offset = $('#${moveRevNum}').offset(); 
-            			console.log("실행");
-            			$('html').animate({scrollTop : offset.top}, 700);
-        				
-        				
-        			},1300) 
-            	 
-             }
-             
-           
-     			
-     		
-    		
-    	
-    		
-    	});
+        
     </script>
     
 </body>

@@ -15,12 +15,30 @@ public class BoardDTO {
 	private String userId;
 	private String board;
 	private Long hit;
+	private String mfileName;
+	
+	
 	
 	private List<BoardFileDTO> boardFileDTOs;
 	
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getMfileName() {
+		return mfileName;
+	}
+	public void setMfileName(String mfileName) {
+		this.mfileName = mfileName;
+	}
 	public Long getHit() {
 		return hit;
 	}

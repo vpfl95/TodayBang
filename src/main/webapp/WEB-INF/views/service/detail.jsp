@@ -48,7 +48,18 @@
 						
 						<div  class="board-writerSection">
 							<div  class="board-imgDiv">
-								<img class="board-img" alt="" src="/resources/images/NoProfile.png" >
+								
+								<c:choose>
+									<c:when test="${not empty boardList.mfileName }">
+										<img class="board-img" alt="" src="/resources/upload/member/${boardList.mfileName }" >
+									</c:when>
+									<c:otherwise>
+										<img class="board-img" alt="" src="/resources/images/NoProfile.png" >
+									</c:otherwise>
+								</c:choose>
+								
+								
+								
 							</div>
 							<div>
 								<div  class="board-userId">
@@ -89,10 +100,10 @@
 						    		
 						    		<c:if test="${empty qnaAnswer }">
 						    			<button id="boardUpdateBtn" class="boardUpdateBtn" data-a="./update?boardNum=${boardList.boardNum }" >수정</button>
-						    			<a href="./update?boardNum=${boardList.boardNum }">수정</a>
+						    			
 						    		</c:if>
 						    		<button id="boardDeleteBtn" class="boardDeleteBtn" data-a="./delete?boardNum=${boardList.boardNum }" >삭제</button>
-						    		<a href="./delete?boardNum=${boardList.boardNum }">삭제</a>
+						    		
 						    	</c:if>
 						    </div>
 						    	
@@ -114,7 +125,14 @@
 							
 							<div  class="board-writerSection">
 								<div  class="board-imgDiv">
-									<img class="board-img" alt="" src="/resources/images/NoProfile.png" >
+									<c:choose>
+									<c:when test="${not empty qnaAnswer.mfileName }">
+										<img class="board-img" alt="" src="/resources/upload/member/${qnaAnswer.mfileName }" >
+									</c:when>
+									<c:otherwise>
+										<img class="board-img" alt="" src="/resources/images/NoProfile.png" >
+									</c:otherwise>
+								</c:choose>
 								</div>
 								<div>
 									<div  class="board-userId">
@@ -145,10 +163,7 @@
 								<c:if test="${qnaAnswer.userId eq member.userId }">
 									<button id="answerUpdateBtn" class="boardUpdateBtn" data-a="./updateAnswer?boardNum=${boardList.boardNum }" >답변 수정</button>
 						    		<button id="answerDeleteBtn" class="boardDeleteBtn" data-a="./deleteAnswer?boardNum=${boardList.boardNum }" >답변 삭제</button>
-						    		
-												<a href="./updateAnswer?boardNum=${boardList.boardNum }">답변 수정</a>	
-									    		<a href="./deleteAnswer?boardNum=${boardList.boardNum }">답변 삭제</a>
-									    		
+						    			
 						    	</c:if>
 					    	</div>
 					    	</div>

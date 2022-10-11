@@ -850,7 +850,8 @@ function profile() {
 
             Swal.fire({
                 title: "프로필 수정 성공",
-                icon: "success"
+                icon: "success",
+                confirmButtonColor : '#38b9e0'
 
             } ).then((result) => {
                 updateForm.submit();
@@ -863,8 +864,8 @@ function profile() {
             updateForm.setAttribute("action","./delete");
             Swal.fire({
                 title: "프로필 수정 성공",
-                icon: "success"
-
+                icon: "success",
+                confirmButtonColor : '#38b9e0'
             } ).then((result) => {
                 updateForm.submit();
             })
@@ -873,8 +874,10 @@ function profile() {
             Swal.fire({
                 title: "프로필 수정 실패",
                 text : "입력되지 않은 란이 있습니다.",
-                icon: "error"
-
+                icon: "error",
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: '확인'
             } )
 
 
@@ -883,8 +886,10 @@ function profile() {
             Swal.fire({
                 title: "프로필 수정 실패",
                 text : "수정 조건을 만족해 주세요!",
-                icon: "error"
-
+                icon: "error",
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: '확인'
             } )
 
         }
@@ -909,7 +914,7 @@ function profile() {
               text: "다시 되돌릴 수 없습니다. ",
               icon: 'warning',
               showCancelButton: true,
-              confirmButtonColor: '#3085d6',
+              confirmButtonColor: '#38b9e0',
               
               confirmButtonText: '탈퇴',
               cancelButtonText: '취소',
@@ -922,12 +927,14 @@ function profile() {
 
 
 
-                Swal.fire(
+                Swal.fire({
                     
-                  '회원탈퇴가 완료되었습니다.',
-                  '',
-                  'success'
-                ).then((result) => {
+                    title: '회원탈퇴가 완료되었습니다.',
+                    icon: 'success',
+                    confirmButtonColor: '#38b9e0'
+
+
+                }).then((result) => {
                     updateForm.action = "./dropMember";
                     updateForm.submit();
                 })
@@ -935,7 +942,7 @@ function profile() {
                 setTimeout(() => {
                     updateForm.action = "./dropMember";
                     updateForm.submit();
-                }, 3000)
+                }, 2000)
     
                 
               }
@@ -1027,7 +1034,7 @@ function updatePw() {
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#38b9e0',
                 
                 confirmButtonText: '변경',
                 cancelButtonText: '취소',
@@ -1038,6 +1045,7 @@ function updatePw() {
                   Swal.fire({
                     title: "비밀번호 변경이 완료되었습니다.",
                     icon: "success",
+                    confirmButtonColor: '#38b9e0',
                     confirmButtonText: '확인'
                     } ).then((result) => {
                     pwUpdateForm.submit();
@@ -1127,6 +1135,7 @@ function delivery(){
 
            Swal.fire({
             title: "배송지 저장 성공",
+            confirmButtonColor : '#38b9e0',
             icon: "success"
 
         } ).then((result) => {
@@ -1138,6 +1147,7 @@ function delivery(){
 
             Swal.fire({
                 title: "배송지 수정 성공",
+                confirmButtonColor : '#38b9e0',
                 icon: "success"
     
             } ).then((result) => {
@@ -1156,8 +1166,8 @@ function delivery(){
             title: "정말로 삭제하시겠습니까?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor: '#38b9e0',
+            
             confirmButtonText: '승인',
             cancelButtonText: '취소',
             reverseButtons: true
@@ -1343,19 +1353,22 @@ function cart(){
             text: "",
             icon: 'warning',
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
-            cancelButtonColor: '#d33',
+            confirmButtonColor : '#38b9e0',
+            
             confirmButtonText: '삭제',
             cancelButtonText: '취소',
             reverseButtons: true, // 버튼 순서 거꾸로
             
           }).then((result) => {
             if (result.isConfirmed) {
-              Swal.fire(
-                  
-                '삭제 되었습니다.',
-                '',
-                'success'
+              Swal.fire({
+                confirmButtonColor : '#38b9e0',
+                title: '삭제 되었습니다.',
+                
+                icon: 'success'
+
+              }
+                
               ).then((result) => {
                  console.log(deleteList);
                  location.href ="/member/deleteSelectCart?cartNum="+deleteList;
@@ -1377,8 +1390,7 @@ function cart(){
                 text: "",
                 icon: 'warning',
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
+                confirmButtonColor: '#38b9e0',
                 confirmButtonText: '삭제',
                 cancelButtonText: '취소',
                 reverseButtons: true, // 버튼 순서 거꾸로

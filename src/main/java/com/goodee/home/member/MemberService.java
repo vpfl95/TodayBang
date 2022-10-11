@@ -142,7 +142,20 @@ public class MemberService {
 	
 	public int deleteDelivery(DeliveryDTO deliveryDTO) throws Exception{
 		
-		return memberDAO.deleteDelivery(deliveryDTO);
+		int result =0;
+		List<Long> ar =  memberDAO.deleteDeliveryCheck(deliveryDTO);
+		
+		if(ar.size() == 0 ) {
+			
+			result = memberDAO.deleteDelivery(deliveryDTO);
+		}else {
+			
+			deliveryDTO.setUserId("");
+			result = memberDAO.updateDelivery(deliveryDTO);
+		}
+		
+		
+		return result;
 	}
 	
 	public int dropMember(MemberDTO memberDTO)throws Exception{

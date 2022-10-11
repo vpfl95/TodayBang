@@ -98,6 +98,8 @@ public class ServiceController {
 		
 		boardDTO.setBoard(getBoardName());
 		boardDTO  = service.getDetail(boardDTO);
+		System.out.println("usrID ==" + boardDTO.getUserId());
+		System.out.println("filename ==" + boardDTO.getMfileName());
 		mv.addObject("boardList",boardDTO);
 		if(getBoardName() == "QNA") {
 			
@@ -107,7 +109,7 @@ public class ServiceController {
 				mv.addObject("qnaAnswer",boardDTO);
 			
 		}
-		
+		System.out.println("filename ==" + boardDTO.getMfileName());
 		
 		mv.setViewName("/service/detail");
 		

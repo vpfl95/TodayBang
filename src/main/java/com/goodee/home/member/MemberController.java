@@ -309,8 +309,9 @@ public class MemberController {
 	}
 	
 	@PostMapping("updateDelivery")
-	public String updateDelivery(DeliveryDTO deliveryDTO) throws Exception{
-		
+	public String updateDelivery(DeliveryDTO deliveryDTO,HttpSession session) throws Exception{
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
+		deliveryDTO.setUserId(memberDTO.getUserId());
 		int result = memberService.updateDelivery(deliveryDTO);
 		
 		return "redirect:./delivery";
@@ -318,6 +319,8 @@ public class MemberController {
 	
 	@PostMapping("deleteDelivery")
 	public String deleteDelivery(DeliveryDTO deliveryDTO) throws Exception{
+		// order 에서 사용하는 지 검사
+		
 		
 		
 		int result = memberService.deleteDelivery(deliveryDTO);

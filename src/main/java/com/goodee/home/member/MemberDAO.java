@@ -159,4 +159,9 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+ "getMyPdReview",memberDTO);
 	}
 	
+	public List<Long> deleteDeliveryCheck(DeliveryDTO deliveryDTO) throws Exception{
+		
+		return sqlSession.selectList(NAMESPACE+ "deleteDeliveryCheck",deliveryDTO);
+	}
+	
 }

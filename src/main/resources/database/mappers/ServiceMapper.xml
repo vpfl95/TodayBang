@@ -40,10 +40,12 @@
 					
 			</select> -->
 			<select id="getDetail" parameterType="BoardDTO" resultMap="getDetailResult">
-				SELECT BO.* , BF.FILENUM , BF.FILENAME , BF.ORINAME , BF.SORT
+				SELECT BO.* , BF.FILENUM , BF.FILENAME , BF.ORINAME , BF.SORT , MF.FILENAME MFILENAME
 				FROM <include refid="getBoard"></include> BO
 					LEFT JOIN  <include refid="getBoardFile"></include> BF
     				ON BO.BOARDNUM = BF.BOARDNUM
+    				LEFT JOIN MEMBERFILE MF
+                    ON BO.USERID = MF.USERID
 				WHERE BO.BOARDNUM = #{boardNum} 
 				
 				
@@ -55,6 +57,7 @@
 				<result column="REGDATE" property="regDate"/>
 				<result column="USERID" property="userId"/>
 				<result column="HIT" property="hit"/>
+				<result column="MFILENAME" property="mfileName"/>
 				<collection property="boardFileDTOs" javaType="List" ofType="BoardFileDTO">
 					<id column="FILENUM" property="fileNum"/>
 					<result column="FILENAME" property="fileName"/>

@@ -349,14 +349,45 @@ function setThumbnail(event) {
 
 // 리뷰 리스트
 function getReviewList(type) {
+
+    let param = getParameter("revNum");
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+    
+   
+    
+
     const xhttp = new XMLHttpRequest();
     xhttp.open("GET", "/review/list?productNum="+jsonList[0].productNum+"&type="+type);
     xhttp.send();
     xhttp.onreadystatechange=function() {
         if(this.readyState==4 && this.status==200) {
             reviewList[0].innerHTML=this.responseText.trim();
+            
+            if(param != ""){
+                let elem = document.getElementById(param);
+                let rect = elem.getBoundingClientRect();
+                console.log(param);
+                console.log(rect.x);
+                console.log(rect.y);
+                window.scrollTo(rect.x, rect.y);
+            }
+
+
+
+
         }
+        
     }
+
+
+
+
 }
 
 let revNum;

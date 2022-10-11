@@ -23,7 +23,7 @@
 			    
 			    <label for="password" >현재 비밀번호 확인</label>
 			    <input type="password" id="password" name = "password" class="form-control nonOverlab" placeholder="현재 비밀번호" required>
-				<button id="pwCheckBtn" class="w-50 btn btn-lg btn-primary" type="button">확인</button>
+				<button id="pwCheckBtn" class="w-50 btn btn-lg btn-primary inputbutton" type="button">확인</button>
 			</form>
 			
 			
@@ -42,7 +42,7 @@
 				
 				<label for="newPasswordCheck" >새 비밀번호 확인</label>
 			    <input type="password" id="newPasswordCheck" name = "passwordCheck" class="form-control nonOverlab" placeholder="새 비밀번호 확인" required>
-				<button id="pwUpdateBtn" class="w-50 btn btn-lg btn-primary" type="button">변경하기</button>
+				<button id="pwUpdateBtn" class="w-50 btn btn-lg btn-primary inputbutton" type="button">변경하기</button>
 				
 			</form>
 		</div>	   

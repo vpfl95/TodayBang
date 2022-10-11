@@ -121,8 +121,8 @@
 						</table>
 						
 						<div class = "btnDiv">
-							<button id="delDeleteBtn" class="de-Btn" type="button">삭제</button>
-						  	<button id="delUpdateBtn" class="de-Btn" type="button">저장</button>
+							<button id="delDeleteBtn" class="de-Btn inputbutton" type="button">삭제</button>
+						  	<button id="delUpdateBtn" class="de-Btn inputbutton" type="button">저장</button>
 				
 						</div>
 					</form>
