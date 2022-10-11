@@ -208,7 +208,7 @@ function getRegionName(){
 function getBuildingInfo(result, status){
     let buildingInfoResult;
     let xhttp = new XMLHttpRequest();
-    xhttp.open("POST","getAptRoadName");
+    xhttp.open("POST","./getAptRoadName");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
     // console.log(map.getBounds())
     // console.log(map.getBounds().ha)
@@ -368,7 +368,7 @@ function addEventHandle(target,coords, type) {
 
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
-
+             document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             //map.setCenter(coords)
             
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
@@ -403,7 +403,7 @@ function addEventHandle(target,coords, type) {
             //매물리스트 테이블헤더
             let tr = document.createElement("tr")
             let th = document.createElement("th")
-            let thText = document.createTextNode("계약일")
+            let thText = document.createTextNode("등록일")
             th.appendChild(thText)
             tr.appendChild(th)
             th = document.createElement("th")
@@ -416,6 +416,10 @@ function addEventHandle(target,coords, type) {
             tr.appendChild(th)
             th = document.createElement("th")
             thText = document.createTextNode("층수")
+            th.appendChild(thText)
+            tr.appendChild(th)
+            th = document.createElement("th")
+            thText = document.createTextNode("관심")
             th.appendChild(thText)
             tr.appendChild(th)
             realEstateList.append(tr)
@@ -435,6 +439,10 @@ function addEventHandle(target,coords, type) {
 function getMaemulList(roadName,p){
     buildingInfo.style.display="block"
     
+    let user = interestedCheck(roadName);
+    
+
+
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getList?roadName="+roadName+"&page="+p);
     xhttp.send();
@@ -494,6 +502,27 @@ function getMaemulList(roadName,p){
                 td.appendChild(tdText)
                 tr.appendChild(td)
                 
+                
+                td=document.createElement("td")
+                tdText = document.createTextNode("🤍")
+                let tdAttr = document.createAttribute("class")
+                tdAttr.value="interested"
+                td.setAttributeNode(tdAttr)
+                td.appendChild(tdText)
+                td.setAttribute("data-num",list[i].num)
+                td.setAttribute("data-userId",userId.value)
+                tr.appendChild(td)
+               
+                if(user.length>0){
+                    for(let j =0; j<user.length; j++){
+                        if(user[j].num==list[i].num){
+                            td.classList.add("interested_select")
+                            user.splice(j, 1);
+                        }
+                    }
+                }
+
+
                 realEstateList.append(tr)
 
                 //페이지 없으면 버튼 비활성화
@@ -511,6 +540,67 @@ function getMaemulList(roadName,p){
         }
     })
 }
+
+//유저별 좋아요클릭한 매물 받아오기
+function interestedCheck(roadname){
+
+    let result
+
+    $.ajax({
+        type: "post",
+        url: "./getInterestedUser",
+        async: false,     //값을 리턴시 해당코드를 추가하여 동기로 변경
+        data: { userId: userId.value,
+                roadName: roadname},
+        success: function (data) {
+            result = data;
+        }
+    });
+    return result
+
+}
+
+
+//매물 좋아요 클릭 이벤트처리
+realEstateList.addEventListener("click",function(event){
+    let num =event.target.getAttribute("data-num");
+    let userId = event.target.getAttribute("data-userId");
+    if(event.target.className=="interested"){
+        if(userId==""){
+            alert("로그인이 필요합니다.")
+            window.location.href='/member/login'
+        }else{
+            event.target.classList.add("interested_select")
+            console.log(event.target.getAttribute("data-num"))
+            console.log(event.target.getAttribute("data-userId"))
+    
+            let xhttp = new XMLHttpRequest();
+            xhttp.open("POST","./setInterested");
+            xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+            xhttp.send("userId="+userId+"&num="+num);
+            xhttp.addEventListener("readystatechange",function(){
+                if(xhttp.status==200 && xhttp.readyState==4){
+                    let result = xhttp.responseText
+                    console.log(result)
+                }
+            })
+        }
+    }else if(event.target.classList.contains("interested_select")){
+        console.log("선택된거")
+        event.target.classList.toggle("interested_select")
+
+        let xhttp = new XMLHttpRequest();
+        xhttp.open("POST","./setDeleteInterested");
+        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        xhttp.send("userId="+userId+"&num="+num);
+        xhttp.addEventListener("readystatechange",function(){
+            if(xhttp.status==200 && xhttp.readyState==4){
+                let result = xhttp.responseText
+                console.log(result)
+            }
+        })
+    }
+})
 
 //매물리스트 더보기 클릭 이벤트
 more.addEventListener("click", function(){
@@ -537,54 +627,158 @@ function getReviewList(roadName,p){
                 let revDiv = document.createElement("div")
                 revDiv.className="revDiv"
                 revDiv.setAttribute("data-rvNum",list[i].reviewNum)
-                let gradeDiv = document.createElement("span")
-                let grade = document.createElement("span")
-                gradeDiv.innerText = "추천점수" 
-                grade.innerText=list[i].grade
+
+                let recommend = document.createElement("div")
+                recommend.className="recommend"
+                let gradeDivWrap = document.createElement("div")
+                let gradeDiv = document.createElement("div")
+                let gradeNum = document.createElement("div")
+                let gradeCircle = document.createElement("div")
+                gradeDivWrap.className="gradeDivWrap"
+                gradeCircle.className="circle"
+                gradeDiv.className="gradeDiv"
+
+                gradeDiv.innerText = "추천점수"
+                gradeNum.innerText=list[i].grade
+                gradeDivWrap.appendChild(gradeDiv)
+                recommend.appendChild(gradeDivWrap)
+                recommend.appendChild(gradeNum)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].grade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        gradeCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        gradeCircle.appendChild(grade_empty)
+                    }
+                }
+                recommend.appendChild(gradeCircle)
+
                 let contents = document.createElement("div")
                 contents.innerText = list[i].contents
-                revDiv.appendChild(gradeDiv)
-                revDiv.appendChild(grade)
+                revDiv.appendChild(recommend)
                 revDiv.appendChild(contents)
 
-                let trfDiv = document.createElement("span")
-                let trfgrade = document.createElement("span")
+
+
+                let traffic = document.createElement("div")
+                traffic.className="recommend"
+                let trfDivWrap = document.createElement("div")
+                let trfDiv = document.createElement("div")
+                let trfgrade = document.createElement("div")
+                let trfCircle = document.createElement("div")
+                trfDivWrap.className="gradeDivWrap"
+                trfgrade.className="gradeDiv"
+                trfCircle.className="circle"
+
                 trfDiv.innerText="교통여건"
                 trfgrade.innerText=list[i].trfGrade
+                trfDivWrap.appendChild(trfDiv)
+                traffic.appendChild(trfDivWrap)
+                traffic.appendChild(trfgrade)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].trfGrade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        trfCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        trfCircle.appendChild(grade_empty)
+                    }
+                }
+                traffic.appendChild(trfCircle)
+
                 let trfContents = document.createElement("div")
                 trfContents.innerText = list[i].trfContents
-                revDiv.appendChild(trfDiv)
-                revDiv.appendChild(trfgrade)
+                revDiv.appendChild(traffic)
                 revDiv.appendChild(trfContents)
 
-                let envDiv = document.createElement("span")
-                let envgrade = document.createElement("span")
+
+                let environment = document.createElement("div")
+                environment.className="recommend"
+                let envDivWrap = document.createElement("div")
+                let envDiv = document.createElement("div")
+                let envgrade = document.createElement("div")
+                let envCircle = document.createElement("div")
+                envDivWrap.className="gradeDivWrap"
+                envgrade.className="gradeDiv"
+                envCircle.className="circle"
+
                 envDiv.innerText="주변환경"
                 envgrade.innerText=list[i].envGrade
+                envDivWrap.appendChild(envDiv)
+                environment.appendChild(envDivWrap)
+                environment.appendChild(envgrade)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].envGrade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        envCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        envCircle.appendChild(grade_empty)
+                    }
+                }
+                environment.appendChild(envCircle)
+
+
                 let envContents = document.createElement("div")
                 envContents.innerText = list[i].envContents
-                revDiv.appendChild(envDiv)
-                revDiv.appendChild(envgrade)
+                revDiv.appendChild(environment)
                 revDiv.appendChild(envContents)
 
-                let resDiv = document.createElement("span")
-                let resgrade = document.createElement("span")
+
+                let residential = document.createElement("div")
+                residential.className="recommend"
+                let resDivWrap = document.createElement("div")
+                let resDiv = document.createElement("div")
+                let resgrade = document.createElement("div")
+                let resCircle = document.createElement("div")
+                resDivWrap.className="gradeDivWrap"
+                resgrade.className="gradeDiv"
+                resCircle.className="circle"
+
                 resDiv.innerText="거주환경"
                 resgrade.innerText=list[i].resGrade
+                resDivWrap.appendChild(resDiv)
+                residential.appendChild(resDivWrap)
+                residential.appendChild(resgrade)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].resGrade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        resCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        resCircle.appendChild(grade_empty)
+                    }
+                }
+                residential.appendChild(resCircle)
+
                 let resContents = document.createElement("div")
                 resContents.innerText = list[i].resContents
-                revDiv.appendChild(resDiv)
-                revDiv.appendChild(resgrade)
+                revDiv.appendChild(residential)
                 revDiv.appendChild(resContents)
 
                 let update = document.createElement("span")
                 update.innerText="수정"
                 update.className="update"
+                update.setAttribute("value",list[i].userId)
                 revDiv.appendChild(update)
 
                 let del = document.createElement("span")
                 del.setAttribute("data-rvNum",list[i].reviewNum)
                 del.setAttribute("data-road",roadName)
+                del.setAttribute("value",list[i].userId)
                 del.innerText="삭제"
                 del.className="delete"
                 revDiv.appendChild(del)   
@@ -675,18 +869,51 @@ addReview.addEventListener("click",function(){
 
 });
 
+
+//작성자확인 인터셉터
+function writerCheck(userId){
+    let result
+    if(writeReview.value==""){
+        alert("로그인이 필요합니다.")
+        window.location.href='/member/login'
+    }
+
+    $.ajax({
+        type: "post",
+        url: "./writerCheck",
+        async: false,     //값을 리턴시 해당코드를 추가하여 동기로 변경
+        data: { userId: userId },
+        success: function (data) {
+            result = data;
+        }
+    });
+    return result
+}
+
+
+
 //리뷰 수정
 houseReviewList.addEventListener("click",function(event){   
     if(event.target.className=="update"){
-        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        env_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+     
+        console.log(event.target.getAttribute("value"))
+        let result = writerCheck(event.target.getAttribute("value"));
+        console.log(result)
+        if(result==0){
+            alert("작성자만 수정이 가능합니다.")
+            return false
+        }
+        
+        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        env_text.value=event.target.previousSibling.previousSibling.previousSibling.innerHTML
         res_text.value=event.target.previousSibling.innerHTML
         reviewNum.value=event.target.parentNode.getAttribute("data-rvnum")
-        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        let rg = event.target.previousSibling.previousSibling.innerHTML
+        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        let rg = event.target.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        
         document.getElementsByName("recommend")[Math.abs(grade-5)].checked=true
         document.getElementsByName("trf")[Math.abs(tg-5)].checked=true
         document.getElementsByName("env")[Math.abs(eg-5)].checked=true
@@ -700,6 +927,13 @@ upReview.addEventListener("click",function(){
     updateReview.style.display="block"
 })
 writeReview.addEventListener("click",function(){
+    
+    console.log(writeReview.value)
+    if(writeReview.value==""){
+        alert("로그인이 필요합니다.")
+        window.location.href='/member/login'
+    }
+
     addReview.style.display="block"
     updateReview.style.display="none"
     grade_text.value=""
@@ -778,32 +1012,49 @@ updateReview.addEventListener("click",function(){
 //리뷰 삭제
 houseReviewList.addEventListener("click",function(event){
     if(event.target.className=="delete"){
-        console.log(event.target.getAttribute("data-rvNum"))
-        let rvNum = event.target.getAttribute("data-rvNum");
-        let road = event.target.getAttribute("data-road");
 
-        let xhttp= new XMLHttpRequest();
-        xhttp.open("POST","./deleteReview")
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("reviewNum="+rvNum)
-        xhttp.addEventListener("readystatechange",function(){
-            if(xhttp.readyState==4 && xhttp.status==200){
-
-                let result = xhttp.responseText
-    
-                if(result==1){
-                    //alert("리뷰 수정완료")
-                    for(let i=0; i<houseReviewList.children.length;){
-                        houseReviewList.children[0].remove();
+        let result = writerCheck(event.target.getAttribute("value"));
+        console.log(result)
+        if(result==0){
+            alert("작성자만 삭제 가능합니다.")
+            return false
+        }
+        if(result==1){
+            if(confirm("리뷰를 삭제 하시겠습니까?")==false){
+                return false
+            }else{
+                console.log(event.target.getAttribute("data-rvNum"))
+                let rvNum = event.target.getAttribute("data-rvNum");
+                let road = event.target.getAttribute("data-road");
+        
+                let xhttp= new XMLHttpRequest();
+                xhttp.open("POST","./deleteReview")
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("reviewNum="+rvNum)
+                xhttp.addEventListener("readystatechange",function(){
+                    if(xhttp.readyState==4 && xhttp.status==200){
+        
+                        let result = xhttp.responseText
+            
+                        if(result==1){
+                            //alert("리뷰 수정완료")
+                            for(let i=0; i<houseReviewList.children.length;){
+                                houseReviewList.children[0].remove();
+                            }
+                            reviewPage=1;
+                            getReviewList(road,reviewPage)
+            
+                        }else{
+                            alert("리뷰 삭제실패")
+                        }
                     }
-                    reviewPage=1;
-                    getReviewList(road,reviewPage)
-    
-                }else{
-                    alert("리뷰 삭제실패")
-                }
+                })
+
+
+
             }
-        })
+        }
+
     }
 
 })
@@ -920,6 +1171,7 @@ function delay(fn, ms) {
 }
 
 const sugguestList = document.getElementById("sugguestList")
+const searchWrap = document.getElementById("searchWrap")
 searchSuggest();
 
 function searchSuggest(){
@@ -933,8 +1185,10 @@ function searchSuggest(){
 
         if(keyword.value==''){
             sugguestList.style.display="none"
+            searchWrap.style.zIndex=2
         }else{
             sugguestList.style.display="block"
+            searchWrap.style.zIndex=11
         }
 
   
@@ -1044,9 +1298,11 @@ function searchSuggest(){
         }
 
         if(e.key==="Escape"){
+            searchWrap.style.zIndex=2
             closeSuggestList();
         }
         if(e.key==="Enter"){
+            searchWrap.style.zIndex=2
             closeSuggestList();
         }
     }, 200));

@@ -24,7 +24,6 @@
                 <p>오늘의집 큐레이션 편집샵 오!굿즈</p>
                 <h5><b>오직 여기서만, O!Goods</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn"><button>📌0</button><button>💡2</button></div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
@@ -62,14 +61,6 @@
             <img src="/resources/images/store/exhibitions/ex2181/colorItem3.png" alt="">
             <img src="/resources/images/store/exhibitions/ex2181/colorItem4.png" alt="">
 
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>가구</b></div>
-                <div><b>패브릭</b></div>
-                <div><b>가전</b></div>
-                <div><b>수납</b></div>
-                <div><b>조명</b></div>
-            </div>
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

@@ -136,9 +136,31 @@ productImageList[0].onmouseover=function(event){
 let optionList=[];
 section.onchange=function(event) {
     if(event.target.classList.contains('sellingOptionControll')) {
-       console.log($('section').find('select.sellingOptionControll'));
-       console.log('value : ' + event.target.value);
-       $('section').find('select.sellingOptionControll').val(event.target.value).prop("selected", true);
+        $('section').find('select.sellingOptionControll').val(event.target.value).prop("selected", true);
+        event.target.parentNode.nextSibling.nextSibling.innerHTML = event.target.dataset.optionPrice * event.target.value+'원';
+        $('section').find('select.sellingOptionControll')[1].parentNode.nextSibling.nextSibling.innerHTML = event.target.dataset.optionPrice * event.target.value+'원';
+        let price=0;
+        for(let i=0; i<$('section').find('div.optionPrice').length; i++) {
+            price += parseInt($('section').find('div.optionPrice')[i].innerHTML);
+        }
+        price /= 2;
+        $('section').find('span.totalPrice')[0].innerHTML = price+'원';
+        $('section').find('span.totalPrice')[1].innerHTML = price+'원';
+    }
+
+    for(option of optionList) {
+        if(event.target.classList.contains('sellingOptionControll-'+option)) {
+            $('section').find('select.sellingOptionControll-'+option).val(event.target.value).prop("selected", true);
+            event.target.parentNode.nextSibling.nextSibling.innerHTML = event.target.dataset.optionPrice * event.target.value+'원';
+            $('section').find('select.sellingOptionControll-'+option)[1].parentNode.nextSibling.nextSibling.innerHTML = event.target.dataset.optionPrice * event.target.value+'원';
+            let price=0;
+            for(let i=0; i<$('section').find('div.optionPrice').length; i++) {
+                 price += parseInt($('section').find('div.optionPrice')[i].innerHTML);
+            }
+            price /= 2;
+            $('section').find('span.totalPrice')[0].innerHTML = price+'원';
+            $('section').find('span.totalPrice')[1].innerHTML = price+'원';
+        }
     }
 
     if(event.target.classList.contains('option1')) {
@@ -388,7 +410,7 @@ reviewList[0].onclick=function(event) {
         xhttp.send("userId="+userId.value+'&revNum='+event.target.dataset.helpRevnum);
 
         let divHelp = event.target.nextSibling.nextSibling;
-        let regex = /[^0-9]/g;
+        let regex = /[^0-9]+/g;
         let helpCount = divHelp.innerHTML.replace(regex,"");
 
         xhttp.onreadystatechange=function() {
@@ -487,19 +509,55 @@ section.onclick=function(event) {
             fixInfo[0].innerHTML = this.responseText.trim();
         }
     }
+
+    if(event.target.classList.contains('buy')) {
+        check=true;
+        if($('section').find('select.option1').length != 0) {
+            if($('section').find('select.option1')[0].firstChild.nextSibling.dataset.optionPrice == -2) {
+                check=false;
+                for(let i=0; i<$('section').find('option.option1_op').length; i++) {
+                    if(optionList.includes($('section').find('option.option1_op')[i].value)) {
+                        check=true;
+                        break;
+                    }
+                }
+            }
+        }
+        if($('section').find('select.option2').length != 0) {
+            if($('section').find('select.option2')[0].firstChild.nextSibling.dataset.optionPrice == -2) {
+                check=false;
+                for(let i=0; i<$('section').find('option.option2_op').length; i++) {
+                    if(optionList.includes($('section').find('option.option2_op')[i].value)) {
+                        check=true;
+                        break;
+                    }
+                }
+            }
+        }
+        if($('section').find('select.option3').length != 0) {
+            if($('section').find('select.option3')[0].firstChild.nextSibling.dataset.optionPrice == -2) {
+                check=false;
+                for(let i=0; i<$('section').find('option.option3_op').length; i++) {
+                    if(optionList.includes($('section').find('option.option3_op')[i].value)) {
+                        check=true;
+                        break;
+                    }
+                }
+            }
+        }
+        if(check) {
+            location.href='/orders/checkout';
+        } else {
+            alert("필수 옵션을 선택해주세요");
+        }
+    }
 }
 
 for(navi of navigationItem) {
     navi.onclick=function(e) {
-        e.preventDefault();
-        console.log('test');
         let url = location.href;
-        location.href=url+'#top';
-       alert(url)
+        location.replace(url+e.target.dataset.anchorCase);
         url = url.replace(/(#.*)/ig,'');
-        console.log(url);
         history.replaceState(null, null, url);
-        console.log(history);
-        
     }
 }

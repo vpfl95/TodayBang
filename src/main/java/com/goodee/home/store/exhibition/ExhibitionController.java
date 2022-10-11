@@ -45,6 +45,8 @@ public class ExhibitionController {
 			mv.setViewName("/store/exhibitions/exhibitions1552");
 		} else if(code == 2415) { // 프리미엄
 			mv.setViewName("/store/exhibitions/exhibitions2415");
+		} else if(code == 2746) { // 신규 입점
+			mv.setViewName("/store/exhibitions/exhibitions2746");
 		}
 		return mv;
 	}

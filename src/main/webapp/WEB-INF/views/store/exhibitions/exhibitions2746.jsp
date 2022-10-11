@@ -15,16 +15,14 @@
     integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
-    <!-- 신상샵, 9/25까지라 이후 어떻게 될 지 몰라 보류 -->
     <c:import url="../../template/header.jsp"></c:import>
 
 	<section class="container mt-5">
         <div class="right_re mt-5">
             <div class="right_re1">
-                <p>론칭기념 일주일간 단독 특가 ~10/2</p>
+                <p>론칭기념 일주일간 단독 특가 ~10/16</p>
                 <h5><b>딩동- 입점했어요! 이번주 신규 브랜드</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn"><button>📌0</button><button>💡2</button></div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
@@ -32,20 +30,7 @@
         </div>
 
         <div class="left_re mt-5" style="margin-left: 70px;">
-            
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>빠른배송</b></div>
-                <div><b>냉장고/김치냉장고</b></div>
-                <div><b>세탁기/건조기</b></div>
-                <div><b>에어드레서/슈드레서</b></div>
-                <div><b>TV/사운드바</b></div>
-                <div><b>청소기</b></div>
-                <div><b>공기청정기</b></div>
-                <div><b>식기세척기</b></div>
-                <div><b>주방가전</b></div>
-                <div><b>비데</b></div>
-            </div>
+            <img src="/resources/images/store/exhibitions/ex2746/newLineMain.webp" alt="">
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

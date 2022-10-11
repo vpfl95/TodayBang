@@ -25,7 +25,6 @@
                 <p>전시,반품,스크래치 득템의 기회!</p>
                 <h5><b>빠른품절! 리퍼마켓 ~85%</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn"><button>📌118,325</button><button>💡52,246</button></div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
@@ -75,41 +74,7 @@
           </div>
 
           <img src="/resources/images/store/exhibitions/ex1433/refurOgoods.jpg" alt="" class="mt-3">
-
-          <div class="exDetail d-flex justify-content-between">
-            <div><b>전체</b></div>
-            <div><b>가전</b></div>
-            <div><b>침실</b></div>
-            <div><b>거실</b></div>
-            <div><b>패브릭</b></div>
-          </div>
-
-          <img src="/resources/images/store/exhibitions/ex1433/fastSoldOut.jpg" alt="" class="mt-3">
         </div>
-        
-        <!--PageNation-->
-        <div class="paging">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link text-success" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">3</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">4</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">5</a></li>
-                <li class="page-item">
-                  <a class="page-link text-success" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-          </div>
-
     </section>
 
     <c:import url="../../template/footer.jsp"></c:import>

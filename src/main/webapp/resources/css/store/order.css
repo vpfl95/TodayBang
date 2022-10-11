@@ -1,0 +1,175 @@
+.right_re {
+    width: 40%;
+    margin: 0px;
+    height: 1500px;
+    display:inline-block;
+}
+
+.right_re1 {
+    width: 80%;
+    height: auto;
+    margin: 0 auto;
+    position: sticky;
+    top: 150px;
+    margin-top: 70px;
+}
+
+.right_re1_re1 {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+}
+
+.right_re1_re1>div {
+    padding: 1em 1em;
+}
+
+.left_re{
+    width: 60%;
+    height: 1500px;
+    float: left;
+    margin-top: 150px;
+}
+
+.left_re img {
+    max-width: 100%;
+}
+
+.same {
+    color: #35c5f0;
+    transition: opacity .1s;
+    font: inherit;
+    margin: 0;
+    padding: 0;
+    background: none;
+    border: none;
+    font-weight: bold;
+}
+
+label {
+    line-height: 38px;
+    width: 15%;
+}
+
+.searchAddress, .pointAll {
+    font: inherit;
+    transition: opacity .1s;
+    width: 30%;
+    margin-right: 10px;
+    font-size: 15px;
+    text-align: center;
+    font-weight: 900;
+    color: #35c5f0;
+    padding: 0;
+    background: none;
+    border-radius: 4px;
+    border: solid 1px #35c5f0;
+}
+
+.sample-postcode-input {
+    background-color: #f5f5f5 !important;
+}
+
+.usePointValue {
+    font-weight: bold;
+    color: #35c5f0;
+}
+
+.form-check-button {
+    font-weight: normal;
+    width: 90%;
+    font-size: 75%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border: 0px;
+    background-color: transparent;
+    padding: 0px;
+    line-height: 17px;
+    color: rgb(101, 110, 117);
+}
+
+.form-check-all {
+    font-weight: bold;
+    width: 80%;
+    font-size: 85%;
+    display: flex;
+    align-items: center;
+    text-align: left;
+    border: 0px;
+    background-color: transparent;
+    padding: 0px;
+    line-height: 17px;
+    color: rgb(101, 110, 117);
+}
+
+.terms-expand {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease 0s;
+    fill: rgb(130, 140, 148);
+    margin-left: auto;
+    line-height: 76px;
+}
+
+.terms-expand-click {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.2s ease 0s;
+    fill: rgb(130, 140, 148);
+    margin-left: auto;
+    transform: rotate(180deg);
+}
+
+.terms1 {
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 20px;
+    color: rgb(101, 110, 117);
+}
+
+.terms2 {
+    margin-top: 10px;
+    font-size: 12px;
+    word-break: keep-all;
+}
+
+.btnPay {
+    width: 100%;
+    min-height: 50px;
+    padding: 15px 10px;
+    border-radius: 4px;
+    background-color: #35c5f0;
+    color: #f5f5f5;
+    font-size: 17px;
+    font-weight: 700;
+    text-align: center;
+    border: none;
+}
+
+.price {
+    font-weight: 600;
+}
+
+.icon {
+    position: relative;
+    top: -1px;
+    width: 9px;
+    height: 5px;
+    margin-left: 8px;
+    fill: rgb(130, 140, 148);
+    transform: rotate(-90deg);
+}
+
+.btnView {
+    text-align: right;
+    border: none;
+    font-size: 13px;
+    line-height: 16px;
+    font-weight: bold;
+    justify-content: flex-end;
+    color: rgb(130, 140, 148);
+    background-color: transparent;
+}
+
+.termSub1 {
+    margin-left: 20px;
+}

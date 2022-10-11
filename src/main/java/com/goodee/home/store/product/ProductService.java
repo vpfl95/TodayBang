@@ -94,4 +94,20 @@ public class ProductService {
 	public List<ProductDTO> getCateItem(String category) throws Exception {
 		return productDAO.getCateItem(category);
 	}
+	
+	public List<ProductDTO> getTodayDealSub() throws Exception {
+		return productDAO.getTodayDealSub();
+	}
+	
+	public int setTodayDeal(ProductDTO productDTO) throws Exception {
+		return productDAO.setTodayDeal(productDTO);
+	}
+	
+	public int minusTodayDeal() throws Exception {
+		return productDAO.minusTodayDeal();
+	}
+	
+	public List<ProductDTO> getTodayDealList() throws Exception {
+		return productDAO.getTodayDealList();
+	}
 }

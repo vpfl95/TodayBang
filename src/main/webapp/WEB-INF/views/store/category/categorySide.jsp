@@ -24,10 +24,17 @@
                     <path d="M6.07 7.56l4.39-4.55.87.87-5.25 5.45L.67 3.9 1.53 3z"></path>
                 </svg>
             </div>
-            <div style="display: none;">
+            <div class="tier3Wrap" style="display: none;">
                 <c:forEach items="${cateDetail}" var="cate1">
                 	<c:if test="${cate1.categoryRef eq cate.categoryNum}">
-                		<div class="tier3" data-cate-num="${cate1.categoryNum}">${cate1.categoryName}</div>
+                		<c:choose>
+                			<c:when test="${param.category eq cate1.categoryNum}">
+                				<div class="tier3 selectedCate" data-cate-num="${cate1.categoryNum}">${cate1.categoryName}</div>
+                			</c:when>
+                			<c:otherwise>
+                				<div class="tier3" data-cate-num="${cate1.categoryNum}">${cate1.categoryName}</div>
+                			</c:otherwise>
+                		</c:choose>
                 	</c:if>
                 </c:forEach>
             </div>

@@ -24,10 +24,6 @@
                 <p>오늘 주문하면, 내일 도착!</p>
                 <h5><b>가구&가전 빠른배송 ~89%</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn">
-                    <button>📌7509</button>
-                    <button>💡2634</button>
-                </div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
@@ -120,17 +116,6 @@
                 </div>
             </div>
 
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>침대</b></div>
-                <div><b>매트리스</b></div>
-                <div><b>소파/거실장</b></div>
-                <div><b>서랍장/책상</b></div>
-                <div><b>식탁/테이블</b></div>
-                <div><b>드레스룸/화장대</b></div>
-                <div><b>가전</b></div>
-                <div><b>해외 브랜드</b></div>
-            </div>
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

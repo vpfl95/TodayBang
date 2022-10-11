@@ -1,5 +1,7 @@
 package com.goodee.home.villa;
 
-public class VillaDTO {
+import com.goodee.home.realEstate.RealEstateDTO;
+
+public class VillaDTO extends RealEstateDTO {
 
 }

@@ -46,4 +46,20 @@ public class ProductDAO {
 	public List<ProductDTO> getCateItem(String category) throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getCateItem", category);
 	}
+	
+	public List<ProductDTO> getTodayDealSub() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getTodayDealSub");
+	}
+	
+	public int setTodayDeal(ProductDTO productDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"setTodayDeal", productDTO);
+	}
+	
+	public int minusTodayDeal() throws Exception {
+		return sqlSession.update(NAMESPACE+"minusTodayDeal");
+	}
+	
+	public List<ProductDTO> getTodayDealList() throws Exception {
+		return sqlSession.selectList(NAMESPACE+"getTodayDealList");
+	}
 }

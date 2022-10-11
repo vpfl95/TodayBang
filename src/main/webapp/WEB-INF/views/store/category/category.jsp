@@ -17,8 +17,7 @@
 <body>
     <c:import url="../../template/header.jsp"></c:import>
 
-    ${jsonList}
-    <section class="container main">
+    <section class="container main" id="main">
         <div style="margin: 40px 40px 0 40px; height: 1000px;">
             <div class="d-flex justify-content-between" style="height: 100%;">
                 <div style="width: 20%;" id="categorySide">
@@ -39,12 +38,14 @@
     </section>
 
     <c:import url="../../template/footer.jsp"></c:import>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
     <script src="/resources/js/store/category.js"></script>
     <script>
         setCategorySide();
         getList('${param.category}');
+        setExpand();
     </script>
 </body>
 </html>

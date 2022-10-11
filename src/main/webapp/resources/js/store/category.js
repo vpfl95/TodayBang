@@ -1,5 +1,6 @@
 const categorySide = document.querySelector("#categorySide");
 const categoryItem = document.querySelector("#categoryItem");
+const main = document.querySelector("#main");
 const cate1 = document.querySelector('#cate1');
 const cate1_1 = document.querySelector('#cate1_1');
 const cate2 = document.querySelector('#cate2');
@@ -60,6 +61,7 @@ categorySide.onclick=function(event) {
         history.pushState(null,null,url);
         getList(event.target.dataset.cateNum);
     }
+    setExpand();
 }
 
 function getList(category) {
@@ -192,6 +194,7 @@ function getCategory() {
     xhttp.onreadystatechange=function(){
         if(this.readyState==4 && this.status==200) {
             let categoryList = JSON.parse(this.responseText.trim());
+            
             let cates = category.split('_');
             let ca1 = categoryList.filter(function(element) {
                 return element.categoryNum==cates[0];
@@ -203,7 +206,9 @@ function getCategory() {
                 return element.categoryNum==cates[0]+'_'+cates[1]+'_'+cates[2];
             })
         
-            cate1.innerHTML=ca1[0].categoryName;
+            if(ca1[0] != null) {
+                cate1.innerHTML=ca1[0].categoryName;
+            }
             if(cates[1] == null) {
                 cate1_1.setAttribute("style", 'display:none;');
                 cate2_1.setAttribute("style", 'display:none;');
@@ -222,6 +227,27 @@ function getCategory() {
             if(ca3[0] != null) {
                 cate3.innerHTML=ca3[0].categoryName;
             }
+
+            let check=false;
+            for(let i=0; i<categoryList.length; i++) {
+                if(categoryList[i].categoryNum == category) {
+                    check = true;
+                }
+            }
+            if(!check) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("GET", '/error');
+                xhttp.send();
+                xhttp.onreadystatechange=function(){
+                    if(this.readyState==4 && this.status==200) {
+                        main.innerHTML=this.responseText.trim();
+                    }
+                }
+            }
         }
     }
+}
+
+function setExpand() {
+    // console.log($("#categorySide").find('.tier3Wrap'));
 }

@@ -23,48 +23,15 @@
             <p style="color: gray;">매일 자정, 새로운 특가상품</p>
         </div>
 
-        <div class="popularItem" style="height: 1100px;">
-            <div class="todayDealImg" style="height: 343px;">
-                <div class="d-flex justify-content-center center_menu">
-                    <div>
-                        <div class="center_menu_img">이미지</div>
-                        <div>
-                            글
-                        </div>
-                    </div>
-                    <div></div>
-                    <div></div>
-                    <div></div>
-                </div>
-            </div>
-        </div>
-
-        <!--PageNation-->
-        <div class="paging">
-            <nav aria-label="Page navigation example">
-              <ul class="pagination">
-                <li class="page-item">
-                  <a class="page-link text-success" href="#" aria-label="Previous">
-                    <span aria-hidden="true">&laquo;</span>
-                  </a>
-                </li>
-                <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">2</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">3</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">4</a></li>
-                <li class="page-item"><a class="page-link text-success" href="#">5</a></li>
-                <li class="page-item">
-                  <a class="page-link text-success" href="#" aria-label="Next">
-                    <span aria-hidden="true">&raquo;</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
-        </div>
+        <div id="productList"></div>
     </section>
 
     <c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" 
     integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script src="/resources/js/store/todayDeal.js"></script>
+    <script>
+      getList();
+    </script>
 </body>
 </html>

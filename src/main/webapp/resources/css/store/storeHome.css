@@ -24,6 +24,18 @@
 .page {
     margin-bottom: 20px;
 }
+
+.ex-button {
+    transition: opacity .1s;
+    font: inherit;
+    margin: 0;
+    background: none;
+    border: none;
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 0px 0px 1px;
+    padding: 8px 10px;
+    font-size: 12px;
+}
+
 /**설희*/
 
 .menu div {
@@ -67,17 +79,6 @@
     color: rgba(80, 75, 75, 0.5);
 }
 
-.center_menu>div {
-    width: 25%;
-    padding: 10px;
-    height: auto;
-}
-@media screen and (max-width:1200px) {
-    .center_menu>div {
-        width: 50%;
-    }
-}
-
 .center_menu_img {
     width: 100%;
     height: 65%;
@@ -92,10 +93,10 @@
     border-radius: 3px;
 }
 
-.menu_cate>div {
+.menu_cate>a {
     width: 9%;
     margin: 10px 0px;
-    height: 122px;
+    height: auto;
 }
 
 .menu_cate img {
@@ -106,11 +107,20 @@
     height: 40px;
     margin-top: 10px;
 }
-.menu_cate_bottom>div{
+.menu_cate_bottom>a{
     width: 9%;
     height: 40px;
     text-align: center;
-    font-size: 17px;
+    font-size: 100%;
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+}
+
+.cateA:hover {
+    color: black;
+    background-color: transparent;
+    text-decoration: none;
 }
 
 
@@ -198,4 +208,20 @@
     width: 100%;
     height: 100%;
     z-index: 2;
+}
+
+/* todayDeal 전용 */
+.todayTimer {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 4;
+    background-color: rgb(255, 119, 119);
+    color: rgb(255, 255, 255);
+    border-radius: 4px;
+    font-size: 12px;
+    padding: 0px 6px;
+    font-weight: 700;
+    height: 24px;
+    line-height: 24px;
 }

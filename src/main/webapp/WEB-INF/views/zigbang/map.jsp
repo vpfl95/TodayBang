@@ -33,19 +33,21 @@
 				<div class="slClass" id="sugguestList"></div>
 			</form>
 	
-			<div id="buildingInfo"style="height: 95%;width: 30%;overflow:auto;">
+			<div id="buildingInfo"style="height: 95%;width: 30%;">
 	
-				<div id="buildingWrap" style="height: 40%;width: 95%;overflow:auto;">
+				<div id="buildingWrap" style="height: 40%;width: 95%;">
 					
 					<div id="buildingName"></div>
 			
 					<div id="maemulList">
-						<table id="realEstateList" border="1">
+						<!-- <input type="text" name="" id="user" value="${member.userId}"> -->
+						<table id="realEstateList">
 							<tr>
-								<th>계약일</th>
+								<th>등록일</th>
 								<th>거래가격</th>
 								<th>면적</th>
 								<th>층수</th>
+								<th>관심</th>
 							</tr>
 						</table>
 						<button id="more">더보기</button>
@@ -57,7 +59,7 @@
 					<div id="houseReviewList"></div>
 					<button id="reviewMore">더보기</button>		
 				</div>
-				<button type="button" id="writeReview" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
+				<button type="button" id="writeReview" value="${member.userId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
 				<button type="button" id="upReview" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">수정</button>
 			</div>
 			
@@ -72,8 +74,8 @@
 					</div>
 					
 					<div class="modal-body">
-						<!-- <div class="css-1dbjc4n" style="background-color: rgb(117, 117, 117);border-radius: 3.5px;height: 7px;margin-left: 2px;margin-right: 2px;margin-top: 2.33333px;width: 7px;"></div>
-						<div class="css-1dbjc4n" style="background-color: rgb(225, 225, 225); border-radius: 3.5px; height: 7px; margin-left: 2px; margin-right: 2px; margin-top: 2.33333px; width: 7px;"></div> -->
+						<!-- <div class="grade_empty" style="background-color: rgb(117, 117, 117);border-radius: 3.5px;height: 7px;margin-left: 2px;margin-right: 2px;margin-top: 2.33333px;width: 7px;"></div>
+						<div class="grade_full" style="background-color: rgb(225, 225, 225); border-radius: 3.5px; height: 7px; margin-left: 2px; margin-right: 2px; margin-top: 2.33333px; width: 7px;"></div> -->
 						<input type="text" name="" id="roadname" >
 						<form>
 							<input type="text" id="maemulNum" >
@@ -142,7 +144,7 @@
 
 	</section>
 	
-	<c:import url="../template/footer.jsp"></c:import>
+	<!-- <c:import url="../template/footer.jsp"></c:import> -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f734c47d571810dc50360665614e2cd&libraries=services,clusterer,drawing"></script>
 	<script src="/resources/js/map.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>

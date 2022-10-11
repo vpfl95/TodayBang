@@ -174,10 +174,14 @@
 			<div class="d-flex justify-content-between">
 				<div class="d-flex">
 					<div style="width: 20%; margin-right: 10px;">
-						<c:if test="${not empty dto.fileName}">						
-							<img src="../../resources/upload/store/review/${dto.fileName}" 
-							alt="..." style="width: 100%;">
-						</c:if>
+						<c:choose>
+							<c:when test="${not empty profile.fileName}">
+								<img style="max-width: 100%; border-radius: 50%;" src="../resources/upload/member/${profile.fileName}">
+							</c:when>
+							<c:otherwise>
+								<img style="max-width: 100%; border-radius: 50%;" src="/resources/images/NoProfile.png">
+							</c:otherwise>
+						</c:choose>
 					</div>
 					<div style="width:60%;">
 						<div>${dto.userId}</div>

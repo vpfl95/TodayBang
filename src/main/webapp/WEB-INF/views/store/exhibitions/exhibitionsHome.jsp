@@ -136,19 +136,21 @@
 
             <div class = "col-lg-9 row d-flex justify-content-between exhibitions-item-wrap">
                 <div class="col-6 exhibitions-item-product">
-                    <div class="exhibitions-item-title">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_1.jpg" alt="">
-                        <div>
-                            <h4 class="exhibitions-item-text">딩동~ 입점했어요! 이번주 신규 브랜드</h4>
-                            <p class="exhibitions-item-subText">론칭기념 일주일간 단독 특가</p>
+                    <a href="detail?exhibitionCode=2746">
+                        <div class="exhibitions-item-title">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_1.jpg" alt="">
+                            <div>
+                                <h4 class="exhibitions-item-text">딩동~ 입점했어요! 이번주 신규 브랜드</h4>
+                                <p class="exhibitions-item-subText">론칭기념 일주일간 단독 특가</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="d-flex justify-content-center exhibitions-item-list">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_2.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_3.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_4.jpg" alt="">
-                        <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_5.jpg" alt="">
-                    </div>
+                        <div class="d-flex justify-content-center exhibitions-item-list">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_2.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_3.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_4.jpg" alt="">
+                            <img src="/resources/images/store/exhibitions/exhibitionsHome/newLine_5.jpg" alt="">
+                        </div>
+                    </a>
                 </div>
 
                 <div class="col-6"> 

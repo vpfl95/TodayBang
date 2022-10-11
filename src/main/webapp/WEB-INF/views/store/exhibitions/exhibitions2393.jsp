@@ -24,10 +24,6 @@
                 <p>일상에 영감을 주는 가구</p>
                 <h5><b>[빠른배송] 오트밀하우스 ~82%</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn">
-                    <button>📌7509</button>
-                    <button>💡2634</button>
-                </div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
@@ -73,15 +69,6 @@
             <img src="/resources/images/store/exhibitions/ex2393/mlilyPoint.jpg" alt="">
             <img src="/resources/images/store/exhibitions/ex2393/mlilyItem1.jpg" alt="">
 
-            <div class="exDetail">
-                <div><b>전체</b></div>
-                <div><b>침대</b></div>
-                <div><b>매트리스</b></div>
-                <div><b>소파/거실장</b></div>
-                <div><b>서랍장/책상</b></div>
-                <div><b>식탁/테이블</b></div>
-                <div><b>드레스룸/화장대</b></div>
-            </div>
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>

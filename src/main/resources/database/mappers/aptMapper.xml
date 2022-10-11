@@ -9,7 +9,7 @@
 		FROM (SELECT BUILDINGNM,ROADNAME,SIGUNGU,DEALTYPE,AVG(DEPOSIT) DEPOSIT, AVG(WDEPOSIT) WDEPOSIT, AVG(MONTHLY) MONTHLY, AVG(DEAL) AVG
 			  FROM (SELECT  *
 		        		FROM REALESTATE 
-		        		WHERE SIGUNGU LIKE '%'||#{sigungu}||'%')
+		        		WHERE SIGUNGU LIKE '%'||#{sigungu}||'%' AND BUILDTYPE='아파트')
 					GROUP BY BUILDINGNM,ROADNAME,SIGUNGU,DEALTYPE)     
 		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU
 	</select>
@@ -17,20 +17,20 @@
 	<select id="getList" parameterType="MaemulPager" resultType="AptDTO">
 		SELECT * FROM
 		(SELECT ROWNUM R, A.*
-		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} ORDER BY DEALDAY) A)
+		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트' ORDER BY DEALDAY) A)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
 	</select>
 	
 	<select id="getTotalCount" parameterType="MaemulPager" resultType="Long">
-		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName}
+		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트'
 	</select>
 	
 	<select id="getSearchAddressList" parameterType="String" resultType="AptDTO">
-		SELECT DISTINCT SIGUNGU FROM REALESTATE WHERE SIGUNGU LIKE '%'||#{search}||'%'
+		SELECT DISTINCT SIGUNGU FROM REALESTATE WHERE SIGUNGU LIKE '%'||#{search}||'%' AND BUILDTYPE='아파트'
 	</select>
 	
 	<select id="getSearchAptList" parameterType="String" resultType="AptDTO">
-		SELECT DISTINCT SIGUNGU, BUILDINGNM, ROADNAME FROM REALESTATE WHERE BUILDINGNM LIKE '%'||#{search}||'%'
+		SELECT DISTINCT SIGUNGU, BUILDINGNM, ROADNAME FROM REALESTATE WHERE BUILDINGNM LIKE '%'||#{search}||'%' AND BUILDTYPE='아파트'
 	</select>
 	
 	

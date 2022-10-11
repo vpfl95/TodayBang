@@ -28,14 +28,14 @@
 	
 	<context:component-scan base-package="com.goodee.home" />
 	
-	<!-- <beans:bean class="com.goodee.home.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
+	<beans:bean class="com.goodee.home.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
 	
 	<interceptors>
 		<interceptor>
-			<mapping path="/apt/map/updateReview"/>
+			<mapping path="/apt/writerCheck"/>
+			<mapping path="/villa/writerCheck"/>
 			<beans:ref bean="writerCheckInterceptor"/>
 		</interceptor>
-	
-	</interceptors> -->
+	</interceptors>
 	
 </beans:beans>
