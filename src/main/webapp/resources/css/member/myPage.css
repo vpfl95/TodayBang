@@ -37,7 +37,7 @@
 
 #pf-previewBox{
 
-    min-height: 300px;
+    min-height: 200px;
 
 
 }
@@ -175,17 +175,36 @@
    margin: 30px auto;
 
 }
+.pf-rank{
+    width: 200px;
+    margin: 20px auto;
+    display: flex;
+    
+    align-items: center;
+    flex-direction: column;
 
+}
 .pf-rankImg{
     width: 150px;
     height: 150px; 
-
+   
 }
 .pf-rankExplain{
     width: 60px;
    
 
 }
+#rankInfotitle{
+
+    font-size: 25px;
+    font-weight: 600;
+
+}
+#rankInfo{
+    margin-top: 100px;
+
+}
+
 .pf-img{
 
     min-width: 150px;
@@ -292,16 +311,43 @@ select {
 
 }
 
-th{
-    min-width: 120px;
-    width: 10%;
-    padding-top: 30px;
+
+
+.noneColor{
+    background-color: #ffffff;
+
+
 }
 
+
+.last-th{
+
+    border-radius: 0 15px 0 0 ;
+
+}
+#de-table{
+
+    padding: 15px;
+    border-radius: 15px;
+}
+.de-tableColor{
+
+    background-color: #f7f9fa;
+    border-radius: 15px;
+}
 #deliveryBody{
-    background-color: #ffffff;
+    
     border: 1px solid #dadce0;
+    border-radius: 15px;
     min-height: 400px;
+    
+}
+.de-selectBtn{
+
+    background-color: #f7f9fa !important;
+    
+    border: 1px solid #dadce0;
+    border-radius: 15px 15px 0 0 !important;
 }
 
 .de-ListItem{
@@ -577,4 +623,5 @@ tr,th{
 
 
 }
+
 

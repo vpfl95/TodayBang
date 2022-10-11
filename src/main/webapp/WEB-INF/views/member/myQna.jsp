@@ -18,12 +18,12 @@
 		<table class="table table-hover">
 			  <thead>
 				    <tr>
-				      <th scope="col">글 번호</th>
-				      <th scope="col">글 제목</th>
+				      <th scope="col" width="120px">글 번호</th>
+				      <th scope="col" width="450px">글 제목</th>
 				      
-				      <th scope="col">작성자</th>
-				      <th scope="col">게시일</th>
-					  <th scope="col">답변상태</th>
+				      <th scope="col" width="150px">작성자</th>
+				      <th scope="col" width="200px">게시일</th>
+					  <th scope="col" width="150px">답변상태</th>
 				    </tr>
 			  </thead>
 			  <tbody>

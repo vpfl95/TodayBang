@@ -1113,6 +1113,45 @@ function delivery(){
     const deleteBtn = document.querySelector("#delDeleteBtn");
 
     let splitPhone =  submitPhone.value.split("-");
+    const selectdelivery = document.getElementsByClassName("de-ListItem");
+
+    let param = getParameter("num");
+    function getParameter(name) {
+        name = name.replace(/[\[]/, "\\[").replace(/[\]]/, "\\]");
+        var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+            results = regex.exec(location.search);
+        return results === null ? "0" : decodeURIComponent(results[1].replace(/\+/g, " "));
+    }
+
+
+    for(se of selectdelivery){
+
+        let url = se.getAttribute("href");
+        let num = url.split("?num=");
+        
+        console.log(num[1]);
+
+        if(num[1] == param){
+
+            se.parentNode.classList.toggle("de-selectBtn");
+
+
+        }else{
+
+            
+        }
+
+
+
+
+    }
+
+
+
+
+
+
+
 
     if(splitPhone != ""){
         phoneF.value = splitPhone[0];

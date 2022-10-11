@@ -37,50 +37,51 @@
 			<div class = "pf-title">배송지 정보</div>
 			<hr>
 				
-			<div id = "deliveryBody">
+			<div id = "deliveryBody" class="de-tableColor">
 			
 			<!-- 몸통 -->
 				
 			<form action="./updateDelivery" method="POST" id="deliveryForm">
 				<input type="hidden" value ="${delivery[num].addressNum}" id="addressinput" name = "addressNum" class="form-control ">
-				<table class="table" id="de-table">
-						  <thead>
+				<table class="table table-borderless "  id="de-table">
+						  <thead class= "noneColor">
 						    <tr>
 						    
 						    <c:forEach items="${delivery }" var="del" varStatus="index">
-								<th><a href="/member/delivery?num=${index.index }" class = "de-ListItem" >${del.deliveryName }</a></th>
+								<th width="25%" class="de-th"><a href="/member/delivery?num=${index.index }" class = "de-ListItem" >${del.deliveryName }</a></th>
 							</c:forEach>
 							
 							
 							<c:if test="${length<3 }">
-								<th><a href="/member/delivery?num=3" class = "de-ListItem" >추가하기</a></th>
+								<th width="25%" class="de-th"><a href="/member/delivery?num=3" class = "de-ListItem" >추가하기</a></th>
 							</c:if>
 							<c:if test="${length<2 }">
-								<th></th>
+								<th width="25%"></th>
 							</c:if>
 					    	<c:if test="${length<1 }">
-								<th></th>
+								<th width="25%"></th>
 							</c:if>
+							<th width="25%" class="last-th"></th>
 						    </tr>
 						    
 						    
 						    
 						  </thead>
-						  <tbody>
+						  <tbody >
 						  	<tr>
 						      	<th scope="row">배송지 별칭</th>
 						      	
-						   		<td><input type="text" value ="${delivery[num].deliveryName }"  name = "deliveryName" class="form-control "  required autofocus ></td>
+						   		<td colspan="2"><input type="text" value ="${delivery[num].deliveryName }"  name = "deliveryName" class="form-control "  required autofocus ></td>
 						        <td></td>
 						    </tr>
 						    <tr>
 						      	<th scope="row">수령인</th>
-						   		<td><input type="text" value ="${delivery[num].name }" name = "name"  class="form-control " required  ></td>
+						   		<td colspan="2"><input type="text" value ="${delivery[num].name }" name = "name"  class="form-control " required  ></td>
 						        <td></td>
 						    </tr>
 						    <tr>
 						      <th scope="row">전화번호</th>
-						      <td colspan="2"><div id= "phone">
+						      <td colspan="3"><div id= "phone">
 							        	<input type="hidden" name = "phone" id="submitPhone" value ="${delivery[num].phone }">
 								       
 								        <select name="phone1" id="phoneFirst" class="form-control " required>
@@ -104,18 +105,18 @@
 								
 								 <tr>
 								<th></th>
-								<td colspan="2"><input type="text" value ="${delivery[num].address}" name="address" id="sample6_address" class="form-control " placeholder="주소"><br></td>
+								<td colspan="3"><input type="text" value ="${delivery[num].address}" name="address" id="sample6_address" class="form-control " placeholder="주소"><br></td>
 								 </tr>
 								<tr>
 								<th></th>
-								<td><input type="text" value ="${delivery[num].detailAddress}" name="detailAddress" id="sample6_detailAddress" class="form-control " placeholder="상세주소"></td>
+								<td colspan="2"><input type="text" value ="${delivery[num].detailAddress}" name="detailAddress" id="sample6_detailAddress" class="form-control " placeholder="상세주소"></td>
 								<td><input type="text" value ="${delivery[num].extraAddress}" name="extraAddress" id="sample6_extraAddress" class="form-control " placeholder="참고항목"></td>
 							   </tr>
 							      							     
 						   
 						    <tr>
 						      <th scope="row">요청사항</th>
-						      <td colspan="2"><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  ></td>
+						      <td colspan="3"><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  ></td>
 						    </tr>
 						  </tbody>
 						</table>

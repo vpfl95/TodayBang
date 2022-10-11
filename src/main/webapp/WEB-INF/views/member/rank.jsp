@@ -13,24 +13,25 @@
  <div class="pf-section">
  	<div class="pf-body">
  	<c:if test="${not empty ManagerRole }">
- 		<div class =  "pf-title">관리자 등급</div>
- 		<div class ="">
+ 		<div class =  "pf-title">운영진 등급</div>
+ 		<div class ="pf-rank">
  		<c:choose>
  			<c:when test="${ManagerRole.roleNum eq 1}">
- 				<p>관리자</p>
+ 				
  				<img alt="" src="/resources/images/rank/Admin.png" class = "pf-rankImg">
+ 				<p>관리자</p>
  			</c:when>
  			<c:when test="${ManagerRole.roleNum eq 2}">
- 				<p>매니저</p>
  				<img alt="" src="/resources/images/rank/Manager.png" class = "pf-rankImg">
+ 				<p>매니저</p>
  			</c:when>
  			<c:when test="${ManagerRole.roleNum eq 3}">
- 				<p>스토어 파트너</p>
  				<img alt="" src="/resources/images/rank/StorePartner.png" class = "pf-rankImg">
+ 				<p>스토어 파트너</p>
  			</c:when>
  			<c:when test="${ManagerRole.roleNum eq 4}">
- 				<p>직방 파트너</p>
  				<img alt="" src="/resources/images/rank/ZicbangPartner.png" class = "pf-rankImg">
+ 				<p>직방 파트너</p>
  			</c:when>
  		
  		</c:choose>
@@ -45,7 +46,7 @@
  	
  	<c:if test="${not empty MemberRole }">
  	<div class =  "pf-title">회원 등급</div>
- 		<div class= "">
+ 		<div class= "pf-rank">
  		<c:choose>
  			<c:when test="${MemberRole.roleNum eq 10}">
  				<img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankImg">
@@ -70,11 +71,12 @@
  	
  	
  	
- 	<div>
+ 	<div id= "rankInfo">
+ 		<span id="rankInfotitle">회원 등급 표</span>
  		<table class ="table">
  		<thead>
  			<tr>
- 				<th>등급이미지</th>
+ 				<th width="100px">등급이미지</th>
  				<th>등급명</th>
  				<th colspan="2">등급 혜택</th>
  			</tr>

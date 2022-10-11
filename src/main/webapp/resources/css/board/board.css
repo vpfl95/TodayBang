@@ -104,3 +104,9 @@ section{
 	width:auto;
 
 }
+.boardList{
+
+    height: 30%;
+    min-height: 400px;
+
+}
