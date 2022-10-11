@@ -24,10 +24,6 @@
                 <p>지금 사면 반짝! 추가 할인</p>
                 <h5><b>한번 바꾸면 최소 3년! 우리집 조명 LED로 바꾸기</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn">
-                    <button>📌7509</button>
-                    <button>💡2634</button>
-                </div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>

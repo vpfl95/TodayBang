@@ -25,7 +25,6 @@
                 <p>전시,반품,스크래치 득템의 기회!</p>
                 <h5><b>빠른품절! 리퍼마켓 ~85%</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn"><button>📌118,325</button><button>💡52,246</button></div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>

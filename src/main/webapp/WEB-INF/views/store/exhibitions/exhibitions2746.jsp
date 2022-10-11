@@ -23,7 +23,6 @@
                 <p>론칭기념 일주일간 단독 특가 ~10/16</p>
                 <h5><b>딩동- 입점했어요! 이번주 신규 브랜드</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn"><button>📌0</button><button>💡2</button></div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>

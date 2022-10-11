@@ -24,10 +24,6 @@
                 <p>최대 ~74% 할인중</p>
                 <h5><b>럭셔리 가구, 조명도 오늘의 직방 프리미엄!</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn">
-                    <button>📌7509</button>
-                    <button>💡2634</button>
-                </div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>

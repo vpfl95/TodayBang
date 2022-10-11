@@ -17,16 +17,16 @@
 <body>
     <c:import url="../template/header.jsp"></c:import>
     <!-- Carousel -->
-	<div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="true">
+	<div id="carouselExampleDark" class="carousel slide" data-bs-ride="carousel">
 		<div class="carousel-indicators">
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7"></button>
-		  <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7"></button>
+		  <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="7" aria-label="Slide 8"></button>
 		</div>
 		<div class="carousel-inner" style="margin-top: 150px;">
 		  <div class="carousel-item active">
@@ -61,16 +61,16 @@
             	<!-- Carousel 이미지 변경 버튼 -->
 	            <div class="exhibition">
 	                <div class="d-flex justify-content-center menu" style="text-align: center;">
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1+1Shop</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2">삼성 가전</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3">리퍼마켓</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3" aria-label="Slide 4">프리미엄 핫딜</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4" aria-label="Slide 5">오!굿즈</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5" aria-label="Slide 6">빠른배송</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="6" aria-label="Slide 7">신규 브랜드</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="7" aria-label="Slide 8">가구 세일</button>
-	                    <button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="prev"><</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide="next">></button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1+1Shop</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2">삼성 가전</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3">리퍼마켓</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4">프리미엄 핫딜</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5">오!굿즈</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="5" aria-label="Slide 6">빠른배송</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="6" aria-label="Slide 7">신규 브랜드</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="7" aria-label="Slide 8">가구 세일</button>
+	                    <button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev"><</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">></button>
 	                </div>       
 	            </div>
 	
@@ -98,7 +98,7 @@
 	                        <div class="text">리퍼마켓</div>
 	                    </div>
 	                    <div class="col">
-	                        <div><a href="#"><img src="/resources/images/store/storeHome/newLineIcon.jpg" alt=""></a></div>
+	                        <div><a href="/exhibitions/detail?exhibitionCode=2746"><img src="/resources/images/store/storeHome/newLineIcon.jpg" alt=""></a></div>
 	                        <div class="text">신상특가</div>
 	                    </div>
 						<!-- 카테고리 이동-->
@@ -114,14 +114,14 @@
 	            </nav>
 	
 	            <div style="height: 20px;" class="todayDealStart">
-	                <h5 class="d-inline-flex float-start"><b>👍오늘의 딜</b></h5>
-	                <a href="/todayDeals" class="d-inline-flex float-end a_tag">📌더보기</a>
+	                <h5 class="d-inline-flex float-start"><b>오늘의 딜</b></h5>
+	                <a href="/todayDeals" class="d-inline-flex float-end a_tag">더보기</a>
 	            </div>
 	
 	            <div class="d-flex justify-content-center center_menu row" id="center_menu"></div>
 	
 	            <div style="height: 20px; width: 100%;" class="category">
-	                <h5 class="d-inline-flex float-start"><b>🏷카테고리</b></h5>
+	                <h5 class="d-inline-flex float-start"><b>카테고리</b></h5>
 	            </div>
 	            
 	            <div style="height: auto;">
@@ -144,7 +144,7 @@
 	            </div>
 	
 	            <div style="height: 20px; width: 100%;" class="popularItemText">
-	                <h5 class="d-inline-flex float-start"><b>🔥인기 상품</b></h5>
+	                <h5 class="d-inline-flex float-start"><b>인기 상품</b></h5>
 	            </div>
 	
 	            <div id="productList"></div>

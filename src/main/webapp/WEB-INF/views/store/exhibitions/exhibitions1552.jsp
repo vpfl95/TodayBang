@@ -24,10 +24,6 @@
                 <p>옷 정리, 욕실 청소까지 맡겨주세요!</p>
                 <h5><b>[1+1 행사중] 수납&생활용품</b></h5>
                 <hr>
-                <div class="d-flex justify-content-between c_btn">
-                    <button>📌7509</button>
-                    <button>💡2634</button>
-                </div>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
                     <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
                 </div>
