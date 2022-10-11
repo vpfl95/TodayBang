@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.goodee.home.interested.InterestedDTO;
+import com.goodee.home.interested.InterestedService;
 import com.goodee.home.realEstate.RealEstateDTO;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
@@ -24,15 +26,17 @@ import com.goodee.home.util.MaemulPager;
 
 
 @Controller
-@RequestMapping("/apt/*")
+@RequestMapping("/apt/**")
 public class AptController {
 
 	@Autowired
 	private AptService aptService;
 	@Autowired
-	private RegionService sigunguService;
+	private RegionService regionService;
 	@Autowired
 	private HouseReviewService houseReviewService;
+	@Autowired
+	private InterestedService interestedService;
 	
 	@ModelAttribute("zigbang")
 	public String getBuilding() {
@@ -87,11 +91,11 @@ public class AptController {
 		if(sigunguDTO.getMapLevel()<5) {
 			
 		}else if(sigunguDTO.getMapLevel()>=5 && sigunguDTO.getMapLevel()<7) {
-			arr = sigunguService.getEmd(sigunguDTO);
+			arr = regionService.getEmd(sigunguDTO);
 		}else if(sigunguDTO.getMapLevel()>=7 && sigunguDTO.getMapLevel()<11) {
-			arr = sigunguService.getSigungu(sigunguDTO);
+			arr = regionService.getSigungu(sigunguDTO);
 		}else {
-			arr = sigunguService.getSido(sigunguDTO);
+			arr = regionService.getSido(sigunguDTO);
 		}
 		
 		return arr;
@@ -140,6 +144,7 @@ public class AptController {
 	@PostMapping("updateReview")
 	@ResponseBody
 	public int setUpdateReview(HouseReviewDTO houseReviewDTO)throws Exception{
+		System.out.println("update Review");
 		int result = houseReviewService.setUpdateReview(houseReviewDTO);
 		
 		return result;
@@ -154,4 +159,34 @@ public class AptController {
 		return result;
 	}
 	
+	@PostMapping("writerCheck")
+	@ResponseBody
+	public ModelAndView writerCheck(HouseReviewDTO houseReviewDTO)throws Exception{
+		System.out.println("컨트롤러"+houseReviewDTO.getUserId());
+		ModelAndView mv = new ModelAndView();
+		mv.addObject("houseReviewDTO",houseReviewDTO);
+		return mv;
+	}
+	
+	@PostMapping("setInterested")
+	@ResponseBody
+	public int setInterested(InterestedDTO interestedDTO)throws Exception{
+		int result = interestedService.setInterested(interestedDTO);
+		return result;
+	}
+	
+	@PostMapping("getInterestedUser")
+	@ResponseBody
+	public List<InterestedDTO> getInterestedUser(InterestedDTO interestedDTO)throws Exception{
+		List<InterestedDTO> arr = interestedService.getInterestedUser(interestedDTO);
+		
+		return arr;
+	}
+	
+	@PostMapping("setDeleteInterested")
+	@ResponseBody
+	public int setDeleteInterested(InterestedDTO interestedDTO)throws Exception{
+		int result = interestedService.setDeleteInterested(interestedDTO);
+		return result;
+	}
 }

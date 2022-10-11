@@ -39,6 +39,7 @@
 		<typeAlias type="com.goodee.home.util.Pager" alias="Pager"/>
 		<typeAlias type="com.goodee.home.util.MaemulPager" alias="MaemulPager"/>
 		<typeAlias type="com.goodee.home.review.HouseReviewDTO" alias="HouseReviewDTO"/>
+		<typeAlias type="com.goodee.home.interested.InterestedDTO" alias="InterestedDTO"/>
 		
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>
