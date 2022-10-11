@@ -2,19 +2,29 @@ package com.goodee.home.member;
 
 import org.springframework.stereotype.Component;
 
+
+
 @Component
-public class OrderDTO {
+public class OrderDTO extends CartDTO{
 
 	private Long orderNum;
-	private String userId;
-	private Long cartNum;
 	private Long addressNum;
 	private String orderDate;
 	private String payment;
 	private String deliveryStatus;
-	
-	private CartDTO cartDTO;
 	private DeliveryDTO deliveryDTO;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	public Long getOrderNum() {
@@ -23,18 +33,7 @@ public class OrderDTO {
 	public void setOrderNum(Long orderNum) {
 		this.orderNum = orderNum;
 	}
-	public String getUserId() {
-		return userId;
-	}
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	public Long getCartNum() {
-		return cartNum;
-	}
-	public void setCartNum(Long cartNum) {
-		this.cartNum = cartNum;
-	}
+
 	public Long getAddressNum() {
 		return addressNum;
 	}
@@ -59,12 +58,7 @@ public class OrderDTO {
 	public void setDeliveryStatus(String deliveryStatus) {
 		this.deliveryStatus = deliveryStatus;
 	}
-	public CartDTO getCartDTO() {
-		return cartDTO;
-	}
-	public void setCartDTO(CartDTO cartDTO) {
-		this.cartDTO = cartDTO;
-	}
+	
 	public DeliveryDTO getDeliveryDTO() {
 		return deliveryDTO;
 	}

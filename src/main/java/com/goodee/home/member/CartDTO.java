@@ -14,7 +14,7 @@ public class CartDTO {
 	private Long buyAmount;
 	private Long productNum;
 	private String userId;
-	private boolean status;
+	private String fileName;
 	private ProductDTO productDTO;
 	
 	private List<ProductOptionDTO> productOptionDTOs;
@@ -33,18 +33,19 @@ public class CartDTO {
 	
 	
 	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public List<ProductOptionDTO> getProductOptionDTOs() {
 		return productOptionDTOs;
 	}
 	public void setProductOptionDTOs(List<ProductOptionDTO> productOptionDTOs) {
 		this.productOptionDTOs = productOptionDTOs;
 	}
-	public boolean isStatus() {
-		return status;
-	}
-	public void setStatus(boolean status) {
-		this.status = status;
-	}
+	
 	public ProductDTO getProductDTO() {
 		return productDTO;
 	}

@@ -10,56 +10,73 @@
 <body>
 	<!-- 장바구니 -->
 	
-	장바구니 페이지 입니다 .
-	<br>
 	
-	<table class="table table-hover">
-		<thead>
-			<tr>
-				<th></th>
-				<th>전체 ${length }개</th>
-				<th>상품명(옵션)</th>
-				<th>수량</th>
-				<th>가격</th>
-				<th>주문관리</th>
-				<th>배송비/배송형태</th>
-			</tr>
-		</thead>
-		<tbody>
+	
+	
+<div id="cartDiv">
+	<div class="cart-section">
+	
+	<div class = "cart-header">
+	 <label for="allCheck" class ="nolabel"><input id="allCheck" type="checkbox" />모두선택</label>
+	<span class = "cart-won" id="cart-selDelete">선택 삭제</span></div>
+	
 		
-			<c:forEach items="${cart }" var="list" varStatus="status">
-			<tr>
-				<td><input type="checkbox"/></td>
-				<td>${status.index +1}</td>
-				<td>
-					${list.productDTO.brand }
-					<br>
-					${list.productDTO.productName }
-					<br>	
-					<c:forEach items="${list.productOptionDTOs }" var="option">
-						${option.optionName }:
-						${option.optionCount }개 
-						<br>
-					</c:forEach>
+		
+		
+		<c:forEach items="${cart }" var="list" varStatus="status">
+			<div class="cart-pd">
+				<div class="cart-checkbox">
+					<input type="checkbox" style="width: 20px; margin: 10px auto;"/>
+				</div>
+				<div class="cart-pd-body">
+					<div class="cart-pd-detail">
+						<div class="cart-pd-detail-image">
+							<img id="cart-img" alt="" src="/resources/upload/store/product/${list.fileName }">
+ 						</div> 
+						<div  class="cart-pd-detail-contents">
+							<div id="cart-brand">${list.productDTO.brand }</div> 
+							
+							<div id="cart-product">${list.productDTO.productName }</div> 
+						</div>
+						<div>
+						X
+						
+						</div>
+						
+						
+					</div>
+					
+						<c:forEach items="${list.productOptionDTOs }" var="option">
+							<div class="cart-pd-option">
+								<span>${option.optionName }: ${option.optionCount }개</span><span class="cart-won"> 0000원</span>
+							</div>
+						</c:forEach>
 					
 					
+					<div class="cart-pd-price">
+					<div>수량 : ${list.buyAmount }</div>
 					
-				</td>
-				<td>${list.buyAmount }</td>
-				<td>${list.productDTO.price }</td>
-				<td></td>
-				<td>${list.productDTO.deliFee }</td>
-			</tr>
-			
-			
-			</c:forEach>
-			
-		</tbody>
-	
-	
-	</table>
-	
-	
-	
+					<span>배송비 : ${list.productDTO.deliFee }</span><span id="cart-detail-pay">${list.productDTO.price }원</span>
+					</div>
+					
+					
+				</div>
+				
+				
+			</div>
+		</c:forEach>
+	</div>
+	<div class ="cart-payDiv">
+		<div class = "cart-pay-detail">
+			<div class = "cart-payment"><span>총 상품 금액</span><span class = "cart-won">00000원</span></div>
+			<div class = "cart-payment"><span>총 배송비</span><span class = "cart-won">00000원</span></div>
+			<div class = "cart-payment"><span>총 할인금액</span><span class = "cart-won">00000원</span></div>
+			<hr>
+			<div id="cart-lastPay" class = "cart-payment"><span>결제 금액</span><span id="cart-lastwon" class = "cart-won">00000원</span></div>
+		
+		</div>
+		<input type="button" class="" id="payBtn" value="결제하기">
+	</div>
+</div>	
 </body>
 </html>

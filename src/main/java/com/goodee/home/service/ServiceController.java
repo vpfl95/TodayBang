@@ -144,6 +144,17 @@ public class ServiceController {
 	@GetMapping("delete")
 	public String deleteBoard(BoardDTO boardDTO,HttpSession session) throws Exception{
 		
+		
+		if(getBoardName() == "QNA") {
+			boardDTO.setBoard("QNAANSWER");
+			boardDTO = service.getDetail(boardDTO);
+			boardDTO.setBoard("QNAANSWER");
+			service.deleteAnswer(boardDTO,session.getServletContext());	
+		}
+
+		
+		
+		
 		boardDTO.setBoard(getBoardName());
 		boardDTO = service.getDetail(boardDTO);
 		boardDTO.setBoard(getBoardName());

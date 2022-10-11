@@ -102,8 +102,8 @@
 			
 			<select id="getCart" parameterType="MemberDTO" resultMap="getCartResult">
 			
-				SELECT C.CARTNUM,C.BUYAMOUNT,C.STATUS,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
-     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE
+				SELECT C.CARTNUM,C.BUYAMOUNT,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
+     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE , PI.FILENAME
                   FROM CART C
                         INNER JOIN PRODUCT P
                         ON C.PRODUCTNUM = P.PRODUCTNUM
@@ -111,21 +111,28 @@
                         LEFT JOIN  "CART-OPTION" CO
                         ON CO.CARTNUM = C.CARTNUM
                         
-                        INNER JOIN PRODUCTOPTION PO
+                        
+                        LEFT JOIN PRODUCTIMAGE PI
+                        ON C.PRODUCTNUM = PI.PRODUCTNUM
+                        
+                        LEFT JOIN PRODUCTOPTION PO
                         ON CO.OPTIONNUM = PO.OPTIONNUM
                             
-                     WHERE USERID =#{userId} AND C.STATUS =1
+                     WHERE USERID =#{userId} AND PI.ORINAME LIKE '%01%'
 				
 			</select>
 			<resultMap type="CartDTO" id="getCartResult">
 				<id column="CARTNUM" property="cartNum"/>
 				<result column="BUYAMOUNT" property="buyAmount"/>
-				<result column="STATUS" property="status"/>
+				<result column="FILENAME" property="fileName"/>
+				
+				
 				<association property="productDTO" javaType="ProductDTO">
 					<result column="PRODUCTNAME" property="productName"/>
 					<result column="DELIFEE" property="deliFee"/>
 					<result column="BRAND" property="brand"/>
 					<result column="PRICE" property="price"/>
+					
 				</association>
 				<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
 					<result column="OPTIONCOUNT" property="optionCount"/>
@@ -142,53 +149,52 @@
 			
 			<select id="getOrder" parameterType="MemberDTO" resultMap="getOrderResult">
 			
-				SELECT O.ORDERNUM,O.ORDERDATE, O.DELIVERYSTATUS,N.*
-				FROM (SELECT C.CARTNUM,C.BUYAMOUNT,C.STATUS,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
-     					  ,CO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE
-                  FROM CART C
+				SELECT  O.* ,P.PRODUCTNAME,P.DELIFEE,P.BRAND ,P.PRICE
+     					  ,OO.OPTIONCOUNT, PO.OPTIONNAME,PO.OPTIONPRICE , PI.FILENAME
+                  FROM "ORDER" O
                         INNER JOIN PRODUCT P
-                        ON C.PRODUCTNUM = P.PRODUCTNUM
+                        ON O.PRODUCTNUM = P.PRODUCTNUM
                         
-                        LEFT JOIN  "CART-OPTION" CO
-                        ON CO.CARTNUM = C.CARTNUM
+                        LEFT JOIN  "ORDER-OPTION" OO
+                        ON OO.ORDERNUM = O.ORDERNUM
                         
-                        INNER JOIN PRODUCTOPTION PO
-                        ON CO.OPTIONNUM = PO.OPTIONNUM
-                     ) N
-                     INNER JOIN "ORDER" O
-                     ON N.CARTNUM = O.CARTNUM
-				WHERE USERID =#{userId} AND N.STATUS =0
+                        LEFT JOIN PRODUCTIMAGE PI
+                        ON O.PRODUCTNUM = PI.PRODUCTNUM
+                        
+                        LEFT JOIN PRODUCTOPTION PO
+                        ON OO.OPTIONNUM = PO.OPTIONNUM
+                            
+                     WHERE USERID =#{userId} AND PI.ORINAME LIKE '%01%'
 				
 			</select>
 			<resultMap type="OrderDTO" id="getOrderResult">
 				<id column="ORDERNUM" property="orderNum"/>
+				<result column="USERID" property="userId"/>
+				<result column="ADDRESSNUM" property="addressNum"/>
 				<result column="ORDERDATE" property="orderDate"/>
+				<result column="PAYMENT" property="payment"/>
+				<result column="PRODUCTNUM" property="productNum"/>
+				<result column="BUYAMOUNT" property="buyAmount"/>
 				<result column="DELIVERYSTATUS" property="deliveryStatus"/>
-		
-				<association property="cartDTO" javaType="CartDTO">
-					<id column="CARTNUM" property="cartNum"/>
-					<result column="BUYAMOUNT" property="buyAmount"/>
-					<result column="STATUS" property="status"/>
-					<association property="productDTO" javaType="ProductDTO">
-						<result column="PRODUCTNAME" property="productName"/>
-						<result column="DELIFEE" property="deliFee"/>
-						<result column="BRAND" property="brand"/>
-						<result column="PRICE" property="price"/>
-					</association>
-					<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
-						<result column="OPTIONCOUNT" property="optionCount"/>
-						<result column="OPTIONNAME" property="optionName"/>
-						<result column="OPTIONPRICE" property="optionPrice"/>
-					
-					</collection>
+				<result column="FILENAME" property="fileName"/>
+				<association property="productDTO" javaType="ProductDTO">
+					<result column="PRODUCTNAME" property="productName"/>
+					<result column="DELIFEE" property="deliFee"/>
+					<result column="BRAND" property="brand"/>
+					<result column="PRICE" property="price"/>
 				</association>
+				<collection property="productOptionDTOs" javaType="List" ofType="ProductOptionDTO">
+					<result column="OPTIONCOUNT" property="optionCount"/>
+					<result column="OPTIONNAME" property="optionName"/>
+					<result column="OPTIONPRICE" property="optionPrice"/>
 				
-			
+				</collection>
 			</resultMap>
 			
 			
+			
 			<insert id="addCart" parameterType="CartDTO" >
-				INSERT INTO CART VALUES (TODAY_SEQ.NEXTVAL,#{userId},#{productNum},#{buyAmount},#{status})
+				INSERT INTO CART VALUES (TODAY_SEQ.NEXTVAL,#{userId},#{productNum},#{buyAmount})
 			</insert>
 			
 			<delete id="deleteCart" parameterType="CartDTO">
