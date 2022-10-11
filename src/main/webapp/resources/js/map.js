@@ -657,40 +657,116 @@ function getReviewList(roadName,p){
                 }
                 recommend.appendChild(gradeCircle)
 
-                
                 let contents = document.createElement("div")
                 contents.innerText = list[i].contents
                 revDiv.appendChild(recommend)
                 revDiv.appendChild(contents)
 
-                let trfDiv = document.createElement("span")
-                let trfgrade = document.createElement("span")
+
+
+                let traffic = document.createElement("div")
+                traffic.className="recommend"
+                let trfDivWrap = document.createElement("div")
+                let trfDiv = document.createElement("div")
+                let trfgrade = document.createElement("div")
+                let trfCircle = document.createElement("div")
+                trfDivWrap.className="gradeDivWrap"
+                trfgrade.className="gradeDiv"
+                trfCircle.className="circle"
+
                 trfDiv.innerText="교통여건"
                 trfgrade.innerText=list[i].trfGrade
+                trfDivWrap.appendChild(trfDiv)
+                traffic.appendChild(trfDivWrap)
+                traffic.appendChild(trfgrade)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].trfGrade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        trfCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        trfCircle.appendChild(grade_empty)
+                    }
+                }
+                traffic.appendChild(trfCircle)
+
                 let trfContents = document.createElement("div")
                 trfContents.innerText = list[i].trfContents
-                revDiv.appendChild(trfDiv)
-                revDiv.appendChild(trfgrade)
+                revDiv.appendChild(traffic)
                 revDiv.appendChild(trfContents)
 
-                let envDiv = document.createElement("span")
-                let envgrade = document.createElement("span")
+
+                let environment = document.createElement("div")
+                environment.className="recommend"
+                let envDivWrap = document.createElement("div")
+                let envDiv = document.createElement("div")
+                let envgrade = document.createElement("div")
+                let envCircle = document.createElement("div")
+                envDivWrap.className="gradeDivWrap"
+                envgrade.className="gradeDiv"
+                envCircle.className="circle"
+
                 envDiv.innerText="주변환경"
                 envgrade.innerText=list[i].envGrade
+                envDivWrap.appendChild(envDiv)
+                environment.appendChild(envDivWrap)
+                environment.appendChild(envgrade)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].envGrade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        envCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        envCircle.appendChild(grade_empty)
+                    }
+                }
+                environment.appendChild(envCircle)
+
+
                 let envContents = document.createElement("div")
                 envContents.innerText = list[i].envContents
-                revDiv.appendChild(envDiv)
-                revDiv.appendChild(envgrade)
+                revDiv.appendChild(environment)
                 revDiv.appendChild(envContents)
 
-                let resDiv = document.createElement("span")
-                let resgrade = document.createElement("span")
+
+                let residential = document.createElement("div")
+                residential.className="recommend"
+                let resDivWrap = document.createElement("div")
+                let resDiv = document.createElement("div")
+                let resgrade = document.createElement("div")
+                let resCircle = document.createElement("div")
+                resDivWrap.className="gradeDivWrap"
+                resgrade.className="gradeDiv"
+                resCircle.className="circle"
+
                 resDiv.innerText="거주환경"
                 resgrade.innerText=list[i].resGrade
+                resDivWrap.appendChild(resDiv)
+                residential.appendChild(resDivWrap)
+                residential.appendChild(resgrade)
+
+                for(let j=0; j<5;j++){
+                    if(j<list[i].resGrade){
+                        let grade_full = document.createElement("div")
+                        grade_full.className="grade_full"
+                        resCircle.appendChild(grade_full)
+                    }else{
+                        let grade_empty = document.createElement("div")
+                        grade_empty.className="grade_empty"
+                        resCircle.appendChild(grade_empty)
+                    }
+                }
+                residential.appendChild(resCircle)
+
                 let resContents = document.createElement("div")
                 resContents.innerText = list[i].resContents
-                revDiv.appendChild(resDiv)
-                revDiv.appendChild(resgrade)
+                revDiv.appendChild(residential)
                 revDiv.appendChild(resContents)
 
                 let update = document.createElement("span")
@@ -828,15 +904,16 @@ houseReviewList.addEventListener("click",function(event){
             return false
         }
         
-        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        env_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
+        env_text.value=event.target.previousSibling.previousSibling.previousSibling.innerHTML
         res_text.value=event.target.previousSibling.innerHTML
         reviewNum.value=event.target.parentNode.getAttribute("data-rvnum")
-        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        let rg = event.target.previousSibling.previousSibling.innerHTML
+        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        let rg = event.target.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        
         document.getElementsByName("recommend")[Math.abs(grade-5)].checked=true
         document.getElementsByName("trf")[Math.abs(tg-5)].checked=true
         document.getElementsByName("env")[Math.abs(eg-5)].checked=true

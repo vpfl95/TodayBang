@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.apt.AptDTO;
+import com.goodee.home.interested.InterestedDTO;
+import com.goodee.home.interested.InterestedService;
 import com.goodee.home.realEstate.RealEstateDTO;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
@@ -32,6 +34,8 @@ public class VillaController {
 	private VillaService villaService;
 	@Autowired
 	private HouseReviewService houseReviewService;
+	@Autowired
+	private InterestedService interestedService;
 	
 	@ModelAttribute("zigbang")
 	public String getBuilding() {
@@ -153,5 +157,27 @@ public class VillaController {
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("houseReviewDTO",houseReviewDTO);
 		return mv;
+	}
+	
+	@PostMapping("setInterested")
+	@ResponseBody
+	public int setInterested(InterestedDTO interestedDTO)throws Exception{
+		int result = interestedService.setInterested(interestedDTO);
+		return result;
+	}
+	
+	@PostMapping("getInterestedUser")
+	@ResponseBody
+	public List<InterestedDTO> getInterestedUser(InterestedDTO interestedDTO)throws Exception{
+		List<InterestedDTO> arr = interestedService.getInterestedUser(interestedDTO);
+		
+		return arr;
+	}
+	
+	@PostMapping("setDeleteInterested")
+	@ResponseBody
+	public int setDeleteInterested(InterestedDTO interestedDTO)throws Exception{
+		int result = interestedService.setDeleteInterested(interestedDTO);
+		return result;
 	}
 }
