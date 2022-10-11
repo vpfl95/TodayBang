@@ -10,6 +10,8 @@
     <title>오늘의 직방</title>
 		<link href="/resources/css/reset.css" rel="stylesheet">
 		<link href="/resources/css/board/board.css" rel="stylesheet">
+		
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 		<link rel="stylesheet" href="/resources/css/summernote/summernote-lite.css">
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -86,8 +88,10 @@
 						    	<c:if test="${boardList.userId eq member.userId }">
 						    		
 						    		<c:if test="${empty qnaAnswer }">
+						    			<button id="boardUpdateBtn" class="boardUpdateBtn" data-a="./update?boardNum=${boardList.boardNum }" >수정</button>
 						    			<a href="./update?boardNum=${boardList.boardNum }">수정</a>
 						    		</c:if>
+						    		<button id="boardDeleteBtn" class="boardDeleteBtn" data-a="./delete?boardNum=${boardList.boardNum }" >삭제</button>
 						    		<a href="./delete?boardNum=${boardList.boardNum }">삭제</a>
 						    	</c:if>
 						    </div>
@@ -105,7 +109,7 @@
 								<div>문의 답변</div>
 							</div>
 							<div class="board-title">
-							${boardList.title }
+							${qnaAnswer.title }
 							</div>
 							
 							<div  class="board-writerSection">
@@ -114,16 +118,16 @@
 								</div>
 								<div>
 									<div  class="board-userId">
-										${boardList.userId }
+										${qnaAnswer.userId }
 									</div>
 									<div class="board-info">
-										${boardList.regDate } 조회수 ${boardList.hit }
+										${qnaAnswer.regDate }
 									</div>
 								</div>
 							</div>
 							<hr>
 							<div class="board-contents">
-							     ${boardList.contents }
+							     ${qnaAnswer.contents }
 							</div>
 							
 							<div> 
@@ -139,6 +143,9 @@
 							</div>  
 							<div>
 								<c:if test="${qnaAnswer.userId eq member.userId }">
+									<button id="answerUpdateBtn" class="boardUpdateBtn" data-a="./updateAnswer?boardNum=${boardList.boardNum }" >답변 수정</button>
+						    		<button id="answerDeleteBtn" class="boardDeleteBtn" data-a="./deleteAnswer?boardNum=${boardList.boardNum }" >답변 삭제</button>
+						    		
 												<a href="./updateAnswer?boardNum=${boardList.boardNum }">답변 수정</a>	
 									    		<a href="./deleteAnswer?boardNum=${boardList.boardNum }">답변 삭제</a>
 									    		
@@ -196,10 +203,10 @@
 														<tr>
 														<c:choose>
 															<c:when test="${empty update }">
-																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
+																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary submitBoardBtn" type="button" title = "add">게시</button></td>
 															</c:when>
 															<c:otherwise>
-																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
+																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary submitBoardBtn"  type="button" title = "update">수정</button></td>
 															</c:otherwise>
 														
 														</c:choose>
@@ -246,10 +253,12 @@
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/js/board.js"></script>
-    
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    	<script src="/resources/js/summernote/summernote-lite.js"></script>
 	<script src="/resources/js/summernote/lang/summernote-ko-KR.js"></script>
     <script type="text/javascript">
+    
+    board2();
     
     if (${board eq 'QNA' && empty qnaAnswer}){
     	answer();
