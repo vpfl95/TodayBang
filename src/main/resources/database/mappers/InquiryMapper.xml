@@ -4,7 +4,7 @@
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.goodee.home.store.inquiry.InquiryDAO">
 	<insert id="addInquiry" parameterType="InquiryDTO">
-		INSERT INTO INQUIRY VALUES (REV_SEQ.NEXTVAL, #{contents}, #{buyStatus}, 0, SYSDATE, #{productNum}, #{userId}, #{priStatus})
+		INSERT INTO INQUIRY VALUES (REV_SEQ.NEXTVAL, #{contents}, #{buyStatus}, 0, SYSDATE, #{priStatus}, #{productNum}, #{userId})
 	</insert>
 	
 	<select id="getInauiryList" parameterType="InquiryDTO" resultType="InquiryDTO">
@@ -16,7 +16,7 @@
 	</delete>
 	
 	<insert id="replyInquiry" parameterType="InquiryDTO">
-		INSERT INTO INQUIRY VALUES (REV_SEQ.NEXTVAL, #{contents}, 0, #{inqNum}, SYSDATE, #{productNum}, #{userId}, 0)
+		INSERT INTO INQUIRY VALUES (REV_SEQ.NEXTVAL, #{contents}, 0, #{inqNum}, SYSDATE, 0, #{productNum}, #{userId})
 	</insert>
 	
 	<select id="getReply" parameterType="InquiryDTO" resultType="InquiryDTO">
