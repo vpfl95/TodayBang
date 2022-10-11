@@ -44,21 +44,19 @@
 						
 						<tbody>
 							<tr>
-								<td>
+								<td colspan="2">
 						        	<input type="text" value="${update.title }"  id="title" name="title" class="form-control" placeholder="제목을 입력해 주세요." required>
+						        	<input type="hidden" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required>
 						        </td>
-							</tr>
-							<tr>
-								<td><input type="text" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required></td>
-							</tr>
-							<tr>
-								<td><textarea   id="summernote" name="contents"></textarea></td>
 							</tr>
 							
 							<tr>
-								<th><p id = "addFileBtn">파일추가</p></th>
+								<td colspan="2"><textarea   id="summernote" name="contents"></textarea></td>
 							</tr>
+							
 							<tr>
+								<th width="100px"><p id = "addFileBtn" >파일추가</p></th>
+							
 								<td>
 									<div id = "fileInputDiv" title = "${updateSize }">
 									<!-- 파일선택 input -->
@@ -81,10 +79,10 @@
 							
 							<c:choose>
 								<c:when test="${empty update }">
-									<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
+									<td><button id="boardBtn" class="btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
 								</c:when>
 								<c:otherwise>
-									<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
+									<td><button id="boardBtn" class="btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
 								</c:otherwise>
 								
 							</c:choose>

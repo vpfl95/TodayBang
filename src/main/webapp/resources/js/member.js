@@ -22,7 +22,8 @@ function login() {
                     Swal.fire({
                         
                         icon: "success",
-                        button : false
+                        confirmButtonColor : '#38b9e0'
+                        
                     } )
 
                     setTimeout(() => {
@@ -32,6 +33,8 @@ function login() {
                 }else if(result == 0){
                     Swal.fire({
                         title: "로그인 실패",
+                        showCancelButton: true,
+                        showConfirmButton: false,
                         text : "존재하지 않는 계정입니다.",
                         icon: "error"
         
@@ -1348,14 +1351,13 @@ function cart(){
                 reverseButtons: true, // 버튼 순서 거꾸로
                 
               }).then((result) => {
-                
-                let cartNum =  event.target.getAttribute("data-a");
+                if (result.isConfirmed) {
+                    let cartNum =  event.target.getAttribute("data-a");
                   
-                location.href ="/member/deleteCart?cartNum="+cartNum;
+                    location.href ="/member/deleteCart?cartNum="+cartNum;
 
-
-    
-      
+                }
+                
                 
               })
 

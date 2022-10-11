@@ -274,16 +274,23 @@
              
              
              if(${not empty moveRevNum}){
-            	  var offset = $('#review').offset(); 
-                  $('html').animate({scrollTop : offset.top}, 700);
+            	 
+            	 setTimeout(function(){
+	            	  var offset = $('#review').offset(); 
+	                  $('html').animate({scrollTop : offset.top}, 700);
+	                  
+            	 },600) 
+                  
+                  
+                  
         			setTimeout(function(){
         				
         				var offset = $('#${moveRevNum}').offset(); 
             			console.log("실행");
-            			$('html').animate({scrollTop : offset.top}, 300);
+            			$('html').animate({scrollTop : offset.top}, 700);
         				
         				
-        			},1000) 
+        			},1300) 
             	 
              }
              

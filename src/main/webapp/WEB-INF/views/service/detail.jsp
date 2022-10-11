@@ -18,7 +18,7 @@
     <c:import url="../template/header.jsp"></c:import>
 
 	<section class="container-fluid container-lg-8 mt-5">
-			<div class = "row justify-content-center mt-5" >
+			<div class = " justify-content-center mt-5" >
 				<div class = " col-lg-7 " id="boardSection">
 				
 					<div class="board-url">
@@ -146,73 +146,92 @@
 					    	</div>
 					    	</div>
 							</c:when>
-							
 							<c:otherwise>
 							
-							<c:if test="${member.roleDTOs[0].roleNum<3 }">
-							<div class = " col-lg-7 " id="boardSection">
-							    	<form action="./answer" method="post" id = "boardForm" enctype="multipart/form-data" >
-							    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
-							    	
-											<table class = "table">
-												<thead>
-												</thead>
-												
-												<tbody>
-													<tr>
-														<th>제목</th>
-														<td>
-												        	<input type="text" value = "${boardList.title }의 답변" id="title" name="title" class="form-control" placeholder="제목" required>
-												        </td>
-													</tr>
-													<tr>
-														<th>작성자</th>
-														<td><input type="text" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required></td>
-													</tr>
-													<tr>
-														<th>내용</th>
-														
-														<td><textarea   id="summernote" name="contents"></textarea></td>
-													</tr>
-													<tr>
-															<td><p id = "addFileBtn">파일추가</p></td>
+							<c:choose>
+								<c:when test="${member.roleDTOs[0].roleNum<3 }">
+								
+								<div class = " col-lg-7 " id="boardSection">
+								    	<form action="./answer" method="post" id = "boardForm" enctype="multipart/form-data" >
+								    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
+								    	
+												<table class = "table">
+													<thead>
+													</thead>
+													
+													<tbody>
+														<tr>
+															<th>제목</th>
 															<td>
-																<div id = "fileInputDiv" title = "${updateSize }">
-																	<!-- 파일선택 input -->
-																	
-																		<c:forEach items="${update.boardFileDTOs }" var="file" varStatus="status">
-																		<c:if test="${not file.sort}">
-																			<label for="file${status.count }">${file.fileName }</label>
-																			<input type="file" id="file${status.count }" value="${file}" name="file" class="form-control boardFile hideBoardFile" title="${status.count }">
-																			<button class="boardFileDelete" title="${status.count }">파일삭제</button>
-																		</c:if>
-																		</c:forEach>
-																	
-																	</div>
-															</td>
-														<td></td>
-													</tr>
-													<tr>
-													<c:choose>
-														<c:when test="${empty update }">
-															<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
-														</c:when>
-														<c:otherwise>
-															<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
-														</c:otherwise>
+													        	<input type="text" value = "${boardList.title }의 답변" id="title" name="title" class="form-control" placeholder="제목" required>
+													        </td>
+														</tr>
+														<tr>
+															<th>작성자</th>
+															<td><input type="text" value="${member.userId }"  id="userId" name="userId"  readonly="readonly" class="form-control" placeholder="작성자" required></td>
+														</tr>
+														<tr>
+															<th>내용</th>
+															
+															<td><textarea   id="summernote" name="contents"></textarea></td>
+														</tr>
+														<tr>
+																<td><p id = "addFileBtn">파일추가</p></td>
+																<td>
+																	<div id = "fileInputDiv" title = "${updateSize }">
+																		<!-- 파일선택 input -->
+																		
+																			<c:forEach items="${update.boardFileDTOs }" var="file" varStatus="status">
+																			<c:if test="${not file.sort}">
+																				<label for="file${status.count }">${file.fileName }</label>
+																				<input type="file" id="file${status.count }" value="${file}" name="file" class="form-control boardFile hideBoardFile" title="${status.count }">
+																				<button class="boardFileDelete" title="${status.count }">파일삭제</button>
+																			</c:if>
+																			</c:forEach>
+																		
+																		</div>
+																</td>
+															<td></td>
+														</tr>
+														<tr>
+														<c:choose>
+															<c:when test="${empty update }">
+																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
+															</c:when>
+															<c:otherwise>
+																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
+															</c:otherwise>
+														
+														</c:choose>
+														</tr>
+														
+														
+														
+													</tbody>
 													
-													</c:choose>
-													</tr>
-													
-													
-													
-												</tbody>
+												</table>
 												
-											</table>
-											
-										</form>
-										</div>
-				    			</c:if>
+											</form>
+											</div>
+					    			
+									</c:when>
+								<c:otherwise>
+								
+									<div class="noQnaAnswer">
+										<span class="noQnaAnswerComment">아직 등록된 답변이 없습니다.</span>
+										
+									</div>
+									
+								
+								
+								
+								
+								
+								</c:otherwise>
+							
+							</c:choose>
+							
+							
 				    			
 							</c:otherwise>
 						</c:choose>

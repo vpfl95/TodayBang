@@ -20,7 +20,7 @@ section{
 
 #boardSection{
 	border : 1px solid #dfe2e6;
-	border-radius: 3%;
+	border-radius: 1%;
 	min-width : 400px;
 	min-height : 600px;
 	background-color: white;
@@ -87,4 +87,20 @@ section{
 
 	font-size: 15px;
 	color: #61b6dc;
+}
+
+.noQnaAnswer{
+
+	display: flex;
+	justify-items: center;
+	margin: 0 auto ;
+	color: #999;
+	width: 20%;
+
+
+}
+.noQnaAnswerComment{
+	margin: 0 auto ;
+	width:auto;
+
 }
