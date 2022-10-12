@@ -23,14 +23,14 @@
             <hr style="width: 95%; margin-top: 8px;">
             <div class="d-flex" style="height: 38px;">
                 <label for="userName">이름</label>
-				<input type="text" id="userName" name = "userName" class="form-control nonOverlab" style="width: 40%;">
+				<input type="text" id="userName" name="userName" class="form-control nonOverlab" style="width: 40%;" value="${member.userName}" readonly>
             </div>
 
             <div class="d-flex mt-3">
                 <label for="email">이메일</label>
-                <div id= "email" style="width: 80%;" class="d-flex">
+                <div id= "email" style="width: 80%;" class="d-flex" data-email="${member.email}">
                     <input type="hidden" name = "email" id="submitEmail">
-                    <input type="text"  id="emailFirst" name = "email1" class="form-control nonOverlab" style="width: 50%;">
+                    <input type="text"  id="emailFirst" name = "email1" class="form-control nonOverlab" style="width: 50%;" readonly>
                     <div for="emailAt" class="nolabel" style="width: 7%; text-align: center; font-size: 20px;">@</div>
                     <select name="email1" id="emailAt" class="form-control nonOverlab" style="width: 40%;">
                         <option value="0" disabled selected="selected">선택해주세요</option>
@@ -47,19 +47,24 @@
             <div class="d-flex mt-3">
                 <label for="inputPhone">휴대전화</label>
                 <input type="hidden" name = "phone" id="submitPhone">
-                <div id= "phone" class="d-flex" style="width: 40%;">
-                    <select name="phone1" id="phoneFirst" class="form-control nonOverlab" style="width: 30%; margin-right: 10px;">
+                <div id= "phoneWrap" class="d-flex" style="width: 40%;" data-phone-number="${member.phone}">
+                    <select name="phone1" id="memberPhoneFirst" class="form-control nonOverlab" style="width: 30%; margin-right: 10px;">
                         <option value="010" selected="selected">010</option>
                         <option value="011" >011</option>
                         <option value="070" >070</option>
                     </select>
-                    <input type="text"  id="phone" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
+                    <input type="text"  id="memberPhone" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
                 </div>
             </div>
-
             <div class="d-flex justify-content-between mt-5" style="width: 95%;">
                 <h5 style="font-weight: 600;">배송지</h5>
-                <button type="button" class="same">내 배송지 가져오기</button>
+                <div style="display: none;" id="deliveryJson">${deliveryJson}</div>
+                <select class="form-control nonOverlab" id="delivery" style="width: 40%;">
+                    <option value="0" disabled selected>내 배송지 가져오기</option>
+                    <c:forEach items="${deliveryDTOs}" var="dto">
+                    	<option value="${dto.addressNum}">${dto.deliveryName}</option>
+                    </c:forEach>
+                </select>
             </div>
             <hr style="width: 95%; margin-top: 8px;">
             <div class="d-flex" style="height: 38px;">
@@ -79,7 +84,7 @@
                         <option value="011" >011</option>
                         <option value="070" >070</option>
                     </select>
-                    <input type="text"  id="phone" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
+                    <input type="text"  id="phoneLast" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
                 </div>
             </div>
             <div class="mt-3">
@@ -110,7 +115,36 @@
                 </select>
             </div>
 
-            <h5 style="margin-top: 50px; margin-bottom: 5px; font-weight: 600;">주문상품</h5>
+            <h5 style="margin-top: 50px; font-weight: 600;">주문상품</h5>
+            <c:forEach items="${list}" var="dto">
+            	<div class="d-flex" style="width: 95%; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; margin: 5px 0;">
+                    <div style="width: 10%; margin-right: 10px;">
+                        <img src="../../resources/upload/store/product/${detail.productImageDTO.fileName}" style="max-width: 100%;">
+                    </div>
+                    <div>
+                        <div style="font-size: 15px;">${detail.productName}</div>
+                        <div style="font-size: 13px;">옵션 - ${dto.optionName}</div>
+                        <div class="d-flex">
+                            <div style="font-weight: 600; font-size: 14px; margin-right: 10px;">${dto.optionPrice * dto.optionCount}원</div>
+                            <div style="font-size: 13px;">| ${dto.optionCount}개</div>
+                        </div>
+                    </div>
+                </div>
+            </c:forEach>
+            <c:if test="${result eq 0}">
+            	<div class="d-flex" style="width: 95%; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; margin: 5px 0;">
+                    <div style="width: 10%; margin-right: 10px;">
+                        <img src="../../resources/upload/store/product/${detail.productImageDTO.fileName}" style="max-width: 100%;">
+                    </div>
+                    <div>
+                        <div style="font-size: 15px;">${detail.productName}</div>
+                        <div class="d-flex">
+                            <div style="font-weight: 600; font-size: 14px; margin-right: 10px;">${price * productCount}원</div>
+                            <div style="font-size: 13px;">| ${productCount}개</div>
+                        </div>
+                    </div>
+                </div>
+            </c:if>
             <hr style="width: 95%; margin-top: 8px;">
 
             <div class="d-flex justify-content-between" style="margin-top: 50px; width: 95%;">
@@ -134,11 +168,11 @@
                         <h5 class="mt-3" style="font-weight: 600;">결제금액</h5>
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-size: 15px;">총 상품 금액</div>
-                            <div class="price">0원</div>
+                            <div class="price">${totalPrice}원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">배송비</div>
-                            <div class="deleFee">0원</div>
+                            <div class="deleFee">${detail.deliFee}원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">포인트 사용</div>
@@ -148,9 +182,9 @@
         
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-weight: 600; font-size: 20px;">최종 결제 금액</div>
-                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice" style="color: #35c5f0;">0</span> 원</div>
+                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice" style="color: #35c5f0;">${totalPrice + detail.deliFee}</span> 원</div>
                         </div>
-                        <div style="font-size: 14px; text-align: right; margin-top: 5px;"><span style="font-weight: 600;">0 P</span> 적립 예정</div>
+                        <div style="font-size: 14px; text-align: right; margin-top: 5px;"><span id="getPoint" style="font-weight: 600;" data-point="${(totalPrice + detail.deliFee)*0.001}"></span> 적립 예정</div>
                     </div>
                     <hr style="width: 100%; margin: 30px auto 0 auto;">
                     <div>
@@ -203,7 +237,7 @@
                 </div>
 
                 <button class="btnPay mt-4">
-                    <span class="totalPrice">0</span>원 결제하기
+                    <span class="totalPrice">${totalPrice + detail.deliFee}</span>원 결제하기
                 </button>
             </div>
         </div>
@@ -214,5 +248,8 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/resources/js/store/order.js"></script>
+    <script>
+        setMain();
+    </script>
 </body>
 </html>

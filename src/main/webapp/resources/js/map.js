@@ -25,6 +25,7 @@ const roadname = document.getElementById("roadname")
 const writeReview = document.getElementById("writeReview")
 const upReview = document.getElementById("upReview")
 const reviewNum = document.getElementById("reviewNum")
+const insertReal =document.getElementById("insertReal")
 let page =1;
 let reviewPage = 1;
 
@@ -253,17 +254,21 @@ function addMarker(address_result){
             
             building_top = document.createElement("div")
             building_top.setAttribute("data-roadName",address_result[i].roadName);
+            building_top.setAttribute("data-sigungu",address_result[i].sigungu);    //매물등록에서 쓸것
             building_top.className = "sc-cBNeex building-top"
             building_top.innerText = "매매"
             content.appendChild(building_top)
 
             building_bot = document.createElement("div")
             building_bot.setAttribute("data-roadName",address_result[i].roadName);
+            building_bot.setAttribute("data-sigungu",address_result[i].sigungu);
             building_bot.className = "sc-gWHigU building-bot"
             building_bot.innerText = address_result[i].avg + unit
             content.appendChild(building_bot)
 
             building_name = document.createElement("div")
+            building_name.setAttribute("data-roadName",address_result[i].roadName);
+            building_name.setAttribute("data-sigungu",address_result[i].sigungu);
             building_name.className = "sc-citxvW building-name"
             building_name.innerText = address_result[i].buildingNm
             content.appendChild(building_name)
@@ -368,7 +373,7 @@ function addEventHandle(target,coords, type) {
 
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
-             document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+             //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             //map.setCenter(coords)
             
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
@@ -396,11 +401,16 @@ function addEventHandle(target,coords, type) {
             selectedMarker = target;
 
             var roadName = e.target.getAttribute("data-roadName");
+            var sigungu = e.target.getAttribute("data-sigungu");
+            document.getElementById("roadName").value = roadName
+            document.getElementById("sigungu").value = sigungu
             console.log(roadName);
 
             realEstateList.innerHTML='' //매물리스트 초기화
             houseReviewList.innerHTML=''
             //매물리스트 테이블헤더
+            let thead = document.createElement("thead")
+            thead.className="table-warning"
             let tr = document.createElement("tr")
             let th = document.createElement("th")
             let thText = document.createTextNode("등록일")
@@ -422,7 +432,9 @@ function addEventHandle(target,coords, type) {
             thText = document.createTextNode("관심")
             th.appendChild(thText)
             tr.appendChild(th)
-            realEstateList.append(tr)
+
+            thead.appendChild(tr)
+            realEstateList.append(thead)
 
             page=1;
             reviewPage=1;
@@ -534,8 +546,12 @@ function getMaemulList(roadName,p){
                
                 more.setAttribute("data-name",list[i].roadName)
                 buildingName.innerText=list[i].buildingNm
+                //수정할때 가져오기
                 maemulNum.value = list[0].num
                 roadname.value = list[0].roadName
+                //매물등록할 때 가져오기
+                document.getElementById("buildingNm").value=list[0].buildingNm
+                document.getElementById("buildType").value=list[0].buildType
             }
         }
     })
@@ -586,7 +602,6 @@ realEstateList.addEventListener("click",function(event){
             })
         }
     }else if(event.target.classList.contains("interested_select")){
-        console.log("선택된거")
         event.target.classList.toggle("interested_select")
 
         let xhttp = new XMLHttpRequest();
@@ -623,11 +638,23 @@ function getReviewList(roadName,p){
             console.log(result)
             let list= result.list
             let pager=result.maemulPager
+
             for(let i=0; i<list.length; i++){
                 let revDiv = document.createElement("div")
                 revDiv.className="revDiv"
                 revDiv.setAttribute("data-rvNum",list[i].reviewNum)
 
+                let userDiv = document.createElement("div")
+                let userid = document.createElement("div")
+                let regdate = document.createElement("div")
+                userid.innerText = list[i].userId
+                regdate.innerText = list[i].date
+                userDiv.appendChild(userid)
+                userDiv.appendChild(regdate)
+                revDiv.appendChild(userDiv)
+
+                let recommendWrap = document.createElement("div")
+                recommendWrap.className = "wrap"
                 let recommend = document.createElement("div")
                 recommend.className="recommend"
                 let gradeDivWrap = document.createElement("div")
@@ -646,11 +673,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].grade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         gradeCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         gradeCircle.appendChild(grade_empty)
                     }
@@ -659,11 +688,13 @@ function getReviewList(roadName,p){
 
                 let contents = document.createElement("div")
                 contents.innerText = list[i].contents
-                revDiv.appendChild(recommend)
-                revDiv.appendChild(contents)
+                recommendWrap.appendChild(recommend)
+                recommendWrap.appendChild(contents)
+                revDiv.appendChild(recommendWrap)
 
 
-
+                let trafficWrap = document.createElement("div")
+                trafficWrap.className = "wrap"
                 let traffic = document.createElement("div")
                 traffic.className="recommend"
                 let trfDivWrap = document.createElement("div")
@@ -682,11 +713,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].trfGrade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         trfCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         trfCircle.appendChild(grade_empty)
                     }
@@ -695,10 +728,13 @@ function getReviewList(roadName,p){
 
                 let trfContents = document.createElement("div")
                 trfContents.innerText = list[i].trfContents
-                revDiv.appendChild(traffic)
-                revDiv.appendChild(trfContents)
+                trafficWrap.appendChild(traffic)
+                trafficWrap.appendChild(trfContents)
+                revDiv.appendChild(trafficWrap)
 
 
+                let envWrap = document.createElement("div")
+                envWrap.className = "wrap"
                 let environment = document.createElement("div")
                 environment.className="recommend"
                 let envDivWrap = document.createElement("div")
@@ -717,11 +753,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].envGrade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         envCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         envCircle.appendChild(grade_empty)
                     }
@@ -731,10 +769,12 @@ function getReviewList(roadName,p){
 
                 let envContents = document.createElement("div")
                 envContents.innerText = list[i].envContents
-                revDiv.appendChild(environment)
-                revDiv.appendChild(envContents)
+                envWrap.appendChild(environment)
+                envWrap.appendChild(envContents)
+                revDiv.appendChild(envWrap)
 
-
+                let resWrap = document.createElement("div")
+                resWrap.className = "wrap"
                 let residential = document.createElement("div")
                 residential.className="recommend"
                 let resDivWrap = document.createElement("div")
@@ -753,11 +793,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].resGrade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         resCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         resCircle.appendChild(grade_empty)
                     }
@@ -766,8 +808,10 @@ function getReviewList(roadName,p){
 
                 let resContents = document.createElement("div")
                 resContents.innerText = list[i].resContents
-                revDiv.appendChild(residential)
-                revDiv.appendChild(resContents)
+                resWrap.appendChild(residential)
+                resWrap.appendChild(resContents)
+                revDiv.appendChild(resWrap)
+
 
                 let update = document.createElement("span")
                 update.innerText="수정"
@@ -1311,6 +1355,44 @@ function searchSuggest(){
 function closeSuggestList(){
     sugguestList.style.display="none"
 }
+
+
+
+//------------------------------------------------매물등록---------------------------------------------------------------------------------------
+
+addReal.addEventListener("click", function(){
+    let buildType = document.getElementById("buildType").value
+    let sigungu = document.getElementById("sigungu").value
+    let roadName = document.getElementById("roadName").value
+    let buildingNm = document.getElementById("buildingNm").value
+    let dealType = Array.from(document.getElementsByName("dealType")).find(radio => radio.checked);
+    let deal = document.getElementById("deal").value
+    let dposit = document.getElementById("deposit").value
+    let wdeposit = document.getElementById("wdeposit").value
+    let monthly = document.getElementById("monthly").value
+    let area = document.getElementById("area").value
+    let floor = document.getElementById("floor").value
+
+    let xhttp = new XMLHttpRequest()
+    xhttp.open("POST","./setAddReal")
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("buildType="+buildType+"&sigungu="+sigungu)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

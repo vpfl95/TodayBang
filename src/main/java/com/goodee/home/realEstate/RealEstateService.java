@@ -14,4 +14,8 @@ public class RealEstateService {
 	public List<RealEstateDTO> getAptRoadName() throws Exception{
 		return realEstateDAO.getAptRoadName(); 
 	}
+	
+	public int setAdd(RealEstateDTO realEstateDTO)throws Exception{
+		return realEstateDAO.setAdd(realEstateDTO);
+	}
 }

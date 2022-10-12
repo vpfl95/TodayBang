@@ -200,4 +200,35 @@
 			<result column="ORINAME" property="oriName"/>
 		</association>
 	</resultMap>
+	
+	<select id="getOrderProduct" parameterType="ProductDTO" resultMap="getOrderProductResult">
+		SELECT P.*, I.fileName, I.fileNum, I.oriName FROM PRODUCT P
+		JOIN
+		PRODUCTIMAGE I
+		ON P.PRODUCTNUM = I.PRODUCTNUM
+		WHERE I.ORINAME LIKE '01%' AND P.PRODUCTNUM=#{productNum}
+	</select>
+	
+	<resultMap type="ProductDTO" id="getOrderProductResult">
+		<id column="PRODUCTNUM" property="productNum"/>
+		<result column="PRICE" property="price"/>
+		<result column="STOCK" property="stock"/>
+		<result column="SALERATE" property="saleRate"/>
+		<result column="BRAND" property="brand"/>
+		<result column="REGDATE" property="regDate"/>
+		<result column="DELIDATE" property="deliDate"/>
+		<result column="TODAYDEAL" property="todayDeal"/>
+		<result column="PREMIUM" property="premium"/>
+		<result column="DELIFEE" property="deliFee"/>
+		<result column="PRODUCTNAME" property="productName"/>
+		<association property="productImageDTO" javaType="ProductImageDTO">
+			<id column="FILENUM" property="fileName"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+		</association>
+	</resultMap>
+	
+	<select id="getOption" parameterType="ProductOptionDTO" resultType="ProductOptionDTO">
+		SELECT * FROM PRODUCTOPTION WHERE OPTIONNUM=#{optionNum}
+	</select>
 </mapper>

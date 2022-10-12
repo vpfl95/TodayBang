@@ -78,50 +78,56 @@
         </div>
     </c:if>
     
-    <div class="items">
-    	<c:forEach items="${options}" var="option">
-    		<div class="additionalItem mt-2">
-                <div class="d-flex justify-content-between">
-                    <div class="sellingOption">${option.optionName}</div>
-                    <div class="deleteOption" data-delete-opnum="${option.optionNum}">❌</div>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <div style="width: 30%;">
-                        <select class="form-select sellingOptionControll-${option.optionNum}" data-option-price="${option.optionPrice}">
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                        </select>
+    <form action="/member/checkout" method="post" id="frmCheckout">
+        <input type="hidden" name="productNum" class="frmProductNum">
+        <div class="items">
+            <c:forEach items="${options}" var="option">
+                <div class="additionalItem mt-2">
+                    <div class="d-flex justify-content-between">
+                        <input type="hidden" value="${option.optionNum}" name="optionNum">
+                        <div class="sellingOption">${option.optionName}</div>
+                        <div class="deleteOption" data-delete-opnum="${option.optionNum}">❌</div>
                     </div>
-                    <div class="optionPrice">${option.optionPrice}원</div>
-                </div>
-            </div>
-    	</c:forEach>
-    	
-        <c:if test="${result eq 0}">
-        	<div class="additionalItem mt-2">
-                <div class="sellingOption">${dto.productNum}</div>
                     <div class="d-flex justify-content-between">
                         <div style="width: 30%;">
-                            <select class="form-select sellingOptionControll" data-option-price="${price}">
+                            <select class="form-select sellingOptionControll-${option.optionNum}" data-option-price="${option.optionPrice}" name="optionCount">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
                             </select>
                         </div>
-                    <div class="optionPrice">${price}원</div>
+                        <div class="optionPrice">${option.optionPrice}원</div>
+                    </div>
                 </div>
-            </div>
-        </c:if>
+            </c:forEach>
+            
+            <input type="hidden" value="${result}" name="result">
+            <c:if test="${result eq 0}">
+                <div class="additionalItem mt-2">
+                    <div class="sellingOption">${dto.productNum}</div>
+                        <div class="d-flex justify-content-between">
+                            <div style="width: 30%;">
+                                <select class="form-select sellingOptionControll" data-option-price="${price}" name="optionCount">
+                                    <option value="1">1</option>
+                                    <option value="2">2</option>
+                                    <option value="3">3</option>
+                                </select>
+                            </div>
+                        <div class="optionPrice">${price}원</div>
+                    </div>
+                </div>
+            </c:if>
 
-    </div>
-    <div class="mt-3 d-flex justify-content-between">
-        <span><b>주문금액</b></span>
-        <span class="totalPrice">${totalPrice}원</span>
-    </div>
-    <div class="d-flex justify-content-between mt-3">
-        <button class="cart btn btn-outline-secondary" style="width: 48%;">장바구니</button>
-        <button class="buy btn btn-primary" style="width: 48%;">바로구매</button>
-    </div>
+            <div class="mt-3 d-flex justify-content-between">
+                <span><b>주문금액</b></span>
+                <input class="totalPrice" type="hidden" value="${totalPrice}" name="totalPrice">
+                <span class="totalPrice">${totalPrice}원</span>
+            </div>
+        </div>
+        <div class="d-flex justify-content-between mt-3">
+            <button type="button" class="cart btn btn-outline-secondary" style="width: 48%;">장바구니</button>
+            <button type="button" class="buy btn btn-primary" style="width: 48%;">바로구매</button>
+        </div>
+    </form>
 </body>
 </html>

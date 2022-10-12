@@ -3,6 +3,22 @@ const termsAgree1 = document.querySelector('#termsAgree1');
 const termsAgree2 = document.querySelector('#termsAgree2');
 const termsAgree1_1 = document.querySelector('#termsAgree1_1');
 const termsAgree1_2 = document.querySelector('#termsAgree1_2');
+const delivery = document.querySelector('#delivery');
+const deliveryJson = document.querySelector('#deliveryJson');
+const getPoint = document.querySelector('#getPoint');
+
+const deliName = document.querySelector('#deliName');
+const addressee = document.querySelector('#addressee');
+const phoneFirst = document.querySelector('#phoneFirst');
+const phoneLast = document.querySelector('#phoneLast');
+const sample6_postcode = document.querySelector('#sample6_postcode');
+const sample6_address = document.querySelector('#sample6_address');
+const sample6_detailAddress = document.querySelector('#sample6_detailAddress');
+const email = document.querySelector('#email');
+const emailFirst = document.querySelector('#emailFirst');
+const emailAt = document.querySelector('#emailAt');
+const phoneWrap = document.querySelector('#phoneWrap');
+const memberPhone = document.querySelector('#memberPhone');
 
 for(sp of samplePostcode) {
     sp.onclick=sample6_execDaumPostcode;
@@ -57,9 +73,38 @@ termsAgree1.onclick=function(event) {
             termsAgree1_2.setAttribute('style', '');
         }
     }
-    
 }
 
 termsAgree2.onclick=function(event) {
     console.log(event.target.firstChild.nextSibling);
+}
+
+delivery.onchange=function(event){
+    let jsonDelivery = JSON.parse(deliveryJson.innerHTML);
+    let delivery = jsonDelivery.filter(function(element) {
+        return element.addressNum==event.target.value;
+    })
+    deliName.value = delivery[0].deliveryName;
+    addressee.value = delivery[0].name;
+    sample6_postcode.value = delivery[0].postcode;
+    sample6_address.value = delivery[0].address;
+    sample6_detailAddress.value = delivery[0].extraAddress + ' ' + delivery[0].detailAddress;
+    let first = delivery[0].phone.match(/(^[0-9]+)/g);
+    let last = delivery[0].phone.match(/([0-9]{4})-([0-9]+)/g); 
+    $('select#phoneFirst').val(first).prop("selected", true);
+    phoneLast.value = last;
+}
+
+function setMain() {
+    let emails = email.dataset.email.split('@');
+    emailFirst.value=emails[0];
+    $('select#emailAt').val(emails[1]).prop('selected', true);
+
+    let first = phoneWrap.dataset.phoneNumber.match(/(^[0-9]+)/g);
+    let last = phoneWrap.dataset.phoneNumber.match(/([0-9]{4})-([0-9]+)/g);
+    $('select#memberPhoneFirst').val(first).prop("selected", true);
+    memberPhone.value = last;
+
+    let point = Math.ceil(getPoint.dataset.point);
+    getPoint.innerHTML=point+' P';
 }

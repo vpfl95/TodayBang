@@ -16,4 +16,8 @@ public class RealEstateDAO {
 	public List<RealEstateDTO> getAptRoadName()throws Exception{
 		return sqlSession.selectList(NAMESPACE+"getAptRoadName");
 	}
+	
+	public int setAdd(RealEstateDTO realEstateDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAdd", realEstateDTO);
+	}
 }

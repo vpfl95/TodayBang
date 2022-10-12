@@ -33,17 +33,6 @@
     max-width: 100%;
 }
 
-.same {
-    color: #35c5f0;
-    transition: opacity .1s;
-    font: inherit;
-    margin: 0;
-    padding: 0;
-    background: none;
-    border: none;
-    font-weight: bold;
-}
-
 label {
     line-height: 38px;
     width: 15%;
@@ -75,7 +64,7 @@ label {
 
 .form-check-button {
     font-weight: normal;
-    width: 90%;
+    width: 100%;
     font-size: 75%;
     display: flex;
     align-items: center;

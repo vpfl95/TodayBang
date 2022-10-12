@@ -110,4 +110,12 @@ public class ProductService {
 	public List<ProductDTO> getTodayDealList() throws Exception {
 		return productDAO.getTodayDealList();
 	}
+	
+	public ProductDTO getOrderProduct(ProductDTO productDTO) throws Exception {
+		return productDAO.getOrderProduct(productDTO);
+	}
+	
+	public ProductOptionDTO getOption(ProductOptionDTO productOptionDTO) throws Exception {
+		return productDAO.getOption(productOptionDTO);
+	}
 }
