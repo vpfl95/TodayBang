@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri = "http://java.sun.com/jsp/jstl/core" %>
+<div class="wrap">
 <header class="p-3 mb-3 border-bottom fixed-top text-bg-white" id = "header">
     <div class="container mt-2">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">

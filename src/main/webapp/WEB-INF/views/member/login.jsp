@@ -42,8 +42,9 @@
 				        </div>
 				        <button id="loginBtn" class="w-100 btn btn-lg btn-primary" type="button">로그인</button>
 				        
-				        <div id = "joinPart" class="mx-auto">
+				        <div id = "joinPart" class="">
 					        <a href="#" id="findId">아이디 찾기</a>
+					        <a href="#" id="findPw">비밀번호 찾기</a>
 					       	<a href="./joinCheck">회원가입</a>
 				        </div>
 				        

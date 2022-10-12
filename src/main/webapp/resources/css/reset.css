@@ -1,6 +1,6 @@
 
 html, body {
-      height: 93%
+      height: 98%
 }
 
 header{
@@ -36,7 +36,11 @@ section {
 }
 
 footer{
-	position: relative;
+	
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   
     
 }
@@ -67,3 +71,13 @@ a{
   text-decoration: none !important;
 
 }
+* {
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  }
+.wrap {
+  min-height: 100%;
+  position: relative;
+  padding-bottom: 84px; /* footer height */
+  }

@@ -1,7 +1,7 @@
 
 // 로그인 부분
 function login() {
-
+    const findPw = document.querySelector("#findPw");
     const findId = document.querySelector("#findId");
     const loginBtn =  document.querySelector("#loginBtn");
     const userId = document.querySelector("#userId");
@@ -48,7 +48,11 @@ function login() {
             }
         }
     })
+    findPw.addEventListener("click",function(){
 
+        findPassword();
+    }
+    )
     
 
 
@@ -104,73 +108,7 @@ function login() {
                 reverseButtons:true
               }).then((result) => {
                 if (result.isConfirmed) {
-                    Swal.fire({
-                        title: `비밀번호 찾기`,
-                        icon : 'question',
-                        html :
-                        '<br>'+
-                        '<p style="margin-top : 15px; color :#5a6877; font-size : 14px; ">회원정보에 등록한 아이디와 이메일을 입력해 주세요.<p>'+
-                        
-                        '아이디 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
-                        '<br>이메일 : <input id="swalinput2" name = "swalinput2" class="swal2-input">'+
-                        '<p style="margin-top : 20px; color :#5a6877; font-size : 14px; ">해당 이메일로 새로운 비밀번호를 받을 수 있습니다.<p>',
-            
-                        
-                        confirmButtonColor : '#38b9e0',
-                        reverseButtons:true,
-                        showCancelButton: true,
-                        confirmButtonText: '찾기',
-                        showLoaderOnConfirm: true, 
-                        preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
-                            return  fetch(`/member/findPw?userId=`+swalinput1.value+`&email=`+swalinput2.value)
-                              .then(response => {
-                                if (!response.ok) {
-                                  throw new Error(response.statusText)
-                                }
-                               return response.text();
-                              })
-                              .catch(error => {
-                                Swal.showValidationMessage(
-                                  `없는 계정입니다. : ${error}`
-                                )
-                              })
-                          }, allowOutsideClick: () => !Swal.isLoading() 
-                    }).then((result)=> {
-                        if (result.isConfirmed) {
-                            console.log(result);
-                            console.log(result);
-                            console.log(result.value);
-                            console.log(result.value);
-
-                            let map = JSON.parse(JSON.stringify(result.value));
-                            console.log(map);
-                            console.log(map);
-                            console.log(map.value);
-                            console.log(map.value);
-
-                            name.value = swalinput1.value;
-                            email.value = swalinput2.value;
-                            password1.value = map;
-                            password2.value = map.value;
-                            console.log("password === " + password1.value);
-                            submit.click();
-
-                            Swal.fire({
-                                title: `비밀번호 찾기`,
-                                text: '이메일이 전송되었습니다. 이메일을 확인 해 주세요.',
-                                icon :'info',
-                                reverseButtons:true,
-                                
-                                showConfirmButton: true,
-                                confirmButtonText:"확인",
-                                confirmButtonColor : '#38b9e0'
-
-                              })
-
-                        }
-
-
-                    })
+                    findPassword();
 
 
 
@@ -183,6 +121,76 @@ function login() {
 
 
     })
+
+
+    function findPassword() {
+
+        Swal.fire({
+            title: `비밀번호 찾기`,
+            icon : 'question',
+            html :
+            '<br>'+
+            '<p style="margin-top : 15px; color :#5a6877; font-size : 14px; ">회원정보에 등록한 아이디와 이메일을 입력해 주세요.<p>'+
+            
+            '아이디 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+            '<br>이메일 : <input id="swalinput2" name = "swalinput2" class="swal2-input">'+
+            '<p style="margin-top : 20px; color :#5a6877; font-size : 14px; ">해당 이메일로 새로운 비밀번호를 받을 수 있습니다.<p>',
+
+            
+            confirmButtonColor : '#38b9e0',
+            reverseButtons:true,
+            showCancelButton: true,
+            confirmButtonText: '찾기',
+            showLoaderOnConfirm: true, 
+            preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
+                return  fetch(`/member/findPw?userId=`+swalinput1.value+`&email=`+swalinput2.value)
+                  .then(response => {
+                    if (!response.ok) {
+                      throw new Error(response.statusText)
+                    }
+                   return response.text();
+                  })
+                  .catch(error => {
+                    Swal.showValidationMessage(
+                      `없는 계정입니다. : ${error}`
+                    )
+                  })
+              }, allowOutsideClick: () => !Swal.isLoading() 
+        }).then((result)=> {
+            if (result.isConfirmed) {
+               
+                let map = JSON.parse(JSON.stringify(result.value));
+
+                name.value = swalinput1.value;
+                email.value = swalinput2.value;
+                password1.value = map;
+               
+                submit.click();
+
+                Swal.fire({
+                    title: `비밀번호 찾기`,
+                    text: '이메일이 전송되었습니다. 이메일을 확인 해 주세요.',
+                    icon :'info',
+                    reverseButtons:true,
+                    
+                    showConfirmButton: true,
+                    confirmButtonText:"확인",
+                    confirmButtonColor : '#38b9e0'
+
+                  })
+
+            }
+
+
+        })
+
+
+
+    }
+
+
+
+
 }
 
 

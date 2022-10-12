@@ -6,16 +6,19 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+	
+
 </head>
 <body>
 	
 	
-	<div class="myQna-body">
+	<div class="myQna-body ">
+		
 		<span id="myQnaTitle" style="font-size: 22px; font-weight: 600;">내 문의 내역</span>
 		<div class="myQna-div">
 	
-	
-		<table class="table table-hover">
+		<div style="min-height: 400px;">
+		<table class="table table-hover ">
 			  <thead>
 				    <tr>
 				      <th scope="col" width="120px">글 번호</th>
@@ -54,7 +57,7 @@
 					   
 					  </tbody>
 					</table>
-					
+					</div>
 					
 					<nav aria-label="Page navigation example">
 					  <ul class="pagination justify-content-center">

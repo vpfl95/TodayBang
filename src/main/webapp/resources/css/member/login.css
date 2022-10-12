@@ -19,12 +19,13 @@
 	
 }
 #joinPart{
-	
-	width: 200px;
+	display: flex;
+	justify-content: space-around;
+	width: auto;
 	
 }
 #joinPart>a{
-	margin : 0 10px;
+	
 	text-decoration: none;
 	color : rgb(90, 104, 119);
 	
