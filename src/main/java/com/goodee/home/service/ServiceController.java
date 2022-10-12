@@ -145,11 +145,19 @@ public class ServiceController {
 	public String deleteBoard(BoardDTO boardDTO,HttpSession session) throws Exception{
 		
 		
+		
 		if(getBoardName() == "QNA") {
-			boardDTO.setBoard("QNAANSWER");
-			boardDTO = service.getDetail(boardDTO);
-			boardDTO.setBoard("QNAANSWER");
-			service.deleteAnswer(boardDTO,session.getServletContext());	
+			BoardDTO boardDTO2 = boardDTO;
+			boardDTO2.setBoard("QNAANSWER");
+			boardDTO2 = service.getDetail(boardDTO);
+			if(boardDTO2 != null) {
+				
+				boardDTO2.setBoard("QNAANSWER");
+				service.deleteAnswer(boardDTO2,session.getServletContext());	
+				
+			}
+			
+			
 		}
 
 		

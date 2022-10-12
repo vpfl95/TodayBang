@@ -140,6 +140,7 @@ public class ServiceService {
 		return result;
 	}
 	
+	
 	public int updateBoard(BoardDTO boardDTO,MultipartFile [] files,ServletContext servletContext,Integer number) throws Exception{	
 		
 		String board = boardDTO.getBoard();
@@ -150,10 +151,10 @@ public class ServiceService {
 		// boardDTO.getBoardFileDTOs() 기존 파일
 		// files < 새롭게 추가된 파일
 		//boardDTO.getBoardFileDTOs().size() >> title 총 수
-		
-		if(number != 0 || number !=null) {
+		System.out.println("number" + number);
+		if(number !=null && number !=0) {
 			for(int i = 0 ; i < number ; i ++) {
-			
+				
 				
 				
 				BoardFileDTO boardFileDTO = boardDTO.getBoardFileDTOs().get(i);
