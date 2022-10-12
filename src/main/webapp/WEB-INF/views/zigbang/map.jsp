@@ -15,7 +15,7 @@
 	<c:import url="../template/header.jsp"></c:import>
 	<section class="container-fluid container-lg-8 mt-5">
 
-		<h1>${zigbang} 페이지</h1>
+		<!-- <h1>${zigbang} 페이지</h1> -->
 		
 		<div class="map_wrap">
 			<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;"></div>
@@ -26,40 +26,50 @@
 			</div>
 			
 			<form action="" onsubmit="searchPlaces(); return false;" id="searchWrap" style="width: 30%;">
-				<div id="search">
-					<input type="text" id="keyword" autocomplete="off" style="width: 80%;">
-					<button type="submit">검색</button>
+  				<div class="gXAUDv">
+
+					  <div class="search-input-liner" id="search">
+						  <div class="input-wrap">
+							  <input type="text" id="keyword" autocomplete="off" style="width: 100%;">
+						  </div>
+						  <div class="btn-search-wrap">
+							  <button class="btn-search" type="submit"></button>
+						  </div>
+					  </div> 
 				</div>
+
 				<div class="slClass" id="sugguestList"></div>
 			</form>
 	
-			<div id="buildingInfo"style="height: 95%;width: 30%;">
+			<div class="info" id="buildingInfo">
 	
-				<div id="buildingWrap" style="height: 40%;width: 95%;">
-					
-					<div id="buildingName"></div>
-			
+				<div id="buildingName"></div>
+
+				<div id="buildingWrap">
 					<div id="maemulList">
-						<!-- <input type="text" name="" id="user" value="${member.userId}"> -->
-						<table id="realEstateList">
-							<tr>
-								<th>등록일</th>
-								<th>거래가격</th>
-								<th>면적</th>
-								<th>층수</th>
-								<th>관심</th>
-							</tr>
+						<table class="table" id="realEstateList">
+							<thead class="table-warning">
+								<tr>
+									<th>등록일</th>
+									<th>거래가격</th>
+									<th>면적</th>
+									<th>층수</th>
+									<th>관심</th>
+								</tr>
+							</thead>
 						</table>
 						<button id="more">더보기</button>
 					</div>
 				</div>
 	
-				<div style="position:absolute;right:10px;top:343px;">거주민 리뷰</div>
-				<div id="review" style="height: 40%;width: 95%;overflow:auto;">
+				<div id="reviewTitle">거주민 리뷰</div>
+
+				<div id="review">
 					<div id="houseReviewList"></div>
 					<button id="reviewMore">더보기</button>		
 				</div>
-				<button type="button" id="writeReview" value="${member.userId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
+
+				<button type="button" style="background-color: rgb(250, 136, 11);;" id="writeReview" value="${member.userId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
 				<button type="button" id="upReview" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">수정</button>
 			</div>
 			

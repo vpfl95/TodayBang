@@ -35,7 +35,7 @@
 }
 
 
-.map_wrap {position:relative;width:100%;height:800px;}
+.map_wrap {position:relative;width:100%;height:800px; top: 50px;}
 .title {font-weight:bold;display:block;}
 .hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
 #centerAddr {display:block;margin-top:2px;font-weight: normal;}
@@ -52,32 +52,165 @@
 .building-name {position: absolute;bottom: -16px;transform: translateX(-50%);left: 50%;font-size: 10px;line-height: 1.4;color: rgb(255, 255, 255);padding-bottom: 1px;padding-left: 3px;padding-right: 3px;opacity: 0.8;background-color: rgb(96, 96, 96);text-overflow: ellipsis;}
 
 
-#searchWrap{position:absolute; right:10px;top:10px;border-radius: 2px;z-index:2;padding:5px; height: 30%;}
 #sugguestList{overflow: auto; height: 100%; display: none;}
 .selectItem{background: white;font-size: 12px;font-weight: bold;color: rgb(68, 68, 68);box-sizing: border-box;cursor: pointer;padding: 13px 10px 0px;line-height: 18px;border:1px solid gray}
 .addressDIV{color: rgb(68, 68, 68);font-size: 10px;font-weight: normal;}
 .selected{background-color: lightskyblue; color: white;}
 
-#buildingInfo{position:absolute;right:10px;top:40px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:10;padding:5px;}
+#searchWrap{
+    position:absolute; 
+    right:10px;top:10px;
+    border-radius: 2px;
+    z-index:2;
+    padding:5px; 
+    height: 30%; 
+    width: 360px;
+}
+.gXAUDv {
+    position: relative;
+    padding: 10px;
+    background-color: rgb(255, 255, 255);
+    z-index: 1000;
+    font-size: 12px;
+}
+.search-input-liner{
+    display: flex;
+    flex: 1 1 0%;
+    border: 1px solid rgb(250, 136, 11);
+    border-radius: 4px;
+    overflow: hidden;
+    height: 30px;
+    vertical-align: top;
+    box-sizing: border-box;
+}
+.input-wrap{
+    float: left;
+    width: 100%;
+    padding: 0px 10px;
+    position: relative;
+    overflow: hidden;
+}
+#keyword{
+    width: 100%;
+    height: 27px;
+    border: none;
+    appearance: none;
+    outline: none;
+    box-shadow: none;
+    font-size: 13px;
+}
+.btn-search-wrap{
+    float: right;
+    background-color: rgb(250, 136, 11);
+    width: 30px;
+    height: 30px;
+    overflow: hidden;
+}
+.btn-search {
+    width: 30px;
+    height: 30px;
+    background: url('/resources/images/ic_title_searchbar_30x30_nor_white.png') center center / 100% no-repeat;
+}
 
-#buildingWrap{overflow:auto;position:absolute;right:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-#buildingName{position:absolute;right:10px;top:0px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-#maemulList{position:absolute; width: 95%; right:10px;top:50px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+/* .info{
+    display: flex;
+} */
+
+#buildingInfo{
+    /* display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center; */
+    height: 95%;
+    width: 30%;
+    position:absolute;
+    right:10px;
+    top:60px;
+    border-radius: 2px;
+    background:#fff;
+    background:rgba(255,255,255,0.8);
+    z-index:10;
+    padding:5px;
+}
+
+#buildingName{
+    /* position:absolute; */
+    /* right:10px;
+    top:0px; */
+    margin: auto;
+    border-radius: 2px;
+    background:#fff;
+    background:rgba(255,255,255,0.8);
+    z-index:1;
+    padding:5px;
+}
+
+#buildingWrap{
+    overflow:auto;
+    /* position:absolute; */
+    /* right:10px;
+    top:25px; */
+    margin: auto;
+    border-radius: 2px;
+    background:#fff;
+    background:rgba(255,255,255,0.8);
+    z-index:1;
+    padding:5px;
+    height: 40%;
+    width: 95%;
+}
+
+#maemulList{
+    /* position:absolute; 
+    top:50px; */
+    margin: auto;
+    width: 95%; 
+    right:10px;
+    border-radius: 2px;
+    background:#fff;
+    background:rgba(255,255,255,0.8);
+    z-index:1;
+    padding:5px;
+}
 #realEstateList{
     width: 100%;
-    border: 1px solid rgb(117, 117, 117);
+    /* border: 1px solid rgb(117, 117, 117); */
 }
 
-#review{position:absolute;right:10px;top:363px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
-/* #houseReviewList{border:1px solid gray} */
-.revDiv{
-    border:1px solid gray;
-    -webkit-box-direction: normal;
-    -webkit-box-orient: horizontal;
-    flex-direction: row;
+#reviewTitle{
+    /* position:absolute; */
+    /* right:10px;
+    top:325px;  */
+    margin: auto;
+    font-size: 23px;
+    z-index:1;
 }
-#writeReview{position:absolute;right:10px;bottom:10px;}
-#upReview{position:absolute;left:10px;bottom:10px;visibility: hidden;}
+
+
+#review{
+    /* position:absolute; */
+    /* right:10px;
+    top:363px; */
+    margin: auto;
+    border-radius: 2px;
+    background:#fff;
+    background:rgba(255,255,255,0.8);
+    z-index:1;
+    padding:5px;
+    height: 40%;
+    width: 95%;
+    overflow:auto;
+}
+
+#writeReview{
+    position: absolute;
+    margin-top: 5%;
+    left: 50%;
+    transform: translateX(-50%);
+}
+#upReview{
+    visibility: hidden;
+}
 .update{
     cursor: pointer
 }
@@ -85,24 +218,41 @@
     cursor: pointer
 }
 
+.revDiv{
+    /* border:1px solid gray; */
+    -webkit-box-direction: normal;
+    -webkit-box-orient: horizontal;
+    flex-direction: row;
+    margin-bottom: 15px;
+}
+
+.wrap{
+    border: 0 solid gray;
+    border-bottom-color: rgb(225, 225, 225);
+    border-bottom-width: 1px;
+}
+
+
 .grade_full{
-    background-color: rgb(117, 117, 117);
-    border-radius: 3.5px;
-    height: 7px;
+    /* background-color: rgb(117, 117, 117);
+    border-radius: 3.5px; */
+    height: 12px;
     margin-left: 2px;
     margin-right: 2px;
     margin-top: 2.33333px;
-    width: 7px;
+    width: 12px;
+    /* background: yellow url('/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png') */
 }
 
 .grade_empty    {
-    background-color: rgb(225, 225, 225); 
-    border-radius: 3.5px; 
-    height: 7px;
-     margin-left: 2px; 
-     margin-right: 2px; 
-     margin-top: 2.33333px; 
-     width: 7px;
+    /* background-color: rgb(225, 225, 225); 
+    border-radius: 3.5px;  */
+    height: 12px;
+    margin-left: 2px; 
+    margin-right: 2px; 
+    margin-top: 2.33333px; 
+    width: 12px;
+    /* background-image: url('/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png') */
 }
 
 .circle {
@@ -122,6 +272,8 @@
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
     flex-direction: row;
+    padding-top: 10px;
+    padding-left: 10px;
 }
 
 /* .gradeDiv{

@@ -401,6 +401,8 @@ function addEventHandle(target,coords, type) {
             realEstateList.innerHTML='' //매물리스트 초기화
             houseReviewList.innerHTML=''
             //매물리스트 테이블헤더
+            let thead = document.createElement("thead")
+            thead.className="table-warning"
             let tr = document.createElement("tr")
             let th = document.createElement("th")
             let thText = document.createTextNode("등록일")
@@ -422,7 +424,9 @@ function addEventHandle(target,coords, type) {
             thText = document.createTextNode("관심")
             th.appendChild(thText)
             tr.appendChild(th)
-            realEstateList.append(tr)
+
+            thead.appendChild(tr)
+            realEstateList.append(thead)
 
             page=1;
             reviewPage=1;
@@ -586,7 +590,6 @@ realEstateList.addEventListener("click",function(event){
             })
         }
     }else if(event.target.classList.contains("interested_select")){
-        console.log("선택된거")
         event.target.classList.toggle("interested_select")
 
         let xhttp = new XMLHttpRequest();
@@ -623,11 +626,23 @@ function getReviewList(roadName,p){
             console.log(result)
             let list= result.list
             let pager=result.maemulPager
+
             for(let i=0; i<list.length; i++){
                 let revDiv = document.createElement("div")
                 revDiv.className="revDiv"
                 revDiv.setAttribute("data-rvNum",list[i].reviewNum)
 
+                let userDiv = document.createElement("div")
+                let userid = document.createElement("div")
+                let regdate = document.createElement("div")
+                userid.innerText = list[i].userId
+                regdate.innerText = list[i].date
+                userDiv.appendChild(userid)
+                userDiv.appendChild(regdate)
+                revDiv.appendChild(userDiv)
+
+                let recommendWrap = document.createElement("div")
+                recommendWrap.className = "wrap"
                 let recommend = document.createElement("div")
                 recommend.className="recommend"
                 let gradeDivWrap = document.createElement("div")
@@ -646,11 +661,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].grade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         gradeCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         gradeCircle.appendChild(grade_empty)
                     }
@@ -659,11 +676,13 @@ function getReviewList(roadName,p){
 
                 let contents = document.createElement("div")
                 contents.innerText = list[i].contents
-                revDiv.appendChild(recommend)
-                revDiv.appendChild(contents)
+                recommendWrap.appendChild(recommend)
+                recommendWrap.appendChild(contents)
+                revDiv.appendChild(recommendWrap)
 
 
-
+                let trafficWrap = document.createElement("div")
+                trafficWrap.className = "wrap"
                 let traffic = document.createElement("div")
                 traffic.className="recommend"
                 let trfDivWrap = document.createElement("div")
@@ -682,11 +701,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].trfGrade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         trfCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         trfCircle.appendChild(grade_empty)
                     }
@@ -695,10 +716,13 @@ function getReviewList(roadName,p){
 
                 let trfContents = document.createElement("div")
                 trfContents.innerText = list[i].trfContents
-                revDiv.appendChild(traffic)
-                revDiv.appendChild(trfContents)
+                trafficWrap.appendChild(traffic)
+                trafficWrap.appendChild(trfContents)
+                revDiv.appendChild(trafficWrap)
 
 
+                let envWrap = document.createElement("div")
+                envWrap.className = "wrap"
                 let environment = document.createElement("div")
                 environment.className="recommend"
                 let envDivWrap = document.createElement("div")
@@ -717,11 +741,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].envGrade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         envCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         envCircle.appendChild(grade_empty)
                     }
@@ -731,10 +757,12 @@ function getReviewList(roadName,p){
 
                 let envContents = document.createElement("div")
                 envContents.innerText = list[i].envContents
-                revDiv.appendChild(environment)
-                revDiv.appendChild(envContents)
+                envWrap.appendChild(environment)
+                envWrap.appendChild(envContents)
+                revDiv.appendChild(envWrap)
 
-
+                let resWrap = document.createElement("div")
+                resWrap.className = "wrap"
                 let residential = document.createElement("div")
                 residential.className="recommend"
                 let resDivWrap = document.createElement("div")
@@ -753,11 +781,13 @@ function getReviewList(roadName,p){
 
                 for(let j=0; j<5;j++){
                     if(j<list[i].resGrade){
-                        let grade_full = document.createElement("div")
-                        grade_full.className="grade_full"
+                        let grade_full = document.createElement("img")
+                        grade_full.setAttribute("src","/resources/images/ic_content_star_on_20x20_nor_yellow-7ffe4aa6d3c620c559111070c71a20b7.png")
+                        grade_full.className="grade_full"  
                         resCircle.appendChild(grade_full)
                     }else{
-                        let grade_empty = document.createElement("div")
+                        let grade_empty = document.createElement("img")
+                        grade_empty.setAttribute("src","/resources/images/ic_content_star_on_15x15_nor_grey-faa00dea2e1368f38c4a749bc4f4f8f7.png")
                         grade_empty.className="grade_empty"
                         resCircle.appendChild(grade_empty)
                     }
@@ -766,8 +796,10 @@ function getReviewList(roadName,p){
 
                 let resContents = document.createElement("div")
                 resContents.innerText = list[i].resContents
-                revDiv.appendChild(residential)
-                revDiv.appendChild(resContents)
+                resWrap.appendChild(residential)
+                resWrap.appendChild(resContents)
+                revDiv.appendChild(resWrap)
+
 
                 let update = document.createElement("span")
                 update.innerText="수정"
