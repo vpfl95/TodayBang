@@ -5,17 +5,13 @@
 <header class="p-3 mb-3 border-bottom fixed-top text-bg-white" id = "header">
     <div class="container mt-2">
       <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-        <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
+        <a href="/store" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none mx-4">
          <img alt="" src="/resources/images/MainLogo.png" width="230px">
         </a>
 		<div></div>
         <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0 mt-3 " id="homeCate">
-          <li><a href="/store" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a>
-    		</li>	
-    			
-          <li><a href="/apt/map" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a>
-   			</li>
-          <li><a href="/community/home" class=" px-2  fs-5 menu" id= "comMenu">커뮤니티</a></li>
+          <li><a href="/store" class=" px-2  fs-5 menu" id= "storeMenu">스토어</a></li>	
+          <li><a href="/apt/map" class=" px-2  fs-5 menu" id= "roomMenu">방구하기</a></li>
           <li><a href="/service/notice/list" class=" px-2  fs-5 menu" id= "serviceMenu">고객센터</a></li>
         </ul>
 
@@ -39,7 +35,7 @@
         		</c:if>
         		<c:if test="${not empty member }">
         		
-        			<c:if test="${member.roleDTOs[0].roleNum eq 1 }">
+        			<c:if test="${ not empty ManagerRole}">
         			<li><a href="/admin/main" class="nav-link px-2 link-secondary">관리자 페이지</a></li>
         			<li><div style="flex: 0 0 auto; width: 1px; height: 16px; margin-top:13px; margin-left: 8px; margin-right: 8px; background: rgba(55, 53, 47, 0.16);"></div></li>
 		         	
@@ -74,52 +70,61 @@
     <script>    $(document).ready(function(){
      				var submenu = $(".hide");
     				var url = location.href.split("/");
+    				
+    				
+    				
+    				
     	        	$(".menu").mouseover(function(){            
 						submenu.slideDown(150);        
 					})
 					
 					$("header").mouseleave(function(){
-    		                         
+    		                      
     		            if( submenu.is(":visible") ){
-   			                submenu.slideUp(150);       
-   							$("#hr").remove();     
+    			
+			    			submenu.slideUp(150);       
+							$("#hr").remove();   
+			    			
+   			                     
     					}     
     				});   
     				
     				$(".menu").each (function(index,me){
     					
     					var tag = me.href;
-    					tag = tag.split("/",4);
+    					tag = tag.split("/");
     					
     					
     					if(url[3] ==  tag[3]){
     						$(this).addClass('selectColor');
-    						let title = document.createAttribute("title");
-    				        title.value = "selected";
-    				        me.setAttributeNode(title);
-    					}else if(url[3] == "exhibitions" && index == 0){
+    						$(this).addClass('selectMenu');
+    					}else if(url[3] =="todayDeals" || url[3] =="category" || url[3] == "exhibitions"){
     						$(this).addClass('selectColor');
-    						let title = document.createAttribute("title");
-    				        title.value = "selected";
-    				        me.setAttributeNode(title);
-    						
+    						$(this).addClass('selectMenu');
+    					}else if(url[3]==""){
+    						$("#storeMenu").addClass('selectMenu');
     						
     					}
+    					
+    					
     				});
    				});
     
     /* header scroll down  */
     	window.addEventListener('wheel', (e) => { 
     		var submenu = $(".hide");
-    		var linkArr =  document.location.href.split("/");
-    		var linkArr2 = linkArr[4].split("?");
+    		var linkArr2 =  document.location.href.replace("?","/");
+    		var linkArr =  linkArr2.split("/");
+    		
     		
     		var storeMenu = $("#storeMenu");
     		
-        if(e.deltaY < 0){
+        if(e.deltaY < 0){ // 상단 스크롤
 
-        	if(linkArr2[0] != "myPage" && linkArr[3] != "admin" && linkArr2[0] != "delivery"){
-        		console.log("ll " +  linkArr[3]);
+        	if(linkArr[3] != "member" && linkArr[3] != "admin"  // 스크롤 차단
+        		&& linkArr[4] != "map"
+        	){
+        		
         		
                 const hr = document.querySelector("#hr");
 
@@ -134,28 +139,42 @@
                li.setAttributeNode(liAttri);
                subMenu.before(li);
                
-               if(linkArr[3] == ""){
+               if(linkArr[3] == "category"){
             	   headerCategory("storeMenu");
-               }else{
-            	   $(".menu").each (function(index,me){
-   					if(me.title ==  "selected"){
-   						headerCategory(me.id);
-   				        
-   					}
-   					});
+            	
+               }else if(linkArr[3] == "todayDeals"){
+                	   headerCategory("storeMenu");
+            	   
+               }else if(linkArr[3] == "exhibitions"){
+                	   headerCategory("storeMenu");
             	   
                }
+               else if(linkArr[3] == "store"){
+            	   headerCategory("storeMenu");
+        	   
+           		}else if(linkArr[3] == "product"){
+            	   headerCategory("storeMenu");
+        	   
+           		}
+               else if (linkArr[3] == "service"){
+            	   headerCategory("serviceMenu");
+            	   
+               }else if(linkArr[3] == ""){
+            	   headerCategory("storeMenu");
+            	   
+          		}
                submenu.slideDown(150); 
               
             }
         		
 
-       }else{
+       }else{ //하단 스크롤
         	 if( submenu.is(":visible") ){
     			  submenu.slideUp(150);       
     			$("#hr").remove();     
      		} 
         	
+     		
         	
         }
 

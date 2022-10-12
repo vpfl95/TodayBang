@@ -10,7 +10,7 @@
 }
 
 #loginBtn{
-	
+	font-weight: 600;
 	background-color: rgb(56, 185, 224);
 	border: rgb(56, 185, 224);
 	height: 60px;

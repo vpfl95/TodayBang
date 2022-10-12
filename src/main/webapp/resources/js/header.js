@@ -18,6 +18,8 @@ for(mn of menus){
             
         }
 
+        
+
         event.target.classList.add("selectColor");
 
 
@@ -36,30 +38,16 @@ for(mn of menus){
         headerCategory(event.target.id);
     
     })
+    mn.addEventListener("mouseleave", function(event){
 
+        event.target.classList.remove("selectColor");
+
+    })
 }
 
-header.addEventListener("mouseover",function(){
-
-    
-})
 
 
-header.addEventListener("mouseleave", function(event){
-    
-    for(mn of menus){
-       
-        if(mn.title == "selected"){
 
-            mn.classList.add("selectColor");
-            
-        }else{
-            mn.classList.remove("selectColor");
-        }
-
-    }
-   
-})
 
 function headerCategory(cate){
 
@@ -74,15 +62,10 @@ function headerCategory(cate){
     
     } else if(cate == "roomMenu"){
 
-        arr = ['직방 홈', '아파트', '빌라'];
-        url = ['store/url1', '/apt/map', '/villa/map'];
+        arr = ['아파트', '빌라'];
+        url = ['/apt/map', '/villa/map'];
 
-   }else if(cate == "comMenu"){
-
-        arr = ['커뮤니티 홈', '이달의 회원', '내 게시글 보기','사진','집들이','노하우'];
-        url = ['store/url1', 'store/url2', 'store/url3', 'store/url4', 'store/url5', 'store/url6'];
-
-
+   
    }else if(cate == "serviceMenu"){
 
         arr = ['공지사항', 'QnA'];

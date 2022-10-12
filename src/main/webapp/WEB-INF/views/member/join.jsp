@@ -19,6 +19,8 @@
 </head>
 <body>
    
+	<div class="wrap" style="padding-bottom: 60px;">
+	
 	
 	<section class="container-fluid container-lg-8">
 		<div class = "row justify-content-center mt-7 " style="overflow: hidden;">
@@ -27,12 +29,13 @@
 		         	<img alt="" src="/resources/images/MainLogoFA.png" width="230px">
 		        </a>
 		        <div style="margin-top: 50px;">
-		        <h3 style="margin-bottom: -15px">회원가입</h3>
+		        <div id="joinTitle"  style="margin-bottom: -15px">회원가입</div>
+		        <hr>
 		        	<form action="./join" class = "gform" method="post" id = "joinForm" >
 		        		<div id = "joinInput">
 			        		<label for="userId">아이디</label>
 					        <input type="text"  id="userId" name = "userId" class="form-control nonOverlab" placeholder="아이디" required autofocus>
-					        
+					        	
 					        
 					        <label for="password" >비밀번호</label>
 					        <input type="password"  id="password" name = "password" class="form-control" placeholder="비밀번호" required>
@@ -87,9 +90,9 @@
 		        		</div>
 					
 				       
-				       
-				       
-				        <button id="joinBtn" class="w-100 btn btn-lg btn-primary" type="button">회원가입</button>
+				       	<br>
+				       	<hr>
+				        <button id="joinBtn" class="w-100 btn btn-lg btn-primary" type="button" style="font-weight: 600;">회원가입</button>
 				        
 				        <div id = "joinPart" class="mx-auto">
 					        이미 아이디가 있으신가요?
@@ -112,7 +115,25 @@
 	</section>
 	
 
-	<c:import url="../template/footer.jsp"></c:import>
+	
+	
+	<footer class="d-flex flex-wrap justify-content-between align-items-center py-3  border-top" style="background-color: #fafafa;" >
+    <div class="col-md-4 d-flex align-items-center">
+      <a href="/" class="mb-3 me-2 mb-md-0 text-muted text-decoration-none lh-1">
+        <svg class="bi" width="30" height="24"><use xlink:href="#bootstrap"></use></svg>
+      </a>
+      <span class="mb-3 mb-md-0 text-muted">© 2022 Company, Inc</span>
+    </div>
+
+    <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#twitter"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#instagram"></use></svg></a></li>
+      <li class="ms-3"><a class="text-muted" href="#"><svg class="bi" width="24" height="24"><use xlink:href="#facebook"></use></svg></a></li>
+    </ul>
+  </footer>
+	</div>
+	
+	
 	
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

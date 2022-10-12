@@ -501,7 +501,19 @@ function joincheck(){
     
         }else{
             
-            // check 박스 빨갛게 표시
+
+            Swal.fire({
+                title: "필수 약관을 동의 해 주세요.",  // title, text , html  로 글 작성
+                icon: "error",    //상황에 맞는 아이콘
+
+                showCancelButton: true,
+                showConfirmButton: false,
+                
+                
+                cancelButtonText: '확인'
+            } )
+
+           
     
         }
     })

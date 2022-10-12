@@ -66,6 +66,7 @@ public class MemberController {
 			for(RoleDTO role : memberDTO.getRoleDTOs()) {
 				if(role.getRoleNum()<10) {
 					session.setAttribute("ManagerRole", role);
+					
 				}else if(role.getRoleNum()<100 && role.getRoleNum()>9) {
 					session.setAttribute("MemberRole", role);
 				}	
@@ -482,7 +483,7 @@ public class MemberController {
 		List<QnaDTO> ar = memberService.getMyQna(pager);
 		
 		
-		
+		mv.addObject("legnth",ar.size());
 		mv.addObject("list",ar);
 		mv.setViewName("member/myQna");
 		return mv;

@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>오늘의 직방</title>
 		<link href="/resources/css/reset.css" rel="stylesheet">
+		<link href="/resources/css/admin/admin.css" rel="stylesheet">
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
@@ -21,14 +22,16 @@
 	
 					<h1> 관리자 페이지</h1>
 					<hr>
-					<h1><a href="./member">회원 관리</a> </h1>
+					<div class = "adminDiv">
 					
+						<div class = "adminBox"><a href="./member">회원 관리</a></div>
+						<div class = "adminBox"><a href="../service/notice/add">공지사항 추가하기</a></div>
+						<div class = "adminBox"><a href="#">답변 안 한 QNA</a></div>
+						<div class = "adminBox"><a href="../product/add">상품 추가</a></div>
+						<div class = "adminBox"><a href="../product/todayDeal">오늘의 딜 설정</a></div>
+						<div class = "adminBox"><a href="#">매물 추가</a></div>
+					</div>
 					
-					<h1> <a href="../service/notice/add">공지사항 추가하기 </a> </h1>
-					<h1> <a href="../product/add">상품 추가 </a> </h1>
-					<h1> <a href="../product/todayDeal">오늘의 딜 설정 </a> </h1>
-					<h3> (후)팝업 광고 추가하기 </h3>
-					<h3> (후)신고 관리 </h3>
 			</div>
 		</div>
 	</section>

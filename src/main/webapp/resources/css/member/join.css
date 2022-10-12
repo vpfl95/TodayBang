@@ -13,7 +13,19 @@
 	margin-bottom: 10px;
 }
 
-#joinBtn,#nextBtn{
+
+#joinBtn{
+
+	background-color: rgb(56, 185, 224);
+	border: rgb(56, 185, 224);
+	height: 60px;
+	margin-bottom: 13px;
+	border-radius: 3px;
+
+}
+
+
+#nextBtn{
 	margin-top : 30px;
 	background-color: rgb(56, 185, 224);
 	border: rgb(56, 185, 224);
@@ -41,7 +53,7 @@ section{
 
 #joinForm{
 	overflow : hidden;
-	width: 500px;
+	min-width: 400px;
 	
 }
 
@@ -53,19 +65,15 @@ section{
 	
 }
 
-#emailFirst,#emailAt{
-	
-	display: inline;
-	width: 45%;
-	
+
+
+#phone,#email{
+
+	display: flex;
+	justify-content: space-around;
+	align-items: baseline;
 }
 
-#phoneFirst,#phoneMiddle,#phoneLast{
-	
-	display: inline;
-	width: 28%;
-	
-}
 
 select {
   
@@ -91,9 +99,39 @@ label{
 	
 }
 
+.joinCheck{
+
+	margin-left: 15px;
+
+}
+.mustCheckText{
+	font-size: 90%;
+	font-weight: 600;
+	color: #676e74;
+}
+
+.checkText{
+	color: #70777c;
+	font-size: 90%;
+
+}
+.checktxt{
+	font-weight: bold;
+	color: #4e4e4e;
+}
+
+#joinInput>label{
+
+	font-weight: 600;
 
 
+}
+#joinTitle{
 
+ font-size: 30px;
+ font-weight: 600;
+
+}
 
 
 

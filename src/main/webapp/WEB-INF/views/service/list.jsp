@@ -124,15 +124,24 @@
 			        	</tr>
 				  	</c:forEach>
 				  
-				    <c:if test="${board=='QNA' }">
-				      <tr>
-				      	<td>
-				      		 <a href="/service/qna/add">질문하기</a>
-				      	</td>
-				      </tr>
-			      	</c:if>
+				  	
 				  </tbody>
 				</table>
+				
+					<c:if test="${board=='NOTICE' && not empty ManagerRole }">
+					
+				      	<c:if test="${ManagerRole.roleNum eq 1 || ManagerRole.roleNum eq 2}">
+				      		 <a href="/service/notice/add">공지하기</a>
+				      	</c:if>
+			      	</c:if>
+				  
+				    <c:if test="${board=='QNA' }">
+				      
+				      		 <a href="/service/qna/add">질문하기</a>
+				      	
+			      	</c:if>
+				
+				
 				</div>
 				
 				

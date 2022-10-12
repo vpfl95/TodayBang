@@ -23,3 +23,27 @@ select::-ms-expand {
     display: none !important;
 
 }
+.adminBox>a{
+
+    color: black;
+
+}
+.adminBox{
+    width: 30%;
+    min-height: 60px;
+    height: 100px;
+    color: black;
+    background-color: #bdbdbd;
+    border: 1px solid;
+    border-radius: 5px;
+
+
+}
+.adminDiv{
+    min-height: 600px;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}

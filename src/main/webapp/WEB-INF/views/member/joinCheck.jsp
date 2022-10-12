@@ -11,6 +11,8 @@
     <link href="/resources/css/reset.css" rel="stylesheet">
     <link href="/resources/css/member/join.css" rel="stylesheet">
 	<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
+	
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 </head>
 <body>
@@ -23,36 +25,37 @@
 		         	<img alt="" src="/resources/images/MainLogoFA.png" width="230px">
 		        </a>
 		        <div style="margin-top: 50px;">
-		        <h3 style="margin-bottom: -10px">이용약관</h3><hr>
+		        <div style="margin-bottom: -10px; font-size: 22px;font-weight: 600;">이용약관</div>
+		        <hr>
 		        	<form action="./join" method="get" id = "joinCheckForm" >
-	        		<div class="bg-white" style="border: solid 1px #dbdbdb;">
+	        		<div class="bg-white" style="border: solid 1px #dbdbdb; padding: 15px;">
 		        		<div style="width: 500px;">
-		        		 <label for ="joinCheck1" class = "">이용약관 동의(필수)</label>
                     	 <input type="checkbox" class="joinCheck mustCheck " name = "joinCheck" id = "joinCheck1">
+		        		 <label class="checktxt" for ="joinCheck1" class = "">이용약관 동의 <span class="mustCheckText">(필수)</span> </label>
 			             </div>
 			             <div>
-			             <label for ="joinCheck2">개인정보 수집, 이용 동의(필수)</label>
 	                     <input type="checkbox" class="joinCheck mustCheck" name = "joinCheck" id = "joinCheck2">
+			             <label class="checktxt" for ="joinCheck2">개인정보 수집, 이용 동의 <span class="mustCheckText" >(필수)</span></label>
 			             </div>
 			             <div>
-			             <label for ="joinCheck3">개인정보 이용 동의(필수)</label>
 	                     <input type="checkbox" class="joinCheck mustCheck" name = "joinCheck" id = "joinCheck3">
+			             <label class="checktxt" for ="joinCheck3">개인정보 이용 동의 <span class="mustCheckText">(필수)</span></label>
 			              </div>
 			             <div>
-			             <label for ="joinCheck4">이벤트, 광고 수신 동의(선택)</label> 
 	                     <input type="checkbox" class="joinCheck" name = "joinCheck" id = "joinCheck4">
+			             <label for ="joinCheck4">이벤트, 광고 수신 동의 <span class="checkText">(선택)</span></label> 
 			             </div>
 			             
 	                </div>  
 			              
 		            <div>
 		            <hr>
-			              <label for ="joinAllCheck">전체 동의</label>
 	                      <input type="checkbox" id="joinAllCheck" name = "joinCheck">
+			              <label for ="joinAllCheck">전체 동의</label> 
 		            </div>
 					
 				       
-				        <button id="nextBtn" class="w-100 btn btn-lg btn-primary" type="button">다음</button>
+				        <button id="nextBtn" class="w-100 btn btn-lg btn-primary" type="button" style="font-weight: 600;">다음</button>
 				        
 				      
 					</form>
@@ -68,6 +71,7 @@
 	<c:import url="../template/footer.jsp"></c:import>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="/resources/js/member.js"></script>
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
    <script type="text/javascript">
    	joincheck();
    
