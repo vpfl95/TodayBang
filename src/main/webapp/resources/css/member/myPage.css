@@ -1,24 +1,22 @@
 #myPage-1 > li ,#myPage-2>li{
 
     cursor: pointer;
-    display: inline;
-    margin: 15px;
-    font-weight: bold;
-}
-#myPage-1{
-    padding-top: 30px;
-    width: 400px;
-    font-size: 20px;
-    margin: 0 auto;
-
-}
-#myPage-2{
     
-    width: 700px;
+    margin: 0 15px;
+    font-weight: bold;
+    
+}
+#myPage-1,#myPage-2{
+    list-style:none;
+    display: flex;
+    
     font-size: 20px;
     margin: 0 auto;
-
+    align-content: center;
+    height: 60px;
+    justify-content: center;
 }
+
 
 #profileDiv {
     
@@ -637,9 +635,76 @@ a{
 
 }
 
-.selectMenu{
+
+.selectSubMenu,.menu1select,.selectMenu{
 
     color: #61b6dc !important;
+    
+
+}
+.menu2after{
+    position: relative;
+   
 
 
 }
+
+.menu2after:after{
+
+    content: "";
+    position: absolute;
+    display: block;
+    width: 100%;
+    height: 4px;
+    background: #35c5f0;
+    left: 0;
+    bottom: 0;
+
+
+}
+
+.menu1after{
+    position: relative;
+
+}
+.menu1after::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    background-color: transparent;
+    margin-left: -5px;
+    border-width: 0 5px 10px;
+    z-index: 1;
+    margin-top: -8px;
+    border-color: transparent transparent #fff;
+}
+.menu1after::before{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    background-color: transparent;
+    margin-left: -5px;
+    border-width: 0 5px 10px;
+    z-index: 1;
+    margin-top: -10px;
+    border-color: transparent transparent #dbdbdb;
+}
+
+.menu1,.menu2{
+    display: inherit;
+    justify-content: center;
+    align-items: center;
+    
+   
+}
+

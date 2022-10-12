@@ -48,8 +48,7 @@
 				        </div>
 				        
 				        
-				         <div id="naver_id_login"></div>
-						    <!-- //네이버 로그인 버튼 노출 영역 -->
+				         
 						   
 				        <a id="naverIdLogin_loginButton" href="javascript:void(0)">
 			         	 	<img alt="" src="http://static.nid.naver.com/oauth/small_g_in.PNG" style="width: 170px;">

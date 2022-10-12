@@ -19,21 +19,22 @@
 </head>
 <body>
     <c:import url="../template/header.jsp"></c:import>
-
-	
 <!--  내용 부  -->
 	<section class="container-fluid container-lg-8 mt-4">
 	
 		<c:import url="./myPageCate.jsp"></c:import>
 		
-		<div class="container-fluid container-lg-8 mt-4 ">
+		<div class="container-fluid container-lg-8 ">
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
-			
+				<li id="profile" class="submenuList menu2" data-a ="/member/profile">정보수정</li>
+				<li id="updatePw" class="submenuList menu2" data-a ="/member/updatePw">비밀번호변경</li>
+				<li id="rank" class="submenuList menu2" data-a ="/member/rank">멤버등급</li>
+				<li id="delivery" class="submenuList menu2"><a href="/member/delivery" class="menuAtag">배송지정보</a></li>
 				
 			</ul>
-		<hr>
+		<hr style="margin: 0">
 		</div>
 		<div class = "row justify-content-center mt-5">
 			<div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
@@ -51,11 +52,11 @@
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script type="text/javascript">
-    	myPage();
+    	
     	myPageMenu();
     	 $(document).ready(function(){
     		
-    		$("#myPage-profile").trigger("click");
+    		$("#myPage-myPage").trigger("click");
     		
     		
     		
@@ -64,9 +65,12 @@
 
     		if(${not empty page}){
     			$("#${page}").trigger("click");
+    			$("#${page}").addClass("selectMenu");
+    			$("#${page}").addClass("menu2after");
     		}else{
-    			
-    			$("#profileDiv").load("/member/profile");
+    			$("#profile").trigger("click");
+    			$("#profile").addClass("selectMenu");
+    			$("#profile").addClass("menu2after");
     		}
     		
     	});

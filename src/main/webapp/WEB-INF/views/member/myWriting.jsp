@@ -22,16 +22,16 @@
 	
 		<c:import url="./myPageCate.jsp"></c:import>
 		
-		<div class="container-fluid container-lg-8 mt-4 ">
+		<div class="container-fluid container-lg-8 ">
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
-				<li id="myQna" class="submenuList" data-a ="/member/myQna">내 문의</li>
-				<li id="myPdReview" class="submenuList" data-a ="/member/myPdReview">내 상품리뷰</li>
-				<li id="myRoomReview" class="submenuList" data-a ="/member/myRoomReview">내 방리뷰</li>
+				<li id="myQna" class="submenuList menu2" data-a ="/member/myQna">내 문의</li>
+				<li id="myPdReview" class="submenuList menu2" data-a ="/member/myPdReview">내 상품리뷰</li>
+				<li id="myRoomReview" class="submenuList menu2" data-a ="/member/myRoomReview">내 방리뷰</li>
 				
 			</ul>
-		<hr>
+		<hr style="margin: 0;">
 		</div>
 		<div class = "row justify-content-center mt-5">
 			<div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
@@ -48,7 +48,7 @@
     <script src="/resources/js/member.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
-    	myPage();
+ 
     	myPageMenu();
     	
     	$(document).ready(function(){

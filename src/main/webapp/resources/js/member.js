@@ -531,146 +531,48 @@ function joincheck(){
 }
 
 
-// 마이페이지 부분
-function myPage(){
 
-    const myPage1 = document.querySelector("#myPage-1");
-    const myPageProfile =document.querySelector("#myPage-profile");
-    const myPageShopping =document.querySelector("#myPage-shopping");
-    const myPageWriting =document.querySelector("#myPage-writing");
-    
-
-    myPageProfile.addEventListener("click",function(){
-            
-            let arr ;
-            let url ;
-
-            
-    
-                 arr = ['정보수정', '비밀번호변경','멤버등급', '배송지정보'];
-                 url = ['profile','updatePw' ,'rank', 'delivery'];
-        
-                
-            
-            profileCategory(myPageProfile , arr , url);
-            
-        })
-
-    function profileCategory(cate , arr , url){
-
-        const subMenu = document.querySelector("#myPage-2");
-
-        for(let i = 0 ; i < subMenu.children.length ; ){
-            subMenu.children[i].remove();
-        }
-    
-        if(arr.length != url.length){
-            return;
-        }
-    
-        for(let i = 0 ; i < arr.length; i ++){
-
-            if(cate.id == "myPage-profile"){
-                if(url[i] == "delivery"){
-                    let li = document.createElement("li");
-                    let liText = document.createTextNode(arr[i]);
-                    
-        
-                    let aTag = document.createElement("a");
-                    let aAttri = document.createAttribute("href");
-                    aAttri.value = "/member/"+url[i];
-                    aTag.setAttributeNode(aAttri);
-        
-        
-                    li.appendChild(aTag);
-                    aTag.appendChild(liText);
-                    subMenu.append(li);
-    
-    
-                    continue;
-                }else{
-                    
-                    let locate = location.href.split("/")
-                    locate = locate[4].split("?")
-                    
-
-                    if(locate[0] != "myPage"){
-
-
-                        let li = document.createElement("li");
-                        let liText = document.createTextNode(arr[i]);
-                        
-                        let aTag = document.createElement("a");
-                        let aAttri = document.createAttribute("href");
-                        aAttri.value = "/member/myPage?page="+url[i];
-                        aTag.setAttributeNode(aAttri);
-            
-                        li.appendChild(aTag);
-                        aTag.appendChild(liText);
-                        subMenu.append(li);
-                        continue;
-                    }else{
-                       
-                        let li = document.createElement("li");
-                        let liText = document.createTextNode(arr[i]);
-                        
-            
-                        let aAttri = document.createAttribute("data-a");
-                        aAttri.value = "/member/"+ url[i];
-                        li.setAttributeNode(aAttri);
-            
-
-                        aAttri = document.createAttribute("id");
-                        aAttri.value = url[i];
-                        li.setAttributeNode(aAttri);
-            
-                        aAttri = document.createAttribute("class");
-                        aAttri.value = "submenuList";
-                        li.setAttributeNode(aAttri);
-                        
-                        li.appendChild(liText);
-                        subMenu.append(li);
-
-                        continue;
-                    }
-
-
-                }
-            }
-
-
-
-           
-        }
-
-
-
-    }
-
-
-    
-
-
-}
 
 
 function myPageMenu() {
+
+    
+    let menu1blue = location.href.replace("?","/");
+    menu1blue = menu1blue.split("/");
+    menu1blue[4];
+   
+
+
+
+
 
 
     const myPageMenu = document.getElementsByClassName("myPage-list");
 
     for(mp of myPageMenu){
 
+        if(menu1blue[4] == mp.parentNode.id.split("-")[1]){
+
+            mp.parentNode.classList.add("menu1after");
+            mp.classList.add("menu1select");
+
+        }
+
+
+
+
+
+
         mp.addEventListener("mouseover",function(event){
 
             for(mp of myPageMenu){
                 mp.classList.remove("selectMenu");
-                
+               
+
             }
             event.target.classList.add("selectMenu");
 
 
-            console.log("bib" + event.target);
            
 
         })
@@ -684,14 +586,86 @@ function myPageMenu() {
         })
 
 
-
-
-
-
-
     }
 
 
+
+    
+    const subDiv = document.querySelector("#myPage-2");
+
+    
+
+    subDiv.addEventListener("mouseover",function(event){
+        const submenuList = document.getElementsByClassName("submenuList");
+        for(sl of submenuList){
+
+            sl.addEventListener("mouseover",function(event){
+    
+                for(sl of submenuList){
+                    sl.classList.remove("selectSubMenu");
+                    
+                }
+                event.target.classList.add("selectSubMenu");
+            })
+    
+           
+            if(menu1blue[4] == "delivery"){
+                
+                sl.addEventListener("mouseleave",function(event){
+    
+                    
+                    if( event.target.id == "delivery"){
+                        
+        
+                    }else{
+                        event.target.firstChild.classList.remove("selectSubMenu");
+
+
+                    }
+                })
+
+
+            }else{
+
+                sl.addEventListener("mouseleave",function(event){
+    
+                    event.target.classList.remove("selectSubMenu");
+                    if( event.target.id == "delivery"){
+                        event.target.firstChild.classList.remove("selectSubMenu");
+        
+                    }
+                })
+
+
+            }
+    
+
+            sl.addEventListener("click",function(event){
+                console.log("ckccc")
+                
+                for(sl of submenuList){
+                    sl.classList.remove("menu2after");
+                    sl.classList.remove("selectMenu");
+                }
+                event.target.classList.add("menu2after");
+                event.target.classList.add("selectMenu");
+
+
+
+            })
+
+
+
+    
+        }
+        
+    })
+
+
+
+
+
+   
 
 }
 

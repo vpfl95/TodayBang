@@ -22,17 +22,17 @@
 	
 		<c:import url="./myPageCate.jsp"></c:import>
 		
-		<div class="container-fluid container-lg-8 " style="background-color: white; padding-top: 24px;">
+		<div class="container-fluid container-lg-8 " style="background-color: white;">
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
-				<li id="myCart" class="submenuList" data-a ="/member/cart">장바구니</li>
-				<li id="deliveryDetail" class="submenuList" data-a ="/member/deliveryDetail">배송내역</li>
-				<li id="buyDetail" class="submenuList" data-a ="/member/buyDetail">구매내역</li>
-				<li id="" class="submenuList" data-a ="#">관심매물</li>
+				<li id="myCart" class="submenuList menu2" data-a ="/member/cart">장바구니</li>
+				<li id="deliveryDetail" class="submenuList menu2" data-a ="/member/deliveryDetail">배송내역</li>
+				<li id="buyDetail" class="submenuList menu2" data-a ="/member/buyDetail">구매내역</li>
+				<li id="" class="submenuList menu2" data-a ="#">관심매물</li>
 				
 			</ul>
-		<hr>
+		<hr style="margin: 0;">
 		</div>
 		<div class = "row justify-content-center mt-5">
 			<div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
@@ -49,7 +49,7 @@
     <script src="/resources/js/member.js"></script>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
-    	myPage();
+    
     	myPageMenu();
  		$(document).ready(function(){
     		$("#myCart").trigger("click");
