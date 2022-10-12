@@ -122,3 +122,16 @@ section{
 	color: #f7f9fa;
 	height: 38px;
 }
+.addboard-title{
+
+	font-weight: 500;
+	font-size: 25px;
+	margin-left: 20px;
+}
+
+.floatRight{
+
+	float: right;
+
+}
+

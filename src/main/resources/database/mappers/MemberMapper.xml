@@ -19,7 +19,7 @@
 			</update>
 		
 			<insert id="getJoin" parameterType="MemberDTO">
-				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email})
+				INSERT INTO MEMBERS VALUES (#{userId},#{password},#{nickname},#{userName},#{phone},#{email},0)
 			</insert>
 			<insert id="setJoinRole" parameterType="MemberDTO">
 				INSERT INTO "MEMBER-ROLE" VALUES(TODAY_SEQ.NEXTVAL,40,#{userId})
@@ -101,7 +101,7 @@
 				SELECT USERID FROM MEMBERS WHERE USERNAME=#{userName} AND EMAIL=#{email}
 			</select>
 			<select id="findPw" parameterType="MemberDTO" resultType="MemberDTO">
-				SELECT PASSWORD FROM MEMBERS WHERE USERID=#{userId} AND EMAIL=#{email}
+				SELECT USERID FROM MEMBERS WHERE USERID=#{userId} AND EMAIL=#{email}
 			</select>
 			
 			

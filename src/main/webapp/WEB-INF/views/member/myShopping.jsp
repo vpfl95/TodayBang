@@ -53,8 +53,8 @@
     	myPageMenu();
  		$(document).ready(function(){
     		$("#myCart").trigger("click");
-    		
-    	
+			$("#myCart").addClass("selectMenu");
+			$("#myCart").addClass("menu2after");
     		
     	});
     	$(document).on("click",".submenuList",function(){

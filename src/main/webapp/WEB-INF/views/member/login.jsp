@@ -50,9 +50,7 @@
 				        
 				         
 						   
-				        <a id="naverIdLogin_loginButton" href="javascript:void(0)">
-			         	 	<img alt="" src="http://static.nid.naver.com/oauth/small_g_in.PNG" style="width: 170px;">
-			      		</a>
+				        
 				        
 				        
 					</form>

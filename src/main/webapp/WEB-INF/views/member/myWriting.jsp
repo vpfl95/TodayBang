@@ -52,8 +52,10 @@
     	myPageMenu();
     	
     	$(document).ready(function(){
-    		$("#myQna").trigger("click");
     		
+    		$("#myQna").trigger("click");
+			$("#myQna").addClass("selectMenu");
+			$("#myQna").addClass("menu2after");
     	
     	});
     	$(document).on("click",".submenuList",function(){

@@ -85,7 +85,7 @@
 					        <div></div>
 					        
 		        		</div>
-						<button id="emailBtn" class="w-100 btn btn-lg btn-primary" type="button">이메일 확인</button>
+					
 				       
 				       
 				       
@@ -99,11 +99,7 @@
 				        
 				        
 					</form>
-		        		<div style="display:none" class="thankyou_message">
-						 <!-- You can customize the thankyou message by editing the code below -->
-						 <h2><em>Thanks</em> for contacting us! We will get back to you soon!
-						 </h2>
-						</div>
+		        		
 		        
 		        
 		        </div>

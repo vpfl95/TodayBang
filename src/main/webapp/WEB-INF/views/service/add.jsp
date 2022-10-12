@@ -27,12 +27,12 @@
 		
 					<c:if test="${board=='NOTICE'}">
 						<div>
-							<h3>공지사항 글쓰기</h3>
+							<span class="addboard-title">공지사항 작성</span>
 						</div>
 					</c:if>
 					<c:if test="${board=='QNA'}">
 						<div>
-							<h3>문의하기</h3>
+							<span class="addboard-title">문의하기</span>
 						</div>
 					</c:if>
 					<hr>
@@ -64,10 +64,10 @@
 									<!-- 파일선택 input -->
 										<c:forEach items="${update.boardFileDTOs }" var="file" varStatus="status">
 										<c:if test="${not file.sort}">
-										
+											<div></div>
 											<label for="file${status.count }">${file.fileName }</label>
 											<input type="file" id="file${status.count }" value="${file}" name="file" class="form-control boardFile hideBoardFile" title="${status.count }">
-											<button class="boardFileDelete" title="${status.count }">파일삭제</button>
+											<span class="boardFileDelete" title="${status.count }">❌</span>
 											
 										</c:if>
 										</c:forEach>
@@ -77,28 +77,21 @@
 								
 								
 							</tr>
-							<tr>
-							
+						</tbody>
+					</table>
+				</form>
+						<div class = "addboardBtnDiv">
 							<c:choose>
 								<c:when test="${empty update }">
-									<td><button id="boardBtn" class="btn btn-lg btn-primary" type="button" title = "add">게시</button></td>
+									<button id="boardBtn" class="boardBlueBtn floatRight" type="button" title = "add">게시</button>
 								</c:when>
 								<c:otherwise>
-									<td><button id="boardBtn" class="btn btn-lg btn-primary" type="button" title = "update">수정</button></td>
+									<button id="boardBtn" class="boardBlueBtn floatRight" type="button" title = "update">수정</button>
 								</c:otherwise>
 								
 							</c:choose>
+						</div>
 							
-							
-							
-							</tr>
-							
-						</tbody>
-							
-								
-						
-					</table>
-				</form>
 			</div>
 		</div>
 	</section>

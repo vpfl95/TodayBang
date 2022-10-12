@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
@@ -355,9 +356,36 @@ public class MemberController {
 	@ResponseBody
 	public String findPw(MemberDTO memberDTO) throws Exception{
 		
-		memberDTO = memberService.findPw(memberDTO);
 		
-		return memberDTO.getPassword();
+		
+		StringBuffer buf =new StringBuffer();
+		memberDTO = memberService.findPw(memberDTO);
+		if(memberDTO.getUserId() != null) {
+			
+			Random rnd =new Random();
+			
+			for(int i=0;i<10;i++){
+				if(rnd.nextBoolean()){
+					buf.append((char)((int)(rnd.nextInt(26))+97));
+					}
+				else{
+					 buf.append((rnd.nextInt(10)));
+				}
+				
+			}
+			System.out.println(buf);
+			System.out.println(buf);
+			System.out.println(buf);
+			System.out.println(buf);
+			//memberDTO.setPassword(buf.toString());
+			//memberService.setUpdatePw(memberDTO);
+		}
+		
+		String pass = buf.toString();
+		
+		
+		
+		return pass;
 	}
 	
 	

@@ -204,6 +204,9 @@ function fileJs() {
         if(countFile < 3){
             countFile ++;
             title++;
+
+            let div = document.createElement("div");
+
             let input = document.createElement("input");
 
             let inputArr = document.createAttribute("type");
@@ -235,8 +238,8 @@ function fileJs() {
     
             
 
-                let deleteFile = document.createElement("button");
-                let deleteFileAttr = document.createTextNode("파일삭제");
+                let deleteFile = document.createElement("span");
+                let deleteFileAttr = document.createTextNode("❌");
                 
                 deleteFile.appendChild(deleteFileAttr);
 
@@ -248,10 +251,12 @@ function fileJs() {
                 deleteFileAttr.value = title;
                 deleteFile.setAttributeNode(deleteFileAttr);
 
-
+            
+            fileInputDiv.append(div);
             fileInputDiv.append(label);
             fileInputDiv.append(input);
             fileInputDiv.append(deleteFile);
+            input.click();
         }else{
 
             alert("파일은 3개까지만 추가가 가능합니다 .")
@@ -269,7 +274,8 @@ function fileJs() {
             
             if(countFile >0){
                 countFile--;
-               
+               console.log("delete")
+               ;
            
                 for(ch of fileInputDiv.children){
                     if(ch.id == "file"+event.target.title){

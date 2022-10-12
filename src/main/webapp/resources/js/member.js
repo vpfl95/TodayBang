@@ -135,11 +135,21 @@ function login() {
                           }, allowOutsideClick: () => !Swal.isLoading() 
                     }).then((result)=> {
                         if (result.isConfirmed) {
+                            console.log(result);
+                            console.log(result);
+                            console.log(result.value);
+                            console.log(result.value);
+
                             let map = JSON.parse(JSON.stringify(result.value));
-                            
+                            console.log(map);
+                            console.log(map);
+                            console.log(map.value);
+                            console.log(map.value);
+
                             name.value = swalinput1.value;
                             email.value = swalinput2.value;
                             password1.value = map;
+                            password2.value = map.value;
                             submit.click();
 
                             Swal.fire({
@@ -200,21 +210,11 @@ function join(){
     const submitPhone = document.querySelector("#submitPhone");
     const submitEmail = document.querySelector("#submitEmail");
     const nonOverlab = document.getElementsByClassName("nonOverlab");
-    const emailBtn = document.querySelector("#emailBtn");
+    
     const joinForm = document.querySelector("#joinForm");
 
 
-    emailBtn.addEventListener("click",function(){
-        let email = document.createAttribute("data-email");
-        email.value="317tmdgjs@naver.com";
-        joinForm.setAttributeNode(email);
-        
-
-        joinForm.action ="https://script.google.com/macros/s/AKfycbySnDCL1mwgmsqaeS5TuQZvDCnwNIvyWbbB_8UjuGxA5Fiaq4srE3O-KDA0lcENcWKvTQ/exec"
-        joinForm.submit();
-
-    })
-
+ 
     password.addEventListener("blur",function(){
 
         
@@ -625,6 +625,10 @@ function myPageMenu() {
                 })
 
 
+
+
+
+
             }else{
 
                 sl.addEventListener("mouseleave",function(event){
@@ -641,14 +645,27 @@ function myPageMenu() {
     
 
             sl.addEventListener("click",function(event){
-                console.log("ckccc")
                 
-                for(sl of submenuList){
-                    sl.classList.remove("menu2after");
-                    sl.classList.remove("selectMenu");
+                
+                if(event.target.parentNode.id =="delivery"){
+                    for(sl of submenuList){
+                        sl.classList.remove("menu2after");
+                        sl.classList.remove("selectMenu");
+                    }
+                    event.target.parentNode.classList.add("menu2after");
+                    event.target.parentNode.classList.add("selectMenu");
+                    
                 }
-                event.target.classList.add("menu2after");
-                event.target.classList.add("selectMenu");
+                else{
+                    for(sl of submenuList){
+                        sl.classList.remove("menu2after");
+                        sl.classList.remove("selectMenu");
+                    }
+                    event.target.classList.add("menu2after");
+                    event.target.classList.add("selectMenu");
+
+                }
+               
 
 
 
