@@ -68,6 +68,7 @@
 						    
 						  </thead>
 						  <tbody >
+						  	<tr height="30px"></tr>
 						  	<tr>
 						      	<th scope="row">배송지 별칭</th>
 						      	
@@ -101,7 +102,7 @@
 						      <th scope="row">주소</th>
 						       
 							   <td><input type="text" value ="${delivery[num].postcode}" name="postcode" id="sample6_postcode" class="form-control " placeholder="우편번호"></td>
-								<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br></td>
+								<td><input type="button" onclick="sample6_execDaumPostcode()" class="postBtn" value="우편번호 찾기"><br></td>
 								
 								 <tr>
 								<th></th>
@@ -198,6 +199,7 @@
 <script src="/resources/js/member.js"></script>
 <script type="text/javascript">
 	myPage();
+	myPageMenu();
 	delivery();
 
 	 $(document).ready(function(){

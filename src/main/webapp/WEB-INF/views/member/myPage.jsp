@@ -52,7 +52,7 @@
 
     <script type="text/javascript">
     	myPage();
-    	
+    	myPageMenu();
     	 $(document).ready(function(){
     		
     		$("#myPage-profile").trigger("click");

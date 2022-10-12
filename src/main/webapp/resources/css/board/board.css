@@ -106,7 +106,19 @@ section{
 }
 .boardList{
 
-    height: 30%;
+    height: auto;
     min-height: 400px;
 
+	
+
+
+}
+
+.boardBlueBtn{
+	background-color: #61b6dc;
+	width: 90px;
+	border-radius: 5px;
+	border: 0;
+	color: #f7f9fa;
+	height: 38px;
 }

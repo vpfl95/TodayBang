@@ -32,7 +32,7 @@
 							<table class = "table table-hover">
 								 <thead>
 								    <tr>
-								      <th scope="col" width="120px">글 번호</th>
+								      <th scope="col" width="140px" align="center" >글 번호</th>
 								      <th scope="col" width="450px">글 제목</th>
 								      
 								      <th scope="col" width="150px">작성자</th>
@@ -51,7 +51,15 @@
 										<td><a href="./detail?boardNum=${often.boardNum }">${often.title }</a></td>
 										<td>${often.userId }</td>
 										<td>${often.regDate }</td>
-										
+										<c:choose>
+	    								<c:when test="${often.checkAnswer}">
+	    									<td>답변 완료</td>
+	    								</c:when>
+	    								<c:otherwise>
+	    									<td>답변 중</td>
+	    								</c:otherwise>
+    							
+    									</c:choose>
 									</tr>
 								</c:forEach>
 								</tbody>
@@ -78,7 +86,7 @@
 					<table class="table table-hover">
 				  <thead>
 				    <tr>
-				      <th scope="col" width="120px">글 번호</th>
+				      <th scope="col" width="140px">글 번호</th>
 				      <th scope="col" width="450px">글 제목</th>
 				      
 				      <th scope="col" width="150px">작성자</th>
@@ -148,7 +156,7 @@
 				 		 </div>
 				
 					  <div class="col-12">
-					    <button type="submit" class="btn btn-primary">검색</button>
+					    <button type="submit" class="boardBlueBtn">검색</button>
 					  </div>
 				</form>
 				</div>

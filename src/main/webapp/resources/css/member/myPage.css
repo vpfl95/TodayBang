@@ -625,3 +625,21 @@ tr,th{
 }
 
 
+.postBtn{
+    border: 1px solid #c9c9c9;
+    background-color: white;
+    font-weight: 500;
+}
+
+a{
+    color: black !important;
+
+
+}
+
+.selectMenu{
+
+    color: #61b6dc !important;
+
+
+}

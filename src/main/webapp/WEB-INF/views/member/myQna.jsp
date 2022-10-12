@@ -11,7 +11,7 @@
 	
 	
 	<div class="myQna-body">
-		내 문의 글 페이지
+		<span id="myQnaTitle" style="font-size: 22px; font-weight: 600;">내 문의 내역</span>
 		<div class="myQna-div">
 	
 	

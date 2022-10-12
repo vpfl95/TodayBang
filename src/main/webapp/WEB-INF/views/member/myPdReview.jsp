@@ -116,7 +116,6 @@
 	
 	
 	<div class="myPdReview-body">
-		<h3> 상품 리뷰 페이지</h3> 
 		<div class="myPdReview-div">
 		
 		

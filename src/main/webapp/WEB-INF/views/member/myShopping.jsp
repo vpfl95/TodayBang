@@ -50,6 +50,7 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script type="text/javascript">
     	myPage();
+    	myPageMenu();
  		$(document).ready(function(){
     		$("#myCart").trigger("click");
     		

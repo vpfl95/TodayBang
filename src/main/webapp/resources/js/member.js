@@ -535,7 +535,6 @@ function joincheck(){
 function myPage(){
 
     const myPage1 = document.querySelector("#myPage-1");
-    const myPagelist = document.querySelectorAll(".myPage-list");
     const myPageProfile =document.querySelector("#myPage-profile");
     const myPageShopping =document.querySelector("#myPage-shopping");
     const myPageWriting =document.querySelector("#myPage-writing");
@@ -653,6 +652,53 @@ function myPage(){
 
 
 }
+
+
+function myPageMenu() {
+
+
+    const myPageMenu = document.getElementsByClassName("myPage-list");
+
+    for(mp of myPageMenu){
+
+        mp.addEventListener("mouseover",function(event){
+
+            for(mp of myPageMenu){
+                mp.classList.remove("selectMenu");
+                
+            }
+            event.target.classList.add("selectMenu");
+
+
+            console.log("bib" + event.target);
+           
+
+        })
+
+        mp.addEventListener("mouseleave",function(event){
+
+            event.target.classList.remove("selectMenu");
+            
+
+
+        })
+
+
+
+
+
+
+
+    }
+
+
+
+}
+
+
+
+
+
 
 // 마이페이지 - 프로필 부분
 function profile() {
@@ -1481,3 +1527,4 @@ function myPdReview() {
 
 
 }
+

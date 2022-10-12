@@ -219,7 +219,31 @@ public class ServiceService {
 	public List<QnaDTO> getOftenQna() throws Exception{
 		
 		
-		return serviceDAO.getOftenQna();
+		List<QnaDTO> ar = serviceDAO.getOftenQna();
+		
+		
+			for(QnaDTO dto : ar) {
+				
+				
+				Long boardNum = dto.getBoardNum();
+				boardNum = serviceDAO.getCheckAnswer(boardNum);
+				if(boardNum == 1) {
+					dto.setCheckAnswer(true);
+					
+				}else {
+					dto.setCheckAnswer(false);
+				}
+					
+				
+			}
+			
+			
+		
+		
+		
+		
+		
+		return ar;
 	}
 	
 	public void saveTempFIle(BoardDTO boardDTO,ServletContext servletContext) throws Exception{

@@ -99,10 +99,10 @@
 						    	<c:if test="${boardList.userId eq member.userId }">
 						    		
 						    		<c:if test="${empty qnaAnswer }">
-						    			<button id="boardUpdateBtn" class="boardUpdateBtn" data-a="./update?boardNum=${boardList.boardNum }" >수정</button>
+						    			<button id="boardUpdateBtn" class="boardUpdateBtn boardBlueBtn" data-a="./update?boardNum=${boardList.boardNum }" >수정</button>
 						    			
 						    		</c:if>
-						    		<button id="boardDeleteBtn" class="boardDeleteBtn" data-a="./delete?boardNum=${boardList.boardNum }" >삭제</button>
+						    		<button id="boardDeleteBtn" class="boardDeleteBtn boardBlueBtn" data-a="./delete?boardNum=${boardList.boardNum }" >삭제</button>
 						    		
 						    	</c:if>
 						    </div>
@@ -161,8 +161,8 @@
 							</div>  
 							<div>
 								<c:if test="${qnaAnswer.userId eq member.userId }">
-									<button id="answerUpdateBtn" class="boardUpdateBtn" data-a="./updateAnswer?boardNum=${boardList.boardNum }" >답변 수정</button>
-						    		<button id="answerDeleteBtn" class="boardDeleteBtn" data-a="./deleteAnswer?boardNum=${boardList.boardNum }" >답변 삭제</button>
+									<button id="answerUpdateBtn" class="boardUpdateBtn boardBlueBtn" data-a="./updateAnswer?boardNum=${boardList.boardNum }" >답변 수정</button>
+						    		<button id="answerDeleteBtn" class="boardDeleteBtn boardBlueBtn" data-a="./deleteAnswer?boardNum=${boardList.boardNum }" >답변 삭제</button>
 						    			
 						    	</c:if>
 					    	</div>
