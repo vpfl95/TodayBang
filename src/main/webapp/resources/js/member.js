@@ -22,8 +22,8 @@ function login() {
                     Swal.fire({
                         
                         icon: "success",
-                        confirmButtonColor : '#38b9e0'
                         
+                        showConfirmButton: false
                     } )
 
                     setTimeout(() => {
@@ -35,6 +35,8 @@ function login() {
                         title: "로그인 실패",
                         showCancelButton: true,
                         showConfirmButton: false,
+                        
+                        
                         text : "존재하지 않는 계정입니다.",
                         icon: "error"
         
@@ -57,11 +59,14 @@ function login() {
         const submit = document.getElementById("submit");
 
         Swal.fire({
-            title: 'ID 찾기',
+            title: '아이디 찾기',
+            icon : 'question',
             html :
-            '  이름 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
-            '<br>이메일 : <input id="swalinput2" class="swal2-input">',
-
+           
+            '<span style="margin-left:15px;">이 름 : <input id="swalinput1" name = "swalinput1" class="swal2-input"></span> ' +
+            '<br>이메일 : <input id="swalinput2" class="swal2-input">'+
+            '<p style="margin-top : 20px; color :#5a6877; font-size : 14px; ">회원정보에 등록한 이름과 이메일을 입력해 주세요.<p>',
+            confirmButtonColor : '#38b9e0',
             reverseButtons:true,
             showCancelButton: true,
             confirmButtonText: '찾기',
@@ -87,24 +92,29 @@ function login() {
             let map = JSON.parse(JSON.stringify(result.value));
             if (result.isConfirmed) {
               Swal.fire({
-                title: `ID 찾기`,
-                text: '찾으시는 ID는 '+map + " 입니다.",
+                title: `아이디 찾기`,
+                html : '찾으시는 아이디는 <span style="font-size : 30px;">'+map + "</span> 입니다.",
                 showCancelButton: true,
+                icon :'info',
+                confirmButtonColor : '#38b9e0',
                 cancelButtonText:"확인",
-                confirmButtonText: 'PW 찾기',
+                confirmButtonText: '비밀번호를 잊으셨나요?',
                 reverseButtons:true
               }).then((result) => {
                 if (result.isConfirmed) {
                     Swal.fire({
-                        title: `PW 찾기`,
+                        title: `비밀번호 찾기`,
+                        icon : 'question',
                         html :
+                        '<br>'+
+                        '<p style="margin-top : 15px; color :#5a6877; font-size : 14px; ">회원정보에 등록한 아이디와 이메일을 입력해 주세요.<p>'+
                         
-                        '<input id="swalinput1" name = "swalinput1" class="swal2-input">' +
-                        '<br><input id="swalinput2" name = "swalinput2" class="swal2-input">'
-                        
+                        '아이디 : <input id="swalinput1" name = "swalinput1" class="swal2-input">' +
+                        '<br>이메일 : <input id="swalinput2" name = "swalinput2" class="swal2-input">'+
+                        '<p style="margin-top : 20px; color :#5a6877; font-size : 14px; ">해당 이메일로 새로운 비밀번호를 받을 수 있습니다.<p>',
             
-                        ,
                         
+                        confirmButtonColor : '#38b9e0',
                         reverseButtons:true,
                         showCancelButton: true,
                         confirmButtonText: '찾기',
@@ -133,12 +143,14 @@ function login() {
                             submit.click();
 
                             Swal.fire({
-                                title: `PW 찾기`,
-                                text: '이메일전송',
-                              
-                                showCancelButton: true,
-                                cancelButtonText:"확인"
-
+                                title: `비밀번호 찾기`,
+                                text: '이메일이 전송되었습니다. 이메일을 확인 해 주세요.',
+                                icon :'info',
+                                reverseButtons:true,
+                                
+                                showConfirmButton: true,
+                                confirmButtonText:"확인",
+                                confirmButtonColor : '#38b9e0'
 
                               })
 
@@ -893,13 +905,13 @@ function profile() {
     dropId.addEventListener("click",function(){
         
             Swal.fire({
-              title: '정말로 회원탈퇴 하시겠습니까?',
+              title: '회원을 탈퇴 하시겠습니까?',
               text: "다시 되돌릴 수 없습니다. ",
               icon: 'warning',
               showCancelButton: true,
               confirmButtonColor: '#3085d6',
-              cancelButtonColor: '#d33',
-              confirmButtonText: '승인',
+              
+              confirmButtonText: '탈퇴',
               cancelButtonText: '취소',
               reverseButtons: true, // 버튼 순서 거꾸로
               
@@ -913,7 +925,7 @@ function profile() {
                 Swal.fire(
                     
                   '회원탈퇴가 완료되었습니다.',
-                  '언젠가 다시 만나요',
+                  '',
                   'success'
                 ).then((result) => {
                     updateForm.action = "./dropMember";
@@ -976,8 +988,10 @@ function updatePw() {
             Swal.fire({
                 title: "비밀번호가 일치하지 않습니다.",
                 
-                icon: "error"
-
+                icon: "error" ,  
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: '확인',
             } )
 
         }
@@ -991,6 +1005,22 @@ function updatePw() {
 
     pwUpdateBtn.addEventListener("click",function(){
 
+
+        if(newPassword.value.length < 2){
+            Swal.fire({
+                title: "비밀번호 길이가 너무 짧습니다. ",
+                
+                icon: "error",
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: '확인',
+
+            } )
+            return;
+        }
+
+
+
         if( newPassword.value == newPasswordCheck.value){
             Swal.fire({
                 title: '비밀번호를 변경하시겠습니까?',
@@ -998,8 +1028,8 @@ function updatePw() {
                 icon: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: '승인',
+                
+                confirmButtonText: '변경',
                 cancelButtonText: '취소',
                 reverseButtons: true, // 버튼 순서 거꾸로
                 
@@ -1007,11 +1037,11 @@ function updatePw() {
                 if (result.isConfirmed) {
                   Swal.fire({
                     title: "비밀번호 변경이 완료되었습니다.",
-                    icon: "success"
-
-                } ).then((result) => {
+                    icon: "success",
+                    confirmButtonText: '확인'
+                    } ).then((result) => {
                     pwUpdateForm.submit();
-                  })
+                    })
   
                 }
               }
@@ -1021,7 +1051,10 @@ function updatePw() {
                 Swal.fire({
                     title: "비밀번호가 일치하지 않습니다.",
                     
-                    icon: "error"
+                    icon: "error",
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonText: '확인',
 
                 } )
         }

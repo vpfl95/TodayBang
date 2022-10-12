@@ -13,53 +13,87 @@ function board() {
     boardBtn.addEventListener("click",function(){
 
 
-        if(boardBtn.title == "update"){
-
-            boardForm.action = "./update";
-
-            const boardFile = document.getElementsByClassName("boardFile");
-            const boardNum = document.querySelector("#boardNum");
-           
-            let noNumber = 0;
-
-            console.log("title = " +fileInputDiv.title);
-            console.log("title = " +boardFile.length);
-            for(let i = 1 ; i <= fileInputDiv.title ; i ++ ){
-                let check = false;
-                for(boF of boardFile){
-                    if(boF.title == i){
-                        check = true;
-                        // 있다.
-                        break;
-                    }else{
-                        // i 가 없는 번호
-                       
-                    }
-                }
-
-                if(!check){
-                    noNumber += 1;
-                }
-                
-                console.log("noNum" + noNumber);
-
-            }
+        Swal.fire({
+            title: "게시하시겠습니까?",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
             
-            let input = document.createElement("input");
-            let inputArr = document.createAttribute("type");
-            inputArr.value = "text";
-            input.setAttributeNode(inputArr);
-            inputArr = document.createAttribute("name");
-            inputArr.value = "number";
-            input.setAttributeNode(inputArr);
+            confirmButtonText: '수정',
+            cancelButtonText: '취소',
+            reverseButtons: true
+        } ).then((result) => {
+            if (result.isConfirmed) {
 
-            inputArr = document.createAttribute("value");
-            inputArr.value = noNumber;
-            input.setAttributeNode(inputArr);
-            fileInputDiv.append(input);
 
-        }
-       boardForm.submit();
+                if(boardBtn.title == "update"){
+
+            
+                    boardForm.action = "./update";
+        
+                    const boardFile = document.getElementsByClassName("boardFile");
+                    const boardNum = document.querySelector("#boardNum");
+                   
+                    let noNumber = 0;
+        
+                    console.log("title = " +fileInputDiv.title);
+                    console.log("title = " +boardFile.length);
+                    for(let i = 1 ; i <= fileInputDiv.title ; i ++ ){
+                        let check = false;
+                        for(boF of boardFile){
+                            if(boF.title == i){
+                                check = true;
+                                // 있다.
+                                break;
+                            }else{
+                                // i 가 없는 번호
+                               
+                            }
+                        }
+        
+                        if(!check){
+                            noNumber += 1;
+                        }
+                        
+                        console.log("noNum" + noNumber);
+        
+                    }
+                    console.log("noNum" + noNumber);
+                    let input = document.createElement("input");
+                    let inputArr = document.createAttribute("type");
+                    inputArr.value = "text";
+                    input.setAttributeNode(inputArr);
+                    inputArr = document.createAttribute("name");
+                    inputArr.value = "number";
+                    input.setAttributeNode(inputArr);
+        
+                    inputArr = document.createAttribute("value");
+                    inputArr.value = noNumber;
+                    input.setAttributeNode(inputArr);
+                    fileInputDiv.append(input);
+        
+                }
+               boardForm.submit();
+
+
+
+
+
+
+
+
+
+
+
+
+
+                
+               
+            }
+           
+        })
+
+        
 
     })
 
@@ -245,6 +279,79 @@ function fileJs() {
 
 
     
+
+
+
+}
+
+
+function board2() {
+
+
+    const boardDeleteBtn =document.getElementsByClassName("boardDeleteBtn");
+    const boardUpdateBtn =document.getElementsByClassName("boardUpdateBtn");
+    const submitBoardBtn =document.getElementsByClassName("submitBoardBtn");
+    
+    for(bd of boardDeleteBtn){
+
+        bd.addEventListener("click",function(event){
+
+
+            Swal.fire({
+                title: "정말로 삭제하시겠습니까?",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                
+                confirmButtonText: '삭제', 
+                cancelButtonText: '취소',
+                reverseButtons: true
+            } ).then((result) => {
+                if (result.isConfirmed) {
+
+
+                    Swal.fire({
+                        title: "삭제 되었습니다.",
+                        icon: "success",
+                        confirmButtonColor: '#3085d6',
+                        
+                        confirmButtonText: '확인'
+                    } ).then((result) => {
+                        if (result.isConfirmed) {
+                            let atag=event.target.getAttribute("data-a");
+                            location.href = atag;
+                        }
+
+
+                    })
+                }
+               
+            })
+
+
+
+        })
+
+    }        
+
+    for(bu of boardUpdateBtn){
+
+        bu.addEventListener("click",function(event){
+
+            let atag=event.target.getAttribute("data-a");
+            location.href = atag;
+
+
+
+        })
+
+    }   
+
+  
+
+
+
+
 
 
 
