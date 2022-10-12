@@ -111,6 +111,7 @@ function getList() {
                     j++;
                 }
                 productList.append(divWrap);
+                setPrice()
             }
         }
     }
@@ -226,6 +227,15 @@ function getTodayList() {
                 divWrap.appendChild(divProduct);
             }
             centerMenu.append(divWrap);
+            setPrice()
         }
+    }
+}
+
+function setPrice() {
+    let price = $('section').find('div.price');
+
+    for(let p=0; p<price.length; p++) {
+        price[p].innerHTML = price[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
 }

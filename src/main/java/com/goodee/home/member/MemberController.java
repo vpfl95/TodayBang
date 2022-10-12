@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceService;
 import com.goodee.home.store.product.ProductDTO;
@@ -502,11 +503,37 @@ public class MemberController {
 	
 	
 	@PostMapping("checkout")
-	public String getPage(Model model, String[] optionName, String[] optionPrice, String[] optionCount, String totalPrice, ProductDTO productDTO) throws Exception {
-		
+	public String getPage(Model model, Long[] optionNum, Long[] optionCount, String totalPrice, ProductDTO productDTO, String result, HttpSession session) throws Exception {
+		int count=0; int price=0; long productCount=0L;
+		List<ProductOptionDTO> ar = new ArrayList<ProductOptionDTO>();
+		if(optionNum != null) {
+			for(count=0; count<optionNum.length; count++) {
+				ProductOptionDTO productOptionDTO = new ProductOptionDTO();
+				productOptionDTO.setOptionNum(optionNum[count]);
+				productOptionDTO = productService.getOption(productOptionDTO);
+				productOptionDTO.setOptionCount(optionCount[count]);
+				ar.add(productOptionDTO);
+			}
+		}
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		List<DeliveryDTO> deliveryDTOs = memberService.getDelivery(memberDTO);
 		productDTO = productService.getOrderProduct(productDTO);
+		if(result.equals("0")) {
+			price = (int) (productDTO.getPrice() * (100 - productDTO.getSaleRate())/100);
+			productCount = optionCount[count];
+		}
+		
+		ObjectMapper mapper = new ObjectMapper();
+		String deliveryJson = mapper.writeValueAsString(deliveryDTOs);
+		
+		model.addAttribute("list", ar);
 		model.addAttribute("totalPrice", totalPrice);
 		model.addAttribute("detail", productDTO);
+		model.addAttribute("result", result);
+		model.addAttribute("price", price);
+		model.addAttribute("productCount", productCount);
+		model.addAttribute("deliveryDTOs", deliveryDTOs);
+		model.addAttribute("deliveryJson", deliveryJson);
 		return "store/order/order";
 	}
 }

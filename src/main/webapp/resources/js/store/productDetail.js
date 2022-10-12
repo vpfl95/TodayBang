@@ -148,8 +148,6 @@ section.onchange=function(event) {
         $('section').find('span.totalPrice')[1].innerHTML = price+'원';
         $('section').find('input.totalPrice')[0].value = price;
         $('section').find('input.totalPrice')[1].value = price;
-        event.target.parentNode.previousSibling.previousSibling.value=event.target.value;
-        event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.value=event.target.dataset.optionPrice * event.target.value;
     }
 
     for(option of optionList) {
@@ -166,8 +164,6 @@ section.onchange=function(event) {
             $('section').find('span.totalPrice')[1].innerHTML = price+'원';
             $('section').find('input.totalPrice')[0].value = price;
             $('section').find('input.totalPrice')[1].value = price;
-            event.target.parentNode.previousSibling.previousSibling.value=event.target.value;
-            event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.value=event.target.dataset.optionPrice * event.target.value;
         }
     }
 

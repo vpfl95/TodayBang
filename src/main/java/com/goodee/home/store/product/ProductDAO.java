@@ -66,4 +66,8 @@ public class ProductDAO {
 	public ProductDTO getOrderProduct(ProductDTO productDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getOrderProduct", productDTO);
 	}
+	
+	public ProductOptionDTO getOption(ProductOptionDTO productOptionDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getOption", productOptionDTO);
+	}
 }

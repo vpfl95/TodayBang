@@ -84,15 +84,13 @@
             <c:forEach items="${options}" var="option">
                 <div class="additionalItem mt-2">
                     <div class="d-flex justify-content-between">
-                        <input type="hidden" value="${option.optionName}" name="optionName">
+                        <input type="hidden" value="${option.optionNum}" name="optionNum">
                         <div class="sellingOption">${option.optionName}</div>
                         <div class="deleteOption" data-delete-opnum="${option.optionNum}">❌</div>
                     </div>
                     <div class="d-flex justify-content-between">
-                        <input type="hidden" value="${option.optionPrice}" name="optionPrice">
-                        <input type="hidden" value="1" name="optionCount">
                         <div style="width: 30%;">
-                            <select class="form-select sellingOptionControll-${option.optionNum}" data-option-price="${option.optionPrice}">
+                            <select class="form-select sellingOptionControll-${option.optionNum}" data-option-price="${option.optionPrice}" name="optionCount">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -103,15 +101,13 @@
                 </div>
             </c:forEach>
             
+            <input type="hidden" value="${result}" name="result">
             <c:if test="${result eq 0}">
                 <div class="additionalItem mt-2">
-                    <input type="hidden" value="${dto.productNum}" name="optionName">
                     <div class="sellingOption">${dto.productNum}</div>
                         <div class="d-flex justify-content-between">
-                            <input type="hidden" value="${price}" name="optionPrice">
-                            <input type="hidden" value="1" name="optionCount">
                             <div style="width: 30%;">
-                                <select class="form-select sellingOptionControll" data-option-price="${price}">
+                                <select class="form-select sellingOptionControll" data-option-price="${price}" name="optionCount">
                                     <option value="1">1</option>
                                     <option value="2">2</option>
                                     <option value="3">3</option>

@@ -148,29 +148,6 @@
 	            </div>
 	
 	            <div id="productList"></div>
-	
-	            <!--PageNation-->
-	            <div class="paging">
-	                <nav aria-label="Page navigation example">
-	                <ul class="pagination">
-	                    <li class="page-item">
-	                    <a class="page-link text-success" href="#" aria-label="Previous">
-	                        <span aria-hidden="true">&laquo;</span>
-	                    </a>
-	                    </li>
-	                    <li class="page-item"><a class="page-link text-dark" href="#">1</a></li>
-	                    <li class="page-item"><a class="page-link text-success" href="#">2</a></li>
-	                    <li class="page-item"><a class="page-link text-success" href="#">3</a></li>
-	                    <li class="page-item"><a class="page-link text-success" href="#">4</a></li>
-	                    <li class="page-item"><a class="page-link text-success" href="#">5</a></li>
-	                    <li class="page-item">
-	                    <a class="page-link text-success" href="#" aria-label="Next">
-	                        <span aria-hidden="true">&raquo;</span>
-	                    </a>
-	                    </li>
-	                </ul>
-	                </nav>
-	            </div>
             </div>
         </div>
     </section>
@@ -182,6 +159,7 @@
 	<script>
 		getList();
 		getTodayList();
+		setPrice();
 	</script>
 </body>
 </html>
