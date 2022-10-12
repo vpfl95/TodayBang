@@ -57,6 +57,7 @@
 					<form action="#" class = "" method="post" id = "emailJSform"  >
 						<input type="hidden" id="name" name ="name" class="swal2-input">
 						<input type="hidden" id="password1" name ="password1" class="swal2-input">
+						<input type="hidden" id="password2" name ="password2" class="swal2-input">
 						<input type="hidden" id="email" name ="email" class="swal2-input">
 						<input type="hidden" id="submit" name ="submit" class="swal2-input">
 						
@@ -96,7 +97,7 @@
           var templateParams = {	
           //각 요소는 emailJS에서 설정한 템플릿과 동일한 명으로 작성!
                 name: $('input[name=name]').val(),
-                phone: $('input[name=password1]').val(), 
+                password: $('input[name=password1]').val(), 
                 email : $('input[name=email]').val(),
                 //message : $('textarea[name=message]').val()
           };

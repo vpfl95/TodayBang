@@ -384,8 +384,8 @@ public class MemberController {
 			System.out.println(buf);
 			System.out.println(buf);
 			System.out.println(buf);
-			//memberDTO.setPassword(buf.toString());
-			//memberService.setUpdatePw(memberDTO);
+			memberDTO.setPassword(buf.toString());
+			memberService.setUpdatePw(memberDTO);
 		}
 		
 		String pass = buf.toString();

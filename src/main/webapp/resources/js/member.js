@@ -55,8 +55,10 @@ function login() {
     findId.addEventListener("click",function(){
         const name = document.getElementById("name");
         const password1 = document.getElementById("password1");
+        const password2 = document.getElementById("password2");
         const email = document.getElementById("email");
         const submit = document.getElementById("submit");
+
 
         Swal.fire({
             title: '아이디 찾기',
@@ -150,6 +152,7 @@ function login() {
                             email.value = swalinput2.value;
                             password1.value = map;
                             password2.value = map.value;
+                            console.log("password === " + password1.value);
                             submit.click();
 
                             Swal.fire({
