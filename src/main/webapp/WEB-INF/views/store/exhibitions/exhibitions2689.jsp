@@ -43,10 +43,10 @@
             </div>
 
             <img src="/resources/images/store/exhibitions/ex2689/hotDealMain.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem1.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem2.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem3.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem4.jpg" alt="">
+            <a href="/product/detail?productNum=494184"><img src="/resources/images/store/exhibitions/ex2689/samsungItem1.jpg" alt=""></a>
+            <a href="/product/detail?productNum=747576"><img src="/resources/images/store/exhibitions/ex2689/samsungItem2.jpg" alt=""></a>
+            <a href="/product/detail?productNum=772182"><img src="/resources/images/store/exhibitions/ex2689/samsungItem3.jpg" alt=""></a>
+            <a href="/product/detail?productNum=1258609"><img src="/resources/images/store/exhibitions/ex2689/samsungItem4.jpg" alt=""></a>
 
             <div class="oneQuarter d-flex justify-content-center">
                 <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
@@ -56,13 +56,13 @@
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/livMain.jpg" alt="">
 
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=725181"><img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt=""></a>
+                <a href="/product/detail?productNum=767204"><img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt=""></a>
             </div>
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=1171392"><img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt=""></a>
+                <a href="/product/detail?productNum=526257"><img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt=""></a>
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/livMore.jpg" alt="">
             <div class="oneQuarter d-flex justify-content-center">
@@ -72,13 +72,13 @@
                 <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/kitMain.jpg" alt="">
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=1021584"><img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt=""></a>
+                <a href="/product/detail?productNum=1486684"><img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt=""></a>
             </div>
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=1248819"><img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt=""></a>
+                <a href="/product/detail?productNum=699615"><img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt=""></a>
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/kitMore.jpg" alt="">
             <div class="oneQuarter d-flex justify-content-center">
@@ -88,13 +88,13 @@
                 <img src="/resources/images/store/exhibitions/ex2689/dressFocus.png" alt="">
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/dressMain.jpg" alt="">
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=432186"><img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt=""></a>
+                <a href="/product/detail?productNum=850627"><img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt=""></a>
             </div>
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=682051"><img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt=""></a>
+                <a href="/product/detail?productNum=818625"><img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt=""></a>
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
 

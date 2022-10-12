@@ -164,4 +164,11 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+ "deleteDeliveryCheck",deliveryDTO);
 	}
 	
+	public int setOrder(OrderDTO orderDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setOrder", orderDTO);
+	}
+	
+	public int setOrderOption(Order_OptionDTO order_OptionDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setOrderOption", order_OptionDTO);
+	}
 }

@@ -75,8 +75,12 @@
 			<select id="getDelivery" parameterType="MemberDTO" resultType="DeliveryDTO">
 				SELECT * FROM DELIVERY WHERE USERID = #{userId}
 			</select>
-			<select id="setDelivery" parameterType="DeliveryDTO" >
-				INSERT INTO DELIVERY VALUES(TODAY_SEQ.NEXTVAL,#{phone}, #{name}, #{note}, #{deliveryName},#{userId},#{address},#{postcode},#{detailAddress},#{extraAddress})</select>
+			<insert id="setDelivery" parameterType="DeliveryDTO" >
+				<selectKey keyProperty="addressNum" order="BEFORE" resultType="long">
+					SELECT TODAY_SEQ.NEXTVAL FROM DUAL
+				</selectKey>
+				INSERT INTO DELIVERY VALUES(#{addressNum}, #{phone}, #{name}, #{note}, #{deliveryName},#{userId},#{address},#{postcode},#{detailAddress},#{extraAddress})
+			</insert>
 			<update id="updateDelivery" parameterType="DeliveryDTO">
 				UPDATE DELIVERY SET ADDRESS = #{address},POSTCODE =#{postcode} ,DETAILADDRESS=#{detailAddress} ,EXTRAADDRESS=#{extraAddress}, PHONE = #{phone} ,NAME = #{name},NOTE = #{note},DELIVERYNAME=#{deliveryName},USERID=#{userId} WHERE ADDRESSNUM = #{addressNum}
 			</update>
@@ -236,8 +240,22 @@
 				 WHERE USERID=#{userId}
 			</select>
 			
+			<!-- <insert id="setOrder" parameterType="OrderDTO">
+				<selectKey keyProperty="orderNum" order="BEFORE" resultType="long">
+					(SELECT TO_CHAR(SYSDATE, 'YYMMDDHH') as NOWDATE FROM DUAL) ||LPAD(ORDER_SEQ.NEXTVAL,3,'0')
+				</selectKey>
+				INSERT INTO "ORDER" VALUES ((SELECT TO_CHAR(SYSDATE, 'YYMMDDHH') as NOWDATE FROM DUAL)
+				||LPAD(ORDER_SEQ.NEXTVAL,3,'0'),'111',721,711,SYSDATE,'신용카드','배송중');
+			</insert> -->
 			
+			<insert id="setOrder" parameterType="OrderDTO">
+				<selectKey keyProperty="orderNum" order="BEFORE" resultType="long">
+					SELECT ORDER_SEQ.NEXTVAL FROM DUAL
+				</selectKey>
+				INSERT INTO "ORDER" VALUES (#{orderNum},#{userId},#{addressNum},SYSDATE,#{payment},#{productNum},#{buyAmount},#{deliveryStatus})
+			</insert>
 			
-			
-			
+			<insert id="setOrderOption" parameterType="Order_OptionDTO">
+				INSERT INTO "ORDER-OPTION" VALUES (ORDER_SEQ.NEXTVAL, #{orderNum}, #{optionNum}, #{optionCount})
+			</insert>
 		</mapper>

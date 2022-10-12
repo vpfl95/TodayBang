@@ -236,5 +236,11 @@ public class MemberService {
 		return memberDAO.deleteCart(cartDTO);
 	}
 	
+	public int setOrder(OrderDTO orderDTO) throws Exception {
+		return memberDAO.setOrder(orderDTO);
+	}
 	
+	public int setOrderOption(Order_OptionDTO order_OptionDTO) throws Exception {
+		return memberDAO.setOrderOption(order_OptionDTO);
+	}
 }
