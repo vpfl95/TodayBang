@@ -30,7 +30,10 @@
 					
 					<hr>
 					<div id = "pf-userAct" class = "column">
-						<h4><span class="material-symbols-outlined">shopping_cart 마일리지 등급</span></h4>
+						<div>마일리지</div>
+						<div>회원 등급 : </div>
+						<div>장바구니 수 : </div>
+						<div>매물찜 수 : </div>
 					</div>
 
 				</div>
@@ -132,7 +135,7 @@
 					        
 		        		</div>
 						
-				        <button id="updateBtn" class="w-100 btn btn-lg inputbutton" type="button">수정</button>
+				        <button id="updateBtn" class="w-100 btn btn-lg inputbutton" type="button" style="font-weight: 600">수정</button>
 				        
 				        
 					</form>

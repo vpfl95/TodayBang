@@ -50,15 +50,19 @@
  		<c:choose>
  			<c:when test="${MemberRole.roleNum eq 10}">
  				<img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankImg">
+ 				<p>다이아몬드</p>
  			</c:when>
  			<c:when test="${MemberRole.roleNum eq 20}">
  				<img alt="" src="/resources/images/rank/Gold.png" class = "pf-rankImg">
+ 				<p>골드</p>
  			</c:when>
  			<c:when test="${MemberRole.roleNum eq 30}">
  				<img alt="" src="/resources/images/rank/Silver.png" class = "pf-rankImg">
+ 				<p>실버</p>
  			</c:when>
  			<c:when test="${MemberRole.roleNum eq 40}">
  				<img alt="" src="/resources/images/rank/White.png" class = "pf-rankImg">
+ 				<p>화이트</p>
  			</c:when>
  		
  		</c:choose>

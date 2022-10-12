@@ -21,7 +21,8 @@
 
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = " justify-content-center mt-5" >
-				<div class = " col-lg-7 " id="boardSection">
+				<div class = "boardDetailbody">
+				<div  id="boardSection">
 				
 					<div class="board-url">
 						<c:if test="${board=='NOTICE'}">
@@ -76,46 +77,41 @@
 						</div>
 					    <div>
 					    
-					    	<div  class="board-filetitle">💾첨부 파일</div>
+					    	
 						      <c:if test="${not empty boardList.boardFileDTOs }">
+						      	<div  class="board-filetitle">💾첨부 파일</div>
 							      <c:forEach items="${boardList.boardFileDTOs }" var="file">
 							      	<c:if test="${not file.sort}">
 							      		<a href="/resources/upload/${board }/${file.fileName }">${file.oriName }</a>
 							
 							      	</c:if>
 							      </c:forEach>
+							      
 						      </c:if>
 					    </div>
-						    
-						    
-						   
-						     
-						      
-						      
-						     
-						    
-						    
-						  	<div >
+						  
+					<!-- QNA 추가 페이지 -->
+					</div>
+					
+						<div class="boardBtnDiv">
 						    	<c:if test="${boardList.userId eq member.userId }">
 						    		
 						    		<c:if test="${empty qnaAnswer }">
 						    			<button id="boardUpdateBtn" class="boardUpdateBtn boardBlueBtn" data-a="./update?boardNum=${boardList.boardNum }" >수정</button>
 						    			
 						    		</c:if>
-						    		<button id="boardDeleteBtn" class="boardDeleteBtn boardBlueBtn" data-a="./delete?boardNum=${boardList.boardNum }" >삭제</button>
+						    		<button id="boardDeleteBtn" class="boardDeleteBtn boardBlueBtn" data-a="./delete?boardNum=${boardList.boardNum }"  style="margin-left: 10px;">삭제</button>
 						    		
 						    	</c:if>
 						    </div>
-						    	
 					
-					<!-- QNA 추가 페이지 -->
-					</div>
+					
 					
 					<c:if test="${board eq 'QNA' }">
 						
 						<c:choose>
 							<c:when test="${not empty qnaAnswer}">
-							<div class = " col-lg-7 " id="boardSection">
+							<div  id="boardSection">
 							<div class="board-url">
 								<div>문의 답변</div>
 							</div>
@@ -149,9 +145,10 @@
 							</div>
 							
 							<div> 
-								<div class="board-filetitle">💾첨부 파일</div>
+								
 								   
 								     <c:if test="${not empty qnaAnswer.boardFileDTOs }">
+								     	<div class="board-filetitle">💾첨부 파일</div>
 									      <c:forEach items="${qnaAnswer.boardFileDTOs }" var="file">
 									      <c:if test="${not file.sort}">
 									      		<a href="/resources/upload/QNAANSWER/${file.fileName }">${file.oriName }</a>
@@ -159,13 +156,15 @@
 									      </c:forEach>
 						    		  </c:if>
 							</div>  
-							<div>
+							
+					    	</div>
+					    	
+					    	<div class="boardBtnDiv">
 								<c:if test="${qnaAnswer.userId eq member.userId }">
 									<button id="answerUpdateBtn" class="boardUpdateBtn boardBlueBtn" data-a="./updateAnswer?boardNum=${boardList.boardNum }" >답변 수정</button>
-						    		<button id="answerDeleteBtn" class="boardDeleteBtn boardBlueBtn" data-a="./deleteAnswer?boardNum=${boardList.boardNum }" >답변 삭제</button>
+						    		<button id="answerDeleteBtn" class="boardDeleteBtn boardBlueBtn" data-a="./deleteAnswer?boardNum=${boardList.boardNum }" style="margin-left: 10px;">답변 삭제</button>
 						    			
 						    	</c:if>
-					    	</div>
 					    	</div>
 							</c:when>
 							<c:otherwise>
@@ -173,7 +172,7 @@
 							<c:choose>
 								<c:when test="${member.roleDTOs[0].roleNum<3 }">
 								
-								<div class = " col-lg-7 " id="boardSection">
+								<div  id="boardSection">
 								    	<form action="./answer" method="post" id = "boardForm" enctype="multipart/form-data" >
 								    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
 								    	
@@ -259,7 +258,7 @@
 						</c:choose>
 						
 					</c:if>
-	
+				</div>
 			</div>
 		
 	</section>

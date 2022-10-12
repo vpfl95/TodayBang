@@ -13,6 +13,8 @@
 	
 	
 	<div class="myQna-body ">
+		<div class="boardDetailbody">
+		
 		
 		
 		<c:choose>
@@ -106,6 +108,7 @@
 				</div>
 				</c:otherwise>
 			</c:choose>
+			</div>
 		</div>
 	
 	

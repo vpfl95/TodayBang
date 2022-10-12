@@ -20,20 +20,21 @@
 
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = "row justify-content-center "  style="margin-top: 80px;">
-				<div class = " col-lg-7 ">
+				<div class = " col-lg-6 ">
 	
 					<c:if test="${board=='QNA'}">
 						<div class = "boardList">
-							<div>
-								<h3> 자주 묻는 질문 (FAQ) </h3>
+							<div class = "boardTitle">
+								 <span class="questionMark">FAQ</span> 자주 묻는 질문  
 							</div>
+							<hr>
 						
 						
 							<table class = "table table-hover">
 								 <thead>
 								    <tr>
 								      <th scope="col" width="140px" align="center" >글 번호</th>
-								      <th scope="col" width="450px">글 제목</th>
+								      <th  scope="col" width="450px">글 제목</th>
 								      
 								      <th scope="col" width="150px">작성자</th>
 								      <th scope="col" width="200px">게시일</th>
@@ -47,16 +48,16 @@
 								<tbody>
 								<c:forEach items="${oftenQna }" var="often">
 									<tr>
-										<td>${often.boardNum }</td>
-										<td><a href="./detail?boardNum=${often.boardNum }">${often.title }</a></td>
+										<td style="color: #676e74;">${often.boardNum }</td>
+										<td><a href="./detail?boardNum=${often.boardNum }" style="color: black;">${often.title }</a></td>
 										<td>${often.userId }</td>
 										<td>${often.regDate }</td>
 										<c:choose>
 	    								<c:when test="${often.checkAnswer}">
-	    									<td>답변 완료</td>
+	    									<td style="color: #676e74;">답변 완료</td>
 	    								</c:when>
 	    								<c:otherwise>
-	    									<td>답변 중</td>
+	    									<td style="color: #676e74;">답변 중</td>
 	    								</c:otherwise>
     							
     									</c:choose>
@@ -72,16 +73,16 @@
 	
 				<div class = "boardList">
 					<c:if test="${board=='NOTICE'}">
-						<div>
-							<h3>공지사항</h3>
+						<div class = "boardTitle">
+							<span class="questionMark" style="font-size: 40px">!</span>공지사항
 						</div>
 					</c:if>
 					<c:if test="${board=='QNA'}">
-						<div>
-							<h3>문의하기 (QNA)</h3>
+						<div class = "boardTitle">
+							<span class="questionMark">QNA</span>문의하기
 						</div>
 					</c:if>
-					
+					<hr>
 					
 					<table class="table table-hover">
 				  <thead>
@@ -103,8 +104,8 @@
 				  	<c:forEach items="${boardList }" var="dto">
 				  		
 				  		<tr>
-						  	<th scope="row">${dto.boardNum}</th>
-						  	<td><a href="./detail?boardNum=${dto.boardNum }">${dto.title }</a></td>
+						  	<td scope="row" style="color: #676e74;">${dto.boardNum}</td>
+						  	<td><a href="./detail?boardNum=${dto.boardNum }" style="color: black;">${dto.title }</a></td>
 					        <td>${dto.userId }</td>
 					         
     						 <td>${dto.regDate }</td>
@@ -112,10 +113,10 @@
     						<c:if test="${board=='QNA' }">
     							<c:choose>
     								<c:when test="${dto.checkAnswer}">
-    									<td>답변 완료</td>
+    									<td style="color: #676e74;">답변 완료</td>
     								</c:when>
     								<c:otherwise>
-    									<td>답변 중</td>
+    									<td style="color: #676e74;">답변 중</td>
     								</c:otherwise>
     							
     							</c:choose>
@@ -128,26 +129,32 @@
 				  </tbody>
 				</table>
 				
-					<c:if test="${board=='NOTICE' && not empty ManagerRole }">
+				
+					
+				
+			</div>
+				
+				
+				<c:import url="../template/navPager.jsp"></c:import>
+				<div class="boardsubtab" >
+				
+				<c:if test="${board=='NOTICE' && not empty ManagerRole }">
 					
 				      	<c:if test="${ManagerRole.roleNum eq 1 || ManagerRole.roleNum eq 2}">
-				      		 <a href="/service/notice/add">공지하기</a>
+				      		<div class = "boardBlueBtn boardAddBtn">
+				      			 <a href="/service/notice/add" style="color: white; ">공지하기</a>
+				      		</div>
 				      	</c:if>
 			      	</c:if>
 				  
 				    <c:if test="${board=='QNA' }">
-				      
-				      		 <a href="/service/qna/add">질문하기</a>
-				      	
-			      	</c:if>
+				   			 <div class = "boardBlueBtn boardAddBtn">
+				      		 	<a href="/service/qna/add" style="color: white;">질문하기</a>
+				      		 </div>
+		      	</c:if>
 				
+				<div >
 				
-				</div>
-				
-				
-				
-				<c:import url="../template/navPager.jsp"></c:import>
-				<div>
 				<form class="row row-cols-lg-auto g-3 align-items-center" action="./list" method="get">
 					  <div class="col-12">
 					    <label class="visually-hidden" for="kind">Kind</label>
@@ -168,6 +175,7 @@
 					    <button type="submit" class="boardBlueBtn">검색</button>
 					  </div>
 				</form>
+				</div>
 				</div>
 			</div>
 		</div>

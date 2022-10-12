@@ -165,8 +165,8 @@
 
 .pf-img-box{
 
-    width: 150px;
-    height: 150px; 
+    width: 120px;
+    height: 120px; 
     border-radius: 70%;
     border : 1px solid #c8c9ca;
     overflow: hidden;
@@ -205,8 +205,8 @@
 
 .pf-img{
 
-    min-width: 150px;
-    min-height: 150px;
+    min-width: 120px;
+    min-height: 120px;
     width: 100%;
     height: 100%;
     object-fit: cover;
@@ -366,15 +366,25 @@ tr,th{
 }
 
 .btnDiv{
-	width : 90%;
+	width : 100%;
 	display: inline-flex;
-	justify-content: space-around;
+	justify-content: flex-end;
 	
 	
 }
 .de-Btn{
-	width: 40%;
+	width: 90px;
+    height: 35px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-right: 15px;
 	
+}
+
+#delDeleteBtn{
+    
+    background-color:  #656c73 !important;
+
 }
 .deSelect{
 
@@ -443,7 +453,7 @@ tr,th{
 }
 
 #shoppingSection{
-
+    min-height: 100%;
     background-color: #f5f5f5;
 }
 
@@ -499,20 +509,34 @@ tr,th{
     color: #424242;
     margin: 10px 10px;
     font-size: 15px;
+    font-weight: 600;
 
 }
 #cart-detail-pay{
+    color: black;
     float: right;
     font-weight: 600;
 }
 
 #cart-lastPay{
-    font-weight: 500;
+    font-weight: 600;
     font-size: 18px !important;
+    
 
 }
 #cart-product{
     font-weight: 400;
+
+}
+#cart-lastPrice{
+    font-weight: 700;
+    font-size: 20px;
+    margin-top: -2px;
+}
+
+#cart-product>a{
+    color: #424242;
+    font-weight: 600;
 
 }
 
@@ -726,4 +750,20 @@ a{
     border-width: 2px 2px 0 0;
     right: -30px ;
     top: 25px;
+}
+
+.pf-rank>p{
+
+    margin-top: 20px;
+    font-size: 30px;
+    font-weight: 600;
+
+
+} 
+.boardDetailbody{
+
+	max-width: 830px;
+	margin: 0 auto;
+
+
 }

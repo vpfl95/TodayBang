@@ -123,7 +123,7 @@
 		
 	
 	<c:forEach items="${list}" var="dto" varStatus="i">
-		<div class="mt-3">
+		<div class="mt-3" style="padding: 15px">
 			<div class="d-flex justify-content-between">
 				<div class="d-flex" style="width: 100%;">
 					<div  style="width:98%;">
