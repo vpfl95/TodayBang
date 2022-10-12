@@ -175,6 +175,7 @@ function getList(category) {
                 }
                 categoryItem.append(divWrap);
             }
+            setPrice();
             getCategory();
         }
     }
@@ -250,4 +251,11 @@ function getCategory() {
 
 function setExpand() {
     // console.log($("#categorySide").find('.tier3Wrap'));
+}
+
+function setPrice() {
+    let price = $('div#categoryItem').find('div.price');
+    for(let p=0; p<price.length; p++) {
+        price[p].innerHTML = price[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
 }

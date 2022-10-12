@@ -54,12 +54,11 @@
                 <div>
                     <div id="productName"></div>
                 </div>
-                <div>별점자리</div>
                 <div>
                     <div id="saleRate"></div>
-                    <div id="price1"></div>
+                    <div id="price1" class="price"></div>
                 </div>
-                <div id="price2"></div>
+                <div id="price2" class="price"></div>
                 <hr>
                 <div id="point"></div>
                 <div id="delivery"></div>

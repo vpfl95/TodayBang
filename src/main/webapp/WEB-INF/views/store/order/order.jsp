@@ -84,7 +84,7 @@
                         <option value="011" >011</option>
                         <option value="070" >070</option>
                     </select>
-                    <input type="text"  id="phoneLast" maxlength="8" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
+                    <input type="text"  id="phoneLast" maxlength="9" name = "phone1" class="form-control nonOverlab" placeholder="입력해주세요" style="width: 70%;">
                 </div>
             </div>
             <div class="mt-3">
@@ -114,7 +114,8 @@
                     <option value="4">부재시 전화주시거나 문자 남겨주세요</option>
                 </select>
             </div>
-
+            <input type="hidden" id="productNum" value="${detail.productNum}">
+            <input type="hidden" id="productName" value="${detail.productName}">
             <h5 style="margin-top: 50px; font-weight: 600;">주문상품</h5>
             <c:forEach items="${list}" var="dto">
             	<div class="d-flex" style="width: 95%; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; margin: 5px 0;">
@@ -122,15 +123,17 @@
                         <img src="../../resources/upload/store/product/${detail.productImageDTO.fileName}" style="max-width: 100%;">
                     </div>
                     <div>
+                        <input type="hidden" class="optionNum" value="${dto.optionNum}">
                         <div style="font-size: 15px;">${detail.productName}</div>
                         <div style="font-size: 13px;">옵션 - ${dto.optionName}</div>
                         <div class="d-flex">
-                            <div style="font-weight: 600; font-size: 14px; margin-right: 10px;">${dto.optionPrice * dto.optionCount}원</div>
-                            <div style="font-size: 13px;">| ${dto.optionCount}개</div>
+                            <div class="price" style="font-weight: 600; font-size: 14px; margin-right: 10px;">${dto.optionPrice * dto.optionCount}원</div>
+                            <div class="optionCount" style="font-size: 13px;" data-option-count="${dto.optionCount}">| ${dto.optionCount}개</div>
                         </div>
                     </div>
                 </div>
             </c:forEach>
+            <input type="hidden" id="result" value="${result}">
             <c:if test="${result eq 0}">
             	<div class="d-flex" style="width: 95%; box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px; margin: 5px 0;">
                     <div style="width: 10%; margin-right: 10px;">
@@ -139,8 +142,8 @@
                     <div>
                         <div style="font-size: 15px;">${detail.productName}</div>
                         <div class="d-flex">
-                            <div style="font-weight: 600; font-size: 14px; margin-right: 10px;">${price * productCount}원</div>
-                            <div style="font-size: 13px;">| ${productCount}개</div>
+                            <div class="price" style="font-weight: 600; font-size: 14px; margin-right: 10px;">${price * productCount}원</div>
+                            <div id="productCount" style="font-size: 13px;" data-product-count="${productCount}">| ${productCount}개</div>
                         </div>
                     </div>
                 </div>
@@ -168,7 +171,7 @@
                         <h5 class="mt-3" style="font-weight: 600;">결제금액</h5>
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-size: 15px;">총 상품 금액</div>
-                            <div class="price">${totalPrice}원</div>
+                            <div class="price1 price">${totalPrice}원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">배송비</div>
@@ -182,7 +185,7 @@
         
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-weight: 600; font-size: 20px;">최종 결제 금액</div>
-                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice" style="color: #35c5f0;">${totalPrice + detail.deliFee}</span> 원</div>
+                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice price" style="color: #35c5f0;">${totalPrice + detail.deliFee}</span> 원</div>
                         </div>
                         <div style="font-size: 14px; text-align: right; margin-top: 5px;"><span id="getPoint" style="font-weight: 600;" data-point="${(totalPrice + detail.deliFee)*0.001}"></span> 적립 예정</div>
                     </div>
@@ -236,8 +239,8 @@
                     </div>
                 </div>
 
-                <button class="btnPay mt-4">
-                    <span class="totalPrice">${totalPrice + detail.deliFee}</span>원 결제하기
+                <button class="btnPay mt-4" id="btnPay">
+                    <span class="totalPrice price">${totalPrice + detail.deliFee}</span>원 결제하기
                 </button>
             </div>
         </div>
@@ -245,6 +248,7 @@
 	
 	<c:import url="../../template/footer.jsp"></c:import>
     <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.1.8.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
     <script src="/resources/js/store/order.js"></script>

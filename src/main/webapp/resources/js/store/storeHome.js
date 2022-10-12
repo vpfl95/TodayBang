@@ -227,8 +227,8 @@ function getTodayList() {
                 divWrap.appendChild(divProduct);
             }
             centerMenu.append(divWrap);
-            setPrice()
         }
+        setPrice();
     }
 }
 

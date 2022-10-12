@@ -1,5 +1,8 @@
 package com.goodee.home.member;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +34,9 @@ import com.goodee.home.store.review.ProductReviewDTO;
 import com.goodee.home.store.review.ProductReviewService;
 import com.goodee.home.store.review.ReviewLikeDTO;
 import com.goodee.home.util.Pager;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 @RequestMapping("/member/*")
@@ -47,6 +53,12 @@ public class MemberController {
 	
 	@Autowired
 	ProductService productService;
+	
+	private IamportClient api;
+	
+	public MemberController() {
+		this.api = new IamportClient("2247786281124377", "9XwjixWfWPGglCVexIchgmZvYnRzcZnwZCV3zCNI1G2wN1ckilmckK5OhvOx6ly3nAUlkpoaoNIGzMQk");
+	}
 	
 	
 	@GetMapping("login")
@@ -567,4 +579,67 @@ public class MemberController {
 		model.addAttribute("deliveryJson", deliveryJson);
 		return "store/order/order";
 	}
+	
+	@PostMapping("orderComplete")
+	@ResponseBody
+	public IamportResponse<Payment> orderComplete(String imp_uid) throws Exception {
+		return api.paymentByImpUid(imp_uid);
+	}
+	
+	@PostMapping("addOrder")
+	@ResponseBody
+	public int addOrder(String imp_uid, Long delivery, Long result, Long productCount, Long[] optionNum, Long[] optionCount, Long productNum, HttpSession session) throws Exception {
+		System.out.println(imp_uid);
+		System.out.println(delivery);
+		System.out.println(result);
+		System.out.println(productCount);
+		System.out.println(productNum);
+		for(int i=0; i<optionCount.length; i++) {
+			System.out.println(optionNum[i]);
+			System.out.println(optionCount[i]);
+		}
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		OrderDTO orderDTO = new OrderDTO();
+		if(delivery == 0L) {
+			IamportResponse<Payment> response = api.paymentByImpUid(imp_uid);
+			DeliveryDTO deliveryDTO = new DeliveryDTO();
+			deliveryDTO.setName(response.getResponse().getBuyerName());
+			deliveryDTO.setPhone(response.getResponse().getBuyerTel());
+			deliveryDTO.setNote("");
+			deliveryDTO.setDeliveryName("");
+			deliveryDTO.setUserId("");
+			deliveryDTO.setAddress(response.getResponse().getBuyerAddr());
+			deliveryDTO.setPostcode(Integer.parseInt(response.getResponse().getBuyerPostcode()));
+			deliveryDTO.setDetailAddress("");
+			deliveryDTO.setExtraAddress("");
+			memberService.setDelivery(deliveryDTO);
+			orderDTO.setAddressNum(deliveryDTO.getAddressNum());
+		} else {
+			orderDTO.setAddressNum(delivery);
+		}
+		orderDTO.setUserId(memberDTO.getUserId());
+		orderDTO.setPayment("card");
+		if(result == 0) {
+			// buyamount, productNum 세팅
+			orderDTO.setProductNum(productNum);
+			orderDTO.setBuyAmount(productCount);
+		} else {
+			orderDTO.setProductNum(0L);
+			orderDTO.setBuyAmount(0L);
+		}
+		orderDTO.setDeliveryStatus("결제 완료");
+		memberService.setOrder(orderDTO);
+		System.out.println(orderDTO.getOrderNum());
+		for(int i=0; i<optionCount.length; i++) {
+			Order_OptionDTO order_OptionDTO = new Order_OptionDTO();
+			order_OptionDTO.setOptionNum(optionNum[i]);
+			order_OptionDTO.setOptionCount(optionCount[i]);
+			order_OptionDTO.setOrderNum(orderDTO.getOrderNum());
+			memberService.setOrderOption(order_OptionDTO);
+		}
+		
+		return 0;
+	}
+	
+
 }

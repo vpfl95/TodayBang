@@ -97,6 +97,8 @@ function setOption() {
         if(this.readyState==4 && this.status==200) {
             optionWrap.innerHTML = this.responseText.trim();
             fixInfo[0].innerHTML = this.responseText.trim();
+
+            setPrice();
         }
     }
 }
@@ -141,13 +143,16 @@ section.onchange=function(event) {
         $('section').find('select.sellingOptionControll')[1].parentNode.nextSibling.nextSibling.innerHTML = event.target.dataset.optionPrice * event.target.value+'원';
         let price=0;
         for(let i=0; i<$('section').find('div.optionPrice').length; i++) {
-            price += parseInt($('section').find('div.optionPrice')[i].innerHTML);
+            let temp = $('section').find('div.optionPrice')[i].innerHTML.replace(/,+/g, '');
+            price += parseInt(temp);
         }
         price /= 2;
         $('section').find('span.totalPrice')[0].innerHTML = price+'원';
         $('section').find('span.totalPrice')[1].innerHTML = price+'원';
         $('section').find('input.totalPrice')[0].value = price;
         $('section').find('input.totalPrice')[1].value = price;
+
+        setPrice();
     }
 
     for(option of optionList) {
@@ -157,13 +162,16 @@ section.onchange=function(event) {
             $('section').find('select.sellingOptionControll-'+option)[1].parentNode.nextSibling.nextSibling.innerHTML = event.target.dataset.optionPrice * event.target.value+'원';
             let price=0;
             for(let i=0; i<$('section').find('div.optionPrice').length; i++) {
-                 price += parseInt($('section').find('div.optionPrice')[i].innerHTML);
+                let temp = $('section').find('div.optionPrice')[i].innerHTML.replace(/,+/g, '');
+                price += parseInt(temp);
             }
             price /= 2;
             $('section').find('span.totalPrice')[0].innerHTML = price+'원';
             $('section').find('span.totalPrice')[1].innerHTML = price+'원';
             $('section').find('input.totalPrice')[0].value = price;
             $('section').find('input.totalPrice')[1].value = price;
+
+            setPrice();
         }
     }
 
@@ -180,6 +188,7 @@ section.onchange=function(event) {
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
             fixInfo[0].innerHTML = this.responseText.trim();
+            setPrice();
         }
     }
 
@@ -196,6 +205,7 @@ section.onchange=function(event) {
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
             fixInfo[0].innerHTML = this.responseText.trim();
+            setPrice();
         }
     }
 
@@ -212,6 +222,7 @@ section.onchange=function(event) {
         xhttp.onreadystatechange=function(){
             optionWrap.innerHTML = this.responseText.trim();
             fixInfo[0].innerHTML = this.responseText.trim();
+            setPrice();
         }
     }
 }
@@ -596,5 +607,18 @@ for(navi of navigationItem) {
         location.replace(url+e.target.dataset.anchorCase);
         url = url.replace(/(#.*)/ig,'');
         history.replaceState(null, null, url);
+    }
+}
+
+function setPrice() {
+    let price = $('section').find('div.price');
+    let price2 = $('section').find('span.price');
+
+    for(let p=0; p<price.length; p++) {
+        price[p].innerHTML = price[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    for(let p=0; p<price2.length; p++) {
+        price2[p].innerHTML = price2[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
     }
 }

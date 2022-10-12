@@ -96,7 +96,7 @@
                                 <option value="3">3</option>
                             </select>
                         </div>
-                        <div class="optionPrice">${option.optionPrice}원</div>
+                        <div class="optionPrice price">${option.optionPrice}원</div>
                     </div>
                 </div>
             </c:forEach>
@@ -113,15 +113,15 @@
                                     <option value="3">3</option>
                                 </select>
                             </div>
-                        <div class="optionPrice">${price}원</div>
+                        <div class="optionPrice price">${price}원</div>
                     </div>
                 </div>
             </c:if>
 
             <div class="mt-3 d-flex justify-content-between">
                 <span><b>주문금액</b></span>
-                <input class="totalPrice" type="hidden" value="${totalPrice}" name="totalPrice">
-                <span class="totalPrice">${totalPrice}원</span>
+                <input class="totalPrice price" type="hidden" value="${totalPrice}" name="totalPrice">
+                <span class="totalPrice price">${totalPrice}원</span>
             </div>
         </div>
         <div class="d-flex justify-content-between mt-3">
