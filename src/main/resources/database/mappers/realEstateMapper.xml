@@ -3,9 +3,9 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.goodee.home.realEstate.RealEstateDAO">
-	<select id="getAptRoadName" resultType="RealEstateDTO">
-		SELECT * FROM REALESTATE ORDER BY NUM
-	</select>
+	<insert id="setAdd" parameterType="RealEstateDTO">
+		INSERT INTO REALESTATE VALUES(REALESTATE_SEQ.nextval, #{sigungu}, null, #{buildType}, #{buildingNm}, #{dealType}, #{area}, sysdate, sysdate, #{deal}, #{deposit}, #{wdeposit}, #{monthly}, #{floor}, null, #{roadName})
+	</insert>
 
 
 </mapper>

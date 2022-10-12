@@ -25,6 +25,7 @@ const roadname = document.getElementById("roadname")
 const writeReview = document.getElementById("writeReview")
 const upReview = document.getElementById("upReview")
 const reviewNum = document.getElementById("reviewNum")
+const insertReal =document.getElementById("insertReal")
 let page =1;
 let reviewPage = 1;
 
@@ -253,17 +254,21 @@ function addMarker(address_result){
             
             building_top = document.createElement("div")
             building_top.setAttribute("data-roadName",address_result[i].roadName);
+            building_top.setAttribute("data-sigungu",address_result[i].sigungu);    //매물등록에서 쓸것
             building_top.className = "sc-cBNeex building-top"
             building_top.innerText = "매매"
             content.appendChild(building_top)
 
             building_bot = document.createElement("div")
             building_bot.setAttribute("data-roadName",address_result[i].roadName);
+            building_bot.setAttribute("data-sigungu",address_result[i].sigungu);
             building_bot.className = "sc-gWHigU building-bot"
             building_bot.innerText = address_result[i].avg + unit
             content.appendChild(building_bot)
 
             building_name = document.createElement("div")
+            building_name.setAttribute("data-roadName",address_result[i].roadName);
+            building_name.setAttribute("data-sigungu",address_result[i].sigungu);
             building_name.className = "sc-citxvW building-name"
             building_name.innerText = address_result[i].buildingNm
             content.appendChild(building_name)
@@ -368,7 +373,7 @@ function addEventHandle(target,coords, type) {
 
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
-             document.getElementsByTagName('body')[0].style.overflow = 'hidden';
+             //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             //map.setCenter(coords)
             
             // 클릭된 마커가 없고, click 마커가 클릭된 마커가 아니면
@@ -396,6 +401,9 @@ function addEventHandle(target,coords, type) {
             selectedMarker = target;
 
             var roadName = e.target.getAttribute("data-roadName");
+            var sigungu = e.target.getAttribute("data-sigungu");
+            document.getElementById("roadName").value = roadName
+            document.getElementById("sigungu").value = sigungu
             console.log(roadName);
 
             realEstateList.innerHTML='' //매물리스트 초기화
@@ -538,8 +546,12 @@ function getMaemulList(roadName,p){
                
                 more.setAttribute("data-name",list[i].roadName)
                 buildingName.innerText=list[i].buildingNm
+                //수정할때 가져오기
                 maemulNum.value = list[0].num
                 roadname.value = list[0].roadName
+                //매물등록할 때 가져오기
+                document.getElementById("buildingNm").value=list[0].buildingNm
+                document.getElementById("buildType").value=list[0].buildType
             }
         }
     })
@@ -1343,6 +1355,44 @@ function searchSuggest(){
 function closeSuggestList(){
     sugguestList.style.display="none"
 }
+
+
+
+//------------------------------------------------매물등록---------------------------------------------------------------------------------------
+
+addReal.addEventListener("click", function(){
+    let buildType = document.getElementById("buildType").value
+    let sigungu = document.getElementById("sigungu").value
+    let roadName = document.getElementById("roadName").value
+    let buildingNm = document.getElementById("buildingNm").value
+    let dealType = Array.from(document.getElementsByName("dealType")).find(radio => radio.checked);
+    let deal = document.getElementById("deal").value
+    let dposit = document.getElementById("deposit").value
+    let wdeposit = document.getElementById("wdeposit").value
+    let monthly = document.getElementById("monthly").value
+    let area = document.getElementById("area").value
+    let floor = document.getElementById("floor").value
+
+    let xhttp = new XMLHttpRequest()
+    xhttp.open("POST","./setAddReal")
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("buildType="+buildType+"&sigungu="+sigungu)
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
