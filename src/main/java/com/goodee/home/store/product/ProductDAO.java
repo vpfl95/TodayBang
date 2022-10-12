@@ -62,4 +62,8 @@ public class ProductDAO {
 	public List<ProductDTO> getTodayDealList() throws Exception {
 		return sqlSession.selectList(NAMESPACE+"getTodayDealList");
 	}
+	
+	public ProductDTO getOrderProduct(ProductDTO productDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getOrderProduct", productDTO);
+	}
 }

@@ -23,7 +23,7 @@
             <hr style="width: 95%; margin-top: 8px;">
             <div class="d-flex" style="height: 38px;">
                 <label for="userName">이름</label>
-				<input type="text" id="userName" name = "userName" class="form-control nonOverlab" style="width: 40%;">
+				<input type="text" id="userName" name="userName" class="form-control nonOverlab" style="width: 40%;" value="${member.userName}" readonly>
             </div>
 
             <div class="d-flex mt-3">
@@ -134,11 +134,11 @@
                         <h5 class="mt-3" style="font-weight: 600;">결제금액</h5>
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-size: 15px;">총 상품 금액</div>
-                            <div class="price">0원</div>
+                            <div class="price">${totalPrice}원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">배송비</div>
-                            <div class="deleFee">0원</div>
+                            <div class="deleFee">${detail.deliFee}원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">포인트 사용</div>
@@ -148,9 +148,9 @@
         
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-weight: 600; font-size: 20px;">최종 결제 금액</div>
-                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice" style="color: #35c5f0;">0</span> 원</div>
+                            <div style="font-weight: 600; font-size: 20px;"><span class="totalPrice" style="color: #35c5f0;">${totalPrice - detail.deliFee}</span> 원</div>
                         </div>
-                        <div style="font-size: 14px; text-align: right; margin-top: 5px;"><span style="font-weight: 600;">0 P</span> 적립 예정</div>
+                        <div style="font-size: 14px; text-align: right; margin-top: 5px;"><span style="font-weight: 600;">${(totalPrice - detail.deliFee)*0.001} P</span> 적립 예정</div>
                     </div>
                     <hr style="width: 100%; margin: 30px auto 0 auto;">
                     <div>

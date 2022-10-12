@@ -146,6 +146,10 @@ section.onchange=function(event) {
         price /= 2;
         $('section').find('span.totalPrice')[0].innerHTML = price+'원';
         $('section').find('span.totalPrice')[1].innerHTML = price+'원';
+        $('section').find('input.totalPrice')[0].value = price;
+        $('section').find('input.totalPrice')[1].value = price;
+        event.target.parentNode.previousSibling.previousSibling.value=event.target.value;
+        event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.value=event.target.dataset.optionPrice * event.target.value;
     }
 
     for(option of optionList) {
@@ -160,6 +164,10 @@ section.onchange=function(event) {
             price /= 2;
             $('section').find('span.totalPrice')[0].innerHTML = price+'원';
             $('section').find('span.totalPrice')[1].innerHTML = price+'원';
+            $('section').find('input.totalPrice')[0].value = price;
+            $('section').find('input.totalPrice')[1].value = price;
+            event.target.parentNode.previousSibling.previousSibling.value=event.target.value;
+            event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.value=event.target.dataset.optionPrice * event.target.value;
         }
     }
 
@@ -546,7 +554,9 @@ section.onclick=function(event) {
             }
         }
         if(check) {
-            location.href='/orders/checkout';
+            $('section').find('input.frmProductNum')[0].value=jsonList[0].productNum;
+            $('section').find('input.frmProductNum')[1].value=jsonList[0].productNum;
+            $('section').find('form#frmCheckout').submit();
         } else {
             alert("필수 옵션을 선택해주세요");
         }

@@ -12,6 +12,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,7 +22,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceService;
+import com.goodee.home.store.product.ProductDTO;
 import com.goodee.home.store.product.ProductOptionDTO;
+import com.goodee.home.store.product.ProductService;
 import com.goodee.home.store.review.ProductReviewDTO;
 import com.goodee.home.store.review.ProductReviewService;
 import com.goodee.home.store.review.ReviewLikeDTO;
@@ -39,6 +42,9 @@ public class MemberController {
 	
 	@Autowired
 	ProductReviewService productReviewService = new ProductReviewService();
+	
+	@Autowired
+	ProductService productService;
 	
 	
 	@GetMapping("login")
@@ -495,5 +501,12 @@ public class MemberController {
 	}
 	
 	
-	
+	@PostMapping("checkout")
+	public String getPage(Model model, String[] optionName, String[] optionPrice, String[] optionCount, String totalPrice, ProductDTO productDTO) throws Exception {
+		
+		productDTO = productService.getOrderProduct(productDTO);
+		model.addAttribute("totalPrice", totalPrice);
+		model.addAttribute("detail", productDTO);
+		return "store/order/order";
+	}
 }
