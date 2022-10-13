@@ -22,7 +22,7 @@ public class MemberDTO {
 	private Long roleNum;
 	private Long iNum;
 	private Long cNum;
-	private Long mileage;
+	
 	
 	
 	
