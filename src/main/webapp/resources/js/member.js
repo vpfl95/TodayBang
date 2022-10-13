@@ -565,8 +565,13 @@ function myPageMenu() {
     menu1blue[4];
    
 
+ 
+    if(menu1blue[4] =="delivery"){
 
-
+        document.querySelector("#myPage-myPage").children[0].classList.add("menu1select");
+        document.querySelector("#myPage-myPage").classList.add("menu1after");
+        
+    }
 
 
 
@@ -700,6 +705,10 @@ function myPageMenu() {
         }
         
     })
+
+
+
+
 
 
 

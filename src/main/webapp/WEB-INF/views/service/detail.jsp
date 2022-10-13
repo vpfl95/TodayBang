@@ -303,7 +303,7 @@
 				  ];
 
 			var setting = {
-		            height : 300,
+		            height : 500,
 		            minHeight : null,
 		            maxHeight : null,
 		            focus : true,
