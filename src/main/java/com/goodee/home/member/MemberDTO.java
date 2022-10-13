@@ -14,6 +14,7 @@ public class MemberDTO {
 	private String userName;
 	private String phone;
 	private String email;
+	private Long mileage;
 	private List<RoleDTO> roleDTOs;
 	private MemberFileDTO memberFileDTO;
 	

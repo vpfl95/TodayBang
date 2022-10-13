@@ -238,6 +238,35 @@ public class MemberService {
 		return memberDAO.deleteCart(cartDTO);
 	}
 	
+	public int setOrder(OrderDTO orderDTO) throws Exception {
+		return memberDAO.setOrder(orderDTO);
+	}
+	
+	public int setOrderOption(Order_OptionDTO order_OptionDTO) throws Exception {
+		return memberDAO.setOrderOption(order_OptionDTO);
+	}
+	
+	public Long getOrderNum() throws Exception {
+		return memberDAO.getOrderNum();
+	}
+	
+	public int updateMileage(MemberDTO memberDTO) throws Exception {
+		return memberDAO.updateMileage(memberDTO);
+	}
+	
+	public Long getMileage(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getMileage(memberDTO);
+	}
+	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return memberDAO.addCart(cartDTO);
+	}
+	
+	public int setCartOption(Cart_OptionDTO cart_OptionDTO) throws Exception {
+		return memberDAO.setCartOption(cart_OptionDTO);
+	}
 	public List<HouseReviewDTO> getMyRoomReview(MemberDTO memberDTO) throws Exception{
 		
 		

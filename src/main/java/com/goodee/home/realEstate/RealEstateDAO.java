@@ -17,7 +17,19 @@ public class RealEstateDAO {
 		return sqlSession.selectList(NAMESPACE+"getAptRoadName");
 	}
 	
-	public int setAdd(RealEstateDTO realEstateDTO)throws Exception{
-		return sqlSession.insert(NAMESPACE+"setAdd", realEstateDTO);
+	public int setAddMM(RealEstateDTO realEstateDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddMM", realEstateDTO);
+	}
+	
+	public int setAddJS(RealEstateDTO realEstateDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddJS", realEstateDTO);
+	}
+	
+	public int setAddWS(RealEstateDTO realEstateDTO)throws Exception{
+		return sqlSession.insert(NAMESPACE+"setAddWS", realEstateDTO);
+	}
+	
+	public List<RealEstateDTO> getHaddress(String search)throws Exception{
+		return sqlSession.selectList(NAMESPACE+"getHaddress", search);
 	}
 }

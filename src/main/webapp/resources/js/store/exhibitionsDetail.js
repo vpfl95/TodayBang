@@ -1,5 +1,6 @@
 const productList = document.querySelector("#productList");
 const code = productList.getAttribute("data-ex-code");
+const navigationItem = document.querySelectorAll('.navigation-item');
 let jsonList;
 
 function getList() {
@@ -112,6 +113,24 @@ function getList() {
                 }
                 productList.append(divWrap);
             }
+            setPrice();
         }
+    }
+}
+
+function setPrice() {
+    let price = $('section').find('div.price');
+
+    for(let p=0; p<price.length; p++) {
+        price[p].innerHTML = price[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
+}
+
+for(navi of navigationItem) {
+    navi.onclick=function(e) {
+        let url = location.href;
+        location.replace(url+e.target.dataset.anchorCase);
+        url = url.replace(/(#.*)/ig,'');
+        history.replaceState(null, null, url);
     }
 }

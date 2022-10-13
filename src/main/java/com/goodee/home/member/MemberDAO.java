@@ -166,6 +166,29 @@ public class MemberDAO {
 		return sqlSession.selectList(NAMESPACE+ "deleteDeliveryCheck",deliveryDTO);
 	}
 	
+	public int setOrder(OrderDTO orderDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setOrder", orderDTO);
+	}
+	
+	public int setOrderOption(Order_OptionDTO order_OptionDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setOrderOption", order_OptionDTO);
+	}
+	
+	public Long getOrderNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getOrderNum");
+	}
+	
+	public int updateMileage(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"updateMileage", memberDTO);
+	}
+	
+	public Long getMileage(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getMileage", memberDTO);
+	}
+	
+	public int setCartOption(Cart_OptionDTO cart_OptionDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setCartOption", cart_OptionDTO);
+	}
 	public List<HouseReviewDTO> getMyRoomReview(MemberDTO memberDTO) throws Exception{
 		
 		

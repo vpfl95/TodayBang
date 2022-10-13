@@ -3,9 +3,13 @@ const termsAgree1 = document.querySelector('#termsAgree1');
 const termsAgree2 = document.querySelector('#termsAgree2');
 const termsAgree1_1 = document.querySelector('#termsAgree1_1');
 const termsAgree1_2 = document.querySelector('#termsAgree1_2');
+const termsAgree2_1 = document.querySelector('#termsAgree2_1');
 const delivery = document.querySelector('#delivery');
 const deliveryJson = document.querySelector('#deliveryJson');
 const getPoint = document.querySelector('#getPoint');
+const btnPay = document.querySelector('#btnPay');
+const result = document.querySelector('#result');
+const productCount = document.querySelector('#productCount');
 
 const deliName = document.querySelector('#deliName');
 const addressee = document.querySelector('#addressee');
@@ -19,6 +23,22 @@ const emailFirst = document.querySelector('#emailFirst');
 const emailAt = document.querySelector('#emailAt');
 const phoneWrap = document.querySelector('#phoneWrap');
 const memberPhone = document.querySelector('#memberPhone');
+
+const totalPrice = document.querySelectorAll('.totalPrice');
+const productName = document.querySelector('#productName');
+const productNum = document.querySelector('#productNum');
+
+const orderAllCheck = document.querySelector('#orderAllCheck');
+const orderCheck = document.querySelectorAll('.orderCheck');
+const orderCheck1 = document.querySelector('#orderCheck1');
+const orderCheckSub = document.querySelectorAll('.orderCheckSub');
+const pointAll = document.querySelector('#pointAll');
+const usePointValue = document.querySelectorAll('.usePointValue');
+const pointCost = document.querySelector('#pointCost');
+const usePoint = document.querySelectorAll('.usePoint');
+const price1 = document.querySelectorAll('.price1');
+const deliFee = document.querySelectorAll('.deliFee');
+
 
 for(sp of samplePostcode) {
     sp.onclick=sample6_execDaumPostcode;
@@ -50,6 +70,7 @@ function sample6_execDaumPostcode() {
 }
 
 termsAgree1.onclick=function(event) {
+    console.log(event.target);
     if(event.target.classList.contains('terms-expand') || event.target.classList.contains('terms-expand-click')) {
         let svg = event.target;
         svg.classList.toggle('terms-expand');
@@ -76,7 +97,25 @@ termsAgree1.onclick=function(event) {
 }
 
 termsAgree2.onclick=function(event) {
-    console.log(event.target.firstChild.nextSibling);
+    if(event.target.classList.contains('terms-expand') || event.target.classList.contains('terms-expand-click')) {
+        let svg = event.target;
+        svg.classList.toggle('terms-expand');
+        svg.classList.toggle('terms-expand-click');
+        if(svg.classList.contains('terms-expand')) {
+            termsAgree2_1.setAttribute('style', 'display: none');
+        } else {
+            termsAgree2_1.setAttribute('style', '');
+        }
+    } else {
+        let svg = $(event.target).find('svg');
+        svg[0].classList.toggle('terms-expand');
+        svg[0].classList.toggle('terms-expand-click');
+        if(svg[0].classList.contains('terms-expand')) {
+            termsAgree2_1.setAttribute('style', 'display: none');
+        } else {
+            termsAgree2_1.setAttribute('style', '');
+        }
+    }
 }
 
 delivery.onchange=function(event){
@@ -107,4 +146,165 @@ function setMain() {
 
     let point = Math.ceil(getPoint.dataset.point);
     getPoint.innerHTML=point+' P';
+    setPrice();
+}
+
+function setPrice() {
+    let price = $('section').find('div.price');
+    let price2 = $('section').find('span.price');
+
+    for(let p=0; p<price.length; p++) {
+        price[p].innerHTML = price[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
+
+    for(let p=0; p<price2.length; p++) {
+        price2[p].innerHTML = price2[p].innerHTML.replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+    }
+}
+
+btnPay.onclick=function(){
+    let check = true;
+    if(!orderAllCheck.checked){
+        check = false;
+    }
+
+    if(check){
+        requestPay();
+    } else {
+
+    }
+};
+
+function requestPay() {  
+    var IMP = window.IMP; // 생략 가능
+    IMP.init("imp62542227"); // 예: imp00000000
+    // IMP.request_pay(param, callback) 결제창 호출
+    let d = new Date();
+    let n = d.getMilliseconds();
+    IMP.request_pay({
+        pg : 'html5_inicis',
+        pay_method : 'card',
+        merchant_uid: n, // 상점에서 관리하는 주문 번호를 전달
+        name : productName.value,
+        // amount : totalPrice[0].innerHTML.replace(/,+/g, ''),
+        amount : 100,
+        buyer_name : addressee.value,
+        buyer_tel : phoneFirst.value+'-'+phoneLast.value,
+        buyer_addr : sample6_address.value+' '+sample6_detailAddress.value,
+        buyer_postcode : sample6_postcode.value,
+    }, function(rsp) { // callback 로직
+        if ( rsp.success ) {
+            //[1] 서버단에서 결제정보 조회를 위해 jQuery ajax로 imp_uid 전달하기
+            jQuery.ajax({
+                url: "/member/orderComplete", //cross-domain error가 발생하지 않도록 주의해주세요
+                type: 'POST',
+                // dataType: 'json',
+                data: {
+                    imp_uid : rsp.imp_uid
+                    //기타 필요한 데이터가 있으면 추가 전달
+                }
+            }).done(function(data) {
+                //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
+                if(rsp.paid_amount == data.response.amount) {
+                    alert('결제 성공');
+                    let num = [];
+                    let count = [];
+                    const optionNum = document.querySelectorAll('.optionNum');
+                    const optionCount = document.querySelectorAll('.optionCount');
+                    for(op of optionNum) {
+                        num.push(op.value);
+                    }
+                    for(op of optionCount) {
+                        count.push(op.dataset.optionCount);
+                    }
+                    const xhttp = new XMLHttpRequest();
+                    xhttp.open("POST", "/member/addOrder");
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    let point = getPoint.innerHTML.split(' ');
+                    if(result.value == 0) {
+                        xhttp.send('imp_uid='+rsp.imp_uid+'&delivery='+delivery.value+'&result='+result.value+'&productCount='+productCount.dataset.productCount+'&optionNum='+num+'&optionCount'+count+'&productNum='+productNum.value+'&point='+point[0]);
+                    } else {
+                        xhttp.send('imp_uid='+rsp.imp_uid+'&delivery='+delivery.value+'&result='+result.value+'&optionNum='+num+'&optionCount='+count+'&productNum='+productNum.value+'&point='+point[0]);
+                    }
+                    xhttp.onreadystatechange=function() {
+                        console.log(this.responseText);
+                    }
+                } else {
+                    alert('결제 실패');
+                }
+            });
+        } else {
+            var msg = '결제에 실패하였습니다.';
+            msg += '에러내용 : ' + rsp.error_msg;
+            
+            alert(msg);
+        }
+    });
+}
+
+orderAllCheck.onclick=function() {
+    for(ch of orderCheck) {
+        ch.checked = orderAllCheck.checked;
+    }
+}
+
+for(ch of orderCheck){
+    ch.onclick=function(){
+        let check = true;
+        for(ch of orderCheck){
+            if(!ch.checked){
+                check=false;
+            }
+        }
+        if(check){
+            orderAllCheck.checked = true;
+
+        }else{
+            orderAllCheck.checked = false;
+        }
+    }
+}
+
+orderCheck1.onclick=function(){
+    for(ch of orderCheckSub) {
+        ch.checked = orderCheck1.checked;
+    }
+}
+
+for(ch of orderCheckSub){
+    ch.onclick=function(){
+        let check = true;
+        for(ch of orderCheckSub){
+            if(!ch.checked){
+                check=false;
+            }
+        }
+        if(check){
+            orderCheck1.checked = true;
+
+        }else{
+            orderCheck1.checked = false;
+        }
+    }
+}
+
+pointAll.onclick=function() {
+    let mileage = usePointValue[0].innerHTML.split(' ');
+    pointCost.value=mileage[0];
+
+    usePoint[0].innerHTML=mileage[0];
+    totalPrice[0].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-mileage[0];
+    totalPrice[1].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-mileage[0];
+    setPrice();
+}
+
+pointCost.onkeyup=function() {
+    let mileage = usePointValue[0].innerHTML.split(' ');
+    if(parseInt(pointCost.value) > parseInt(mileage[0])) {
+        pointCost.value = mileage[0];
+    }
+    usePoint[0].innerHTML=pointCost.value;
+    totalPrice[0].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-usePoint[0].innerHTML;
+    totalPrice[1].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-usePoint[0].innerHTML;
+    setPrice();
 }

@@ -1,5 +1,8 @@
 package com.goodee.home.member;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.http.HttpRequest;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -33,6 +36,9 @@ import com.goodee.home.store.review.ProductReviewDTO;
 import com.goodee.home.store.review.ProductReviewService;
 import com.goodee.home.store.review.ReviewLikeDTO;
 import com.goodee.home.util.Pager;
+import com.siot.IamportRestClient.IamportClient;
+import com.siot.IamportRestClient.response.IamportResponse;
+import com.siot.IamportRestClient.response.Payment;
 
 @Controller
 @RequestMapping("/member/*")
@@ -49,6 +55,12 @@ public class MemberController {
 	
 	@Autowired
 	ProductService productService;
+	
+	private IamportClient api;
+	
+	public MemberController() {
+		this.api = new IamportClient("2247786281124377", "9XwjixWfWPGglCVexIchgmZvYnRzcZnwZCV3zCNI1G2wN1ckilmckK5OhvOx6ly3nAUlkpoaoNIGzMQk");
+	}
 	
 	
 	@GetMapping("login")
@@ -565,6 +577,7 @@ public class MemberController {
 			}
 		}
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		Long mileage = memberService.getMileage(memberDTO);
 		List<DeliveryDTO> deliveryDTOs = memberService.getDelivery(memberDTO);
 		productDTO = productService.getOrderProduct(productDTO);
 		if(result.equals("0")) {
@@ -580,12 +593,91 @@ public class MemberController {
 		model.addAttribute("detail", productDTO);
 		model.addAttribute("result", result);
 		model.addAttribute("price", price);
+		model.addAttribute("mileage", mileage);		
 		model.addAttribute("productCount", productCount);
 		model.addAttribute("deliveryDTOs", deliveryDTOs);
 		model.addAttribute("deliveryJson", deliveryJson);
 		return "store/order/order";
 	}
 	
+	@PostMapping("orderComplete")
+	@ResponseBody
+	public IamportResponse<Payment> orderComplete(String imp_uid) throws Exception {
+		return api.paymentByImpUid(imp_uid);
+	}
+	
+	@PostMapping("addOrder")
+	@ResponseBody
+	public int addOrder(String imp_uid, Long delivery, Long result, Long productCount, Long[] optionNum, Long[] optionCount, Long productNum, Long point, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO.setMileage(point);
+		memberService.updateMileage(memberDTO);
+		OrderDTO orderDTO = new OrderDTO();
+		if(delivery == 0L) {
+			IamportResponse<Payment> response = api.paymentByImpUid(imp_uid);
+			DeliveryDTO deliveryDTO = new DeliveryDTO();
+			deliveryDTO.setName(response.getResponse().getBuyerName());
+			deliveryDTO.setPhone(response.getResponse().getBuyerTel());
+			deliveryDTO.setNote("");
+			deliveryDTO.setDeliveryName("");
+			deliveryDTO.setUserId("");
+			deliveryDTO.setAddress(response.getResponse().getBuyerAddr());
+			deliveryDTO.setPostcode(Integer.parseInt(response.getResponse().getBuyerPostcode()));
+			deliveryDTO.setDetailAddress("");
+			deliveryDTO.setExtraAddress("");
+			memberService.setDelivery(deliveryDTO);
+			orderDTO.setAddressNum(deliveryDTO.getAddressNum());
+		} else {
+			orderDTO.setAddressNum(delivery);
+		}
+		orderDTO.setUserId(memberDTO.getUserId());
+		orderDTO.setPayment("card");
+		orderDTO.setProductNum(productNum);
+		if(result == 0) {
+			// buyAmount, productNum 세팅
+			orderDTO.setBuyAmount(productCount);
+		} else { // 필수 옵션 찾아서 count 넣기
+			orderDTO.setBuyAmount(0L);
+		}
+		orderDTO.setDeliveryStatus("결제 완료");
+		Long orderNum = memberService.getOrderNum();
+		orderDTO.setOrderNum(orderNum);
+		int result1 = memberService.setOrder(orderDTO);
+		for(int i=0; i<optionCount.length; i++) {
+			Order_OptionDTO order_OptionDTO = new Order_OptionDTO();
+			order_OptionDTO.setOptionNum(optionNum[i]);
+			order_OptionDTO.setOptionCount(optionCount[i]);
+			order_OptionDTO.setOrderNum(orderDTO.getOrderNum());
+			memberService.setOrderOption(order_OptionDTO);
+		}
+		
+		return result1;
+	}
+	
+	@PostMapping("addCart")
+	public String addCart(Long result, Long[] optionNum, Long[] optionCount, Long productNum, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.setUserId(memberDTO.getUserId());
+		cartDTO.setProductNum(productNum);
+		if(result == 0) {
+			// buyAmount, productNum 세팅
+			cartDTO.setBuyAmount(optionCount[optionCount.length-1]);
+		} else { // 필수 옵션 찾아서 count 넣기
+			cartDTO.setBuyAmount(0L);
+		}
+		memberService.addCart(cartDTO);
+		if(optionNum != null) {
+			for(int i=0; i<optionNum.length; i++) {
+				Cart_OptionDTO cart_OptionDTO = new Cart_OptionDTO();
+				cart_OptionDTO.setOptionNum(optionNum[i]);
+				cart_OptionDTO.setOptionCount(optionCount[i]);
+				cart_OptionDTO.setCartNum(cartDTO.getCartNum());
+				memberService.setCartOption(cart_OptionDTO);
+			}
+		}
+		return "redirect:/product/detail?productNum="+productNum;
+	}
 	
 	@GetMapping("interested")
 	public ModelAndView getInterestedHouse(HttpSession session) throws Exception{

@@ -15,7 +15,19 @@ public class RealEstateService {
 		return realEstateDAO.getAptRoadName(); 
 	}
 	
-	public int setAdd(RealEstateDTO realEstateDTO)throws Exception{
-		return realEstateDAO.setAdd(realEstateDTO);
+	public int setAddMM(RealEstateDTO realEstateDTO)throws Exception{
+		return realEstateDAO.setAddMM(realEstateDTO);
+	}
+	
+	public int setAddJS(RealEstateDTO realEstateDTO)throws Exception{
+		return realEstateDAO.setAddJS(realEstateDTO);
+	}
+	
+	public int setAddWS(RealEstateDTO realEstateDTO)throws Exception{
+		return realEstateDAO.setAddWS(realEstateDTO);
+	}
+	
+	public List<RealEstateDTO> getHaddress(String search)throws Exception{
+		return realEstateDAO.getHaddress(search);
 	}
 }

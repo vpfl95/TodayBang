@@ -30,28 +30,28 @@
 		</div>
 		<div class="carousel-inner" style="margin-top: 150px;">
 		  <div class="carousel-item active">
-			<img src="/resources/images/store/storeHome/1+1main.webp" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=2689"><img src="/resources/images/store/storeHome/samsung.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/samsung.webp" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=1552"><img src="/resources/images/store/storeHome/1+1main.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/refur.webp" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=1433"><img src="/resources/images/store/storeHome/refur.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/premium.jpg" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=2415"><img src="/resources/images/store/storeHome/premium.jpg" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/oGoods.webp" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=2181"><img src="/resources/images/store/storeHome/oGoods.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/fastDeli.webp" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=1763"><img src="/resources/images/store/storeHome/fastDeli.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/newLine.webp" class="d-block w-100" alt="...">
+			<a href="/exhibitions/detail?exhibitionCode=2746"><img src="/resources/images/store/storeHome/newLine.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		  <div class="carousel-item">
-			<img src="/resources/images/store/storeHome/fur.webp" class="d-block w-100" alt="...">
+			<a href="/category/main?category=0"><img src="/resources/images/store/storeHome/fur.webp" class="d-block w-100" alt="..."></a>
 		  </div>
 		</div>
 	</div>
@@ -61,8 +61,8 @@
             	<!-- Carousel 이미지 변경 버튼 -->
 	            <div class="exhibition">
 	                <div class="d-flex justify-content-center menu" style="text-align: center;">
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">1+1Shop</button>
-						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2">삼성 가전</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1">삼성 가전</button>
+						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2">1+1Shop</button>
 						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3">리퍼마켓</button>
 						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="3" aria-label="Slide 4">프리미엄 핫딜</button>
 						<button class="ex-button" type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="4" aria-label="Slide 5">오!굿즈</button>
@@ -159,7 +159,6 @@
 	<script>
 		getList();
 		getTodayList();
-		setPrice();
 	</script>
 </body>
 </html>

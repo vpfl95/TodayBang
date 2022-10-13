@@ -10,7 +10,8 @@
 		<typeAlias type="com.goodee.home.member.DeliveryDTO" alias="DeliveryDTO"/>
 		<typeAlias type="com.goodee.home.member.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.goodee.home.member.OrderDTO" alias="OrderDTO"/>
-		<!-- <typeAlias type="com.goodee.home.member.Order_OptionDTO" alias="Order_OptionDTO"/> -->
+		<typeAlias type="com.goodee.home.member.Order_OptionDTO" alias="Order_OptionDTO"/>
+		<typeAlias type="com.goodee.home.member.Cart_OptionDTO" alias="Cart_OptionDTO"/>
 		<typeAlias type="com.goodee.home.service.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardFileDTO" alias="BoardFileDTO"/>
@@ -41,6 +42,7 @@
 		<typeAlias type="com.goodee.home.util.MaemulPager" alias="MaemulPager"/>
 		<typeAlias type="com.goodee.home.review.HouseReviewDTO" alias="HouseReviewDTO"/>
 		<typeAlias type="com.goodee.home.interested.InterestedDTO" alias="InterestedDTO"/>
+		<typeAlias type="com.goodee.home.houseImage.HouseImageDTO" alias="HouseImageDTO"/>
 		
 		<typeAlias type="java.lang.String" alias="String"/>
 		<typeAlias type="java.lang.Long" alias="Long"/>

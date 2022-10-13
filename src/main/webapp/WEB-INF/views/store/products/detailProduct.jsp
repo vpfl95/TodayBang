@@ -22,7 +22,7 @@
 </head>
 <body>
     <c:import url="../../template/header.jsp"></c:import>
-
+    <input type="hidden" id="member" value="${member}">
 	<section class="container" id="section" style="margin-top: 100px; width: 80%;">
         <div id="jsonList" style="display: none;">${jsonList}</div>
         <div id="categoryLink" class="d-flex">
@@ -54,12 +54,11 @@
                 <div>
                     <div id="productName"></div>
                 </div>
-                <div>별점자리</div>
                 <div>
                     <div id="saleRate"></div>
-                    <div id="price1"></div>
+                    <div id="price1" class="price"></div>
                 </div>
-                <div id="price2"></div>
+                <div id="price2" class="price"></div>
                 <hr>
                 <div id="point"></div>
                 <div id="delivery"></div>
@@ -90,7 +89,7 @@
                 <div class="d-flex justify-content-between mb-2">
                     <div id="review"><b>리뷰</b></div>
                     <!-- Button trigger modal -->
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#reviewModal" id="reviewWriter"><b>리뷰쓰기</b></button>
+                    <button type="button" data-bs-toggle="modal" id="reviewWriter"><b>리뷰쓰기</b></button>
                 </div>
                 <div class="reviewList"></div>
 
@@ -105,7 +104,7 @@
                 <div class="d-flex justify-content-between mb-2 mt-3">
                     <div id="inquiry"><b>문의</b></div>
                     <!-- Button trigger modal -->
-                    <button type="button" data-bs-toggle="modal" data-bs-target="#inquiryModal" id="inqueryWriter"><b>문의하기</b></button>
+                    <button type="button" data-bs-toggle="modal" id="inqueryWriter"><b>문의하기</b></button>
                 </div>
                 <div class="inqueryList"></div>
             </div>

@@ -13,7 +13,6 @@ public class MaemulPager {
 	
 	public void makePage(Long totalCount) {
 		this.totalPage = totalCount%this.getPerPage()==0 ? totalCount/this.getPerPage() : totalCount/this.getPerPage()+1; 
-		
 	}
 	
 	//startRow

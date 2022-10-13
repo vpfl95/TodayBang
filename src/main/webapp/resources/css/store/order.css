@@ -134,7 +134,7 @@ label {
     border: none;
 }
 
-.price {
+.price1 {
     font-weight: 600;
 }
 
@@ -159,6 +159,17 @@ label {
     background-color: transparent;
 }
 
-.termSub1 {
+.termSub1{
     margin-left: 20px;
+}
+
+.termSub2 {
+    margin-left: 30px;
+}
+
+.contents { 
+    padding: 20px 0px;
+    font-size: 12px;
+    color: rgb(117, 117, 117);
+    line-height: 1.5;
 }

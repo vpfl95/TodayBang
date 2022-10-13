@@ -25,7 +25,7 @@
                 <h5><b>삼성전자 슈퍼세일</b></h5>
                 <hr>
                 <div class="d-grid gap-2 col-12 mx-auto mt-4">
-                    <button class="btn btn-info" type="button" style="color: white;">판매상품 목록보기</button>
+                    <button class="btn btn-info navigation-item" type="button" style="color: white;" data-anchor-case="#productList">판매상품 목록보기</button>
                 </div>
             </div>
         </div>
@@ -35,69 +35,71 @@
             <img src="/resources/images/store/exhibitions/ex2689/main2.jpg" alt="">
             <img src="/resources/images/store/exhibitions/ex2689/main3.jpg" alt="">
 
+            <a name="hotDeal"></a>
             <div class="oneQuarter d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/hotDealFocus.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/hotDealFocus.png" data-anchor-case="#hotDeal">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/liv.png" data-anchor-case="#liv">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/kit.png" data-anchor-case="#kit">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/dress.png" data-anchor-case="#dress">
             </div>
 
             <img src="/resources/images/store/exhibitions/ex2689/hotDealMain.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem1.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem2.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem3.jpg" alt="">
-            <img src="/resources/images/store/exhibitions/ex2689/samsungItem4.jpg" alt="">
+            <a href="/product/detail?productNum=494184"><img src="/resources/images/store/exhibitions/ex2689/samsungItem1.jpg" alt=""></a>
+            <a href="/product/detail?productNum=747576"><img src="/resources/images/store/exhibitions/ex2689/samsungItem2.jpg" alt=""></a>
+            <a href="/product/detail?productNum=772182"><img src="/resources/images/store/exhibitions/ex2689/samsungItem3.jpg" alt=""></a>
+            <a href="/product/detail?productNum=1258609"><img src="/resources/images/store/exhibitions/ex2689/samsungItem4.jpg" alt=""></a>
 
+            <a name="liv"></a>
             <div class="oneQuarter d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/livFocus.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/hotDeal.png" data-anchor-case="#hotDeal">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/livFocus.png" data-anchor-case="#liv">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/kit.png" data-anchor-case="#kit">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/dress.png" data-anchor-case="#dress">
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/livMain.jpg" alt="">
 
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=725181"><img src="/resources/images/store/exhibitions/ex2689/livItem1.jpg" alt=""></a>
+                <a href="/product/detail?productNum=767204"><img src="/resources/images/store/exhibitions/ex2689/livItem2.jpg" alt=""></a>
             </div>
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=1171392"><img src="/resources/images/store/exhibitions/ex2689/livItem3.jpg" alt=""></a>
+                <a href="/product/detail?productNum=526257"><img src="/resources/images/store/exhibitions/ex2689/livItem4.jpg" alt=""></a>
             </div>
-            <img src="/resources/images/store/exhibitions/ex2689/livMore.jpg" alt="">
+            <a name="kit"></a>
             <div class="oneQuarter d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kitFocus.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dress.png" alt="">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/hotDeal.png" data-anchor-case="#hotDeal">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/liv.png" data-anchor-case="#liv">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/kitFocus.png" data-anchor-case="#kit">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/dress.png" data-anchor-case="#dress">
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/kitMain.jpg" alt="">
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=1021584"><img src="/resources/images/store/exhibitions/ex2689/kitItem1.jpg" alt=""></a>
+                <a href="/product/detail?productNum=1486684"><img src="/resources/images/store/exhibitions/ex2689/kitItem2.jpg" alt=""></a>
             </div>
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=1248819"><img src="/resources/images/store/exhibitions/ex2689/kitItem3.jpg" alt=""></a>
+                <a href="/product/detail?productNum=699615"><img src="/resources/images/store/exhibitions/ex2689/kitItem4.jpg" alt=""></a>
             </div>
-            <img src="/resources/images/store/exhibitions/ex2689/kitMore.jpg" alt="">
+            <a name="dress"></a>
             <div class="oneQuarter d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/hotDeal.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/liv.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/kit.png" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dressFocus.png" alt="">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/hotDeal.png" data-anchor-case="#hotDeal">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/liv.png" data-anchor-case="#liv">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/kit.png" data-anchor-case="#kit">
+                <img class="navigation-item" src="/resources/images/store/exhibitions/ex2689/dressFocus.png" data-anchor-case="#dress">
             </div>
             <img src="/resources/images/store/exhibitions/ex2689/dressMain.jpg" alt="">
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=432186"><img src="/resources/images/store/exhibitions/ex2689/dressItem1.jpg" alt=""></a>
+                <a href="/product/detail?productNum=850627"><img src="/resources/images/store/exhibitions/ex2689/dressItem2.jpg" alt=""></a>
             </div>
-            <div class="oneHalf d-flex justify-content-center">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt="">
-                <img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt="">
+            <div class="oneHalf2 d-flex justify-content-center">
+                <a href="/product/detail?productNum=682051"><img src="/resources/images/store/exhibitions/ex2689/dressItem3.jpg" alt=""></a>
+                <a href="/product/detail?productNum=818625"><img src="/resources/images/store/exhibitions/ex2689/dressItem4.jpg" alt=""></a>
             </div>
-            <img src="/resources/images/store/exhibitions/ex2689/dressMore.jpg" alt="">
 
+            <a name="productList"></a>
             <div id="productList" data-ex-code="${exhibitionDTO.exhibitionCode}">
                 <!-- 상품 리스트 자리-->
             </div>
