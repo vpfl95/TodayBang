@@ -25,6 +25,23 @@ public class RealEstateDTO {
 	private String roadName;
 	private Long avg;
 	
+	private String userId;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 	public Long getWdeposit() {
 		return wdeposit;
 	}

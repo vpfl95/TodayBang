@@ -22,6 +22,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.goodee.home.realEstate.RealEstateDTO;
+import com.goodee.home.review.HouseReviewDTO;
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceService;
 import com.goodee.home.store.product.ProductDTO;
@@ -186,13 +188,17 @@ public class MemberController {
 	
 	
 	@GetMapping("profile")
-	public void getProfile(HttpSession session) throws Exception{
-		
-		
-		
+	public ModelAndView getProfile(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO =(MemberDTO) session.getAttribute("member");
+			
+		memberDTO = memberService.getMyPage(memberDTO);
 		
 		
+		mv.addObject("mypage", memberDTO);
+		
+		
+		return mv;
 	}
 	@GetMapping("rank")
 	public void getRank() throws Exception{
@@ -503,10 +509,15 @@ public class MemberController {
 		
 	}
 	@GetMapping("myRoomReview")
-	public void getMyRoomReview() throws Exception{
+	public ModelAndView getMyRoomReview(HttpSession session) throws Exception{
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
 		
 		
+		List<HouseReviewDTO> ar = memberService.getMyRoomReview(memberDTO);
 		
+		mv.addObject("list", ar);
+		return mv;
 	}
 	
 	
@@ -568,4 +579,35 @@ public class MemberController {
 		model.addAttribute("deliveryJson", deliveryJson);
 		return "store/order/order";
 	}
+	
+	
+	@GetMapping("interested")
+	public ModelAndView getInterestedHouse(HttpSession session) throws Exception{
+		
+		ModelAndView mv = new ModelAndView();
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
+		
+		List<RealEstateDTO> ar = memberService.getInterestedHouse(memberDTO);
+		
+		mv.addObject("list", ar);
+		
+		
+		return mv;
+		
+	}
+	
+	@GetMapping("deleteInterest")
+	public String deleteInterest(RealEstateDTO realEstateDTO,HttpSession session) throws Exception{
+		
+		MemberDTO memberDTO=(MemberDTO) session.getAttribute("member");
+		realEstateDTO.setUserId(memberDTO.getUserId());
+		
+		memberService.deleteInterest(realEstateDTO);
+		
+		
+		
+		return "/member/myPage";
+		
+	}
+	
 }

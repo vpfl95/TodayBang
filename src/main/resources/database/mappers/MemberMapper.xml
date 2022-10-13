@@ -237,6 +237,65 @@
 			</select>
 			
 			
+			<select id="getMyRoomReview" parameterType="MemberDTO" resultMap="getMyRoomReviewResult">
+			  SELECT HR.REVIEWNUM, HR.GRADE, HR."DATE", HR.CONTENTS, HR.NUM, RS.SIGUNGU, RS.BUNJI, RS.BUILDTYPE, RS.BUILDINGNM, RS.ROADNAME
+				    FROM HOUSEREVIEW HR
+				    INNER JOIN REALESTATE RS
+				    ON HR.NUM = RS.NUM
+				    WHERE HR.USERID=#{userId} 
+			</select>
+			<resultMap type="HouseReviewDTO" id="getMyRoomReviewResult">
+				<id column="REVIEWNUM" property="reviewNum"/>
+				<result column="GRADE" property="grade"/>
+				<result column="DATE" property="date"/>
+				<result column="CONTENTS" property="contents"/>
+				<result column="NUM" property="num"/>
+			
+			<association property="realEstateDTO" javaType="RealEstateDTO">
+				<result column="SIGUNGU" property="sigungu"/>
+				<result column="BUNJI" property="bunji"/>
+				<result column="BUILDTYPE" property="buildType"/>
+				<result column="BUILDINGNM" property="buildingNm"/>
+				<result column="ROADNAME" property="roadName"/>
+			
+			</association>
+			
+			
+			</resultMap>
+			
+			
+			<select id="getInterestedHouse" parameterType="MemberDTO" resultType="RealEstateDTO">
+			  SELECT RS.SIGUNGU, RS.BUNJI, RS.BUILDTYPE, RS.BUILDINGNM, RS.ROADNAME , RS.NUM
+				FROM INTERESTED IT
+				    INNER JOIN REALESTATE RS
+				    ON IT.NUM = RS.NUM
+				    WHERE IT.USERID=#{userId}
+			</select>
+			
+			<delete id="deleteInterest" parameterType="RealEstateDTO">
+				DELETE INTERESTED WHERE NUM = #{num} AND USERID=#{userId}
+			
+			</delete>
+			
+			
+			<select id="getMyPage" parameterType="MemberDTO" resultType="MemberDTO">
+			
+				SELECT M.MILEAGE , C.CNUM , I.INUM
+	            FROM MEMBERS M
+	            LEFT JOIN (SELECT COUNT(CARTNUM) CNUM,USERID 
+	                        FROM CART 
+	                        WHERE USERID=#{userId}
+	                        GROUP BY USERID) C
+	            ON M.USERID = C.USERID
+	            LEFT JOIN (SELECT COUNT(NUM) INUM,USERID 
+	                        FROM INTERESTED 
+	                        WHERE USERID=#{userId}
+	                        GROUP BY USERID) I
+	            ON M.USERID = I.USERID
+				WHERE M.USERID=#{userId}
+			
+			
+			</select>
 			
 			
 			

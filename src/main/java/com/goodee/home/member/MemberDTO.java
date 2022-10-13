@@ -19,6 +19,9 @@ public class MemberDTO {
 	
 	private RoleDTO roleDTO;
 	private Long roleNum;
+	private Long iNum;
+	private Long cNum;
+	private Long mileage;
 	
 	
 	
@@ -29,8 +32,24 @@ public class MemberDTO {
 	
 	
 	
-	
-	
+	public Long getMileage() {
+		return mileage;
+	}
+	public void setMileage(Long mileage) {
+		this.mileage = mileage;
+	}
+	public Long getiNum() {
+		return iNum;
+	}
+	public void setiNum(Long iNum) {
+		this.iNum = iNum;
+	}
+	public Long getcNum() {
+		return cNum;
+	}
+	public void setcNum(Long cNum) {
+		this.cNum = cNum;
+	}
 	public Long getRoleNum() {
 		return roleNum;
 	}

@@ -110,6 +110,7 @@
 	
 
 </style>
+
 </head>
 <body>
 	
@@ -128,7 +129,7 @@
 				<div class="d-flex" style="width: 100%;">
 					<div  style="width:98%;">
 						 
-						<a href="/product/detail?productNum=${dto.productNum }&revNum=${dto.revNum}"><span>[${dto.brand}]</span>	<span>${dto.productName }</span></a>
+						<a href="/product/detail?productNum=${dto.productNum }&revNum=${dto.revNum}"><span style="color: #424242">[${dto.brand}]</span>	<span>${dto.productName }</span></a>
 					</div>
 					
 				</div>

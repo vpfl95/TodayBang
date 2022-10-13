@@ -1542,3 +1542,28 @@ function myPdReview() {
 
 }
 
+
+function interest(){
+
+    const deleteIntersted = document.getElementsByClassName("deleteIntersted");
+
+    for(de of deleteIntersted){
+
+        de.addEventListener("click",function(event){
+
+            let num= event.target.getAttribute("data-a");
+            
+            location.href ="./deleteInterest?num="+num;
+
+
+
+
+
+        })
+
+
+
+    }
+
+
+}

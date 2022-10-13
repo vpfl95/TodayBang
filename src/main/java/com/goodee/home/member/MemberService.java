@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.goodee.home.realEstate.RealEstateDTO;
+import com.goodee.home.review.HouseReviewDTO;
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.service.ServiceDAO;
 import com.goodee.home.store.product.ProductOptionDTO;
@@ -236,5 +238,27 @@ public class MemberService {
 		return memberDAO.deleteCart(cartDTO);
 	}
 	
+	public List<HouseReviewDTO> getMyRoomReview(MemberDTO memberDTO) throws Exception{
+		
+		
+		return memberDAO.getMyRoomReview(memberDTO);
+	}
 	
+	public List<RealEstateDTO> getInterestedHouse(MemberDTO memberDTO) throws Exception{
+		
+		
+		return memberDAO.getInterestedHouse(memberDTO);
+	}
+	
+	public int deleteInterest(RealEstateDTO realEstateDTO) throws Exception{
+		
+		
+		return memberDAO.deleteInterest(realEstateDTO);
+	}
+	
+	public MemberDTO getMyPage(MemberDTO memberDTO)throws Exception{
+		
+		
+		return memberDAO.getMyPage(memberDTO);
+	}	
 }

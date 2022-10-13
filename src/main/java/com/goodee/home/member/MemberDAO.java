@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
 
+import com.goodee.home.realEstate.RealEstateDTO;
+import com.goodee.home.review.HouseReviewDTO;
 import com.goodee.home.service.QnaDTO;
 import com.goodee.home.store.product.ProductOptionDTO;
 import com.goodee.home.store.review.ProductReviewDTO;
@@ -163,5 +165,27 @@ public class MemberDAO {
 		
 		return sqlSession.selectList(NAMESPACE+ "deleteDeliveryCheck",deliveryDTO);
 	}
+	
+	public List<HouseReviewDTO> getMyRoomReview(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getMyRoomReview",memberDTO);
+	}
+	
+	public List<RealEstateDTO> getInterestedHouse(MemberDTO memberDTO) throws Exception{
+		
+		
+		return sqlSession.selectList(NAMESPACE+ "getInterestedHouse",memberDTO);
+	}
+	public int deleteInterest(RealEstateDTO realEstateDTO) throws Exception{
+		
+		
+		return sqlSession.delete(NAMESPACE+ "deleteInterest",realEstateDTO);
+	}	
+	public MemberDTO getMyPage(MemberDTO memberDTO)throws Exception{
+		
+		
+		return sqlSession.selectOne(NAMESPACE+ "getMyPage",memberDTO);
+	}	
 	
 }

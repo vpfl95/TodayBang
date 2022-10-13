@@ -30,10 +30,10 @@
 					
 					<hr>
 					<div id = "pf-userAct" class = "column">
-						<div>마일리지</div>
-						<div>회원 등급 : </div>
-						<div>장바구니 수 : </div>
-						<div>매물찜 수 : </div>
+						<div>마일리지 ${mypage.mileage }</div>
+						<div>회원 등급 : ${MemberRole.roleNum}</div>
+						<div>장바구니 수 : ${mypage.cNum }</div>
+						<div>매물찜 수 : ${mypage.iNum }</div>
 					</div>
 
 				</div>

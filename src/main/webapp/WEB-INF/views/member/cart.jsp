@@ -6,6 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+ <link href="/resources/css/member/myPage2.css" rel="stylesheet">
 </head>
 <body>
 	<!-- 장바구니 -->

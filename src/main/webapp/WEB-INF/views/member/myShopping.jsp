@@ -12,6 +12,7 @@
 		<link href="/resources/images/MiniLogo.png" rel="shortcut icon" type="image/x-icon">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
 	<link href= "/resources/css/member/myPage.css" rel="stylesheet">
+	<link href="/resources/css/member/myPage2.css" rel="stylesheet">
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 </head>
@@ -29,7 +30,7 @@
 				<li id="myCart" class="submenuList menu2" data-a ="/member/cart">장바구니</li>
 				<li id="deliveryDetail" class="submenuList menu2" data-a ="/member/deliveryDetail">배송내역</li>
 				<li id="buyDetail" class="submenuList menu2" data-a ="/member/buyDetail">구매내역</li>
-				<li id="" class="submenuList menu2" data-a ="#">관심매물</li>
+				<li id="" class="submenuList menu2" data-a ="/member/interested">관심매물</li>
 				
 			</ul>
 		<hr style="margin: 0;">
