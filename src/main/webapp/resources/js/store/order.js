@@ -32,6 +32,12 @@ const orderAllCheck = document.querySelector('#orderAllCheck');
 const orderCheck = document.querySelectorAll('.orderCheck');
 const orderCheck1 = document.querySelector('#orderCheck1');
 const orderCheckSub = document.querySelectorAll('.orderCheckSub');
+const pointAll = document.querySelector('#pointAll');
+const usePointValue = document.querySelectorAll('.usePointValue');
+const pointCost = document.querySelector('#pointCost');
+const usePoint = document.querySelectorAll('.usePoint');
+const price1 = document.querySelectorAll('.price1');
+const deliFee = document.querySelectorAll('.deliFee');
 
 
 for(sp of samplePostcode) {
@@ -280,4 +286,25 @@ for(ch of orderCheckSub){
             orderCheck1.checked = false;
         }
     }
+}
+
+pointAll.onclick=function() {
+    let mileage = usePointValue[0].innerHTML.split(' ');
+    pointCost.value=mileage[0];
+
+    usePoint[0].innerHTML=mileage[0];
+    totalPrice[0].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-mileage[0];
+    totalPrice[1].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-mileage[0];
+    setPrice();
+}
+
+pointCost.onkeyup=function() {
+    let mileage = usePointValue[0].innerHTML.split(' ');
+    if(parseInt(pointCost.value) > parseInt(mileage[0])) {
+        pointCost.value = mileage[0];
+    }
+    usePoint[0].innerHTML=pointCost.value;
+    totalPrice[0].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-usePoint[0].innerHTML;
+    totalPrice[1].innerHTML= parseInt(price1[0].innerHTML.replace(/,+/g, ''))+parseInt(deliFee[0].innerHTML)-usePoint[0].innerHTML;
+    setPrice();
 }

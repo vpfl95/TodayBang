@@ -616,7 +616,57 @@ section.onclick=function(event) {
             if(check) {
                 $('section').find('input.frmProductNum')[0].value=jsonList[0].productNum;
                 $('section').find('input.frmProductNum')[1].value=jsonList[0].productNum;
-                $('section').find('form#frmCheckout').submit();
+                $("#frmCheckout").attr("action", "/member/checkout");
+                $("#frmCheckout").submit();
+            } else {
+                alert("필수 옵션을 선택해주세요");
+            }
+        }
+    }
+
+    if(event.target.classList.contains('cart')) {
+        if(member == '') {
+            location.href='/member/login';
+        } else {
+            check=true;
+            if($('section').find('select.option1').length != 0) {
+                if($('section').find('select.option1')[0].firstChild.nextSibling.dataset.optionPrice == -2) {
+                    check=false;
+                    for(let i=0; i<$('section').find('option.option1_op').length; i++) {
+                        if(optionList.includes($('section').find('option.option1_op')[i].value)) {
+                            check=true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if($('section').find('select.option2').length != 0) {
+                if($('section').find('select.option2')[0].firstChild.nextSibling.dataset.optionPrice == -2) {
+                    check=false;
+                    for(let i=0; i<$('section').find('option.option2_op').length; i++) {
+                        if(optionList.includes($('section').find('option.option2_op')[i].value)) {
+                            check=true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if($('section').find('select.option3').length != 0) {
+                if($('section').find('select.option3')[0].firstChild.nextSibling.dataset.optionPrice == -2) {
+                    check=false;
+                    for(let i=0; i<$('section').find('option.option3_op').length; i++) {
+                        if(optionList.includes($('section').find('option.option3_op')[i].value)) {
+                            check=true;
+                            break;
+                        }
+                    }
+                }
+            }
+            if(check) {
+                $('section').find('input.frmProductNum')[0].value=jsonList[0].productNum;
+                $('section').find('input.frmProductNum')[1].value=jsonList[0].productNum;
+                $("#frmCheckout").attr("action", "/member/addCart");
+                $("#frmCheckout").submit();
             } else {
                 alert("필수 옵션을 선택해주세요");
             }

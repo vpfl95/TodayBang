@@ -11,6 +11,7 @@
 		<typeAlias type="com.goodee.home.member.CartDTO" alias="CartDTO"/>
 		<typeAlias type="com.goodee.home.member.OrderDTO" alias="OrderDTO"/>
 		<typeAlias type="com.goodee.home.member.Order_OptionDTO" alias="Order_OptionDTO"/>
+		<typeAlias type="com.goodee.home.member.Cart_OptionDTO" alias="Cart_OptionDTO"/>
 		<typeAlias type="com.goodee.home.service.NoticeDTO" alias="NoticeDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardDTO" alias="BoardDTO"/>
 		<typeAlias type="com.goodee.home.service.BoardFileDTO" alias="BoardFileDTO"/>

@@ -204,7 +204,10 @@
 			
 			
 			<insert id="addCart" parameterType="CartDTO" >
-				INSERT INTO CART VALUES (TODAY_SEQ.NEXTVAL,#{userId},#{productNum},#{buyAmount})
+				<selectKey keyProperty="cartNum" order="BEFORE" resultType="long">
+					SELECT TODAY_SEQ.NEXTVAL FROM DUAL
+				</selectKey>
+				INSERT INTO CART VALUES (#{cartNum},#{userId},#{productNum},#{buyAmount})
 			</insert>
 			
 			<delete id="deleteCart" parameterType="CartDTO">
@@ -254,6 +257,10 @@
 			
 			<insert id="setOrderOption" parameterType="Order_OptionDTO">
 				INSERT INTO "ORDER-OPTION" VALUES (ORDER_SEQ.NEXTVAL, #{orderNum}, #{optionNum}, #{optionCount})
+			</insert>
+			
+			<insert id="setCartOption" parameterType="Cart_OptionDTO">
+				INSERT INTO "CART-OPTION" VALUES (ORDER_SEQ.NEXTVAL, #{cartNum}, #{optionNum}, #{optionCount})
 			</insert>
 			
 			<update id="updateMileage" parameterType="MemberDTO">

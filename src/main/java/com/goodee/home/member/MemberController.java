@@ -618,14 +618,13 @@ public class MemberController {
 		if(result == 0) {
 			// buyAmount, productNum 세팅
 			orderDTO.setBuyAmount(productCount);
-		} else {
+		} else { // 필수 옵션 찾아서 count 넣기
 			orderDTO.setBuyAmount(0L);
 		}
 		orderDTO.setDeliveryStatus("결제 완료");
 		Long orderNum = memberService.getOrderNum();
 		orderDTO.setOrderNum(orderNum);
 		int result1 = memberService.setOrder(orderDTO);
-		System.out.println(orderDTO.getOrderNum());
 		for(int i=0; i<optionCount.length; i++) {
 			Order_OptionDTO order_OptionDTO = new Order_OptionDTO();
 			order_OptionDTO.setOptionNum(optionNum[i]);
@@ -637,5 +636,28 @@ public class MemberController {
 		return result1;
 	}
 	
-
+	@PostMapping("addCart")
+	public String addCart(Long result, Long[] optionNum, Long[] optionCount, Long productNum, HttpSession session) throws Exception {
+		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		CartDTO cartDTO = new CartDTO();
+		cartDTO.setUserId(memberDTO.getUserId());
+		cartDTO.setProductNum(productNum);
+		if(result == 0) {
+			// buyAmount, productNum 세팅
+			cartDTO.setBuyAmount(optionCount[optionCount.length-1]);
+		} else { // 필수 옵션 찾아서 count 넣기
+			cartDTO.setBuyAmount(0L);
+		}
+		memberService.addCart(cartDTO);
+		if(optionNum != null) {
+			for(int i=0; i<optionNum.length; i++) {
+				Cart_OptionDTO cart_OptionDTO = new Cart_OptionDTO();
+				cart_OptionDTO.setOptionNum(optionNum[i]);
+				cart_OptionDTO.setOptionCount(optionCount[i]);
+				cart_OptionDTO.setCartNum(cartDTO.getCartNum());
+				memberService.setCartOption(cart_OptionDTO);
+			}
+		}
+		return "redirect:/product/detail?productNum="+productNum;
+	}
 }

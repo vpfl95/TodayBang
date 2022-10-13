@@ -158,8 +158,8 @@
             </div>
             <hr style="width: 95%; margin-top: 8px;">
             <div class="d-flex">
-                <input type="text" class="form-control" name="pointCost" id="pointCost" style="width: 30%; margin-right: 10px;" placeholder="0">
-                <input type="button" class="pointAll" value="전액사용" style="width: 15%;">
+                <input type="number" class="form-control" name="pointCost" id="pointCost" style="width: 30%; margin-right: 10px;" placeholder="0">
+                <input type="button" id="pointAll" value="전액사용" style="width: 15%;">
             </div>
             <div style="margin-top: 10px;">사용가능 포인트
                 <span class="usePointValue">${mileage} P</span>
@@ -173,15 +173,15 @@
                         <h5 class="mt-3" style="font-weight: 600;">결제금액</h5>
                         <div class="d-flex justify-content-between mt-4">
                             <div style="font-size: 15px;">총 상품 금액</div>
-                            <div class="price1 price">${totalPrice}원</div>
+                            <div><span class="price1 price">${totalPrice}</span>원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">배송비</div>
-                            <div class="deleFee">${detail.deliFee}원</div>
+                            <div><span class="deliFee">${detail.deliFee}</span>원</div>
                         </div>
                         <div class="d-flex justify-content-between mt-2">
                             <div style="font-size: 15px;">포인트 사용</div>
-                            <div class="point">0원</div>
+                            <div><span class="usePoint">0</span>P</div>
                         </div>
                         <hr style="width: 90%; margin: 30px auto 0 auto;">
         

@@ -255,4 +255,14 @@ public class MemberService {
 	public Long getMileage(MemberDTO memberDTO) throws Exception {
 		return memberDAO.getMileage(memberDTO);
 	}
+	
+	public int addCart(CartDTO cartDTO) throws Exception{
+		
+		
+		return memberDAO.addCart(cartDTO);
+	}
+	
+	public int setCartOption(Cart_OptionDTO cart_OptionDTO) throws Exception {
+		return memberDAO.setCartOption(cart_OptionDTO);
+	}
 }

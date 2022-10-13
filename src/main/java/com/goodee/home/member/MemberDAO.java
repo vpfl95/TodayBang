@@ -183,4 +183,8 @@ public class MemberDAO {
 	public Long getMileage(MemberDTO memberDTO) throws Exception {
 		return sqlSession.selectOne(NAMESPACE+"getMileage", memberDTO);
 	}
+	
+	public int setCartOption(Cart_OptionDTO cart_OptionDTO) throws Exception {
+		return sqlSession.insert(NAMESPACE+"setCartOption", cart_OptionDTO);
+	}
 }
