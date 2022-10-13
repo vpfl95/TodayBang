@@ -31,7 +31,7 @@
 				<li id="delivery" class="submenuList menu2 menu2after"><a href="/member/delivery" class="selectMenu">배송지정보</a></li>
 				
 			</ul>
-		<hr style="margin: 0">
+		<hr style="margin: 0;">
 	</div>
 <div class = "row justify-content-center mt-5">
 <div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
@@ -40,50 +40,52 @@
 			<div class = "pf-title">배송지 정보</div>
 			<hr>
 				
-			<div id = "deliveryBody">
+			<div id = "deliveryBody" class="de-tableColor">
 			
 			<!-- 몸통 -->
 				
 			<form action="./updateDelivery" method="POST" id="deliveryForm">
 				<input type="hidden" value ="${delivery[num].addressNum}" id="addressinput" name = "addressNum" class="form-control ">
-				<table class="table" id="de-table">
-						  <thead>
+				<table class="table table-borderless "  id="de-table">
+						  <thead class= "noneColor">
 						    <tr>
 						    
 						    <c:forEach items="${delivery }" var="del" varStatus="index">
-								<th><a href="/member/delivery?num=${index.index }" class = "de-ListItem" >${del.deliveryName }</a></th>
+								<th width="25%" class="de-th"><a href="/member/delivery?num=${index.index }" class = "de-ListItem" >${del.deliveryName }</a></th>
 							</c:forEach>
 							
 							
 							<c:if test="${length<3 }">
-								<th><a href="/member/delivery?num=3" class = "de-ListItem" >추가하기</a></th>
+								<th width="25%" class="de-th"><a href="/member/delivery?num=3" class = "de-ListItem" >추가하기</a></th>
 							</c:if>
 							<c:if test="${length<2 }">
-								<th></th>
+								<th width="25%"></th>
 							</c:if>
 					    	<c:if test="${length<1 }">
-								<th></th>
+								<th width="25%"></th>
 							</c:if>
+							<th width="25%" class="last-th"></th>
 						    </tr>
 						    
 						    
 						    
 						  </thead>
-						  <tbody>
+						  <tbody >
+						  	<tr height="30px"></tr>
 						  	<tr>
 						      	<th scope="row">배송지 별칭</th>
 						      	
-						   		<td><input type="text" value ="${delivery[num].deliveryName }"  name = "deliveryName" class="form-control "  required autofocus ></td>
+						   		<td colspan="2"><input type="text" value ="${delivery[num].deliveryName }"  name = "deliveryName" class="form-control "  required autofocus ></td>
 						        <td></td>
 						    </tr>
 						    <tr>
 						      	<th scope="row">수령인</th>
-						   		<td><input type="text" value ="${delivery[num].name }" name = "name"  class="form-control " required  ></td>
+						   		<td colspan="2"><input type="text" value ="${delivery[num].name }" name = "name"  class="form-control " required  ></td>
 						        <td></td>
 						    </tr>
 						    <tr>
 						      <th scope="row">전화번호</th>
-						      <td colspan="2"><div id= "phone">
+						      <td colspan="3"><div id= "phone">
 							        	<input type="hidden" name = "phone" id="submitPhone" value ="${delivery[num].phone }">
 								       
 								        <select name="phone1" id="phoneFirst" class="form-control " required>
@@ -103,29 +105,29 @@
 						      <th scope="row">주소</th>
 						       
 							   <td><input type="text" value ="${delivery[num].postcode}" name="postcode" id="sample6_postcode" class="form-control " placeholder="우편번호"></td>
-								<td><input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기"><br></td>
+								<td><input type="button" onclick="sample6_execDaumPostcode()" class="postBtn" value="우편번호 찾기"><br></td>
 								
 								 <tr>
 								<th></th>
-								<td colspan="2"><input type="text" value ="${delivery[num].address}" name="address" id="sample6_address" class="form-control " placeholder="주소"><br></td>
+								<td colspan="3"><input type="text" value ="${delivery[num].address}" name="address" id="sample6_address" class="form-control " placeholder="주소"><br></td>
 								 </tr>
 								<tr>
 								<th></th>
-								<td><input type="text" value ="${delivery[num].detailAddress}" name="detailAddress" id="sample6_detailAddress" class="form-control " placeholder="상세주소"></td>
+								<td colspan="2"><input type="text" value ="${delivery[num].detailAddress}" name="detailAddress" id="sample6_detailAddress" class="form-control " placeholder="상세주소"></td>
 								<td><input type="text" value ="${delivery[num].extraAddress}" name="extraAddress" id="sample6_extraAddress" class="form-control " placeholder="참고항목"></td>
 							   </tr>
 							      							     
 						   
 						    <tr>
 						      <th scope="row">요청사항</th>
-						      <td colspan="2"><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  ></td>
+						      <td colspan="3"><input type="text" value ="${delivery[num].note }"  name = "note" class="form-control"  ></td>
 						    </tr>
 						  </tbody>
 						</table>
 						
 						<div class = "btnDiv">
-							<button id="delDeleteBtn" class="de-Btn" type="button">삭제</button>
-						  	<button id="delUpdateBtn" class="de-Btn" type="button">저장</button>
+							<button id="delDeleteBtn" class="de-Btn inputbutton" type="button">삭제</button>
+						  	<button id="delUpdateBtn" class="de-Btn inputbutton" type="button">저장</button>
 				
 						</div>
 					</form>
@@ -163,6 +165,7 @@
                     // 법정동의 경우 마지막 문자가 "동/로/가"로 끝난다.
                     if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
                         extraAddr += data.bname;
+                        
                     }
                     // 건물명이 있고, 공동주택일 경우 추가한다.
                     if(data.buildingName !== '' && data.apartment === 'Y'){
@@ -181,7 +184,7 @@
 
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode;
-                document.getElementById("sample6_address").value = addr;
+                document.getElementById("sample6_address").value = addx`r;
                 // 커서를 상세주소 필드로 이동한다.
                 document.getElementById("sample6_detailAddress").focus();
             }
@@ -199,7 +202,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/resources/js/member.js"></script>
 <script type="text/javascript">
-	myPage();
+	
+	myPageMenu();
 	delivery();
 
 	 $(document).ready(function(){
