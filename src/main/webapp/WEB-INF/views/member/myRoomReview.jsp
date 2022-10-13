@@ -137,7 +137,7 @@
 				<div class="d-flex" style="width: 100%;">
 					<div  style="width:98%;">
 						 
-						<a href="#"><span style="color: #424242">[${dto.realEstateDTO.buildType }]</span> ${dto.realEstateDTO.sigungu }	<span>${dto.realEstateDTO.buildingNm }</span></a>
+						<a href="#"><div style="color: #424242">[${dto.realEstateDTO.buildType }]</div> ${dto.realEstateDTO.sigungu }	<span style="font-weight: 600;font-size: 18px">${dto.realEstateDTO.buildingNm }</span></a>
 					</div>
 					<div>
 						
@@ -171,7 +171,7 @@
 	</div>
 				<div style="">
 									
-						<img class="reviewImg" src="/resources/images/interSample.jpg" 
+						<img class="reviewImg" src="/resources/upload/realestate/${dto.houseImageDTOs[0].fileName }" 
 						alt="..." style="width: 100px;">
 					
 				</div> 

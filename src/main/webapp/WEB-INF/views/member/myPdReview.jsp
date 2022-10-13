@@ -135,9 +135,9 @@
 		<div class="mt-3" style="padding: 15px">
 			<div class="d-flex justify-content-between">
 				<div class="d-flex" style="width: 100%;">
-					<div  style="width:98%;">
+					<div  style="width:98%; margin-bottom: 3px">
 						 
-						<a href="/product/detail?productNum=${dto.productNum }&revNum=${dto.revNum}"><span style="color: #424242">[${dto.brand}]</span>	<span>${dto.productName }</span></a>
+						<a href="/product/detail?productNum=${dto.productNum }&revNum=${dto.revNum}"><span style="color: #424242">[${dto.brand}]</span>	<span style="font-weight: 600;font-size: 18px">${dto.productName }</span></a>
 					</div>
 					
 				</div>

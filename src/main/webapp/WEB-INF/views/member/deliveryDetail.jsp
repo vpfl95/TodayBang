@@ -13,7 +13,7 @@
 	<!-- 장바구니 -->
 	<div id="order-body">
 	<h3>${url }</h3>	
-		<div id="order-status-list">
+		<div id="order-status-list" style="font-weight: 600">
 			<div class ="order-status order-deliveryDetail">입금대기<p>${stat[0] }<p></div>
 			<div class ="order-status order-deliveryDetail">결제완료<p>${stat[1] }<p></div>
 			<div class ="order-status order-deliveryDetail">배송준비<p>${stat[2] }<p></div>
@@ -31,8 +31,8 @@
 			<tr>
 				<th width="120px">주문번호</th>
 				<th>상품정보</th>
-				<th  width="120px">주문일자</th>
-				<th  width="130px">주문상태</th>
+				<th  width="120px" style="text-align: center;">주문일자</th>
+				<th  width="130px" style="text-align: center;">주문상태</th>
 				
 			</tr>
 		</thead>
@@ -89,8 +89,14 @@
 								
 								<c:set var="poPrice" value=" ${opPrice+ (list.productDTO.price*list.buyAmount) + list.productDTO.deliFee}"></c:set>
 								<div class="cart-pd-price">
-								<div class="cart-buyAmount" >수량 : ${list.buyAmount} 개</div>
+								
+								<c:if test="${list.buyAmount ne 0}">
+									<div class="cart-buyAmount" >수량 : ${list.buyAmount} 개</div>
+								</c:if>
+								
+								
 								<span class="cart-deliFee cart-get" data-a="${list.productDTO.deliFee}">배송비 : ${list.productDTO.deliFee} 원</span>
+								
 								<span id="cart-detail-pay" class="cart-price cart-get" data-a="${poPrice}"> ${poPrice} 원</span>
 								</div>
 							</div>
@@ -104,8 +110,8 @@
 						
 					</td>
 					
-					<td>${list.orderDate }</td>
-					<td>
+					<td style="text-align: center; ">${list.orderDate }</td>
+					<td style="text-align: center;">
 						<span class="deStatus">${list.deliveryStatus }</span> 
 						<div style="height: 20px;"></div>
 						<c:if test="${check }">
@@ -137,7 +143,7 @@
 	<script type="text/javascript">
 		
 		deliveryDetail();
-		 cart();
+		
 	</script>
 	
 </body>

@@ -1421,7 +1421,7 @@ function cart(){
 
     function cartPrice() {
 
-
+       
 
 
         let resultDeliFee=0;
@@ -1433,7 +1433,18 @@ function cart(){
                 
                 let deilf =  parseInt(gi[0].getAttribute("data-a"));
                 let lastp = parseInt(gi[1].getAttribute("data-a"));
-                console.log("hi" +lastp);
+             
+                if(deilf == 0){
+                    gi[0].innerHTML = "배송비 무료";
+
+
+                }else{
+                    let del=deilf.toString()
+                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+                    gi[0].innerHTML = "배송비 :"+del +"원";
+
+                }
                 resultDeliFee += deilf;
                 resultLastPrice += lastp;
 

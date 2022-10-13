@@ -1,8 +1,10 @@
 package com.goodee.home.realEstate;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.goodee.home.houseImage.HouseImageDTO;
 
 public class RealEstateDTO {
 	private Long num;
@@ -27,6 +29,7 @@ public class RealEstateDTO {
 	
 	private String userId;
 	
+	private String fileName;
 	
 	
 	
@@ -36,6 +39,19 @@ public class RealEstateDTO {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	public String getFileName() {
+		return fileName;
+	}
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
 	public String getUserId() {
 		return userId;
 	}

@@ -639,6 +639,12 @@ tr,th{
     flex-direction: column;
 
 }
+.myPdReview-body{
+    margin-top: -30px;
+
+
+}
+
 .myQna-div{
 
     width: 100%;

@@ -22,7 +22,7 @@
 			<c:forEach items="${list }" var="dto">
 					<div class = "houseBox">
 						<div class="houseImgBox">
-							<img class ="houseImg" alt="" src="/resources/images/interSample.jpg">
+							<img class ="houseImg" alt="" src="/resources/upload/realestate/${dto.fileName }">
 						</div>
 						<div>
 							<span style="color: gray; font-weight: 400">[${dto.buildType }]</span> 

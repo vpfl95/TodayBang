@@ -255,10 +255,12 @@
 				INSERT INTO "ORDER" VALUES (#{orderNum},#{userId},#{addressNum},SYSDATE,#{payment},#{productNum},#{buyAmount},#{deliveryStatus})
 			</insert>
 			<select id="getMyRoomReview" parameterType="MemberDTO" resultMap="getMyRoomReviewResult">
-			  SELECT HR.REVIEWNUM, HR.GRADE, HR."DATE", HR.CONTENTS, HR.NUM, RS.SIGUNGU, RS.BUNJI, RS.BUILDTYPE, RS.BUILDINGNM, RS.ROADNAME
+			  SELECT HR.REVIEWNUM, HR.GRADE, HR."DATE", HR.CONTENTS, HR.NUM, RS.SIGUNGU, RS.BUNJI, RS.BUILDTYPE, RS.BUILDINGNM, RS.ROADNAME ,HI.FILENAME
 				    FROM HOUSEREVIEW HR
 				    INNER JOIN REALESTATE RS
 				    ON HR.NUM = RS.NUM
+				    LEFT JOIN HOUSEIMAGE HI
+                    ON HR.NUM = HI.NUM
 				    WHERE HR.USERID=#{userId} 
 			</select>
 			<resultMap type="HouseReviewDTO" id="getMyRoomReviewResult">
@@ -276,17 +278,22 @@
 				<result column="ROADNAME" property="roadName"/>
 			
 			</association>
+			<collection property="houseImageDTOs" javaType="List" ofType="HouseImageDTO">
+				<result column="FILENAME" property="fileName"/>
+			</collection>
 			
 			
 			</resultMap>
 			
 			
 			<select id="getInterestedHouse" parameterType="MemberDTO" resultType="RealEstateDTO">
-			  SELECT RS.SIGUNGU, RS.BUNJI, RS.BUILDTYPE, RS.BUILDINGNM, RS.ROADNAME , RS.NUM
+			   SELECT RS.SIGUNGU, RS.BUNJI, RS.BUILDTYPE, RS.BUILDINGNM, RS.ROADNAME , RS.NUM , HI.FILENAME
 				FROM INTERESTED IT
 				    INNER JOIN REALESTATE RS
 				    ON IT.NUM = RS.NUM
-				    WHERE IT.USERID=#{userId}
+                    LEFT JOIN HOUSEIMAGE HI
+                    ON IT.NUM = HI.NUM
+				    WHERE IT.USERID= #{userId}
 			</select>
 			
 			<delete id="deleteInterest" parameterType="RealEstateDTO">

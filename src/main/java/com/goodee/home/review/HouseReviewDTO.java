@@ -1,8 +1,10 @@
 package com.goodee.home.review;
 
 import java.sql.Date;
+import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.goodee.home.houseImage.HouseImageDTO;
 import com.goodee.home.realEstate.RealEstateDTO;
 
 public class HouseReviewDTO {
@@ -21,8 +23,23 @@ public class HouseReviewDTO {
 	private Long resGrade;
 	private RealEstateDTO realEstateDTO;
 	
+	private List<HouseImageDTO> houseImageDTOs;
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	public List<HouseImageDTO> getHouseImageDTOs() {
+		return houseImageDTOs;
+	}
+	public void setHouseImageDTOs(List<HouseImageDTO> houseImageDTOs) {
+		this.houseImageDTOs = houseImageDTOs;
+	}
 	public RealEstateDTO getRealEstateDTO() {
 		return realEstateDTO;
 	}
