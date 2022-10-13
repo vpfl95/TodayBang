@@ -179,7 +179,10 @@ section.onchange=function(event) {
 
     if(event.target.classList.contains('option1')) {
         if(optionList.includes(event.target.value)) {
-            alert('이미 선택한 옵션입니다.');
+            Swal.fire({
+                icon: 'error',
+                text: '이미 선택한 옵션입니다',
+              })
         } else {
             optionList.push(event.target.value);
         }
@@ -196,7 +199,10 @@ section.onchange=function(event) {
 
     if(event.target.classList.contains('option2')) {
         if(optionList.includes(event.target.value)) {
-            alert('이미 선택한 옵션입니다.');
+            Swal.fire({
+                icon: 'error',
+                text: '이미 선택한 옵션입니다',
+              })
         } else {
             optionList.push(event.target.value);
         }
@@ -213,7 +219,10 @@ section.onchange=function(event) {
 
     if(event.target.classList.contains('option3')) {
         if(optionList.includes(event.target.value)) {
-            alert('이미 선택한 옵션입니다.');
+            Swal.fire({
+                icon: 'error',
+                text: '이미 선택한 옵션입니다',
+              })
         } else {
             optionList.push(event.target.value);
         }
@@ -307,7 +316,6 @@ btnWrite.onclick=function() {
             data: formData,
             type: 'POST',
             success: function(result) {
-                alert('수정 성공!');
                 btnClose[0].click();
                 getReviewList(0);
             }
@@ -320,7 +328,6 @@ btnWrite.onclick=function() {
             data: formData,
             type: 'POST',
             success: function(result) {
-                alert('작성 성공!');
                 btnClose[0].click();
                 getReviewList(0);
             }
@@ -450,18 +457,35 @@ reviewList[0].onclick=function(event) {
     }
 
     if(event.target.classList[0] == 'delete') {
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/review/delete");
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("revNum="+event.target.dataset.deleteRevnum);
-        xhttp.onreadystatechange=function() {
-            if(this.readyState==4 && this.status==200) {
-                if(this.responseText.trim()) {
-                    alert('삭제 성공');
-                    getReviewList(0);
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "/review/delete");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("revNum="+event.target.dataset.deleteRevnum);
+                xhttp.onreadystatechange=function() {
+                    if(this.readyState==4 && this.status==200) {
+                        if(this.responseText.trim()) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                              )
+                            getReviewList(0);
+                        }
+                    }
                 }
+              
             }
-        }
+          })
     }
 
     if(event.target.classList[0] == 'btnHelp') {
@@ -540,18 +564,34 @@ function getInquiryList() {
 let inqNum;
 inqueryList[0].onclick=function(event) {
     if(event.target.classList[0] == 'delete') {
-        const xhttp = new XMLHttpRequest();
-        xhttp.open("POST", "/inquiry/delete");
-        xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-        xhttp.send("inqNum="+event.target.dataset.deleteInqnum);
-        xhttp.onreadystatechange=function() {
-            if(this.readyState==4 && this.status==200) {
-                if(this.responseText.trim() == 1) {
-                    alert('삭제 성공');
-                    getInquiryList();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "You won't be able to revert this!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+          }).then((result) => {
+            if (result.isConfirmed) {
+                const xhttp = new XMLHttpRequest();
+                xhttp.open("POST", "/inquiry/delete");
+                xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                xhttp.send("inqNum="+event.target.dataset.deleteInqnum);
+                xhttp.onreadystatechange=function() {
+                    if(this.readyState==4 && this.status==200) {
+                        if(this.responseText.trim() == 1) {
+                            Swal.fire(
+                                'Deleted!',
+                                'Your file has been deleted.',
+                                'success'
+                              )
+                            getInquiryList();
+                        }
+                    }
                 }
             }
-        }
+          })
     }
 
     if(event.target.classList[0] == 'reply') {
@@ -619,7 +659,11 @@ section.onclick=function(event) {
                 $("#frmCheckout").attr("action", "/member/checkout");
                 $("#frmCheckout").submit();
             } else {
-                alert("필수 옵션을 선택해주세요");
+                Swal.fire({
+                    icon: 'error',
+                    text: '필수 옵션을 선택해주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                  })
             }
         }
     }
@@ -668,7 +712,11 @@ section.onclick=function(event) {
                 $("#frmCheckout").attr("action", "/member/addCart");
                 $("#frmCheckout").submit();
             } else {
-                alert("필수 옵션을 선택해주세요");
+                Swal.fire({
+                    icon: 'error',
+                    text: '필수 옵션을 선택해주세요',
+                    footer: '<a href="">Why do I have this issue?</a>'
+                  })
             }
         }
     }

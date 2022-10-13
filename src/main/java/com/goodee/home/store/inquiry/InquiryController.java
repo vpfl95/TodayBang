@@ -50,8 +50,7 @@ public class InquiryController {
 	@PostMapping("delete")
 	@ResponseBody
 	public int deleteInquiry(InquiryDTO inquiryDTO) throws Exception {
-		InquiryDTO replyDTO = inquiryService.getReply(inquiryDTO);
-		inquiryService.deleteInquiry(replyDTO);
+
 		return inquiryService.deleteInquiry(inquiryDTO);
 	}
 	
