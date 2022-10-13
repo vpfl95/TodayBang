@@ -2,7 +2,7 @@
 .right_re {
     width: 30%;
     margin: 0px;
-    height: 9000px;
+    height: 9500px;
     display:inline-block;
 }
 
@@ -25,7 +25,7 @@
 
 .left_re{
     width: 60%;
-    height: 9000px;
+    height: 9500px;
     float: left;
 }
 
