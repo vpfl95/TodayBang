@@ -94,7 +94,7 @@
 					</div>
 					
 						<div class="boardBtnDiv">
-						    	<c:if test="${boardList.userId eq member.userId }">
+						    	<c:if test="${boardList.userId eq member.userId ||ManagerRole.roleNum<3}">
 						    		
 						    		<c:if test="${empty qnaAnswer }">
 						    			<button id="boardUpdateBtn" class="boardUpdateBtn boardBlueBtn" data-a="./update?boardNum=${boardList.boardNum }" >수정</button>

@@ -17,7 +17,7 @@ function board() {
             title: "게시하시겠습니까?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#61b6dc',
             
             confirmButtonText: '수정',
             cancelButtonText: '취소',
@@ -61,7 +61,7 @@ function board() {
                     console.log("noNum" + noNumber);
                     let input = document.createElement("input");
                     let inputArr = document.createAttribute("type");
-                    inputArr.value = "text";
+                    inputArr.value = "hidden";
                     input.setAttributeNode(inputArr);
                     inputArr = document.createAttribute("name");
                     inputArr.value = "number";
@@ -113,7 +113,7 @@ function answer(){
             title: "게시하시겠습니까?",
             icon: "warning",
             showCancelButton: true,
-            confirmButtonColor: '#3085d6',
+            confirmButtonColor: '#61b6dc',
             
             confirmButtonText: '수정',
             cancelButtonText: '취소',
@@ -338,7 +338,7 @@ function board2() {
                 title: "정말로 삭제하시겠습니까?",
                 icon: "warning",
                 showCancelButton: true,
-                confirmButtonColor: '#3085d6',
+                confirmButtonColor: '#61b6dc',
                 
                 confirmButtonText: '삭제', 
                 cancelButtonText: '취소',
@@ -350,7 +350,7 @@ function board2() {
                     Swal.fire({
                         title: "삭제 되었습니다.",
                         icon: "success",
-                        confirmButtonColor: '#3085d6',
+                        confirmButtonColor: '#61b6dc',
                         
                         confirmButtonText: '확인'
                     } ).then((result) => {
