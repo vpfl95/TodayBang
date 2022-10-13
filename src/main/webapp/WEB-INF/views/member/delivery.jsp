@@ -21,14 +21,17 @@
 <section class="container-fluid container-lg-8 mt-4">
 	<c:import url="./myPageCate.jsp"></c:import>
 		
-		<div class="container-fluid container-lg-8 mt-4 ">
+		<div class="container-fluid container-lg-8 ">
 		<!-- 카테고리 2 -->
 			<ul id = "myPage-2">
 				
-			
+				<li id="profile" class="submenuList menu2" ><a href="/member/myPage?page=profile">정보수정</a></li>
+				<li id="updatePw" class="submenuList menu2" ><a href="/member/myPage?page=updatePw">비밀번호변경</a></li>
+				<li id="rank" class="submenuList menu2" ><a href="/member/myPage?page=rank">멤버등급</a></li>
+				<li id="delivery" class="submenuList menu2 menu2after"><a href="/member/delivery" class="selectMenu">배송지정보</a></li>
 				
 			</ul>
-		<hr>
+		<hr style="margin: 0">
 	</div>
 <div class = "row justify-content-center mt-5">
 <div class = " col-lg-10 d-flex justify-content-center" id = "profileDiv"  >
