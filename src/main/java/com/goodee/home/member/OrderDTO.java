@@ -1,5 +1,7 @@
 package com.goodee.home.member;
 
+import java.sql.Date;
+
 import org.springframework.stereotype.Component;
 
 
@@ -9,7 +11,7 @@ public class OrderDTO extends CartDTO{
 
 	private Long orderNum;
 	private Long addressNum;
-	private String orderDate;
+	private Date orderDate;
 	private String payment;
 	private String deliveryStatus;
 	private DeliveryDTO deliveryDTO;
@@ -40,10 +42,10 @@ public class OrderDTO extends CartDTO{
 	public void setAddressNum(Long addressNum) {
 		this.addressNum = addressNum;
 	}
-	public String getOrderDate() {
+	public Date getOrderDate() {
 		return orderDate;
 	}
-	public void setOrderDate(String orderDate) {
+	public void setOrderDate(Date orderDate) {
 		this.orderDate = orderDate;
 	}
 	public String getPayment() {

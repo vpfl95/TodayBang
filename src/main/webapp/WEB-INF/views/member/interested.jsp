@@ -13,7 +13,8 @@
 		<c:if test="${empty list }">
 			<div class="NoItem">
 				<div class="NoItemTitle">관심 매물이 없습니다. 관심 매물을 등록 해 보세요.</div>
-				<div class="NoItemLink">관심매물 등록하러 가기</div>
+				<br>
+				<div class="NoItemLink"><a href="/apt/map" class="NoItemLink">관심매물 등록하러 가기</a></div>
 			</div>
 			
 		</c:if>

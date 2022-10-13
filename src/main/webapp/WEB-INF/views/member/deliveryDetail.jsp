@@ -29,12 +29,10 @@
 	<table class="table table-hover">
 		<thead>
 			<tr>
-				<th>주문번호</th>
-				<th colspan="2">상품정보</th>
-				<th>주문일자</th>
-				
-				<th>주문금액</th>
-				<th>주문상태</th>
+				<th width="120px">주문번호</th>
+				<th>상품정보</th>
+				<th  width="120px">주문일자</th>
+				<th  width="130px">주문상태</th>
 				
 			</tr>
 		</thead>
@@ -57,7 +55,7 @@
 			<c:forEach items="${order }" var="list" varStatus="status">
 			<c:choose>
 				<c:when test="${list.deliveryStatus eq '구매확정' }">
-					<c:set var="check" value="true"></c:set>
+					<c:set var="check" value="true"></c:set> <!-- check/ture 구매확정 페이지 -->
 				</c:when>
 				<c:otherwise>
 					<c:set var="check" value="false"></c:set>
@@ -78,6 +76,23 @@
 								<div id="cart-brand">${list.productDTO.brand }</div> 
 								
 								<div id="cart-product"><a href="../product/detail?productNum=${list.productNum }">${list.productDTO.productName }</a></div> 
+								
+								<c:set var="opPrice" value="0"></c:set>
+						
+								<c:forEach items="${list.productOptionDTOs }" var="option">
+									<div class="cart-pd-option">
+										<span class="cart-option-count">${option.optionName }: ${option.optionCount }개</span>
+										<span class="cart-won cart-option-price" data-a="${option.optionPrice * option.optionCount}"> ${option.optionPrice * option.optionCount}원</span>
+										<c:set var="opPrice" value="${opPrice + (option.optionPrice * option.optionCount) }"></c:set>
+									</div>
+								</c:forEach>
+								
+								<c:set var="poPrice" value=" ${(opPrice+ list.productDTO.price) *list.buyAmount + list.productDTO.deliFee}"></c:set>
+								<div class="cart-pd-price">
+								<div class="cart-buyAmount" >수량 : ${list.buyAmount} 개</div>
+								<span class="cart-deliFee cart-get" data-a="${list.productDTO.deliFee}">배송비 : ${list.productDTO.deliFee} 원</span>
+								<span id="cart-detail-pay" class="cart-price cart-get" data-a="${poPrice}"> ${poPrice} 원</span>
+								</div>
 							</div>
 							<div>
 						
@@ -88,11 +103,15 @@
 						</div>
 						
 					</td>
-					<td>${list.buyAmount }</td>
-					<td>${list.orderDate }</td>
 					
-					<td>${list.productDTO.price }</td>
-					<td>${list.deliveryStatus }</td>
+					<td>${list.orderDate }</td>
+					<td>
+						${list.deliveryStatus }
+						<div style="height: 20px;"></div>
+						<c:if test="${check }">
+							<a class="gotoReview" href="/product/detail?productNum=${list.productNum }" >리뷰 작성하기</a>
+						</c:if>
+					</td>
 					
 				</tr>
 			
@@ -118,7 +137,7 @@
 	<script type="text/javascript">
 		
 		deliveryDetail();
-	
+		 cart();
 	</script>
 	
 </body>

@@ -224,10 +224,6 @@
     
 }
 
-#pf-userAct{
-    padding-top: 15px;
-    
-}
 
 
 
@@ -445,7 +441,7 @@ tr,th{
 .cart-pd-detail{
     margin: 8px 5px;
     display: inline-flex;
-
+    width: 100%;
 
 }
 .cart-pd-body{
@@ -813,11 +809,12 @@ a{
 }
 
 .NoItem{
-
+    
     display:  flex;
+    flex-direction: column;
     justify-content: center;
-    width: 30%;
-    margin: auto;
+    
+    margin: 100px auto;
 }
 .NoItemTitle{
 
@@ -829,7 +826,41 @@ a{
 .NoItemLink{
 
     font-weight: 600;
-    color: #656c73;
-
+    color: #656c73 !important;
+    margin: auto;
     
+}
+
+.css-17vaqfq::before {
+    font-family: OhouseIcon;
+    vertical-align: top;
+}
+._cart_24:before {
+    content: "\e94e";
+}
+
+.cNum {
+    font-size: 10px;
+    line-height: 14px;
+    padding: 0 5px;
+    color: #FFFFFF;
+    background-color: #FF7777;
+    display: inline-block;
+    font-weight: 700;
+    height: 16px;
+    line-height: 16px;
+    border-radius: 8px;
+    position: absolute;
+}
+
+.gotoReview{
+
+    width: 80px;
+    height: 50px;
+    margin-top: 15px !important;
+    background-color: #61b6dc;
+    color: white !important;
+    border-radius: 5px;
+    padding: 4px;
+
 }

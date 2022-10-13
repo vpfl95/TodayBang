@@ -177,7 +177,8 @@ public class MemberController {
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-	
+		
+		
 		mv.addObject("memberDTO", memberDTO);
 		mv.addObject("page",page);
 		mv.setViewName("member/myPage");
@@ -404,14 +405,19 @@ public class MemberController {
 	
 	
 	@GetMapping("myShopping")
-	public ModelAndView getMyShopping(HttpSession session) throws Exception{
+	public ModelAndView getMyShopping(HttpSession session,String page) throws Exception{
 		
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
-	
 		
+			
+			
+		mv.addObject("page", page);
+		
+			
 		mv.setViewName("member/myShopping");
 		
+			
 		
 		return mv;
 	}

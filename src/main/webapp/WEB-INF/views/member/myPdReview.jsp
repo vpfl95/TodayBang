@@ -120,7 +120,15 @@
 		<div class="myPdReview-div">
 		
 		
-		
+		<c:if test="${empty list }">
+			<div class="NoItem">
+				<div class="NoItemTitle">아직 리뷰를 남기신 상품이 없습니다.</div>
+				<br>
+				<div class="NoItemLink"><a href="/member/myShopping?page=buyDetail" class="NoItemLink">진심 솔직 리뷰 남기러 가기</a></div>
+			</div>
+			
+		</c:if>	
+		<c:if test="${not empty list }">
 		
 	
 	<c:forEach items="${list}" var="dto" varStatus="i">
@@ -178,7 +186,7 @@
 		</div>
 		<hr>
 	</c:forEach>
-	
+	</c:if>	
 	</div>
 	</div>
 	

@@ -30,7 +30,7 @@
 				<li id="myCart" class="submenuList menu2" data-a ="/member/cart">장바구니</li>
 				<li id="deliveryDetail" class="submenuList menu2" data-a ="/member/deliveryDetail">배송내역</li>
 				<li id="buyDetail" class="submenuList menu2" data-a ="/member/buyDetail">구매내역</li>
-				<li id="" class="submenuList menu2" data-a ="/member/interested">관심매물</li>
+				<li id="interested" class="submenuList menu2" data-a ="/member/interested">관심매물</li>
 				
 			</ul>
 		<hr style="margin: 0;">
@@ -53,10 +53,16 @@
     
     	myPageMenu();
  		$(document).ready(function(){
-    		$("#myCart").trigger("click");
-			$("#myCart").addClass("selectMenu");
-			$("#myCart").addClass("menu2after");
     		
+			if(${not empty page}){
+    			$("#${page}").trigger("click");
+    			$("#${page}").addClass("selectMenu");
+    			$("#${page}").addClass("menu2after");
+    		}else{
+    			$("#myCart").trigger("click");
+    			$("#myCart").addClass("selectMenu");
+    			$("#myCart").addClass("menu2after");
+    		}
     	});
     	$(document).on("click",".submenuList",function(){
     		$("#profileDiv").load(this.getAttribute('data-a'));

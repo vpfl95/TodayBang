@@ -81,3 +81,11 @@ a{
   position: relative;
   padding-bottom: 84px; /* footer height = 84px */
   }
+
+.shadowBox{
+
+    box-shadow: rgb(0 0 0 / 35%) 0px 5px 15px;
+
+
+}
+

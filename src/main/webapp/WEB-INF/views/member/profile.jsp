@@ -30,12 +30,49 @@
 					
 					<hr>
 					<div id = "pf-userAct" class = "column">
-						<div>마일리지 ${mypage.mileage }</div>
-						<div>회원 등급 : ${MemberRole.roleNum}</div>
-						<div>장바구니 수 : ${mypage.cNum }</div>
-						<div>매물찜 수 : ${mypage.iNum }</div>
-					</div>
-
+						<div><img alt="" src="/resources/images/pointImg.jpg"> 포인트 : ${mypage.mileage }P</div>
+						<div style=" margin-top: 20px;">
+						
+							<c:choose>
+				 			<c:when test="${MemberRole.roleNum eq 10}">
+				 				<img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankImg">
+				 				Diamond 회원
+				 			</c:when>
+				 			<c:when test="${MemberRole.roleNum eq 20}">
+				 				<img alt="" src="/resources/images/rank/Gold.png" class = "pf-rankImg">
+				 				Gold 회원
+				 			</c:when>
+				 			<c:when test="${MemberRole.roleNum eq 30}">
+				 				<img alt="" src="/resources/images/rank/Silver.png" class = "pf-rankImg" style="width: 50px;">
+				 				Silver 회원
+				 			</c:when>
+				 			<c:when test="${MemberRole.roleNum eq 40}">
+				
+				 				<img alt="" src="/resources/images/rank/White.png" class = "pf-rankImg" style="height:30px; width: 35px; ">
+				 				White 회원
+				 			</c:when>
+				 		
+				 		</c:choose>
+						
+						</div>
+						<div style="display:flex; justify-content:space-evenly; position: relative; margin-top: 30px;">
+							
+							<a href="/member/myShopping"><img alt="" src="/resources/images/cartImg.png" style="height:30px; width: 30px;">
+							<c:if test="${not empty mypage.cNum and mypage.cNum ne 0  }">
+								<span class="cNum">${mypage.cNum }</span>
+							</c:if>
+							</a>
+							<a href="/member/myShopping?page=interested"><img alt="" src="/resources/images/houseImg.png" style="height:30px; width: 30px;">
+							<c:if test="${not empty mypage.iNum and mypage.iNum ne 0 }">
+								<span class="cNum">${mypage.iNum }</span>
+							</c:if>
+							</a>
+						</div>
+						<div style="display:flex; justify-content:space-evenly; position: relative; ">
+							
+							<a href="/member/myShopping">장바구니</a><a href="/member/myShopping?page=interested">매물찜</a>
+						</div>
+						</div>
 				</div>
 
 <div id="pf-betweenSpace"></div>

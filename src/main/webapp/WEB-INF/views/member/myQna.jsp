@@ -17,19 +17,23 @@
 		
 		
 		
-		<c:choose>
-			<c:when test="${legnth == 0 }">
-				<div>아직 작성한 문의가 없습니다.</div>
-				<div><a href="/service/qna/list">문의하러 가기</a></div>
-			</c:when>	
-			<c:otherwise>
+		
+		<c:if test="${empty list }">
+			<div class="NoItem">
+				<div class="NoItemTitle">문의하신 내용이 없습니다.</div>
+				<br>
+				<div class="NoItemLink"><a href="/service/qna/list" class="NoItemLink">문의하러 가기</a></div>
+			</div>
+			
+		</c:if>	
+			
 			
 			
 			
 			
 			
 		
-		
+		<c:if test="${not empty list }">
 			<span id="myQnaTitle" style="font-size: 22px; font-weight: 600;">내 문의 내역</span>
 			<div class="myQna-div">
 		
@@ -106,8 +110,7 @@
 						  </ul>
 						</nav>
 				</div>
-				</c:otherwise>
-			</c:choose>
+				</c:if>	
 			</div>
 		</div>
 	

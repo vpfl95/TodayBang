@@ -33,6 +33,9 @@ public class MemberDTO {
 	
 	
 	public Long getMileage() {
+		if(this.mileage == null)
+			mileage = 0L;
+		
 		return mileage;
 	}
 	public void setMileage(Long mileage) {

@@ -20,16 +20,37 @@
 			<div class = "row justify-content-center mt-5">
 				<div class = " col-lg-7 ">
 	
-					<h1> 관리자 페이지</h1>
+					<div style="font-size: 30px;font-weight: 600">관리자 페이지</div>
 					<hr>
 					<div class = "adminDiv">
-					
-						<div class = "adminBox"><a href="./member">회원 관리</a></div>
-						<div class = "adminBox"><a href="../service/notice/add">공지사항 추가하기</a></div>
-						<div class = "adminBox"><a href="#">답변 안 한 QNA</a></div>
-						<div class = "adminBox"><a href="../product/add">상품 추가</a></div>
-						<div class = "adminBox"><a href="../product/todayDeal">오늘의 딜 설정</a></div>
-						<div class = "adminBox"><a href="#">매물 추가</a></div>
+						 
+						 	<c:if test="${ManagerRole.roleNum <3 }">
+	                            <div class="col-sm-6 col-lg-4 mb-5 mr-3">
+	                                <a class="d-block ripple-gray rounded shadow-3 overflow-hidden mb-2 mdc-ripple-upgraded shadowAdmin" href="./member"><img class="img-fluid adminImg" src="/resources/images/admin/adminPage1.jpg" alt="..."></a>
+	                                <div class="small font-monospace text-center adminText">회원 관리</div>
+	                            </div>
+	                            <div class="col-sm-6 col-lg-4 mb-5">
+	                                <a class="d-block ripple-gray rounded shadow-3 overflow-hidden mb-2 mdc-ripple-upgraded shadowAdmin" href="../service/notice/add"><img class="img-fluid adminImg" src="/resources/images/admin/adminPage2.jpg" alt="..."></a>
+	                                <div class="small font-monospace text-center adminText">공지사항 추가</div>
+	                            </div>
+                            </c:if>
+                            <c:if test="${ManagerRole.roleNum eq 3 or ManagerRole.roleNum <3}">
+	                            <div class="col-sm-6 col-lg-4 mb-5">
+	                                <a class="d-block ripple-gray rounded shadow-3 overflow-hidden mb-2 mdc-ripple-upgraded shadowAdmin"  href="../product/add"><img class="img-fluid adminImg" src="/resources/images/admin/adminPage3.jpg" alt="..."></a>
+	                                <div class="small font-monospace text-center adminText">상품 추가</div>
+	                            </div>
+	                            <div class="col-sm-6 col-lg-4 mb-5">
+ 	                                <a class="d-block ripple-gray rounded shadow-3 overflow-hidden mb-2 mdc-ripple-upgraded shadowAdmin" href="../product/todayDeal"><img class="img-fluid adminImg" src="/resources/images/admin/adminPage4.jpg" alt="..."></a> 
+	                                <div class="small font-monospace text-center adminText">오늘의 딜 설정</div>
+	                            </div>
+                            </c:if>
+                            <c:if test="${ManagerRole.roleNum eq 4 or ManagerRole.roleNum <3 }">
+	                            <div class="col-sm-6 col-lg-4 mb-5">
+	                                <a class="d-block ripple-gray rounded shadow-3 overflow-hidden mb-2 mdc-ripple-upgraded shadowAdmin" href="../realestate/add"><img class="img-fluid adminImg"  src="/resources/images/admin/adminPage5.jpg" alt="..."></a>
+	                                <div class="small font-monospace text-center adminText">매물 추가</div>
+	                            </div>
+                          	</c:if>
+                        
 					</div>
 					
 			</div>
