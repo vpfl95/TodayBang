@@ -34,10 +34,15 @@
     text-shadow: 0 0 0 gold; /* 마우스 클릭 체크 */
 }
 
+#more{
+    background-color: rgb(250, 136, 11);
+    color: white;
+    border: 0;
+}
 
-.map_wrap {position:relative;width:100%;height:800px; top: 50px;}
+.map_wrap {position:relative;width:100%;height:800px;}
 .title {font-weight:bold;display:block;}
-.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:1;padding:5px;}
+.hAddr {position:absolute;left:10px;top:10px;border-radius: 2px;background:#fff;background:rgba(255,255,255,0.8);z-index:2;padding:5px;}
 #centerAddr {display:block;margin-top:2px;font-weight: normal;}
 .bAddr {padding:5px;text-overflow: ellipsis;overflow: hidden;white-space: nowrap;}
 
@@ -53,13 +58,20 @@
 
 
 #sugguestList{overflow: auto; height: 100%; display: none;}
+#sigunguList{overflow: auto; height: 300px; display: none;}
 .selectItem{background: white;font-size: 12px;font-weight: bold;color: rgb(68, 68, 68);box-sizing: border-box;cursor: pointer;padding: 13px 10px 0px;line-height: 18px;border:1px solid gray}
 .addressDIV{color: rgb(68, 68, 68);font-size: 10px;font-weight: normal;}
 .selected{background-color: lightskyblue; color: white;}
+#insertReal{
+    position:absolute; 
+    right:500px;top:10px;
+    z-index:2;
+}
 
 #searchWrap{
     position:absolute; 
-    right:10px;top:10px;
+    right:10px;
+    top:2px;
     border-radius: 2px;
     z-index:2;
     padding:5px; 
@@ -121,7 +133,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center; */
-    height: 95%;
+    height: 91%;
     width: 30%;
     position:absolute;
     right:10px;
@@ -134,6 +146,15 @@
     overflow: auto;
 }
 
+#image{
+    height: 30%;
+}
+.img{
+    object-fit:cover;
+    height: 100%;
+    width: 100%;
+}
+
 #buildingName{
     /* position:absolute; */
     /* right:10px;
@@ -144,6 +165,9 @@
     background:rgba(255,255,255,0.8);
     z-index:1;
     padding:5px;
+    font-size: 23px;
+    font-weight: bold;
+    margin-left: 10px;
 }
 
 #buildingWrap{
@@ -183,8 +207,12 @@
     /* right:10px;
     top:325px;  */
     margin: auto;
-    font-size: 23px;
+    font-size: 18px;
     z-index:1;
+    font-weight: bold;
+    margin-top: 13px;
+    margin-bottom: 10px;
+    margin-left: 15px;
 }
 
 
@@ -205,18 +233,18 @@
 
 #writeReview{
     position: absolute;
-    margin-top: 5%;
+    margin-top: 4%;
+    width: 100%;
     left: 50%;
     transform: translateX(-50%);
 }
 #upReview{
     visibility: hidden;
 }
-.update{
-    cursor: pointer
-}
-.delete{
-    cursor: pointer
+
+#houseReviewList{
+    background-color: #f0f0f0;
+    margin-top: -20px;
 }
 
 .revDiv{
@@ -225,6 +253,7 @@
     -webkit-box-orient: horizontal;
     flex-direction: row;
     margin-bottom: 15px;
+    background-color: white;
 }
 
 .wrap{
@@ -264,6 +293,12 @@
     flex-direction: row;
     -webkit-box-align: center;
     align-items: center;
+    padding-left: 3px;
+}
+
+.contents{
+    padding-left: 10px;
+    padding-bottom: 10px;
 }
 
 .recommend{
@@ -273,7 +308,7 @@
     -webkit-box-direction: normal;
     -webkit-box-orient: horizontal;
     flex-direction: row;
-    padding-top: 10px;
+    padding-top: 7px;
     padding-left: 10px;
 }
 
@@ -287,6 +322,49 @@
     padding-right: 10px;
     margin-right: 10px;
 }
+
+.userDiv{
+    display: flex;
+    flex-direction: row;
+    border: 0 solid black;
+    border-bottom-color: black;
+    border-bottom-width: 1px;
+    padding-bottom: 10px;
+    padding-top: 20px;
+    justify-content: space-between
+}
+.regdate{
+    padding-right: 15px;
+}
+.userid{
+    font-size: 18px;
+    font-weight: bold;
+    padding-left: 15px;
+}
+
+.updel{
+    display: flex;
+    flex-direction: row;
+    padding-bottom: 14px;
+    padding-top: 14px;
+    justify-content: center;
+}
+
+.update{
+    cursor: pointer;
+    padding-right: 7px;
+    border: 0 solid black;
+    border-right-color: rgb(225, 225, 225);
+    border-right-width: 1px;
+}
+.delete{
+    cursor: pointer;
+    padding-left: 7px;
+    border: 0 solid black;
+    border-right-color: rgb(225, 225, 225);
+    border-right-width: 1px;
+}
+
 
 .interested{
     color: transparent;

@@ -2,11 +2,13 @@ package com.goodee.home.review;
 
 import java.sql.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.goodee.home.realEstate.RealEstateDTO;
 
 public class HouseReviewDTO {
 	private Long reviewNum;
 	private Long grade;
+	@JsonFormat(pattern = "yy-MM-dd")
 	private Date date;
 	private String contents;
 	private String userId;
