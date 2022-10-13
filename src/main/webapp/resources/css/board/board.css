@@ -103,7 +103,7 @@ section{
 .noQnaAnswerComment{
 	margin: 0 auto ;
 	width:auto;
-
+	min-width: 250px;
 }
 .boardList{
 

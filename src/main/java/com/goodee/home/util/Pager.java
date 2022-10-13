@@ -31,12 +31,7 @@ public class Pager {
 	private String userId;
 	
 	
-	
-	
-	
-	
-	
-	
+
 	public String getUserId() {
 		return userId;
 	}

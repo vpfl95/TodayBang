@@ -22,7 +22,7 @@
 	<section class="container-fluid container-lg-8 mt-5">
 			<div class = " justify-content-center mt-5" >
 				<div class = "boardDetailbody">
-				<div  id="boardSection">
+				<div  id="boardSection" class="shadowBox">
 				
 					<div class="board-url">
 						<c:if test="${board=='NOTICE'}">
@@ -111,7 +111,7 @@
 						
 						<c:choose>
 							<c:when test="${not empty qnaAnswer}">
-							<div  id="boardSection">
+							<div  id="boardSection" class="shadowBox">
 							<div class="board-url">
 								<div>문의 답변</div>
 							</div>
@@ -172,7 +172,7 @@
 							<c:choose>
 								<c:when test="${member.roleDTOs[0].roleNum<3 }">
 								
-								<div  id="boardSection">
+								<div  id="boardSection" class="shadowBox">
 								    	<form action="./answer" method="post" id = "boardForm" enctype="multipart/form-data" >
 								    		<input type="hidden"  id="boardNum" name="boardNum" value="${boardList.boardNum } " class="form-control" >
 								    	
@@ -217,10 +217,10 @@
 														<tr>
 														<c:choose>
 															<c:when test="${empty update }">
-																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary submitBoardBtn" type="button" title = "add">게시</button></td>
+																<td><button id="boardBtn" class="submitBoardBtn boardBlueBtn" type="button" title = "add">게시</button></td>
 															</c:when>
 															<c:otherwise>
-																<td><button id="boardBtn" class="w-100 btn btn-lg btn-primary submitBoardBtn"  type="button" title = "update">수정</button></td>
+																<td><button id="boardBtn" class="submitBoardBtn boardBlueBtn"  type="button" title = "update">수정</button></td>
 															</c:otherwise>
 														
 														</c:choose>
@@ -239,7 +239,7 @@
 								<c:otherwise>
 								
 									<div class="noQnaAnswer">
-										<span class="noQnaAnswerComment">아직 등록된 답변이 없습니다.</span>
+										<span class="noQnaAnswerComment" style="">아직 등록된 답변이 없습니다.</span>
 										
 									</div>
 									

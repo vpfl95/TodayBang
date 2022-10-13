@@ -45,9 +45,11 @@ public class AdminController {
 		
 		
 		List<MemberDTO> ar = adminSerivece.getMember(pager);
+		Long totalCount=adminSerivece.getMemberCount(pager);
+		
 		List<RoleDTO> rr = adminSerivece.getRole();
 		
-		
+		mv.addObject("totalCount",totalCount);
 		mv.addObject("search",pager.getSearch());
 		mv.addObject("pager",pager);
 		mv.addObject("roleList",rr);
@@ -72,13 +74,13 @@ public class AdminController {
 			
 		}
 		
-		if(page.getSearch() != null) {
+		if(page.getSearch() != null ) {
 			
 			url += "search=";
 			url += page.getSearch();
 			url += "&";
 		
-	}
+		}
 		if(page.getMemberFilter() != null) {
 			for (String i : page.getMemberFilter()) {
 				url += "memberFilter=";

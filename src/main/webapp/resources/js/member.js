@@ -1016,6 +1016,20 @@ function profile() {
 
 
 
+    const profileinfoDiv =  document.querySelector("#pf-userAct");
+    const rank = document.querySelector("#rank");
+    profileinfoDiv.addEventListener("click",function(){
+
+
+        rank.click();
+
+
+    })
+
+
+
+
+
 }
 
 
@@ -1288,7 +1302,6 @@ function delivery(){
 
 function deliveryDetail(){
 
-    console.log("h i deliveryDetail");
 
     const deliBtn = document.getElementsByClassName("order-deliveryDetail");
     const buyBtn = document.getElementsByClassName("order-buyDetail");
@@ -1312,6 +1325,13 @@ function deliveryDetail(){
         })
     }
    
+
+    const deStatus = document.getElementsByClassName("deStatus");
+
+
+
+
+
 
   
 

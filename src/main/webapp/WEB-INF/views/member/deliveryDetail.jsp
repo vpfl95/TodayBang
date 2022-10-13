@@ -14,12 +14,12 @@
 	<div id="order-body">
 	<h3>${url }</h3>	
 		<div id="order-status-list">
-			<div class ="order-status order-deliveryDetail">입금대기<p>0<p></div>
-			<div class ="order-status order-deliveryDetail">결제완료<p>0<p></div>
-			<div class ="order-status order-deliveryDetail">배송준비<p>0<p></div>
-			<div class ="order-status order-deliveryDetail">배송중<p>0<p></div>
-			<div class ="order-status order-deliveryDetail">배송완료<p>0<p></div>
-			<div class ="order-status order-buyDetail" >구매확정<p>0<p></div>
+			<div class ="order-status order-deliveryDetail">입금대기<p>${stat[0] }<p></div>
+			<div class ="order-status order-deliveryDetail">결제완료<p>${stat[1] }<p></div>
+			<div class ="order-status order-deliveryDetail">배송준비<p>${stat[2] }<p></div>
+			<div class ="order-status order-deliveryDetail">배송중<p>${stat[3] }<p></div>
+			<div class ="order-status order-deliveryDetail">배송완료<p>${stat[4] }<p></div>
+			<div class ="order-status order-buyDetail" >구매확정<p>${stat[5] }<p></div>
 		</div>
 	
 	
@@ -87,7 +87,7 @@
 									</div>
 								</c:forEach>
 								
-								<c:set var="poPrice" value=" ${(opPrice+ list.productDTO.price) *list.buyAmount + list.productDTO.deliFee}"></c:set>
+								<c:set var="poPrice" value=" ${opPrice+ (list.productDTO.price*list.buyAmount) + list.productDTO.deliFee}"></c:set>
 								<div class="cart-pd-price">
 								<div class="cart-buyAmount" >수량 : ${list.buyAmount} 개</div>
 								<span class="cart-deliFee cart-get" data-a="${list.productDTO.deliFee}">배송비 : ${list.productDTO.deliFee} 원</span>
@@ -106,7 +106,7 @@
 					
 					<td>${list.orderDate }</td>
 					<td>
-						${list.deliveryStatus }
+						<span class="deStatus">${list.deliveryStatus }</span> 
 						<div style="height: 20px;"></div>
 						<c:if test="${check }">
 							<a class="gotoReview" href="/product/detail?productNum=${list.productNum }" >리뷰 작성하기</a>

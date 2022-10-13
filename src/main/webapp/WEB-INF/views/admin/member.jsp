@@ -25,6 +25,11 @@
      		
      	}
      	String param3 = request.getParameter("search"); 
+     	if(param3 == null){
+     		param3="";
+     		
+     	}
+     	
      	
      	url="page="+param+"&search="+param3+"&"+param2;
      	
@@ -48,13 +53,13 @@
     <c:import url="../template/header.jsp"></c:import>
 
 	<section class="container-fluid container-lg-8 mt-5">
-			<div class = "row justify-content-center mt-5">
-				<div class = " col-lg-7 ">
-					<h1>회원 관리</h1>
-					<h3>필터</h3>
-					<hr>
+			<div class = "row justify-content-center mt-5 ">
+				<div class = " col-lg-7 shadowBox" style="padding: 15px">
+					<div style="font-weight: 600;font-size: 25px;margin: 20px">회원 관리</div>
+					<div style="font-weight: 600;font-size: 20px;color: #47484b; margin-left: 20px">필터</div>
+					<hr style="margin: 5px">
 					<form action="./member" method="get">
-					<input type="text" id = "search"  name="search" placeholder="검색" >
+					<input type="text" id = "search"  name="search" placeholder="검색" style="height: 40px; margin-left: 8px; border-radius: 10px; border: 1px solid; margin: 5px 0;">
 					<table class = "table">
 						<thead>
 						</thead>
@@ -88,24 +93,32 @@
 							<td colspan="1"></td>
 							
 						</tr>
-						<tr>
-							<td><button type="submit" id="memberFilterBtn" class="btn btn-primary"> 적용 </button>
-							<td><button type="reset" id="memberFilterResetBtn" class="btn btn-primary"> 초기화 </button>
 						
-						</tr>
+							
+						
+						
 							
 						</tbody>
 					</table>
+					<div style="display: flex; justify-content: flex-end; margin-bottom: 20px; ">
+							<button type="submit" id="memberFilterBtn" class="boardBlueBtn"  style="font-weight: 600 "> 적용 </button>
+							<button type="reset" id="memberFilterResetBtn" class="boardBlueBtn" style="margin-left: 20px;font-weight: 600"> 초기화 </button>
+					</div>
 					
 					</form>
 					
+					
+					
+					<div style="font-weight: 600; margin-left: 15px; margin-bottom:15px; font-size: 16px;">[회원 수 : <span style="font-size: 20px">${totalCount }</span>명]</div>
 					<table class = "table table-hover">
 						<thead>
 							<tr>
+								
 								<th>ID</th>
 								<th>NICKNAME</th>
 								<th>관리자 등급</th>
 								<th>회원 등급 </th>
+								<th>접속 가능</th>
 							</tr>
 						
 						
@@ -161,10 +174,13 @@
 									
 									<td>
 										<c:if test="${(list.roleNum % 100)  >=10}">
-												${list.roleNum}
+												
 												<c:forEach items="${roleList }" var="role">
+												
 												<c:if test="${role.roleNum eq (list.roleNum % 100)-(list.roleNum % 10)}">
+													<a href="./updateRank?<%=url%>&userId=${list.userId}&action=up"><img alt="" src="/resources/images/rank/up.png" width="15px;" style="margin-top: -5px"></a>
 													${role.roleName }
+													<a href="./updateRank?<%=url%>&userId=${list.userId}&action=down"><img alt="" src="/resources/images/rank/down.png" width="15px;" style="margin-bottom: -5px"></a>
 												</c:if>
 											
 											
@@ -175,14 +191,14 @@
 									
 										
 									
-									<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=up">등급업</a></td>
-									<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=down">등급다운</a></td>
+									
+									
 									
 									<c:if test="${ban}">
-										<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=noBan">벤해제</a></td>
+										<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=noBan">❌</a></td>
 									</c:if>
 									<c:if test="${!ban}">
-										<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=ban">벤</a></td>
+										<td><a href="./updateRank?<%=url%>&userId=${list.userId}&action=ban">⭕</a></td>
 									</c:if>
 							
 								</tr>

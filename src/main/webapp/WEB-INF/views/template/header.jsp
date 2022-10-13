@@ -98,10 +98,17 @@
     					if(url[3] ==  tag[3]){
     						$(this).addClass('selectColor');
     						$(this).addClass('selectMenu');
-    					}else if(url[3] =="todayDeals" || url[3] =="category" || url[3] == "exhibitions"){
-    						$(this).addClass('selectColor');
-    						$(this).addClass('selectMenu');
-    					}else if(url[3]==""){
+    					}else if(url[3] =="todayDeals"){
+    						
+    						$("#storeMenu").addClass('selectMenu');
+    					}else if(url[3]=="category"){
+    						$("#storeMenu").addClass('selectMenu');
+    						
+    					}else if(url[3]=="exhibitions"){
+    						$("#storeMenu").addClass('selectMenu');
+    						
+    					}
+    					else if(url[3]==""){
     						$("#storeMenu").addClass('selectMenu');
     						
     					}

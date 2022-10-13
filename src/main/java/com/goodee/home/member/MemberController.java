@@ -456,9 +456,33 @@ public class MemberController {
 		ModelAndView mv = new ModelAndView();
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
 	
-		
+		int [] stat= new int[] {0,0,0,0,0,0};
 		
 		List<OrderDTO> ar =memberService.getOrder(memberDTO);
+		for(OrderDTO dto : ar ) {
+			String status = dto.getDeliveryStatus();
+			
+			
+			
+			if(status.equals("입금대기")) {
+				stat[0]++;
+			}else if(status.equals("결제완료")) {
+				stat[1]++;
+			}else if(status.equals("배송준비")) {
+				stat[2]++;
+			}else if(status.equals("배송중")) {
+				stat[3]++;
+			}else if(status.equals("배송완료")) {
+				stat[4]++;
+			}else if(status.equals("구매확정")) {
+				stat[5]++;
+			}
+			
+			
+			
+		}
+		mv.addObject("stat",stat);
+		
 		
 		
 		String [] url = request.getServletPath().split("/");

@@ -30,31 +30,48 @@
 					
 					<hr>
 					<div id = "pf-userAct" class = "column">
-						<div><img alt="" src="/resources/images/pointImg.jpg"> 포인트 : <span style="color: #38b9e0;">${mypage.mileage }P</span></div>
-						<div style=" margin-top: 20px;">
-						
+						<div style="display:flex; justify-content:space-evenly; position: relative; margin-top: 10px;">
+							<img alt="" src="/resources/images/pointImg.jpg" title="포인트"> 
 							<c:choose>
 				 			<c:when test="${MemberRole.roleNum eq 10}">
-				 				<img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankImg">
-				 				<span style="font-weight: 600">Diamond</span> 회원
+				 				<img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankImg" style="height:30px; width: 35px; margin-top: 5px">
+				 				<c:set var="rankName" value="Diamond"></c:set>
 				 			</c:when>
 				 			<c:when test="${MemberRole.roleNum eq 20}">
-				 				<img alt="" src="/resources/images/rank/Gold.png" class = "pf-rankImg">
-				 				<span style="font-weight: 600">Gold</span> 회원
+				 				<img alt="" src="/resources/images/rank/Gold.png" class = "pf-rankImg" style="height:30px; width: 35px;margin-top: 5px">
+				 				<c:set var="rankName" value="Gold"></c:set>
 				 			</c:when>
 				 			<c:when test="${MemberRole.roleNum eq 30}">
-				 				<img alt="" src="/resources/images/rank/Silver.png" class = "pf-rankImg" style="width: 50px;">
-				 				<span style="font-weight: 600">Silver</span> 회원
+				 				<img alt="" src="/resources/images/rank/Silver.png" class = "pf-rankImg" style="height:30px; width: 35px;margin-top: 5px">
+				 				<c:set var="rankName" value="Silver"></c:set>
 				 			</c:when>
 				 			<c:when test="${MemberRole.roleNum eq 40}">
 				
-				 				<img alt="" src="/resources/images/rank/White.png" class = "pf-rankImg" style="height:30px; width: 35px; ">
-				 				<span style="font-weight: 600">White</span> 회원
+				 				<img alt="" src="/resources/images/rank/White.png" class = "pf-rankImg" style="height:30px; width: 35px; margin-top: 5px">
+				 				<c:set var="rankName" value="White"></c:set>
 				 			</c:when>
+				 			
 				 		
 				 		</c:choose>
-						
+							
 						</div>
+						
+						
+						
+						<div style="display:flex; justify-content:space-evenly; position: relative; ">
+							<span style="width: 17%;min-width: 30px"><span style="color: #38b9e0; float: right;">${mypage.mileage }P</span></span>
+							<c:if test="${not empty rankName }">
+								<span><span style="font-weight: 600">${rankName }</span> 회원</span>
+							</c:if>
+						</div>
+						
+						
+						
+						
+						
+							
+						
+						
 						<div style="display:flex; justify-content:space-evenly; position: relative; margin-top: 30px;">
 							
 							<a href="/member/myShopping"><img alt="" src="/resources/images/cartImg.png" style="height:30px; width: 30px;">
@@ -62,7 +79,7 @@
 								<span class="cNum">${mypage.cNum }</span>
 							</c:if>
 							</a>
-							<a href="/member/myShopping?page=interested"><img alt="" src="/resources/images/houseImg.png" style="height:30px; width: 30px;">
+							<a href="/member/myShopping?page=interested"><img alt="" src="/resources/images/houseImg.png" style="height:30px; width: 30px; margin-left: 25px">
 							<c:if test="${not empty mypage.iNum and mypage.iNum ne 0 }">
 								<span class="cNum">${mypage.iNum }</span>
 							</c:if>

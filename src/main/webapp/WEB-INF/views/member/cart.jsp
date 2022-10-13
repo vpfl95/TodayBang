@@ -55,7 +55,7 @@
 							</div>
 						</c:forEach>
 						
-						<c:set var="poPrice" value=" ${(opPrice+ list.productDTO.price) *list.buyAmount + list.productDTO.deliFee}"></c:set>
+						<c:set var="poPrice" value=" ${opPrice+ (list.productDTO.price*list.buyAmount) + list.productDTO.deliFee}"></c:set>
 					<div class="cart-pd-price">
 					<div class="cart-buyAmount" >수량 : ${list.buyAmount} 개</div>
 					<span class="cart-deliFee cart-get" data-a="${list.productDTO.deliFee}">배송비 : ${list.productDTO.deliFee} 원</span>
