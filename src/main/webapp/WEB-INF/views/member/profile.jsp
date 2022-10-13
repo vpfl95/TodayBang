@@ -25,31 +25,31 @@
 					         </c:choose>
 					</div>
 					<div id = "pf-userName" class = "column">
-						<h2>${member.userName }</h2>
+						<span style="font-size: 25px; font-weight: 600">${member.userName }</span>
 					</div>
 					
 					<hr>
 					<div id = "pf-userAct" class = "column">
-						<div><img alt="" src="/resources/images/pointImg.jpg"> 포인트 : ${mypage.mileage }P</div>
+						<div><img alt="" src="/resources/images/pointImg.jpg"> 포인트 : <span style="color: #38b9e0;">${mypage.mileage }P</span></div>
 						<div style=" margin-top: 20px;">
 						
 							<c:choose>
 				 			<c:when test="${MemberRole.roleNum eq 10}">
 				 				<img alt="" src="/resources/images/rank/Diamond.png" class = "pf-rankImg">
-				 				Diamond 회원
+				 				<span style="font-weight: 600">Diamond</span> 회원
 				 			</c:when>
 				 			<c:when test="${MemberRole.roleNum eq 20}">
 				 				<img alt="" src="/resources/images/rank/Gold.png" class = "pf-rankImg">
-				 				Gold 회원
+				 				<span style="font-weight: 600">Gold</span> 회원
 				 			</c:when>
 				 			<c:when test="${MemberRole.roleNum eq 30}">
 				 				<img alt="" src="/resources/images/rank/Silver.png" class = "pf-rankImg" style="width: 50px;">
-				 				Silver 회원
+				 				<span style="font-weight: 600">Silver</span> 회원
 				 			</c:when>
 				 			<c:when test="${MemberRole.roleNum eq 40}">
 				
 				 				<img alt="" src="/resources/images/rank/White.png" class = "pf-rankImg" style="height:30px; width: 35px; ">
-				 				White 회원
+				 				<span style="font-weight: 600">White</span> 회원
 				 			</c:when>
 				 		
 				 		</c:choose>
