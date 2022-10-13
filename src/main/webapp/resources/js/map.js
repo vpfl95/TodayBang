@@ -671,7 +671,7 @@ function getReviewList(roadName,p){
                 revDiv.appendChild(userDiv)
 
                 let recommendWrap = document.createElement("div")
-                recommendWrap.className = "wrap"
+                recommendWrap.className = "wrap2"
                 let recommend = document.createElement("div")
                 recommend.className="recommend"
                 let gradeDivWrap = document.createElement("div")
@@ -712,7 +712,7 @@ function getReviewList(roadName,p){
 
 
                 let trafficWrap = document.createElement("div")
-                trafficWrap.className = "wrap"
+                trafficWrap.className = "wrap2"
                 let traffic = document.createElement("div")
                 traffic.className="recommend"
                 let trfDivWrap = document.createElement("div")
@@ -753,7 +753,7 @@ function getReviewList(roadName,p){
 
 
                 let envWrap = document.createElement("div")
-                envWrap.className = "wrap"
+                envWrap.className = "wrap2"
                 let environment = document.createElement("div")
                 environment.className="recommend"
                 let envDivWrap = document.createElement("div")
@@ -794,7 +794,7 @@ function getReviewList(roadName,p){
                 revDiv.appendChild(envWrap)
 
                 let resWrap = document.createElement("div")
-                resWrap.className = "wrap"
+                resWrap.className = "wrap2"
                 let residential = document.createElement("div")
                 residential.className="recommend"
                 let resDivWrap = document.createElement("div")
