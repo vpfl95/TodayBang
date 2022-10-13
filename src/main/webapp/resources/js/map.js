@@ -1,6 +1,7 @@
 const more = document.getElementById("more");
 const reviewMore = document.getElementById("reviewMore");
 const maemulList = document.getElementById("maemulList");
+const image = document.getElementById("image");
 const buildingName = document.getElementById("buildingName")
 const buildingWrap = document.getElementById("buildingWrap")
 const buildingInfo = document.getElementById("buildingInfo")
@@ -254,21 +255,21 @@ function addMarker(address_result){
             
             building_top = document.createElement("div")
             building_top.setAttribute("data-roadName",address_result[i].roadName);
-            building_top.setAttribute("data-sigungu",address_result[i].sigungu);    //매물등록에서 쓸것
+           //building_top.setAttribute("data-sigungu",address_result[i].sigungu);    //매물등록에서 쓸것
             building_top.className = "sc-cBNeex building-top"
             building_top.innerText = "매매"
             content.appendChild(building_top)
 
             building_bot = document.createElement("div")
             building_bot.setAttribute("data-roadName",address_result[i].roadName);
-            building_bot.setAttribute("data-sigungu",address_result[i].sigungu);
+            //building_bot.setAttribute("data-sigungu",address_result[i].sigungu);
             building_bot.className = "sc-gWHigU building-bot"
             building_bot.innerText = address_result[i].avg + unit
             content.appendChild(building_bot)
 
             building_name = document.createElement("div")
             building_name.setAttribute("data-roadName",address_result[i].roadName);
-            building_name.setAttribute("data-sigungu",address_result[i].sigungu);
+            //building_name.setAttribute("data-sigungu",address_result[i].sigungu);
             building_name.className = "sc-citxvW building-name"
             building_name.innerText = address_result[i].buildingNm
             content.appendChild(building_name)
@@ -373,6 +374,12 @@ function addEventHandle(target,coords, type) {
 
     if (target.addEventListener) {
         target.addEventListener(type, function(e){
+
+            if(image.firstChild){
+                console.log("있음")
+                image.removeChild(image.firstChild)
+            }
+
              //document.getElementsByTagName('body')[0].style.overflow = 'hidden';
             //map.setCenter(coords)
             
@@ -402,8 +409,9 @@ function addEventHandle(target,coords, type) {
 
             var roadName = e.target.getAttribute("data-roadName");
             var sigungu = e.target.getAttribute("data-sigungu");
-            document.getElementById("roadName").value = roadName
-            document.getElementById("sigungu").value = sigungu
+            //매물등록할때 데이터 가져옴
+            // document.getElementById("roadName").value = roadName
+            // document.getElementById("sigungu").value = sigungu
             console.log(roadName);
 
             realEstateList.innerHTML='' //매물리스트 초기화
@@ -450,10 +458,8 @@ function addEventHandle(target,coords, type) {
 //매물리스트
 function getMaemulList(roadName,p){
     buildingInfo.style.display="block"
-    
+ 
     let user = interestedCheck(roadName);
-    
-
 
     let xhttp = new XMLHttpRequest();
     xhttp.open("GET","./getList?roadName="+roadName+"&page="+p);
@@ -466,7 +472,7 @@ function getMaemulList(roadName,p){
             let list= result.list
             let pager=result.maemulPager
 
-            for(let i=0; i<list.length; i++){
+            for(let i=0; i<list.length; i++){   
                 let tr = document.createElement("tr")
                 tr.className = "tr"
                 let td = document.createElement("td")
@@ -543,15 +549,26 @@ function getMaemulList(roadName,p){
                 }else{
                     more.disabled= false;
                 }
-               
+                
                 more.setAttribute("data-name",list[i].roadName)
                 buildingName.innerText=list[i].buildingNm
+
+                if(list[i].houseImageDTO.fileName){
+                    let img = document.createElement("img")
+                    img.className = "img"
+                    let src = document.createAttribute("src")
+                    src.value="../resources/upload/realestate/"+list[i].houseImageDTO.fileName
+                    img.setAttributeNode(src)
+                    image.appendChild(img)
+                }
+                
+
                 //수정할때 가져오기
                 maemulNum.value = list[0].num
                 roadname.value = list[0].roadName
                 //매물등록할 때 가져오기
-                document.getElementById("buildingNm").value=list[0].buildingNm
-                document.getElementById("buildType").value=list[0].buildType
+                // document.getElementById("buildingNm").value=list[0].buildingNm
+                // document.getElementById("buildType").value=list[0].buildType
             }
         }
     })
@@ -587,8 +604,6 @@ realEstateList.addEventListener("click",function(event){
             window.location.href='/member/login'
         }else{
             event.target.classList.add("interested_select")
-            console.log(event.target.getAttribute("data-num"))
-            console.log(event.target.getAttribute("data-userId"))
     
             let xhttp = new XMLHttpRequest();
             xhttp.open("POST","./setInterested");
@@ -597,7 +612,6 @@ realEstateList.addEventListener("click",function(event){
             xhttp.addEventListener("readystatechange",function(){
                 if(xhttp.status==200 && xhttp.readyState==4){
                     let result = xhttp.responseText
-                    console.log(result)
                 }
             })
         }
@@ -635,7 +649,7 @@ function getReviewList(roadName,p){
     xhttp.addEventListener("readystatechange",function(){
         if(xhttp.status==200 && xhttp.readyState==4){
             var result = JSON.parse(xhttp.responseText.trim());
-            console.log(result)
+            // console.log(result)
             let list= result.list
             let pager=result.maemulPager
 
@@ -645,9 +659,12 @@ function getReviewList(roadName,p){
                 revDiv.setAttribute("data-rvNum",list[i].reviewNum)
 
                 let userDiv = document.createElement("div")
+                userDiv.className = "userDiv"
                 let userid = document.createElement("div")
+                userid.className="userid"
                 let regdate = document.createElement("div")
-                userid.innerText = list[i].userId
+                regdate.className="regdate"
+                userid.innerText = 'ID : ' + list[i].userId
                 regdate.innerText = list[i].date
                 userDiv.appendChild(userid)
                 userDiv.appendChild(regdate)
@@ -687,6 +704,7 @@ function getReviewList(roadName,p){
                 recommend.appendChild(gradeCircle)
 
                 let contents = document.createElement("div")
+                contents.className = "contents"
                 contents.innerText = list[i].contents
                 recommendWrap.appendChild(recommend)
                 recommendWrap.appendChild(contents)
@@ -727,6 +745,7 @@ function getReviewList(roadName,p){
                 traffic.appendChild(trfCircle)
 
                 let trfContents = document.createElement("div")
+                trfContents.className = "contents"
                 trfContents.innerText = list[i].trfContents
                 trafficWrap.appendChild(traffic)
                 trafficWrap.appendChild(trfContents)
@@ -768,6 +787,7 @@ function getReviewList(roadName,p){
 
 
                 let envContents = document.createElement("div")
+                envContents.className = "contents"
                 envContents.innerText = list[i].envContents
                 envWrap.appendChild(environment)
                 envWrap.appendChild(envContents)
@@ -807,26 +827,29 @@ function getReviewList(roadName,p){
                 residential.appendChild(resCircle)
 
                 let resContents = document.createElement("div")
+                resContents.className = "contents"
                 resContents.innerText = list[i].resContents
                 resWrap.appendChild(residential)
                 resWrap.appendChild(resContents)
                 revDiv.appendChild(resWrap)
 
-
-                let update = document.createElement("span")
+                let updel = document.createElement("div")
+                updel.className = "updel"
+                let update = document.createElement("div")
                 update.innerText="수정"
                 update.className="update"
                 update.setAttribute("value",list[i].userId)
-                revDiv.appendChild(update)
+                updel.appendChild(update)
 
-                let del = document.createElement("span")
+                let del = document.createElement("div")
                 del.setAttribute("data-rvNum",list[i].reviewNum)
                 del.setAttribute("data-road",roadName)
                 del.setAttribute("value",list[i].userId)
                 del.innerText="삭제"
                 del.className="delete"
-                revDiv.appendChild(del)   
+                updel.appendChild(del)   
 
+                revDiv.appendChild(updel)
 
                 houseReviewList.appendChild(revDiv)
 
@@ -1360,29 +1383,136 @@ function closeSuggestList(){
 
 //------------------------------------------------매물등록---------------------------------------------------------------------------------------
 
-addReal.addEventListener("click", function(){
-    let buildType = document.getElementById("buildType").value
-    let sigungu = document.getElementById("sigungu").value
-    let roadName = document.getElementById("roadName").value
-    let buildingNm = document.getElementById("buildingNm").value
-    let dealType = Array.from(document.getElementsByName("dealType")).find(radio => radio.checked);
-    let deal = document.getElementById("deal").value
-    let dposit = document.getElementById("deposit").value
-    let wdeposit = document.getElementById("wdeposit").value
-    let monthly = document.getElementById("monthly").value
-    let area = document.getElementById("area").value
-    let floor = document.getElementById("floor").value
+// addReal.addEventListener("click", function(){
+//     let buildType = document.getElementsByName("buildType")
+//     let buildValue
+//     for(let i=0; i<buildType.length;i++){
+//         if(buildType[i].checked){
+//             buildValue=buildType[i].value
+//         }
+//     }
 
-    let xhttp = new XMLHttpRequest()
-    xhttp.open("POST","./setAddReal")
-    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-    xhttp.send("buildType="+buildType+"&sigungu="+sigungu)
-})
+//     let sigungu = document.getElementById("sigungu").value
+//     let roadName = document.getElementById("roadName").value
+//     let buildingNm = document.getElementById("buildingNm").value
+//     let dealType = document.getElementsByName("dealType")
+//     let dealValue
+//     for(let i=0; i<dealType.length;i++){
+//         if(dealType[i].checked){
+//             dealValue=dealType[i].value
+//         }
+//     }
+//     let deal = document.getElementById("deal").value
+//     let deposit = document.getElementById("deposit").value
+//     let wdeposit = document.getElementById("wdeposit").value
+//     let monthly = document.getElementById("monthly").value
+//     let area = document.getElementById("area").value
+//     let floor = document.getElementById("floor").value
+
+//     let xhttp = new XMLHttpRequest()
+//     xhttp.open("POST","setAddReal")
+//     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+//     xhttp.send("buildType="+buildValue+"&sigungu="+sigungu+"&roadName="+roadName+"&buildingNm="+buildingNm+"&dealType="+dealValue+"&deal="+deal+"&deposit="+deposit+"&wdeposit="+wdeposit+"&monthly="+monthly+"&area="+area+"&floor="+floor)
+//     xhttp.addEventListener("readystatechange",function(){
+//         if(xhttp.status==200 && xhttp.readyState==4){
+//             let result = xhttp.responseText
+
+//             if(result==1){
+//                 alert("등록되었습니다.")
+//             }
+//         }
+//     })
+// })
 
 
 
+// const sigunguList = document.getElementById("sigunguList")
+// getHaddress()
+
+// function getHaddress(){
+//     const sigungu = document.getElementById("sigungu")
+        
+
+//     $('#sigungu').keyup(delay(function (e) {
+//         console.log('Time elapsed!', this.value);
+//         const items = document.querySelectorAll(".selectItem")
+
+//         if(sigungu.value==''){
+//             sigunguList.style.display="none"
+//         }else{
+//             sigunguList.style.display="block"
+//         }
+
+//         let xhttp = new XMLHttpRequest();
+//         xhttp.open("POST","./getHaddress");
+//         xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        
+//         if(sigungu.value!=''){
+//             xhttp.send("search="+sigungu.value);
+//         }
+        
+//         xhttp.addEventListener("readystatechange",function(){
+//             if(xhttp.readyState==4 && xhttp.status==200){
+//                 //연관검색어 초기화
+//                 items.forEach(function(data){
+//                 //console.log("삭제",data)
+//                 data.remove()
+//                 })
+                
+//                 var result = JSON.parse(this.responseText.trim());
+
+//                 if(sigungu.value==''){
+//                     sigunguList.style.display="none"
+//                 }else if(result.length>0){
+//                     sigunguList.style.display="block"
+//                 }
+
+//                 if(result.length==0){
+//                     let selectItem = document.createElement("div")
+//                     // selectItem.innerText="검색결과가 없습니다."
+//                     // selectItem.className="selectItem"
+//                     // sugguestList.appendChild(selectItem)
+//                 }else{
+//                     for(let i=0; i<result.length; i++){
+//                         console.log(result[i].sigungu)
+//                         let selectItem = document.createElement("div")
+//                         let selectItemWrap = document.createElement("div")
+//                         let aptDiv = document.createElement("div")
+                       
+                        
+//                         aptDiv.innerText=result[i].sigungu
+                      
+//                         selectItem.className="selectItem"
+                     
+//                         selectItemWrap.appendChild(aptDiv)
+//                         selectItem.appendChild(selectItemWrap)
+//                         sigunguList.appendChild(selectItem)
+                        
+//                         selectItem.addEventListener("click",function(){
+//                             sigungu.value=selectItem.firstChild.firstChild.innerText
+//                             closeSigunguList()
+//                         })
+//                     }
+//                 }
+
+//             }
+//         });
 
 
+//         if(e.key==="Escape"){
+//             searchWrap.style.zIndex=2
+//             closeSuggestList();
+//         }
+//         if(e.key==="Enter"){
+//             searchWrap.style.zIndex=2
+//             closeSuggestList();
+//         }
+//     }, 200));
+// }
+
+// function closeSigunguList(){
+//     sigunguList.style.display="none"
+// }
 
 
 

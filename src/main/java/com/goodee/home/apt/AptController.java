@@ -5,6 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.goodee.home.interested.InterestedDTO;
 import com.goodee.home.interested.InterestedService;
 import com.goodee.home.realEstate.RealEstateDTO;
+import com.goodee.home.realEstate.RealEstateService;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
 import com.goodee.home.review.HouseReviewDTO;
@@ -37,6 +41,9 @@ public class AptController {
 	private HouseReviewService houseReviewService;
 	@Autowired
 	private InterestedService interestedService;
+	@Autowired
+	private RealEstateService realEstateService;
+	
 	
 	@ModelAttribute("zigbang")
 	public String getBuilding() {
@@ -45,13 +52,50 @@ public class AptController {
 	
 	@GetMapping("map")
 	public ModelAndView getAptRoadName(ModelAndView mv, AptDTO aptDTO) throws Exception{
-		
+		//String path = servletContext.getRealPath("resources/upload/realestate");
+		//System.out.println(path);
 		//List<RealEstateDTO> arr = aptService.getAptRoadName(aptDTO);
 	
 		//mv.addObject("list",arr);
 		mv.setViewName("/zigbang/map");
 		return mv;
 	}
+	
+	@PostMapping("setAddReal")
+	@ResponseBody
+	public int setAdd(RealEstateDTO realEstateDTO)throws Exception{
+		System.out.println(realEstateDTO.getBuildType());
+		System.out.println(realEstateDTO.getSigungu());
+		System.out.println(realEstateDTO.getRoadName());
+		System.out.println(realEstateDTO.getBuildingNm());
+		System.out.println(realEstateDTO.getDealType());
+		System.out.println(realEstateDTO.getDeal());
+		System.out.println(realEstateDTO.getDeposit());
+		System.out.println(realEstateDTO.getWdeposit());
+		System.out.println(realEstateDTO.getMonthly());
+		System.out.println(realEstateDTO.getArea());
+		System.out.println(realEstateDTO.getFloor());
+		int result;
+		
+		if(realEstateDTO.getDealType().equals("매매")) {
+			result = realEstateService.setAddMM(realEstateDTO);			
+		}else if(realEstateDTO.getDealType().equals("전세")){
+			result = realEstateService.setAddJS(realEstateDTO);			
+		}else{
+			result = realEstateService.setAddWS(realEstateDTO);			
+		}
+		
+		return result;
+	}
+	
+	@PostMapping("getHaddress")
+	@ResponseBody
+	public List<RealEstateDTO> getHaddress(String search)throws Exception{
+		System.out.println("getHaddress"+' '+search);
+		List<RealEstateDTO> arr = realEstateService.getHaddress(search);
+		return arr;
+	}
+	
 	
 	@PostMapping("getSearchList")
 	@ResponseBody
@@ -70,7 +114,7 @@ public class AptController {
 	@ResponseBody
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		System.out.println(aptDTO.getSigungu());
+		System.out.println("getaptroadname"+aptDTO.getSigungu());
 		
 		List<RealEstateDTO> arr = aptService.getAptRoadName(aptDTO);
 		
@@ -104,9 +148,8 @@ public class AptController {
 	@GetMapping("getList")
 	@ResponseBody
 	public Map<String, Object> getList(MaemulPager maemulPager) throws Exception{
-		System.out.println("getList"+maemulPager.getRoadName());
+		System.out.println("getList"+maemulPager.getRoadName() + "page: "+maemulPager.getPage() + "totalpage: "+maemulPager.getTotalPage());
 		ModelAndView mv = new ModelAndView();
-		
 		List<AptDTO> list = aptService.getList(maemulPager);
 		Map<String, Object> map = new HashMap<String, Object>();
 		map.put("list", list);
@@ -121,7 +164,7 @@ public class AptController {
 	@GetMapping("getHouseReview")
 	@ResponseBody
 	public Map<String, Object>  getHouseReview(MaemulPager maemulPager)throws Exception{
-		System.out.println("getHouseReview" + maemulPager.getRoadName() + "page"+maemulPager.getPage());
+		System.out.println("getHouseReview" + maemulPager.getRoadName() + "page"+maemulPager.getPage() + " totalpage: "+maemulPager.getTotalPage());
 		ModelAndView mv = new ModelAndView();
 		
 		List<HouseReviewDTO> list = houseReviewService.getHouseReview(maemulPager);

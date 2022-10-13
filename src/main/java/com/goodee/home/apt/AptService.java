@@ -23,7 +23,6 @@ public class AptService {
 		maemulPager.getRowNum();
 
 		Long totalCount = aptDAO.getTotalCount(maemulPager);
-		
 		maemulPager.makePage(totalCount);
 		
 		return aptDAO.getList(maemulPager);

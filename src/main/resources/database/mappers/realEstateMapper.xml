@@ -3,9 +3,19 @@
 		    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">    
 <mapper namespace="com.goodee.home.realEstate.RealEstateDAO">
-	<insert id="setAdd" parameterType="RealEstateDTO">
-		INSERT INTO REALESTATE VALUES(REALESTATE_SEQ.nextval, #{sigungu}, null, #{buildType}, #{buildingNm}, #{dealType}, #{area}, sysdate, sysdate, #{deal}, #{deposit}, #{wdeposit}, #{monthly}, #{floor}, null, #{roadName})
+	<insert id="setAddMM" parameterType="RealEstateDTO">
+		INSERT INTO REALESTATE VALUES(REALESTATE_SEQ.nextval, #{sigungu}, null, #{buildType}, #{buildingNm}, #{dealType}, #{area}, sysdate, sysdate, #{deal}, null,null,null, #{floor}, null, #{roadName})
 	</insert>
 
-
+	<insert id="setAddJS" parameterType="RealEstateDTO">
+		INSERT INTO REALESTATE VALUES(REALESTATE_SEQ.nextval, #{sigungu}, null, #{buildType}, #{buildingNm}, #{dealType}, #{area}, sysdate, sysdate, null, #{deposit},null,null, #{floor}, null, #{roadName})
+	</insert>
+	
+	<insert id="setAddWS" parameterType="RealEstateDTO">
+		INSERT INTO REALESTATE VALUES(REALESTATE_SEQ.nextval, #{sigungu}, null, #{buildType}, #{buildingNm}, #{dealType}, #{area}, sysdate, sysdate, null, null,#{wdeposit},#{monthly}, #{floor}, null, #{roadName})
+	</insert>
+	
+	<select id="getHaddress" parameterType="String" resultType="RealEstateDTO">
+		SELECT DISTINCT SIGUNGU FROM REALESTATE WHERE SIGUNGU LIKE '%'||#{search}||'%'
+	</select>
 </mapper>

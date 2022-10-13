@@ -14,12 +14,51 @@
 		GROUP BY BUILDINGNM,ROADNAME,SIGUNGU
 	</select>
 	
-	<select id="getList" parameterType="MaemulPager" resultType="AptDTO">
+	<!-- <select id="getList" parameterType="MaemulPager" resultType="AptDTO">
+		
 		SELECT * FROM
 		(SELECT ROWNUM R, A.*
-		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트' ORDER BY DEALDAY) A)
+		FROM (SELECT * FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트' ORDER BY DEALDAY DESC) A)
 		WHERE R BETWEEN #{startRow} AND #{lastRow}
+	</select> -->
+	
+	
+	<select id="getList" parameterType="MaemulPager" resultMap="getImage">
+		SELECT * FROM
+		(SELECT ROWNUM N, A.*
+		FROM (SELECT *
+				FROM HOUSEIMAGE H
+				     RIGHT JOIN 
+				     REALESTATE R
+				    USING(NUM)
+				WHERE R.ROADNAME=#{roadName} AND BUILDTYPE='아파트' ORDER BY H.KEY) A)
+		WHERE N BETWEEN #{startRow} AND #{lastRow}
 	</select>
+	<resultMap type="AptDTO" id="getImage">
+		<id column="NUM" property="num"/>
+		<result column="SIGUNGU" property="sigungu"/>
+		<result column="BUNJI" property="bunji"/>
+		<result column="BUILDTYPE" property="buildType"/>
+		<result column="BUILDINGNM" property="buildingNm"/>
+		<result column="DEALTYPE" property="dealType"/>
+		<result column="AREA" property="area"/>
+		<result column="DEALYM" property="dealYm"/>
+		<result column="DEALDAY" property="dealDay"/>
+		<result column="DEAL" property="deal"/>
+		<result column="DEPOSIT" property="deposit"/>
+		<result column="WDEPOSIT" property="wdeposit"/>
+		<result column="MONTHLY" property="monthly"/>
+		<result column="FLOOR" property="floor"/>
+		<result column="BUILDYEAR" property="buildYear"/>
+		<result column="ROADNAME" property="roadName"/>
+		<association property="houseImageDTO" javaType="HouseImageDTO">
+			<id column="KEY" property="key"/>
+			<result column="FILENAME" property="fileName"/>
+			<result column="ORINAME" property="oriName"/>
+			<result column="NUM" property="num"/>
+		</association>
+	</resultMap>
+	
 	
 	<select id="getTotalCount" parameterType="MaemulPager" resultType="Long">
 		SELECT COUNT(NUM) FROM REALESTATE WHERE ROADNAME=#{roadName} AND BUILDTYPE='아파트'
