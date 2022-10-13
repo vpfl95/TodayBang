@@ -559,6 +559,7 @@ public class MemberController {
 			}
 		}
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		Long mileage = memberService.getMileage(memberDTO);
 		List<DeliveryDTO> deliveryDTOs = memberService.getDelivery(memberDTO);
 		productDTO = productService.getOrderProduct(productDTO);
 		if(result.equals("0")) {
@@ -574,6 +575,7 @@ public class MemberController {
 		model.addAttribute("detail", productDTO);
 		model.addAttribute("result", result);
 		model.addAttribute("price", price);
+		model.addAttribute("mileage", mileage);		
 		model.addAttribute("productCount", productCount);
 		model.addAttribute("deliveryDTOs", deliveryDTOs);
 		model.addAttribute("deliveryJson", deliveryJson);
@@ -588,17 +590,10 @@ public class MemberController {
 	
 	@PostMapping("addOrder")
 	@ResponseBody
-	public int addOrder(String imp_uid, Long delivery, Long result, Long productCount, Long[] optionNum, Long[] optionCount, Long productNum, HttpSession session) throws Exception {
-		System.out.println(imp_uid);
-		System.out.println(delivery);
-		System.out.println(result);
-		System.out.println(productCount);
-		System.out.println(productNum);
-		for(int i=0; i<optionCount.length; i++) {
-			System.out.println(optionNum[i]);
-			System.out.println(optionCount[i]);
-		}
+	public int addOrder(String imp_uid, Long delivery, Long result, Long productCount, Long[] optionNum, Long[] optionCount, Long productNum, Long point, HttpSession session) throws Exception {
 		MemberDTO memberDTO = (MemberDTO) session.getAttribute("member");
+		memberDTO.setMileage(point);
+		memberService.updateMileage(memberDTO);
 		OrderDTO orderDTO = new OrderDTO();
 		if(delivery == 0L) {
 			IamportResponse<Payment> response = api.paymentByImpUid(imp_uid);
@@ -619,16 +614,17 @@ public class MemberController {
 		}
 		orderDTO.setUserId(memberDTO.getUserId());
 		orderDTO.setPayment("card");
+		orderDTO.setProductNum(productNum);
 		if(result == 0) {
-			// buyamount, productNum 세팅
-			orderDTO.setProductNum(productNum);
+			// buyAmount, productNum 세팅
 			orderDTO.setBuyAmount(productCount);
 		} else {
-			orderDTO.setProductNum(0L);
 			orderDTO.setBuyAmount(0L);
 		}
 		orderDTO.setDeliveryStatus("결제 완료");
-		memberService.setOrder(orderDTO);
+		Long orderNum = memberService.getOrderNum();
+		orderDTO.setOrderNum(orderNum);
+		int result1 = memberService.setOrder(orderDTO);
 		System.out.println(orderDTO.getOrderNum());
 		for(int i=0; i<optionCount.length; i++) {
 			Order_OptionDTO order_OptionDTO = new Order_OptionDTO();
@@ -638,7 +634,7 @@ public class MemberController {
 			memberService.setOrderOption(order_OptionDTO);
 		}
 		
-		return 0;
+		return result1;
 	}
 	
 

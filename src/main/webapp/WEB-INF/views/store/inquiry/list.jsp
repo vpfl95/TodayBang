@@ -70,7 +70,9 @@
 					</div>
 				</c:otherwise>
 			</c:choose>
-			<div class="delete" data-delete-inqnum="${dto.inqNum}">❌</div>
+			<c:if test="${member.userId eq dto.userId}">	
+				<div class="delete" data-delete-inqnum="${dto.inqNum}">❌</div>
+			</c:if>
 			</div>
 			<div class="d-flex idWrap">
 				<div style="margin-right: 5px;">${dto.userId}</div>
@@ -96,7 +98,9 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<button class="reply" data-bs-toggle="modal" data-bs-target="#inquiryReplyModal" data-reply-inqnum="${dto.inqNum}">답글</button>
+				<c:if test="${not empty ManagerRole}">
+					<button class="reply" data-bs-toggle="modal" data-bs-target="#inquiryReplyModal" data-reply-inqnum="${dto.inqNum}">답글</button>
+				</c:if>
 			</div>
 		</c:if>
 		<c:if test="${not empty reply[i.index]}">

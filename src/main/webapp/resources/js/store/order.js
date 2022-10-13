@@ -3,6 +3,7 @@ const termsAgree1 = document.querySelector('#termsAgree1');
 const termsAgree2 = document.querySelector('#termsAgree2');
 const termsAgree1_1 = document.querySelector('#termsAgree1_1');
 const termsAgree1_2 = document.querySelector('#termsAgree1_2');
+const termsAgree2_1 = document.querySelector('#termsAgree2_1');
 const delivery = document.querySelector('#delivery');
 const deliveryJson = document.querySelector('#deliveryJson');
 const getPoint = document.querySelector('#getPoint');
@@ -27,6 +28,10 @@ const totalPrice = document.querySelectorAll('.totalPrice');
 const productName = document.querySelector('#productName');
 const productNum = document.querySelector('#productNum');
 
+const orderAllCheck = document.querySelector('#orderAllCheck');
+const orderCheck = document.querySelectorAll('.orderCheck');
+const orderCheck1 = document.querySelector('#orderCheck1');
+const orderCheckSub = document.querySelectorAll('.orderCheckSub');
 
 
 for(sp of samplePostcode) {
@@ -59,6 +64,7 @@ function sample6_execDaumPostcode() {
 }
 
 termsAgree1.onclick=function(event) {
+    console.log(event.target);
     if(event.target.classList.contains('terms-expand') || event.target.classList.contains('terms-expand-click')) {
         let svg = event.target;
         svg.classList.toggle('terms-expand');
@@ -85,7 +91,25 @@ termsAgree1.onclick=function(event) {
 }
 
 termsAgree2.onclick=function(event) {
-    console.log(event.target.firstChild.nextSibling);
+    if(event.target.classList.contains('terms-expand') || event.target.classList.contains('terms-expand-click')) {
+        let svg = event.target;
+        svg.classList.toggle('terms-expand');
+        svg.classList.toggle('terms-expand-click');
+        if(svg.classList.contains('terms-expand')) {
+            termsAgree2_1.setAttribute('style', 'display: none');
+        } else {
+            termsAgree2_1.setAttribute('style', '');
+        }
+    } else {
+        let svg = $(event.target).find('svg');
+        svg[0].classList.toggle('terms-expand');
+        svg[0].classList.toggle('terms-expand-click');
+        if(svg[0].classList.contains('terms-expand')) {
+            termsAgree2_1.setAttribute('style', 'display: none');
+        } else {
+            termsAgree2_1.setAttribute('style', '');
+        }
+    }
 }
 
 delivery.onchange=function(event){
@@ -132,16 +156,29 @@ function setPrice() {
     }
 }
 
-btnPay.onclick=requestPay;
+btnPay.onclick=function(){
+    let check = true;
+    if(!orderAllCheck.checked){
+        check = false;
+    }
+
+    if(check){
+        requestPay();
+    } else {
+
+    }
+};
 
 function requestPay() {  
     var IMP = window.IMP; // 생략 가능
     IMP.init("imp62542227"); // 예: imp00000000
     // IMP.request_pay(param, callback) 결제창 호출
+    let d = new Date();
+    let n = d.getMilliseconds();
     IMP.request_pay({
         pg : 'html5_inicis',
         pay_method : 'card',
-        merchant_uid: "order_no_0023", // 상점에서 관리하는 주문 번호를 전달
+        merchant_uid: n, // 상점에서 관리하는 주문 번호를 전달
         name : productName.value,
         // amount : totalPrice[0].innerHTML.replace(/,+/g, ''),
         amount : 100,
@@ -177,12 +214,11 @@ function requestPay() {
                     const xhttp = new XMLHttpRequest();
                     xhttp.open("POST", "/member/addOrder");
                     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                    let point = getPoint.innerHTML.split(' ');
                     if(result.value == 0) {
-                        xhttp.send('imp_uid='+rsp.imp_uid+'&delivery='+delivery.value+'&result='+result.value
-                    +'&productCount='+productCount.dataset.productCount+'&optionNum='+num+'&optionCount'+count+'&productNum='+productNum.value);
+                        xhttp.send('imp_uid='+rsp.imp_uid+'&delivery='+delivery.value+'&result='+result.value+'&productCount='+productCount.dataset.productCount+'&optionNum='+num+'&optionCount'+count+'&productNum='+productNum.value+'&point='+point[0]);
                     } else {
-                        xhttp.send('imp_uid='+rsp.imp_uid+'&delivery='+delivery.value+'&result='+result.value
-                    +'&optionNum='+num+'&optionCount='+count+'&productNum='+productNum.value);
+                        xhttp.send('imp_uid='+rsp.imp_uid+'&delivery='+delivery.value+'&result='+result.value+'&optionNum='+num+'&optionCount='+count+'&productNum='+productNum.value+'&point='+point[0]);
                     }
                     xhttp.onreadystatechange=function() {
                         console.log(this.responseText);
@@ -198,4 +234,50 @@ function requestPay() {
             alert(msg);
         }
     });
+}
+
+orderAllCheck.onclick=function() {
+    for(ch of orderCheck) {
+        ch.checked = orderAllCheck.checked;
+    }
+}
+
+for(ch of orderCheck){
+    ch.onclick=function(){
+        let check = true;
+        for(ch of orderCheck){
+            if(!ch.checked){
+                check=false;
+            }
+        }
+        if(check){
+            orderAllCheck.checked = true;
+
+        }else{
+            orderAllCheck.checked = false;
+        }
+    }
+}
+
+orderCheck1.onclick=function(){
+    for(ch of orderCheckSub) {
+        ch.checked = orderCheck1.checked;
+    }
+}
+
+for(ch of orderCheckSub){
+    ch.onclick=function(){
+        let check = true;
+        for(ch of orderCheckSub){
+            if(!ch.checked){
+                check=false;
+            }
+        }
+        if(check){
+            orderCheck1.checked = true;
+
+        }else{
+            orderCheck1.checked = false;
+        }
+    }
 }

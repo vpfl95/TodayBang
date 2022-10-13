@@ -197,7 +197,9 @@
 						</div>
 					</div>
 				</div>
-				<div class="delete" data-delete-revnum="${dto.revNum}">❌</div>
+				<c:if test="${member.userId eq dto.userId}">
+					<div class="delete" data-delete-revnum="${dto.revNum}">❌</div>
+				</c:if>
 			</div>
 			<div class="d-flex">
 				<label for="dur" style="margin-right: 5px">내구성</label>
@@ -244,9 +246,11 @@
 						</c:otherwise>
 					</c:choose>
 				</div>
-				<div class="d-flex">
-					<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}" data-bs-toggle="modal" data-bs-target="#reviewModal">수정</button>
-				</div>
+				<c:if test="${member.userId eq dto.userId}">
+					<div class="d-flex">
+						<button class="update btn btn-primary me-2" data-update-revnum="${dto.revNum}" data-bs-toggle="modal" data-bs-target="#reviewModal">수정</button>
+					</div>
+				</c:if>
 			</div>
 		</div>
 		<hr>

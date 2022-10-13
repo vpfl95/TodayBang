@@ -57,6 +57,7 @@
 				<result column="USERNAME" property="userName"/>
 				<result column="PHONE" property="phone"/>
 				<result column="email" property="email"/>
+				<result column="MILEAGE" property="mileage"/>
 				
 				<association property="memberFileDTO" javaType="MemberFileDTO">
 					<id column="FILENUM" property="fileNum"/>
@@ -240,17 +241,13 @@
 				 WHERE USERID=#{userId}
 			</select>
 			
-			<!-- <insert id="setOrder" parameterType="OrderDTO">
-				<selectKey keyProperty="orderNum" order="BEFORE" resultType="long">
-					(SELECT TO_CHAR(SYSDATE, 'YYMMDDHH') as NOWDATE FROM DUAL) ||LPAD(ORDER_SEQ.NEXTVAL,3,'0')
-				</selectKey>
-				INSERT INTO "ORDER" VALUES ((SELECT TO_CHAR(SYSDATE, 'YYMMDDHH') as NOWDATE FROM DUAL)
-				||LPAD(ORDER_SEQ.NEXTVAL,3,'0'),'111',721,711,SYSDATE,'신용카드','배송중');
-			</insert> -->
+			<select id="getOrderNum" resultType="Long">
+				SELECT ORDER_SEQ.NEXTVAL FROM DUAL
+			</select>
 			
 			<insert id="setOrder" parameterType="OrderDTO">
 				<selectKey keyProperty="orderNum" order="BEFORE" resultType="long">
-					SELECT ORDER_SEQ.NEXTVAL FROM DUAL
+					SELECT ((SELECT TO_CHAR(SYSDATE, 'YYMMDDHH') as NOWDATE FROM DUAL)|| (SELECT  LPAD(#{orderNum},3,'0') FROM DUAL)) FROM DUAL
 				</selectKey>
 				INSERT INTO "ORDER" VALUES (#{orderNum},#{userId},#{addressNum},SYSDATE,#{payment},#{productNum},#{buyAmount},#{deliveryStatus})
 			</insert>
@@ -258,4 +255,12 @@
 			<insert id="setOrderOption" parameterType="Order_OptionDTO">
 				INSERT INTO "ORDER-OPTION" VALUES (ORDER_SEQ.NEXTVAL, #{orderNum}, #{optionNum}, #{optionCount})
 			</insert>
+			
+			<update id="updateMileage" parameterType="MemberDTO">
+				UPDATE MEMBERS SET MILEAGE=MILEAGE+#{mileage} WHERE USERID=#{userId}
+			</update>
+			
+			<select id="getMileage" parameterType="MemberDTO" resultType="Long">
+				SELECT MILEAGE FROM MEMBERS WHERE USERID=#{userId}
+			</select>
 		</mapper>

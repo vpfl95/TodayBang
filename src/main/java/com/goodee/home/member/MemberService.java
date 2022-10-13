@@ -243,4 +243,16 @@ public class MemberService {
 	public int setOrderOption(Order_OptionDTO order_OptionDTO) throws Exception {
 		return memberDAO.setOrderOption(order_OptionDTO);
 	}
+	
+	public Long getOrderNum() throws Exception {
+		return memberDAO.getOrderNum();
+	}
+	
+	public int updateMileage(MemberDTO memberDTO) throws Exception {
+		return memberDAO.updateMileage(memberDTO);
+	}
+	
+	public Long getMileage(MemberDTO memberDTO) throws Exception {
+		return memberDAO.getMileage(memberDTO);
+	}
 }

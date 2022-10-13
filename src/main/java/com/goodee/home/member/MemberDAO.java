@@ -171,4 +171,16 @@ public class MemberDAO {
 	public int setOrderOption(Order_OptionDTO order_OptionDTO) throws Exception {
 		return sqlSession.insert(NAMESPACE+"setOrderOption", order_OptionDTO);
 	}
+	
+	public Long getOrderNum() throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getOrderNum");
+	}
+	
+	public int updateMileage(MemberDTO memberDTO) throws Exception {
+		return sqlSession.update(NAMESPACE+"updateMileage", memberDTO);
+	}
+	
+	public Long getMileage(MemberDTO memberDTO) throws Exception {
+		return sqlSession.selectOne(NAMESPACE+"getMileage", memberDTO);
+	}
 }
