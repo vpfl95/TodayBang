@@ -360,9 +360,6 @@
 .delete{
     cursor: pointer;
     padding-left: 7px;
-    border: 0 solid black;
-    border-right-color: rgb(225, 225, 225);
-    border-right-width: 1px;
 }
 
 
