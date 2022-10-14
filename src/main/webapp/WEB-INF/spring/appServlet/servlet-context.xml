@@ -43,10 +43,6 @@
 			<mapping path="/service/qna/**"/>
 			<mapping path="/service/notice/**"/>
 			<mapping path="/admin/**"/>
-			<mapping path="/member/**"/>
-			<exclude-mapping path="/member/login"/>
-			<exclude-mapping path="/member/joinCheck"/>
-			<exclude-mapping path="/member/join"/>
 			<exclude-mapping path="/service/qna/add"/>
 			<exclude-mapping path="/service/notice/list"/>
 			<exclude-mapping path="/service/qna/list"/>

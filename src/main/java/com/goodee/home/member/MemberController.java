@@ -84,8 +84,6 @@ public class MemberController {
 					
 				}else if(role.getRoleNum()<100 && role.getRoleNum()>9) {
 					session.setAttribute("MemberRole", role);
-				}else if(role.getRoleNum()==100) {
-					session.setAttribute("BanRole", role);
 				}	
 			}
 			session.setAttribute("profile", memberDTO.getMemberFileDTO());
@@ -160,9 +158,11 @@ public class MemberController {
 		
 		if(memberDTO != null) {
 			// 사용 불가
+			System.out.println("중복 부분");
 			return "0";
 			
 		}
+		System.out.println("중복 아님");
 		// 사용 가능
 		return "1";
 	}

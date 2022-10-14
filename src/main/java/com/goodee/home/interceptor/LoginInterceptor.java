@@ -18,7 +18,7 @@ public class LoginInterceptor extends HandlerInterceptorAdapter{
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		Object obj = session.getAttribute("member");
-		
+		System.out.println("인터셉터");
 		if(obj != null ) {
 			
 			return true ;
