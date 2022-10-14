@@ -135,25 +135,25 @@ function getList(category) {
                     divPriceWrap.appendChild(divPrice);
                     divProductDetail.appendChild(divPriceWrap);
 
-                    // 평점 추가
-                    let divGradeWrap = document.createElement("div");
-                    let divGrade = document.createElement("div");
-                    let divGrade_class = document.createAttribute("class");
-                    divGrade_class.value="grade";
-                    divGrade.setAttributeNode(divGrade_class);
-                    let divGrade_text = document.createTextNode(0);
-                    divGrade.appendChild(divGrade_text);
-                    divGradeWrap.appendChild(divGrade);
+                    // // 평점 추가
+                    // let divGradeWrap = document.createElement("div");
+                    // let divGrade = document.createElement("div");
+                    // let divGrade_class = document.createAttribute("class");
+                    // divGrade_class.value="grade";
+                    // divGrade.setAttributeNode(divGrade_class);
+                    // let divGrade_text = document.createTextNode(0);
+                    // divGrade.appendChild(divGrade_text);
+                    // divGradeWrap.appendChild(divGrade);
 
-                    // 리뷰 수
-                    let divReviewNum = document.createElement("div");
-                    let divReviewNum_class = document.createAttribute("class");
-                    divReviewNum_class.value="reviewNum";
-                    divReviewNum.setAttributeNode(divReviewNum_class);
-                    let divReviewNum_text = document.createTextNode('리뷰 ' + 0);
-                    divReviewNum.appendChild(divReviewNum_text);
-                    divGradeWrap.appendChild(divReviewNum);
-                    divProductDetail.appendChild(divGradeWrap);
+                    // // 리뷰 수
+                    // let divReviewNum = document.createElement("div");
+                    // let divReviewNum_class = document.createAttribute("class");
+                    // divReviewNum_class.value="reviewNum";
+                    // divReviewNum.setAttributeNode(divReviewNum_class);
+                    // let divReviewNum_text = document.createTextNode('리뷰 ' + 0);
+                    // divReviewNum.appendChild(divReviewNum_text);
+                    // divGradeWrap.appendChild(divReviewNum);
+                    // divProductDetail.appendChild(divGradeWrap);
 
                     // a태그 추가
                     let subA = document.createElement("a");
