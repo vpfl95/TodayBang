@@ -171,7 +171,10 @@ btnPay.onclick=function(){
     if(check){
         requestPay();
     } else {
-
+        Swal.fire({
+            icon: 'warning',
+            text: '약관에 모두 동의해주세요',
+          })
     }
 };
 
@@ -186,8 +189,7 @@ function requestPay() {
         pay_method : 'card',
         merchant_uid: n, // 상점에서 관리하는 주문 번호를 전달
         name : productName.value,
-        // amount : totalPrice[0].innerHTML.replace(/,+/g, ''),
-        amount : 100,
+        amount : totalPrice[0].innerHTML.replace(/,+/g, ''),
         buyer_name : addressee.value,
         buyer_tel : phoneFirst.value+'-'+phoneLast.value,
         buyer_addr : sample6_address.value+' '+sample6_detailAddress.value,
@@ -239,7 +241,7 @@ function requestPay() {
             });
         } else {
             var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
+            msg += ' 에러내용 : ' + rsp.error_msg;
             
             Swal.fire({
                 icon: 'error',

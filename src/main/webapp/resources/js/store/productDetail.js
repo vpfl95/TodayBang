@@ -711,6 +711,14 @@ section.onclick=function(event) {
                 $('section').find('input.frmProductNum')[1].value=jsonList[0].productNum;
                 $("#frmCheckout").attr("action", "/member/addCart");
                 $("#frmCheckout").submit();
+                Swal.fire({
+                    position: 'top-end',
+                    icon: 'success',
+                    title: 'Your work has been saved',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  
             } else {
                 Swal.fire({
                     icon: 'error',

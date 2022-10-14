@@ -2,8 +2,8 @@ profileDiv = document.querySelector('#profileDiv');
 
 profileDiv.onclick=function(event) {
     if(event.target.getAttribute('id') == 'payBtn') {
-        // requestPay();
         console.log($('#profileDiv').find('.cart-pd-detail-contents').find('#cart-product').find('a')[0].innerHTML);
+        // requestPay();
     }
 }
 
