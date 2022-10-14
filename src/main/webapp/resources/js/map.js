@@ -376,7 +376,6 @@ function addEventHandle(target,coords, type) {
         target.addEventListener(type, function(e){
 
             if(image.firstChild){
-                console.log("있음")
                 image.removeChild(image.firstChild)
             }
 
@@ -546,8 +545,10 @@ function getMaemulList(roadName,p){
                 //페이지 없으면 버튼 비활성화
                 if(page >= pager.totalPage){
                     more.disabled= true;
+                    more.className='disabled'
                 }else{
                     more.disabled= false;
+                    more.className='more'
                 }
                 
                 more.setAttribute("data-name",list[i].roadName)
@@ -561,7 +562,14 @@ function getMaemulList(roadName,p){
                     img.setAttributeNode(src)
                     image.appendChild(img)
                 }
-                
+                if(image.firstChild){
+                   image.style.display="block"
+         
+                }else{
+                    image.style.display="none"
+              
+                }
+    
 
                 //수정할때 가져오기
                 maemulNum.value = list[0].num
@@ -600,8 +608,22 @@ realEstateList.addEventListener("click",function(event){
     let userId = event.target.getAttribute("data-userId");
     if(event.target.className=="interested"){
         if(userId==""){
-            alert("로그인이 필요합니다.")
-            window.location.href='/member/login'
+            //alert("로그인이 필요합니다.")
+            Swal.fire({
+                title: "로그인이 필요합니다.",  // title, text , html  로 글 작성
+                icon: "error",    //상황에 맞는 아이콘
+                showCancelButton: false,
+                showConfirmButton: true,
+                cancelButtonText: '확인'
+            }).then(result => {
+                // 만약 Promise리턴을 받으면,
+                if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+                
+                   window.location.href='/member/login'
+                }
+             });
+            
+           
         }else{
             event.target.classList.add("interested_select")
     
@@ -649,9 +671,19 @@ function getReviewList(roadName,p){
     xhttp.addEventListener("readystatechange",function(){
         if(xhttp.status==200 && xhttp.readyState==4){
             var result = JSON.parse(xhttp.responseText.trim());
-            // console.log(result)
+            console.log(result)
             let list= result.list
             let pager=result.maemulPager
+
+            if(list.length==0){
+                let revDiv = document.createElement("div")
+                revDiv.className="revDiv"
+                let div = document.createElement("div")
+                div.className="userDiv"
+                div.innerText="아직 리뷰가 없습니다."
+                revDiv.appendChild(div)
+                houseReviewList.appendChild(revDiv)
+            }
 
             for(let i=0; i<list.length; i++){
                 let revDiv = document.createElement("div")
@@ -671,7 +703,7 @@ function getReviewList(roadName,p){
                 revDiv.appendChild(userDiv)
 
                 let recommendWrap = document.createElement("div")
-                recommendWrap.className = "wrap"
+                recommendWrap.className = "wrap2"
                 let recommend = document.createElement("div")
                 recommend.className="recommend"
                 let gradeDivWrap = document.createElement("div")
@@ -712,7 +744,7 @@ function getReviewList(roadName,p){
 
 
                 let trafficWrap = document.createElement("div")
-                trafficWrap.className = "wrap"
+                trafficWrap.className = "wrap2"
                 let traffic = document.createElement("div")
                 traffic.className="recommend"
                 let trfDivWrap = document.createElement("div")
@@ -753,7 +785,7 @@ function getReviewList(roadName,p){
 
 
                 let envWrap = document.createElement("div")
-                envWrap.className = "wrap"
+                envWrap.className = "wrap2"
                 let environment = document.createElement("div")
                 environment.className="recommend"
                 let envDivWrap = document.createElement("div")
@@ -794,7 +826,7 @@ function getReviewList(roadName,p){
                 revDiv.appendChild(envWrap)
 
                 let resWrap = document.createElement("div")
-                resWrap.className = "wrap"
+                resWrap.className = "wrap2"
                 let residential = document.createElement("div")
                 residential.className="recommend"
                 let resDivWrap = document.createElement("div")
@@ -856,8 +888,10 @@ function getReviewList(roadName,p){
                 //페이지 없으면 버튼 비활성화
                 if(reviewPage >= pager.totalPage){
                     reviewMore.disabled= true;
+                    reviewMore.className='disabled'
                 }else{
                     reviewMore.disabled= false;
+                    reviewMore.className='more'
                 }
                 reviewMore.setAttribute("data-name",roadName)
             
@@ -912,9 +946,22 @@ addReview.addEventListener("click",function(){
     let rtv = res_text.value
     let road = roadname.value
 
-    if(id==""){
-        alert("로그인이 필요합니다.")
-    }
+    // if(id==""){
+    //     //alert("로그인이 필요합니다.")
+    //     Swal.fire({
+    //         title: "로그인이 필요합니다.",  // title, text , html  로 글 작성
+    //         icon: "error",    //상황에 맞는 아이콘
+    //         showCancelButton: false,
+    //         showConfirmButton: true,
+    //         cancelButtonText: '확인'
+    //     }).then(result => {
+    //         // 만약 Promise리턴을 받으면,
+    //         if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+            
+    //            window.location.href='/member/login'
+    //         }
+    //      });
+    // }
 
     let xhttp= new XMLHttpRequest();
     xhttp.open("POST","./addReview");
@@ -941,8 +988,21 @@ addReview.addEventListener("click",function(){
 function writerCheck(userId){
     let result
     if(writeReview.value==""){
-        alert("로그인이 필요합니다.")
-        window.location.href='/member/login'
+        //alert("로그인이 필요합니다.")
+        Swal.fire({
+            title: "로그인이 필요합니다.",  // title, text , html  로 글 작성
+            icon: "error",    //상황에 맞는 아이콘
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: '확인'
+        }).then(result => {
+            // 만약 Promise리턴을 받으면,
+          
+            
+               window.location.href='/member/login'
+            
+         });
+
     }
 
     $.ajax({
@@ -966,20 +1026,30 @@ houseReviewList.addEventListener("click",function(event){
         console.log(event.target.getAttribute("value"))
         let result = writerCheck(event.target.getAttribute("value"));
         console.log(result)
+        if(result==null){
+            return false
+        }
         if(result==0){
-            alert("작성자만 수정이 가능합니다.")
+            //alert("작성자만 수정이 가능합니다.")
+            Swal.fire({
+                title: "작성자만 수정이 가능합니다.",  // title, text , html  로 글 작성
+                icon: "warning",    //상황에 맞는 아이콘
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: '확인'
+            })
             return false
         }
         
-        grade_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        trf_text.value=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.innerHTML
-        env_text.value=event.target.previousSibling.previousSibling.previousSibling.innerHTML
-        res_text.value=event.target.previousSibling.innerHTML
-        reviewNum.value=event.target.parentNode.getAttribute("data-rvnum")
-        let grade=event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
-        let tg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
-        let eg = event.target.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
-        let rg = event.target.previousSibling.previousSibling.firstChild.nextSibling.innerHTML
+        grade_text.value=event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.lastChild.innerHTML
+        trf_text.value=event.target.parentNode.previousSibling.previousSibling.previousSibling.lastChild.innerHTML
+        env_text.value=event.target.parentNode.previousSibling.previousSibling.lastChild.innerHTML
+        res_text.value=event.target.parentNode.previousSibling.lastChild.innerHTML
+        reviewNum.value=event.target.parentNode.parentNode.getAttribute("data-rvnum")
+        let grade=event.target.parentNode.previousSibling.previousSibling.previousSibling.previousSibling.firstChild.firstChild.nextSibling.innerHTML
+        let tg = event.target.parentNode.previousSibling.previousSibling.previousSibling.firstChild.firstChild.nextSibling.innerHTML
+        let eg = event.target.parentNode.previousSibling.previousSibling.firstChild.firstChild.nextSibling.innerHTML
+        let rg = event.target.parentNode.previousSibling.firstChild.firstChild.nextSibling.innerHTML
         
         document.getElementsByName("recommend")[Math.abs(grade-5)].checked=true
         document.getElementsByName("trf")[Math.abs(tg-5)].checked=true
@@ -997,8 +1067,25 @@ writeReview.addEventListener("click",function(){
     
     console.log(writeReview.value)
     if(writeReview.value==""){
-        alert("로그인이 필요합니다.")
-        window.location.href='/member/login'
+        
+        //alert("로그인이 필요합니다.")
+        Swal.fire({
+            title: "로그인이 필요합니다.",  // title, text , html  로 글 작성
+            icon: "error",    //상황에 맞는 아이콘
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: '확인'
+        }).then(result => {
+            // 만약 Promise리턴을 받으면,
+          
+            
+               window.location.href='/member/login'
+            
+         });
+         return false
+        
+    }else{
+        $('#exampleModal').modal('show')
     }
 
     addReview.style.display="block"
@@ -1051,7 +1138,15 @@ updateReview.addEventListener("click",function(){
     let etv = env_text.value
     let rtv = res_text.value
     let road = roadname.value
-    console.log(road)
+    console.log(rvnum)
+    console.log(gv)
+    console.log(gtv)
+    console.log(tgv)
+    console.log(ttv)
+    console.log(egv)
+    console.log(etv)
+    console.log(rgv)
+    console.log(rtv)
 
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST","./updateReview")
@@ -1070,7 +1165,13 @@ updateReview.addEventListener("click",function(){
                 getReviewList(road,reviewPage)
 
             }else{
-                alert("리뷰 수정실패")
+                Swal.fire({
+                    title: "리뷰 수정실패",  // title, text , html  로 글 작성
+                    icon: "error",    //상황에 맞는 아이콘
+                    showCancelButton: true,
+                    showConfirmButton: false,
+                    cancelButtonText: '확인'
+                })
             }
         }
     })
@@ -1083,7 +1184,14 @@ houseReviewList.addEventListener("click",function(event){
         let result = writerCheck(event.target.getAttribute("value"));
         console.log(result)
         if(result==0){
-            alert("작성자만 삭제 가능합니다.")
+           // alert("작성자만 삭제 가능합니다.")
+            Swal.fire({
+                title: "작성자만 삭제 가능합니다.",  // title, text , html  로 글 작성
+                icon: "warning",    //상황에 맞는 아이콘
+                showCancelButton: true,
+                showConfirmButton: false,
+                cancelButtonText: '확인'
+            })
             return false
         }
         if(result==1){
@@ -1112,7 +1220,14 @@ houseReviewList.addEventListener("click",function(event){
                             getReviewList(road,reviewPage)
             
                         }else{
-                            alert("리뷰 삭제실패")
+                            //alert("리뷰 삭제실패")
+                            Swal.fire({
+                                title: "리뷰 삭제실패",  // title, text , html  로 글 작성
+                                icon: "error",    //상황에 맞는 아이콘
+                                showCancelButton: true,
+                                showConfirmButton: false,
+                                cancelButtonText: '확인'
+                            })
                         }
                     }
                 })
@@ -1180,7 +1295,14 @@ function searchPlaces() {
     var keyword = document.getElementById('keyword').value;
 
     if (!keyword.replace(/^\s+|\s+$/g, '')) {
-        alert('키워드를 입력해주세요!');
+        //alert('키워드를 입력해주세요!');
+        Swal.fire({
+            title: '키워드를 입력해주세요!',  // title, text , html  로 글 작성
+            icon: "warning",    //상황에 맞는 아이콘
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: '확인'
+        })
         return false;
     }
 
@@ -1214,12 +1336,26 @@ function placesSearchCB(data, status, pagination) {
        
     } else if (status === kakao.maps.services.Status.ZERO_RESULT) {
 
-        alert('검색 결과가 존재하지 않습니다.');
+        //alert('검색 결과가 존재하지 않습니다.');
+        Swal.fire({
+            title: '검색 결과가 존재하지 않습니다.',  // title, text , html  로 글 작성
+            icon: "warning",    //상황에 맞는 아이콘
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: '확인'
+        })
         return;
 
     } else if (status === kakao.maps.services.Status.ERROR) {
 
-        alert('검색 결과 중 오류가 발생했습니다.');
+        //alert('검색 결과 중 오류가 발생했습니다.');
+        Swal.fire({
+            title: '검색 결과 중 오류가 발생했습니다.',  // title, text , html  로 글 작성
+            icon: "warning",    //상황에 맞는 아이콘
+            showCancelButton: true,
+            showConfirmButton: false,
+            cancelButtonText: '확인'
+        })
         return;
 
     }

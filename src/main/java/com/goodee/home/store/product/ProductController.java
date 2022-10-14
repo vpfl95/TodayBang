@@ -68,7 +68,11 @@ public class ProductController {
 		String jsonList = mapper.writeValueAsString(ar);
 		mv.addObject("jsonList", jsonList);
 		mv.addObject("moveRevNum", revNum);
-		mv.setViewName("store/products/detailProduct");
+		if(jsonList.length() == 2) {
+			mv.setViewName("store/notFound");
+		} else {
+			mv.setViewName("store/products/detailProduct");
+		}
 		return mv;
 	}
 	

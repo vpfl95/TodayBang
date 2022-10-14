@@ -171,7 +171,10 @@ btnPay.onclick=function(){
     if(check){
         requestPay();
     } else {
-
+        Swal.fire({
+            icon: 'warning',
+            text: '약관에 모두 동의해주세요',
+          })
     }
 };
 
@@ -186,8 +189,7 @@ function requestPay() {
         pay_method : 'card',
         merchant_uid: n, // 상점에서 관리하는 주문 번호를 전달
         name : productName.value,
-        // amount : totalPrice[0].innerHTML.replace(/,+/g, ''),
-        amount : 100,
+        amount : totalPrice[0].innerHTML.replace(/,+/g, ''),
         buyer_name : addressee.value,
         buyer_tel : phoneFirst.value+'-'+phoneLast.value,
         buyer_addr : sample6_address.value+' '+sample6_detailAddress.value,
@@ -206,7 +208,7 @@ function requestPay() {
             }).done(function(data) {
                 //[2] 서버에서 REST API로 결제정보확인 및 서비스루틴이 정상적인 경우
                 if(rsp.paid_amount == data.response.amount) {
-                    alert('결제 성공');
+                     // 결제성공페이지 이동
                     let num = [];
                     let count = [];
                     const optionNum = document.querySelectorAll('.optionNum');
@@ -230,14 +232,22 @@ function requestPay() {
                         console.log(this.responseText);
                     }
                 } else {
-                    alert('결제 실패');
+                    Swal.fire({
+                        icon: 'error',
+                        text: '결제 실패',
+                        footer: '<a href="">Why do I have this issue?</a>'
+                      })
                 }
             });
         } else {
             var msg = '결제에 실패하였습니다.';
-            msg += '에러내용 : ' + rsp.error_msg;
+            msg += ' 에러내용 : ' + rsp.error_msg;
             
-            alert(msg);
+            Swal.fire({
+                icon: 'error',
+                text: msg,
+                footer: '<a href="">Why do I have this issue?</a>'
+              })
         }
     });
 }
