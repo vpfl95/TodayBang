@@ -9,19 +9,15 @@
 	<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
 	<link rel="stylesheet" href="/resources/css/map.css">
 	<link href="/resources/css/reset.css" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.4.10/dist/sweetalert2.min.css">
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 </head>
 <body>
 	<c:import url="../template/header.jsp"></c:import>
-	<section class="container-fluid container-lg-8 mt-5">
-
-		<!-- <h1>${zigbang} 페이지</h1> -->
+	<div class="container-fluid container-lg-8 mt-5" style="width:100%;height:100%">
 		<div class="map_wrap">
-			<div id="map" style="width:100%;height:100%;position:relative;overflow:hidden;">
-			
-			
-			
-			
+			<div id="map" style="margin-top: 105px;width:100%;height:100%;position:relative;overflow:hidden;">
+
 				<div class="hAddr">
 					<span class="title">지도중심기준 법정동, 행정동 주소정보</span>
 					법정동:<span id="B"></span><br>
@@ -63,7 +59,7 @@
 									</tr>
 								</thead>
 							</table>
-							<button id="more">더보기</button>
+							<button class="more" id="more">더보기</button>
 						</div>
 					</div>
 		
@@ -71,10 +67,10 @@
 	
 					<div id="review">
 						<div id="houseReviewList"></div>
-						<button id="reviewMore">더보기</button>		
+						<button class="more" id="reviewMore">더보기</button>		
 					</div>
 	
-					<button type="button" style="background-color: rgb(250, 136, 11);;" id="writeReview" value="${member.userId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">리뷰 작성하기</button>
+					<button type="button" style="background-color: rgb(250, 136, 11);;" id="writeReview" value="${member.userId}" class="btn btn-primary" data-bs-toggle="modal" data-bs-whatever="@mdo">리뷰 작성하기</button>
 					<button type="button" id="upReview" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">수정</button>
 				</div>
 				
@@ -86,16 +82,16 @@
 			<div class="modal-dialog">
 				<div class="modal-content">
 					<div class="modal-header">
-						<h5 class="modal-title" id="exampleModalLabel">리뷰 작성하기</h5>
+						<h5 class="modal-title" id="exampleModalLabel" style="font-weight: bold;">리뷰 작성하기</h5>
 						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 					</div>
 					
 					<div class="modal-body">
-						<input type="text" name="" id="roadname" >
+						<input type="text" name="" id="roadname" hidden>
 						<form>
-							<input type="text" id="maemulNum" >
-							<input type="text" value="${member.userId}" id="userId" >
-							<input type="text" id="reviewNum">
+							<input type="text" id="maemulNum" hidden>
+							<input type="text" value="${member.userId}" id="userId" hidden>
+							<input type="text" id="reviewNum" hidden>
 							<div class="mb-3 mod">
 								추천점수:
 								<!-- <input type="number" id="grade"> -->
@@ -146,19 +142,20 @@
 
 					<div class="modal-footer">
 						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="addReview">리뷰 작성</button>
-						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="updateReview">수정</button>
+						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="addReview" style="background-color: rgb(250, 136, 11);">리뷰 작성</button>
+						<button type="button" class="btn btn-primary" data-bs-dismiss="modal" id="updateReview" style="background-color: rgb(250, 136, 11);">수정</button>
 					</div>
 
 				</div>
 			</div>
 		</div>
 
-	</section>
+	</div>
 
 	<!-- <c:import url="../template/footer.jsp"></c:import> -->
 	<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=6f734c47d571810dc50360665614e2cd&libraries=services,clusterer,drawing"></script>
 	<script src="/resources/js/map.js"></script>
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
 </body>
 </html>
