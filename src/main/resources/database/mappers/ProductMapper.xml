@@ -13,8 +13,8 @@
 	</insert>
 	
 	<insert id="setProductImage" parameterType="ProductImageDTO">
-		INSERT INTO PRODUCTIMAGE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{productNum}, #{detail})
-	</insert>
+      INSERT INTO PRODUCTIMAGE VALUES (FILE_SEQ.NEXTVAL, #{fileName}, #{oriName}, #{detail}, #{productNum})
+   </insert>
 	
 	<select id="getExProductList" parameterType="ExhibitionDTO"
 		resultMap="getExProductResult">
