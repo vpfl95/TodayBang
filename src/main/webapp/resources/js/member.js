@@ -978,46 +978,107 @@ function profile() {
 
     dropId.addEventListener("click",function(){
         
-            Swal.fire({
-              title: '회원을 탈퇴 하시겠습니까?',
-              text: "다시 되돌릴 수 없습니다. ",
-              icon: 'warning',
-              showCancelButton: true,
-              confirmButtonColor: '#38b9e0',
+            // Swal.fire({
+            //   title: '회원을 탈퇴 하시겠습니까?',
+            //   text: "다시 되돌릴 수 없습니다. ",
+            //   icon: 'warning',
+            //   showCancelButton: true,
+            //   confirmButtonColor: '#38b9e0',
               
-              confirmButtonText: '탈퇴',
-              cancelButtonText: '취소',
-              reverseButtons: true, // 버튼 순서 거꾸로
+            //   confirmButtonText: '탈퇴',
+            //   cancelButtonText: '취소',
+            //   reverseButtons: true, // 버튼 순서 거꾸로
               
-            }).then((result) => {
-              if (result.isConfirmed) {
+            // }).then((result) => {
+            //   if (result.isConfirmed) {
                 
-                
-
-
-
-                Swal.fire({
+            //     Swal.fire({
                     
-                    title: '회원탈퇴가 완료되었습니다.',
-                    icon: 'success',
-                    confirmButtonColor: '#38b9e0'
+            //         title: '비밀번호 확인',
+            //         text: '회원 탈퇴 진행을 위해 비밀번호를 입력 해 주세요.',
+            //         icon: 'question',
+            //         confirmButtonColor: '#38b9e0'
 
 
-                }).then((result) => {
-                    updateForm.action = "./dropMember";
-                    updateForm.submit();
-                })
 
-                setTimeout(() => {
-                    updateForm.action = "./dropMember";
-                    updateForm.submit();
-                }, 2000)
+
+            //     }).then((result) => {
+            //         updateForm.action = "./dropMember";
+            //         updateForm.submit();
+            //     })
+
+
+
+
+            //     setTimeout(() => {
+            //         updateForm.action = "./dropMember";
+            //         updateForm.submit();
+            //     }, 2000)
     
                 
-              }
-            })
+            //   }
+            // })
           
-     
+            Swal.fire({
+                title: `회원 탈퇴`,
+                icon : 'warning',
+                html :
+                '<br>'+
+                '<p style="margin-top : 15px; color :#5a6877; font-size : 16px; ">회원 탈퇴를 위해 비밀번호를 입력해 주세요.<p>'+
+                
+                '비밀번호 : <input id="swalinput1" name = "password" class="swal2-input">' +
+                '<p style="margin-top : 20px; color :#5a6877; font-size : 16px; ">회원 탈퇴 진행 시, 게시글을 포함한 모든 정보가 삭제됩니다.<p>',
+    
+                
+                confirmButtonColor : '#38b9e0',
+                reverseButtons:true,
+                showCancelButton: true,
+                confirmButtonText: '탈퇴',
+                showLoaderOnConfirm: true, 
+                preConfirm: () => { // 확인 버튼 누르면 실행되는 콜백함수
+                    return  fetch("/member/dropMember?password="+swalinput1.value)
+                      .then(response => {
+                        if (!response.ok) {
+                          throw new Error(response.statusText)
+                        }
+                       return response.text();
+                      })
+                      .catch(error => {
+                        Swal.showValidationMessage(
+                          `비밀번호가 일치하지 않습니다. : ${error}`
+                        )
+                      })
+                  }, allowOutsideClick: () => !Swal.isLoading() 
+            }).then((result)=> {
+                if (result.value) {
+                    
+                    let map = JSON.parse(JSON.stringify(result.value));
+                    
+    
+                    Swal.fire({
+                        title: `정말로 탈퇴 하시겠습니까?`,
+                        text: '탈퇴 진행 시 복구가 불가능 합니다.',
+                        icon :'warning',
+                        reverseButtons:true,
+                        showCancelButton : true,
+                        showConfirmButton: true,
+                        cancelButtonText:"취소",
+                        confirmButtonText:"확인",
+                        confirmButtonColor : '#38b9e0'
+    
+                      }).then((result)=> {
+                        if (result.isConfirmed) {
+
+
+
+                        }
+
+                      })
+    
+                }
+    
+    
+            })
 
 
 

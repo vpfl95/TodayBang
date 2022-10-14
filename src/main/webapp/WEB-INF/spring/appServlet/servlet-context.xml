@@ -31,7 +31,7 @@
 	<beans:bean class="com.goodee.home.interceptor.WriterCheckInterceptor" id="writerCheckInterceptor"></beans:bean>
 	<beans:bean class="com.goodee.home.interceptor.LoginInterceptor" id="loginInterceptor"></beans:bean>
 	<beans:bean class="com.goodee.home.interceptor.RoleInterceptor" id="roleInterceptor"></beans:bean>
-	
+
 	<interceptors>
 		<interceptor>
 			<mapping path="/apt/writerCheck"/>

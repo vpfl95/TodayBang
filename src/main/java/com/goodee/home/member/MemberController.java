@@ -73,6 +73,7 @@ public class MemberController {
 	@ResponseBody
 	public int getLogin(HttpSession session,MemberDTO memberDTO) throws Exception{
 		
+		
 		memberDTO = memberService.getLogin(memberDTO);
 
 		if (memberDTO != null) {
@@ -83,6 +84,8 @@ public class MemberController {
 					
 				}else if(role.getRoleNum()<100 && role.getRoleNum()>9) {
 					session.setAttribute("MemberRole", role);
+				}else if(role.getRoleNum()==100) {
+					session.setAttribute("BanRole", role);
 				}	
 			}
 			session.setAttribute("profile", memberDTO.getMemberFileDTO());
@@ -353,6 +356,21 @@ public class MemberController {
 		
 		int result = memberService.deleteDelivery(deliveryDTO);
 		return "redirect:./delivery";
+	}
+	
+	@GetMapping("dropMember")
+	@ResponseBody
+	public boolean dropMember(MemberDTO memberDTO,HttpSession session) throws Exception{
+		
+		MemberDTO memberDTO2=(MemberDTO) session.getAttribute("member");
+		
+		if(memberDTO.getPassword().equals(memberDTO2.getPassword())) {
+			
+			
+			return true;
+		}
+		
+		return false;
 	}
 	
 	@PostMapping("dropMember")
