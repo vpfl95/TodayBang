@@ -126,15 +126,9 @@ public class AptController {
 	@ResponseBody
 	public List<RegionDTO> getRegion(RegionDTO sigunguDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-//		System.out.println("swLat:" +sigunguDTO.getSwLat());
-//		System.out.println("swLon:" +sigunguDTO.getSwLon());
-//		System.out.println("neLat:" +sigunguDTO.getNeLat());
-//		System.out.println("neLon:" +sigunguDTO.getNeLon());
-//		System.out.println("mapLevel:" +sigunguDTO.getMapLevel());
+
 		List<RegionDTO> arr = new ArrayList<RegionDTO>();
-		if(sigunguDTO.getMapLevel()<5) {
-			
-		}else if(sigunguDTO.getMapLevel()>=5 && sigunguDTO.getMapLevel()<7) {
+		if(sigunguDTO.getMapLevel()>=5 && sigunguDTO.getMapLevel()<7) {
 			arr = regionService.getEmd(sigunguDTO);
 		}else if(sigunguDTO.getMapLevel()>=7 && sigunguDTO.getMapLevel()<11) {
 			arr = regionService.getSigungu(sigunguDTO);

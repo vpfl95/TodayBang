@@ -525,11 +525,12 @@ function getMaemulList(roadName,p){
                 let tdAttr = document.createAttribute("class")
                 tdAttr.value="interested"
                 td.setAttributeNode(tdAttr)
-                td.appendChild(tdText)
+                td.appendChild(tdText)  
                 td.setAttribute("data-num",list[i].num)
                 td.setAttribute("data-userId",userId.value)
                 tr.appendChild(td)
                
+                
                 if(user.length>0){
                     for(let j =0; j<user.length; j++){
                         if(user[j].num==list[i].num){
