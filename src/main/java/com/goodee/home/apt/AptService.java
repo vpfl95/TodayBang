@@ -36,7 +36,7 @@ public class AptService {
 			List<RealEstateDTO> value = aptDAO.getAptRoadName(aptDTO);
 			list.set(key, value, 300, TimeUnit.SECONDS);
 			System.out.println("Redis에" + aptDTO.getSigungu() + " 키 저장");
-			return aptDAO.getAptRoadName(aptDTO); 
+			return value;
 		}
 		
 	}
