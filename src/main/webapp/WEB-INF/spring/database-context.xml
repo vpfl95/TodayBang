@@ -7,7 +7,7 @@
 
 
 
-<context:property-placeholder location="classpath:database/config/database.properties"/>
+<context:property-placeholder  order="1" ignore-unresolvable="true"  location="classpath:database/config/database.properties"/>
 
 <bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="dataSource">
 	<property name="username" value="${oracle.username}"></property>

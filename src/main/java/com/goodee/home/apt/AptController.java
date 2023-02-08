@@ -22,6 +22,7 @@ import com.goodee.home.interested.InterestedDTO;
 import com.goodee.home.interested.InterestedService;
 import com.goodee.home.realEstate.RealEstateDTO;
 import com.goodee.home.realEstate.RealEstateService;
+import com.goodee.home.redis.config.RedisConfig;
 import com.goodee.home.region.RegionDTO;
 import com.goodee.home.region.RegionService;
 import com.goodee.home.review.HouseReviewDTO;
@@ -43,7 +44,7 @@ public class AptController {
 	private InterestedService interestedService;
 	@Autowired
 	private RealEstateService realEstateService;
-	
+
 	
 	@ModelAttribute("zigbang")
 	public String getBuilding() {
@@ -115,7 +116,7 @@ public class AptController {
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		System.out.println("getaptroadname"+aptDTO.getSigungu());
-		
+	
 		List<RealEstateDTO> arr = aptService.getAptRoadName(aptDTO);
 		
 		return arr;

@@ -209,9 +209,11 @@ function getRegionName(){
 // 마커에 건물명, 시세 정보 가져오기
 function getBuildingInfo(result, status){
     let buildingInfoResult;
+  
     let xhttp = new XMLHttpRequest();
     xhttp.open("POST","./getAptRoadName");
     xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded; charset=euc-kr");
+
     // console.log(map.getBounds())
     // console.log(map.getBounds().ha)
     // var coords = new kakao.maps.LatLng(map.getBounds().ha, map.getBounds().qa);
@@ -222,7 +224,8 @@ function getBuildingInfo(result, status){
     if (status === kakao.maps.services.Status.OK) {
         for(var i = 0; i < result.length; i++) {
             console.log(result[i].address_name)
-
+            // xhttp.open("GET","./getAptRoadName?sigungu="+result[i].address_name);
+            // xhttp.send();
             xhttp.send("sigungu="+result[i].address_name);
             xhttp.addEventListener("readystatechange", function(){
                 if(xhttp.status==200 && xhttp.readyState==4){
