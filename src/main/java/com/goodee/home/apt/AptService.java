@@ -25,7 +25,7 @@ public class AptService {
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO) throws Exception{
 		ValueOperations<String, Object> list = redisTemplate.opsForValue();
 		
-		List<RealEstateDTO> value = aptDAO.getAptRoadName(aptDTO);
+		
 		String key = aptDTO.getSigungu();
 		
 		if(redisTemplate.hasKey(aptDTO.getSigungu())) {
@@ -33,8 +33,9 @@ public class AptService {
 			return (List<RealEstateDTO>) list.get(key);
 		}else {
 			System.out.println(aptDTO.getSigungu() + " 키가 없음");
-			System.out.println("Redis에" + aptDTO.getSigungu() + " 키 저장");
+			List<RealEstateDTO> value = aptDAO.getAptRoadName(aptDTO);
 			list.set(key, value, 300, TimeUnit.SECONDS);
+			System.out.println("Redis에" + aptDTO.getSigungu() + " 키 저장");
 			return aptDAO.getAptRoadName(aptDTO); 
 		}
 		

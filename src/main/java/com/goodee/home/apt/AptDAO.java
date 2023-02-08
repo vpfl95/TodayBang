@@ -17,6 +17,7 @@ public class AptDAO {
 	private final String NAMESPACE = "com.goodee.home.apt.AptDAO.";
 	
 	public List<RealEstateDTO> getAptRoadName(AptDTO aptDTO)throws Exception{
+		System.out.println("DB 조회");
 		return sqlSession.selectList(NAMESPACE+"getAptRoadName",aptDTO);
 	}
 	
