@@ -29,15 +29,21 @@ public class AptService {
 		String key = aptDTO.getSigungu();
 		
 		if(redisTemplate.hasKey(aptDTO.getSigungu())) {
+			System.out.println("==============================================");
 			System.out.println(aptDTO.getSigungu() + " 키가 이미 있음");
+			System.out.println("==============================================");
 			return (List<RealEstateDTO>) list.get(key);
 		}else {
+			System.out.println("==============================================");
 			System.out.println(aptDTO.getSigungu() + " 키가 없음");
 			List<RealEstateDTO> value = aptDAO.getAptRoadName(aptDTO);
 			list.set(key, value, 300, TimeUnit.SECONDS);
 			System.out.println("Redis에" + aptDTO.getSigungu() + " 키 저장");
+			System.out.println("==============================================");
 			return value;
 		}
+		
+		//return aptDAO.getAptRoadName(aptDTO);
 		
 	}
 	

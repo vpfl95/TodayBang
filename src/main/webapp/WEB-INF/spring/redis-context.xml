@@ -11,12 +11,12 @@
 	<context:property-placeholder  order="2" ignore-unresolvable="true"  location="classpath:redis/config/redis.properties"/>
 	
 	<!-- redis -->
-	<bean id="redisConnectionFactory" 
+<!-- 	<bean id="redisConnectionFactory" 
 		class="org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory" 
 		p:host-name="${redis.host}" p:port="${redis.port}"/>
 	
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.StringRedisTemplate" 
-		p:connectionFactory-ref="redisConnectionFactory" />
+		p:connectionFactory-ref="redisConnectionFactory" /> -->
 		
 
 
